@@ -22,11 +22,20 @@ function App() {
   const [course, setCourse] = useState("MBA");
   const [result, setResult] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [error, setError] = useState("");
 
   function predictCollege() {
-    const matched = colleges
-      .filter(
-        (college) =>
+
+  if (rank.trim() === "") {
+    setError("Please enter your TG ICET Rank");
+    return;
+  }
+
+  if (rank.trim() !== "") {
+    setError("");
+}
+
+  const matchedColleges = colleges.filter((college) => 
           college.course === course &&
           college.category === category &&
           college.gender === gender &&
@@ -38,7 +47,7 @@ function App() {
         status: getStatus(rank, college.cutoff),
       }));
 
-    setResult(matched);
+    setResult(matchedColleges);
   }
 
   function scrollToPredictor() {
@@ -86,17 +95,18 @@ function App() {
           <FeatureStats />
 
           {/* Predictor */}
-          <PredictorForm
-            rank={rank}
-            setRank={setRank}
-            category={category}
-            setCategory={setCategory}
-            gender={gender}
-            setGender={setGender}
-            course={course}
-            setCourse={setCourse}
-            onPredict={predictCollege}
-          />
+         <PredictorForm
+  rank={rank}
+  setRank={setRank}
+  category={category}
+  setCategory={setCategory}
+  gender={gender}
+  setGender={setGender}
+  course={course}
+  setCourse={setCourse}
+  onPredict={predictCollege}
+  error={error}
+/>
 
           {/* Prediction Summary */}
           {result.length > 0 && <StatsGrid {...stats} />}

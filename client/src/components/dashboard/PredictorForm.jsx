@@ -19,6 +19,7 @@ export default function PredictorForm({
   course,
   setCourse,
   onPredict,
+  error,
 }) {
   return (
     <motion.div
@@ -44,14 +45,24 @@ shadow-[0_20px_60px_rgba(37,99,235,0.12)]
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Input
-            id="rank"
-            label="TG ICET Rank"
-            type="number"
-            placeholder="e.g. 12500"
-            value={rank}
-            onChange={(e) => setRank(e.target.value)}
-          />
+          <>
+  <Input
+    id="rank"
+    label="TG ICET Rank"
+    type="number"
+    placeholder="e.g. 12500"
+    value={rank}
+    onChange={(e) => {
+      setRank(e.target.value);
+    }}
+  />
+
+  {error && (
+    <p className="text-red-600 text-sm mt-2 font-medium">
+      {error}
+    </p>
+  )}
+</>
           <Select
             id="category"
             label="Category"

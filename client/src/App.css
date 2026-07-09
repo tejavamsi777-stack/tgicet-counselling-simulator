@@ -101,3 +101,9 @@ select:focus {
     box-shadow:0 2px 10px rgba(0,0,0,.15);
     text-align:left;
 }
+.error-message{
+  color:red;
+  font-size:15px;
+  font-weight:600;
+  margin-top:8px;
+}
