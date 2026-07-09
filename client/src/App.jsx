@@ -21,129 +21,98 @@ function App() {
   const [gender, setGender] = useState("Male");
   const [course, setCourse] = useState("MBA");
   const [result, setResult] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState("");
 
- function predictCollege() {
-  if (rank.trim() === "") {
-    setError("Please enter your TG ICET Rank");
-    return;
+  function predictCollege() {
+    if (rank.trim() === "") {
+      setError("Please enter your TG ICET Rank");
+      return;
+    }
+
+    setError("");
+
+    const matchedColleges = colleges
+      .filter(
+        (college) =>
+          college.course === course &&
+          college.category === category &&
+          college.gender === gender &&
+          Number(rank) <= Number(college.cutoff)
+      )
+      .map((college) => {
+        const status = getStatus(rank, college.cutoff);
+        return {
+          ...college,
+          status,
+          statusPriority: status === "safe" ? 0 : status === "moderate" ? 1 : 2,
+        };
+      })
+      .sort((a, b) => {
+        if (a.statusPriority !== b.statusPriority) {
+          return a.statusPriority - b.statusPriority;
+        }
+        return a.cutoff - b.cutoff;
+      });
+
+    setResult(matchedColleges);
   }
 
-  setError("");
-
-  const matchedColleges = colleges
-    .filter(
-      (college) =>
-        college.course === course &&
-        college.category === category &&
-        college.gender === gender &&
-        Number(rank) <= Number(college.cutoff)
-    )
-    .map((college) => {
-      const status = getStatus(rank, college.cutoff);
-
-      return {
-        ...college,
-        status,
-        statusPriority:
-          status === "safe"
-            ? 0
-            : status === "moderate"
-            ? 1
-            : 2,
-      };
-    })
-    .sort((a, b) => {
-      if (a.statusPriority !== b.statusPriority) {
-        return a.statusPriority - b.statusPriority;
-      }
-
-      return a.cutoff - b.cutoff;
-    });
-
-  setResult(matchedColleges);
-
-  
-}
   function scrollToPredictor() {
-    document
-      .getElementById("predict")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("predict")?.scrollIntoView({ behavior: "smooth" });
   }
 
   const stats = useMemo(() => {
     const safe = result.filter((c) => c.status === "safe").length;
     const moderate = result.filter((c) => c.status === "moderate").length;
     const risky = result.filter((c) => c.status === "risky").length;
-    useEffect(() => {
-  if (result.length > 0) {
-    document.getElementById("results")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-}, [result]);
+    return { total: result.length, safe, moderate, risky };
+  }, [result]);
 
-    return {
-      total: result.length,
-      safe,
-      moderate,
-      risky,
-    };
+  useEffect(() => {
+    if (result.length > 0) {
+      document.getElementById("results")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   }, [result]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Background Blur */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10"
-      >
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-brand-300/40 blur-3xl" />
         <div className="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-purple-300/30 blur-3xl" />
         <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
       </div>
 
-      {/* Navbar */}
       <Navbar />
-
-      {/* Hero */}
       <Hero onGetStarted={scrollToPredictor} />
 
-      {/* Main Content */}
       <PageTransition>
         <main className="mx-auto max-w-7xl space-y-16 px-6 pb-24">
-
-          {/* Feature Cards */}
           <FeatureStats />
 
-          {/* Predictor */}
-         <PredictorForm
-  rank={rank}
-  setRank={setRank}
-  category={category}
-  setCategory={setCategory}
-  gender={gender}
-  setGender={setGender}
-  course={course}
-  setCourse={setCourse}
-  onPredict={predictCollege}
-  error={error}
-/>
+          <PredictorForm
+            rank={rank}
+            setRank={setRank}
+            category={category}
+            setCategory={setCategory}
+            gender={gender}
+            setGender={setGender}
+            course={course}
+            setCourse={setCourse}
+            onPredict={predictCollege}
+            error={error}
+          />
 
-          {/* Prediction Summary */}
           {result.length > 0 && <StatsGrid {...stats} />}
 
-          {/* Results */}
           <section id="results">
-            <ResultsTable results={result} />
+            <ResultsTable results={result} rank={rank} />
           </section>
-
         </main>
       </PageTransition>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
