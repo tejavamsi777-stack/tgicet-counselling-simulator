@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import colleges from "./data/colleges.json";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { getStatus } from "./utils/status";
@@ -24,46 +24,48 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState("");
 
-  function predictCollege() {
-
+ function predictCollege() {
   if (rank.trim() === "") {
     setError("Please enter your TG ICET Rank");
     return;
   }
 
   setError("");
+
+  const matchedColleges = colleges
+    .filter(
+      (college) =>
+        college.course === course &&
+        college.category === category &&
+        college.gender === gender &&
+        Number(rank) <= Number(college.cutoff)
+    )
+    .map((college) => {
+      const status = getStatus(rank, college.cutoff);
+
+      return {
+        ...college,
+        status,
+        statusPriority:
+          status === "safe"
+            ? 0
+            : status === "moderate"
+            ? 1
+            : 2,
+      };
+    })
+    .sort((a, b) => {
+      if (a.statusPriority !== b.statusPriority) {
+        return a.statusPriority - b.statusPriority;
+      }
+
+      return a.cutoff - b.cutoff;
+    });
+
+  setResult(matchedColleges);
+
+  
 }
-
- const matchedColleges = colleges
-  .filter(
-    (college) =>
-      college.course === course &&
-      college.category === category &&
-      college.gender === gender &&
-      Number(rank) <= Number(college.cutoff)
-  )
-  .map((college) => ({
-    ...college,
-    status: getStatus(rank, college.cutoff),
-  }))
-  .sort((a, b) => {
-    const order = {
-      safe: 0,
-      moderate: 1,
-      risky: 2,
-    };
-
-    if (order[a.status] !== order[b.status]) {
-      return order[a.status] - order[b.status];
-    }
-
-    // Within the same status, sort by cutoff
-    return a.cutoff - b.cutoff;
-  });
-
-    setResult(matchedColleges);
-  }
-
   function scrollToPredictor() {
     document
       .getElementById("predict")
@@ -74,6 +76,14 @@ function App() {
     const safe = result.filter((c) => c.status === "safe").length;
     const moderate = result.filter((c) => c.status === "moderate").length;
     const risky = result.filter((c) => c.status === "risky").length;
+    useEffect(() => {
+  if (result.length > 0) {
+    document.getElementById("results")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+}, [result]);
 
     return {
       total: result.length,
