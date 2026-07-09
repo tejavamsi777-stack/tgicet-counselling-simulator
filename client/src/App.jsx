@@ -31,21 +31,35 @@ function App() {
     return;
   }
 
-  if (rank.trim() !== "") {
-    setError("");
+  setError("");
 }
 
-  const matchedColleges = colleges.filter((college) => 
-          college.course === course &&
-          college.category === category &&
-          college.gender === gender &&
-          Number(rank) <= Number(college.cutoff)
-      )
-      .sort((a, b) => a.cutoff - b.cutoff)
-      .map((college) => ({
-        ...college,
-        status: getStatus(rank, college.cutoff),
-      }));
+ const matchedColleges = colleges
+  .filter(
+    (college) =>
+      college.course === course &&
+      college.category === category &&
+      college.gender === gender &&
+      Number(rank) <= Number(college.cutoff)
+  )
+  .map((college) => ({
+    ...college,
+    status: getStatus(rank, college.cutoff),
+  }))
+  .sort((a, b) => {
+    const order = {
+      safe: 0,
+      moderate: 1,
+      risky: 2,
+    };
+
+    if (order[a.status] !== order[b.status]) {
+      return order[a.status] - order[b.status];
+    }
+
+    // Within the same status, sort by cutoff
+    return a.cutoff - b.cutoff;
+  });
 
     setResult(matchedColleges);
   }
