@@ -28,8 +28,9 @@ function App() {
   const [course, setCourse] = useState("MBA");
   const [error, setError] = useState("");
 
-  const [submitted, setSubmitted] = useState(null);
+ const [submitted, setSubmitted] = useState(null);
   const [year, setYear] = useState(2024);
+  const [openPanel, setOpenPanel] = useState(null);
 
   function predictCollege() {
     if (rank.trim() === "") {
@@ -125,7 +126,7 @@ function App() {
         </main>
       </PageTransition>
 
-      <Footer />
+      <Footer openPanel={openPanel} setOpenPanel={setOpenPanel} />
     </div>
   );
 }
