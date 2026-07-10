@@ -23,8 +23,8 @@ export default function Hero({ onGetStarted }) {
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-brand-100),_transparent_60%)]"
       />
 
-      <div className="absolute -top-40 -left-20 h-96 w-96 rounded-full bg-blue-300/20 blur-[120px]" />
-<div className="absolute top-20 right-0 h-[450px] w-[450px] rounded-full bg-indigo-300/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -top-40 -left-20 h-96 w-96 rounded-full bg-blue-300/20 blur-[120px]" />
+      <div className="pointer-events-none absolute top-20 right-0 h-[450px] w-[450px] rounded-full bg-indigo-300/20 blur-[120px]" />
 
       <motion.h1
         style={{ scale: titleScale, y: titleY }}
