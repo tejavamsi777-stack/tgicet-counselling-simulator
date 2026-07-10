@@ -15,6 +15,7 @@ import PredictorForm from "./components/dashboard/PredictorForm";
 import PredictionLoader from "./components/dashboard/PredictionLoader";
 import ResultsTable from "./components/results/ResultsTable";
 import { AnimatePresence } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 
 const DATASETS = {
   2023: colleges2023,
@@ -175,6 +176,8 @@ function App() {
           <PredictionLoader stats={loaderStats} onComplete={handleLoaderComplete} />
         )}
       </AnimatePresence>
+
+      <Analytics />
     </div>
   );
 }
