@@ -121,14 +121,18 @@ function App() {
     return { total: result.length, safe, moderate, risky };
   }, [result]);
 
-  useEffect(() => {
+useEffect(() => {
     if (submitted) {
-      const target = document.getElementById("results");
-      if (lenisRef.current && target) {
-        lenisRef.current.scrollTo(target, { offset: -80 });
-      } else {
-        target?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      const timer = setTimeout(() => {
+        const target = document.getElementById("results");
+        if (lenisRef.current && target) {
+          lenisRef.current.resize();
+          lenisRef.current.scrollTo(target, { offset: -80 });
+        } else {
+          target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [submitted]);
 

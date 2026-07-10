@@ -75,8 +75,7 @@ export default function ResultsTable({ results, year, setYear }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      id="results"
+       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <Card className="overflow-hidden">
         <div className="flex flex-col gap-4 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between">
@@ -128,17 +127,17 @@ export default function ResultsTable({ results, year, setYear }) {
                   key={`${c.code}-${c.category}-${c.gender}-${i}`}
                   className="border-t border-slate-100 transition-colors hover:bg-slate-50"
                 >
-                  <td className="px-4 py-3 text-sm text-slate-500">
+                  <td className="px-4 py-3 text-sm text-black">
                     {(page - 1) * PAGE_SIZE + i + 1}
                   </td>
                   <td className="px-4 py-3 text-sm font-medium text-slate-900">{c.name}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.district}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.course}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.category}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.gender}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.cutoff.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">₹{c.fee.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-sm text-slate-600">{c.university}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.district}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.course}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.category}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.gender}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.cutoff.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-sm text-700">₹{c.fee.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-sm text-700">{c.university}</td>
                   <td className="px-4 py-3 text-sm">
                     <StatusBadge status={c.status} />
                   </td>
