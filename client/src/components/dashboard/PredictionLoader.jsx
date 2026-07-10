@@ -155,11 +155,17 @@ export default function PredictionLoader({ stats, onComplete }) {
 
         {stats && (
           <div className="mt-7 grid w-full grid-cols-3 gap-3">
-            <StatBlock label="Records Scanned" value={stats.recordsScanned} />
-            <StatBlock label="Colleges Checked" value={stats.collegesChecked} />
+            <StatBlock
+              label="Records Scanned"
+              value={Math.round((progress / 100) * stats.recordsScanned)}
+            />
+            <StatBlock
+              label="Colleges Checked"
+              value={Math.round((progress / 100) * stats.collegesChecked)}
+            />
             <StatBlock
               label="Safe Matches"
-              value={progress >= 90 ? stats.safeMatches : "…"}
+              value={Math.round((progress / 100) * stats.safeMatches)}
             />
           </div>
         )}
