@@ -12,15 +12,42 @@ import PageTransition from "./components/layout/PageTransition";
 import FeatureStats from "./components/dashboard/FeatureStats";
 import StatsGrid from "./components/dashboard/StatsGrid";
 import PredictorForm from "./components/dashboard/PredictorForm";
+import PredictionLoader from "./components/dashboard/PredictionLoader";
 import ResultsTable from "./components/results/ResultsTable";
+import { AnimatePresence } from "framer-motion";
 
 const DATASETS = {
   2023: colleges2023,
   2024: colleges2024,
 };
 
+function computeMatches(dataset, criteria) {
+  return dataset
+    .filter(
+      (college) =>
+        college.course === criteria.course &&
+        college.category === criteria.category &&
+        college.gender === criteria.gender &&
+        Number(criteria.rank) <= Number(college.cutoff)
+    )
+    .map((college) => {
+      const status = getStatus(criteria.rank, college.cutoff);
+      return {
+        ...college,
+        status,
+        statusPriority: status === "safe" ? 0 : status === "moderate" ? 1 : 2,
+      };
+    })
+    .sort((a, b) => {
+      if (a.statusPriority !== b.statusPriority) {
+        return a.statusPriority - b.statusPriority;
+      }
+      return a.cutoff - b.cutoff;
+    });
+}
+
 function App() {
-  useSmoothScroll();
+  const lenisRef = useSmoothScroll();
 
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("OC");
@@ -28,9 +55,13 @@ function App() {
   const [course, setCourse] = useState("MBA");
   const [error, setError] = useState("");
 
- const [submitted, setSubmitted] = useState(null);
+  const [submitted, setSubmitted] = useState(null);
   const [year, setYear] = useState(2024);
   const [openPanel, setOpenPanel] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [loaderStats, setLoaderStats] = useState(null);
+  const [pendingCriteria, setPendingCriteria] = useState(null);
 
   function predictCollege() {
     if (rank.trim() === "") {
@@ -38,7 +69,34 @@ function App() {
       return;
     }
     setError("");
-    setSubmitted({ rank, category, gender, course });
+
+    const criteria = { rank, category, gender, course };
+    const dataset = DATASETS[year] ?? [];
+
+    const collegesChecked = new Set(
+      dataset.filter((c) => c.course === course).map((c) => c.code)
+    ).size;
+
+    const matches = computeMatches(dataset, criteria);
+    const safeMatches = matches.filter((c) => c.status === "safe").length;
+
+    setLoaderStats({
+      recordsScanned: dataset.length,
+      collegesChecked,
+      safeMatches,
+    });
+    setPendingCriteria(criteria);
+    setIsLoading(true);
+
+    document.body.style.overflow = "hidden";
+    lenisRef.current?.stop();
+  }
+
+  function handleLoaderComplete() {
+    setSubmitted(pendingCriteria);
+    setIsLoading(false);
+    document.body.style.overflow = "";
+    lenisRef.current?.start();
   }
 
   function scrollToPredictor() {
@@ -47,31 +105,8 @@ function App() {
 
   const result = useMemo(() => {
     if (!submitted) return [];
-
     const dataset = DATASETS[year] ?? [];
-
-    return dataset
-      .filter(
-        (college) =>
-          college.course === submitted.course &&
-          college.category === submitted.category &&
-          college.gender === submitted.gender &&
-          Number(submitted.rank) <= Number(college.cutoff)
-      )
-      .map((college) => {
-        const status = getStatus(submitted.rank, college.cutoff);
-        return {
-          ...college,
-          status,
-          statusPriority: status === "safe" ? 0 : status === "moderate" ? 1 : 2,
-        };
-      })
-      .sort((a, b) => {
-        if (a.statusPriority !== b.statusPriority) {
-          return a.statusPriority - b.statusPriority;
-        }
-        return a.cutoff - b.cutoff;
-      });
+    return computeMatches(dataset, submitted);
   }, [submitted, year]);
 
   const stats = useMemo(() => {
@@ -127,6 +162,12 @@ function App() {
       </PageTransition>
 
       <Footer openPanel={openPanel} setOpenPanel={setOpenPanel} />
+
+      <AnimatePresence>
+        {isLoading && (
+          <PredictionLoader stats={loaderStats} onComplete={handleLoaderComplete} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

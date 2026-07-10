@@ -89,7 +89,7 @@ shadow-[0_20px_60px_rgba(37,99,235,0.12)]
         <div className="mt-6">
           <Button size="lg" onClick={onPredict} className="w-full">
             <Search size={16} />
-            Predict College
+            Predict Colleges
           </Button>
         </div>
       </Card>
