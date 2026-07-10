@@ -26,7 +26,7 @@ export default function PredictionLoader({ stats, onComplete }) {
   const startRef = useRef(null);
   const rafRef = useRef(null);
 
-  useEffect(() => {
+useEffect(() => {
     startRef.current = performance.now();
 
     function tick(now) {
@@ -37,7 +37,9 @@ export default function PredictionLoader({ stats, onComplete }) {
       if (elapsed < DURATION) {
         rafRef.current = requestAnimationFrame(tick);
       } else {
-        onComplete?.();
+        setTimeout(() => {
+          onComplete?.();
+        }, 450);
       }
     }
 
@@ -129,16 +131,28 @@ export default function PredictionLoader({ stats, onComplete }) {
 
         <div className="mt-6 h-6">
           <AnimatePresence mode="wait">
-            <motion.p
-              key={statusIndex}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              className="text-sm font-medium text-brand-600"
-            >
-              ✓ {STATUS_MESSAGES[statusIndex]}
-            </motion.p>
+            {progress >= 100 ? (
+              <motion.p
+                key="complete"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm font-semibold text-emerald-600"
+              >
+                ✓ Analysis Complete
+              </motion.p>
+            ) : (
+              <motion.p
+                key={statusIndex}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="text-sm font-medium text-brand-600"
+              >
+                ✓ {STATUS_MESSAGES[statusIndex]}
+              </motion.p>
+            )}
           </AnimatePresence>
         </div>
 
