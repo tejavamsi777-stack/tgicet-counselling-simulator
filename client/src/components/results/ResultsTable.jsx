@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Search as SearchIcon } from "lucide-react";
 import Card from "../ui/Card";
 import Input from "../ui/Input";
+import Select from "../ui/Select";
 import StatusBadge from "./StatusBadge";
 import ExportButtons from "./ExportButtons";
 
 const PAGE_SIZE = 10;
 
-export default function ResultsTable({ results }) {
+export default function ResultsTable({ results, year, setYear }) {
   const [search, setSearch] = useState("");
  const [sortKey, setSortKey] = useState("statusPriority");
   const [sortDir, setSortDir] = useState("asc");
@@ -79,17 +80,28 @@ export default function ResultsTable({ results }) {
     >
       <Card className="overflow-hidden">
         <div className="flex flex-col gap-4 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="relative w-full sm:max-w-xs">
-            <SearchIcon size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-            <Input
-              placeholder="Search college name..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setPage(1);
-              }}
-              className="pl-10"
-            />
+          <div className="flex w-full items-center gap-3 sm:w-auto">
+            <div className="relative w-full sm:max-w-xs">
+              <SearchIcon size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Input
+                placeholder="Search college name..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+                className="pl-10"
+              />
+            </div>
+            {setYear && (
+              <Select
+                id="year"
+                options={["2024", "2023"]}
+                value={String(year)}
+                onChange={(e) => setYear(Number(e.target.value))}
+                className="w-28"
+              />
+            )}
           </div>
           <ExportButtons results={filtered} />
         </div>

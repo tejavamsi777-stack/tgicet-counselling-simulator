@@ -16,7 +16,7 @@ export default function Hero({ onGetStarted }) {
   return (
     <section
       ref={ref}
-      className="sticky top-16 z-10 flex flex-col items-center overflow-hidden px-6 pt-10 text-center"
+      className="sticky top-16 z-10 flex flex-col items-center overflow-hidden px-6 pt-10 text-center will-change-transform"
     >
       <div
         aria-hidden

@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
-import colleges from "./data/colleges.json";
+import colleges2023 from "./data/colleges.json";
+import colleges2024 from "./data/colleges2024.json";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { getStatus } from "./utils/status";
 
@@ -13,6 +14,11 @@ import StatsGrid from "./components/dashboard/StatsGrid";
 import PredictorForm from "./components/dashboard/PredictorForm";
 import ResultsTable from "./components/results/ResultsTable";
 
+const DATASETS = {
+  2023: colleges2023,
+  2024: colleges2024,
+};
+
 function App() {
   useSmoothScroll();
 
@@ -20,27 +26,39 @@ function App() {
   const [category, setCategory] = useState("OC");
   const [gender, setGender] = useState("Male");
   const [course, setCourse] = useState("MBA");
-  const [result, setResult] = useState([]);
   const [error, setError] = useState("");
+
+  const [submitted, setSubmitted] = useState(null);
+  const [year, setYear] = useState(2024);
 
   function predictCollege() {
     if (rank.trim() === "") {
       setError("Please enter your TG ICET Rank");
       return;
     }
-
     setError("");
+    setSubmitted({ rank, category, gender, course });
+  }
 
-    const matchedColleges = colleges
+  function scrollToPredictor() {
+    document.getElementById("predict")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const result = useMemo(() => {
+    if (!submitted) return [];
+
+    const dataset = DATASETS[year] ?? [];
+
+    return dataset
       .filter(
         (college) =>
-          college.course === course &&
-          college.category === category &&
-          college.gender === gender &&
-          Number(rank) <= Number(college.cutoff)
+          college.course === submitted.course &&
+          college.category === submitted.category &&
+          college.gender === submitted.gender &&
+          Number(submitted.rank) <= Number(college.cutoff)
       )
       .map((college) => {
-        const status = getStatus(rank, college.cutoff);
+        const status = getStatus(submitted.rank, college.cutoff);
         return {
           ...college,
           status,
@@ -53,13 +71,7 @@ function App() {
         }
         return a.cutoff - b.cutoff;
       });
-
-    setResult(matchedColleges);
-  }
-
-  function scrollToPredictor() {
-    document.getElementById("predict")?.scrollIntoView({ behavior: "smooth" });
-  }
+  }, [submitted, year]);
 
   const stats = useMemo(() => {
     const safe = result.filter((c) => c.status === "safe").length;
@@ -69,13 +81,13 @@ function App() {
   }, [result]);
 
   useEffect(() => {
-    if (result.length > 0) {
+    if (submitted) {
       document.getElementById("results")?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [result]);
+  }, [submitted]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -108,7 +120,7 @@ function App() {
           {result.length > 0 && <StatsGrid {...stats} />}
 
           <section id="results">
-            <ResultsTable results={result} rank={rank} />
+            <ResultsTable results={result} year={year} setYear={setYear} />
           </section>
         </main>
       </PageTransition>
