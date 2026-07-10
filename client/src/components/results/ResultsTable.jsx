@@ -112,6 +112,7 @@ export default function ResultsTable({ results, year, setYear }) {
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">#</th>
                 <SortHeader label="College" sortKeyName="name" />
+                <SortHeader label="District" sortKeyName="district" />
                 <SortHeader label="Course" sortKeyName="course" />
                 <SortHeader label="Category" sortKeyName="category" />
                 <SortHeader label="Gender" sortKeyName="gender" />
@@ -131,6 +132,7 @@ export default function ResultsTable({ results, year, setYear }) {
                     {(page - 1) * PAGE_SIZE + i + 1}
                   </td>
                   <td className="px-4 py-3 text-sm font-medium text-slate-900">{c.name}</td>
+                  <td className="px-4 py-3 text-sm text-slate-600">{c.district}</td>
                   <td className="px-4 py-3 text-sm text-slate-600">{c.course}</td>
                   <td className="px-4 py-3 text-sm text-slate-600">{c.category}</td>
                   <td className="px-4 py-3 text-sm text-slate-600">{c.gender}</td>
