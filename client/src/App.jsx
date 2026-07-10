@@ -100,7 +100,12 @@ function App() {
   }
 
   function scrollToPredictor() {
-    document.getElementById("predict")?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("predict");
+    if (lenisRef.current && target) {
+      lenisRef.current.scrollTo(target, { offset: -80 });
+    } else {
+      target?.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   const result = useMemo(() => {
@@ -118,10 +123,12 @@ function App() {
 
   useEffect(() => {
     if (submitted) {
-      document.getElementById("results")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const target = document.getElementById("results");
+      if (lenisRef.current && target) {
+        lenisRef.current.scrollTo(target, { offset: -80 });
+      } else {
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   }, [submitted]);
 
