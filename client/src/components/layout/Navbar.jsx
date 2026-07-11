@@ -30,7 +30,7 @@ export default function Navbar() {
             Mock Counselling
           </Link>
 
-          <div className="relative">
+          <div className="relative" onMouseLeave={() => setShowAbout(false)}>
             <button
               onClick={() => setShowAbout((v) => !v)}
               className="transition-colors hover:text-slate-900"
@@ -40,22 +40,16 @@ export default function Navbar() {
 
             <AnimatePresence>
               {showAbout && (
-                <>
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setShowAbout(false)}
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute right-0 top-full z-50 mt-3 w-80 rounded-2xl border border-white/60 bg-white/95 p-5 text-left shadow-xl backdrop-blur-2xl"
-                  >
-                    <h4 className="mb-2 text-sm font-semibold text-slate-900">About</h4>
-                    <p className="text-sm leading-relaxed text-slate-600">{ABOUT_TEXT}</p>
-                  </motion.div>
-                </>
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute right-0 top-full z-50 mt-3 w-80 rounded-2xl border border-white/60 bg-white/95 p-5 text-left shadow-xl backdrop-blur-2xl"
+                >
+                  <h4 className="mb-2 text-sm font-semibold text-slate-900">About</h4>
+                  <p className="text-sm leading-relaxed text-slate-600">{ABOUT_TEXT}</p>
+                </motion.div>
               )}
             </AnimatePresence>
           </div>

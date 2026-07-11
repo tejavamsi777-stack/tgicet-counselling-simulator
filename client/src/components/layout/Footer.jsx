@@ -2,7 +2,7 @@ import { GraduationCap, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export const ABOUT_TEXT =
-  "TG ICET Predictor helps TG ICET candidates estimate which colleges they're likely to be eligible for, based on official previous-year counselling cutoff ranks. Enter your rank, category, gender, and course to instantly see matching colleges, categorized by admission chance.";
+  "TG ICET Counselling gives TG ICET candidates two tools in one place. The College Predictor estimates which colleges you're likely eligible for, based on official previous-year cutoff ranks — enter your rank, category, gender, and course to instantly see matching colleges, categorized by admission chance. The Mock Counselling Simulator lets you practice the real counselling process end-to-end, including web options entry and simulated seat allotment, so you're prepared before the actual counselling begins.";
 
 export const PRIVACY_TEXT =
   "This website does not collect, store, or share any personal information. Your rank and preferences are used only within your browser to calculate predictions and are never sent to or saved on any server.";
