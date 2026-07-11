@@ -1,0 +1,1362 @@
+{
+  "AYMB": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "AYMBSF": {
+    "type": "girls",
+    "raw": "Type: PVTSF, Co-Ed: GIRLS"
+  },
+  "AKIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ADRS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AIZA": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "ADCW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "AIMS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AIMSSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "ALLR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AMJD": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "AMSW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "AITH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AITHSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "BOSE": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "BOSESF": {
+    "type": "girls",
+    "raw": "Type: PVTSF, Co-Ed: GIRLS"
+  },
+  "ANRK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ANUG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ANWC": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "ANWB": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "ANWBSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: MUS"
+  },
+  "APRV": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ASBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ARIS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ARJN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ARBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AURM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AURMSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AURC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AURCSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AURU": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "AURUSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
+  },
+  "AURR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AURRSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AURO": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AURA": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "AURI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AUROSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AURASF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
+  },
+  "AURISF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AURGSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "AVCG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AVNT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AVIH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "AVIHSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "APRA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BVBV": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BVRI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BBIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BBITSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "BDRK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BIMN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BITN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BSGP": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BIET": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BHRW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "BIBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BOMA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BRGT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BRIL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CBIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CKMD": {
+    "type": "univ",
+    "raw": "Type: GOV, Co-Ed: COED"
+  },
+  "CMRK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CMRM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CMRG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CMRGSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "CCBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CSIS": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "DARE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "DAVD": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "DCET": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "DSOM": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "DNVT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BRAB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "DRKI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "DVMC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ELEN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GATE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GCTC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GLBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GLOB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GIOM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GIOMSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "GUTN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GUTNSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "GNIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "GURU": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "HPCB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "HDPC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "HMCM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "HOLY": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "IBSS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "IITT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "INDB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "IARE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ISLC": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "JAGM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JPNE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JPNESF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "JMIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JMIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JPNH": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "JBIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JBITSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "JNTH": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "JNTM": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "JOGI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JBSSSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
+  },
+  "JMTS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KIMK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KITS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KNRR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KSTB": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "KMIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KGRH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KGRM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KING": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KLRT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KPRC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KCEA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KUSBSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "KUCWSF": {
+    "type": "girls",
+    "raw": "Type: SF, Co-Ed: GIRLS"
+  },
+  "KUCS": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "KUCSSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "KUKHSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "KUPSSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "KUSLSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "LBHC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "LRDS": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "LRDSSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: MUS"
+  },
+  "LOYL": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "LOYLSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
+  },
+  "MCGM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MDRK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MGUB": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "MGUE": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "MHVR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MLRD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MRCW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "MRIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MREM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MANP": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MNTR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MLRS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MSJH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MGHA": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "MESC": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "METH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "METHSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "MINA": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "MLID": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MCPN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MTPN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MOTK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MTEC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "MMTZSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: MUS"
+  },
+  "MVSR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NNRG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NREC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NANK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NANKSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "NRCM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NRCMSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "NITHSF": {
+    "type": "univ",
+    "raw": "Type: GOV, Co-Ed: COED"
+  },
+  "NAVB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NAVBSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "NAWBSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: MUS"
+  },
+  "NIET": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NTJM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NSWL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NGMA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NSTN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NIZBSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "NOBL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "NOBLSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "NRIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "OMEG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "OMGA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "OMGASF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "OUCESF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "OUCB": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "OUCBSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "OUNP": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "OUPSSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "OUSCSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "OUVKSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "PADL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PLMUSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "PLGD": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "PLKP": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "PALV": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PALVSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "PRCB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PRCBSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "PEND": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PRAG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PRES": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "PRNC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PRNM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PURD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PURDSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "PRIW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "PRYB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PRYC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PVRR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "PVRRSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "RBVW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "RBVR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "RGRS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "RKLK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "REAH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KEDA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KEDASF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "RISH": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "ROUS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SRHP": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SNVI": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SAIK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SAIS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SSUD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SSUDSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "SMSK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SSIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SPTL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SNVM": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SUGKSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "SVHU": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "SNTI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIGN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIGNSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "SCET": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: MUS"
+  },
+  "SCSB": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: BOYS, Minority: MUS"
+  },
+  "SCSW": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: MUS"
+  },
+  "SMSB": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: BOYS, Minority: MUS"
+  },
+  "SMSW": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: MUS"
+  },
+  "SWET": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: MUS"
+  },
+  "SDGI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIDT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIDTSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "SDDW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SIDD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SIEI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SDMW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SDKW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SIMK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CHTN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CHTS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SCIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CHBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "CHBMSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "SDES": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SGMS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "INDM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "INDV": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SKEC": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SNIS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SNISSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "SSMI": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VITS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SDEW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "SRMK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SRMC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "ANMP": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: CHR"
+  },
+  "SAPM": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: CHR"
+  },
+  "STJN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "JOSE": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "SMCD": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "SMED": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "SPEC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VNCT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SXGP": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SFMS": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: CHR"
+  },
+  "PIUS": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: CHR"
+  },
+  "SMRYSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "STFD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "STLW": {
+    "type": "girls",
+    "raw": "Type: PVT, Co-Ed: GIRLS"
+  },
+  "STLWSF": {
+    "type": "girls",
+    "raw": "Type: PVTSF, Co-Ed: GIRLS"
+  },
+  "SJOT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SJRD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SUPK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SUPR": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SVSE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SVIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "SBIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TPCE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TKEM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TUNZ": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "TKRC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TKRB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TCTK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "TCEK": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "UNTY": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "KUCVSF": {
+    "type": "sf",
+    "raw": "Type: SF, Co-Ed: COED"
+  },
+  "KUCV": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "SUCSSF": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "OUSP": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "OUSPSF": {
+    "type": "univ",
+    "raw": "Type: UNIV, Co-Ed: COED"
+  },
+  "VJEC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "BASB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VGDG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VGDGSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VAGE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VAGESF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VAAG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VAAGSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VAPH": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VGWL": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VGWLSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VGIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VGSE": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VNIM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VMEG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VISA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VISASF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VCIWSF": {
+    "type": "girls",
+    "raw": "Type: SF, Co-Ed: GIRLS"
+  },
+  "VIBA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VDYN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VDYNSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VDSM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VJIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VJITSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VBIT": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VREC": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VJYA": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VJMG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VSBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VILM": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: GIRLS, Minority: CHR"
+  },
+  "VCBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VCBMSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VVIS": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VVSB": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VISN": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VISNSF": {
+    "type": "sf",
+    "raw": "Type: PVTSF, Co-Ed: COED"
+  },
+  "VCET": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VVBM": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VKSD": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VDPG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "VKPG": {
+    "type": "pvt",
+    "raw": "Type: PVT, Co-Ed: COED"
+  },
+  "WESL": {
+    "type": "minority",
+    "raw": "Type: PVT, Co-Ed: COED, Minority: CHR"
+  },
+  "WESLSF": {
+    "type": "minority",
+    "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
+  }
+}
