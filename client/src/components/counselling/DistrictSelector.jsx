@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 const COURSE_GROUPS = [
   {
     group: "GROUP MBA",
@@ -37,6 +38,19 @@ export default function DistrictSelector({ districts, selectedDistricts, setSele
             <br />
             Click on "Display Option Entry Form"
           </div>
+          <div className="px-4 py-2 border-b border-black">
+            <button
+              type="button"
+              onClick={() =>
+                setSelectedDistricts(
+                  selectedDistricts.length === districts.length ? [] : [...districts]
+                )
+              }
+              className="text-sm font-semibold text-blue-700 hover:underline"
+            >
+              {selectedDistricts.length === districts.length ? "Deselect All" : "Select All"}
+            </button>
+          </div>
           <div className="px-4 py-3 space-y-1.5">
             {districts.map((d) => (
               <label key={d} className="flex items-center gap-2 text-base text-black">
@@ -67,8 +81,8 @@ export default function DistrictSelector({ districts, selectedDistricts, setSele
               </thead>
               <tbody>
                 {COURSE_GROUPS.map((g) => (
-                  <>
-                    <tr key={g.group}>
+  <Fragment key={g.group}>
+    <tr>
                       <td colSpan={3} className="border border-black bg-[#cfe2f3] text-center font-semibold py-1.5">
                         {g.group}
                       </td>
@@ -80,7 +94,7 @@ export default function DistrictSelector({ districts, selectedDistricts, setSele
                         <td className="border border-black px-2 py-1.5">{b.name}</td>
                       </tr>
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </tbody>
             </table>

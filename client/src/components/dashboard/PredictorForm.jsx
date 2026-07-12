@@ -29,14 +29,10 @@ export default function PredictorForm({
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       id="predict"
     >
-      <Card className="
-p-8
-rounded-[32px]
-bg-white/70
-backdrop-blur-2xl
-border border-white/50
-shadow-[0_20px_60px_rgba(37,99,235,0.12)]
-">
+      <Card
+        glass
+        className="rounded-[32px] border border-white/50 bg-white/70 p-8 shadow-[0_20px_60px_rgba(37,99,235,0.12)] backdrop-blur-2xl"
+      >
         <h2 className="text-xl font-semibold tracking-tight text-slate-900">
           Predict Your College
         </h2>
@@ -45,24 +41,14 @@ shadow-[0_20px_60px_rgba(37,99,235,0.12)]
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <>
-  <Input
-    id="rank"
-    label="TG ICET Rank"
-    type="number"
-    placeholder="e.g. 12500"
-    value={rank}
-    onChange={(e) => {
-      setRank(e.target.value);
-    }}
-  />
-
-  {error && (
-    <p className="text-red-600 text-sm mt-2 font-medium">
-      {error}
-    </p>
-  )}
-</>
+          <Input
+            id="rank"
+            label="TG ICET Rank"
+            type="number"
+            placeholder="e.g. 12500"
+            value={rank}
+            onChange={(e) => setRank(e.target.value)}
+          />
           <Select
             id="category"
             label="Category"
@@ -85,6 +71,10 @@ shadow-[0_20px_60px_rgba(37,99,235,0.12)]
             onChange={(e) => setCourse(e.target.value)}
           />
         </div>
+
+        {error && (
+          <p className="mt-3 text-sm font-medium text-rose-600">{error}</p>
+        )}
 
         <div className="mt-6">
           <Button size="lg" onClick={onPredict} className="w-full">

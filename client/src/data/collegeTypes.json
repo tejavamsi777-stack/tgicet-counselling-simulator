@@ -412,7 +412,7 @@
     "raw": "Type: PVTSF, Co-Ed: COED"
   },
   "JNTH": {
-    "type": "sf",
+    "type": "univ",
     "raw": "Type: SF, Co-Ed: COED"
   },
   "JNTM": {
@@ -1358,5 +1358,25 @@
   "WESLSF": {
     "type": "minority",
     "raw": "Type: PVTSF, Co-Ed: COED, Minority: CHR"
-  }
+  },
+  
+  "ARCS": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "CVSR": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "DRKC": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "GNPT": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "HOLM": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "JIBM": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "KPRM": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "MREC": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "VCMH": { "type": "pvt", "raw": "Type: PVT, Co-Ed: COED" },
+  "MRECSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "MANPSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "MGHASF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "NSTNSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "OMEGSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "PRNCSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "VKPGSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "VKSDSF": { "type": "sf", "raw": "Type: PVTSF, Co-Ed: COED" },
+  "OUKWSF": { "type": "girls", "raw": "Type: PVTSF, Co-Ed: GIRLS" }
+
 }

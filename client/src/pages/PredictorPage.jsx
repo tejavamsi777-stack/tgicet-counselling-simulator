@@ -1,10 +1,8 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import colleges2023 from "../data/colleges.json";
-import colleges2024 from "../data/colleges2024.json";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
-import { computeMatches } from "../utils/matchColleges";
+import { api } from "../lib/api";
 
 import Hero from "../components/layout/Hero";
 import PageTransition from "../components/layout/PageTransition";
@@ -16,12 +14,6 @@ import PredictionLoader from "../components/dashboard/PredictionLoader";
 import ResultsTable from "../components/results/ResultsTable";
 import { AnimatePresence } from "framer-motion";
 
-const DATASETS = {
-  2023: colleges2023,
-  2024: colleges2024,
-};
-
-
 export default function PredictorPage() {
   const navigate = useNavigate();
   const lenisRef = useSmoothScroll();
@@ -32,48 +24,74 @@ export default function PredictorPage() {
   const [course, setCourse] = useState("MBA");
   const [error, setError] = useState("");
 
-  const [submitted, setSubmitted] = useState(null);
+  const [result, setResult] = useState([]);
   const [year, setYear] = useState(2024);
 
   const [isLoading, setIsLoading] = useState(false);
   const [loaderStats, setLoaderStats] = useState(null);
   const [pendingCriteria, setPendingCriteria] = useState(null);
 
-  function predictCollege() {
+  async function predictCollege() {
     if (rank.trim() === "") {
       setError("Please enter your TG ICET Rank");
       return;
     }
     setError("");
 
-    const criteria = { rank, category, gender, course };
-    const dataset = DATASETS[year] ?? [];
+    const criteria = { rank, category, gender, course, year };
 
-    const collegesChecked = new Set(
-      dataset.filter((c) => c.course === course).map((c) => c.code)
-    ).size;
-
-    const matches = computeMatches(dataset, criteria);
-    const safeMatches = matches.filter((c) => c.status === "safe").length;
-
-    setLoaderStats({
-      recordsScanned: dataset.length,
-      collegesChecked,
-      safeMatches,
-    });
+    setLoaderStats(null); // real record counts aren't known until the API responds
     setPendingCriteria(criteria);
     setIsLoading(true);
 
     document.body.style.overflow = "hidden";
     lenisRef.current?.stop();
+
+    try {
+      const { results } = await api.post("/predict", criteria);
+
+      // Map the API's field names back to the shape ResultsTable/ExportButtons
+      // already expect (same shape the old local JSON + computeMatches produced),
+      // so no changes are needed in ResultsTable itself.
+      const mapped = results.map((r) => ({
+        code: r.code,
+        name: r.name,
+        place: r.place,
+        district: r.district_code,
+        course: r.course_code,
+        courseName: r.course_name,
+        category: r.category_code,
+        gender: criteria.gender,
+        cutoff: r.cutoff_rank,
+        fee: r.fee,
+        university: r.university,
+        status: r.status,
+        statusPriority: r.statusPriority,
+      }));
+
+      setLoaderStats({
+        recordsScanned: results.length,
+        collegesChecked: results.length,
+        safeMatches: mapped.filter((m) => m.status === "safe").length,
+      });
+
+      // small delay so the cinematic loader has something to show before results land
+      setTimeout(() => {
+        setResult(mapped);
+      }, 0);
+    } catch (err) {
+      setIsLoading(false);
+      document.body.style.overflow = "";
+      lenisRef.current?.start();
+      setError(err.message || "Something went wrong while predicting. Please try again.");
+    }
   }
 
-  function handleLoaderComplete() {
-    setSubmitted(pendingCriteria);
+  const handleLoaderComplete = useCallback(() => {
     setIsLoading(false);
     document.body.style.overflow = "";
     lenisRef.current?.start();
-  }
+  }, []);
 
   function scrollToPredictor() {
     const target = document.getElementById("predict");
@@ -84,12 +102,6 @@ export default function PredictorPage() {
     }
   }
 
-  const result = useMemo(() => {
-    if (!submitted) return [];
-    const dataset = DATASETS[year] ?? [];
-    return computeMatches(dataset, submitted);
-  }, [submitted, year]);
-
   const stats = useMemo(() => {
     const safe = result.filter((c) => c.status === "safe").length;
     const moderate = result.filter((c) => c.status === "moderate").length;
@@ -98,7 +110,7 @@ export default function PredictorPage() {
   }, [result]);
 
   useEffect(() => {
-    if (submitted) {
+    if (result.length > 0) {
       const timer = setTimeout(() => {
         const target = document.getElementById("results");
         if (lenisRef.current && target) {
@@ -110,9 +122,9 @@ export default function PredictorPage() {
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [submitted]);
+  }, [result]);
 
- return (
+  return (
     <>
       <div className="mx-auto max-w-7xl px-6 pt-6">
         <button
