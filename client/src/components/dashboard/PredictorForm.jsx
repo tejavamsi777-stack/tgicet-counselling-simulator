@@ -1,13 +1,10 @@
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import Card from "../ui/Card";
-import Input from "../ui/Input";
-import Select from "../ui/Select";
 import Button from "../ui/Button";
-
-const CATEGORIES = ["OC", "EWS", "BC-A", "BC-B", "BC-C", "BC-D", "BC-E", "SC", "ST"];
-const GENDERS = ["Male", "Female"];
-const COURSES = ["MBA", "MCA"];
+import GenderDropdown from "../shared/GenderDropdown";
+import CategoryDropdown from "../shared/CategoryDropdown";
+import CourseDropdown from "../shared/CourseDropdown";
 
 export default function PredictorForm({
   rank,
@@ -41,35 +38,33 @@ export default function PredictorForm({
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Input
-            id="rank"
-            label="TG ICET Rank"
-            type="number"
-            placeholder="e.g. 12500"
-            value={rank}
-            onChange={(e) => setRank(e.target.value)}
-          />
-          <Select
-            id="category"
-            label="Category"
-            options={CATEGORIES}
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-          <Select
-            id="gender"
-            label="Gender"
-            options={GENDERS}
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <Select
-            id="course"
-            label="Course"
-            options={COURSES}
-            value={course}
-            onChange={(e) => setCourse(e.target.value)}
-          />
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">
+              TG ICET Rank
+            </label>
+            <input
+              type="number"
+              value={rank}
+              onChange={(e) => setRank(e.target.value)}
+              placeholder="e.g. 12500"
+              className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Category</label>
+            <CategoryDropdown category={category} setCategory={setCategory} />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Gender</label>
+            <GenderDropdown gender={gender} setGender={setGender} />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Course</label>
+            <CourseDropdown course={course} setCourse={setCourse} />
+          </div>
         </div>
 
         {error && (

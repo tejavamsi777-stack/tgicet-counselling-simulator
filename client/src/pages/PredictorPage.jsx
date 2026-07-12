@@ -14,6 +14,24 @@ import PredictionLoader from "../components/dashboard/PredictionLoader";
 import ResultsTable from "../components/results/ResultsTable";
 import { AnimatePresence } from "framer-motion";
 
+function mapResults(results, gender) {
+  return results.map((r) => ({
+    code: r.code,
+    name: r.name,
+    place: r.place,
+    district: r.district_code,
+    course: r.course_code,
+    courseName: r.course_name,
+    category: r.category_code,
+    gender,
+    cutoff: r.cutoff_rank,
+    fee: r.fee,
+    university: r.university,
+    status: r.status,
+    statusPriority: r.statusPriority,
+  }));
+}
+
 export default function PredictorPage() {
   const navigate = useNavigate();
   const lenisRef = useSmoothScroll();
@@ -27,9 +45,51 @@ export default function PredictorPage() {
   const [result, setResult] = useState([]);
   const [year, setYear] = useState(2024);
 
+  // The exact criteria used for the last successful prediction — kept
+  // separate from the live form fields so changing the year dropdown can
+  // re-run the same search without needing rank/category/gender/course
+  // to still match what's currently typed in the form.
+  const [lastCriteria, setLastCriteria] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [loaderStats, setLoaderStats] = useState(null);
-  const [pendingCriteria, setPendingCriteria] = useState(null);
+  const [shouldScrollOnComplete, setShouldScrollOnComplete] = useState(false);
+
+  async function runPrediction(criteria, { showLoader = true, scrollAfter = true } = {}) {
+    if (showLoader) {
+      setLoaderStats(null);
+      setIsLoading(true);
+      document.body.style.overflow = "hidden";
+      lenisRef.current?.stop();
+    }
+
+    try {
+      const { results } = await api.post("/predict", criteria);
+      const mapped = mapResults(results, criteria.gender);
+
+      setLoaderStats({
+        recordsScanned: results.length,
+        collegesChecked: results.length,
+        safeMatches: mapped.filter((m) => m.status === "safe").length,
+      });
+      setResult(mapped);
+      setLastCriteria(criteria);
+      setShouldScrollOnComplete(scrollAfter);
+
+      if (!showLoader) {
+        // Year-switch refetch — no cinematic loader, so nothing will call
+        // handleLoaderComplete to restore scroll/overflow. Do it directly.
+        scrollToResults();
+      }
+    } catch (err) {
+      setError(err.message || "Something went wrong while predicting. Please try again.");
+      if (showLoader) {
+        setIsLoading(false);
+        document.body.style.overflow = "";
+        lenisRef.current?.start();
+      }
+    }
+  }
 
   async function predictCollege() {
     if (rank.trim() === "") {
@@ -37,61 +97,42 @@ export default function PredictorPage() {
       return;
     }
     setError("");
-
     const criteria = { rank, category, gender, course, year };
+    await runPrediction(criteria, { showLoader: true, scrollAfter: true });
+  }
 
-    setLoaderStats(null); // real record counts aren't known until the API responds
-    setPendingCriteria(criteria);
-    setIsLoading(true);
+  // Year dropdown changed after a prediction already exists — re-run the
+  // same search against the new year, no full loading overlay needed.
+  useEffect(() => {
+    if (!lastCriteria) return; // no prediction made yet, nothing to refetch
+    if (lastCriteria.year === year) return; // avoid refetching on the initial set
+    const updatedCriteria = { ...lastCriteria, year };
+    runPrediction(updatedCriteria, { showLoader: false, scrollAfter: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year]);
 
-    document.body.style.overflow = "hidden";
-    lenisRef.current?.stop();
-
-    try {
-      const { results } = await api.post("/predict", criteria);
-
-      // Map the API's field names back to the shape ResultsTable/ExportButtons
-      // already expect (same shape the old local JSON + computeMatches produced),
-      // so no changes are needed in ResultsTable itself.
-      const mapped = results.map((r) => ({
-        code: r.code,
-        name: r.name,
-        place: r.place,
-        district: r.district_code,
-        course: r.course_code,
-        courseName: r.course_name,
-        category: r.category_code,
-        gender: criteria.gender,
-        cutoff: r.cutoff_rank,
-        fee: r.fee,
-        university: r.university,
-        status: r.status,
-        statusPriority: r.statusPriority,
-      }));
-
-      setLoaderStats({
-        recordsScanned: results.length,
-        collegesChecked: results.length,
-        safeMatches: mapped.filter((m) => m.status === "safe").length,
-      });
-
-      // small delay so the cinematic loader has something to show before results land
-      setTimeout(() => {
-        setResult(mapped);
-      }, 0);
-    } catch (err) {
-      setIsLoading(false);
-      document.body.style.overflow = "";
-      lenisRef.current?.start();
-      setError(err.message || "Something went wrong while predicting. Please try again.");
-    }
+  function scrollToResults() {
+    // Small delay so the DOM has settled (overflow restored, new rows rendered)
+    setTimeout(() => {
+      const target = document.getElementById("results");
+      if (lenisRef.current && target) {
+        lenisRef.current.resize();
+        lenisRef.current.scrollTo(target, { offset: -80 });
+      } else {
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   }
 
   const handleLoaderComplete = useCallback(() => {
     setIsLoading(false);
     document.body.style.overflow = "";
     lenisRef.current?.start();
-  }, []);
+    if (shouldScrollOnComplete) {
+      scrollToResults();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldScrollOnComplete]);
 
   function scrollToPredictor() {
     const target = document.getElementById("predict");
@@ -107,21 +148,6 @@ export default function PredictorPage() {
     const moderate = result.filter((c) => c.status === "moderate").length;
     const risky = result.filter((c) => c.status === "risky").length;
     return { total: result.length, safe, moderate, risky };
-  }, [result]);
-
-  useEffect(() => {
-    if (result.length > 0) {
-      const timer = setTimeout(() => {
-        const target = document.getElementById("results");
-        if (lenisRef.current && target) {
-          lenisRef.current.resize();
-          lenisRef.current.scrollTo(target, { offset: -80 });
-        } else {
-          target?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
   }, [result]);
 
   return (
