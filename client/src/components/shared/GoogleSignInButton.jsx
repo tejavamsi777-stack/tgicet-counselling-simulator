@@ -12,8 +12,14 @@ export default function GoogleSignInButton({ onSuccess, onError }) {
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: async (response) => {
         try {
-          const user = await loginWithGoogle(response.credential);
-          onSuccess?.(user);
+          const result = await loginWithGoogle(response.credential);
+
+if (result.needsRegistration) {
+  onSuccess?.(result);
+  return;
+}
+
+onSuccess?.(result);
         } catch (err) {
           onError?.(err.message || "Google sign-in failed");
         }

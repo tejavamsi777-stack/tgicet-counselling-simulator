@@ -41,10 +41,15 @@ export const googleAuthService = {
     }
 
     // 3. Brand new user
-    if (!user) {
-      user = await userRepository.createFromGoogle({ email, name, googleId });
-    }
-
+    // 3. Brand new user - ask frontend to complete registration
+if (!user) {
+  return {
+    needsRegistration: true,
+    email,
+    name,
+    googleId,
+  };
+}
     if (user.is_suspended) {
       const err = new Error("This account has been suspended");
       err.status = 403;

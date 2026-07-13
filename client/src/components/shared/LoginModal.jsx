@@ -10,7 +10,11 @@ export default function LoginModal({ open, onClose, onAuthenticated }) {
   const [mode, setMode] = useState("login"); // "login" | "register"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const [confirmPassword, setConfirmPassword] = useState("");
+const [googleId, setGoogleId] = useState("");
+const [googleRegistration, setGoogleRegistration] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -22,13 +26,27 @@ export default function LoginModal({ open, onClose, onAuthenticated }) {
       if (mode === "login") {
         await login(email, password);
       } else {
-        await register(email, password, name);
+        await register({
+  firstName,
+  lastName,
+  email,
+  password,
+  googleId,
+});
       }
       onAuthenticated?.();
       onClose();
     } catch (err) {
-      setError(err.message || "Something went wrong");
-    } finally {
+  if (mode === "login" && err.body?.code === "ACCOUNT_NOT_FOUND") {
+    setMode("register");
+    setPassword("");
+    setConfirmPassword("");
+    setError("No account found. Create one now.");
+    return;
+  }
+
+  setError(err.message || "Something went wrong");
+}finally {
       setSubmitting(false);
     }
   }
@@ -75,12 +93,25 @@ export default function LoginModal({ open, onClose, onAuthenticated }) {
 
                 <div className="mb-5 flex justify-center">
                   <GoogleSignInButton
-                    onSuccess={() => {
-                      onAuthenticated?.();
-                      onClose();
-                    }}
-                    onError={setError}
-                  />
+  onSuccess={(result) => {
+    if (result?.needsRegistration) {
+      setMode("register");
+      setGoogleRegistration(true);
+      setEmail(result.email);
+      setGoogleId(result.googleId);
+
+      const parts = (result.name || "").trim().split(" ");
+      setFirstName(parts[0] || "");
+      setLastName(parts.slice(1).join(" "));
+
+      return;
+    }
+
+    onAuthenticated?.();
+    onClose();
+  }}
+  onError={setError}
+/>
                 </div>
 
                 <div className="mb-5 flex items-center gap-3 text-xs text-slate-400">
@@ -97,31 +128,53 @@ export default function LoginModal({ open, onClose, onAuthenticated }) {
 
                 <form onSubmit={handleEmailSubmit} className="space-y-3">
                   {mode === "register" && (
-                    <input
-                      type="text"
-                      placeholder="Full name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
-                      required
-                    />
-                  )}
+  <>
+    <input
+      type="text"
+      placeholder="First Name"
+      value={firstName}
+      onChange={(e) => setFirstName(e.target.value)}
+      className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
+      required
+    />
+
+    <input
+      type="text"
+      placeholder="Last Name"
+      value={lastName}
+      onChange={(e) => setLastName(e.target.value)}
+      className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
+      required
+    />
+  </>
+)}
                   <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
-                    required
-                  />
+  type="email"
+  placeholder="Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  readOnly={googleRegistration}
+  className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
+  required
+/>
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder={mode === "register" ? "Create Password" : "Password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
                     required
                   />
+                  {mode === "register" && (
+  <input
+    type="password"
+    placeholder="Confirm Password"
+    value={confirmPassword}
+    onChange={(e) => setConfirmPassword(e.target.value)}
+    className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10"
+    required
+  />
+)}
                   <button
                     type="submit"
                     disabled={submitting}

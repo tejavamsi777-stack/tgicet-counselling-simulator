@@ -1,6 +1,6 @@
 export function validateRegisterInput(body) {
   const errors = [];
-  const { email, password, name } = body;
+  const { firstName, lastName, email, password } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     errors.push("A valid email is required");
@@ -8,9 +8,13 @@ export function validateRegisterInput(body) {
   if (!password || password.length < 8) {
     errors.push("Password must be at least 8 characters");
   }
-  if (!name || name.trim().length === 0) {
-    errors.push("Name is required");
-  }
+  if (!firstName || firstName.trim().length === 0) {
+  errors.push("First name is required");
+}
+
+if (!lastName || lastName.trim().length === 0) {
+  errors.push("Last name is required");
+}
   return errors;
 }
 

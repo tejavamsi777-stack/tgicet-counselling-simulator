@@ -42,7 +42,10 @@ export default function ProfileMenu() {
     );
   }
 
-  const firstName = user.name?.split(" ")[0] || user.email.split("@")[0];
+  const firstName =
+  user.firstName ||
+  user.name?.split(" ")[0] ||
+  user.email.split("@")[0];
 
   return (
     <div className="relative" ref={containerRef}>
