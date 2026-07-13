@@ -43,7 +43,7 @@ export default function PredictorPage() {
   const [error, setError] = useState("");
 
   const [result, setResult] = useState([]);
-  const [year, setYear] = useState(2024);
+const year = 2024; // locked to current year only — no year selector for students
 
   // The exact criteria used for the last successful prediction — kept
   // separate from the live form fields so changing the year dropdown can
@@ -183,8 +183,8 @@ export default function PredictorPage() {
           {result.length > 0 && <StatsGrid {...stats} />}
 
           <section id="results">
-            <ResultsTable results={result} year={year} setYear={setYear} />
-          </section>
+  <ResultsTable results={result} year={year} />
+</section>
         </main>
       </PageTransition>
 

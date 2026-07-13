@@ -26,6 +26,7 @@ router.post("/predict", predictionController.predict);
 // ---------- Student auth (optional) ----------
 router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
+router.post("/auth/google", authController.google);
 router.get("/auth/me", optionalAuth, authController.me);
 
 // ---------- Admin auth ----------

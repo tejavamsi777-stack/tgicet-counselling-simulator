@@ -7,6 +7,8 @@ import { getFinalOptionList } from "../utils/sortByPreference";
 import { saveOptions, loadOptions } from "../utils/mockCounsellingStorage";
 import { exportPreferencesToPDF } from "../utils/exportPreferences";
 import { getDuplicatePreferenceNumbers } from "../utils/preferenceValidation";
+import { useAuth } from "../context/AuthContext";
+import LoginModal from "../components/shared/LoginModal";
 
 import CandidateDetailsForm from "../components/counselling/CandidateDetailsForm";
 import PreferenceForm from "../components/counselling/PreferenceForm";
@@ -44,6 +46,10 @@ export default function MockCounsellingPage() {
  const [showInsertPanel, setShowInsertPanel] = useState(false);
   const [insertCollege, setInsertCollege] = useState("");
   const [insertPosition, setInsertPosition] = useState("");
+
+  const { user } = useAuth();
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [pendingPrint, setPendingPrint] = useState(false);
 
   const saveShake = useAnimation();
   const printShake = useAnimation();
@@ -183,7 +189,7 @@ export default function MockCounsellingPage() {
     setStatusMessage(`Loaded options saved on ${new Date(saved.savedAt).toLocaleString()}.`);
   }
 
-  function handleViewAndPrint() {
+  function performPrint() {
     const dupes = getDuplicatePreferenceNumbers(preferences);
     if (dupes.length > 0) {
       setStatusMessage(`Fix duplicate preference number(s) before printing: ${dupes.join(", ")}`);
@@ -196,6 +202,22 @@ export default function MockCounsellingPage() {
       return;
     }
     exportPreferencesToPDF(finalList, submitted);
+  }
+
+  function handleViewAndPrint() {
+    if (user) {
+      performPrint();
+      return;
+    }
+    setPendingPrint(true);
+    setLoginOpen(true);
+  }
+
+  function handleAuthenticated() {
+    if (pendingPrint) {
+      performPrint();
+      setPendingPrint(false);
+    }
   }
 
   function handleInsertBetween() {
@@ -484,6 +506,15 @@ export default function MockCounsellingPage() {
           {stepContent}
         </motion.div>
       </AnimatePresence>
+
+      <LoginModal
+        open={loginOpen}
+        onClose={() => {
+          setLoginOpen(false);
+          setPendingPrint(false);
+        }}
+        onAuthenticated={handleAuthenticated}
+      />
     </main>
   );
 }
