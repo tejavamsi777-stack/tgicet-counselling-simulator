@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ABOUT_TEXT } from "./Footer";
 import Logo from "./Logo";
+import ProfileMenu from "./ProfileMenu";
 
 const NAV_LINKS = [
   { key: "predict", to: "/predictor", label: "Predict" },
@@ -98,6 +99,8 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
         </nav>
+
+        <ProfileMenu />
       </div>
     </header>
   );
