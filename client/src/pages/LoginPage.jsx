@@ -304,7 +304,7 @@ export default function LoginPage() {
           {!success && (
             <div className="mb-6 text-center">
               <h1 className="text-xl font-bold leading-snug tracking-tight text-white">
-                Your rank, decoded into your next college.
+                Your rank, Your future.
               </h1>
             </div>
           )}
