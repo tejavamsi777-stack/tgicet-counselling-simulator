@@ -12,6 +12,16 @@ function signUserToken(user) {
   );
 }
 
+function toPublicUser(user) {
+  return {
+    id: user.id,
+    email: user.email,
+    name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+    firstName: user.first_name,
+    lastName: user.last_name,
+  };
+}
+
 export const authService = {
   async register({ firstName, lastName, email, password, googleId }) {
     const existing = await userRepository.findByEmail(email);
@@ -34,16 +44,7 @@ export const authService = {
 
     const token = signUserToken(user);
 
-    return {
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
-        firstName: user.first_name,
-        lastName: user.last_name,
-      },
-    };
+    return { token, user: toPublicUser(user) };
   },
 
   async login({ email, password }) {
@@ -79,15 +80,50 @@ export const authService = {
 
     const token = signUserToken(user);
 
-    return {
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
-        firstName: user.first_name,
-        lastName: user.last_name,
-      },
-    };
+    return { token, user: toPublicUser(user) };
+  },
+
+  async updateProfile(userId, { firstName, lastName }) {
+    const user = await userRepository.findById(userId);
+    if (!user) {
+      const err = new Error("Account not found");
+      err.status = 404;
+      throw err;
+    }
+
+    const updated = await userRepository.update(userId, {
+      firstName: firstName.trim(),
+      lastName: (lastName || "").trim(),
+    });
+
+    return toPublicUser(updated);
+  },
+
+  async changePassword(userId, { currentPassword, newPassword }) {
+    const user = await userRepository.findById(userId);
+    if (!user) {
+      const err = new Error("Account not found");
+      err.status = 404;
+      throw err;
+    }
+
+    if (!user.password_hash) {
+      const err = new Error("This account uses Google sign-in and has no password to change");
+      err.status = 400;
+      err.code = "GOOGLE_ACCOUNT";
+      throw err;
+    }
+
+    const valid = await bcrypt.compare(currentPassword, user.password_hash);
+    if (!valid) {
+      const err = new Error("Current password is incorrect");
+      err.status = 401;
+      throw err;
+    }
+
+    const newPasswordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+    await userRepository.update(userId, { passwordHash: newPasswordHash });
+
+    return true;
   },
 };

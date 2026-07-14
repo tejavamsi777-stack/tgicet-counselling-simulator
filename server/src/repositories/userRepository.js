@@ -44,4 +44,39 @@ export const userRepository = {
     );
     return rows[0];
   },
+
+  // Partial update — only fields actually passed in `fields` get touched.
+  // Accepts: firstName, lastName, passwordHash
+  async update(id, fields) {
+    const columnMap = {
+      firstName: "first_name",
+      lastName: "last_name",
+      passwordHash: "password_hash",
+    };
+
+    const setClauses = [];
+    const values = [];
+    let paramIndex = 1;
+
+    for (const [key, column] of Object.entries(columnMap)) {
+      if (fields[key] !== undefined) {
+        setClauses.push(`${column} = $${paramIndex}`);
+        values.push(fields[key]);
+        paramIndex += 1;
+      }
+    }
+
+    if (setClauses.length === 0) {
+      // nothing to update — just return the current row
+      return this.findById(id);
+    }
+
+    values.push(id);
+    const { rows } = await pool.query(
+      `UPDATE users SET ${setClauses.join(", ")} WHERE id = $${paramIndex} RETURNING *`,
+      values
+    );
+
+    return rows[0] ?? null;
+  },
 };

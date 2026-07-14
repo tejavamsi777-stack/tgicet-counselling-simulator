@@ -68,6 +68,23 @@ app.get("/api/health", async (req, res) => {
   }
 });
 
+// Catches errors passed via next(err) from any controller (authController,
+// etc.) and always responds with JSON in the { error, code } shape that
+// client/src/lib/api.js expects. Without this, Express's default HTML error
+// page gets returned instead, which api.js can't parse — that's what was
+// causing generic "Request failed (401)" messages instead of the real
+// "Invalid email or password" / "Current password is incorrect" text.
+app.use((err, req, res, next) => {
+  console.error(err);
+  const status = err.status || 500;
+  const isProd = process.env.NODE_ENV === "production";
+  res.status(status).json({
+    error: err.message || "Something went wrong",
+    ...(err.code ? { code: err.code } : {}),
+    ...(isProd ? {} : { stack: err.stack }),
+  });
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

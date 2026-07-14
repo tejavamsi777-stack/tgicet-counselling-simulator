@@ -34,42 +34,68 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = useCallback(async (email, password) => {
-  const data = await api.post("/auth/login", {
-    email,
-    password,
-  });
+    const data = await api.post("/auth/login", {
+      email,
+      password,
+    });
 
-  setUserToken(data.token);
-  setUser(data.user);
-  return data.user;
-}, []);
+    setUserToken(data.token);
+    setUser(data.user);
+    return data.user;
+  }, []);
 
   const register = useCallback(async (userData) => {
-  const data = await api.post("/auth/register", userData);
+    const data = await api.post("/auth/register", userData);
     setUserToken(data.token);
     setUser(data.user);
     return data.user;
   }, []);
 
   const loginWithGoogle = useCallback(async (idToken) => {
-  const data = await api.post("/auth/google", { idToken });
+    const data = await api.post("/auth/google", { idToken });
 
-  if (data.needsRegistration) {
-    return data;
-  }
+    if (data.needsRegistration) {
+      return data;
+    }
 
-  setUserToken(data.token);
-  setUser(data.user);
-  return data.user;
-}, []);
+    setUserToken(data.token);
+    setUser(data.user);
+    return data.user;
+  }, []);
 
   const logout = useCallback(() => {
     setUserToken(null);
     setUser(null);
   }, []);
 
+  // Updates first/last name. Requires the user to be logged in (token sent
+  // automatically by `api`, same as the /auth/me call above).
+  const updateProfile = useCallback(async ({ firstName, lastName }) => {
+    const data = await api.patch("/auth/profile", { firstName, lastName });
+    setUser(data.user);
+    return data.user;
+  }, []);
+
+  // Changes the password for email/password accounts. Throws (with
+  // err.message from the API) on wrong current password, etc.
+  const changePassword = useCallback(async ({ currentPassword, newPassword }) => {
+    const data = await api.patch("/auth/password", { currentPassword, newPassword });
+    return data;
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, loginWithGoogle, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        register,
+        loginWithGoogle,
+        logout,
+        updateProfile,
+        changePassword,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

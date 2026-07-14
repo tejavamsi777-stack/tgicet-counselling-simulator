@@ -4,6 +4,7 @@ import { collegeController } from "../controllers/collegeController.js";
 import { predictionController } from "../controllers/predictionController.js";
 import { authController } from "../controllers/authController.js";
 import { optionalAuth } from "../middleware/optionalAuth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 import { adminAuthController } from "../controllers/adminAuthController.js";
 import { requireAdminAuth, requireRole } from "../middleware/requireAdminAuth.js";
 import { adminCollegeController } from "../controllers/adminCollegeController.js";
@@ -28,6 +29,10 @@ router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
 router.post("/auth/google", authController.google);
 router.get("/auth/me", optionalAuth, authController.me);
+
+// ---------- Student auth (requires login) ----------
+router.patch("/auth/profile", requireAuth, authController.updateProfile);
+router.patch("/auth/password", requireAuth, authController.changePassword);
 
 // ---------- Admin auth ----------
 router.post("/admin/auth/login", adminAuthController.login);
