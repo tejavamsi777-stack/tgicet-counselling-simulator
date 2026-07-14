@@ -29,7 +29,7 @@ export const authService = {
       lastName,
       email,
       passwordHash,
-      googleId,
+      googleId: googleId || null,
     });
 
     const token = signUserToken(user);

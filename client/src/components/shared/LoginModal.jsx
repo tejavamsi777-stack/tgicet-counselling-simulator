@@ -23,6 +23,11 @@ const [googleRegistration, setGoogleRegistration] = useState(false);
     setError("");
     setSubmitting(true);
     try {
+     if (mode === "register" && password !== confirmPassword) {
+        setError("Passwords do not match");
+        setSubmitting(false);
+        return;
+      }
       if (mode === "login") {
         await login(email, password);
       } else {
@@ -31,7 +36,7 @@ const [googleRegistration, setGoogleRegistration] = useState(false);
   lastName,
   email,
   password,
-  googleId,
+  googleId: googleId || null,
 });
       }
       onAuthenticated?.();

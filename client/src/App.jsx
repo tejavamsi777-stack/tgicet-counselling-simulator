@@ -7,7 +7,9 @@ import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import PredictorPage from "./pages/PredictorPage";
 import MockCounsellingPage from "./pages/MockCounsellingPage";
+import LoginPage from "./pages/LoginPage";
 import AdminApp from "./admin/AdminApp";
+import ProtectedRoute from "./components/shared/ProtectedRoute";
 
 function App() {
   const [openPanel, setOpenPanel] = useState(null);
@@ -16,6 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/admin/*" element={<AdminApp />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route
           path="*"
           element={
@@ -30,8 +33,22 @@ function App() {
 
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/predictor" element={<PredictorPage />} />
-                <Route path="/mock-counselling" element={<MockCounsellingPage />} />
+                <Route
+                  path="/predictor"
+                  element={
+                    <ProtectedRoute>
+                      <PredictorPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/mock-counselling"
+                  element={
+                    <ProtectedRoute>
+                      <MockCounsellingPage />
+                    </ProtectedRoute>
+                  }
+                />
               </Routes>
 
               <Footer openPanel={openPanel} setOpenPanel={setOpenPanel} />

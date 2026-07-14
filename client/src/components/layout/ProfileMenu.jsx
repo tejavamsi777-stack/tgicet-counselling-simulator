@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { User, LogOut, ChevronDown, Mail, ArrowLeft } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
-import LoginModal from "../shared/LoginModal";
 
 export default function ProfileMenu() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [view, setView] = useState("menu"); // "menu" | "profile"
-  const [loginOpen, setLoginOpen] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -30,15 +30,12 @@ export default function ProfileMenu() {
 
   if (!user) {
     return (
-      <>
-        <button
-          onClick={() => setLoginOpen(true)}
-          className="rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 px-4 py-1.5 text-sm font-medium text-white shadow-sm transition-transform hover:scale-[1.03] active:scale-[0.98]"
-        >
-          Sign In
-        </button>
-        <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
-      </>
+      <button
+        onClick={() => navigate("/login")}
+        className="rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 px-4 py-1.5 text-sm font-medium text-white shadow-sm transition-transform hover:scale-[1.03] active:scale-[0.98]"
+      >
+        Sign In
+      </button>
     );
   }
 
