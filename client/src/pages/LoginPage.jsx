@@ -63,7 +63,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-[100dvh">
+    <div className="flex min-h-screen">
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-slate-50 p-12 text-slate-900 lg:flex">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-violet-200/40 blur-3xl" />
