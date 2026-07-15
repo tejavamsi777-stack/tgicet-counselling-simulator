@@ -1,11 +1,24 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { api, getUserToken, setUserToken } from "../lib/api";
+import posthog from "posthog-js"; // Imported PostHog
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Tracks user session state changes cleanly without altering your existing flows
+  useEffect(() => {
+    if (user) {
+      posthog.identify(user.id, {
+        email: user.email,
+        name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+      });
+    } else {
+      posthog.reset();
+    }
+  }, [user]);
 
   useEffect(() => {
     let cancelled = false;
@@ -83,6 +96,20 @@ export function AuthProvider({ children }) {
     return data;
   }, []);
 
+  // Kicks off the "forgot password" email. Always resolves the same way
+  // whether or not the email exists — the backend intentionally doesn't
+  // reveal that, so don't try to branch UI on the response either.
+  const forgotPassword = useCallback(async (email) => {
+    const data = await api.post("/auth/forgot-password", { email });
+    return data;
+  }, []);
+
+  // Completes a reset using the token from the emailed link.
+  const resetPassword = useCallback(async ({ token, newPassword }) => {
+    const data = await api.post("/auth/reset-password", { token, newPassword });
+    return data;
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -94,6 +121,8 @@ export function AuthProvider({ children }) {
         logout,
         updateProfile,
         changePassword,
+        forgotPassword,
+        resetPassword,
       }}
     >
       {children}

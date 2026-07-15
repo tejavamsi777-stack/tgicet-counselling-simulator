@@ -221,6 +221,7 @@ export default function LoginPage() {
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const redirectTo = location.state?.from?.pathname || "/";
 
@@ -262,10 +263,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-row bg-slate-50">
+    <div className="flex min-h-[100dvh] w-full flex-row bg-slate-50">
       
       {/* LEFT PANEL: Characters — HIDDEN ON MOBILE (hidden lg:flex) so login form is immediately visible! */}
-      <div className="relative hidden lg:flex w-1/2 flex-col justify-between overflow-hidden bg-slate-50 p-12 text-slate-900 shrink-0 min-h-screen">
+     <div className="relative hidden lg:flex w-1/2 flex-col justify-between overflow-hidden bg-slate-50 p-12 text-slate-900 shrink-0 min-h-[100dvh]">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-violet-200/40 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-200/40 blur-3xl" />
@@ -294,7 +295,7 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT PANEL: Form — Takes 100% screen width on Mobile, 50% on Desktop */}
-      <div className="flex w-full lg:w-1/2 flex-1 flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#312e81] via-[#7c3aed] to-[#0e7490] px-6 py-10 min-h-screen">
+     <div className="flex w-full lg:w-1/2 flex-1 flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#312e81] via-[#7c3aed] to-[#0e7490] px-6 py-10 min-h-[100dvh]">
         <div className="w-full max-w-sm">
           <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-white">
             <ArrowLeft size={15} />
@@ -320,15 +321,26 @@ export default function LoginPage() {
               : "Sign up to start predicting and save your progress."}
           </p>
 
-          {!success && (
+          {!success && googleLoading && (
+            <div className="flex flex-col items-center justify-center py-10">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+              <p className="mt-4 text-sm text-white/70">Signing you in…</p>
+            </div>
+          )}
+
+          {!success && !googleLoading && (
             <>
-              <div className="mt-6">
+              <div className="mt-6 flex justify-center">
                 <GoogleSignInButton
+                  onStart={() => setGoogleLoading(true)}
                   onSuccess={() => {
                     setSuccess(true);
                     setTimeout(() => navigate(redirectTo, { replace: true }), 1100);
                   }}
-                  onError={setError}
+                  onError={(msg) => {
+                    setGoogleLoading(false);
+                    setError(msg);
+                  }}
                 />
               </div>
 
@@ -385,6 +397,16 @@ export default function LoginPage() {
                     {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
                 </div>
+                {mode === "login" && (
+                  <div className="text-right">
+                    <Link
+                      to="/forgot-password"
+                      className="text-xs font-medium text-white/70 hover:text-white hover:underline"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
+                )}
                 {mode === "register" && (
                   <input
                     type={showPassword ? "text" : "password"}

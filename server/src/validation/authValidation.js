@@ -48,3 +48,20 @@ export function validateChangePasswordInput(body) {
   }
   return errors;
 }
+
+export function validateForgotPasswordInput(body) {
+  const errors = [];
+  if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+    errors.push("A valid email is required");
+  }
+  return errors;
+}
+
+export function validateResetPasswordInput(body) {
+  const errors = [];
+  if (!body.token) errors.push("Reset token is required");
+  if (!body.newPassword || body.newPassword.length < 8) {
+    errors.push("New password must be at least 8 characters");
+  }
+  return errors;
+}

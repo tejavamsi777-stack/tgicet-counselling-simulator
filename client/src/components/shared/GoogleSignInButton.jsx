@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
 
-export default function GoogleSignInButton({ onSuccess, onError }) {
+export default function GoogleSignInButton({ onSuccess, onError, onStart }) {
   const buttonRef = useRef(null);
   const { loginWithGoogle } = useAuth();
 
@@ -11,6 +11,7 @@ export default function GoogleSignInButton({ onSuccess, onError }) {
     window.google.accounts.id.initialize({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: async (response) => {
+        onStart?.();
         try {
           const result = await loginWithGoogle(response.credential);
 
@@ -32,8 +33,9 @@ onSuccess?.(result);
       size: "large",
       width: 320,
       text: "continue_with",
+      logo_alignment: "center",
     });
-  }, [loginWithGoogle, onSuccess, onError]);
+  }, [loginWithGoogle, onSuccess, onError, onStart]);
 
   return <div ref={buttonRef} />;
 }

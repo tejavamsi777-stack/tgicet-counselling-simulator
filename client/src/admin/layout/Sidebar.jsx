@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Building2, BookOpen, MapPin, Tags,
   FileSpreadsheet, Settings, ShieldCheck, X,
 } from "lucide-react";
-import { cn } from "../../utils/cn";
+import { cn } from "../../utils/cn"; // Keeps original relative path[cite: 18]
 
 const NAV_ITEMS = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 
 function NavItems({ onNavigate }) {
   return (
-    <nav className="flex-1 space-y-1 px-3 py-4">
+    <nav className="flex-1 space-y-1.5 px-4 py-6">
       {NAV_ITEMS.map((item) => {
         const Icon = item.icon;
         return (
@@ -29,15 +29,23 @@ function NavItems({ onNavigate }) {
             onClick={onNavigate}
             className={({ isActive }) =>
               cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                "group flex items-center gap-3.5 rounded-xl px-4 py-3 text-[14px] font-medium transition-all duration-300 relative overflow-hidden",
                 isActive
-                  ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400"
-                  : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
+                  ? "bg-brand-500/10 text-white border border-brand-500/30 shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+                  : "text-slate-400 border border-transparent hover:bg-white/[0.04] hover:text-white"
               )
             }
           >
-            <Icon size={18} />
-            {item.label}
+            {/* Liquid highlight line on active items */}
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <span className="absolute left-0 top-1/4 h-1/2 w-1 rounded-r-md bg-brand-400" />
+                )}
+                <Icon size={18} className="transition-transform group-hover:scale-110" />
+                <span>{item.label}</span>
+              </>
+            )}
           </NavLink>
         );
       })}
@@ -47,11 +55,11 @@ function NavItems({ onNavigate }) {
 
 function Brand() {
   return (
-    <div className="flex h-16 items-center gap-2.5 border-b border-slate-200 px-5 dark:border-slate-800">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
-        <ShieldCheck size={18} />
+    <div className="flex h-16 items-center gap-3 border-b border-white/[0.06] px-6">
+      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-blue-500 text-white shadow-lg shadow-brand-500/20">
+        <ShieldCheck size={20} />
       </div>
-      <span className="text-[15px] font-semibold tracking-tight text-slate-900 dark:text-white">
+      <span className="text-md font-bold tracking-tight text-white">
         Admin Panel
       </span>
     </div>
@@ -62,7 +70,7 @@ export default function Sidebar({ mobileOpen, onCloseMobile }) {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 md:flex">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-white/[0.06] bg-slate-950/40 backdrop-blur-2xl md:flex">
         <Brand />
         <NavItems />
       </aside>
@@ -75,24 +83,24 @@ export default function Sidebar({ mobileOpen, onCloseMobile }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/40 md:hidden"
+              className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-md md:hidden"
               onClick={onCloseMobile}
             />
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-white dark:bg-slate-900 md:hidden"
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/10 bg-slate-950/80 backdrop-blur-2xl md:hidden"
             >
-              <div className="flex h-16 items-center justify-between border-b border-slate-200 px-5 dark:border-slate-800">
-                <span className="text-[15px] font-semibold tracking-tight text-slate-900 dark:text-white">
+              <div className="flex h-16 items-center justify-between border-b border-white/[0.06] px-5">
+                <span className="text-md font-bold tracking-tight text-white">
                   Admin Panel
                 </span>
                 <button
                   onClick={onCloseMobile}
                   aria-label="Close menu"
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 hover:bg-white/10"
                 >
                   <X size={16} />
                 </button>

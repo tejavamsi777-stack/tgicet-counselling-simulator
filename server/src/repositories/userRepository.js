@@ -25,6 +25,16 @@ export const userRepository = {
     return rows[0] ?? null;
   },
 
+  // Used by the forgot-password flow. We only ever look up by the HASHED
+  // token (never the raw token) — see authService.resetPassword.
+  async findByResetTokenHash(hash) {
+    const { rows } = await pool.query(
+      "SELECT * FROM users WHERE reset_token_hash = $1",
+      [hash]
+    );
+    return rows[0] ?? null;
+  },
+
   async create({ firstName, lastName, email, passwordHash, googleId }) {
     const { rows } = await pool.query(
       `INSERT INTO users
@@ -46,12 +56,14 @@ export const userRepository = {
   },
 
   // Partial update — only fields actually passed in `fields` get touched.
-  // Accepts: firstName, lastName, passwordHash
+  // Accepts: firstName, lastName, passwordHash, resetTokenHash, resetTokenExpires
   async update(id, fields) {
     const columnMap = {
       firstName: "first_name",
       lastName: "last_name",
       passwordHash: "password_hash",
+      resetTokenHash: "reset_token_hash",
+      resetTokenExpires: "reset_token_expires",
     };
 
     const setClauses = [];

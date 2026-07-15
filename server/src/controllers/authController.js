@@ -5,6 +5,8 @@ import {
   validateLoginInput,
   validateUpdateProfileInput,
   validateChangePasswordInput,
+  validateForgotPasswordInput,
+  validateResetPasswordInput,
 } from "../validation/authValidation.js";
 
 export const authController = {
@@ -45,7 +47,7 @@ export const authController = {
     }
   },
 
-  // requires requireAuth middleware — req.user.sub is the authenticated user's id
+  // requires requireAuth middleware — req.user.id is the authenticated user's id
   async updateProfile(req, res, next) {
     try {
       const errors = validateUpdateProfileInput(req.body);
@@ -67,6 +69,38 @@ export const authController = {
 
       const { currentPassword, newPassword } = req.body;
       await authService.changePassword(req.user.id, { currentPassword, newPassword });
+      res.json({ success: true });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // Public — no auth required (the user isn't logged in yet, that's the point)
+  async forgotPassword(req, res, next) {
+    try {
+      const errors = validateForgotPasswordInput(req.body);
+      if (errors.length > 0) return res.status(400).json({ errors });
+
+      await authService.forgotPassword(req.body.email);
+
+      // Always the same response whether or not the email exists —
+      // prevents attackers from using this endpoint to discover accounts.
+      res.json({
+        message: "If an account exists with that email, a reset link has been sent.",
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // Public — no auth required (the raw token itself is the proof of identity)
+  async resetPassword(req, res, next) {
+    try {
+      const errors = validateResetPasswordInput(req.body);
+      if (errors.length > 0) return res.status(400).json({ errors });
+
+      const { token, newPassword } = req.body;
+      await authService.resetPassword({ token, newPassword });
       res.json({ success: true });
     } catch (err) {
       next(err);

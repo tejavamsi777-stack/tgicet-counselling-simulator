@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import PredictorPage from "./pages/PredictorPage";
 import MockCounsellingPage from "./pages/MockCounsellingPage";
 import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminApp from "./admin/AdminApp";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
 
@@ -19,6 +21,8 @@ function App() {
       <Routes>
         <Route path="/admin/*" element={<AdminApp />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         <Route
           path="*"
           element={

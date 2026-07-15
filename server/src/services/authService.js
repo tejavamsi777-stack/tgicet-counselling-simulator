@@ -1,8 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 import { userRepository } from "../repositories/userRepository.js";
+import { emailService } from "./emailService.js";
 
 const SALT_ROUNDS = 12;
+const RESET_TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
 
 function signUserToken(user) {
   return jwt.sign(
@@ -20,6 +23,10 @@ function toPublicUser(user) {
     firstName: user.first_name,
     lastName: user.last_name,
   };
+}
+
+function hashResetToken(rawToken) {
+  return crypto.createHash("sha256").update(rawToken).digest("hex");
 }
 
 export const authService = {
@@ -123,6 +130,54 @@ export const authService = {
 
     const newPasswordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
     await userRepository.update(userId, { passwordHash: newPasswordHash });
+
+    return true;
+  },
+
+  // Always resolves successfully (even if the email doesn't exist) so the
+  // API never reveals whether an email is registered — that's a deliberate
+  // anti-enumeration measure, not an oversight.
+  async forgotPassword(email) {
+    const user = await userRepository.findByEmail(email);
+
+    // Google-only accounts have no password to reset — silently no-op,
+    // same as "user not found", for the same anti-enumeration reason.
+    if (!user || !user.password_hash) {
+      return;
+    }
+
+    const rawToken = crypto.randomBytes(32).toString("hex");
+    const tokenHash = hashResetToken(rawToken);
+    const expires = new Date(Date.now() + RESET_TOKEN_TTL_MS);
+
+    await userRepository.update(user.id, {
+      resetTokenHash: tokenHash,
+      resetTokenExpires: expires,
+    });
+
+    const clientUrl = process.env.CLIENT_URL || "http://localhost:5173";
+    const resetUrl = `${clientUrl}/reset-password/${rawToken}`;
+
+    await emailService.sendPasswordResetEmail(user.email, resetUrl);
+  },
+
+  async resetPassword({ token, newPassword }) {
+    const tokenHash = hashResetToken(token);
+    const user = await userRepository.findByResetTokenHash(tokenHash);
+
+    if (!user || !user.reset_token_expires || new Date(user.reset_token_expires) < new Date()) {
+      const err = new Error("This reset link is invalid or has expired");
+      err.status = 400;
+      err.code = "INVALID_RESET_TOKEN";
+      throw err;
+    }
+
+    const newPasswordHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+    await userRepository.update(user.id, {
+      passwordHash: newPasswordHash,
+      resetTokenHash: null,
+      resetTokenExpires: null,
+    });
 
     return true;
   },
