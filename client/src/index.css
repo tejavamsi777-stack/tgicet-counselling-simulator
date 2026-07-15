@@ -47,3 +47,33 @@ input[type="radio"] {
   scrollbar-width: thin;
   scrollbar-color: var(--color-brand-500) transparent;
 }
+@keyframes status-shimmer {
+  0% { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(220%) skewX(-15deg); }
+}
+
+@keyframes status-glow-safe {
+  0%, 100% { box-shadow: 0 0 0px rgba(16,185,129,0.0); }
+  50% { box-shadow: 0 0 10px rgba(16,185,129,0.55); }
+}
+@keyframes status-glow-moderate {
+  0%, 100% { box-shadow: 0 0 0px rgba(245,158,11,0.0); }
+  50% { box-shadow: 0 0 10px rgba(245,158,11,0.55); }
+}
+@keyframes status-glow-risky {
+  0%, 100% { box-shadow: 0 0 0px rgba(244,63,94,0.0); }
+  50% { box-shadow: 0 0 10px rgba(244,63,94,0.55); }
+}
+
+.status-dot-safe { animation: status-glow-safe 2.4s ease-in-out infinite; }
+.status-dot-moderate { animation: status-glow-moderate 2.4s ease-in-out infinite; }
+.status-dot-risky { animation: status-glow-risky 2.4s ease-in-out infinite; }
+
+.status-shimmer-sweep { animation: status-shimmer 3.2s ease-in-out infinite; }
+@keyframes status-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.status-orbit-spin {
+  animation: status-orbit-spin 2.6s linear infinite;
+}

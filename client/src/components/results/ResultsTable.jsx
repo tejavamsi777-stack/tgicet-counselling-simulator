@@ -7,7 +7,7 @@ import StatusBadge from "./StatusBadge";
 import ExportButtons from "./ExportButtons";
 import { getDistrictName } from "../../utils/districtNames";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 export default function ResultsTable({ results, year }) {
   const [search, setSearch] = useState("");
