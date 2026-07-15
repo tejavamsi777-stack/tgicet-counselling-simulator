@@ -158,7 +158,16 @@ export const authService = {
     const clientUrl = process.env.CLIENT_URL || "http://localhost:5173";
     const resetUrl = `${clientUrl}/reset-password/${rawToken}`;
 
-    await emailService.sendPasswordResetEmail(user.email, resetUrl);
+    // Deliberately NOT awaited: Gmail SMTP handshakes can take anywhere from
+    // a couple seconds to 20-30+ seconds depending on network conditions,
+    // and holding the HTTP response open that long caused mobile browsers
+    // (which are much stricter than desktop about killing slow requests) to
+    // fail with a generic network error even though the backend was fine.
+    // The token is already saved above, so the reset link works regardless
+    // of exactly when the email finishes sending.
+    emailService.sendPasswordResetEmail(user.email, resetUrl).catch((err) => {
+      console.error("Password reset email failed to send:", err);
+    });
   },
 
   async resetPassword({ token, newPassword }) {
