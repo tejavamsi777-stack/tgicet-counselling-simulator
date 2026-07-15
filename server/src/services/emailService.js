@@ -1,9 +1,5 @@
 import nodemailer from "nodemailer";
 
-// Sends via your own Gmail account using an "App Password" (not your normal
-// Gmail password — see setup instructions). This can send to ANY recipient
-// immediately, unlike Resend's sandbox mode which is limited to your own
-// inbox until a domain is verified.
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -35,11 +31,23 @@ export const emailService = {
           </div>
         `,
       });
-    } catch (error) {
-      const err = new Error("Failed to send reset email");
-      err.status = 502;
-      err.cause = error;
-      throw err;
+    } catch (err) {
+      // Logged in full, one field per line, so it survives compact log
+      // viewers (like Render's) that don't expand nested error objects or
+      // the `cause` chain. This is what actually tells us WHY Gmail
+      // rejected the send (bad app password, account locked, etc.) instead
+      // of just "something went wrong."
+      console.error("=== Password reset email SMTP failure ===");
+      console.error("message:", err.message);
+      console.error("code:", err.code);
+      console.error("command:", err.command);
+      console.error("response:", err.response);
+      console.error("responseCode:", err.responseCode);
+      console.error("==========================================");
+
+      const wrapped = new Error("Failed to send reset email");
+      wrapped.status = 502;
+      throw wrapped;
     }
   },
 };
