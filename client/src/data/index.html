@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Woodcraft Interiors — Crafting Spaces. Elevating Lives.</title>
+
+<!-- Fonts: a high-contrast serif for display, a quiet grotesk for body/nav -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis smooth scroll -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<style>
+  :root{
+    --cream:#faf8f5;
+    --cream-2:#f3efe8;
+    --ink:#1c1a17;
+    --ink-soft:#4a463f;
+    --brown:#8a5a2f;
+    --brown-dark:#6e4522;
+    --gold:#b9772f;
+    --line:rgba(28,26,23,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--brown); color:#fff;}
+
+  /* ---------- Layout scaffolding ---------- */
+  .wrap{max-width:1536px; margin:0 auto; padding:0 40px;}
+  @media (max-width:900px){ .wrap{padding:0 22px;} }
+
+  /* ---------- Navbar ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:26px 0;
+    transition:background .5s ease, backdrop-filter .5s ease, padding .4s ease, border-color .5s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.nav.scrolled{
+    padding:16px 0;
+    background:rgba(250,248,245,0.72);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 8px 30px rgba(28,26,23,0.04);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:24px;}
+  .logo{display:flex; flex-direction:column; align-items:flex-start; line-height:1;}
+  .logo .W{font-family:'Cormorant Garamond',serif; font-size:30px; color:var(--brown); font-weight:600; letter-spacing:0.02em;}
+  .logo .name{font-size:16px; letter-spacing:0.18em; margin-top:2px; font-weight:500;}
+  .logo .sub{font-size:9px; letter-spacing:0.35em; color:var(--ink-soft); margin-top:3px;}
+
+  nav.links{display:flex; gap:38px; font-size:13.5px; letter-spacing:0.08em;}
+  nav.links a{position:relative; padding:4px 0; color:var(--ink-soft); transition:color .3s ease;}
+  nav.links a:hover{color:var(--ink);}
+  nav.links a.active{color:var(--brown-dark);}
+  nav.links a.active::after{
+    content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--brown);
+  }
+  nav.links a::before{
+    content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:var(--brown);
+    transition:width .35s cubic-bezier(.22,1,.36,1);
+  }
+  nav.links a:hover::before{width:100%;}
+  nav.links a.active::before{display:none;}
+
+  .nav-right{display:flex; align-items:center; gap:26px;}
+
+  .btn{
+    position:relative; display:inline-flex; align-items:center; gap:10px;
+    font-size:12.5px; letter-spacing:0.12em; font-weight:500;
+    padding:14px 26px; border-radius:2px; cursor:pointer; overflow:hidden;
+    isolation:isolate;
+  }
+  .btn-outline{border:1px solid var(--brown); color:var(--brown-dark); background:transparent;}
+  .btn-outline:hover{color:#fff;}
+  .btn-outline::before{
+    content:""; position:absolute; inset:0; background:var(--brown); z-index:-1;
+    transform:translateY(101%); transition:transform .45s cubic-bezier(.65,0,.35,1);
+  }
+  .btn-outline:hover::before{transform:translateY(0);}
+
+  .btn-solid{background:var(--brown); color:#fff; border:1px solid var(--brown);}
+  .btn-solid:hover{background:var(--brown-dark);}
+
+  .burger{
+    width:38px; height:26px; position:relative; cursor:pointer;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .burger span{display:block; height:1.5px; width:100%; background:var(--ink); transition:transform .4s ease, opacity .3s ease;}
+  .burger.open span:nth-child(1){transform:translateY(11.5px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-11.5px) rotate(-45deg);}
+
+  /* ---------- Mobile / full drawer menu ---------- */
+  .drawer{
+    position:fixed; inset:0; z-index:99;
+    background:var(--ink);
+    clip-path:circle(0px at calc(100% - 46px) 46px);
+    transition:clip-path .7s cubic-bezier(.65,0,.35,1);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .drawer.open{clip-path:circle(160% at calc(100% - 46px) 46px);}
+  .drawer-links{display:flex; flex-direction:column; gap:26px; text-align:center;}
+  .drawer-links a{
+    font-family:'Cormorant Garamond', serif; font-size:44px; color:#f3efe8;
+    opacity:0; transform:translateY(30px);
+    transition:color .3s ease;
+  }
+  .drawer-links a:hover{color:var(--gold);}
+  .drawer.open .drawer-links a{animation:drawerIn .7s cubic-bezier(.22,1,.36,1) forwards;}
+  .drawer.open .drawer-links a:nth-child(1){animation-delay:.15s;}
+  .drawer.open .drawer-links a:nth-child(2){animation-delay:.22s;}
+  .drawer.open .drawer-links a:nth-child(3){animation-delay:.29s;}
+  .drawer.open .drawer-links a:nth-child(4){animation-delay:.36s;}
+  .drawer.open .drawer-links a:nth-child(5){animation-delay:.43s;}
+  @keyframes drawerIn{ to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding-top:170px;
+    display:grid; grid-template-columns:1fr 1.35fr; gap:40px; align-items:center;
+    min-height:100vh;
+  }
+  @media (max-width:1100px){ .hero{grid-template-columns:1fr; padding-top:140px;} }
+
+  .hero-left{position:relative; padding-left:70px;}
+  @media (max-width:1100px){ .hero-left{padding-left:0;} }
+
+  .timeline{
+    position:absolute; left:0; top:6px; bottom:70px; width:20px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  @media (max-width:1100px){ .timeline{display:none;} }
+  .timeline .tl-line{position:absolute; top:14px; bottom:14px; width:1px; background:var(--line);}
+  .timeline .dot{
+    font-size:11px; color:var(--ink-soft); letter-spacing:0.05em; margin-bottom:auto;
+  }
+  .timeline .num{font-size:11px; color:var(--ink-soft); position:relative; z-index:1; background:var(--cream); padding:4px 0;}
+  .timeline .num.active{color:var(--brown-dark);}
+  .timeline .marker{
+    width:9px; height:9px; border-radius:50%; background:var(--brown); margin:6px 0;
+    position:relative; z-index:1;
+  }
+
+  .eyebrow{
+    font-size:12.5px; letter-spacing:0.22em; color:var(--brown-dark); font-weight:500; margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 4.6vw, 68px); line-height:1.06; margin:0 0 8px 0; color:var(--ink);
+  }
+  .hero h1 .accent{color:var(--gold); font-style:italic;}
+  .rule{width:60px; height:2px; background:var(--brown); margin:26px 0;}
+  .hero p.lede{
+    font-size:16.5px; line-height:1.7; color:var(--ink-soft); max-width:420px; margin:0 0 38px 0;
+  }
+  .scroll-cue{
+    position:absolute; left:0; bottom:-30px; display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-size:10px; letter-spacing:0.2em; color:var(--ink-soft);
+  }
+  @media (max-width:1100px){ .scroll-cue{display:none;} }
+  .scroll-cue .arrow{animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
+
+  .hero-right{position:relative; height:78vh; min-height:520px; overflow:hidden; border-radius:2px;}
+  @media (max-width:1100px){ .hero-right{height:52vh; margin-top:20px;} }
+  .hero-right img{
+    width:100%; height:120%; object-fit:cover; position:absolute; top:-10%; left:0;
+    will-change:transform;
+  }
+  .hero-right::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.16));
+  }
+
+  /* ---------- Feature bar ---------- */
+  .feature-bar{
+    position:relative; z-index:5; margin-top:-64px;
+    background:#fff; border-radius:4px;
+    box-shadow:0 30px 60px rgba(28,26,23,0.08), 0 2px 10px rgba(28,26,23,0.04);
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  @media (max-width:900px){ .feature-bar{grid-template-columns:1fr 1fr; margin-top:24px;} }
+  .feature-item{
+    padding:34px 30px; display:flex; gap:16px; align-items:flex-start;
+    border-right:1px solid var(--line);
+    opacity:0; transform:translateY(24px);
+  }
+  .feature-item:last-child{border-right:none;}
+  @media (max-width:900px){ .feature-item:nth-child(2n){border-right:none;} .feature-item{border-bottom:1px solid var(--line);} }
+  .feature-item .ic{
+    width:38px; height:38px; border:1px solid var(--brown); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--brown-dark);
+  }
+  .feature-item h4{font-family:'Jost',sans-serif; font-size:13px; letter-spacing:0.08em; margin:0 0 4px 0; font-weight:600;}
+  .feature-item p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+  /* ---------- Scrollytelling sections (illustrative continuation) ---------- */
+  section.story{
+    padding:180px 0; position:relative;
+  }
+  .story-inner{display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;}
+  @media (max-width:1000px){ .story-inner{grid-template-columns:1fr; gap:40px;} }
+  .story-eyebrow{font-size:12px; letter-spacing:0.22em; color:var(--brown-dark); margin-bottom:18px;}
+  .story h2{font-size:clamp(30px,3.4vw,46px); line-height:1.15; margin:0 0 20px 0;}
+  .story p{font-size:15.5px; line-height:1.8; color:var(--ink-soft); max-width:440px;}
+  .story-media{position:relative; height:64vh; overflow:hidden; border-radius:2px;}
+  .story-media img{width:100%; height:130%; object-fit:cover; position:absolute; top:-15%;}
+
+  .reveal{opacity:0; transform:translateY(50px);}
+
+  footer{
+    padding:60px 0 40px; text-align:center; color:var(--ink-soft); font-size:12.5px; letter-spacing:0.05em;
+    border-top:1px solid var(--line); margin-top:60px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <span class="W">W</span>
+      <span class="name">WOODCRAFT</span>
+      <span class="sub">I N T E R I O R S</span>
+    </div>
+
+    <nav class="links" id="deskLinks">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="#" class="btn btn-outline magnetic">Book a Consultation</a>
+      <div class="burger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= DRAWER ================= -->
+<div class="drawer" id="drawer">
+  <div class="drawer-links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero wrap">
+  <div class="hero-left">
+    <div class="timeline">
+      <span class="num active">01</span>
+      <div class="marker"></div>
+      <span class="num">02</span>
+      <span class="num">03</span>
+      <span class="num">04</span>
+      <div class="tl-line"></div>
+    </div>
+
+    <div class="eyebrow reveal">Premium Interior Design</div>
+    <h1 class="reveal">Crafting Spaces.<br>Elevating <span class="accent">Lives</span>.</h1>
+    <div class="rule reveal"></div>
+    <p class="lede reveal">We design timeless interiors that blend functionality, aesthetics and individuality to create spaces you'll love.</p>
+    <a href="#" class="btn btn-solid magnetic reveal">Explore Our Work →</a>
+
+    <div class="scroll-cue">
+      <span>SCROLL</span>
+      <span class="arrow">↓</span>
+    </div>
+  </div>
+
+  <div class="hero-right" id="heroImg">
+    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1600&auto=format&fit=crop" alt="Living room interior with wood paneling">
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="feature-bar" id="featureBar">
+    <div class="feature-item">
+      <div class="ic">⌂</div>
+      <div><h4>BESPOKE DESIGN</h4><p>Tailored to your lifestyle</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="ic">✓</div>
+      <div><h4>PREMIUM QUALITY</h4><p>Finest materials &amp; craftsmanship</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="ic">◷</div>
+      <div><h4>ON TIME, EVERY TIME</h4><p>Committed to your schedule</p></div>
+    </div>
+    <div class="feature-item">
+      <div class="ic">☺</div>
+      <div><h4>END TO END SERVICE</h4><p>From concept to completion</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= (Illustrative scrollytelling continuation, not in original mock but shows the animation system) ================= -->
+<section class="story wrap">
+  <div class="story-inner">
+    <div>
+      <div class="story-eyebrow reveal">Our Story</div>
+      <h2 class="reveal">Designing spaces that tell your story.</h2>
+      <p class="reveal">At Woodcraft Interiors, every space begins with a conversation — about how you live, what you value, and the mood you want to walk into every day.</p>
+    </div>
+    <div class="story-media" id="storyImg">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop" alt="Round mirror console styling">
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Woodcraft Interiors — Static illustration build, animation system only
+</footer>
+
+<script>
+/* ============ Lenis smooth scroll ============ */
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothWheel: true,
+});
+function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+gsap.registerPlugin(ScrollTrigger);
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time)=>{ lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
+/* ============ Navbar state on scroll ============ */
+const navEl = document.getElementById('siteNav');
+ScrollTrigger.create({
+  start: 40,
+  end: 99999,
+  onUpdate: (self) => {
+    navEl.classList.toggle('scrolled', self.scroll() > 40);
+  }
+});
+
+/* ============ Hamburger / drawer ============ */
+const burger = document.getElementById('burgerBtn');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  drawer.classList.toggle('open');
+  lenis[drawer.classList.contains('open') ? 'stop' : 'start']();
+});
+drawer.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click', ()=>{ burger.classList.remove('open'); drawer.classList.remove('open'); lenis.start(); });
+});
+
+/* ============ Hero entrance ============ */
+gsap.timeline({defaults:{ease:'power3.out'}})
+  .to('.eyebrow', {opacity:1, y:0, duration:.8, delay:.2})
+  .to('.hero h1', {opacity:1, y:0, duration:1}, '-=.5')
+  .to('.rule', {opacity:1, y:0, duration:.6, scaleX:1}, '-=.6')
+  .to('.hero p.lede', {opacity:1, y:0, duration:.8}, '-=.5')
+  .to('.hero .btn.reveal', {opacity:1, y:0, duration:.7}, '-=.5');
+
+/* ============ Feature bar staggered reveal ============ */
+gsap.to('.feature-item', {
+  opacity:1, y:0, duration:.8, stagger:.12, ease:'power3.out',
+  scrollTrigger: { trigger:'#featureBar', start:'top 90%' }
+});
+
+/* ============ Slow zoom parallax on hero + story images ============ */
+gsap.to('#heroImg img', {
+  scale:1.15, ease:'none',
+  scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:1 }
+});
+gsap.fromTo('#storyImg img', {y:'-6%'}, {
+  y:'6%', ease:'none',
+  scrollTrigger:{ trigger:'#storyImg', start:'top bottom', end:'bottom top', scrub:1 }
+});
+
+/* ============ Generic reveal-on-scroll for story text ============ */
+gsap.utils.toArray('.story .reveal').forEach((el, i)=>{
+  gsap.to(el, {
+    opacity:1, y:0, duration:.9, ease:'power3.out', delay:i*0.08,
+    scrollTrigger:{ trigger:el, start:'top 85%' }
+  });
+});
+
+/* ============ Magnetic button hover ============ */
+document.querySelectorAll('.magnetic').forEach(btn=>{
+  btn.addEventListener('mousemove', (e)=>{
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width/2;
+    const y = e.clientY - r.top - r.height/2;
+    gsap.to(btn, {x:x*0.25, y:y*0.4, duration:.4, ease:'power2.out'});
+  });
+  btn.addEventListener('mouseleave', ()=>{
+    gsap.to(btn, {x:0, y:0, duration:.5, ease:'elastic.out(1,0.4)'});
+  });
+});
+</script>
+</body>
+</html>

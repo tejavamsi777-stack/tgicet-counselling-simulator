@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import { api } from "../lib/api";
 
+
 import Hero from "../components/layout/Hero";
 import PageTransition from "../components/layout/PageTransition";
 

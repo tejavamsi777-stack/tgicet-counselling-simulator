@@ -269,7 +269,7 @@ export default function MockCounsellingPage() {
         <div className="text-center">
           <MagneticButton
             onClick={handleCandidateSubmit}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 px-8 py-3 text-sm font-semibold text-white shadow-md"
+           className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] px-8 py-3 text-sm font-semibold text-white shadow-md hover:from-[#2563EB] hover:via-[#4338CA] hover:to-[#6D28D9]"
           >
             Continue
           </MagneticButton>
@@ -299,7 +299,7 @@ export default function MockCounsellingPage() {
         <div className="text-center">
           <MagneticButton
             onClick={handleSubmit}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 px-8 py-3 text-sm font-semibold text-white shadow-md"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] px-8 py-3 text-sm font-semibold text-white shadow-md hover:from-[#2563EB] hover:via-[#4338CA] hover:to-[#6D28D9]"
           >
             Display Option Entry Form
           </MagneticButton>

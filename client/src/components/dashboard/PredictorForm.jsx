@@ -72,10 +72,12 @@ export default function PredictorForm({
         )}
 
         <div className="mt-6">
-          <Button size="lg" onClick={onPredict} className="w-full">
-            <Search size={16} />
-            Predict Colleges
-          </Button>
+          <button
+  onClick={onPredict}
+ className="mx-auto mt-8 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 via-violet-600 to-cyan-500 px-8 py-2.5 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+>
+  Predict Colleges
+</button>
         </div>
       </Card>
     </motion.div>

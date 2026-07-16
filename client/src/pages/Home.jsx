@@ -4,6 +4,7 @@ import { Target, ClipboardList, ArrowRight } from "lucide-react";
 import Card from "../components/ui/Card";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
 import { useAuth } from "../context/AuthContext";
+import MagneticButton from "../components/effects/MagneticButton";
 
 const cards = [
   {
@@ -357,9 +358,9 @@ export default function Home() {
               <Card
                 className="relative flex h-full flex-col p-8 rounded-[32px] bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_20px_60px_rgba(37,99,235,0.12)] transition-shadow duration-300 hover:shadow-[0_28px_80px_rgba(37,99,235,0.2)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-indigo-500 text-white shadow-lg">
-                  <Icon size={22} />
-                </div>
+               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] text-white shadow-lg">
+  <Icon size={22} />
+</div>
                 <h2 className="mt-5 text-xl font-semibold tracking-tight text-slate-900">
                   {card.title}
                 </h2>
@@ -374,13 +375,12 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <button
-                  onClick={() => handleCardClick(card.path)}
-                  className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-indigo-500 px-5 py-3 text-sm font-medium text-white shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  {card.cta}
-                  <ArrowRight size={16} />
-                </button>
+                <MagneticButton
+  onClick={() => handleCardClick(card.path)}
+className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] px-5 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:from-[#2563EB] hover:via-[#4338CA] hover:to-[#6D28D9] hover:scale-[1.02] active:scale-[0.98]">
+  {card.cta}
+  <ArrowRight size={16} />
+</MagneticButton>
               </Card>
             </motion.div>
           );

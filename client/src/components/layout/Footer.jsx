@@ -1,5 +1,6 @@
-import { GraduationCap, X } from "lucide-react";
+import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import Logo from "./Logo";
 
 export const ABOUT_TEXT =
   "TG ICET Counselling gives TG ICET candidates two tools in one place. The College Predictor estimates which colleges you're likely eligible for, based on official previous-year cutoff ranks — enter your rank, category, gender, and course to instantly see matching colleges, categorized by admission chance. The Mock Counselling Simulator lets you practice the real counselling process end-to-end, including web options entry and simulated seat allotment, so you're prepared before the actual counselling begins.";
@@ -13,13 +14,17 @@ export default function Footer({ openPanel, setOpenPanel }) {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-center md:flex-row">
 
         <div className="flex items-center gap-3">
-          <div className="rounded-xl bg-blue-600 p-2 text-white">
-            <GraduationCap size={20} />
-          </div>
+          <Logo size={34} />
 
           <div>
-            <h3 className="font-semibold text-slate-900">
-              TG ICET Predictor
+            <h3
+              className="text-[17px] font-bold tracking-tight text-slate-900"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              <span className="bg-gradient-to-r from-[#312e81] via-[#7c3aed] to-[#0e7490] bg-clip-text text-transparent">
+                TG
+              </span>{" "}
+              Counselling
             </h3>
 
             <p className="text-sm text-slate-500">

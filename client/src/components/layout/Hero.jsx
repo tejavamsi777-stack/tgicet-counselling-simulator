@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import Button from "../ui/Button";
+import MagneticButton from "../effects/MagneticButton";
 
 export default function Hero({ onGetStarted }) {
   const ref = useRef(null);
@@ -45,10 +46,13 @@ export default function Hero({ onGetStarted }) {
         className="flex w-full items-start justify-center overflow-hidden"
       >
         <div className="pt-4">
-          <Button size="lg" onClick={onGetStarted}>
-            Predict My College
-            <ArrowDown size={16} />
-          </Button>
+          <MagneticButton
+  onClick={onGetStarted}
+  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 h-13 px-7 text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all duration-300 ease-out hover:from-blue-700 hover:via-indigo-700 hover:to-cyan-600 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-0.5 active:scale-95"
+>
+  Predict My College
+  <ArrowDown size={16} />
+</MagneticButton>
         </div>
       </motion.div>
     </section>
