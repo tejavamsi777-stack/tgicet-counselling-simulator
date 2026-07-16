@@ -12,9 +12,11 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminApp from "./admin/AdminApp";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 function App() {
   const [openPanel, setOpenPanel] = useState(null);
+  useSmoothScroll();
 
   return (
     <BrowserRouter>
