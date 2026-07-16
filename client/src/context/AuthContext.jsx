@@ -32,8 +32,19 @@ export function AuthProvider({ children }) {
       try {
         const data = await api.get("/auth/me");
         if (!cancelled) setUser(data.authenticated ? data.user : null);
-      } catch {
-        setUserToken(null);
+      } catch (err) {
+        // Only clear the saved token when the server has explicitly said
+        // it's invalid/expired (401). Anything else — a timeout, Render's
+        // free-tier cold start, a dropped connection, a transient 500 —
+        // means we genuinely don't know the token's status, so we leave it
+        // in place and just treat this particular page load as logged-out.
+        // The next successful /auth/me call (on refresh, or when the
+        // backend wakes up) will pick the real session back up. Wiping the
+        // token here was causing people to get logged out just because the
+        // server was slow to respond, not because their session expired.
+        if (err.status === 401) {
+          setUserToken(null);
+        }
         if (!cancelled) setUser(null);
       } finally {
         if (!cancelled) setLoading(false);
