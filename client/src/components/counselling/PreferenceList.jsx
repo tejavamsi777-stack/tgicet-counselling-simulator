@@ -3,20 +3,25 @@ import collegeTypes from "../../data/collegeTypes.json";
 import { COLLEGE_TYPE_COLORS } from "../../utils/collegeTypeColors";
 import CollegeInfoModal from "./CollegeInfoModal";
 
-const COURSE_GROUPS = {
-  MBA: ["MBA", "MBT", "MTM"],
-  MBT: ["MBA", "MBT", "MTM"],
-  MTM: ["MBA", "MBT", "MTM"],
-  MCA: ["MCA"],
-};
+const ALL_COURSES = ["MBA", "MCA", "MBT", "MTM"];
 
 function getCollegeType(code) {
   return collegeTypes[code]?.type ?? "unknown";
 }
 
-export default function PreferenceList({ colleges, course, preferences, setPreferences }) {
-  const columns = COURSE_GROUPS[course] ?? [course];
+export default function PreferenceList({ colleges, preferences, setPreferences }) {
   const [selectedCollege, setSelectedCollege] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const filteredColleges = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    if (!term) return colleges;
+    return colleges.filter(
+      (c) =>
+        c.name.toLowerCase().startsWith(term) ||
+        c.code.toLowerCase().startsWith(term)
+    );
+  }, [colleges, search]);
 
   const usedCounts = useMemo(() => {
     const counts = {};
@@ -30,17 +35,17 @@ export default function PreferenceList({ colleges, course, preferences, setPrefe
 
   const duplicateNumbers = Object.keys(usedCounts).filter((k) => usedCounts[k] > 1);
 
-  function handlePreferenceChange(code, value) {
+  function handlePreferenceChange(key, value) {
     setPreferences((prev) => ({
       ...prev,
-      [code]: value === "" ? "" : Number(value),
+      [key]: value === "" ? "" : Number(value),
     }));
   }
 
   if (colleges.length === 0) {
     return (
       <div className="rounded-md border border-slate-300 bg-white p-8 text-center text-slate-500">
-        No colleges found for this course in the selected district(s). Try a different district or course.
+        No colleges found in the selected district(s). Try a different district.
       </div>
     );
   }
@@ -62,12 +67,20 @@ export default function PreferenceList({ colleges, course, preferences, setPrefe
               </span>
             ))}
         </div>
-        <div className="mt-1 text-base font-bold text-blue-800">{course} Courses</div>
+        <div className="mt-2 max-w-xs">
+          <input
+            type="text"
+            placeholder="Search college name or code..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand-500"
+          />
+        </div>
       </div>
 
       {duplicateNumbers.length > 0 && (
         <div className="border-b border-red-300 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700">
-          Duplicate preference number{duplicateNumbers.length > 1 ? "s" : ""}: {duplicateNumbers.join(", ")}. Each college must have a unique number.
+          Duplicate preference number{duplicateNumbers.length > 1 ? "s" : ""}: {duplicateNumbers.join(", ")}. Each option must have a unique number.
         </div>
       )}
 
@@ -78,7 +91,7 @@ export default function PreferenceList({ colleges, course, preferences, setPrefe
               <th className="border border-slate-500/40 px-4 py-3 text-base font-bold">#</th>
               <th className="border border-slate-500/40 px-4 py-3 text-base font-bold">College</th>
               <th className="border border-slate-500/40 px-4 py-3 text-base font-bold">District</th>
-              {columns.map((col) => (
+              {ALL_COURSES.map((col) => (
                 <th key={col} className="border border-slate-500/40 px-4 py-3 text-base font-bold">
                   {col}
                 </th>
@@ -86,42 +99,44 @@ export default function PreferenceList({ colleges, course, preferences, setPrefe
             </tr>
           </thead>
           <tbody>
-            {colleges.map((college, i) => {
+            {filteredColleges.map((college, i) => {
               const typeKey = getCollegeType(college.code);
               const { bg } = COLLEGE_TYPE_COLORS[typeKey];
+              const offered = college.courses || [];
               return (
                 <tr key={college.code} style={{ backgroundColor: bg }}>
-  <td className="border border-slate-400/40 px-4 py-1.5 text-base font-bold text-slate-900">
-    {i + 1}
-  </td>
-                  <td
-  className="cursor-pointer border border-slate-400/40 px-3 py-1.5 hover:bg-black/5"
-  onClick={() => setSelectedCollege(college)}
->
-  <span className="inline-flex items-center gap-2">
-    <span className="rounded border border-slate-500 bg-white px-2 py-0.5 text-sm font-bold text-black">
-      {college.code}
-    </span>
-    <span className="text-sm font-semibold text-slate-800">({college.name})</span>
-  </span>
-</td>
                   <td className="border border-slate-400/40 px-4 py-1.5 text-base font-bold text-slate-900">
-  {college.district}
-</td>
-                  {columns.map((col) => {
-                    if (col !== course) {
-  return <td key={col} className="border border-slate-400/40 px-2 py-1.5" />;
-}
-                    const value = preferences[college.code] ?? "";
+                    {i + 1}
+                  </td>
+                  <td
+                    className="cursor-pointer border border-slate-400/40 px-3 py-1.5 hover:bg-black/5"
+                    onClick={() => setSelectedCollege(college)}
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <span className="rounded border border-slate-500 bg-white px-2 py-0.5 text-sm font-bold text-black">
+                        {college.code}
+                      </span>
+                      <span className="text-sm font-semibold text-slate-800">({college.name})</span>
+                    </span>
+                  </td>
+                  <td className="border border-slate-400/40 px-4 py-1.5 text-base font-bold text-slate-900">
+                    {college.district}
+                  </td>
+                  {ALL_COURSES.map((col) => {
+                    if (!offered.includes(col)) {
+                      return <td key={col} className="border border-slate-400/40 px-2 py-1.5" />;
+                    }
+                    const key = `${college.code}_${col}`;
+                    const value = preferences[key] ?? "";
                     const isDuplicate = value !== "" && usedCounts[value] > 1;
                     return (
                       <td key={col} className="border border-slate-400/40 px-2 py-1.5">
-  <input
-    type="number"
-    min="1"
-    value={value}
-    onChange={(e) => handlePreferenceChange(college.code, e.target.value)}
-    className={`w-16 rounded border px-2 py-1 text-center text-base outline-none focus:border-brand-500 ${
+                        <input
+                          type="number"
+                          min="1"
+                          value={value}
+                          onChange={(e) => handlePreferenceChange(key, e.target.value)}
+                          className={`w-16 rounded border px-2 py-1 text-center text-base outline-none focus:border-brand-500 ${
                             isDuplicate
                               ? "border-2 border-red-500 bg-red-50"
                               : "border-slate-400 bg-white"

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { api } from "../lib/api";
 import { getFinalOptionList } from "../utils/sortByPreference";
@@ -11,7 +11,6 @@ import { useAuth } from "../context/AuthContext";
 import LoginModal from "../components/shared/LoginModal";
 
 import CandidateDetailsForm from "../components/counselling/CandidateDetailsForm";
-import PreferenceForm from "../components/counselling/PreferenceForm";
 import DistrictSelector from "../components/counselling/DistrictSelector";
 import PreferenceList from "../components/counselling/PreferenceList";
 import EmberField from "../components/effects/EmberField";
@@ -34,16 +33,16 @@ export default function MockCounsellingPage() {
   const [gender, setGender] = useState("");
   const [candidateError, setCandidateError] = useState("");
 
-  const [course, setCourse] = useState("MBA");
   const [districtError, setDistrictError] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState("info"); // "info" | "success" | "error"
 
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [step, setStep] = useState("candidate"); // "candidate" | "details" | "list"
   const [submitted, setSubmitted] = useState(null);
   const [preferences, setPreferences] = useState({});
 
- const [showInsertPanel, setShowInsertPanel] = useState(false);
+  const [showInsertPanel, setShowInsertPanel] = useState(false);
   const [insertCollege, setInsertCollege] = useState("");
   const [insertPosition, setInsertPosition] = useState("");
 
@@ -62,7 +61,7 @@ export default function MockCounsellingPage() {
     });
   }
 
-  const [courseColleges, setCourseColleges] = useState([]);
+  const [allColleges, setAllColleges] = useState([]);
   const [collegesLoading, setCollegesLoading] = useState(false);
   const [collegesError, setCollegesError] = useState("");
 
@@ -73,18 +72,18 @@ export default function MockCounsellingPage() {
       setCollegesLoading(true);
       setCollegesError("");
       try {
-        const colleges = await api.get(`/colleges?course=${encodeURIComponent(course)}`);
+        const colleges = await api.get("/colleges");
         if (!cancelled) {
           const mapped = colleges.map((c) => ({
             ...c,
             district: c.district_code,
           }));
-          setCourseColleges(mapped);
+          setAllColleges(mapped);
         }
       } catch (err) {
         if (!cancelled) {
-          setCollegesError(err.message || "Failed to load colleges for this course.");
-          setCourseColleges([]);
+          setCollegesError(err.message || "Failed to load colleges.");
+          setAllColleges([]);
         }
       } finally {
         if (!cancelled) setCollegesLoading(false);
@@ -95,11 +94,11 @@ export default function MockCounsellingPage() {
     return () => {
       cancelled = true;
     };
-  }, [course]);
+  }, []);
 
   const availableDistricts = useMemo(() => {
-    return [...new Set(courseColleges.map((c) => c.district))].sort();
-  }, [courseColleges]);
+    return [...new Set(allColleges.map((c) => c.district))].sort();
+  }, [allColleges]);
 
   useEffect(() => {
     setSelectedDistricts((prev) => prev.filter((d) => availableDistricts.includes(d)));
@@ -138,7 +137,7 @@ export default function MockCounsellingPage() {
       return;
     }
     setDistrictError("");
-    setSubmitted({ course, selectedDistricts, rank, category, gender });
+    setSubmitted({ selectedDistricts, rank, category, gender });
     setPreferences({});
     setStatusMessage("");
     setStep("list");
@@ -146,21 +145,20 @@ export default function MockCounsellingPage() {
 
   const availableColleges = useMemo(() => {
     if (!submitted) return [];
-    return courseColleges
+    return allColleges
       .filter((c) => submitted.selectedDistricts.includes(c.district))
       .sort((a, b) => a.code.localeCompare(b.code));
-  }, [submitted, courseColleges]);
+  }, [submitted, allColleges]);
 
   function handleSaveOptions() {
     if (!submitted) return;
     const dupes = getDuplicatePreferenceNumbers(preferences);
     if (dupes.length > 0) {
       setStatusMessage(`Fix duplicate preference number(s) before saving: ${dupes.join(", ")}`);
-      shake(saveShake);
-      return;
-    }
-    saveOptions(submitted, preferences);
+      setStatusType("error");
+      saveOptions(submitted, preferences);
     setStatusMessage("Options saved to this browser.");
+    setStatusType("success"); }
   }
 
   function handleLoadLastSaved() {
@@ -174,14 +172,12 @@ export default function MockCounsellingPage() {
       rank: saved.criteria.rank ?? "",
       category: saved.criteria.category ?? "OC",
       gender: saved.criteria.gender ?? "Male",
-      course: saved.criteria.course,
       selectedDistricts: saved.criteria.selectedDistricts ?? [],
     };
 
     setRank(normalizedCriteria.rank);
     setCategory(normalizedCriteria.category);
     setGender(normalizedCriteria.gender);
-    setCourse(normalizedCriteria.course);
     setSelectedDistricts(normalizedCriteria.selectedDistricts);
     setSubmitted(normalizedCriteria);
     setPreferences(saved.preferences);
@@ -193,15 +189,19 @@ export default function MockCounsellingPage() {
     const dupes = getDuplicatePreferenceNumbers(preferences);
     if (dupes.length > 0) {
       setStatusMessage(`Fix duplicate preference number(s) before printing: ${dupes.join(", ")}`);
+      setStatusType("error");
       shake(printShake);
       return;
     }
     const finalList = getFinalOptionList(availableColleges, preferences);
     if (finalList.length === 0) {
       setStatusMessage("Assign at least one preference number before printing.");
+      setStatusType("error");
       return;
     }
     exportPreferencesToPDF(finalList, submitted);
+    setStatusMessage("PDF downloaded successfully.");
+    setStatusType("success");
   }
 
   function handleViewAndPrint() {
@@ -269,7 +269,7 @@ export default function MockCounsellingPage() {
         <div className="text-center">
           <MagneticButton
             onClick={handleCandidateSubmit}
-           className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] px-8 py-3 text-sm font-semibold text-white shadow-md hover:from-[#2563EB] hover:via-[#4338CA] hover:to-[#6D28D9]"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#3B82F6] via-[#4F46E5] to-[#7C3AED] px-8 py-3 text-sm font-semibold text-white shadow-md hover:from-[#2563EB] hover:via-[#4338CA] hover:to-[#6D28D9]"
           >
             Continue
           </MagneticButton>
@@ -279,12 +279,9 @@ export default function MockCounsellingPage() {
   } else if (step === "details") {
     stepContent = (
       <div className="space-y-6">
-        <div className="rounded-[32px] border border-white/50 bg-white/70 p-8 shadow-[0_20px_60px_rgba(37,99,235,0.12)] backdrop-blur-2xl">
-          <PreferenceForm course={course} setCourse={setCourse} />
-        </div>
         {collegesLoading ? (
           <div className="rounded-[32px] border border-white/50 bg-white/70 p-8 text-center text-slate-500 backdrop-blur-2xl">
-            Loading districts for this course...
+            Loading districts...
           </div>
         ) : (
           <div className="rounded-[32px] border border-white/50 bg-white/70 p-8 shadow-[0_20px_60px_rgba(37,99,235,0.12)] backdrop-blur-2xl">
@@ -350,7 +347,21 @@ export default function MockCounsellingPage() {
           >
             View &amp; Print
           </motion.button>
-          {statusMessage && <span className="text-sm text-slate-600">{statusMessage}</span>}
+          {statusMessage && (
+            <span
+              className={`inline-flex items-center gap-1.5 text-sm font-medium ${
+                statusType === "error"
+                  ? "text-red-600"
+                  : statusType === "success"
+                  ? "text-green-600"
+                  : "text-slate-600"
+              }`}
+            >
+             {statusType === "success" && <ThumbsUp size={14} />}
+              {statusType === "error" && <ThumbsDown size={14} />}
+              {statusMessage}
+            </span>
+          )}
         </div>
 
         {showInsertPanel && (
@@ -362,11 +373,13 @@ export default function MockCounsellingPage() {
               className="rounded border border-slate-400 px-3 py-1.5 text-sm"
             >
               <option value="">Select college</option>
-              {availableColleges.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {c.code} — {c.name}
-                </option>
-              ))}
+              {availableColleges.flatMap((c) =>
+                (c.courses || []).map((course) => (
+                  <option key={`${c.code}_${course}`} value={`${c.code}_${course}`}>
+                    {c.code} ({course}) — {c.name}
+                  </option>
+                ))
+              )}
             </select>
             <label className="text-sm font-medium text-slate-700">at position</label>
             <input
@@ -396,15 +409,11 @@ export default function MockCounsellingPage() {
             <span>
               <span className="font-semibold text-slate-700">Gender:</span> {submitted.gender}
             </span>
-            <span>
-              <span className="font-semibold text-slate-700">Course:</span> {submitted.course}
-            </span>
           </div>
         )}
 
         <PreferenceList
           colleges={availableColleges}
-          course={submitted?.course}
           preferences={preferences}
           setPreferences={setPreferences}
         />
@@ -427,10 +436,8 @@ export default function MockCounsellingPage() {
         onMouseMove={handleHeroMouseMove}
         className="relative overflow-hidden rounded-[40px] py-16 text-center"
       >
-        {/* Rising ember particle field */}
         <EmberField density={60} />
 
-        {/* Mouse-reactive spotlight glow */}
         <div
           className="pointer-events-none absolute inset-0 transition-[background] duration-150"
           style={{
@@ -438,7 +445,6 @@ export default function MockCounsellingPage() {
           }}
         />
 
-        {/* Base ambient gradient wash so the hero isn't pure white behind the embers */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-violet-50 via-white to-cyan-50/40" />
 
         <div className="relative z-10">

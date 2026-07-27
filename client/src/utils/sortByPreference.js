@@ -13,8 +13,19 @@ export function sortByPreference(colleges, preferences) {
   });
 }
 
+// Preferences are now keyed by `${collegeCode}_${course}`, since a college
+// can have a separate preference number per course it offers. This walks
+// each college's offered courses and emits one entry per filled-in number.
 export function getFinalOptionList(colleges, preferences) {
-  return colleges
-    .filter((c) => preferences[c.code] !== undefined && preferences[c.code] !== "")
-    .sort((a, b) => preferences[a.code] - preferences[b.code]);
+  const entries = [];
+  colleges.forEach((college) => {
+    (college.courses || []).forEach((course) => {
+      const key = `${college.code}_${course}`;
+      const value = preferences[key];
+      if (value !== undefined && value !== "") {
+        entries.push({ ...college, course, preference: value });
+      }
+    });
+  });
+  return entries.sort((a, b) => a.preference - b.preference);
 }

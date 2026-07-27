@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-export function exportPreferencesToPDF(orderedColleges, criteria) {
+export function exportPreferencesToPDF(orderedEntries, criteria) {
   const doc = new jsPDF();
 
   doc.setFontSize(14);
@@ -9,21 +9,21 @@ export function exportPreferencesToPDF(orderedColleges, criteria) {
 
   doc.setFontSize(10);
   doc.text(
-    `Rank: ${criteria.rank}   Category: ${criteria.category}   Gender: ${criteria.gender}   Course: ${criteria.course}`,
+    `Rank: ${criteria.rank}   Category: ${criteria.category}   Gender: ${criteria.gender}`,
     14,
     22
   );
 
   autoTable(doc, {
     startY: 28,
-    head: [["#", "Code", "College", "Place", "District", "Cutoff"]],
-    body: orderedColleges.map((c, i) => [
+    head: [["#", "Code", "College", "Course", "Place", "District"]],
+    body: orderedEntries.map((c, i) => [
       i + 1,
       c.code,
       c.name,
+      c.course,
       c.place,
       c.district,
-      c.cutoff,
     ]),
     styles: { fontSize: 8 },
     headStyles: { fillColor: [37, 99, 235] },
