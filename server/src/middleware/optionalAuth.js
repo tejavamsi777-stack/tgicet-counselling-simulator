@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import { userRepository } from "../repositories/userRepository.js";
 
-export function optionalAuth(req, res, next) {
+export async function optionalAuth(req, res, next) {
   const header = req.headers.authorization;
   if (!header || !header.startsWith("Bearer ")) {
     req.user = null;
@@ -9,7 +10,18 @@ export function optionalAuth(req, res, next) {
   const token = header.slice(7);
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: payload.sub, email: payload.email };
+    const user = await userRepository.findById(payload.sub);
+    if (!user || user.is_suspended) {
+      req.user = null;
+      return next();
+    }
+    req.user = {
+      id: user.id,
+      email: user.email,
+      name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+      firstName: user.first_name,
+      lastName: user.last_name,
+    };
   } catch {
     req.user = null; // invalid/expired token — treat as anonymous, don't block
   }
