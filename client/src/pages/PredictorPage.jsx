@@ -99,6 +99,12 @@ const year = 2024; // locked to current year only — no year selector for stude
     }
     setError("");
     const criteria = { rank, category, gender, course, year };
+
+     api.post("/log-activity", {
+      action: "rank_entry",
+      details: { rank, category, gender, course, year },
+    }).catch((err) => console.error("Activity log failed:", err));
+
     await runPrediction(criteria, { showLoader: true, scrollAfter: true });
   }
 

@@ -13,6 +13,7 @@ import { createLookupController } from "../controllers/lookupController.js";
 import { adminImportController } from "../controllers/adminImportController.js";
 import { upload } from "../middleware/upload.js";
 import { adminDashboardController } from "../controllers/adminDashboardController.js";
+import { activityController } from "../controllers/activityController.js";
 
 export const router = Router();
 
@@ -23,6 +24,7 @@ router.get("/categories", referenceController.categories);
 router.get("/years", referenceController.years);
 router.get("/colleges", collegeController.list);
 router.post("/predict", predictionController.predict);
+router.post("/log-activity", activityController.log);
 
 // ---------- Student auth (optional) ----------
 router.post("/auth/register", authController.register);
