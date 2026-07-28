@@ -24,7 +24,7 @@ router.get("/categories", referenceController.categories);
 router.get("/years", referenceController.years);
 router.get("/colleges", collegeController.list);
 router.post("/predict", predictionController.predict);
-router.post("/log-activity", activityController.log);
+router.post("/log-activity", optionalAuth, activityController.log);
 
 // ---------- Student auth (optional) ----------
 router.post("/auth/register", authController.register);

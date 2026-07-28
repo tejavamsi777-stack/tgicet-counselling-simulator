@@ -7,9 +7,10 @@ export const activityController = {
       if (!action) {
         return res.status(400).json({ errors: ["action is required"] });
       }
+      const userId = req.user?.id ?? null;
       await pool.query(
-        `insert into audit_logs (action, details) values ($1, $2)`,
-        [action, details]
+        `insert into audit_logs (user_id, action, details) values ($1, $2, $3)`,
+        [userId, action, details]
       );
       res.status(200).json({ success: true });
     } catch (err) {
