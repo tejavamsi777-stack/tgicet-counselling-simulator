@@ -249,7 +249,13 @@ export default function LoginPage() {
       if (mode === "login") {
         await login(email, password);
       } else {
-        await register(email, password, name);
+        const [firstName, ...rest] = name.trim().split(" ");
+        await register({
+          firstName: firstName || "",
+          lastName: rest.join(" "),
+          email,
+          password,
+        });
       }
       setSuccess(true);
       setTimeout(() => {

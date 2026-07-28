@@ -77,11 +77,6 @@ export function AuthProvider({ children }) {
 
   const loginWithGoogle = useCallback(async (idToken) => {
     const data = await api.post("/auth/google", { idToken });
-
-    if (data.needsRegistration) {
-      return data;
-    }
-
     setUserToken(data.token);
     setUser(data.user);
     return data.user;

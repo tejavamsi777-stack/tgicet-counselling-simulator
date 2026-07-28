@@ -12,6 +12,16 @@ function signUserToken(user) {
   );
 }
 
+function toPublicUser(user) {
+  return {
+    id: user.id,
+    email: user.email,
+    name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+    firstName: user.first_name,
+    lastName: user.last_name,
+  };
+}
+
 export const googleAuthService = {
   async loginWithGoogle(idToken) {
     let payload;
@@ -40,16 +50,22 @@ export const googleAuthService = {
       }
     }
 
-    // 3. Brand new user
-    // 3. Brand new user - ask frontend to complete registration
-if (!user) {
-  return {
-    needsRegistration: true,
-    email,
-    name,
-    googleId,
-  };
-}
+    // 3. Brand new user — create the account immediately using their
+    // verified Google profile. No password is set (password_hash stays
+    // null), matching how authService.login treats Google-only accounts.
+    if (!user) {
+      const [firstName, ...rest] = (name || "").trim().split(" ");
+      const lastName = rest.join(" ");
+
+      user = await userRepository.create({
+        firstName: firstName || "",
+        lastName: lastName || "",
+        email,
+        passwordHash: null,
+        googleId,
+      });
+    }
+
     if (user.is_suspended) {
       const err = new Error("This account has been suspended");
       err.status = 403;
@@ -57,6 +73,6 @@ if (!user) {
     }
 
     const token = signUserToken(user);
-    return { token, user: { id: user.id, email: user.email, name: user.name } };
+    return { token, user: toPublicUser(user) };
   },
 };
