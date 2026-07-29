@@ -4,8 +4,8 @@ import { Building2, FileText, Zap, Target } from "lucide-react";
 const stats = [
   {
     icon: Building2,
-    value: "450+",
-    label: "Colleges",
+    value: "Real-Time Data",
+    label: "Latest Cutoff's",
   },
   {
     icon: FileText,
@@ -19,8 +19,8 @@ const stats = [
   },
   {
     icon: Target,
-    value: "2023-2025",
-    label: "Official Data",
+    value: "450+",
+    label: "Colleges",
   },
 ];
 
