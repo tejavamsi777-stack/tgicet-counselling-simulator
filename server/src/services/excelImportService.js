@@ -30,7 +30,7 @@ function validateRows(rows) {
   }
 
   rows.forEach((row, idx) => {
-    const rowNum = idx + 2; // +2 accounts for header row + 1-indexing
+    const rowNum = idx + 2;
     REQUIRED_COLUMNS.forEach((col) => {
       if (row[col] === "" || row[col] === undefined || row[col] === null) {
         errors.push({ row: rowNum, message: `Missing value for '${col}'` });
@@ -53,6 +53,36 @@ function validateRows(rows) {
   return { errors, duplicates };
 }
 
+// Builds "($1,$2),($3,$4),..." plus the flat params array, for a bulk INSERT.
+function buildValuesClause(tuples) {
+  const params = [];
+  const clauses = tuples.map((tuple) => {
+    const placeholders = tuple.map((val) => {
+      params.push(val);
+      return `$${params.length}`;
+    });
+    return `(${placeholders.join(",")})`;
+  });
+  return { clause: clauses.join(","), params };
+}
+
+function chunkArray(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+async function idMapByCode(client, table, codes) {
+  if (codes.length === 0) return new Map();
+  const { rows } = await client.query(
+    `SELECT id, code FROM ${table} WHERE code = ANY($1)`,
+    [codes]
+  );
+  const map = new Map();
+  rows.forEach((r) => map.set(r.code, r.id));
+  return map;
+}
+
 export const excelImportService = {
   parseAndValidate(buffer) {
     const rows = parseWorkbook(buffer);
@@ -60,9 +90,9 @@ export const excelImportService = {
     return {
       totalRows: rows.length,
       isValid: errors.length === 0,
-      errors: errors.slice(0, 50), // cap so a bad file doesn't return thousands of error lines
+      errors: errors.slice(0, 50),
       duplicates: duplicates.slice(0, 50),
-      preview: rows.slice(0, 10), // first 10 rows only, for the admin to eyeball
+      preview: rows.slice(0, 10),
     };
   },
 
@@ -80,81 +110,112 @@ export const excelImportService = {
     try {
       await client.query("BEGIN");
 
-      // Ensure the year exists
+      // ---------- Year ----------
       await client.query(
         "INSERT INTO years (year) VALUES ($1) ON CONFLICT (year) DO NOTHING",
         [year]
       );
-      const yearResult = await client.query("SELECT id FROM years WHERE year = $1", [year]);
-      const yearId = yearResult.rows[0].id;
+      const yearId = (await client.query("SELECT id FROM years WHERE year = $1", [year])).rows[0].id;
 
-      let insertedCount = 0;
-
-      for (const row of rows) {
-        // Ensure district exists
+      // ---------- Districts (bulk) ----------
+      const districtCodes = [...new Set(rows.map((r) => r.district))];
+      {
+        const { clause, params } = buildValuesClause(districtCodes.map((c) => [c]));
         await client.query(
-          "INSERT INTO districts (code) VALUES ($1) ON CONFLICT (code) DO NOTHING",
-          [row.district]
+          `INSERT INTO districts (code) VALUES ${clause} ON CONFLICT (code) DO NOTHING`,
+          params
         );
-        const districtRes = await client.query("SELECT id FROM districts WHERE code = $1", [row.district]);
-        const districtId = districtRes.rows[0].id;
+      }
+      const districtMap = await idMapByCode(client, "districts", districtCodes);
 
-        // Ensure course exists
+      // ---------- Courses (bulk) — last occurrence per code wins, same as before ----------
+      const courseNameByCode = new Map();
+      rows.forEach((r) => courseNameByCode.set(r.course, r.courseName));
+      {
+        const tuples = [...courseNameByCode.entries()].map(([code, name]) => [code, name]);
+        const { clause, params } = buildValuesClause(tuples);
         await client.query(
-          "INSERT INTO courses (code, name) VALUES ($1, $2) ON CONFLICT (code) DO NOTHING",
-          [row.course, row.courseName]
+          `INSERT INTO courses (code, name) VALUES ${clause}
+           ON CONFLICT (code) DO UPDATE SET name = EXCLUDED.name`,
+          params
         );
-        const courseRes = await client.query("SELECT id FROM courses WHERE code = $1", [row.course]);
-        const courseId = courseRes.rows[0].id;
+      }
+      const courseMap = await idMapByCode(client, "courses", [...courseNameByCode.keys()]);
 
-        // Ensure category exists
+      // ---------- Categories (bulk) ----------
+      const categoryCodes = [...new Set(rows.map((r) => r.category))];
+      {
+        const { clause, params } = buildValuesClause(categoryCodes.map((c) => [c, c]));
         await client.query(
-          "INSERT INTO categories (code, name) VALUES ($1, $2) ON CONFLICT (code) DO NOTHING",
-          [row.category, row.category]
+          `INSERT INTO categories (code, name) VALUES ${clause} ON CONFLICT (code) DO NOTHING`,
+          params
         );
-        const categoryRes = await client.query("SELECT id FROM categories WHERE code = $1", [row.category]);
-        const categoryId = categoryRes.rows[0].id;
+      }
+      const categoryMap = await idMapByCode(client, "categories", categoryCodes);
 
-        // Upsert college
+      // ---------- Colleges (bulk) — last occurrence per code wins ----------
+      const collegeByCode = new Map();
+      rows.forEach((r) => {
+        collegeByCode.set(r.code, {
+          name: r.name,
+          districtId: districtMap.get(r.district),
+          place: r.place ?? null,
+          university: r.university ?? null,
+        });
+      });
+      for (const batch of chunkArray([...collegeByCode.entries()], 500)) {
+        const tuples = batch.map(([code, c]) => [code, c.name, c.districtId, c.place, c.university]);
+        const { clause, params } = buildValuesClause(tuples);
         await client.query(
-          `
-          INSERT INTO colleges (code, name, district_id, place, university)
-          VALUES ($1, $2, $3, $4, $5)
-          ON CONFLICT (code) DO UPDATE SET
-            name = EXCLUDED.name, district_id = EXCLUDED.district_id,
-            place = EXCLUDED.place, university = EXCLUDED.university, updated_at = NOW()
-          `,
-          [row.code, row.name, districtId, row.place ?? null, row.university ?? null]
+          `INSERT INTO colleges (code, name, district_id, place, university)
+           VALUES ${clause}
+           ON CONFLICT (code) DO UPDATE SET
+             name = EXCLUDED.name, district_id = EXCLUDED.district_id,
+             place = EXCLUDED.place, university = EXCLUDED.university, updated_at = NOW()`,
+          params
         );
-        const collegeRes = await client.query("SELECT id FROM colleges WHERE code = $1", [row.code]);
-        const collegeId = collegeRes.rows[0].id;
+      }
+      const collegeMap = await idMapByCode(client, "colleges", [...collegeByCode.keys()]);
 
-        // Upsert college_courses (fee)
+      // ---------- college_courses (bulk, fee) ----------
+      const collegeCourseFee = new Map(); // "code::course" -> fee
+      rows.forEach((r) => collegeCourseFee.set(`${r.code}::${r.course}`, r.fee ?? null));
+      for (const batch of chunkArray([...collegeCourseFee.entries()], 500)) {
+        const tuples = batch.map(([key, fee]) => {
+          const [code, course] = key.split("::");
+          return [collegeMap.get(code), courseMap.get(course), fee];
+        });
+        const { clause, params } = buildValuesClause(tuples);
         await client.query(
-          `
-          INSERT INTO college_courses (college_id, course_id, fee)
-          VALUES ($1, $2, $3)
-          ON CONFLICT (college_id, course_id) DO UPDATE SET fee = EXCLUDED.fee
-          `,
-          [collegeId, courseId, row.fee ?? null]
+          `INSERT INTO college_courses (college_id, course_id, fee)
+           VALUES ${clause}
+           ON CONFLICT (college_id, course_id) DO UPDATE SET fee = EXCLUDED.fee`,
+          params
         );
+      }
 
-        // Upsert cutoff
+      // ---------- Cutoffs (bulk, the big one) ----------
+      for (const batch of chunkArray(rows, 800)) {
+        const tuples = batch.map((r) => [
+          yearId,
+          collegeMap.get(r.code),
+          courseMap.get(r.course),
+          categoryMap.get(r.category),
+          r.gender,
+          Number(r.cutoff),
+        ]);
+        const { clause, params } = buildValuesClause(tuples);
         await client.query(
-          `
-          INSERT INTO cutoffs (year_id, college_id, course_id, category_id, gender, cutoff_rank)
-          VALUES ($1, $2, $3, $4, $5, $6)
-          ON CONFLICT (year_id, college_id, course_id, category_id, gender)
-          DO UPDATE SET cutoff_rank = EXCLUDED.cutoff_rank
-          `,
-          [yearId, collegeId, courseId, categoryId, row.gender, Number(row.cutoff)]
+          `INSERT INTO cutoffs (year_id, college_id, course_id, category_id, gender, cutoff_rank)
+           VALUES ${clause}
+           ON CONFLICT (year_id, college_id, course_id, category_id, gender)
+           DO UPDATE SET cutoff_rank = EXCLUDED.cutoff_rank`,
+          params
         );
-
-        insertedCount++;
       }
 
       await client.query("COMMIT");
-      return { success: true, rowsProcessed: insertedCount };
+      return { success: true, rowsProcessed: rows.length };
     } catch (err) {
       await client.query("ROLLBACK");
       throw err;
