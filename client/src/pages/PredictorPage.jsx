@@ -109,21 +109,20 @@ export default function PredictorPage() {
     }
   }
 
-  async function predictCollege() {
+ async function predictCollege() {
     if (rank.trim() === "") {
       setError("Please enter your TG ICET Rank");
       return;
     }
     setError("");
-    useEffect(() => {
-    if (!lastCriteria) return; // no prediction made yet, nothing to refetch
-    if (lastCriteria.year === year) return; // avoid refetching on the initial set
-    const updatedCriteria = { ...lastCriteria, year };
-    runPrediction(updatedCriteria, { showLoader: false, scrollAfter: false });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year]);
+    const criteria = { rank, category, gender, course, year };
 
-     api.post("/log-activity", {
+    // Instrumentation: log the click and criteria so dev console shows the
+    // outgoing prediction attempt. Remove this once debugging is complete.
+    // eslint-disable-next-line no-console
+    console.log("Predict clicked:", criteria);
+
+    api.post("/log-activity", {
       action: "rank_entry",
       details: { rank, category, gender, course, year },
     }).catch((err) => console.error("Activity log failed:", err));
