@@ -46,6 +46,7 @@ router.get("/admin/auth/me", requireAdminAuth, adminAuthController.me);
 router.patch("/admin/auth/password", requireAdminAuth, adminAuthController.changePassword);
 router.get("/admin/years", requireAdminAuth, adminYearController.list);
 router.patch("/admin/years/:id/active", requireAdminAuth, requireRole("super_admin", "admin"), adminYearController.setActive);
+router.get("/admin/dashboard/stats", requireAdminAuth, adminDashboardController.stats);
 
 // ---------- Admin: College CRUD ----------
 // Anyone with a valid admin token can view; only super_admin/admin/editor can write
