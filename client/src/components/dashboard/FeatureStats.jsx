@@ -9,8 +9,8 @@ const stats = [
   },
   {
     icon: FileText,
-    value: "40,000+",
-    label: "Official Cutoffs",
+    value: "Free Export",
+    label: "PDF & Excel",
   },
   {
     icon: Zap,
