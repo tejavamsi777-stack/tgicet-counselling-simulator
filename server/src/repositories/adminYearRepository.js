@@ -15,4 +15,14 @@ export const adminYearRepository = {
     );
     return rows[0] ?? null;
   },
+
+  async remove(id) {
+    // Delete dependent cutoff rows first — cutoffs reference years via year_id
+    await pool.query("DELETE FROM cutoffs WHERE year_id = $1", [id]);
+    const { rows } = await pool.query(
+      "DELETE FROM years WHERE id = $1 RETURNING id, year",
+      [id]
+    );
+    return rows[0] ?? null;
+  },
 };

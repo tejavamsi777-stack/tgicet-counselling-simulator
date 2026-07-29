@@ -46,6 +46,7 @@ router.get("/admin/auth/me", requireAdminAuth, adminAuthController.me);
 router.patch("/admin/auth/password", requireAdminAuth, adminAuthController.changePassword);
 router.get("/admin/years", requireAdminAuth, adminYearController.list);
 router.patch("/admin/years/:id/active", requireAdminAuth, requireRole("super_admin", "admin"), adminYearController.setActive);
+router.delete("/admin/years/:id", requireAdminAuth, requireRole("super_admin", "admin"), adminYearController.remove);
 router.get("/admin/dashboard/stats", requireAdminAuth, adminDashboardController.stats);
 
 // ---------- Admin: College CRUD ----------

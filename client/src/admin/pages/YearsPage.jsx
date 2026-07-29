@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Power } from "lucide-react";
+import { Power, Trash2 } from "lucide-react";
 import { adminApi } from "../../lib/adminApi";
 import { useToast } from "../components/ToastContext";
 import DataTable from "../components/DataTable";
@@ -11,7 +11,8 @@ export default function YearsPage() {
 
   const [years, setYears] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [confirmTarget, setConfirmTarget] = useState(null);
+  const [confirmTarget, setConfirmTarget] = useState(null); // toggle-active target
+  const [deleteTarget, setDeleteTarget] = useState(null);   // delete target
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -44,7 +45,17 @@ export default function YearsPage() {
     }
   }
 
-  const activeCount = years.filter((y) => y.is_active).length;
+  async function confirmDelete() {
+    const yearRow = deleteTarget;
+    setDeleteTarget(null);
+    try {
+      await adminApi.delete(`/admin/years/${yearRow.id}`);
+      setYears((ys) => ys.filter((y) => y.id !== yearRow.id));
+      addToast(`${yearRow.year} and all its cutoff data were deleted.`, "success");
+    } catch (err) {
+      addToast(err.message || "Failed to delete year.", "error");
+    }
+  }
 
   const columns = [
     { key: "year", header: "Year" },
@@ -79,14 +90,33 @@ export default function YearsPage() {
         loading={loading}
         emptyMessage="No years found. Import a spreadsheet to create one."
         renderActions={(row) => (
-          <button
-            onClick={() => setConfirmTarget(row)}
-            title={row.is_active ? "Hide from students" : "Show to students"}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
-          >
-            <Power size={15} />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setConfirmTarget(row)}
+              title={row.is_active ? "Hide from students" : "Show to students"}
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+            >
+              <Power size={15} />
+            </button>
+            <button
+              onClick={() => setDeleteTarget(row)}
+              title="Delete year and all its cutoff data"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40"
+            >
+              <Trash2 size={15} />
+            </button>
+          </div>
         )}
+      />
+
+      <ConfirmDialog
+        open={!!deleteTarget}
+        title="Delete this year permanently?"
+        message={`This will permanently delete ${deleteTarget?.year} and ALL its cutoff data. This cannot be undone.`}
+        confirmLabel="Delete permanently"
+        danger
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={confirmDelete}
       />
 
       <ConfirmDialog
