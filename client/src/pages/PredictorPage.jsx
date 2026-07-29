@@ -15,7 +15,7 @@ import PredictionLoader from "../components/dashboard/PredictionLoader";
 import ResultsTable from "../components/results/ResultsTable";
 import { AnimatePresence } from "framer-motion";
 
-function mapResults(results, gender) {
+function mapResults(results, gender, year) {
   return results.map((r) => ({
     code: r.code,
     name: r.name,
@@ -25,6 +25,7 @@ function mapResults(results, gender) {
     courseName: r.course_name,
     category: r.category_code,
     gender,
+    year,
     cutoff: r.cutoff_rank,
     fee: r.fee,
     university: r.university,
@@ -44,7 +45,24 @@ export default function PredictorPage() {
   const [error, setError] = useState("");
 
   const [result, setResult] = useState([]);
-const year = 2024; // locked to current year only — no year selector for students
+  const [activeYears, setActiveYears] = useState([]);
+  const [year, setYear] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchYears() {
+      try {
+        const years = await api.get("/years"); // now returns only active years, newest first
+        if (cancelled) return;
+        setActiveYears(years);
+        if (years.length > 0) setYear(years[0].year); // default to newest active year
+      } catch (err) {
+        console.error("Failed to load active years:", err);
+      }
+    }
+    fetchYears();
+    return () => { cancelled = true; };
+  }, []);
 
   // The exact criteria used for the last successful prediction — kept
   // separate from the live form fields so changing the year dropdown can
@@ -66,8 +84,7 @@ const year = 2024; // locked to current year only — no year selector for stude
 
     try {
       const { results } = await api.post("/predict", criteria);
-      const mapped = mapResults(results, criteria.gender);
-
+      const mapped = mapResults(results, criteria.gender, criteria.year);
       setLoaderStats({
         recordsScanned: results.length,
         collegesChecked: results.length,
@@ -98,7 +115,13 @@ const year = 2024; // locked to current year only — no year selector for stude
       return;
     }
     setError("");
-    const criteria = { rank, category, gender, course, year };
+    useEffect(() => {
+    if (!lastCriteria) return; // no prediction made yet, nothing to refetch
+    if (lastCriteria.year === year) return; // avoid refetching on the initial set
+    const updatedCriteria = { ...lastCriteria, year };
+    runPrediction(updatedCriteria, { showLoader: false, scrollAfter: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year]);
 
      api.post("/log-activity", {
       action: "rank_entry",
@@ -174,6 +197,29 @@ const year = 2024; // locked to current year only — no year selector for stude
         <main className="mx-auto max-w-7xl space-y-16 px-6 pb-24">
           <FeatureStats />
 
+          {activeYears.length >= 2 && (
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-sm font-medium text-slate-600">Cutoff Year:</span>
+              <div className="inline-flex rounded-full border border-slate-200 bg-white p-1">
+                {activeYears.map((y) => (
+                  <button
+                    key={y.year}
+                    onClick={() => setYear(y.year)}
+                    className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                      year === y.year
+                        ? "bg-brand-600 text-white"
+                        : "text-slate-600 hover:bg-slate-100"
+                    }`}
+                  >
+                    {y.year}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          
+
           <PredictorForm
             rank={rank}
             setRank={setRank}
@@ -190,8 +236,8 @@ const year = 2024; // locked to current year only — no year selector for stude
           {result.length > 0 && <StatsGrid {...stats} />}
 
           <section id="results">
-  <ResultsTable results={result} year={year} />
-</section>
+            <ResultsTable results={result} year={year} showYear={activeYears.length >= 2} />
+          </section>
         </main>
       </PageTransition>
 

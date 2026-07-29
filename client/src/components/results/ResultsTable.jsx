@@ -9,7 +9,7 @@ import { getDistrictName } from "../../utils/districtNames";
 
 const PAGE_SIZE = 20;
 
-export default function ResultsTable({ results, year }) {
+export default function ResultsTable({ results, year, showYear = false }) {
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState("statusPriority");
   const [sortDir, setSortDir] = useState("asc");
@@ -102,6 +102,7 @@ export default function ResultsTable({ results, year }) {
                 <SortHeader label="College" sortKeyName="name" />
                 <SortHeader label="District" sortKeyName="district" />
                 <SortHeader label="Course" sortKeyName="course" />
+                {showYear && <SortHeader label="Year" sortKeyName="year" />}
                 <SortHeader label="Category" sortKeyName="category" />
                 <SortHeader label="Gender" sortKeyName="gender" />
                 <SortHeader label="Cutoff" sortKeyName="cutoff" />
@@ -121,6 +122,7 @@ export default function ResultsTable({ results, year }) {
                   <td className="px-4 py-3 text-sm font-medium text-slate-900">{c.name}</td>
                   <td className="px-4 py-3 text-sm text-700">{getDistrictName(c.district)}</td>
                   <td className="px-4 py-3 text-sm text-700">{c.course}</td>
+                  {showYear && <td className="px-4 py-3 text-sm text-700">{c.year}</td>}
                   <td className="px-4 py-3 text-sm text-700">{c.category}</td>
                   <td className="px-4 py-3 text-sm text-700">{c.gender}</td>
                   <td className="px-4 py-3 text-sm text-700">{c.cutoff.toLocaleString()}</td>

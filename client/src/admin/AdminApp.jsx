@@ -6,6 +6,8 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminLayout from "./layout/AdminLayout";
 import DashboardPage from "./pages/DashboardPage";
 import CollegesPage from "./pages/CollegesPage";
+import CutoffsPage from "./pages/CutoffsPage";
+import YearsPage from "./pages/YearsPage";
 import LookupPage from "./pages/LookupPage";
 import ImportPage from "./pages/ImportPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -25,6 +27,8 @@ export default function AdminApp() {
           >
             <Route index element={<DashboardPage />} />
             <Route path="colleges" element={<CollegesPage />} />
+            <Route path="cutoffs" element={<CutoffsPage />} />
+            <Route path="years" element={<YearsPage />} />
             <Route
               path="courses"
               element={<LookupPage resource="courses" title="Courses" singularLabel="Course" />}

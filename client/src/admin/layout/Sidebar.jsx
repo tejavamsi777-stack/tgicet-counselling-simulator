@@ -2,13 +2,15 @@ import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LayoutDashboard, Building2, BookOpen, MapPin, Tags,
-  FileSpreadsheet, Settings, ShieldCheck, X,
+  FileSpreadsheet, Settings, ShieldCheck, X, TrendingUp, CalendarClock,
 } from "lucide-react";
 import { cn } from "../../utils/cn"; // Keeps original relative path[cite: 18]
 
 const NAV_ITEMS = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/admin/colleges", label: "Colleges", icon: Building2 },
+  { to: "/admin/cutoffs", label: "Cutoffs", icon: TrendingUp },
+  { to: "/admin/years", label: "Years", icon: CalendarClock },
   { to: "/admin/courses", label: "Courses", icon: BookOpen },
   { to: "/admin/districts", label: "Districts", icon: MapPin },
   { to: "/admin/categories", label: "Categories", icon: Tags },

@@ -15,7 +15,7 @@ export const referenceRepository = {
   },
   async getYears() {
     const { rows } = await pool.query(
-      "SELECT id, year, is_active, is_archived FROM years ORDER BY year DESC"
+      "SELECT id, year FROM years WHERE is_active = true ORDER BY year DESC"
     );
     return rows;
   },

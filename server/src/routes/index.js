@@ -14,6 +14,8 @@ import { adminImportController } from "../controllers/adminImportController.js";
 import { upload } from "../middleware/upload.js";
 import { adminDashboardController } from "../controllers/adminDashboardController.js";
 import { activityController } from "../controllers/activityController.js";
+import { adminYearController } from "../controllers/adminYearController.js";
+import { adminCutoffController } from "../controllers/adminCutoffController.js";
 
 export const router = Router();
 
@@ -42,7 +44,8 @@ router.patch("/auth/password", requireAuth, authController.changePassword);
 router.post("/admin/auth/login", adminAuthController.login);
 router.get("/admin/auth/me", requireAdminAuth, adminAuthController.me);
 router.patch("/admin/auth/password", requireAdminAuth, adminAuthController.changePassword);
-router.get("/admin/dashboard/stats", requireAdminAuth, adminDashboardController.stats);
+router.get("/admin/years", requireAdminAuth, adminYearController.list);
+router.patch("/admin/years/:id/active", requireAdminAuth, requireRole("super_admin", "admin"), adminYearController.setActive);
 
 // ---------- Admin: College CRUD ----------
 // Anyone with a valid admin token can view; only super_admin/admin/editor can write
@@ -94,6 +97,28 @@ router.get("/admin/lookups/categories", requireAdminAuth, categoryLookupControll
 router.post("/admin/lookups/categories", requireAdminAuth, requireRole("super_admin", "admin"), categoryLookupController.create);
 router.put("/admin/lookups/categories/:id", requireAdminAuth, requireRole("super_admin", "admin"), categoryLookupController.update);
 router.delete("/admin/lookups/categories/:id", requireAdminAuth, requireRole("super_admin"), categoryLookupController.remove);
+
+// ---------- Admin: Cutoff CRUD ----------
+router.get("/admin/cutoffs", requireAdminAuth, adminCutoffController.list);
+router.get("/admin/cutoffs/:id", requireAdminAuth, adminCutoffController.getById);
+router.post(
+  "/admin/cutoffs",
+  requireAdminAuth,
+  requireRole("super_admin", "admin", "editor"),
+  adminCutoffController.create
+);
+router.put(
+  "/admin/cutoffs/:id",
+  requireAdminAuth,
+  requireRole("super_admin", "admin", "editor"),
+  adminCutoffController.update
+);
+router.delete(
+  "/admin/cutoffs/:id",
+  requireAdminAuth,
+  requireRole("super_admin"),
+  adminCutoffController.remove
+);
 
 // ---------- Admin: Excel Import ----------
 router.post(
