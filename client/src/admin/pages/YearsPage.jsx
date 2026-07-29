@@ -57,6 +57,8 @@ export default function YearsPage() {
     }
   }
 
+  const activeCount = years.filter((y) => y.is_active).length;
+
   const columns = [
     { key: "year", header: "Year" },
     {
