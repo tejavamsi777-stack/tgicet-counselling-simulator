@@ -44,7 +44,22 @@ export const adminCollegeRepository = {
 
   async getById(id) {
     const { rows } = await pool.query(
-      `SELECT c.*, d.code AS district_code FROM colleges c LEFT JOIN districts d ON d.id = c.district_id WHERE c.id = $1`,
+      `
+      SELECT c.*, d.code AS district_code,
+        COALESCE(
+          json_agg(
+            json_build_object('courseId', co.id, 'code', co.code, 'name', co.name, 'fee', cc.fee)
+            ORDER BY co.code
+          ) FILTER (WHERE co.id IS NOT NULL),
+          '[]'
+        ) AS "offeredCourses"
+      FROM colleges c
+      LEFT JOIN districts d ON d.id = c.district_id
+      LEFT JOIN college_courses cc ON cc.college_id = c.id
+      LEFT JOIN courses co ON co.id = cc.course_id
+      WHERE c.id = $1
+      GROUP BY c.id, d.code
+      `,
       [id]
     );
     return rows[0] ?? null;
@@ -56,39 +71,63 @@ export const adminCollegeRepository = {
   },
 
   async create(data) {
-    const { rows } = await pool.query(
-      `
-      INSERT INTO colleges
-        (code, name, district_id, place, university, ownership_type, is_minority, is_girls, is_self_finance, website, address, phone, email)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
-      RETURNING *
-      `,
-      [
-        data.code, data.name, data.districtId, data.place, data.university,
-        data.ownershipType, data.isMinority ?? false, data.isGirls ?? false,
-        data.isSelfFinance ?? false, data.website, data.address, data.phone, data.email,
-      ]
-    );
-    return rows[0];
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+      const { rows } = await client.query(
+        `
+        INSERT INTO colleges
+          (code, name, district_id, place, university, ownership_type, is_minority, is_girls, is_self_finance, website, address, phone, email)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
+        RETURNING *
+        `,
+        [
+          data.code, data.name, data.districtId, data.place, data.university,
+          data.ownershipType, data.isMinority ?? false, data.isGirls ?? false,
+          data.isSelfFinance ?? false, data.website, data.address, data.phone, data.email,
+        ]
+      );
+      await replaceOfferedCourses(client, rows[0].id, data.offeredCourses);
+      await client.query("COMMIT");
+      return rows[0];
+    } catch (err) {
+      await client.query("ROLLBACK");
+      throw err;
+    } finally {
+      client.release();
+    }
   },
 
   async update(id, data) {
-    const { rows } = await pool.query(
-      `
-      UPDATE colleges SET
-        name = $1, district_id = $2, place = $3, university = $4,
-        ownership_type = $5, is_minority = $6, is_girls = $7, is_self_finance = $8,
-        website = $9, address = $10, phone = $11, email = $12, updated_at = NOW()
-      WHERE id = $13
-      RETURNING *
-      `,
-      [
-        data.name, data.districtId, data.place, data.university,
-        data.ownershipType, data.isMinority, data.isGirls, data.isSelfFinance,
-        data.website, data.address, data.phone, data.email, id,
-      ]
-    );
-    return rows[0] ?? null;
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+      const { rows } = await client.query(
+        `
+        UPDATE colleges SET
+          name = $1, district_id = $2, place = $3, university = $4,
+          ownership_type = $5, is_minority = $6, is_girls = $7, is_self_finance = $8,
+          website = $9, address = $10, phone = $11, email = $12, updated_at = NOW()
+        WHERE id = $13
+        RETURNING *
+        `,
+        [
+          data.name, data.districtId, data.place, data.university,
+          data.ownershipType, data.isMinority, data.isGirls, data.isSelfFinance,
+          data.website, data.address, data.phone, data.email, id,
+        ]
+      );
+      if (rows[0] && data.offeredCourses !== undefined) {
+        await replaceOfferedCourses(client, id, data.offeredCourses);
+      }
+      await client.query("COMMIT");
+      return rows[0] ?? null;
+    } catch (err) {
+      await client.query("ROLLBACK");
+      throw err;
+    } finally {
+      client.release();
+    }
   },
 
   async setActive(id, isActive) {
@@ -104,3 +143,16 @@ export const adminCollegeRepository = {
     return rowCount > 0;
   },
 };
+
+async function replaceOfferedCourses(client, collegeId, offeredCourses = []) {
+  await client.query("DELETE FROM college_courses WHERE college_id = $1", [collegeId]);
+  for (const course of offeredCourses) {
+    const fee = course.fee === "" || course.fee === null || course.fee === undefined
+      ? null
+      : Number(course.fee);
+    await client.query(
+      "INSERT INTO college_courses (college_id, course_id, fee) VALUES ($1, $2, $3)",
+      [collegeId, Number(course.courseId), fee]
+    );
+  }
+}

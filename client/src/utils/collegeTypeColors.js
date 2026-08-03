@@ -1,8 +1,8 @@
 export const COLLEGE_TYPE_COLORS = {
-  univ: { bg: "#4fc3e8", label: "UNIV" },
-  sf: { bg: "#a9a9a9", label: "SF" },
-  girls: { bg: "#f4b8c1", label: "GIRLS" },
-  minority: { bg: "#a8d8a8", label: "MINORITY" },
-  pvt: { bg: "#eeee99", label: "Pvt" },
+  univ: { bg: "#57c6e7", label: "UNIV" },
+  sf: { bg: "#a7a7a7", label: "SF" },
+  girls: { bg: "#efb9c0", label: "GIRLS" },
+  minority: { bg: "#a5e5a3", label: "MINORITY" },
+  pvt: { bg: "#eff0b0", label: "Pvt" },
   unknown: { bg: "#ffffff", label: "N/A" },
 };

@@ -4,7 +4,7 @@ import { ArrowLeft, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { api } from "../lib/api";
 import { getFinalOptionList } from "../utils/sortByPreference";
-import { saveOptions, loadOptions } from "../utils/mockCounsellingStorage";
+import { saveOptions, loadOptions, saveActiveSession, loadActiveSession } from "../utils/mockCounsellingStorage";
 import { exportPreferencesToPDF } from "../utils/exportPreferences";
 import { getDuplicatePreferenceNumbers } from "../utils/preferenceValidation";
 import { useAuth } from "../context/AuthContext";
@@ -23,24 +23,32 @@ const stepVariants = {
   exit: { opacity: 0, y: -24 },
 };
 
+function isBrowserRefresh() {
+  const navigation = performance.getEntriesByType("navigation")[0];
+  return navigation?.type === "reload";
+}
+
 export default function MockCounsellingPage() {
   const navigate = useNavigate();
   const heroRef = useRef(null);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50 });
+  // Preserve the active options page on browser refresh, but always begin with
+  // candidate details when the user enters Mock Counselling from the home page.
+  const [restoredSession] = useState(() => (isBrowserRefresh() ? loadActiveSession() : null));
 
-  const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("");
-  const [gender, setGender] = useState("");
+  const [rank, setRank] = useState(() => restoredSession?.criteria?.rank ?? "");
+  const [category, setCategory] = useState(() => restoredSession?.criteria?.category ?? "");
+  const [gender, setGender] = useState(() => restoredSession?.criteria?.gender ?? "");
   const [candidateError, setCandidateError] = useState("");
 
   const [districtError, setDistrictError] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("info"); // "info" | "success" | "error"
 
-  const [selectedDistricts, setSelectedDistricts] = useState([]);
-  const [step, setStep] = useState("candidate"); // "candidate" | "details" | "list"
-  const [submitted, setSubmitted] = useState(null);
-  const [preferences, setPreferences] = useState({});
+  const [selectedDistricts, setSelectedDistricts] = useState(() => restoredSession?.criteria?.selectedDistricts ?? []);
+  const [step, setStep] = useState(() => restoredSession ? "list" : "candidate"); // "candidate" | "details" | "list"
+  const [submitted, setSubmitted] = useState(() => restoredSession?.criteria ?? null);
+  const [preferences, setPreferences] = useState(() => restoredSession?.preferences ?? {});
 
   const [showInsertPanel, setShowInsertPanel] = useState(false);
   const [insertCollege, setInsertCollege] = useState("");
@@ -77,6 +85,7 @@ export default function MockCounsellingPage() {
           const mapped = colleges.map((c) => ({
             ...c,
             district: c.district_code,
+            districtName: c.district_name,
           }));
           setAllColleges(mapped);
         }
@@ -149,6 +158,10 @@ export default function MockCounsellingPage() {
       .filter((c) => submitted.selectedDistricts.includes(c.district))
       .sort((a, b) => a.code.localeCompare(b.code));
   }, [submitted, allColleges]);
+
+  useEffect(() => {
+    if (submitted) saveActiveSession(submitted, preferences);
+  }, [submitted, preferences]);
 
   function handleSaveOptions() {
     if (!submitted) return;
@@ -305,33 +318,33 @@ export default function MockCounsellingPage() {
     );
   } else if (step === "list") {
     stepContent = (
-      <div className="space-y-6">
-        <div className="sticky top-20 z-30 flex flex-wrap items-center gap-3 rounded-2xl border border-white/50 bg-white/80 p-3 shadow-lg backdrop-blur-2xl">
+      <div className="space-y-1.5" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+        <div className="sticky top-0 z-30 flex flex-wrap items-center justify-center gap-2 border border-[#52647b] bg-[#c7c7c7] px-3 py-1">
           <button
             onClick={() => setStep("details")}
-            className="rounded border border-slate-400 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            className="border border-[#777] bg-[#f5f5f5] px-3 py-1 text-[14px] font-normal text-black hover:bg-white"
           >
             Back to Districts
           </button>
           <button
             onClick={handleLoadLastSaved}
-            className="rounded border border-slate-400 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            className="border border-[#777] bg-[#f5f5f5] px-3 py-1 text-[14px] font-normal text-black hover:bg-white"
           >
             Last Saved Options
           </button>
           <button
             onClick={() => setShowInsertPanel((v) => !v)}
-            className="rounded border border-slate-400 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
+            className="border border-[#777] bg-[#f5f5f5] px-3 py-1 text-[14px] font-normal text-black hover:bg-white"
           >
             Enter Between Options
           </button>
           <motion.button
             animate={saveShake}
             onClick={handleSaveOptions}
-            className={`rounded border px-4 py-2 text-sm font-medium ${
+            className={`border px-3 py-1 text-[14px] font-normal ${
               hasDuplicates
-                ? "border-rose-300 bg-rose-50 text-rose-400 cursor-not-allowed"
-                : "border-slate-400 bg-white text-slate-800 hover:bg-slate-50"
+                ? "cursor-not-allowed border-rose-300 bg-rose-50 text-rose-400"
+                : "border-[#777] bg-[#f5f5f5] text-black hover:bg-white"
             }`}
           >
             Save Options
@@ -339,17 +352,17 @@ export default function MockCounsellingPage() {
           <motion.button
             animate={printShake}
             onClick={handleViewAndPrint}
-            className={`rounded border px-4 py-2 text-sm font-medium ${
+            className={`border px-3 py-1 text-[14px] font-normal ${
               hasDuplicates
-                ? "border-rose-300 bg-rose-50 text-rose-400 cursor-not-allowed"
-                : "border-slate-400 bg-white text-slate-800 hover:bg-slate-50"
+                ? "cursor-not-allowed border-rose-300 bg-rose-50 text-rose-400"
+                : "border-[#777] bg-[#f5f5f5] text-black hover:bg-white"
             }`}
           >
             View &amp; Print
           </motion.button>
           {statusMessage && (
             <span
-              className={`inline-flex items-center gap-1.5 text-sm font-medium ${
+              className={`inline-flex items-center gap-1.5 text-xs font-normal ${
                 statusType === "error"
                   ? "text-red-600"
                   : statusType === "success"
@@ -365,12 +378,12 @@ export default function MockCounsellingPage() {
         </div>
 
         {showInsertPanel && (
-          <div className="flex flex-wrap items-center gap-3 rounded-md border border-slate-300 bg-white p-3">
-            <label className="text-sm font-medium text-slate-700">Insert college</label>
+          <div className="flex flex-wrap items-center gap-2 border border-[#777] bg-white p-2 text-sm">
+            <label className="text-sm font-normal text-black">Insert college</label>
             <select
               value={insertCollege}
               onChange={(e) => setInsertCollege(e.target.value)}
-              className="rounded border border-slate-400 px-3 py-1.5 text-sm"
+              className="border border-[#777] px-2 py-1 text-sm"
             >
               <option value="">Select college</option>
               {availableColleges.flatMap((c) =>
@@ -381,17 +394,17 @@ export default function MockCounsellingPage() {
                 ))
               )}
             </select>
-            <label className="text-sm font-medium text-slate-700">at position</label>
+            <label className="text-sm font-normal text-black">at position</label>
             <input
               type="number"
               min="1"
               value={insertPosition}
               onChange={(e) => setInsertPosition(e.target.value)}
-              className="w-20 rounded border border-slate-400 px-2 py-1.5 text-sm"
+              className="w-20 border border-[#777] px-2 py-1 text-sm"
             />
             <button
               onClick={handleInsertBetween}
-              className="rounded bg-brand-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-brand-700"
+              className="border border-[#777] bg-[#f5f5f5] px-3 py-1 text-sm font-normal text-black hover:bg-white"
             >
               Insert
             </button>
@@ -399,15 +412,15 @@ export default function MockCounsellingPage() {
         )}
 
         {submitted && (
-          <div className="flex flex-wrap gap-x-8 gap-y-1 rounded-md border border-slate-300 bg-white px-4 py-3 text-sm">
+          <div className="flex flex-wrap justify-between gap-x-8 gap-y-1 border border-[#52647b] bg-white px-2 py-1 text-[13px] text-[#000080]">
             <span>
-              <span className="font-semibold text-slate-700">Rank:</span> {submitted.rank}
+              <span className="font-normal">Rank:</span> {submitted.rank}
             </span>
             <span>
-              <span className="font-semibold text-slate-700">Category:</span> {submitted.category}
+              <span className="font-normal">Category:</span> {submitted.category}
             </span>
             <span>
-              <span className="font-semibold text-slate-700">Gender:</span> {submitted.gender}
+              <span className="font-normal">Gender:</span> {submitted.gender}
             </span>
           </div>
         )}
@@ -422,7 +435,7 @@ export default function MockCounsellingPage() {
   }
 
   return (
-    <main className="relative mx-auto max-w-6xl space-y-8 overflow-hidden px-6 pb-12 pt-6">
+    <main className={`relative mx-auto overflow-hidden ${step === "list" ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2" : "max-w-6xl space-y-8 px-6 pb-12 pt-6"}`}>
       <button
         onClick={handleBack}
         className="relative z-10 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-slate-900"

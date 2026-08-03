@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MapPin, Building2, Users, GraduationCap } from "lucide-react";
+import { X, MapPin, Building2, Users, GraduationCap, IndianRupee } from "lucide-react";
 import collegeTypes from "../../data/collegeTypes.json";
 
 function ValuePill({ value }) {
@@ -33,6 +33,11 @@ function InfoRow({ icon: Icon, label, children }) {
       {children}
     </div>
   );
+}
+
+function formatFee(fee) {
+  if (fee === null || fee === undefined) return "Not available";
+  return `₹${Number(fee).toLocaleString("en-IN")}`;
 }
 
 export default function CollegeInfoModal({ college, onClose }) {
@@ -88,7 +93,7 @@ export default function CollegeInfoModal({ college, onClose }) {
             </span>
           </div>
 
-          <div className="space-y-2 px-6 py-5">
+          <div className="max-h-[55vh] space-y-2 overflow-y-auto px-6 py-5">
             <InfoRow icon={MapPin} label="District">
               <span className="text-sm font-semibold text-slate-800">
                 {college.district}
@@ -106,6 +111,25 @@ export default function CollegeInfoModal({ college, onClose }) {
             <InfoRow icon={GraduationCap} label="Co-Education">
               <ValuePill value={coEd} />
             </InfoRow>
+
+            <section className="rounded-xl bg-white/50 px-3.5 py-3">
+              <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-600">
+                <IndianRupee size={16} className="text-slate-400" strokeWidth={2.2} />
+                Offered Courses & Fees
+              </div>
+              {college.courseFees?.length > 0 ? (
+                <div className="space-y-1.5">
+                  {college.courseFees.map((course) => (
+                    <div key={course.code} className="flex items-center justify-between rounded-lg bg-white/70 px-3 py-2 text-sm">
+                      <span className="font-semibold text-slate-700">{course.code}</span>
+                      <span className="font-semibold text-slate-900">{formatFee(course.fee)}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500">Course and fee information is not available for this college.</p>
+              )}
+            </section>
           </div>
 
           <div className="px-6 pb-6">

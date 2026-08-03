@@ -24,6 +24,7 @@ export const adminCollegeService = {
       throw err;
     }
     const districtId = await resolveDistrictId(data.district);
+    await validateOfferedCourses(data.offeredCourses);
     return adminCollegeRepository.create({ ...data, districtId });
   },
 
@@ -35,6 +36,7 @@ export const adminCollegeService = {
       throw err;
     }
     const districtId = await resolveDistrictId(data.district);
+    await validateOfferedCourses(data.offeredCourses);
     return adminCollegeRepository.update(id, { ...data, districtId });
   },
 
@@ -57,3 +59,14 @@ export const adminCollegeService = {
     }
   },
 };
+
+async function validateOfferedCourses(offeredCourses) {
+  if (offeredCourses === undefined || offeredCourses.length === 0) return;
+  const ids = offeredCourses.map((course) => Number(course.courseId));
+  const { rows } = await pool.query("SELECT id FROM courses WHERE id = ANY($1::int[])", [ids]);
+  if (rows.length !== ids.length) {
+    const err = new Error("One or more selected courses no longer exist");
+    err.status = 400;
+    throw err;
+  }
+}

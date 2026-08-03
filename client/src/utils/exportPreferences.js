@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { getDistrictName } from "./districtNames";
 
 export function exportPreferencesToPDF(orderedEntries, criteria) {
   const doc = new jsPDF();
@@ -16,14 +17,13 @@ export function exportPreferencesToPDF(orderedEntries, criteria) {
 
   autoTable(doc, {
     startY: 28,
-    head: [["#", "Code", "College", "Course", "Place", "District"]],
+    head: [["#", "College Code", "College Name", "Course Name", "District"]],
     body: orderedEntries.map((c, i) => [
       i + 1,
       c.code,
       c.name,
-      c.course,
-      c.place,
-      c.district,
+      c.courseName,
+      c.districtName || getDistrictName(c.district),
     ]),
     styles: { fontSize: 8 },
     headStyles: { fillColor: [37, 99, 235] },

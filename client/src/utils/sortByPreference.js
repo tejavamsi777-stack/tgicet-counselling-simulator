@@ -23,7 +23,13 @@ export function getFinalOptionList(colleges, preferences) {
       const key = `${college.code}_${course}`;
       const value = preferences[key];
       if (value !== undefined && value !== "") {
-        entries.push({ ...college, course, preference: value });
+        const courseDetails = (college.courseFees || []).find((item) => item.code === course);
+        entries.push({
+          ...college,
+          course,
+          courseName: courseDetails?.name || course,
+          preference: value,
+        });
       }
     });
   });
