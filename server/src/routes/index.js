@@ -16,10 +16,12 @@ import { adminDashboardController } from "../controllers/adminDashboardControlle
 import { activityController } from "../controllers/activityController.js";
 import { adminYearController } from "../controllers/adminYearController.js";
 import { adminCutoffController } from "../controllers/adminCutoffController.js";
+import { examController } from "../controllers/examController.js";
 
 export const router = Router();
 
 // ---------- Public ----------
+router.get("/exams", examController.list);
 router.get("/districts", referenceController.districts);
 router.get("/courses", referenceController.courses);
 router.get("/categories", referenceController.categories);

@@ -1,23 +1,36 @@
 // Maps district codes (as stored in the database) to full district names.
-// Based on standard official Telangana district abbreviations — please verify
-// against your actual data, since the database itself only stores codes.
+// Complete 33 district mappings for Telangana State.
+
 export const DISTRICT_NAMES = {
+  ADB: "Adilabad",
+  BDR: "Bhadradri Kothagudem",
   GDL: "Jogulamba Gadwal",
   HNK: "Hanamkonda",
   HYD: "Hyderabad",
-  KGM: "Kamareddy",
+  JBP: "Jayashankar Bhupalpally",
+  JGN: "Jangaon",
+  JTL: "Jagtial",
+  KAB: "Kumuram Bheem Asifabad",
+  KGM: "Bhadradri Kothagudem",
   KHM: "Khammam",
+  KMR: "Kamareddy",
   KRM: "Karimnagar",
   MBN: "Mahabubnagar",
   MDL: "Medchal-Malkajgiri",
   MED: "Medak",
+  MHB: "Mahabubabad",
+  MNC: "Mancherial",
+  MUL: "Mulugu",
   NKL: "Nagarkurnool",
   NLG: "Nalgonda",
+  NPT: "Narayanpet",
+  NRM: "Nirmal",
   NZB: "Nizamabad",
   PDL: "Peddapalli",
   RR: "Rangareddy",
   SDP: "Siddipet",
-  SRD: "Rajanna Sircilla",
+  SRC: "Rajanna Sircilla",
+  SRD: "Sangareddy",
   SRP: "Suryapet",
   VKB: "Vikarabad",
   WGL: "Warangal",
@@ -26,5 +39,7 @@ export const DISTRICT_NAMES = {
 };
 
 export function getDistrictName(code) {
-  return DISTRICT_NAMES[code] ?? code; // fall back to the raw code if unmapped
+  if (!code) return "";
+  const trimmed = code.toString().trim().toUpperCase();
+  return DISTRICT_NAMES[trimmed] || code;
 }

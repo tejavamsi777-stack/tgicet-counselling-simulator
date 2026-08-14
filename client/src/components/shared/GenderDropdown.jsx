@@ -21,45 +21,39 @@ export default function GenderDropdown({ gender, setGender }) {
   const isFemale = gender === "Female";
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className={`relative ${open ? "z-50" : "z-10"}`} ref={containerRef}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className={`flex h-11 w-full items-center gap-2 rounded-xl border bg-white pl-10 pr-4 text-sm text-slate-900 outline-none transition-all focus:ring-4 ${
-          isFemale
-            ? "border-pink-200 focus:border-pink-500 focus:ring-pink-500/10"
-            : gender === "Male"
-            ? "border-blue-200 focus:border-blue-500 focus:ring-blue-500/10"
-            : "border-slate-200 focus:border-brand-500 focus:ring-brand-500/10"
-        }`}
+        className="flex h-11 w-full items-center gap-2 rounded-2xl border border-white/20 bg-white/10 pl-10 pr-4 text-sm font-medium text-white outline-none backdrop-blur-2xl transition-all hover:border-white/40 hover:bg-white/15 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
       >
-        {gender === "" && <span className="text-slate-400">Select Gender</span>}
-        {gender !== "" && <span>{gender}</span>}
+        {gender === "" && <span className="text-gray-400">Select Gender</span>}
+        {gender !== "" && <span className="text-white">{gender}</span>}
       </button>
 
       <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
         {isFemale ? (
-          <Venus size={16} className="text-pink-500" />
+          <Venus size={16} className="text-pink-400" />
         ) : gender === "Male" ? (
-          <Mars size={16} className="text-blue-500" />
+          <Mars size={16} className="text-sky-400" />
         ) : (
-          <Users size={16} className="text-slate-400" />
+          <Users size={16} className="text-gray-300" />
         )}
       </div>
 
       <ChevronDown
         size={16}
-        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+        className={`pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-300 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
       />
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute z-20 mt-1.5 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg"
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute left-0 right-0 z-50 mt-2 overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl"
           >
             {GENDERS.map((g) => (
               <button
@@ -69,12 +63,16 @@ export default function GenderDropdown({ gender, setGender }) {
                   setGender(g);
                   setOpen(false);
                 }}
-                className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-slate-900 transition-colors hover:bg-brand-600 hover:text-white"
+                className={`flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium transition-all ${
+                  gender === g
+                    ? "bg-white/25 text-white font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]"
+                    : "text-gray-200 hover:bg-white/20 hover:text-white"
+                }`}
               >
                 {g === "Female" ? (
-                  <Venus size={16} className={gender === g ? "text-white" : "text-pink-500"} />
+                  <Venus size={16} className="text-pink-400" />
                 ) : (
-                  <Mars size={16} className={gender === g ? "text-white" : "text-blue-500"} />
+                  <Mars size={16} className="text-sky-400" />
                 )}
                 {g}
               </button>

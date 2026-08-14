@@ -10,47 +10,40 @@ export const PRIVACY_TEXT =
 
 export default function Footer({ openPanel, setOpenPanel }) {
   return (
-    <footer className="mt-24 border-t border-slate-200/60 bg-white/60 backdrop-blur-xl">
+    <footer className="mt-24 border-t border-white/10 bg-black/80 backdrop-blur-xl text-gray-300">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-center md:flex-row">
-
         <div className="flex items-center gap-3">
           <Logo size={34} />
-
-          <div>
+          <div className="text-left">
             <h3
-              className="text-[17px] font-bold tracking-tight text-slate-900"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="font-brand text-[17px] leading-none tracking-wide text-white inline-flex items-center gap-2"
             >
-              <span className="bg-gradient-to-r from-[#312e81] via-[#7c3aed] to-[#0e7490] bg-clip-text text-transparent">
-                TG
-              </span>{" "}
-              Counselling
+              <span>TG</span>
+              <span>Counselling</span>
             </h3>
-
-            <p className="text-sm text-slate-500">
+            <p className="text-xs text-gray-400">
               Predict colleges using previous years' cutoff data.
             </p>
           </div>
         </div>
 
-        <div className="flex gap-8 text-sm text-slate-500">
+        <div className="flex gap-8 text-sm text-gray-400">
           <button
             onClick={() => setOpenPanel("about")}
-            className="transition hover:text-blue-600"
+            className="transition hover:text-white"
           >
             About
           </button>
-
           <button
             onClick={() => setOpenPanel("privacy")}
-            className="transition hover:text-blue-600"
+            className="transition hover:text-white"
           >
             Privacy
           </button>
         </div>
       </div>
 
-      <div className="border-t border-slate-200/60 py-6 text-center text-sm text-slate-500">
+      <div className="border-t border-white/10 py-6 text-center text-xs text-gray-500">
         © {new Date().getFullYear()} TG ICET Predictor
       </div>
 
@@ -62,7 +55,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[80] bg-white/40 backdrop-blur-sm"
+              className="fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm"
               onClick={() => setOpenPanel(null)}
             />
             <motion.div
@@ -70,21 +63,21 @@ export default function Footer({ openPanel, setOpenPanel }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-1/2 top-1/2 z-[90] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/60 bg-white/95 p-6 shadow-2xl backdrop-blur-2xl"
+              className="fixed left-1/2 top-1/2 z-[90] w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/10 bg-black/90 p-6 shadow-2xl backdrop-blur-2xl text-white"
             >
               <div className="mb-3 flex items-center justify-between">
-                <h4 className="text-lg font-semibold text-slate-900">
+                <h4 className="text-lg font-semibold text-white">
                   {openPanel === "about" ? "About" : "Privacy"}
                 </h4>
                 <button
                   onClick={() => setOpenPanel(null)}
                   aria-label="Close"
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 hover:bg-white/10 hover:text-white"
                 >
                   <X size={16} />
                 </button>
               </div>
-              <p className="text-sm leading-relaxed text-slate-600">
+              <p className="text-sm leading-relaxed text-gray-300">
                 {openPanel === "about" ? ABOUT_TEXT : PRIVACY_TEXT}
               </p>
             </motion.div>

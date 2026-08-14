@@ -1,7 +1,7 @@
 import { pool } from "../config/database.js";
 
 export const predictionRepository = {
-  async findMatches({ rank, category, gender, course, year }) {
+  async findMatches({ rank, category, gender, course, year, examId }) {
     const sql = `
       SELECT
         col.code, col.name, col.place, col.university,
@@ -18,15 +18,20 @@ export const predictionRepository = {
       JOIN categories cat ON cat.id = cu.category_id
       JOIN years y ON y.id = cu.year_id
       LEFT JOIN college_courses cc ON cc.college_id = col.id AND cc.course_id = cu.course_id
-      WHERE crs.code = $1
-        AND cat.code = $2
-        AND cu.gender = $3
-        AND y.year = $4
-        AND cu.cutoff_rank >= $5
+      WHERE cu.exam_id = $1
+        AND col.exam_id = $1
+        AND crs.exam_id = $1
+        AND cat.exam_id = $1
+        AND y.exam_id = $1
+        AND crs.code = $2
+        AND cat.code = $3
+        AND cu.gender = $4
+        AND y.year = $5
+        AND cu.cutoff_rank >= $6
         AND col.is_active = true
       ORDER BY cu.cutoff_rank ASC
     `;
-    const { rows } = await pool.query(sql, [course, category, gender, year, rank]);
+    const { rows } = await pool.query(sql, [examId, course, category, gender, year, rank]);
     return rows;
   },
 };

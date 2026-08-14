@@ -1,13 +1,38 @@
 import { useMemo, useState } from "react";
-import collegeTypes from "../../data/collegeTypes.json";
 import { COLLEGE_TYPE_COLORS } from "../../utils/collegeTypeColors";
+import { getDistrictName } from "../../utils/districtNames";
 import CollegeInfoModal from "./CollegeInfoModal";
 
-const MBA_COURSES = ["MBA", "MBT", "MTM"];
-const MCA_COURSES = ["MCA"];
+/**
+ * Derive college type from live DB flags.
+ */
+function deriveCollegeType(college) {
+  if (college.is_girls) return "girls";
+  if (college.is_minority) return "minority";
 
-function getCollegeType(code) {
-  return collegeTypes[code]?.type ?? "unknown";
+  const ownership = (college.ownership_type || "").toUpperCase();
+  const name = (college.name || "").toUpperCase();
+
+  // Government / University Colleges (Cyan #62c4ea)
+  if (
+    ownership === "UNIV" ||
+    ownership === "GOV" ||
+    ownership === "GOVT" ||
+    ownership.includes("GOV") ||
+    ownership.includes("UNIV") ||
+    name.includes("GOVT") ||
+    name.includes("GOVERNMENT")
+  ) {
+    return "univ";
+  }
+
+  // Self Finance (Grey #999999)
+  if (college.is_self_finance || ownership === "SF" || ownership.includes("SELF")) {
+    return "sf";
+  }
+
+  // Private (Light Yellow #fdf4a6)
+  return "pvt";
 }
 
 function CourseTable({ title, courses, colleges, preferences, usedCounts, onPreferenceChange, onSelectCollege }) {
@@ -15,10 +40,12 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
     courses.some((course) => college.courses?.includes(course))
   );
 
+  if (courseColleges.length === 0) return null;
+
   return (
     <section>
       <p className="px-1 pb-0.5 text-[12px] text-[#0000b0]">{title}</p>
-    <div
+      <div
         className="max-h-[510px] overflow-y-auto overscroll-contain border border-[#52647b]"
         style={{ touchAction: "pan-y" }}
         onWheel={(e) => {
@@ -32,21 +59,21 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
           el.scrollTop += e.deltaY * 0.5;
         }}
       >
-        <table className="w-full table-fixed border-collapse text-left text-[13px]">
+        <table className="w-full border-collapse text-left text-[13px]">
           <thead className="sticky top-0 z-10">
             <tr className="bg-[#405755] text-[#b9df36]">
-              <th className="w-[50px] border-y border-black px-1 py-1 text-[14px] font-bold">#</th>
-              <th className="w-[44%] border-y border-black px-2 py-1 text-[14px] font-bold">
-                <div className="flex items-center justify-between gap-3">
-                  <span>College</span>
-                  <span className="whitespace-nowrap text-[12px] font-normal normal-case tracking-normal text-white">
-                    Select a college code to view courses, fees, and college details.
-                  </span>
-                </div>
+              <th className="w-[42px] border-y border-black px-1 py-1.5 text-center text-[13px] font-bold">#</th>
+              <th className="w-[105px] border-y border-black px-2 py-1.5 text-center text-[13px] font-bold">
+                College
               </th>
-              <th className="w-[70px] border-y border-black px-1 py-1 text-[14px] font-bold">District</th>
+              <th className="border-y border-black px-2 py-1.5 text-center text-[12px] font-normal normal-case tracking-normal text-white">
+                Select a college code to view courses, fees, and college details
+              </th>
+              <th className="w-[160px] border-y border-black px-2 py-1.5 text-center text-[13px] font-bold text-[#b9df36]">
+                District
+              </th>
               {courses.map((course) => (
-                <th key={course} className="border-y border-black px-1 py-1 text-center text-[14px] font-bold">
+                <th key={course} className="w-[65px] border-y border-black px-1 py-1.5 text-center text-[13px] font-bold">
                   {course}
                 </th>
               ))}
@@ -54,30 +81,31 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
           </thead>
           <tbody>
             {courseColleges.map((college, index) => {
-              const typeKey = getCollegeType(college.code);
+              const typeKey = deriveCollegeType(college);
               const { bg } = COLLEGE_TYPE_COLORS[typeKey];
               const offered = college.courses || [];
+              const districtDisplay = college.districtName || getDistrictName(college.district);
               return (
                 <tr key={college.code} style={{ backgroundColor: bg }}>
-                  <td className="border-y border-black px-1 py-0.5 text-[14px] font-normal text-black">
+                  <td className="border-y border-black px-1 py-0.5 text-center text-[13px] font-normal text-black">
                     {index + 1}
                   </td>
-                  <td className="overflow-hidden border-y border-black px-1 py-0.5">
-                    <span className="flex min-w-0 items-center gap-2 whitespace-nowrap">
-                      <button
-                        type="button"
-                        onClick={() => onSelectCollege(college)}
-                        className="flex h-[26px] w-[100px] shrink-0 items-center justify-center border border-black bg-transparent px-1 text-[13px] font-bold text-black hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#0000b0]"
-                        title={`View details for ${college.name}`}
-                      >
-                        {college.code}
-                      </button>
-                      <span className="overflow-hidden text-ellipsis text-[13px] font-normal text-black">({college.name})</span>
-                    </span>
+                  <td className="border-y border-black px-1 py-0.5 text-center">
+                    <button
+                      type="button"
+                      onClick={() => onSelectCollege(college)}
+                      className="inline-flex h-[26px] w-[92px] items-center justify-center border border-black bg-transparent px-1 text-[13px] font-bold text-black hover:bg-black/10 focus:outline-none focus:ring-1 focus:ring-[#0000b0]"
+                      title={`View details for ${college.name}`}
+                    >
+                      {college.code}
+                    </button>
+                  </td>
+                  <td className="border-y border-black px-2 py-0.5 text-left text-[13px] font-normal text-black">
+                    ({college.name})
                   </td>
                   <td className="border-y border-black px-1 py-0.5 text-center text-[13px] text-black">
-                    <span className="inline-flex h-[26px] w-[60px] items-center justify-center border border-black px-1 font-bold">
-                      {college.district}
+                    <span className="inline-flex h-[26px] min-w-[80px] items-center justify-center border border-black bg-white/30 px-2 text-[12px] font-semibold text-black">
+                      {districtDisplay}
                     </span>
                   </td>
                   {courses.map((course) => {
@@ -94,7 +122,7 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
                           min="1"
                           value={value}
                           onChange={(e) => onPreferenceChange(key, e.target.value)}
-                          className={`h-6 w-[58px] border px-1 text-center text-[13px] outline-none focus:border-[#0000b0] ${
+                          className={`h-6 w-[56px] border px-1 text-center text-[13px] outline-none focus:border-[#0000b0] ${
                             isDuplicate
                               ? "border-2 border-red-500 bg-red-50"
                               : "border-[#777] bg-white"
@@ -113,7 +141,7 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
   );
 }
 
-export default function PreferenceList({ colleges, preferences, setPreferences }) {
+export default function PreferenceList({ colleges, preferences, setPreferences, courseGroups }) {
   const [selectedCollege, setSelectedCollege] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -126,6 +154,28 @@ export default function PreferenceList({ colleges, preferences, setPreferences }
         c.code.toLowerCase().startsWith(term)
     );
   }, [colleges, search]);
+
+  const activeCourseGroups = useMemo(() => {
+    if (courseGroups && courseGroups.length > 0) return courseGroups;
+
+    const allCourses = Array.from(
+      new Set(colleges.flatMap((c) => c.courses || []))
+    ).sort();
+
+    if (allCourses.length === 0) return [];
+
+    const isMbaMca = allCourses.some((c) => ["MBA", "MCA", "MBT", "MTM"].includes(c));
+    if (isMbaMca) {
+      const mba = allCourses.filter((c) => ["MBA", "MBT", "MTM"].includes(c));
+      const mca = allCourses.filter((c) => c === "MCA");
+      const groups = [];
+      if (mba.length > 0) groups.push({ title: "MBA Courses", courses: mba });
+      if (mca.length > 0) groups.push({ title: "MCA Courses", courses: mca });
+      return groups;
+    }
+
+    return allCourses.map((c) => ({ title: `${c} Courses`, courses: [c] }));
+  }, [courseGroups, colleges]);
 
   const usedCounts = useMemo(() => {
     const counts = {};
@@ -189,24 +239,18 @@ export default function PreferenceList({ colleges, preferences, setPreferences }
       )}
 
       <div className="space-y-1 overflow-x-auto">
-        <CourseTable
-          title="MBA Courses"
-          courses={MBA_COURSES}
-          colleges={filteredColleges}
-          preferences={preferences}
-          usedCounts={usedCounts}
-          onPreferenceChange={handlePreferenceChange}
-          onSelectCollege={setSelectedCollege}
-        />
-        <CourseTable
-          title="MCA Courses"
-          courses={MCA_COURSES}
-          colleges={filteredColleges}
-          preferences={preferences}
-          usedCounts={usedCounts}
-          onPreferenceChange={handlePreferenceChange}
-          onSelectCollege={setSelectedCollege}
-        />
+        {activeCourseGroups.map((group) => (
+          <CourseTable
+            key={group.title}
+            title={group.title}
+            courses={group.courses}
+            colleges={filteredColleges}
+            preferences={preferences}
+            usedCounts={usedCounts}
+            onPreferenceChange={handlePreferenceChange}
+            onSelectCollege={setSelectedCollege}
+          />
+        ))}
       </div>
 
       <CollegeInfoModal college={selectedCollege} onClose={() => setSelectedCollege(null)} />

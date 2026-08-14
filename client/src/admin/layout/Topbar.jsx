@@ -1,8 +1,10 @@
 import { Menu, LogOut } from "lucide-react";
 import { useAdminAuth } from "../context/AdminAuthContext"; // Ensure path to context is correct[cite: 19]
+import { useAdminExam } from "../context/ExamContext";
 
 export default function Topbar({ onOpenMobileNav }) {
   const { admin, logout } = useAdminAuth(); //[cite: 19]
+  const { exams, selectedExamSlug, setSelectedExamSlug } = useAdminExam();
 
   return (
     <header className="sticky top-4 z-40 mx-6 my-4 flex h-16 items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] px-6 shadow-xl backdrop-blur-xl transition-all dark:border-slate-800/40 dark:bg-slate-950/20[cite: 19]">
@@ -14,7 +16,21 @@ export default function Topbar({ onOpenMobileNav }) {
         <Menu size={18} />
       </button>
 
-      <div className="hidden md:block[cite: 19]" />
+      <label className="hidden items-center gap-2 text-xs font-semibold text-slate-300 md:flex">
+        Data setup
+        <select
+          value={selectedExamSlug}
+          onChange={(event) => setSelectedExamSlug(event.target.value)}
+          className="rounded-lg border border-white/10 bg-slate-900/70 px-2.5 py-1.5 text-xs font-semibold text-white outline-none focus:border-brand-400"
+          aria-label="Select entrance exam to manage"
+        >
+          {exams.map((exam) => (
+            <option key={exam.id} value={exam.slug}>
+              {exam.shortName}{exam.status !== "available" ? " — no data yet" : ""}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <div className="flex items-center gap-4[cite: 19]">
         {/* User Card inside Topbar[cite: 19] */}

@@ -16,7 +16,10 @@ export const adminImportController = {
       if (!req.file) return res.status(400).json({ error: "No file uploaded" });
       const year = Number(req.body.year);
       if (!year) return res.status(400).json({ error: "year is required (e.g. 2025)" });
-      const result = await excelImportService.commitImport(req.file.buffer, { year });
+      const result = await excelImportService.commitImport(req.file.buffer, {
+        year,
+        examSlug: req.body.exam,
+      });
       res.json(result);
     } catch (err) {
       if (err.details) {

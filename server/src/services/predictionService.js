@@ -1,8 +1,6 @@
 import { predictionRepository } from "../repositories/predictionRepository.js";
+import { examService } from "./examService.js";
 
-// PLACEHOLDER thresholds — replace with your real utils/status.js logic once shared.
-// Currently: Safe = comfortable margin below cutoff, Moderate = close to cutoff,
-// Risky = only just eligible.
 function getStatus(rank, cutoffRank) {
   const ratio = rank / cutoffRank;
   if (ratio <= 0.85) return "safe";
@@ -12,17 +10,33 @@ function getStatus(rank, cutoffRank) {
 
 const STATUS_PRIORITY = { safe: 0, moderate: 1, risky: 2 };
 
+function normalizeCourseCode(course, examSlug) {
+  if (!course) return course;
+  const c = course.trim().toUpperCase();
+  if (examSlug === "tg-polycet") {
+    if (c === "CME" || c === "CSE") return "CS";
+    if (c === "CIV") return "CE";
+    if (c === "ECE") return "EC";
+    if (c === "EEE") return "EE";
+    if (c === "MEC") return "ME";
+  }
+  return c;
+}
+
 export const predictionService = {
-  async predict({ rank, category, gender, course, year }) {
+  async predict({ rank, category, gender, course, year, exam: examSlug }) {
+    const exam = await examService.resolve(examSlug);
     const rankNum = Number(rank);
     const yearNum = Number(year);
+    const normalizedCourse = normalizeCourseCode(course, examSlug);
 
     const matches = await predictionRepository.findMatches({
       rank: rankNum,
       category,
       gender,
-      course,
+      course: normalizedCourse,
       year: yearNum,
+      examId: exam.id,
     });
 
     const withStatus = matches.map((m) => {

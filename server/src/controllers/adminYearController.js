@@ -3,7 +3,9 @@ import { adminYearRepository } from "../repositories/adminYearRepository.js";
 export const adminYearController = {
   async list(req, res, next) {
     try {
-      res.json(await adminYearRepository.list());
+      const examSlug = req.query.exam;
+      const years = await adminYearRepository.list(examSlug);
+      res.json(years);
     } catch (err) {
       next(err);
     }

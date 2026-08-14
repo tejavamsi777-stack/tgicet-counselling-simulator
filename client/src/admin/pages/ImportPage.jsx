@@ -7,9 +7,11 @@ import Card from "../../components/ui/Card";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Badge from "../../components/ui/Badge";
+import { useAdminExam } from "../context/ExamContext";
 
 export default function ImportPage() {
   const { addToast } = useToast();
+  const { selectedExam } = useAdminExam();
   const fileInputRef = useRef(null);
 
   const [file, setFile] = useState(null);
@@ -68,6 +70,7 @@ export default function ImportPage() {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("year", year);
+      formData.append("exam", selectedExam.slug);
       const result = await adminApi.postFile("/admin/import/commit", formData);
       setCommitResult(result);
       addToast(`Import complete — ${result.rowsProcessed} rows processed.`, "success");
@@ -89,7 +92,7 @@ export default function ImportPage() {
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Excel Import</h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Upload a cutoffs spreadsheet, review it, then commit to the database.
+          Upload a cutoffs spreadsheet for <strong>{selectedExam.shortName}</strong>, review it, then commit it only to that exam.
         </p>
       </div>
 

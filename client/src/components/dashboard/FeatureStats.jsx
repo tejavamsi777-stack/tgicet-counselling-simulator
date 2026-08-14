@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Building2, FileText, Zap, Target } from "lucide-react";
+import { GlowCard } from "../ui/spotlight-card";
 
 const stats = [
   {
     icon: Building2,
     value: "Real-Time Data",
-    label: "Latest Cutoff's",
+    label: "Latest Cutoffs",
   },
   {
     icon: FileText,
@@ -41,23 +42,24 @@ export default function FeatureStats() {
                 delay: index * 0.1,
                 duration: 0.5,
               }}
-              whileHover={{
-                y: -6,
-                scale: 1.02,
-              }}
-              className="rounded-[28px] border border-white/50 bg-white/70 p-8 backdrop-blur-xl shadow-[0_20px_60px_rgba(37,99,235,0.10)] transition-all"
+              className="relative"
             >
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100">
-                <Icon className="h-7 w-7 text-blue-600" />
-              </div>
+              <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-7">
+                <div className="glass-button-wrap relative mb-4 inline-flex">
+                  <div className="glass-button flex h-12 w-12 items-center justify-center rounded-2xl border border-white/30 bg-gradient-to-br from-white/20 via-white/10 to-white/5 text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">
+                    <Icon className="h-6 w-6 text-purple-300" />
+                  </div>
+                  <div className="glass-button-shadow rounded-2xl"></div>
+                </div>
 
-              <h3 className="text-3xl font-bold text-slate-900">
-                {item.value}
-              </h3>
+                <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+                  {item.value}
+                </h3>
 
-              <p className="mt-2 text-slate-500">
-                {item.label}
-              </p>
+                <p className="mt-1 text-xs font-medium text-gray-300">
+                  {item.label}
+                </p>
+              </GlowCard>
             </motion.div>
           );
         })}

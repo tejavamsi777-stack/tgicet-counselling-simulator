@@ -1,9 +1,9 @@
 import { pool } from "../config/database.js";
 
 export const collegeRepository = {
-  async getColleges({ district } = {}) {
-    const conditions = ["c.is_active = true"];
-    const values = [];
+  async getColleges({ examId, district } = {}) {
+    const conditions = ["c.is_active = true", "c.exam_id = $1"];
+    const values = [examId];
 
     if (district) {
       values.push(district);

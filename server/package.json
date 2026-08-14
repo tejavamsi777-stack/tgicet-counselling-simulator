@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/app.js",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "migrate:multi-exam": "node scripts/runMultiExamMigration.js",
+    "seed:exam-catalog": "node scripts/seedExamCatalog.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

@@ -11,12 +11,14 @@ import YearsPage from "./pages/YearsPage";
 import LookupPage from "./pages/LookupPage";
 import ImportPage from "./pages/ImportPage";
 import SettingsPage from "./pages/SettingsPage";
+import { AdminExamProvider } from "./context/ExamContext";
 
 export default function AdminApp() {
   return (
     <AdminAuthProvider>
-      <ToastProvider>
-        <Routes>
+      <AdminExamProvider>
+        <ToastProvider>
+          <Routes>
           <Route path="login" element={<AdminLoginPage />} />
           <Route
             element={
@@ -44,8 +46,9 @@ export default function AdminApp() {
             <Route path="import" element={<ImportPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
-        </Routes>
-      </ToastProvider>
+          </Routes>
+        </ToastProvider>
+      </AdminExamProvider>
     </AdminAuthProvider>
   );
 }

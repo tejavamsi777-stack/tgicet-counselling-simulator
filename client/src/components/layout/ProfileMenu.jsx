@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { User, LogOut, ChevronDown, Mail, ArrowLeft, Pencil, Check, Loader2 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import { GlassButton } from "../ui/glass-button";
 
 export default function ProfileMenu() {
   const { user, logout, updateProfile, changePassword } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [view, setView] = useState("menu"); // "menu" | "profile" | "edit"
+  const [view, setView] = useState("menu");
   const containerRef = useRef(null);
 
-  // edit-profile form state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
@@ -74,11 +74,9 @@ export default function ProfileMenu() {
     setSaving(true);
     try {
       await updateProfile({ firstName, lastName });
-
       if (wantsPasswordChange) {
         await changePassword({ currentPassword, newPassword });
       }
-
       setEditSuccess("Profile updated");
       setCurrentPassword("");
       setNewPassword("");
@@ -93,12 +91,12 @@ export default function ProfileMenu() {
 
   if (!user) {
     return (
-      <button
+      <GlassButton
+        size="sm"
         onClick={() => navigate("/login")}
-        className="rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 px-4 py-1.5 text-sm font-medium text-white shadow-sm transition-transform hover:scale-[1.03] active:scale-[0.98]"
       >
         Sign In
-      </button>
+      </GlassButton>
     );
   }
 
@@ -109,69 +107,82 @@ export default function ProfileMenu() {
 
   return (
     <div className="relative" ref={containerRef}>
-      <button
+      <GlassButton
+        size="sm"
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 py-1 pl-1 pr-3 text-sm font-medium text-slate-700 shadow-sm backdrop-blur transition-colors hover:bg-white"
+        contentClassName="flex items-center gap-2"
       >
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-indigo-500 text-xs font-bold text-white">
-          {firstNameDisplay.charAt(0).toUpperCase()}
+        <span className="glass-button-wrap relative inline-flex">
+          <span className="glass-button flex h-6 w-6 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-white/25 via-white/10 to-white/5 text-[11px] font-bold text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">
+            {firstNameDisplay.charAt(0).toUpperCase()}
+          </span>
+          <span className="glass-button-shadow rounded-full"></span>
         </span>
         <span>Hello, {firstNameDisplay}!</span>
-        <ChevronDown size={14} className={`text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
+        <ChevronDown size={14} className={`text-white/80 transition-transform ${open ? "rotate-180" : ""}`} />
+      </GlassButton>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full z-50 mt-2 w-72 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl"
+            initial={{ opacity: 0, y: -8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute right-0 top-full z-50 mt-3 w-72 overflow-hidden rounded-3xl border border-white/20 bg-[#0a0814]/85 p-3 text-white shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-3xl"
           >
             {view === "menu" && (
-              <div className="p-2">
-                <button
+              <div className="space-y-2 p-1">
+                <GlassButton
+                  size="sm"
+                  className="w-full"
+                  contentClassName="flex items-center gap-3 text-white font-semibold"
                   onClick={() => setView("profile")}
-                  className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50"
                 >
-                  <User size={16} className="text-slate-400" />
-                  Profile
-                </button>
-                <button
+                  <User size={16} className="text-purple-300" />
+                  <span className="text-white font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Profile</span>
+                </GlassButton>
+
+                <GlassButton
+                  size="sm"
+                  className="w-full"
+                  contentClassName="flex items-center gap-3 text-red-200 font-semibold"
                   onClick={handleLogout}
-                  className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm text-red-600 hover:bg-red-50"
                 >
-                  <LogOut size={16} />
-                  Logout
-                </button>
+                  <LogOut size={16} className="text-red-400" />
+                  <span className="text-red-300 font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">Logout</span>
+                </GlassButton>
               </div>
             )}
 
             {view === "profile" && (
-              <div className="p-4">
+              <div className="p-3">
                 <div className="mb-3 flex items-center justify-between">
                   <button
                     onClick={() => setView("menu")}
-                    className="flex items-center gap-1.5 text-xs font-medium text-slate-500 hover:text-slate-700"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white"
                   >
                     <ArrowLeft size={13} />
                     Back
                   </button>
-                  <button
+                  <GlassButton
+                    size="sm"
                     onClick={openEdit}
-                    className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-brand-600 hover:bg-brand-50"
+                    contentClassName="flex items-center gap-1.5 font-bold"
                   >
-                    <Pencil size={12} />
+                    <Pencil size={11} />
                     Edit
-                  </button>
+                  </GlassButton>
                 </div>
                 <div className="flex flex-col items-center text-center">
-                  <span className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-indigo-500 text-xl font-bold text-white">
-                    {firstNameDisplay.charAt(0).toUpperCase()}
-                  </span>
-                  <p className="text-sm font-semibold text-slate-900">{user.name || firstNameDisplay}</p>
-                  <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-500">
+                  <div className="glass-button-wrap relative mb-2 inline-flex">
+                    <div className="glass-button flex h-13 w-13 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-white/25 via-white/10 to-white/5 text-lg font-bold text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">
+                      {firstNameDisplay.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="glass-button-shadow rounded-full"></div>
+                  </div>
+                  <p className="text-sm font-bold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">{user.name || firstNameDisplay}</p>
+                  <p className="mt-1 flex items-center gap-1.5 text-xs text-gray-300">
                     <Mail size={12} />
                     {user.email}
                   </p>
@@ -180,10 +191,10 @@ export default function ProfileMenu() {
             )}
 
             {view === "edit" && (
-              <div className="p-4">
+              <div className="p-3">
                 <button
                   onClick={() => setView("profile")}
-                  className="mb-3 flex items-center gap-1.5 text-xs font-medium text-slate-500 hover:text-slate-700"
+                  className="mb-3 flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white"
                 >
                   <ArrowLeft size={13} />
                   Back
@@ -196,7 +207,7 @@ export default function ProfileMenu() {
                       placeholder="First name"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10"
+                      className="h-9 w-full rounded-xl border border-white/20 bg-white/10 px-3 text-xs text-white placeholder-gray-400 outline-none focus:border-white/40"
                       required
                     />
                     <input
@@ -204,12 +215,12 @@ export default function ProfileMenu() {
                       placeholder="Last name"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10"
+                      className="h-9 w-full rounded-xl border border-white/20 bg-white/10 px-3 text-xs text-white placeholder-gray-400 outline-none focus:border-white/40"
                     />
                   </div>
 
                   <div className="pt-1">
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-gray-300">
                       Change password (optional)
                     </p>
                     <div className="space-y-2">
@@ -218,45 +229,47 @@ export default function ProfileMenu() {
                         placeholder="Current password"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
-                        className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10"
+                        className="h-9 w-full rounded-xl border border-white/20 bg-white/10 px-3 text-xs text-white placeholder-gray-400 outline-none focus:border-white/40"
                       />
                       <input
                         type="password"
                         placeholder="New password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
-                        className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10"
+                        className="h-9 w-full rounded-xl border border-white/20 bg-white/10 px-3 text-xs text-white placeholder-gray-400 outline-none focus:border-white/40"
                       />
                       <input
                         type="password"
                         placeholder="Confirm new password"
                         value={confirmNewPassword}
                         onChange={(e) => setConfirmNewPassword(e.target.value)}
-                        className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10"
+                        className="h-9 w-full rounded-xl border border-white/20 bg-white/10 px-3 text-xs text-white placeholder-gray-400 outline-none focus:border-white/40"
                       />
                     </div>
                   </div>
 
                   {editError && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
+                    <div className="rounded-xl border border-red-500/40 bg-red-500/20 px-3 py-2 text-xs text-red-200">
                       {editError}
                     </div>
                   )}
                   {editSuccess && (
-                    <div className="flex items-center gap-1.5 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
+                    <div className="flex items-center gap-1.5 rounded-xl border border-green-500/40 bg-green-500/20 px-3 py-2 text-xs text-green-200">
                       <Check size={13} />
                       {editSuccess}
                     </div>
                   )}
 
-                  <button
+                  <GlassButton
                     type="submit"
                     disabled={saving}
-                    className="flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-[#312e81] via-[#7c3aed] to-[#0e7490] text-xs font-semibold text-white shadow disabled:opacity-50"
+                    size="sm"
+                    className="w-full"
+                    contentClassName="flex items-center justify-center gap-1.5 text-xs font-bold"
                   >
-                    {saving ? <Loader2 size={13} className="animate-spin" /> : null}
-                    {saving ? "Saving…" : "Save changes"}
-                  </button>
+                    {saving ? <Loader2 size={13} className="animate-spin text-white" /> : null}
+                    <span>{saving ? "Saving…" : "Save changes"}</span>
+                  </GlassButton>
                 </form>
               </div>
             )}

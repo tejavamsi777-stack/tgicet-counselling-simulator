@@ -1,4 +1,3 @@
-const VALID_COURSES = ["MBA", "MCA", "MBT", "MTM"];
 const VALID_GENDERS = ["Male", "Female"];
 
 export function validatePredictInput(body) {
@@ -14,8 +13,8 @@ export function validatePredictInput(body) {
   if (!gender || !VALID_GENDERS.includes(gender)) {
     errors.push(`gender must be one of: ${VALID_GENDERS.join(", ")}`);
   }
-  if (!course || !VALID_COURSES.includes(course)) {
-    errors.push(`course must be one of: ${VALID_COURSES.join(", ")}`);
+  if (!course || typeof course !== "string") {
+    errors.push("course is required");
   }
   if (!year || isNaN(Number(year))) {
     errors.push("year is required and must be a number");

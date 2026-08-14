@@ -20,13 +20,22 @@ const PARTICLES = Array.from({ length: 10 }, (_, i) => ({
   delay: i * 0.08,
 }));
 
-export default function PredictionLoader({ stats, onComplete }) {
+export default function PredictionLoader({ stats, onComplete, examSlug = "tg-icet" }) {
   const [progress, setProgress] = useState(0);
   const [statusIndex, setStatusIndex] = useState(0);
   const startRef = useRef(null);
   const rafRef = useRef(null);
 
-useEffect(() => {
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  const examLabel = examSlug
+    ? examSlug.replace("tg-", "TG ").toUpperCase()
+    : "TG ICET";
+
+  useEffect(() => {
     startRef.current = performance.now();
 
     function tick(now) {
@@ -38,14 +47,14 @@ useEffect(() => {
         rafRef.current = requestAnimationFrame(tick);
       } else {
         setTimeout(() => {
-          onComplete?.();
+          onCompleteRef.current?.();
         }, 450);
       }
     }
 
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [onComplete]);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -126,7 +135,7 @@ useEffect(() => {
           AI Counselling Assistant
         </h2>
         <p className="mt-1.5 text-sm text-slate-500">
-          Analyzing your TG ICET Rank...
+          Analyzing your {examLabel} Rank...
         </p>
 
         <div className="mt-6 h-6">

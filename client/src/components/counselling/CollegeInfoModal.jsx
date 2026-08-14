@@ -1,11 +1,13 @@
+import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MapPin, Building2, Users, GraduationCap, IndianRupee } from "lucide-react";
+import { X, MapPin, Building2, Users, GraduationCap, CheckCircle2 } from "lucide-react";
 import collegeTypes from "../../data/collegeTypes.json";
+import { getDistrictName } from "../../utils/districtNames";
 
 function ValuePill({ value }) {
   const v = (value || "NA").trim();
-  const positive = /^(yes|govt|government|co-?ed)/i.test(v);
-  const negative = /^(no|private|men|women)/i.test(v);
+  const positive = /^(yes|govt|government|co-?ed|univ)/i.test(v);
+  const negative = /^(no|private|men|women|girls)/i.test(v);
   const neutral = v === "NA";
 
   const styles = neutral
@@ -35,9 +37,19 @@ function InfoRow({ icon: Icon, label, children }) {
   );
 }
 
-function formatFee(fee) {
-  if (fee === null || fee === undefined) return "Not available";
-  return `₹${Number(fee).toLocaleString("en-IN")}`;
+function renderFeeOrStatus(fee) {
+  if (fee !== null && fee !== undefined && !isNaN(Number(fee)) && Number(fee) > 0) {
+    return (
+      <span className="font-bold text-slate-900">
+        ₹{Number(fee).toLocaleString("en-IN")}
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
+      <CheckCircle2 size={12} /> Available
+    </span>
+  );
 }
 
 export default function CollegeInfoModal({ college, onClose }) {
@@ -50,6 +62,44 @@ export default function CollegeInfoModal({ college, onClose }) {
   const minority = raw.match(/Minority:\s*([^,]+)/)?.[1] || "NA";
   const coEd = raw.match(/Co-Ed:\s*([^,]+)/)?.[1] || "NA";
 
+  const districtDisplay = college.districtName || getDistrictName(college.district);
+
+  const typeDisplay =
+    type !== "NA"
+      ? type
+      : college.ownership_type === "UNIV"
+      ? "UNIV"
+      : college.is_self_finance
+      ? "SF"
+      : college.ownership_type || "PVT";
+
+  const minorityDisplay =
+    minority !== "NA"
+      ? minority
+      : college.is_minority
+      ? "MINORITY"
+      : "NON-MINORITY";
+
+  const coEdDisplay =
+    coEd !== "NA"
+      ? coEd
+      : college.is_girls
+      ? "GIRLS"
+      : "COED";
+
+  // Derive offered courses list from college.courseFees or college.courses array
+  const offeredCourses = useMemo(() => {
+    if (college.courseFees && college.courseFees.length > 0) {
+      return college.courseFees;
+    }
+    if (college.courses && college.courses.length > 0) {
+      return college.courses.map((c) =>
+        typeof c === "string" ? { code: c, fee: null } : c
+      );
+    }
+    return [];
+  }, [college]);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -60,7 +110,7 @@ export default function CollegeInfoModal({ college, onClose }) {
         onClick={onClose}
       >
         <motion.div
-          className="w-full max-w-md overflow-hidden rounded-3xl border border-white/60 bg-white/80 shadow-2xl shadow-indigo-900/20 backdrop-blur-xl"
+          className="w-full max-w-md overflow-hidden rounded-3xl border border-white/60 bg-white/90 shadow-2xl shadow-indigo-900/20 backdrop-blur-xl"
           initial={{ opacity: 0, scale: 0.95, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 8 }}
@@ -93,41 +143,56 @@ export default function CollegeInfoModal({ college, onClose }) {
             </span>
           </div>
 
-          <div className="max-h-[55vh] space-y-2 overflow-y-auto px-6 py-5">
+          <div
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            className="max-h-[55vh] space-y-2 overflow-y-scroll overscroll-contain px-6 py-5"
+            style={{
+              touchAction: "pan-y",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#6366f1 #f1f5f9",
+            }}
+          >
             <InfoRow icon={MapPin} label="District">
-              <span className="text-sm font-semibold text-slate-800">
-                {college.district}
+              <span className="text-sm font-bold text-slate-800">
+                {districtDisplay}
               </span>
             </InfoRow>
 
             <InfoRow icon={Building2} label="Type of College">
-              <ValuePill value={type} />
+              <ValuePill value={typeDisplay} />
             </InfoRow>
 
             <InfoRow icon={Users} label="Minority">
-              <ValuePill value={minority} />
+              <ValuePill value={minorityDisplay} />
             </InfoRow>
 
             <InfoRow icon={GraduationCap} label="Co-Education">
-              <ValuePill value={coEd} />
+              <ValuePill value={coEdDisplay} />
             </InfoRow>
 
-            <section className="rounded-xl bg-white/50 px-3.5 py-3">
-              <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-600">
-                <IndianRupee size={16} className="text-slate-400" strokeWidth={2.2} />
-                Offered Courses & Fees
+            <section className="rounded-xl bg-white/60 px-3.5 py-3 border border-slate-200/60">
+              <div className="mb-2.5 flex items-center justify-between text-sm font-semibold text-slate-700">
+                <span>Offered Courses & Status</span>
+                <span className="text-xs font-normal text-slate-500">
+                  {offeredCourses.length} course{offeredCourses.length === 1 ? "" : "s"}
+                </span>
               </div>
-              {college.courseFees?.length > 0 ? (
+              {offeredCourses.length > 0 ? (
                 <div className="space-y-1.5">
-                  {college.courseFees.map((course) => (
-                    <div key={course.code} className="flex items-center justify-between rounded-lg bg-white/70 px-3 py-2 text-sm">
-                      <span className="font-semibold text-slate-700">{course.code}</span>
-                      <span className="font-semibold text-slate-900">{formatFee(course.fee)}</span>
+                  {offeredCourses.map((course) => (
+                    <div
+                      key={course.code}
+                      className="flex items-center justify-between rounded-lg border border-slate-100 bg-white px-3 py-2 text-sm shadow-sm"
+                    >
+                      <span className="font-bold text-slate-800">{course.code}</span>
+                      {renderFeeOrStatus(course.fee)}
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-slate-500">Course and fee information is not available for this college.</p>
+                <p className="text-xs text-slate-500">No course data available.</p>
               )}
             </section>
           </div>

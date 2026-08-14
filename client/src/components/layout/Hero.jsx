@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowDown } from "lucide-react";
-import Button from "../ui/Button";
-import MagneticButton from "../effects/MagneticButton";
+import { GlassButton } from "../ui/glass-button";
 
 export default function Hero({ onGetStarted }) {
   const ref = useRef(null);
@@ -19,40 +18,30 @@ export default function Hero({ onGetStarted }) {
       ref={ref}
       className="sticky top-16 z-10 flex flex-col items-center overflow-hidden px-6 pt-10 text-center will-change-transform"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--color-brand-100),_transparent_60%)]"
-      />
-
-      <div className="pointer-events-none absolute -top-40 -left-20 h-96 w-96 rounded-full bg-blue-300/20 blur-[120px]" />
-      <div className="pointer-events-none absolute top-20 right-0 h-[450px] w-[450px] rounded-full bg-indigo-300/20 blur-[120px]" />
-
       <motion.h1
         style={{ scale: titleScale, y: titleY }}
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        className="mx-auto max-w-5xl px-4 origin-top text-5xl font-bold tracking-tight text-slate-900 sm:text-4xl sm:text-5xl lg:text-7xl"
+        className="mx-auto max-w-5xl px-4 origin-top text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
+        style={{ fontFamily: "var(--font-display)" }}
       >
-        Find your college.{" "}
-  <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">
-    Instantly.
-  </span>
-</motion.h1>
-      
+        Find your college. Instantly.
+      </motion.h1>
 
       <motion.div
         style={{ height: collapseHeight, opacity: collapseOpacity }}
         className="flex w-full items-start justify-center overflow-hidden"
       >
         <div className="pt-4">
-          <MagneticButton
-  onClick={onGetStarted}
-  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 h-13 px-7 text-base font-medium text-white shadow-lg shadow-blue-500/20 transition-all duration-300 ease-out hover:from-blue-700 hover:via-indigo-700 hover:to-cyan-600 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-0.5 active:scale-95"
->
-  Predict My College
-  <ArrowDown size={16} />
-</MagneticButton>
+          <GlassButton
+            onClick={onGetStarted}
+            size="lg"
+            contentClassName="flex items-center justify-center gap-2"
+          >
+            <span>Predict My College</span>
+            <ArrowDown size={18} />
+          </GlassButton>
         </div>
       </motion.div>
     </section>

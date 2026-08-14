@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { getDistrictName } from "../../utils/districtNames";
 const COURSE_GROUPS = [
   {
     group: "GROUP MBA",
@@ -14,7 +15,7 @@ const COURSE_GROUPS = [
   },
 ];
 
-export default function DistrictSelector({ districts, selectedDistricts, setSelectedDistricts, error }) {
+export default function DistrictSelector({ districts, selectedDistricts, setSelectedDistricts, error, courseGroups = COURSE_GROUPS }) {
   function toggleDistrict(district) {
     setSelectedDistricts((prev) =>
       prev.includes(district)
@@ -60,7 +61,7 @@ export default function DistrictSelector({ districts, selectedDistricts, setSele
                   onChange={() => toggleDistrict(d)}
                   className="h-4 w-4"
                 />
-                {d}
+                {getDistrictName(d)}
               </label>
             ))}
           </div>
@@ -80,7 +81,7 @@ export default function DistrictSelector({ districts, selectedDistricts, setSele
                 </tr>
               </thead>
               <tbody>
-                {COURSE_GROUPS.map((g) => (
+                {courseGroups.map((g) => (
   <Fragment key={g.group}>
     <tr>
                       <td colSpan={3} className="border border-black bg-[#cfe2f3] text-center font-semibold py-1.5">
