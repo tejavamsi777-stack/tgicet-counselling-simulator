@@ -12,6 +12,7 @@ import CategoryDropdown from "../../components/shared/CategoryDropdown";
 import GenderDropdown from "../../components/shared/GenderDropdown";
 import CourseDropdown from "../../components/shared/CourseDropdown";
 import YearDropdown from "../../components/shared/YearDropdown";
+import PredictionLoader from "../../components/dashboard/PredictionLoader";
 
 const CATEGORY_ORDER = [
   "OC", "EWS",
@@ -216,12 +217,13 @@ export default function EapcetPredictorPage() {
         </GlowCard>
       </section>
 
-      {predicting && (
-        <div className="mt-10 flex flex-col items-center gap-3 py-16 text-gray-300">
-          <Loader2 size={32} className="animate-spin text-purple-400" />
-          <p className="text-sm font-medium">Searching colleges for your rank…</p>
-        </div>
-      )}
+      <AnimatePresence>
+        {predicting && (
+          <PredictionLoader
+            examSlug="tg-eapcet"
+          />
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {!predicting && results.length > 0 && (

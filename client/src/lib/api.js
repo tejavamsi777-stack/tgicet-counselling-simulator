@@ -1,5 +1,6 @@
 const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 const TOKEN_KEY = "tgicet_user_token";
+const USER_KEY = "tgicet_user_profile";
 
 export function getUserToken() {
   return localStorage.getItem(TOKEN_KEY);
@@ -10,6 +11,23 @@ export function setUserToken(token) {
     localStorage.setItem(TOKEN_KEY, token);
   } else {
     localStorage.removeItem(TOKEN_KEY);
+  }
+}
+
+export function getStoredUser() {
+  try {
+    const raw = localStorage.getItem(USER_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setStoredUser(user) {
+  if (user) {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  } else {
+    localStorage.removeItem(USER_KEY);
   }
 }
 

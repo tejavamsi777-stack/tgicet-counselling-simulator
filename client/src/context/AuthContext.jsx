@@ -1,51 +1,90 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { api, getUserToken, setUserToken } from "../lib/api";
-import posthog from "posthog-js"; // Imported PostHog
+import { api, getUserToken, setUserToken, getStoredUser, setStoredUser } from "../lib/api";
+import posthog from "posthog-js";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // Synchronous initialization from localStorage so the user is immediately recognized on new tabs/refresh
+  const [user, setUser] = useState(() => {
+    const token = getUserToken();
+    if (!token) return null;
+    return getStoredUser();
+  });
+  const [loading, setLoading] = useState(() => !getUserToken());
 
-  // Tracks user session state changes cleanly without altering your existing flows
+  // Tracks user session state changes cleanly
   useEffect(() => {
     if (user) {
-      posthog.identify(user.id, {
-        email: user.email,
-        name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
-      });
+      try {
+        posthog.identify(user.id, {
+          email: user.email,
+          name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+        });
+      } catch {
+        // ignore analytics failure
+      }
     } else {
-      posthog.reset();
+      try {
+        posthog.reset();
+      } catch {
+        // ignore analytics failure
+      }
     }
   }, [user]);
 
+  // Sync session across multiple browser tabs
+  useEffect(() => {
+    function handleStorageChange(e) {
+      if (e.key === "tgicet_user_token" || e.key === "tgicet_user_profile") {
+        const token = getUserToken();
+        const storedUser = getStoredUser();
+        if (token && storedUser) {
+          setUser(storedUser);
+        } else if (!token) {
+          setUser(null);
+        }
+      }
+    }
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  // Background session verification with server
   useEffect(() => {
     let cancelled = false;
 
     async function restoreSession() {
       const token = getUserToken();
       if (!token) {
+        setUser(null);
+        setStoredUser(null);
         setLoading(false);
         return;
       }
+
       try {
         const data = await api.get("/auth/me");
-        if (!cancelled) setUser(data.authenticated ? data.user : null);
+        if (!cancelled) {
+          if (data.authenticated && data.user) {
+            setUser(data.user);
+            setStoredUser(data.user);
+          } else {
+            // Server explicitly says not authenticated
+            setUserToken(null);
+            setStoredUser(null);
+            setUser(null);
+          }
+        }
       } catch (err) {
-        // Only clear the saved token when the server has explicitly said
-        // it's invalid/expired (401). Anything else — a timeout, Render's
-        // free-tier cold start, a dropped connection, a transient 500 —
-        // means we genuinely don't know the token's status, so we leave it
-        // in place and just treat this particular page load as logged-out.
-        // The next successful /auth/me call (on refresh, or when the
-        // backend wakes up) will pick the real session back up. Wiping the
-        // token here was causing people to get logged out just because the
-        // server was slow to respond, not because their session expired.
+        // Only clear the saved token when the server has explicitly returned 401 Unauthorized.
+        // For network timeouts, cold starts, or dropped connections, we keep the valid local session.
         if (err.status === 401) {
           setUserToken(null);
+          setStoredUser(null);
+          if (!cancelled) setUser(null);
         }
-        if (!cancelled) setUser(null);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -64,6 +103,7 @@ export function AuthProvider({ children }) {
     });
 
     setUserToken(data.token);
+    setStoredUser(data.user);
     setUser(data.user);
     return data.user;
   }, []);
@@ -71,6 +111,7 @@ export function AuthProvider({ children }) {
   const register = useCallback(async (userData) => {
     const data = await api.post("/auth/register", userData);
     setUserToken(data.token);
+    setStoredUser(data.user);
     setUser(data.user);
     return data.user;
   }, []);
@@ -78,66 +119,63 @@ export function AuthProvider({ children }) {
   const loginWithGoogle = useCallback(async (idToken) => {
     const data = await api.post("/auth/google", { idToken });
     setUserToken(data.token);
+    setStoredUser(data.user);
     setUser(data.user);
     return data.user;
   }, []);
 
   const logout = useCallback(() => {
     setUserToken(null);
+    setStoredUser(null);
     setUser(null);
   }, []);
 
-  // Updates first/last name. Requires the user to be logged in (token sent
-  // automatically by `api`, same as the /auth/me call above).
+  // Updates first/last name
   const updateProfile = useCallback(async ({ firstName, lastName }) => {
     const data = await api.patch("/auth/profile", { firstName, lastName });
     setUser(data.user);
+    setStoredUser(data.user);
     return data.user;
   }, []);
 
-  // Changes the password for email/password accounts. Throws (with
-  // err.message from the API) on wrong current password, etc.
+  // Changes the password for email/password accounts
   const changePassword = useCallback(async ({ currentPassword, newPassword }) => {
     const data = await api.patch("/auth/password", { currentPassword, newPassword });
     return data;
   }, []);
 
-  // Kicks off the "forgot password" email. Always resolves the same way
-  // whether or not the email exists — the backend intentionally doesn't
-  // reveal that, so don't try to branch UI on the response either.
+  // Kicks off the "forgot password" email
   const forgotPassword = useCallback(async (email) => {
     const data = await api.post("/auth/forgot-password", { email });
     return data;
   }, []);
 
-  // Completes a reset using the token from the emailed link.
-  const resetPassword = useCallback(async ({ token, newPassword }) => {
-    const data = await api.post("/auth/reset-password", { token, newPassword });
+  // Submits the new password with the reset token
+  const resetPassword = useCallback(async ({ token, password }) => {
+    const data = await api.post("/auth/reset-password", { token, password });
     return data;
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        register,
-        loginWithGoogle,
-        logout,
-        updateProfile,
-        changePassword,
-        forgotPassword,
-        resetPassword,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = {
+    user,
+    loading,
+    login,
+    register,
+    loginWithGoogle,
+    logout,
+    updateProfile,
+    changePassword,
+    forgotPassword,
+    resetPassword,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within an AuthProvider");
+  if (!ctx) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
   return ctx;
 }

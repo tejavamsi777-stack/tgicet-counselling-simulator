@@ -22,7 +22,7 @@ function getCategoryRank(code) {
   return idx === -1 ? 999 : idx;
 }
 
-export function sortCategories(categories) {
+export function sortCategories(categories = []) {
   return [...categories].sort((a, b) => {
     const codeA = a?.code ?? a ?? "";
     const codeB = b?.code ?? b ?? "";
@@ -33,20 +33,35 @@ export function sortCategories(categories) {
   });
 }
 
+// In-memory cache across all dropdown instances and page navigations
+const referenceCache = new Map();
+
 /**
- * Fetches courses/categories/districts/years once and shares them.
+ * Fetches courses/categories/districts/years once and caches them.
  */
 export function useReferenceData(examSlug = "tg-icet") {
-  const [data, setData] = useState({
-    courses: [],
-    categories: [],
-    districts: [],
-    years: [],
+  const cacheKey = examSlug || "default";
+  const cached = referenceCache.get(cacheKey);
+
+  const [data, setData] = useState(() => {
+    if (cached) return cached;
+    return {
+      courses: [],
+      categories: [],
+      districts: [],
+      years: [],
+    };
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !cached);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (referenceCache.has(cacheKey)) {
+      setData(referenceCache.get(cacheKey));
+      setLoading(false);
+      return;
+    }
+
     let cancelled = false;
 
     async function load() {
@@ -58,8 +73,15 @@ export function useReferenceData(examSlug = "tg-icet") {
           api.get(`/districts${query}`),
           api.get(`/years${query}`),
         ]);
+        const result = {
+          courses,
+          categories: sortCategories(categories),
+          districts,
+          years,
+        };
+        referenceCache.set(cacheKey, result);
         if (!cancelled) {
-          setData({ courses, categories: sortCategories(categories), districts, years });
+          setData(result);
           setError(null);
         }
       } catch (err) {
@@ -73,7 +95,7 @@ export function useReferenceData(examSlug = "tg-icet") {
     return () => {
       cancelled = true;
     };
-  }, [examSlug]);
+  }, [examSlug, cacheKey]);
 
   return { ...data, loading, error };
 }
