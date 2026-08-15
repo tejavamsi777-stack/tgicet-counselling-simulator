@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
@@ -7,228 +7,215 @@ import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import StatsGrid from "../../components/dashboard/StatsGrid";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
-import GenderDropdown from "../../components/shared/GenderDropdown";
+import Seo from "../../components/shared/Seo";
+import { motion, AnimatePresence } from "framer-motion";
 import CategoryDropdown from "../../components/shared/CategoryDropdown";
+import GenderDropdown from "../../components/shared/GenderDropdown";
 import CourseDropdown from "../../components/shared/CourseDropdown";
 import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
-import Seo from "../../components/shared/Seo";
-import { AnimatePresence, motion } from "framer-motion";
 
-function mapResults(results, gender, year) {
-  return results.map((r) => ({
-    collegeCode: r.collegeCode,
-    collegeName: r.collegeName,
-    branchCode: r.branchCode || r.course,
-    course: r.branchCode || r.course,
-    category: r.category,
-    gender: gender || r.gender,
-    cutoffRank: r.cutoffRank,
-    year: year || r.year,
-    district: r.district,
-    fee: r.fee,
-    university: r.university,
-    status: r.status,
-    statusPriority: r.statusPriority,
-  }));
+const CATEGORY_ORDER = [
+  "OC", "EWS",
+  "BC_A", "BC-A", "BCA",
+  "BC_B", "BC-B", "BCB",
+  "BC_C", "BC-C", "BCC",
+  "BC_D", "BC-D", "BCD",
+  "BC_E", "BC-E", "BCE",
+  "SC_I",  "SC-I",  "SC1",  "SC_1",
+  "SC_II", "SC-II", "SC2",  "SC_2",
+  "SC_III","SC-III","SC3",  "SC_3",
+  "SC",
+  "ST",
+];
+
+function categoryRank(code) {
+  const idx = CATEGORY_ORDER.findIndex(
+    (c) => c.toUpperCase() === (code ?? "").toUpperCase()
+  );
+  return idx === -1 ? 999 : idx;
+}
+
+function sortCategories(cats) {
+  return [...cats].sort((a, b) => categoryRank(a.code) - categoryRank(b.code));
+}
+
+function Field({ label, children }) {
+  return (
+    <label className="flex flex-col gap-1.5 text-xs font-semibold uppercase tracking-wider text-gray-300">
+      {label}
+      {children}
+    </label>
+  );
 }
 
 export default function EapcetPredictorPage() {
+  const [reference, setReference] = useState({ years: [], categories: [], courses: [] });
   const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("OC");
+  const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");
-  const [course, setCourse] = useState("CSE");
-  const [activeYears, setActiveYears] = useState([]);
-  const [year, setYear] = useState(null);
-
-  const [predicting, setPredicting] = useState(false);
+  const [course, setCourse] = useState("");
+  const [year, setYear] = useState("");
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [initLoading, setInitLoading] = useState(true);
+  const [predicting, setPredicting] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    async function fetchYears() {
-      try {
-        const years = await api.get("/years?exam=tg-eapcet");
-        if (cancelled) return;
-        setActiveYears(years || []);
-        if (years && years.length > 0) {
-          setYear(years[0].year);
+    Promise.all([
+      api.get("/years?exam=tg-eapcet"),
+      api.get("/categories?exam=tg-eapcet"),
+      api.get("/courses?exam=tg-eapcet"),
+    ])
+      .then(([years, categories, courses]) => {
+        if (!cancelled) {
+          setReference({ years, categories, courses });
+          setYear(String(years[0]?.year ?? ""));
+          setCategory(categories[0]?.code ?? "");
+          setCourse(courses[0]?.code ?? "");
         }
-      } catch (err) {
-        console.error("Failed to load active years:", err);
-      }
-    }
-    fetchYears();
-    return () => {
-      cancelled = true;
-    };
+      })
+      .catch((e) => !cancelled && setError(e.message))
+      .finally(() => !cancelled && setInitLoading(false));
+    return () => { cancelled = true; };
   }, []);
 
   async function predict() {
-    if (!rank || isNaN(rank) || Number(rank) <= 0) {
-      setError("Please enter a valid TG EAPCET Rank.");
-      return;
-    }
-    if (!category) {
-      setError("Please select a category.");
-      return;
-    }
-    if (!gender) {
-      setError("Please select a gender.");
-      return;
-    }
-
+    if (!rank || Number(rank) <= 0) return setError("Enter a valid TG EAPCET rank.");
     setError("");
     setPredicting(true);
-    setResults([]);
-
     try {
       const [response] = await Promise.all([
         api.post("/predict", {
-          rank: Number(rank),
+          exam: "tg-eapcet",
+          rank,
           category,
           gender,
-          course: course || undefined,
-          year: year || undefined,
-          exam: "tg-eapcet",
+          course,
+          year: Number(year),
         }),
-        new Promise((resolve) => setTimeout(resolve, 2500)),
+        new Promise((resolve) => setTimeout(resolve, 3000)),
       ]);
-
-      const { results: rawResults } = response;
-      const mapped = mapResults(rawResults || [], gender, year);
-      setResults(mapped);
-      if (!mapped || mapped.length === 0) {
-        setError("No colleges found matching your criteria. Try adjusting your preferences.");
-      }
-    } catch (err) {
-      setError(err.message || "Failed to fetch predictions.");
+      const rawResults = Array.isArray(response) ? response : (response.results || []);
+      setResults(
+        rawResults.map((row) => ({
+          ...row,
+          district: row.district_code || row.district,
+          course: row.course_code || row.course,
+          category: row.category_code || row.category,
+          year: Number(year),
+          cutoff: row.cutoff_rank || row.cutoff,
+        }))
+      );
+    } catch (e) {
+      setError(e.message || "Prediction failed.");
     } finally {
       setPredicting(false);
     }
   }
 
-  const sortedResults = useMemo(() => {
-    return [...results].sort((a, b) => {
-      if (a.statusPriority !== b.statusPriority) {
-        return a.statusPriority - b.statusPriority;
-      }
-      return a.cutoffRank - b.cutoffRank;
-    });
-  }, [results]);
-
-  const yearOptions = useMemo(() => {
-    return activeYears.map((y) => y.year || y);
-  }, [activeYears]);
+  const stats = useMemo(
+    () => ({
+      total: results.length,
+      safe: results.filter((r) => r.status === "safe").length,
+      moderate: results.filter((r) => r.status === "moderate").length,
+      risky: results.filter((r) => r.status === "risky").length,
+    }),
+    [results]
+  );
 
   return (
-    <main className="mx-auto max-w-7xl px-4 pt-4 pb-16 sm:px-6 sm:pt-8 sm:pb-24">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <Seo
         title="TG EAPCET College Predictor 2025"
         description="Predict TG EAPCET college options by rank, category, gender and engineering branch."
         path="/exams/tg-eapcet/predictor"
       />
 
-      <div className="mb-4">
-        <Link
-          to="/exams/tg-eapcet"
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-300 transition hover:text-white"
-        >
-          <ArrowLeft size={15} /> TG EAPCET overview
-        </Link>
-      </div>
+      <Link
+        to="/exams/tg-eapcet"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-300 transition hover:text-white"
+      >
+        <ArrowLeft size={16} /> TG EAPCET overview
+      </Link>
 
-      <section>
-        <GlowCard customSize={true} glowColor="purple" className="p-4 sm:p-8" tilt={false}>
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h1
-              className="text-xl sm:text-2xl font-bold tracking-tight text-white"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Predict Your College
-            </h1>
-            <span className="inline-block rounded-full border border-purple-500/30 bg-purple-500/15 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
-              TG EAPCET 2025
-            </span>
-          </div>
-          <p className="mt-1 text-xs sm:text-sm text-gray-300">
-            Enter your rank and branch to explore eligible colleges based on previous year cutoffs.
-          </p>
+      <section className="mt-6">
+        <GlowCard customSize={true} glowColor="purple" className="p-7 sm:p-10" tilt={false}>
+          <span className="inline-block rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
+            TG EAPCET 2025
+          </span>
+          <h1
+            className="mt-3 text-3xl font-bold text-white sm:text-4xl"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            College Predictor
+          </h1>
 
-          {/* Responsive Inputs Grid */}
-          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {/* 1. Rank */}
-            <div className="relative z-[50]">
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                TG EAPCET Rank
-              </label>
-              <input
-                value={rank}
-                onChange={(e) => setRank(e.target.value)}
-                type="number"
-                className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
-                placeholder="e.g. 25000"
-              />
+          {initLoading ? (
+            <div className="mt-8 flex items-center gap-2 text-sm text-gray-300">
+              <Loader2 size={16} className="animate-spin" />
+              Loading reference data…
             </div>
+          ) : (
+            <>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                <div className="relative z-[50]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Rank</label>
+                  <input
+                    value={rank}
+                    onChange={(e) => setRank(e.target.value)}
+                    type="number"
+                    className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
+                    placeholder="e.g. 25000"
+                  />
+                </div>
 
-            {/* 2. Category & Gender (Combined row on mobile) */}
-            <div className="grid grid-cols-2 gap-2.5 sm:contents">
-              <div className="relative z-[40]">
-                <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                  Category
-                </label>
-                <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-eapcet" />
+                <div className="relative z-[40]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Category</label>
+                  <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-eapcet" />
+                </div>
+
+                <div className="relative z-[30]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Gender</label>
+                  <GenderDropdown gender={gender} setGender={setGender} />
+                </div>
+
+                <div className="relative z-[20]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Branch</label>
+                  <CourseDropdown course={course} setCourse={setCourse} examSlug="tg-eapcet" />
+                </div>
+
+                <div className="relative z-[10]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Year</label>
+                  <YearDropdown year={year} setYear={setYear} years={reference.years} />
+                </div>
               </div>
 
-              <div className="relative z-[30]">
-                <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                  Gender
-                </label>
-                <GenderDropdown gender={gender} setGender={setGender} />
+              <div className="relative z-[1] mt-8 flex justify-center">
+                <GlassButton
+                  disabled={predicting}
+                  onClick={predict}
+                  size="default"
+                  className="w-full sm:w-auto min-w-[180px]"
+                  contentClassName="flex items-center justify-center gap-2 font-semibold"
+                >
+                  {predicting ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin text-white" />
+                      <span>Predicting…</span>
+                    </>
+                  ) : (
+                    <span>Predict Colleges</span>
+                  )}
+                </GlassButton>
               </div>
-            </div>
 
-            {/* 3. Branch */}
-            <div className="relative z-[20]">
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                Branch
-              </label>
-              <CourseDropdown course={course} setCourse={setCourse} examSlug="tg-eapcet" />
-            </div>
-
-            {/* 4. Year */}
-            <div className="relative z-[10]">
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                Cutoff Year
-              </label>
-              <YearDropdown year={year} setYear={setYear} years={yearOptions.length > 0 ? yearOptions : [2025]} />
-            </div>
-          </div>
-
-          {error && (
-            <p className="mt-3 text-xs sm:text-sm font-semibold text-rose-400">{error}</p>
-          )}
-
-          {/* Predict Button */}
-          <div className="relative z-[1] mt-5 sm:mt-7 flex justify-center">
-            <GlassButton
-              disabled={predicting}
-              onClick={predict}
-              size="default"
-              className="w-full sm:w-auto min-w-[180px]"
-              contentClassName="flex items-center justify-center gap-2 font-semibold"
-            >
-              {predicting ? (
-                <>
-                  <Loader2 size={16} className="animate-spin text-white" />
-                  <span>Predicting…</span>
-                </>
-              ) : (
-                <span>Predict Colleges</span>
+              {error && (
+                <p className="mt-3 text-sm font-semibold text-rose-400">{error}</p>
               )}
-            </GlassButton>
-          </div>
+            </>
+          )}
         </GlowCard>
       </section>
 
@@ -236,16 +223,12 @@ export default function EapcetPredictorPage() {
         {predicting && (
           <PredictionLoader
             examSlug="tg-eapcet"
-            onComplete={() => {}}
-            collegeCount={results.length}
-            safeMatchesCount={results.filter((r) => r.status === "safe").length}
-            minimumDurationMs={2500}
           />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {!predicting && sortedResults.length > 0 && (
+        {!predicting && results.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -253,16 +236,8 @@ export default function EapcetPredictorPage() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 space-y-8"
           >
-            <StatsGrid results={sortedResults} />
-            <ResultsTable
-              results={sortedResults}
-              activeYears={activeYears}
-              selectedYear={year}
-              onYearChange={(newYear) => {
-                setYear(newYear);
-                predict();
-              }}
-            />
+            <StatsGrid {...stats} />
+            <ResultsTable results={results} year={Number(year)} showYear />
             {/* Passive ad unit placed safely below prediction results */}
             <AdSenseUnit slotName="predictorResults" minHeight={90} />
           </motion.div>
