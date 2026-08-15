@@ -136,8 +136,8 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/admin/*" element={<AdminApp />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/login" element={<LoginPage initialMode="login" />} />
+        <Route path="/forgot-password" element={<LoginPage initialMode="forgot" />} />
         <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         <Route path="*" element={<MainContent />} />
       </Routes>

@@ -23,12 +23,16 @@ function Input({ className, type, ...props }) {
   );
 }
 
-export default function LoginPage() {
+export default function LoginPage({ initialMode }) {
   const { user, loading, login, register, forgotPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [mode, setMode] = useState("login"); // "login" | "register" | "forgot"
+  const [mode, setMode] = useState(() => {
+    if (initialMode) return initialMode;
+    if (location.pathname === "/forgot-password") return "forgot";
+    return "login";
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +46,14 @@ export default function LoginPage() {
   const [success, setSuccess] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
   const [googleLoading, setGoogleLoading] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === "/forgot-password") {
+      setMode("forgot");
+    } else if (location.pathname === "/login" && mode === "forgot") {
+      setMode("login");
+    }
+  }, [location.pathname]);
 
   // 3D card tilt effect
   const mouseX = useMotionValue(0);
@@ -74,6 +86,13 @@ export default function LoginPage() {
     if (newMode === "login") {
       setFirstName("");
       setLastName("");
+      if (location.pathname === "/forgot-password") {
+        navigate("/login", { replace: true });
+      }
+    } else if (newMode === "forgot") {
+      if (location.pathname !== "/forgot-password") {
+        navigate("/forgot-password", { replace: true });
+      }
     }
   }
 
@@ -340,7 +359,7 @@ export default function LoginPage() {
                     : mode === "forgot"
                     ? forgotSent
                       ? "Check your email"
-                      : "Reset Password"
+                      : "Forgot Password?"
                     : mode === "login"
                     ? "Welcome Back"
                     : "Create Account"}
@@ -358,7 +377,7 @@ export default function LoginPage() {
                     : mode === "forgot"
                     ? forgotSent
                       ? "If an account exists with that email, we've sent you a secure reset link."
-                      : "Enter your email to receive a password reset link."
+                      : "Enter your registered email to receive a password reset link."
                     : mode === "login"
                     ? <>Sign in to continue to <span className="font-semibold text-purple-300">TG Counselling</span></>
                     : "Sign up to save your predictions across devices"}
