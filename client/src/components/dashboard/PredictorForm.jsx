@@ -76,9 +76,9 @@ export default function PredictorForm({
         <div className="relative z-[1] mt-8 flex justify-center">
           <GlassButton
             onClick={onPredict}
-            size="lg"
-            className="w-full sm:w-auto min-w-[220px]"
-            contentClassName="flex items-center justify-center gap-2"
+            size="default"
+            className="w-full sm:w-auto min-w-[180px]"
+            contentClassName="flex items-center justify-center gap-2 font-semibold"
           >
             Predict Colleges
           </GlassButton>

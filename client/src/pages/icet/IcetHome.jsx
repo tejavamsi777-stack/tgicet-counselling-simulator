@@ -5,6 +5,7 @@ import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import { useAuth } from "../../context/AuthContext";
 import Seo from "../../components/shared/Seo";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
 
 export default function IcetHome() {
   return (
@@ -64,6 +65,11 @@ export default function IcetHome() {
             requiresAuth
           />
         </motion.div>
+      </div>
+
+      {/* Passive, non-intrusive exam page ad banner */}
+      <div className="mt-12 w-full">
+        <AdSenseUnit slotName="examBanner" minHeight={90} />
       </div>
     </main>
   );

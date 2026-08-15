@@ -84,6 +84,18 @@ export function GlowCard({
   };
 
   const getInlineStyles = () => {
+    if (!isFinePointer) {
+      const mobileStyles = {
+        backgroundColor: "rgba(255, 255, 255, 0.05)",
+        border: "1px solid rgba(255, 255, 255, 0.12)",
+        position: "relative",
+        touchAction: "pan-y",
+      };
+      if (width !== undefined) mobileStyles.width = typeof width === "number" ? `${width}px` : width;
+      if (height !== undefined) mobileStyles.height = typeof height === "number" ? `${height}px` : height;
+      return mobileStyles;
+    }
+
     const baseStyles = {
       "--base": base,
       "--spread": spread,

@@ -3,6 +3,7 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
 import ResultsTable from "../../components/results/ResultsTable";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import StatsGrid from "../../components/dashboard/StatsGrid";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
@@ -191,12 +192,13 @@ export default function EapcetPredictorPage() {
                 </div>
               </div>
 
-              <div className="mt-8">
+              <div className="relative z-[1] mt-8 flex justify-center">
                 <GlassButton
                   disabled={predicting}
                   onClick={predict}
                   size="default"
-                  contentClassName="flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto min-w-[180px]"
+                  contentClassName="flex items-center justify-center gap-2 font-semibold"
                 >
                   {predicting ? (
                     <>
@@ -204,7 +206,7 @@ export default function EapcetPredictorPage() {
                       <span>Predicting…</span>
                     </>
                   ) : (
-                    <span>Predict colleges</span>
+                    <span>Predict Colleges</span>
                   )}
                 </GlassButton>
               </div>
@@ -236,6 +238,8 @@ export default function EapcetPredictorPage() {
           >
             <StatsGrid {...stats} />
             <ResultsTable results={results} year={Number(year)} showYear />
+            {/* Passive ad unit placed safely below prediction results */}
+            <AdSenseUnit slotName="predictorResults" minHeight={90} />
           </motion.div>
         )}
       </AnimatePresence>

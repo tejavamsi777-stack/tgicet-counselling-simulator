@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { getExamBySlug } from "../../config/exams";
 import Seo from "../../components/shared/Seo";
 import EapcetWebOptionsPage from "../eapcet/EapcetWebOptionsPage";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
 
 const FEATURE_COPY = {
   predictor: {
@@ -51,6 +52,11 @@ export default function ExamFeaturePage({ feature }) {
           <span>The shared database and API are ready to store this exam separately. No estimate, cutoff, college, counselling rule, or allotment result will be shown until verified source data is added.</span>
         </div>
       </section>
+
+      {/* Passive, non-intrusive exam page ad banner */}
+      <div className="mt-12 w-full">
+        <AdSenseUnit slotName="examBanner" minHeight={90} />
+      </div>
     </main>
   );
 }

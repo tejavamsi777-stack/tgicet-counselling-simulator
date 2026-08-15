@@ -15,6 +15,7 @@ import PreferenceList from "../../components/counselling/PreferenceList";
 import ScrambleText from "../../components/effects/ScrambleText";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
 
 const ICET_COURSE_GROUPS = [
   {
@@ -309,6 +310,11 @@ export default function IcetMockCounsellingPage() {
           {stepContent}
         </motion.div>
       </AnimatePresence>
+
+      {/* Passive ad placement outside interactive counselling controls */}
+      {step !== "list" && (
+        <AdSenseUnit slotName="mockCounselling" minHeight={90} />
+      )}
 
       <LoginModal open={loginOpen} onClose={() => { setLoginOpen(false); setPendingPrint(false); }} onAuthenticated={handleAuthenticated} />
     </main>

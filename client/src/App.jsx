@@ -27,18 +27,20 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminApp from "./admin/AdminApp";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
+import { useAdSenseScript } from "./hooks/useAdSenseScript";
 
 function MainContent() {
   const [openPanel, setOpenPanel] = useState(null);
   const location = useLocation();
+  useAdSenseScript();
 
   return (
     <div className="relative min-h-screen overflow-x-clip bg-black text-white selection:bg-purple-500 selection:text-white">
       {/* Gradient background with grain effect matching hero-2-1 */}
       <div className="pointer-events-none absolute -right-60 -top-10 z-0 flex flex-col items-end blur-xl">
-        <div className="z-1 h-[10rem] w-[60rem] rounded-full bg-gradient-to-b from-purple-600 to-sky-600 blur-[6rem]"></div>
-        <div className="z-1 h-[10rem] w-[90rem] rounded-full bg-gradient-to-b from-pink-900 to-yellow-400 blur-[6rem]"></div>
-        <div className="z-1 h-[10rem] w-[60rem] rounded-full bg-gradient-to-b from-yellow-600 to-sky-500 blur-[6rem]"></div>
+        <div className="z-1 h-[10rem] w-[60rem] rounded-full bg-gradient-to-b from-purple-600/40 to-sky-600/40 blur-[6rem]"></div>
+        <div className="z-1 h-[10rem] w-[90rem] rounded-full bg-gradient-to-b from-purple-900/40 to-indigo-900/40 blur-[6rem]"></div>
+        <div className="z-1 h-[10rem] w-[60rem] rounded-full bg-gradient-to-b from-indigo-900/40 to-sky-500/30 blur-[6rem]"></div>
       </div>
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-30"

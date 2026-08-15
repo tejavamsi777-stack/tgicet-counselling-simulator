@@ -10,6 +10,7 @@ import FeatureStats from "../../components/dashboard/FeatureStats";
 import PredictorForm from "../../components/dashboard/PredictorForm";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 
 function mapResults(results, gender, year) {
@@ -72,9 +73,6 @@ export default function IcetPredictorPage() {
     setLoaderStats(null);
     setIsLoading(true);
 
-    document.body.style.overflow = "hidden";
-    lenisRef.current?.stop();
-
     try {
       const [response] = await Promise.all([
         api.post("/predict", {
@@ -85,7 +83,7 @@ export default function IcetPredictorPage() {
           year,
           exam: "tg-icet",
         }),
-        new Promise((resolve) => setTimeout(resolve, 3000)),
+        new Promise((resolve) => setTimeout(resolve, 2500)),
       ]);
 
       const { results } = response;
@@ -99,8 +97,6 @@ export default function IcetPredictorPage() {
     } catch (err) {
       console.error("Prediction error:", err);
       setIsLoading(false);
-      document.body.style.overflow = "";
-      lenisRef.current?.start();
       setError(err.message || "Failed to predict colleges.");
     }
   }
@@ -108,19 +104,12 @@ export default function IcetPredictorPage() {
   function scrollToResults() {
     setTimeout(() => {
       const target = document.getElementById("results");
-      if (!target) return;
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(target, { offset: -60, duration: 1.2 });
-      } else {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+      target?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
   }
 
   function handleLoaderComplete() {
     setIsLoading(false);
-    document.body.style.overflow = "";
-    lenisRef.current?.start();
     scrollToResults();
   }
 
@@ -196,8 +185,10 @@ export default function IcetPredictorPage() {
           </AnimatePresence>
 
           {result.length > 0 && (
-            <div id="results">
+            <div id="results" className="space-y-8">
               <ResultsTable results={result} year={year} showYear={activeYears.length >= 2} />
+              {/* Passive ad unit placed safely below prediction results */}
+              <AdSenseUnit slotName="predictorResults" minHeight={90} />
             </div>
           )}
         </main>

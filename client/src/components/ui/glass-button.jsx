@@ -3,9 +3,10 @@ import { cn } from "../../lib/utils";
 
 const glassButtonVariants = (size = "default") => {
   const sizes = {
-    default: "text-base font-semibold",
-    sm: "text-sm font-semibold",
-    lg: "text-lg font-semibold",
+    default: "text-sm font-semibold",
+    sm: "text-xs font-semibold",
+    md: "text-sm font-semibold",
+    lg: "text-sm sm:text-base font-semibold",
     icon: "h-10 w-10 flex items-center justify-center",
   };
   return cn(
@@ -16,13 +17,14 @@ const glassButtonVariants = (size = "default") => {
 
 const glassButtonTextVariants = (size = "default") => {
   const sizes = {
-    default: "px-6 py-3.5",
-    sm: "px-4 py-2 text-xs sm:text-sm",
-    lg: "px-8 py-4",
+    default: "px-5 py-2.5 text-sm",
+    sm: "px-3.5 py-1.5 text-xs",
+    md: "px-5 py-2.5 text-sm",
+    lg: "px-6 py-2.5 text-sm sm:text-base",
     icon: "flex h-10 w-10 items-center justify-center",
   };
   return cn(
-    "glass-button-text relative block select-none tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]",
+    "glass-button-text relative flex items-center justify-center select-none tracking-tight drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]",
     sizes[size] || sizes.default
   );
 };

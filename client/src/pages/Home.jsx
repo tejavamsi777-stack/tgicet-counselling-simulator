@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import ExamCard from "../components/exams/ExamCard";
 import { exams } from "../config/exams";
 import Seo from "../components/shared/Seo";
+import AdSenseUnit from "../components/ads/AdSenseUnit";
 
 export default function Home() {
   const sortedExams = useMemo(() => {
@@ -61,6 +62,11 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
+      {/* Passive, non-intrusive Home page advertisement banner */}
+      <div className="mt-12 w-full">
+        <AdSenseUnit slotName="homeBanner" minHeight={90} />
+      </div>
     </main>
   );
 }

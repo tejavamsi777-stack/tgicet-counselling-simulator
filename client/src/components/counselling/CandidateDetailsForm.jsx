@@ -26,28 +26,18 @@ export default function CandidateDetailsForm({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0 }}
-          className="relative z-10 flex flex-col justify-between"
+          className="relative z-10"
         >
-          <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Rank</label>
-            <div className="relative">
-              <input
-                type="number"
-                value={rank}
-                onChange={(e) => setRank(e.target.value)}
-                placeholder="e.g. 12500"
-                className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
-              />
-            </div>
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Rank</label>
+          <div className="relative">
+            <input
+              type="number"
+              value={rank}
+              onChange={(e) => setRank(e.target.value)}
+              placeholder="e.g. 12500"
+              className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
+            />
           </div>
-
-          {onSubmit && (
-            <div className="mt-6 hidden sm:block">
-              <GlassButton onClick={onSubmit} size="lg" className="w-full">
-                Continue
-              </GlassButton>
-            </div>
-          )}
         </motion.div>
 
         <motion.div
@@ -71,14 +61,6 @@ export default function CandidateDetailsForm({
         </motion.div>
       </div>
 
-      {onSubmit && (
-        <div className="mt-6 block sm:hidden">
-          <GlassButton onClick={onSubmit} size="lg" className="w-full">
-            Continue
-          </GlassButton>
-        </div>
-      )}
-
       {error && (
         <motion.p
           initial={{ opacity: 0, y: -4 }}
@@ -87,6 +69,19 @@ export default function CandidateDetailsForm({
         >
           {error}
         </motion.p>
+      )}
+
+      {onSubmit && (
+        <div className="relative z-[1] mt-8 flex justify-center">
+          <GlassButton
+            onClick={onSubmit}
+            size="default"
+            className="w-full sm:w-auto min-w-[180px]"
+            contentClassName="flex items-center justify-center gap-2 font-semibold"
+          >
+            Continue
+          </GlassButton>
+        </div>
       )}
     </GlowCard>
   );

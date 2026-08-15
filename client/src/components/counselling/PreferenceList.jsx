@@ -48,16 +48,6 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
       <div
         className="max-h-[510px] overflow-y-auto overscroll-contain border border-[#52647b]"
         style={{ touchAction: "pan-y" }}
-        onWheel={(e) => {
-          const el = e.currentTarget;
-          const atTop = el.scrollTop === 0 && e.deltaY < 0;
-          const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight && e.deltaY > 0;
-          if (!atTop && !atBottom) {
-            e.preventDefault();
-          }
-          e.stopPropagation();
-          el.scrollTop += e.deltaY * 0.5;
-        }}
       >
         <table className="w-full border-collapse text-left text-[13px]">
           <thead className="sticky top-0 z-10">

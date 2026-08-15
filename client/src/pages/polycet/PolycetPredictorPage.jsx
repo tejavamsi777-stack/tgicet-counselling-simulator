@@ -11,6 +11,8 @@ import StatsGrid from "../../components/dashboard/StatsGrid";
 import PredictorForm from "../../components/dashboard/PredictorForm";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
+import AdSenseUnit from "../../components/ads/AdSenseUnit";
+import Seo from "../../components/shared/Seo";
 import { AnimatePresence } from "framer-motion";
 
 function mapResults(results, gender, year) {
@@ -72,14 +74,12 @@ export default function PolycetPredictorPage() {
     if (showLoader) {
       setLoaderStats(null);
       setIsLoading(true);
-      document.body.style.overflow = "hidden";
-      lenisRef.current?.stop();
     }
 
     try {
       const [response] = await Promise.all([
         api.post("/predict", { ...criteria, exam: "tg-polycet" }),
-        showLoader ? new Promise((resolve) => setTimeout(resolve, 3000)) : Promise.resolve(),
+        showLoader ? new Promise((resolve) => setTimeout(resolve, 2500)) : Promise.resolve(),
       ]);
 
       const { results } = response;
@@ -100,8 +100,6 @@ export default function PolycetPredictorPage() {
       console.error("Prediction error:", err);
       if (showLoader) {
         setIsLoading(false);
-        document.body.style.overflow = "";
-        lenisRef.current?.start();
       }
       setError(err.message || "Failed to predict colleges. Please check backend connection.");
     }
@@ -138,20 +136,12 @@ export default function PolycetPredictorPage() {
   function scrollToResults() {
     setTimeout(() => {
       const target = document.getElementById("results");
-      if (!target) return;
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(target, { offset: -60, duration: 1.2 });
-      } else {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+      target?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
   }
 
   const handleLoaderComplete = useCallback(() => {
     setIsLoading(false);
-    document.body.style.overflow = "";
-    lenisRef.current?.start();
-
     if (shouldScrollOnComplete) {
       scrollToResults();
     }
@@ -217,6 +207,8 @@ export default function PolycetPredictorPage() {
                   selectedYear={year}
                   onYearChange={handleYearChange}
                 />
+                {/* Passive ad unit placed safely below prediction results */}
+                <AdSenseUnit slotName="predictorResults" minHeight={90} />
               </div>
             )}
           </div>
