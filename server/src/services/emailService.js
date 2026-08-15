@@ -18,9 +18,9 @@ export const emailService = {
       </div>
     `;
 
-    // 1. Check for Resend API Key first (HTTP API is fastest and reliable on cloud hosting)
+    // 1. Check for Resend API Key first if configured
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey && resendApiKey !== "re_your_key_here") {
+    if (resendApiKey && resendApiKey.startsWith("re_")) {
       try {
         const fromEmail = process.env.RESEND_FROM_EMAIL || "TG Counselling <onboarding@resend.dev>";
         const response = await fetch("https://api.resend.com/emails", {
@@ -38,41 +38,42 @@ export const emailService = {
         });
 
         const data = await response.json();
-        if (!response.ok) {
-          console.error("=== Resend API error ===", data);
-          throw new Error(data.message || "Failed to send via Resend");
+        if (response.ok) {
+          console.log("Password reset email sent successfully via Resend to:", to, "ID:", data.id);
+          return { success: true, provider: "resend", id: data.id };
+        } else {
+          console.warn("Resend API returned warning:", data);
         }
-
-        console.log("Password reset email sent successfully via Resend to:", to, "ID:", data.id);
-        return { success: true, provider: "resend", id: data.id };
       } catch (err) {
         console.error("Resend delivery failed:", err.message);
-        // If Resend failed, try Gmail SMTP as fallback if configured
       }
     }
 
-    // 2. Fallback to Gmail SMTP via Nodemailer
+    // 2. Gmail SMTP via Nodemailer (Configured with IPv4 to fix Render's ENETUNREACH)
     const gmailUser = process.env.GMAIL_USER;
     const gmailPass = process.env.GMAIL_APP_PASSWORD;
 
     if (gmailUser && gmailPass) {
       try {
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
+          family: 4, // CRITICAL: Forces IPv4 resolution, eliminating ENETUNREACH on Render Linux containers
           auth: {
-            user: gmailUser,
-            pass: gmailPass,
+            user: gmailUser.trim(),
+            pass: gmailPass.replace(/\s+/g, ""), // Strip any spaces from the 16-character app password
           },
         });
 
         await transporter.sendMail({
-          from: `"TG Counselling" <${gmailUser}>`,
+          from: `"TG Counselling" <${gmailUser.trim()}>`,
           to,
           subject: "Reset your TG Counselling password",
           html,
         });
 
-        console.log("Password reset email sent successfully via Gmail SMTP to:", to);
+        console.log("✅ Password reset email sent successfully via Gmail SMTP to:", to);
         return { success: true, provider: "gmail" };
       } catch (err) {
         console.error("=== Gmail SMTP failure ===");
@@ -84,7 +85,7 @@ export const emailService = {
       }
     }
 
-    console.warn("⚠️ No email provider configured! Please set RESEND_API_KEY or GMAIL_USER + GMAIL_APP_PASSWORD in environment variables.");
+    console.warn("⚠️ No email provider configured! Please set GMAIL_USER + GMAIL_APP_PASSWORD or RESEND_API_KEY in environment variables.");
     return { success: false, reason: "NO_PROVIDER_CONFIGURED" };
   },
 };
