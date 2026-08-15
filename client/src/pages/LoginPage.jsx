@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Navigate, Link } from "react-router-dom";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, Check, Loader2, KeyRound } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/shared/GoogleSignInButton";
 import Logo from "../components/layout/Logo";
@@ -24,17 +24,18 @@ function Input({ className, type, ...props }) {
 }
 
 export default function LoginPage() {
-  const { user, loading, login, register } = useAuth();
+  const { user, loading, login, register, forgotPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [mode, setMode] = useState("login"); // "login" | "register"
+  const [mode, setMode] = useState("login"); // "login" | "register" | "forgot"
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [forgotSent, setForgotSent] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -69,6 +70,7 @@ export default function LoginPage() {
     setMode(newMode);
     setError("");
     setPassword("");
+    setForgotSent(false);
     if (newMode === "login") {
       setFirstName("");
       setLastName("");
@@ -78,6 +80,23 @@ export default function LoginPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
+    if (mode === "forgot") {
+      if (forgotSent) {
+        switchMode("login");
+        return;
+      }
+      setIsLoading(true);
+      try {
+        await forgotPassword(email);
+        setForgotSent(true);
+      } catch (err) {
+        setError(err.message || "Something went wrong");
+      } finally {
+        setIsLoading(false);
+      }
+      return;
+    }
 
     if (mode === "register") {
       if (password.length < 8) {
@@ -110,7 +129,7 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden bg-black selection:bg-purple-500 selection:text-white">
-      {/* Background gradient effect - matches purple OnlyPipe style */}
+      {/* Background gradient effect - matches purple style */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-500/40 via-purple-700/50 to-black" />
 
       {/* Noise texture overlay */}
@@ -150,32 +169,55 @@ export default function LoginPage() {
         }}
       />
 
-      {/* Animated glow spots */}
-      <div className="absolute left-1/4 top-1/4 h-96 w-96 animate-pulse rounded-full bg-white/5 opacity-40 blur-[100px]" />
-      <div className="absolute bottom-1/4 right-1/4 h-96 w-96 animate-pulse rounded-full bg-white/5 opacity-40 blur-[100px] delay-1000" />
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute h-1.5 w-1.5 rounded-full bg-white/20"
+            style={{
+              top: `${20 + i * 15}%`,
+              left: `${15 + i * 14}%`,
+            }}
+            animate={{
+              y: [-20, 20],
+              opacity: [0.2, 0.6, 0.2],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 3 + i * 0.8,
+              repeat: Infinity,
+              repeatType: "mirror",
+              delay: i * 0.4,
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Top Navigation / Back button */}
-      <div className="absolute left-6 top-6 z-30">
+      {/* Back to website button */}
+      <div className="absolute top-6 left-6 z-20">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/70 backdrop-blur transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-purple-300 transition hover:text-white"
         >
-          <ArrowLeft size={14} />
-          Back to home
+          <ArrowLeft size={15} /> Back to Home
         </Link>
       </div>
 
-      {/* 3D Card Container */}
+      {/* Card container with 3D perspective */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 w-full max-w-sm px-4"
-        style={{ perspective: 1500 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative z-10 px-4 w-full max-w-sm"
+        style={{ perspective: 1200 }}
       >
         <motion.div
-          className="relative"
-          style={{ rotateX, rotateY }}
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
+          }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           whileHover={{ z: 10 }}
@@ -202,7 +244,6 @@ export default function LoginPage() {
 
             {/* Traveling light beam effect */}
             <div className="absolute -inset-[1px] overflow-hidden rounded-2xl">
-              {/* Top light beam */}
               <motion.div
                 className="absolute left-0 top-0 h-[3px] w-[50%] bg-gradient-to-r from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
@@ -217,8 +258,6 @@ export default function LoginPage() {
                   filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror" },
                 }}
               />
-
-              {/* Right light beam */}
               <motion.div
                 className="absolute right-0 top-0 h-[50%] w-[3px] bg-gradient-to-b from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
@@ -233,8 +272,6 @@ export default function LoginPage() {
                   filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 0.6 },
                 }}
               />
-
-              {/* Bottom light beam */}
               <motion.div
                 className="absolute bottom-0 right-0 h-[3px] w-[50%] bg-gradient-to-r from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
@@ -249,8 +286,6 @@ export default function LoginPage() {
                   filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 1.2 },
                 }}
               />
-
-              {/* Left light beam */}
               <motion.div
                 className="absolute bottom-0 left-0 h-[50%] w-[3px] bg-gradient-to-b from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
@@ -264,28 +299,6 @@ export default function LoginPage() {
                   opacity: { duration: 1.2, repeat: Infinity, repeatType: "mirror", delay: 1.8 },
                   filter: { duration: 1.5, repeat: Infinity, repeatType: "mirror", delay: 1.8 },
                 }}
-              />
-
-              {/* Corner glow spots */}
-              <motion.div
-                className="absolute left-0 top-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]"
-                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
-              />
-              <motion.div
-                className="absolute right-0 top-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]"
-                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 2.4, repeat: Infinity, repeatType: "mirror", delay: 0.5 }}
-              />
-              <motion.div
-                className="absolute bottom-0 right-0 h-[8px] w-[8px] rounded-full bg-white/60 blur-[2px]"
-                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 2.2, repeat: Infinity, repeatType: "mirror", delay: 1 }}
-              />
-              <motion.div
-                className="absolute bottom-0 left-0 h-[5px] w-[5px] rounded-full bg-white/40 blur-[1px]"
-                animate={{ opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 2.3, repeat: Infinity, repeatType: "mirror", delay: 1.5 }}
               />
             </div>
 
@@ -316,22 +329,36 @@ export default function LoginPage() {
                 </motion.div>
 
                 <motion.h1
+                  key={mode + (forgotSent ? "-sent" : "")}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-xl font-bold text-transparent"
                 >
-                  {success ? "You're in!" : mode === "login" ? "Welcome Back" : "Create Account"}
+                  {success
+                    ? "You're in!"
+                    : mode === "forgot"
+                    ? forgotSent
+                      ? "Check your email"
+                      : "Reset Password"
+                    : mode === "login"
+                    ? "Welcome Back"
+                    : "Create Account"}
                 </motion.h1>
 
                 <motion.p
+                  key={mode + (forgotSent ? "-sent-p" : "")}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ duration: 0.3 }}
                   className="mt-2 text-xs text-white/70 leading-normal"
                 >
                   {success
                     ? "Taking you to your predictions..."
+                    : mode === "forgot"
+                    ? forgotSent
+                      ? "If an account exists with that email, we've sent you a secure reset link."
+                      : "Enter your email to receive a password reset link."
                     : mode === "login"
                     ? <>Sign in to continue to <span className="font-semibold text-purple-300">TG Counselling</span></>
                     : "Sign up to save your predictions across devices"}
@@ -375,89 +402,93 @@ export default function LoginPage() {
                   )}
 
                   {/* Email Input */}
-                  <motion.div
-                    className={`relative ${focusedInput === "email" ? "z-10" : ""}`}
-                    whileFocus={{ scale: 1.01 }}
-                    whileHover={{ scale: 1.005 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  >
-                    <div className="absolute -inset-[0.5px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <div className="relative flex items-center overflow-hidden rounded-lg">
-                      <Mail
-                        className={`absolute left-3 h-4 w-4 transition-colors duration-300 ${
-                          focusedInput === "email" ? "text-white" : "text-white/40"
-                        }`}
-                      />
-                      <Input
-                        type="email"
-                        placeholder="Email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onFocus={() => setFocusedInput("email")}
-                        onBlur={() => setFocusedInput(null)}
-                        className="h-10 w-full border-transparent bg-white/5 pl-10 pr-3 text-white placeholder:text-white/30 transition-all duration-300 focus:border-white/20 focus:bg-white/10"
-                        required
-                      />
-                      {focusedInput === "email" && (
-                        <motion.div
-                          layoutId="input-highlight"
-                          className="absolute inset-0 -z-10 bg-white/5"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.2 }}
+                  {(!forgotSent || mode !== "forgot") && (
+                    <motion.div
+                      className={`relative ${focusedInput === "email" ? "z-10" : ""}`}
+                      whileFocus={{ scale: 1.01 }}
+                      whileHover={{ scale: 1.005 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <div className="absolute -inset-[0.5px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                      <div className="relative flex items-center overflow-hidden rounded-lg">
+                        <Mail
+                          className={`absolute left-3 h-4 w-4 transition-colors duration-300 ${
+                            focusedInput === "email" ? "text-white" : "text-white/40"
+                          }`}
                         />
-                      )}
-                    </div>
-                  </motion.div>
-
-                  {/* Password Input */}
-                  <motion.div
-                    className={`relative ${focusedInput === "password" ? "z-10" : ""}`}
-                    whileFocus={{ scale: 1.01 }}
-                    whileHover={{ scale: 1.005 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  >
-                    <div className="absolute -inset-[0.5px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <div className="relative flex items-center overflow-hidden rounded-lg">
-                      <Lock
-                        className={`absolute left-3 h-4 w-4 transition-colors duration-300 ${
-                          focusedInput === "password" ? "text-white" : "text-white/40"
-                        }`}
-                      />
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder={mode === "register" ? "Create Password (min 8 chars)" : "Password"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onFocus={() => setFocusedInput("password")}
-                        onBlur={() => setFocusedInput(null)}
-                        className="h-10 w-full border-transparent bg-white/5 pl-10 pr-10 text-white placeholder:text-white/30 transition-all duration-300 focus:border-white/20 focus:bg-white/10"
-                        required
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword((v) => !v)}
-                        className="absolute right-3 text-white/40 transition-colors duration-300 hover:text-white"
-                        tabIndex={-1}
-                      >
-                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                      </button>
-
-                      {focusedInput === "password" && (
-                        <motion.div
-                          layoutId="input-highlight"
-                          className="absolute inset-0 -z-10 bg-white/5"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.2 }}
+                        <Input
+                          type="email"
+                          placeholder="Email address"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          onFocus={() => setFocusedInput("email")}
+                          onBlur={() => setFocusedInput(null)}
+                          className="h-10 w-full border-transparent bg-white/5 pl-10 pr-3 text-white placeholder:text-white/30 transition-all duration-300 focus:border-white/20 focus:bg-white/10"
+                          required
                         />
-                      )}
-                    </div>
-                  </motion.div>
+                        {focusedInput === "email" && (
+                          <motion.div
+                            layoutId="input-highlight"
+                            className="absolute inset-0 -z-10 bg-white/5"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
 
-                  {/* Remember me & Forgot password */}
+                  {/* Password Input (Only for login and register) */}
+                  {mode !== "forgot" && (
+                    <motion.div
+                      className={`relative ${focusedInput === "password" ? "z-10" : ""}`}
+                      whileFocus={{ scale: 1.01 }}
+                      whileHover={{ scale: 1.005 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <div className="absolute -inset-[0.5px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                      <div className="relative flex items-center overflow-hidden rounded-lg">
+                        <Lock
+                          className={`absolute left-3 h-4 w-4 transition-colors duration-300 ${
+                            focusedInput === "password" ? "text-white" : "text-white/40"
+                          }`}
+                        />
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder={mode === "register" ? "Create Password (min 8 chars)" : "Password"}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          onFocus={() => setFocusedInput("password")}
+                          onBlur={() => setFocusedInput(null)}
+                          className="h-10 w-full border-transparent bg-white/5 pl-10 pr-10 text-white placeholder:text-white/30 transition-all duration-300 focus:border-white/20 focus:bg-white/10"
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword((v) => !v)}
+                          className="absolute right-3 text-white/40 transition-colors duration-300 hover:text-white"
+                          tabIndex={-1}
+                        >
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
+
+                        {focusedInput === "password" && (
+                          <motion.div
+                            layoutId="input-highlight"
+                            className="absolute inset-0 -z-10 bg-white/5"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Remember me & Forgot password in Login mode */}
                   {mode === "login" && (
                     <div className="flex items-center justify-between pt-1">
                       <div className="flex items-center space-x-2">
@@ -489,17 +520,25 @@ export default function LoginPage() {
                       </div>
 
                       <div className="text-xs">
-                        <Link
-                          to="/forgot-password"
-                          className="text-white/60 transition-colors duration-200 hover:text-white"
+                        <button
+                          type="button"
+                          onClick={() => switchMode("forgot")}
+                          className="text-white/60 transition-colors duration-200 hover:text-white cursor-pointer underline hover:text-white"
                         >
                           Forgot password?
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   )}
 
-                  {/* Sign in button */}
+                  {/* Forgot sent confirmation notice */}
+                  {mode === "forgot" && forgotSent && (
+                    <div className="rounded-xl border border-white/15 bg-white/5 p-3 text-center text-xs text-white/80 leading-relaxed">
+                      Check your <span className="font-semibold text-white">spam or junk</span> folder. Links are valid for 1 hour.
+                    </div>
+                  )}
+
+                  {/* Submit button */}
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -545,7 +584,13 @@ export default function LoginPage() {
                             exit={{ opacity: 0 }}
                             className="flex items-center justify-center gap-1 text-sm font-semibold"
                           >
-                            {mode === "login" ? "Sign In" : "Create Account"}
+                            {mode === "forgot"
+                              ? forgotSent
+                                ? "Back to Sign In"
+                                : "Send Reset Link"
+                              : mode === "login"
+                              ? "Sign In"
+                              : "Create Account"}
                             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/button:translate-x-1" />
                           </motion.span>
                         )}
@@ -553,54 +598,80 @@ export default function LoginPage() {
                     </div>
                   </motion.button>
 
-                  {/* Divider */}
-                  <div className="relative my-3 flex items-center">
-                    <div className="flex-grow border-t border-white/10" />
-                    <motion.span
-                      className="mx-3 text-xs text-white/40"
-                      initial={{ opacity: 0.7 }}
-                      animate={{ opacity: [0.7, 0.9, 0.7] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      or
-                    </motion.span>
-                    <div className="flex-grow border-t border-white/10" />
-                  </div>
+                  {/* Divider and Google Sign In (for login and register) */}
+                  {mode !== "forgot" && (
+                    <>
+                      <div className="relative my-3 flex items-center">
+                        <div className="flex-grow border-t border-white/10" />
+                        <motion.span
+                          className="mx-3 text-xs text-white/40"
+                          initial={{ opacity: 0.7 }}
+                          animate={{ opacity: [0.7, 0.9, 0.7] }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          or
+                        </motion.span>
+                        <div className="flex-grow border-t border-white/10" />
+                      </div>
 
-                  {/* Google Sign In */}
-                  <div className="flex justify-center">
-                    <GoogleSignInButton
-                      onStart={() => setGoogleLoading(true)}
-                      onSuccess={() => {
-                        setSuccess(true);
-                        setTimeout(() => navigate(redirectTo, { replace: true }), 1000);
-                      }}
-                      onError={(msg) => {
-                        setGoogleLoading(false);
-                        setError(msg);
-                      }}
-                    />
-                  </div>
+                      <div className="flex justify-center">
+                        <GoogleSignInButton
+                          onStart={() => setGoogleLoading(true)}
+                          onSuccess={() => {
+                            setSuccess(true);
+                            setTimeout(() => navigate(redirectTo, { replace: true }), 1000);
+                          }}
+                          onError={(msg) => {
+                            setGoogleLoading(false);
+                            setError(msg);
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
 
-                  {/* Sign up link */}
-                  <motion.p
+                  {/* Switch mode links */}
+                  <motion.div
                     className="mt-4 text-center text-xs text-white/60"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.2 }}
                   >
-                    {mode === "login" ? "Don't have an account? " : "Already have an account? "}
-                    <button
-                      type="button"
-                      onClick={() => switchMode(mode === "login" ? "register" : "login")}
-                      className="group/signup relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
-                    >
-                      <span className="relative z-10">
-                        {mode === "login" ? "Sign up" : "Log in"}
-                      </span>
-                      <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/signup:w-full" />
-                    </button>
-                  </motion.p>
+                    {mode === "forgot" ? (
+                      <button
+                        type="button"
+                        onClick={() => switchMode("login")}
+                        className="group/back relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                      >
+                        <span className="relative z-10">Remember your password? Sign in</span>
+                        <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/back:w-full" />
+                      </button>
+                    ) : mode === "login" ? (
+                      <>
+                        Don&apos;t have an account?{" "}
+                        <button
+                          type="button"
+                          onClick={() => switchMode("register")}
+                          className="group/signup relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                        >
+                          <span className="relative z-10">Sign up</span>
+                          <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/signup:w-full" />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        Already have an account?{" "}
+                        <button
+                          type="button"
+                          onClick={() => switchMode("login")}
+                          className="group/login relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                        >
+                          <span className="relative z-10">Log in</span>
+                          <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/login:w-full" />
+                        </button>
+                      </>
+                    )}
+                  </motion.div>
                 </form>
               )}
             </div>
