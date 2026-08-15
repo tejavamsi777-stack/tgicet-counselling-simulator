@@ -18,7 +18,7 @@ export const emailService = {
       </div>
     `;
 
-    // 1. Check for Resend API Key first if configured
+    // 1. Resend API via HTTPS (Port 443 - Bypasses all cloud hosting SMTP firewall blocks)
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey && resendApiKey.startsWith("re_")) {
       try {
@@ -26,7 +26,7 @@ export const emailService = {
         const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${resendApiKey}`,
+            Authorization: `Bearer ${resendApiKey.trim()}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -39,17 +39,48 @@ export const emailService = {
 
         const data = await response.json();
         if (response.ok) {
-          console.log("Password reset email sent successfully via Resend to:", to, "ID:", data.id);
+          console.log("✅ Password reset email sent successfully via Resend to:", to, "ID:", data.id);
           return { success: true, provider: "resend", id: data.id };
         } else {
-          console.warn("Resend API returned warning:", data);
+          console.warn("⚠️ Resend notice:", data.message || data.name);
         }
       } catch (err) {
         console.error("Resend delivery failed:", err.message);
       }
     }
 
-    // 2. Gmail SMTP via Nodemailer (Configured with IPv4 to fix Render's ENETUNREACH)
+    // 2. Brevo API via HTTPS (Port 443 - free 300 emails/day to ANY email address)
+    const brevoApiKey = process.env.BREVO_API_KEY;
+    if (brevoApiKey) {
+      try {
+        const senderEmail = process.env.BREVO_SENDER_EMAIL || process.env.GMAIL_USER || "tejavamsi777@gmail.com";
+        const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+          method: "POST",
+          headers: {
+            "api-key": brevoApiKey.trim(),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            sender: { name: "TG Counselling", email: senderEmail },
+            to: [{ email: to }],
+            subject: "Reset your TG Counselling password",
+            htmlContent: html,
+          }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log("✅ Password reset email sent successfully via Brevo to:", to, "ID:", data.messageId);
+          return { success: true, provider: "brevo", id: data.messageId };
+        } else {
+          console.warn("⚠️ Brevo notice:", data.message);
+        }
+      } catch (err) {
+        console.error("Brevo delivery failed:", err.message);
+      }
+    }
+
+    // 3. Gmail SMTP via Nodemailer (Port 587 STARTTLS with IPv4)
     const gmailUser = process.env.GMAIL_USER;
     const gmailPass = process.env.GMAIL_APP_PASSWORD;
 
@@ -57,13 +88,14 @@ export const emailService = {
       try {
         const transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
-          port: 465,
-          secure: true,
-          family: 4, // CRITICAL: Forces IPv4 resolution, eliminating ENETUNREACH on Render Linux containers
+          port: 587,
+          secure: false, // Use STARTTLS on port 587
+          family: 4,
           auth: {
             user: gmailUser.trim(),
-            pass: gmailPass.replace(/\s+/g, ""), // Strip any spaces from the 16-character app password
+            pass: gmailPass.replace(/\s+/g, ""),
           },
+          connectionTimeout: 8000,
         });
 
         await transporter.sendMail({
@@ -79,13 +111,12 @@ export const emailService = {
         console.error("=== Gmail SMTP failure ===");
         console.error("message:", err.message);
         console.error("code:", err.code);
-        console.error("response:", err.response);
         console.error("===========================");
         throw err;
       }
     }
 
-    console.warn("⚠️ No email provider configured! Please set GMAIL_USER + GMAIL_APP_PASSWORD or RESEND_API_KEY in environment variables.");
+    console.warn("⚠️ No working email provider configured. Please set RESEND_API_KEY, BREVO_API_KEY, or GMAIL_USER + GMAIL_APP_PASSWORD.");
     return { success: false, reason: "NO_PROVIDER_CONFIGURED" };
   },
 };
