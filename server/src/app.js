@@ -15,6 +15,7 @@ const app = express();
 app.set("trust proxy", 1);
 
 const allowedOrigins = [
+  "https://tgcounselling.vercel.app",
   "https://tgicetcounselling.vercel.app",
   "http://localhost:5173", // keep local dev working
 ];
