@@ -46,12 +46,12 @@ export default function ExamCard({ exam }) {
         </div>
 
         {/* Description */}
-        <p className="mt-2 text-xs leading-relaxed text-gray-300/90 sm:mt-3 sm:text-sm">
+        <p className="mt-2 text-xs font-medium leading-relaxed text-gray-200 sm:mt-3 sm:text-sm sm:font-normal sm:text-gray-300/90">
           {exam.description}
         </p>
 
         {/* Programs */}
-        <p className="mt-2.5 text-[10px] font-semibold uppercase tracking-wider text-purple-300/80 sm:mt-3.5 sm:text-[11px]">
+        <p className="mt-2.5 text-[10px] font-bold uppercase tracking-wider text-purple-300 sm:mt-3.5 sm:text-[11px] sm:font-semibold sm:text-purple-300/80">
           {exam.programs.join(" · ")}
         </p>
 

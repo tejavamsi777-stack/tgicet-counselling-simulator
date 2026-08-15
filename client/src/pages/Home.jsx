@@ -42,7 +42,7 @@ export default function Home() {
         >
           Select your exam to get started
         </h1>
-        <p className="mx-auto mt-4 max-w-lg text-sm text-gray-300 sm:mt-5 sm:text-base">
+        <p className="mx-auto mt-4 max-w-lg text-sm font-medium text-gray-200 sm:mt-5 sm:text-base sm:font-normal sm:text-gray-300">
           College predictor and mock counselling tools — built specifically for Telangana entrance counselling.
         </p>
       </motion.div>

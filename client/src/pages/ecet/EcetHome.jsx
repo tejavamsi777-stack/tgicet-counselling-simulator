@@ -59,7 +59,7 @@ function FeatureCard({ icon: Icon, title, detail, to, action }) {
             <div className="glass-button-shadow rounded-2xl"></div>
           </div>
           <h2 className="mt-2 text-xl font-bold tracking-tight text-white">{title}</h2>
-          <p className="mt-2 text-sm leading-relaxed text-gray-300/90">{detail}</p>
+          <p className="mt-2 text-sm font-medium leading-relaxed text-gray-200 sm:font-normal sm:text-gray-300/90">{detail}</p>
         </div>
         <div className="mt-8">
           <GlassButton
