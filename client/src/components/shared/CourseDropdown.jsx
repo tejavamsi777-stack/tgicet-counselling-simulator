@@ -54,7 +54,7 @@ export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet"
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="absolute right-0 top-full z-[100] mt-2 w-full min-w-[280px] max-w-[420px] max-h-56 overflow-y-auto overscroll-contain rounded-2xl border border-white/20 bg-white/10 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl focus:outline-none"
+            className="absolute right-0 top-full z-[100] mt-2 w-full min-w-[280px] max-w-[420px] max-h-56 overflow-y-auto overscroll-contain rounded-2xl border border-white/20 bg-[#1a1030]/95 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
             style={{
               touchAction: "pan-y",
               scrollbarWidth: "thin",

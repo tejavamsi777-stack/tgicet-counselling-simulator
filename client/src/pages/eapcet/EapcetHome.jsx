@@ -50,7 +50,7 @@ export default function EapcetHome() {
 function FeatureCard({ icon: Icon, title, detail, to, action }) {
   return (
     <Link to={to} className="group relative block h-full w-full outline-none">
-      <GlowCard customSize={true} glowColor="purple" className="flex h-full flex-col justify-between p-6 sm:p-8">
+      <GlowCard customSize={true} tilt={true} glowColor="purple" className="flex h-full flex-col justify-between p-6 sm:p-8">
         <div>
           <div className="glass-button-wrap relative mb-5 inline-flex">
             <div className="glass-button flex h-12 w-12 items-center justify-center rounded-2xl border border-white/30 bg-gradient-to-br from-white/20 via-white/10 to-white/5 text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">

@@ -44,7 +44,7 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
 
   return (
     <section>
-      <p className="px-1 pb-0.5 text-[12px] text-[#0000b0]">{title}</p>
+      <p className="px-1 pb-1 text-xs font-semibold text-white tracking-wide">{title}</p>
       <div
         className="max-h-[510px] overflow-y-auto overscroll-contain border border-[#52647b]"
         style={{ touchAction: "pan-y" }}

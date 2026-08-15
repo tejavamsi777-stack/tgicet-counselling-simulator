@@ -16,7 +16,7 @@ export default function CandidateDetailsForm({
   onSubmit,
 }) {
   return (
-    <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-8 relative z-30 overflow-visible">
+    <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-8 relative z-30 overflow-visible" tilt={false}>
       <h3 className="mb-5 text-xl font-bold tracking-tight text-white font-display">
         Your Details
       </h3>

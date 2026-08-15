@@ -207,7 +207,7 @@ export default function EapcetMockCounsellingPage() {
     stepContent = (
       <div className="space-y-6">
         {collegesLoading ? (
-          <GlowCard customSize={true} glowColor="purple" className="p-8 text-center text-gray-300">Loading districts...</GlowCard>
+          <GlowCard customSize={true} glowColor="purple" className="p-8 text-center text-gray-300" tilt={false}>Loading districts...</GlowCard>
         ) : (
           <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-8">
             <DistrictSelector districts={availableDistricts} selectedDistricts={selectedDistricts} setSelectedDistricts={setSelectedDistricts} error={districtError} courseGroups={selectorCourseGroups} />

@@ -53,7 +53,7 @@ export default function GenderDropdown({ gender, setGender }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 right-0 z-50 mt-2 overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl"
+            className="absolute left-0 right-0 z-50 mt-2 overflow-hidden rounded-2xl border border-white/20 bg-[#1a1030]/95 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl"
           >
             {GENDERS.map((g) => (
               <button

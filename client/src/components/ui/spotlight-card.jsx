@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 const glowColorMap = {
   blue: { base: 220, spread: 200 },
@@ -22,14 +23,18 @@ export function GlowCard({
   width,
   height,
   customSize = false,
+  tilt = false,
 }) {
   const cardRef = useRef(null);
   const innerRef = useRef(null);
 
+  // ── Ambient spotlight (desktop/mouse only) ──────────────────────────────
   useEffect(() => {
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!isFinePointer) return;
+
     const syncPointer = (e) => {
       const { clientX: x, clientY: y } = e;
-
       if (cardRef.current) {
         cardRef.current.style.setProperty("--x", x.toFixed(2));
         cardRef.current.style.setProperty("--xp", (x / window.innerWidth).toFixed(2));
@@ -42,12 +47,39 @@ export function GlowCard({
     return () => document.removeEventListener("pointermove", syncPointer);
   }, []);
 
+  // ── 3-D tilt (desktop/mouse only) ───────────────────────────────────────
+  const isFinePointer = typeof window !== "undefined"
+    ? window.matchMedia("(pointer: fine)").matches
+    : false;
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+
+  // Spring-damped so the card eases back smoothly
+  const springX = useSpring(rawX, { stiffness: 200, damping: 20 });
+  const springY = useSpring(rawY, { stiffness: 200, damping: 20 });
+
+  const rotateX = useTransform(springY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-8, 8]);
+
+  const handleMouseMove = (e) => {
+    if (!isFinePointer) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    // Normalise to -0.5 … 0.5
+    rawX.set((e.clientX - rect.left - rect.width  / 2) / rect.width);
+    rawY.set((e.clientY - rect.top  - rect.height / 2) / rect.height);
+  };
+
+  const handleMouseLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
+
+  // ── Sizing ───────────────────────────────────────────────────────────────
   const { base, spread } = glowColorMap[glowColor] || glowColorMap.purple;
 
   const getSizeClasses = () => {
-    if (customSize) {
-      return "";
-    }
+    if (customSize) return "";
     return sizeMap[size] || sizeMap.md;
   };
 
@@ -79,12 +111,8 @@ export function GlowCard({
       touchAction: "none",
     };
 
-    if (width !== undefined) {
-      baseStyles.width = typeof width === "number" ? `${width}px` : width;
-    }
-    if (height !== undefined) {
-      baseStyles.height = typeof height === "number" ? `${height}px` : height;
-    }
+    if (width !== undefined) baseStyles.width  = typeof width  === "number" ? `${width}px`  : width;
+    if (height !== undefined) baseStyles.height = typeof height === "number" ? `${height}px` : height;
 
     return baseStyles;
   };
@@ -148,25 +176,35 @@ export function GlowCard({
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
-      <div
-        ref={cardRef}
-        data-glow
-        style={getInlineStyles()}
-        className={`
-          ${getSizeClasses()}
-          rounded-2xl 
-          relative 
-          flex flex-col justify-between
-          shadow-xl
-          p-3.5 sm:p-6
-          backdrop-blur-xl
-          transition-all duration-300
-          hover:-translate-y-1
-          ${className}
-        `}
-      >
-        <div ref={innerRef} data-glow></div>
-        {children}
+      {/* Perspective wrapper for the 3-D tilt */}
+      <div style={{ perspective: "1000px" }}>
+        <motion.div
+          ref={cardRef}
+          data-glow
+          style={{
+            ...getInlineStyles(),
+            rotateX: (isFinePointer && tilt) ? rotateX : 0,
+            rotateY: (isFinePointer && tilt) ? rotateY : 0,
+            transformStyle: "preserve-3d",
+          }}
+          onMouseMove={(isFinePointer && tilt) ? handleMouseMove : undefined}
+          onMouseLeave={(isFinePointer && tilt) ? handleMouseLeave : undefined}
+          className={`
+            ${getSizeClasses()}
+            rounded-2xl 
+            relative 
+            flex flex-col justify-between
+            shadow-xl
+            p-3.5 sm:p-6
+            backdrop-blur-xl
+            transition-shadow duration-300
+            hover:shadow-2xl
+            ${className}
+          `}
+        >
+          <div ref={innerRef} data-glow></div>
+          {children}
+        </motion.div>
       </div>
     </>
   );

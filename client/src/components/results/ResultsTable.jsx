@@ -107,7 +107,7 @@ export default function ResultsTable({
         </div>
       )}
 
-      <GlowCard customSize={true} glowColor="purple" className="overflow-hidden p-0">
+      <GlowCard customSize={true} glowColor="purple" className="overflow-hidden p-0" tilt={false}>
         <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative w-full sm:max-w-xs">
             <SearchIcon size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -151,7 +151,7 @@ export default function ResultsTable({
                   </td>
                   <td className="px-4 py-3.5 text-sm font-semibold text-white">{c.name}</td>
                   <td className="px-4 py-3.5 text-xs text-gray-300">{getDistrictName(c.district)}</td>
-                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.course}</td>
+                  <td className="px-4 py-3.5 text-xs text-white">{c.course}</td>
                   {(showYear || activeYears.length > 0) && <td className="px-4 py-3.5 text-xs text-gray-300">{c.year}</td>}
                   <td className="px-4 py-3.5 text-xs text-gray-300">{c.category}</td>
                   <td className="px-4 py-3.5 text-xs text-gray-300">{c.gender}</td>

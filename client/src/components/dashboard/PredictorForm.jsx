@@ -31,7 +31,7 @@ export default function PredictorForm({
       id="predict"
       className="relative z-30"
     >
-      <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-10">
+      <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-10" tilt={false}>
         <h2 className="text-2xl font-bold tracking-tight text-white font-display">
           Predict Your College
         </h2>
@@ -40,7 +40,7 @@ export default function PredictorForm({
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+          <div className="relative z-[40]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
               {displayRankLabel}
             </label>
@@ -53,17 +53,17 @@ export default function PredictorForm({
             />
           </div>
 
-          <div className="relative z-30">
+          <div className="relative z-[30]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Category</label>
             <CategoryDropdown category={category} setCategory={setCategory} examSlug={examSlug} />
           </div>
 
-          <div className="relative z-30">
+          <div className="relative z-[20]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Gender</label>
             <GenderDropdown gender={gender} setGender={setGender} />
           </div>
 
-          <div className="relative z-30">
+          <div className="relative z-[10]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Course</label>
             <CourseDropdown course={course} setCourse={setCourse} examSlug={examSlug} />
           </div>
@@ -73,7 +73,7 @@ export default function PredictorForm({
           <p className="mt-3 text-sm font-semibold text-rose-400">{error}</p>
         )}
 
-        <div className="mt-8 flex justify-center">
+        <div className="relative z-[1] mt-8 flex justify-center">
           <GlassButton
             onClick={onPredict}
             size="lg"

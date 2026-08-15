@@ -16,7 +16,7 @@ export default function Hero({ onGetStarted }) {
   return (
     <section
       ref={ref}
-      className="sticky top-16 z-10 flex flex-col items-center overflow-hidden px-6 pt-10 text-center will-change-transform"
+      className="hidden sm:flex sticky top-16 z-10 flex-col items-center overflow-hidden px-6 pt-10 text-center will-change-transform"
     >
       <motion.h1
         style={{ scale: titleScale, y: titleY }}

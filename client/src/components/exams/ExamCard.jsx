@@ -24,6 +24,7 @@ export default function ExamCard({ exam }) {
     >
       <GlowCard
         customSize={true}
+        tilt={true}
         glowColor={available ? "purple" : "blue"}
         className="h-full w-full overflow-hidden transition-all duration-300"
       >

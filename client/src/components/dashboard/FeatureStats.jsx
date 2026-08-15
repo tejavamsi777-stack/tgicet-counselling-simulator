@@ -27,7 +27,7 @@ const stats = [
 
 export default function FeatureStats() {
   return (
-    <section className="py-6">
+    <section className="hidden sm:block py-6">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((item, index) => {
           const Icon = item.icon;

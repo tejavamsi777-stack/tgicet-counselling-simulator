@@ -5,11 +5,21 @@ let sharedLenis = null;
 let sharedFrameId = null;
 let sharedUsers = 0;
 
+export function getSharedLenis() {
+  return sharedLenis;
+}
+
 function startSharedLenis() {
   if (!sharedLenis) {
     sharedLenis = new Lenis({
-      lerp: 0.1,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Luxurious exponential deceleration
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+      infinite: false,
     });
 
     function raf(time) {

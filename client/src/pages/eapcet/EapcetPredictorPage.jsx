@@ -7,6 +7,11 @@ import StatsGrid from "../../components/dashboard/StatsGrid";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import Seo from "../../components/shared/Seo";
+import { motion, AnimatePresence } from "framer-motion";
+import CategoryDropdown from "../../components/shared/CategoryDropdown";
+import GenderDropdown from "../../components/shared/GenderDropdown";
+import CourseDropdown from "../../components/shared/CourseDropdown";
+import YearDropdown from "../../components/shared/YearDropdown";
 
 const CATEGORY_ORDER = [
   "OC", "EWS",
@@ -134,7 +139,7 @@ export default function EapcetPredictorPage() {
       </Link>
 
       <section className="mt-6">
-        <GlowCard customSize={true} glowColor="purple" className="p-7 sm:p-10">
+        <GlowCard customSize={true} glowColor="purple" className="p-7 sm:p-10" tilt={false}>
           <span className="inline-block rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
             TG EAPCET 2025
           </span>
@@ -153,64 +158,36 @@ export default function EapcetPredictorPage() {
           ) : (
             <>
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                <Field label="Rank">
+                <div className="relative z-[50]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Rank</label>
                   <input
                     value={rank}
                     onChange={(e) => setRank(e.target.value)}
                     type="number"
-                    className="h-11 w-full rounded-2xl border border-white/15 bg-white/5 px-4 text-sm text-white backdrop-blur-md outline-none transition placeholder:text-gray-400 focus:border-white/30"
+                    className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
                     placeholder="e.g. 25000"
                   />
-                </Field>
+                </div>
 
-                <Field label="Category">
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="h-11 w-full rounded-2xl border border-white/15 bg-[#0d0b18]/90 px-4 text-sm text-white backdrop-blur-md outline-none transition focus:border-white/30"
-                  >
-                    {sortCategories(reference.categories).map((x) => (
-                      <option key={x.code} value={x.code} className="bg-[#0d0b18] text-white">{x.code}</option>
-                    ))}
-                  </select>
-                </Field>
+                <div className="relative z-[40]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Category</label>
+                  <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-eapcet" />
+                </div>
 
-                <Field label="Gender">
-                  <select
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                    className="h-11 w-full rounded-2xl border border-white/15 bg-[#0d0b18]/90 px-4 text-sm text-white backdrop-blur-md outline-none transition focus:border-white/30"
-                  >
-                    <option value="Male" className="bg-[#0d0b18] text-white">Male</option>
-                    <option value="Female" className="bg-[#0d0b18] text-white">Female</option>
-                  </select>
-                </Field>
+                <div className="relative z-[30]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Gender</label>
+                  <GenderDropdown gender={gender} setGender={setGender} />
+                </div>
 
-                <Field label="Branch">
-                  <select
-                    value={course}
-                    onChange={(e) => setCourse(e.target.value)}
-                    className="h-11 w-full rounded-2xl border border-white/15 bg-[#0d0b18]/90 px-4 text-sm text-white backdrop-blur-md outline-none transition focus:border-white/30"
-                  >
-                    {reference.courses.map((x) => (
-                      <option key={x.code} value={x.code} className="bg-[#0d0b18] text-white">
-                        {x.code} — {x.name}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
+                <div className="relative z-[20]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Branch</label>
+                  <CourseDropdown course={course} setCourse={setCourse} examSlug="tg-eapcet" />
+                </div>
 
-                <Field label="Year">
-                  <select
-                    value={year}
-                    onChange={(e) => setYear(e.target.value)}
-                    className="h-11 w-full rounded-2xl border border-white/15 bg-[#0d0b18]/90 px-4 text-sm text-white backdrop-blur-md outline-none transition focus:border-white/30"
-                  >
-                    {reference.years.map((x) => (
-                      <option key={x.year} value={x.year} className="bg-[#0d0b18] text-white">{x.year}</option>
-                    ))}
-                  </select>
-                </Field>
+                <div className="relative z-[10]">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Year</label>
+                  <YearDropdown year={year} setYear={setYear} years={reference.years} />
+                </div>
               </div>
 
               <div className="mt-8">
@@ -246,12 +223,20 @@ export default function EapcetPredictorPage() {
         </div>
       )}
 
-      {!predicting && results.length > 0 && (
-        <div className="mt-8 space-y-8">
-          <StatsGrid {...stats} />
-          <ResultsTable results={results} year={Number(year)} showYear />
-        </div>
-      )}
+      <AnimatePresence>
+        {!predicting && results.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 space-y-8"
+          >
+            <StatsGrid {...stats} />
+            <ResultsTable results={results} year={Number(year)} showYear />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
