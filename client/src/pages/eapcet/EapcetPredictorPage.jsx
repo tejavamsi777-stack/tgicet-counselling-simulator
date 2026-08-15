@@ -127,7 +127,7 @@ export default function EapcetPredictorPage() {
   );
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-10">
+    <main className="relative z-30 mx-auto max-w-7xl px-6 pt-10 pb-56">
       <Seo
         title="TG EAPCET College Predictor 2025"
         description="Predict TG EAPCET college options by rank, category, gender and engineering branch."
@@ -141,7 +141,7 @@ export default function EapcetPredictorPage() {
         <ArrowLeft size={16} /> TG EAPCET overview
       </Link>
 
-      <section className="mt-6">
+      <section className="relative z-30 mt-6">
         <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-10" tilt={false}>
           <div className="space-y-2">
             <h1
