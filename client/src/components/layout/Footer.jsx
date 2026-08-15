@@ -97,7 +97,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
   }, [openPanel, setOpenPanel]);
 
   return (
-    <footer className="relative mt-24 border-t border-white/10 bg-black/80 backdrop-blur-xl text-gray-300">
+    <footer className="relative z-10 mt-24 border-t border-white/10 bg-black/80 backdrop-blur-xl text-gray-300">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-center md:flex-row">
         <div className="flex items-center gap-3">
           <Logo size={34} />

@@ -48,7 +48,7 @@ function MainContent() {
       <div className="relative z-10 flex min-h-screen flex-col justify-between">
         <Navbar />
 
-        <div className="flex-1">
+        <div className="relative z-20 flex-1">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
