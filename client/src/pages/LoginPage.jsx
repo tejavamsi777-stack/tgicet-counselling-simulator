@@ -225,7 +225,7 @@ export default function LoginPage() {
           <div className="group relative">
             {/* Card glow effect */}
             <motion.div
-              className="absolute -inset-[1px] rounded-2xl opacity-0 transition-opacity duration-700 group-hover:opacity-70"
+              className="pointer-events-none absolute -inset-[1px] rounded-2xl opacity-0 transition-opacity duration-700 group-hover:opacity-70"
               animate={{
                 boxShadow: [
                   "0 0 10px 2px rgba(255,255,255,0.03)",
@@ -243,7 +243,7 @@ export default function LoginPage() {
             />
 
             {/* Traveling light beam effect */}
-            <div className="absolute -inset-[1px] overflow-hidden rounded-2xl">
+            <div className="pointer-events-none absolute -inset-[1px] overflow-hidden rounded-2xl">
               <motion.div
                 className="absolute left-0 top-0 h-[3px] w-[50%] bg-gradient-to-r from-transparent via-white to-transparent opacity-70"
                 initial={{ filter: "blur(2px)" }}
@@ -303,13 +303,13 @@ export default function LoginPage() {
             </div>
 
             {/* Card border glow */}
-            <div className="absolute -inset-[0.5px] rounded-2xl bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-70" />
+            <div className="pointer-events-none absolute -inset-[0.5px] rounded-2xl bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-70" />
 
             {/* Glass card background */}
             <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-2xl backdrop-blur-xl">
               {/* Card inner subtle pattern */}
               <div
-                className="absolute inset-0 opacity-[0.03]"
+                className="pointer-events-none absolute inset-0 opacity-[0.03]"
                 style={{
                   backgroundImage: `linear-gradient(135deg, white 0.5px, transparent 0.5px), linear-gradient(45deg, white 0.5px, transparent 0.5px)`,
                   backgroundSize: "30px 30px",
@@ -519,11 +519,15 @@ export default function LoginPage() {
                         </label>
                       </div>
 
-                      <div className="text-xs">
+                      <div className="relative z-30 text-xs">
                         <button
                           type="button"
-                          onClick={() => switchMode("forgot")}
-                          className="text-white/60 transition-colors duration-200 hover:text-white cursor-pointer underline hover:text-white"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            switchMode("forgot");
+                          }}
+                          className="relative z-30 cursor-pointer text-xs font-medium text-purple-300 hover:text-white transition-colors underline py-1 px-1"
                         >
                           Forgot password?
                         </button>
