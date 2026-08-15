@@ -26,6 +26,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminApp from "./admin/AdminApp";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
+import GoogleOneTap from "./components/shared/GoogleOneTap";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { useAdSenseScript } from "./hooks/useAdSenseScript";
 
@@ -134,6 +135,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <GoogleOneTap />
       <Routes>
         <Route path="/admin/*" element={<AdminApp />} />
         <Route path="/login" element={<LoginPage initialMode="login" />} />
