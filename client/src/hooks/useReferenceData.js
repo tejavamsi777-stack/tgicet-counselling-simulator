@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api";
 
-// Canonical order: OC → EWS → BC_A to BC_E → SC_I to SC_III / SC → ST
+// Canonical category order: OC → EWS → BC_A to BC_E → SC_I to SC_III / SC → ST
 const CATEGORY_ORDER = [
   "OC", "EWS",
   "BC_A", "BC-A", "BCA",
@@ -28,6 +28,103 @@ export function sortCategories(categories = []) {
     const codeB = b?.code ?? b ?? "";
     const rankA = getCategoryRank(codeA);
     const rankB = getCategoryRank(codeB);
+    if (rankA !== rankB) return rankA - rankB;
+    return codeA.localeCompare(codeB);
+  });
+}
+
+// Popularity rankings for student preferences per exam
+const POPULAR_COURSES = {
+  "tg-eapcet": [
+    "CSE",  // Computer Science & Engineering
+    "CSM",  // CSE (AI & ML)
+    "CSD",  // CSE (Data Science)
+    "CSC",  // CSE (Cyber Security)
+    "CSIT", // Computer Science & Information Tech
+    "INF",  // Information Technology
+    "IT",
+    "CSO",  // CSE (IoT)
+    "CSB",  // CSE (Business Systems)
+    "CSI",  // CSE (IoT & Cyber Security)
+    "AIM",  // AI & ML
+    "AID",  // AI & Data Science
+    "AI",   // Artificial Intelligence
+    "ECE",  // Electronics & Communication
+    "EEE",  // Electrical & Electronics
+    "MEC",  // Mechanical Engineering
+    "ME",
+    "CIV",  // Civil Engineering
+    "CE",
+    "CHE",  // Chemical Engineering
+    "BME",  // Biomedical Engineering
+    "AGR",  // Agricultural Engineering
+    "MIN",  // Mining Engineering
+    "MET",  // Metallurgical Engineering
+    "AUT",  // Automobile Engineering
+    "AER",  // Aeronautical Engineering
+    "ANE",
+    "BIO",  // Biotechnology
+    "TXE",  // Textile Engineering
+  ],
+  "tg-icet": [
+    "MBA",  // Master of Business Administration
+    "MCA",  // Master of Computer Applications
+    "MBT",  // MBA Tourism Management
+    "MTM",  // MBA Technology Management
+    "MTH",  // MBA Tourism & Hospitality
+  ],
+  "tg-ecet": [
+    "CSE",  // Computer Science & Engineering
+    "INF",  // Information Technology
+    "IT",
+    "ECE",  // Electronics & Communication
+    "EEE",  // Electrical & Electronics
+    "MEC",  // Mechanical Engineering
+    "ME",
+    "CIV",  // Civil Engineering
+    "CE",
+    "PHM",  // Pharmacy
+    "PHA",
+    "CHE",  // Chemical Engineering
+    "MIN",  // Mining Engineering
+    "MET",  // Metallurgical Engineering
+    "AUT",  // Automobile Engineering
+    "CER",  // Ceramic Technology
+    "FPT",  // Food Processing Technology
+  ],
+  "tg-polycet": [
+    "CME",  // Computer Engineering
+    "CS",
+    "ECE",  // Electronics & Communication
+    "EC",
+    "EEE",  // Electrical & Electronics
+    "EE",
+    "MEC",  // Mechanical Engineering
+    "ME",
+    "CIV",  // Civil Engineering
+    "CE",
+    "AUT",  // Automobile Engineering
+    "MIN",  // Mining Engineering
+    "CHE",  // Chemical Engineering
+    "MET",  // Metallurgical Engineering
+    "PKG",  // Packaging Technology
+    "CCP",  // Commercial & Computer Practice
+  ],
+};
+
+function getCourseRank(code, examSlug) {
+  const norm = (code ?? "").toString().trim().toUpperCase();
+  const list = POPULAR_COURSES[examSlug] || POPULAR_COURSES["tg-eapcet"] || [];
+  const idx = list.findIndex((c) => c.toUpperCase() === norm);
+  return idx === -1 ? 999 : idx;
+}
+
+export function sortCourses(courses = [], examSlug = "tg-eapcet") {
+  return [...courses].sort((a, b) => {
+    const codeA = (a?.code ?? a ?? "").toString().trim().toUpperCase();
+    const codeB = (b?.code ?? b ?? "").toString().trim().toUpperCase();
+    const rankA = getCourseRank(codeA, examSlug);
+    const rankB = getCourseRank(codeB, examSlug);
     if (rankA !== rankB) return rankA - rankB;
     return codeA.localeCompare(codeB);
   });
@@ -74,7 +171,7 @@ export function useReferenceData(examSlug = "tg-icet") {
           api.get(`/years${query}`),
         ]);
         const result = {
-          courses,
+          courses: sortCourses(courses, examSlug),
           categories: sortCategories(categories),
           districts,
           years,

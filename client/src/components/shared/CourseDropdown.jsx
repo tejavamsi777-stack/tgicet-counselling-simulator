@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, ChevronDown, Check } from "lucide-react";
+import { BookOpen, ChevronDown, Check, Search, X } from "lucide-react";
 import { useReferenceData } from "../../hooks/useReferenceData";
 
 export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet" }) {
   const { courses } = useReferenceData(examSlug);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const containerRef = useRef(null);
+  const searchInputRef = useRef(null);
+  const listRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -17,6 +20,29 @@ export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet"
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (open) {
+      setSearch("");
+      // Small timeout to allow animation before focus
+      const timer = setTimeout(() => {
+        if (searchInputRef.current) {
+          searchInputRef.current.focus();
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  const filteredCourses = useMemo(() => {
+    if (!search.trim()) return courses;
+    const term = search.trim().toLowerCase();
+    return courses.filter(
+      (c) =>
+        (c.code && c.code.toLowerCase().includes(term)) ||
+        (c.name && c.name.toLowerCase().includes(term))
+    );
+  }, [courses, search]);
 
   const selectedCourseObj = courses.find((c) => c.code === course);
   const selectedLabel = selectedCourseObj
@@ -54,18 +80,46 @@ export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet"
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="absolute left-0 sm:left-auto sm:right-0 top-full z-[100] mt-2 w-full min-w-[280px] sm:min-w-[340px] md:min-w-[400px] max-h-72 overflow-y-auto overscroll-contain rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
-            style={{
-              touchAction: "pan-y",
-              scrollbarWidth: "thin",
-              scrollbarColor: "rgba(255,255,255,0.3) transparent",
-            }}
+            className="absolute left-0 sm:left-auto sm:right-0 top-full z-[100] mt-2 flex flex-col w-full min-w-[280px] sm:min-w-[340px] md:min-w-[400px] max-h-80 overflow-hidden rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
           >
-            {courses.length === 0 ? (
-              <div className="p-3 text-center text-xs text-gray-400">Loading courses…</div>
-            ) : (
-              <div className="space-y-1">
-                {courses.map((c) => (
+            {/* Search Input */}
+            <div className="relative p-1.5 border-b border-white/10">
+              <Search size={14} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search branch code or name (e.g. CSE, ECE, Civil)..."
+                className="h-9 w-full rounded-xl border border-white/15 bg-white/5 pl-8 pr-7 text-xs text-white placeholder-gray-400 outline-none transition focus:border-white/40 focus:bg-white/10"
+              />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                >
+                  <X size={13} />
+                </button>
+              )}
+            </div>
+
+            {/* Scrollable Course List */}
+            <div
+              ref={listRef}
+              className="flex-1 overflow-y-auto overscroll-contain p-1 space-y-1"
+              style={{
+                touchAction: "pan-y",
+                scrollbarWidth: "thin",
+                scrollbarColor: "rgba(255,255,255,0.3) transparent",
+              }}
+            >
+              {filteredCourses.length === 0 ? (
+                <div className="p-4 text-center text-xs text-gray-400">
+                  No courses found matching &ldquo;{search}&rdquo;
+                </div>
+              ) : (
+                filteredCourses.map((c) => (
                   <button
                     key={c.code}
                     type="button"
@@ -95,16 +149,18 @@ export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet"
                       <Check size={14} className="shrink-0 text-purple-300 mt-1" />
                     )}
                   </button>
-                ))}
-              </div>
-            )}
+                ))
+              )}
+            </div>
 
-            {courses.length > 0 && (
-              <div className="sticky bottom-0 -mx-1.5 -mb-1.5 mt-1.5 flex items-center justify-between border-t border-white/10 bg-[#140e24]/98 px-3 py-1.5 text-[10px] text-gray-400 backdrop-blur-md">
-                <span>Showing {courses.length} courses</span>
-                <span className="text-gray-500">Scroll to view all</span>
-              </div>
-            )}
+            {/* Footer summary */}
+            <div className="border-t border-white/10 bg-[#140e24]/98 px-3 py-1.5 text-[10px] text-gray-400 flex items-center justify-between">
+              <span>
+                {filteredCourses.length} {filteredCourses.length === 1 ? "course" : "courses"}
+                {search && ` (filtered)`}
+              </span>
+              <span className="text-gray-500">Scroll to view all</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

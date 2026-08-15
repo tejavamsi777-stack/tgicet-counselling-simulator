@@ -15,6 +15,8 @@ import CourseDropdown from "../../components/shared/CourseDropdown";
 import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 
+import { sortCourses } from "../../hooks/useReferenceData";
+
 const CATEGORY_ORDER = [
   "OC", "EWS",
   "BC_A", "BC-A", "BCA",
@@ -70,10 +72,11 @@ export default function EapcetPredictorPage() {
     ])
       .then(([years, categories, courses]) => {
         if (!cancelled) {
-          setReference({ years, categories, courses });
+          const sortedCourses = sortCourses(courses, "tg-eapcet");
+          setReference({ years, categories, courses: sortedCourses });
           setYear(String(years[0]?.year ?? ""));
           setCategory(categories[0]?.code ?? "");
-          setCourse(courses[0]?.code ?? "");
+          setCourse(sortedCourses[0]?.code ?? "CSE");
         }
       })
       .catch((e) => !cancelled && setError(e.message))
