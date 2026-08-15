@@ -196,6 +196,7 @@ export default function PolycetPredictorPage() {
               onPredict={handleFormPredict}
               error={error}
               examSlug="tg-polycet"
+              examBadge="TG POLYCET 2025"
             />
 
             {lastCriteria && (

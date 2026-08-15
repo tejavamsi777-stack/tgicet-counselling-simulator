@@ -195,6 +195,7 @@ export default function EcetPredictorPage() {
               onPredict={handleFormPredict}
               error={error}
               examSlug="tg-ecet"
+              examBadge="TG ECET 2025"
             />
 
             {lastCriteria && (

@@ -141,16 +141,23 @@ export default function EapcetPredictorPage() {
       </Link>
 
       <section className="mt-6">
-        <GlowCard customSize={true} glowColor="purple" className="p-7 sm:p-10" tilt={false}>
-          <span className="inline-block rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
-            TG EAPCET 2025
-          </span>
-          <h1
-            className="mt-3 text-3xl font-bold text-white sm:text-4xl"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            College Predictor
-          </h1>
+        <GlowCard customSize={true} glowColor="purple" className="p-6 sm:p-10" tilt={false}>
+          <div className="space-y-2">
+            <h1
+              className="text-2xl sm:text-3xl font-bold tracking-tight text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Predict Your College
+            </h1>
+            <div>
+              <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
+                TG EAPCET 2025
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-gray-300">
+              Enter your rank and branch to explore eligible colleges based on previous year cutoffs.
+            </p>
+          </div>
 
           {initLoading ? (
             <div className="mt-8 flex items-center gap-2 text-sm text-gray-300">
@@ -159,9 +166,13 @@ export default function EapcetPredictorPage() {
             </div>
           ) : (
             <>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {/* Responsive Inputs Grid */}
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                {/* 1. Rank */}
                 <div className="relative z-[50]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Rank</label>
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                    TG EAPCET Rank
+                  </label>
                   <input
                     value={rank}
                     onChange={(e) => setRank(e.target.value)}
@@ -171,28 +182,46 @@ export default function EapcetPredictorPage() {
                   />
                 </div>
 
-                <div className="relative z-[40]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Category</label>
-                  <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-eapcet" />
+                {/* 2. Category & Gender (Side-by-side row on mobile) */}
+                <div className="grid grid-cols-2 gap-3 sm:contents">
+                  <div className="relative z-[40]">
+                    <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                      Category
+                    </label>
+                    <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-eapcet" />
+                  </div>
+
+                  <div className="relative z-[30]">
+                    <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                      Gender
+                    </label>
+                    <GenderDropdown gender={gender} setGender={setGender} />
+                  </div>
                 </div>
 
-                <div className="relative z-[30]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Gender</label>
-                  <GenderDropdown gender={gender} setGender={setGender} />
-                </div>
-
+                {/* 3. Branch */}
                 <div className="relative z-[20]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Branch</label>
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                    Branch
+                  </label>
                   <CourseDropdown course={course} setCourse={setCourse} examSlug="tg-eapcet" />
                 </div>
 
+                {/* 4. Cutoff Year */}
                 <div className="relative z-[10]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">Year</label>
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                    Cutoff Year
+                  </label>
                   <YearDropdown year={year} setYear={setYear} years={reference.years} />
                 </div>
               </div>
 
-              <div className="relative z-[1] mt-8 flex justify-center">
+              {error && (
+                <p className="mt-4 text-xs sm:text-sm font-semibold text-rose-400">{error}</p>
+              )}
+
+              {/* Predict Button */}
+              <div className="relative z-[1] mt-7 flex justify-center">
                 <GlassButton
                   disabled={predicting}
                   onClick={predict}
@@ -210,10 +239,6 @@ export default function EapcetPredictorPage() {
                   )}
                 </GlassButton>
               </div>
-
-              {error && (
-                <p className="mt-3 text-sm font-semibold text-rose-400">{error}</p>
-              )}
             </>
           )}
         </GlowCard>
