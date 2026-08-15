@@ -33,7 +33,7 @@ function MainContent() {
   const location = useLocation();
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black text-white selection:bg-purple-500 selection:text-white">
+    <div className="relative min-h-screen overflow-x-clip bg-black text-white selection:bg-purple-500 selection:text-white">
       {/* Gradient background with grain effect matching hero-2-1 */}
       <div className="pointer-events-none absolute -right-60 -top-10 z-0 flex flex-col items-end blur-xl">
         <div className="z-1 h-[10rem] w-[60rem] rounded-full bg-gradient-to-b from-purple-600 to-sky-600 blur-[6rem]"></div>
