@@ -328,12 +328,12 @@ export default function LoginPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="mt-1 text-xs text-white/60"
+                  className="mt-2 text-xs text-white/70 leading-normal"
                 >
                   {success
                     ? "Taking you to your predictions..."
                     : mode === "login"
-                    ? <>Sign in to continue to <span className="font-brand font-bold text-white">TG Counselling</span></>
+                    ? <>Sign in to continue to <span className="font-semibold text-purple-300">TG Counselling</span></>
                     : "Sign up to save your predictions across devices"}
                 </motion.p>
               </div>
