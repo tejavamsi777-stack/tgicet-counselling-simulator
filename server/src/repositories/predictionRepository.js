@@ -8,6 +8,7 @@ export const predictionRepository = {
         col.ownership_type, col.is_minority, col.is_girls, col.is_self_finance,
         d.code AS district_code,
         cu.cutoff_rank,
+        cu.gender AS gender,
         crs.code AS course_code, crs.name AS course_name,
         cat.code AS category_code,
         cc.fee

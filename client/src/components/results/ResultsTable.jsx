@@ -153,10 +153,10 @@ export default function ResultsTable({
                   <td className="px-4 py-3.5 text-xs text-gray-300">{getDistrictName(c.district)}</td>
                   <td className="px-4 py-3.5 text-xs text-white">{c.course}</td>
                   {(showYear || activeYears.length > 0) && <td className="px-4 py-3.5 text-xs text-gray-300">{c.year}</td>}
-                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.category}</td>
-                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.gender}</td>
-                  <td className="px-4 py-3.5 text-xs font-semibold text-purple-300">{c.cutoff.toLocaleString()}</td>
-                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.university}</td>
+                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.category || "-"}</td>
+                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.gender || "All"}</td>
+                  <td className="px-4 py-3.5 text-xs font-semibold text-purple-300">{Number(c.cutoff || 0).toLocaleString()}</td>
+                  <td className="px-4 py-3.5 text-xs text-gray-300">{c.university || "-"}</td>
                   <td className="px-4 py-3.5 text-xs">
                     <StatusBadge status={c.status} />
                   </td>

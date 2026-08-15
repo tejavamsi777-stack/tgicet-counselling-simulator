@@ -103,7 +103,8 @@ export default function EapcetPredictorPage() {
           ...row,
           district: row.district_code || row.district,
           course: row.course_code || row.course,
-          category: row.category_code || row.category,
+          category: row.category_code || row.category || category,
+          gender: row.gender || gender,
           year: Number(year),
           cutoff: row.cutoff_rank || row.cutoff,
         }))
