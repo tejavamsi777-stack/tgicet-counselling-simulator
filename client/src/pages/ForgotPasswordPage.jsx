@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Sparkles, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Mail, Loader2, CheckCircle2, KeyRound } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import Logo from "../components/layout/Logo";
 
 export default function ForgotPasswordPage() {
   const { forgotPassword } = useAuth();
@@ -16,8 +18,6 @@ export default function ForgotPasswordPage() {
     setSubmitting(true);
     try {
       await forgotPassword(email);
-      // Always shows success — the backend never reveals whether the email
-      // exists, so the UI shouldn't either.
       setSent(true);
     } catch (err) {
       setError(err.message || "Something went wrong");
@@ -27,80 +27,118 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-gradient-to-br from-[#312e81] via-[#7c3aed] to-[#0e7490] px-6 py-10">
-      <div className="w-full max-w-sm">
-        <Link
-          to="/login"
-          className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-white"
-        >
-          <ArrowLeft size={15} />
-          Back to login
-        </Link>
+    <div className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden bg-black selection:bg-purple-500 selection:text-white px-4 py-10">
+      {/* Background gradient effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/40 via-purple-700/50 to-black" />
 
-        <div className="mb-6 flex flex-col items-center text-center">
-          <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur">
-            <Sparkles size={20} />
+      {/* Noise texture overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03] mix-blend-soft-light"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundSize: "200px 200px",
+        }}
+      />
+
+      {/* Top and bottom radial glows */}
+      <div className="absolute left-1/2 top-0 h-[50vh] w-[100vh] -translate-x-1/2 rounded-b-[50%] bg-purple-400/20 blur-[80px]" />
+      <div className="absolute bottom-0 left-1/2 h-[50vh] w-[80vh] -translate-x-1/2 rounded-t-full bg-purple-500/20 blur-[80px]" />
+
+      {/* Main Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-md"
+      >
+        <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-[#121118]/85 p-6 sm:p-8 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)]">
+          {/* Back link */}
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-purple-300 transition hover:text-white mb-6"
+          >
+            <ArrowLeft size={14} /> Back to Sign In
+          </Link>
+
+          {/* Header */}
+          <div className="text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-500/30 bg-purple-500/15 text-purple-300 shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+              {sent ? <CheckCircle2 size={28} className="text-emerald-400" /> : <KeyRound size={28} />}
+            </div>
+
+            <h1 className="text-2xl font-bold tracking-tight text-white font-display">
+              {sent ? "Check your email" : "Reset your password"}
+            </h1>
+            <p className="mt-2 text-xs sm:text-sm text-gray-300 leading-relaxed">
+              {sent
+                ? "If an account exists with that email, we've sent you a secure reset link."
+                : "Enter your registered email address and we'll send you a password reset link."}
+            </p>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            {sent ? "Check your email" : "Forgot your password?"}
-          </h1>
-          <p className="mt-1.5 text-sm text-white/70">
-            {sent
-              ? "If an account exists with that email, we've sent a link to reset your password."
-              : "Enter the email on your account and we'll send you a reset link."}
-          </p>
-        </div>
 
-        {!sent && (
-          <>
-            {error && (
-              <div className="mb-4 rounded-xl border border-red-300/40 bg-red-500/15 px-4 py-2.5 text-sm text-red-100">
-                {error}
+          {/* Form */}
+          {!sent ? (
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              {error && (
+                <div className="rounded-xl border border-rose-500/40 bg-rose-500/15 p-3 text-xs font-semibold text-rose-300">
+                  {error}
+                </div>
+              )}
+
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@example.com"
+                    required
+                    className="h-11 w-full rounded-xl border border-white/20 bg-white/5 pl-10 pr-4 text-sm text-white placeholder-gray-400 outline-none backdrop-blur-md transition focus:border-white/50 focus:bg-white/10"
+                  />
+                </div>
               </div>
-            )}
 
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div className="relative">
-                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-900 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-                  required
-                />
+              <motion.button
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                type="submit"
+                disabled={submitting}
+                className="mt-2 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-white text-sm font-bold text-black shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition hover:bg-gray-100 disabled:opacity-50"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin text-black" />
+                    <span>Sending reset link…</span>
+                  </>
+                ) : (
+                  <span>Send Reset Link</span>
+                )}
+              </motion.button>
+            </form>
+          ) : (
+            <div className="mt-6 space-y-4">
+              <div className="rounded-2xl border border-white/15 bg-white/5 p-4 text-xs text-gray-300 leading-relaxed text-center">
+                Didn&apos;t receive it? Check your <span className="font-semibold text-white">spam or junk</span> folder. Links are valid for 1 hour.
               </div>
 
               <button
-                type="submit"
-                disabled={submitting}
-                className="h-11 w-full rounded-xl bg-white text-sm font-semibold text-[#312e81] shadow-lg transition-transform hover:scale-[1.01] active:scale-[0.98] disabled:opacity-50"
+                type="button"
+                onClick={() => {
+                  setSent(false);
+                  setEmail("");
+                }}
+                className="w-full text-center text-xs font-semibold text-purple-300 hover:text-white transition underline"
               >
-                {submitting ? "Sending…" : "Send reset link"}
+                Try another email
               </button>
-            </form>
-          </>
-        )}
-
-        {sent && (
-          <>
-            <div className="mb-5 flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-center text-sm text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md">
-              <Mail size={15} className="shrink-0 text-white/70" />
-              Don't see it? Check your <span className="font-semibold text-white">spam</span> or <span className="font-semibold text-white">junk</span> folder.
             </div>
-            <button
-              onClick={() => {
-                setSent(false);
-                setEmail("");
-              }}
-              className="mx-auto block text-sm font-medium text-white underline hover:text-white/90"
-            >
-              Use a different email
-            </button>
-          </>
-        )}
-      </div>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 }
