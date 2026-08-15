@@ -148,12 +148,12 @@ export default function LoginPage({ initialMode }) {
 
   return (
     <div className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden bg-black selection:bg-purple-500 selection:text-white">
-      {/* Background gradient effect - matches purple style */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/40 via-purple-700/50 to-black" />
+      {/* Background gradient effect */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-purple-500/40 via-purple-700/50 to-black" />
 
       {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03] mix-blend-soft-light"
+        className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-soft-light"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundSize: "200px 200px",
@@ -161,9 +161,9 @@ export default function LoginPage({ initialMode }) {
       />
 
       {/* Top radial glow */}
-      <div className="absolute left-1/2 top-0 h-[60vh] w-[120vh] -translate-x-1/2 rounded-b-[50%] bg-purple-400/20 blur-[80px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[120vh] -translate-x-1/2 rounded-b-[50%] bg-purple-400/20 blur-[80px]" />
       <motion.div
-        className="absolute left-1/2 top-0 h-[60vh] w-[100vh] -translate-x-1/2 rounded-b-full bg-purple-300/20 blur-[60px]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[100vh] -translate-x-1/2 rounded-b-full bg-purple-300/20 blur-[60px]"
         animate={{
           opacity: [0.15, 0.3, 0.15],
           scale: [0.98, 1.02, 0.98],
@@ -175,7 +175,7 @@ export default function LoginPage({ initialMode }) {
         }}
       />
       <motion.div
-        className="absolute bottom-0 left-1/2 h-[90vh] w-[90vh] -translate-x-1/2 rounded-t-full bg-purple-400/20 blur-[60px]"
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[90vh] w-[90vh] -translate-x-1/2 rounded-t-full bg-purple-400/20 blur-[60px]"
         animate={{
           opacity: [0.3, 0.5, 0.3],
           scale: [1, 1.1, 1],
@@ -189,7 +189,7 @@ export default function LoginPage({ initialMode }) {
       />
 
       {/* Floating particles */}
-      <div className="absolute inset-0">
+      <div className="pointer-events-none absolute inset-0">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
@@ -518,7 +518,7 @@ export default function LoginPage({ initialMode }) {
                             type="checkbox"
                             checked={rememberMe}
                             onChange={() => setRememberMe(!rememberMe)}
-                            className="h-4 w-4 appearance-none rounded border border-white/20 bg-white/5 transition-all duration-200 checked:border-white checked:bg-white focus:outline-none focus:ring-1 focus:ring-white/30"
+                            className="h-4 w-4 appearance-none rounded border border-white/20 bg-white/5 transition-all duration-200 checked:border-white checked:bg-white focus:outline-none focus:ring-1 focus:ring-white/30 cursor-pointer"
                           />
                           {rememberMe && (
                             <motion.div
@@ -546,7 +546,7 @@ export default function LoginPage({ initialMode }) {
                             e.stopPropagation();
                             switchMode("forgot");
                           }}
-                          className="relative z-30 cursor-pointer text-xs font-medium text-purple-300 hover:text-white transition-colors underline py-1 px-1"
+                          className="relative z-30 cursor-pointer text-xs font-semibold text-purple-300 hover:text-white transition-colors underline py-1 px-1"
                         >
                           Forgot password?
                         </button>
@@ -570,7 +570,7 @@ export default function LoginPage({ initialMode }) {
                     className="group/button relative mt-4 w-full"
                   >
                     <div className="absolute inset-0 rounded-lg bg-white/10 blur-lg opacity-0 transition-opacity duration-300 group-hover/button:opacity-70" />
-                    <div className="relative flex h-10 w-full items-center justify-center overflow-hidden rounded-lg bg-white text-sm font-medium text-black transition-all duration-300">
+                    <div className="relative flex h-10 w-full items-center justify-center overflow-hidden rounded-lg bg-white text-sm font-medium text-black transition-all duration-300 cursor-pointer">
                       <motion.div
                         className="absolute inset-0 -z-10 bg-gradient-to-r from-white/0 via-white/40 to-white/0"
                         animate={{
@@ -664,9 +664,9 @@ export default function LoginPage({ initialMode }) {
                       <button
                         type="button"
                         onClick={() => switchMode("login")}
-                        className="group/back relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                        className="group/back relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80 cursor-pointer"
                       >
-                        <span className="relative z-10">Remember your password? Sign in</span>
+                        <span className="relative z-10">Remember your password? <span className="underline font-semibold">Sign in</span></span>
                         <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/back:w-full" />
                       </button>
                     ) : mode === "login" ? (
@@ -675,7 +675,7 @@ export default function LoginPage({ initialMode }) {
                         <button
                           type="button"
                           onClick={() => switchMode("register")}
-                          className="group/signup relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                          className="group/signup relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80 cursor-pointer"
                         >
                           <span className="relative z-10">Sign up</span>
                           <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/signup:w-full" />
@@ -687,7 +687,7 @@ export default function LoginPage({ initialMode }) {
                         <button
                           type="button"
                           onClick={() => switchMode("login")}
-                          className="group/login relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80"
+                          className="group/login relative inline-block font-medium text-white transition-colors duration-300 hover:text-white/80 cursor-pointer"
                         >
                           <span className="relative z-10">Log in</span>
                           <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover/login:w-full" />
