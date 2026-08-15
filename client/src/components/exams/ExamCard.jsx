@@ -29,18 +29,18 @@ export default function ExamCard({ exam }) {
         className="h-full w-full overflow-hidden transition-all duration-300"
       >
         {/* Header */}
-        <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-3">
-          <span className="text-xs font-bold tracking-tight text-white sm:text-base">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-lg font-bold tracking-tight text-white sm:text-xl">
             {exam.shortName}
           </span>
           <span
-            className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium sm:px-2.5 sm:text-xs ${
+            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${
               available
                 ? "bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 backdrop-blur-md"
                 : "bg-white/5 text-slate-400 ring-1 ring-white/10 backdrop-blur-md"
             }`}
           >
-            {available ? <CheckCircle2 size={10} /> : <Clock3 size={10} />}
+            {available ? <CheckCircle2 size={11} /> : <Clock3 size={11} />}
             {available ? "Available" : "Soon"}
           </span>
         </div>
