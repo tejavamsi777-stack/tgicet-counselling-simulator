@@ -83,7 +83,7 @@ export function GlowCard({
         onMouseLeave={handleMouseLeave}
         className={`
           ${getSizeClasses()}
-          group relative flex flex-col justify-between overflow-hidden
+          group relative flex flex-col justify-between overflow-visible
           rounded-2xl border border-white/10 bg-[#121118]/80
           p-4 sm:p-6 backdrop-blur-xl
           transition-all duration-300
@@ -94,7 +94,7 @@ export function GlowCard({
         {/* Gentle, normal-brightness cursor spotlight (no stains, no text washout) */}
         {isFinePointer && (
           <div
-            className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
+            className="pointer-events-none absolute -inset-px rounded-2xl overflow-hidden transition-opacity duration-300"
             style={{
               opacity: isHovered ? 1 : 0,
               background: `radial-gradient(320px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 80%)`,
@@ -102,7 +102,7 @@ export function GlowCard({
           />
         )}
 
-        <div className="relative z-10 flex h-full flex-col justify-between">
+        <div className="relative z-10 flex h-full flex-col justify-between overflow-visible">
           {children}
         </div>
       </motion.div>
