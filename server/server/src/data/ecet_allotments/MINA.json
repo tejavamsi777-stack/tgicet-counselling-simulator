@@ -1,0 +1,85 @@
+{
+  "code": "MINA",
+  "name": "MINA - MINA INST OF ENGG AND TECHNOLOGY FOR WOMEN, MIRYALAGUDA",
+  "totalAllotted": 6,
+  "branches": [
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 992,
+      "closingRank": 1638,
+      "candidates": [
+        {
+          "rank": 992,
+          "hallTicket": "1413014223",
+          "name": "MODINI SATHWIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1463,
+          "hallTicket": "1401021311",
+          "name": "MALDE JYOTHI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1638,
+          "hallTicket": "1410023704",
+          "name": "PUJARI NANDINI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 2144,
+      "closingRank": 3449,
+      "candidates": [
+        {
+          "rank": 2144,
+          "hallTicket": "1306014093",
+          "name": "KANDUKURI REVATHI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3258,
+          "hallTicket": "1301051877",
+          "name": "KURMAGADDA TRIVENI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3449,
+          "hallTicket": "1306014098",
+          "name": "MEKALA PRAVALLIKA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

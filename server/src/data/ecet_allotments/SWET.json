@@ -1,0 +1,105 @@
+{
+  "code": "SWET",
+  "name": "SWET - SHADAN WOMENS COLL OF ENGG AND TECHNOLOGY (AUTONOMOUS), KHAIRTABAD",
+  "totalAllotted": 8,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 5,
+      "openingRank": 931,
+      "closingRank": 5302,
+      "candidates": [
+        {
+          "rank": 931,
+          "hallTicket": "2401071382",
+          "name": "LUBNA FATIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1990,
+          "hallTicket": "1203074316",
+          "name": "SABA PARVEEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3517,
+          "hallTicket": "1304074001",
+          "name": "ALLAM VINOOTHNA MARY",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4629,
+          "hallTicket": "1201092650",
+          "name": "FIZA SHAFIQUE",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "NL",
+          "seatCategory": "MUS_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 5302,
+          "hallTicket": "1207015076",
+          "name": "BELLI GOUTHAMI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 2023,
+      "closingRank": 3255,
+      "candidates": [
+        {
+          "rank": 2023,
+          "hallTicket": "1301031552",
+          "name": "TABASSUM UNISA BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2405,
+          "hallTicket": "1316085495",
+          "name": "TAHNIYATH",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3255,
+          "hallTicket": "1301021467",
+          "name": "NAZREEN FATIMA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

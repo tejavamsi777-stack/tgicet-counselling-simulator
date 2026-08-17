@@ -1,0 +1,26 @@
+{
+  "code": "MESP",
+  "name": "MESP - MESCO COLLEGE OF PHARMACY, MUSTAIDPURA",
+  "totalAllotted": 1,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 1,
+      "openingRank": 32,
+      "closingRank": 32,
+      "candidates": [
+        {
+          "rank": 32,
+          "hallTicket": "2702081040",
+          "name": "MOHAMMED RIZWAAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

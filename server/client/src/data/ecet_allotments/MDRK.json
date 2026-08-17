@@ -1,0 +1,192 @@
+{
+  "code": "MDRK",
+  "name": "MDRK - MADHIRA INSTITUTE OF TECHNOLOGY AND SCI, KODAD",
+  "totalAllotted": 14,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 648,
+      "closingRank": 1255,
+      "candidates": [
+        {
+          "rank": 648,
+          "hallTicket": "2302011610",
+          "name": "GONE VARSHINI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 862,
+          "hallTicket": "2301051274",
+          "name": "MEESA PRANITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 1255,
+          "hallTicket": "2302081839",
+          "name": "KETHAVATH SUNIL",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 2232,
+      "closingRank": 2232,
+      "candidates": [
+        {
+          "rank": 2232,
+          "hallTicket": "1403072936",
+          "name": "VUBBAPALLI MANOJ",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 645,
+      "closingRank": 2240,
+      "candidates": [
+        {
+          "rank": 645,
+          "hallTicket": "1401112013",
+          "name": "SHIRAMSHETTI ESHWAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1225,
+          "hallTicket": "1410043736",
+          "name": "PASUNOOTI MUKTHEESHWAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1349,
+          "hallTicket": "1405013259",
+          "name": "DUNKA JAYASHREE",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1821,
+          "hallTicket": "1407013422",
+          "name": "THALABATHULA REVANTH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2133,
+          "hallTicket": "1410083843",
+          "name": "RONTALA VISHNUVARDHAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2240,
+          "hallTicket": "1403072811",
+          "name": "BANOTH AKHIL",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 2258,
+      "closingRank": 3869,
+      "candidates": [
+        {
+          "rank": 2258,
+          "hallTicket": "1311024858",
+          "name": "KANUGULA SRIDHAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3538,
+          "hallTicket": "1301021483",
+          "name": "K VIJAYA LAXMI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3869,
+          "hallTicket": "1301092261",
+          "name": "THOTLA MADHUKIRAN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 875,
+      "closingRank": 875,
+      "candidates": [
+        {
+          "rank": 875,
+          "hallTicket": "2407022266",
+          "name": "MOOD ASHOK",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "MEC"
+        }
+      ]
+    }
+  ]
+}

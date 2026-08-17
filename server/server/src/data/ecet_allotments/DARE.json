@@ -1,0 +1,55 @@
+{
+  "code": "DARE",
+  "name": "DARE - DARIPALLY ANANTHA RAMULU COLLOF ENGGAND TECH, KHAMMAM",
+  "totalAllotted": 3,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 557,
+      "closingRank": 557,
+      "candidates": [
+        {
+          "rank": 557,
+          "hallTicket": "1401061755",
+          "name": "URE SRI HARSHITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 3004,
+      "closingRank": 3275,
+      "candidates": [
+        {
+          "rank": 3004,
+          "hallTicket": "1303073591",
+          "name": "BOYINI ANJALI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3275,
+          "hallTicket": "1303073500",
+          "name": "KOMMU SURESH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

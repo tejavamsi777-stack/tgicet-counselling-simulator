@@ -10,15 +10,26 @@ import Home from "./pages/Home";
 import IcetHome from "./pages/icet/IcetHome";
 import IcetPredictorPage from "./pages/icet/IcetPredictorPage";
 import IcetMockCounsellingPage from "./pages/icet/IcetMockCounsellingPage";
+import IcetComparePage from "./pages/icet/IcetComparePage";
+import IcetDocumentsPage from "./pages/icet/IcetDocumentsPage";
 import EapcetHome from "./pages/eapcet/EapcetHome";
 import EapcetPredictorPage from "./pages/eapcet/EapcetPredictorPage";
 import EapcetMockCounsellingPage from "./pages/eapcet/EapcetMockCounsellingPage";
+import EapcetDocumentsPage from "./pages/eapcet/EapcetDocumentsPage";
+import EapcetComparePage from "./pages/eapcet/EapcetComparePage";
+import EapcetAllotmentsPage from "./pages/eapcet/EapcetAllotmentsPage";
 import EcetHome from "./pages/ecet/EcetHome";
 import EcetPredictorPage from "./pages/ecet/EcetPredictorPage";
 import EcetMockCounsellingPage from "./pages/ecet/EcetMockCounsellingPage";
+import EcetAllotmentsPage from "./pages/ecet/EcetAllotmentsPage";
+import EcetComparePage from "./pages/ecet/EcetComparePage";
+import EcetDocumentsPage from "./pages/ecet/EcetDocumentsPage";
 import PolycetHome from "./pages/polycet/PolycetHome";
 import PolycetPredictorPage from "./pages/polycet/PolycetPredictorPage";
 import PolycetMockCounsellingPage from "./pages/polycet/PolycetMockCounsellingPage";
+import PolycetAllotmentsPage from "./pages/polycet/PolycetAllotmentsPage";
+import PolycetComparePage from "./pages/polycet/PolycetComparePage";
+import PolycetDocumentsPage from "./pages/polycet/PolycetDocumentsPage";
 import ExamLandingPage from "./pages/exams/ExamLandingPage";
 import ExamFeaturePage from "./pages/exams/ExamFeaturePage";
 import LoginPage from "./pages/LoginPage";
@@ -27,6 +38,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminApp from "./admin/AdminApp";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
 import GoogleOneTap from "./components/shared/GoogleOneTap";
+import { FloatingShareButton } from "./components/shared/ShareModal";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { useAdSenseScript } from "./hooks/useAdSenseScript";
 
@@ -87,6 +99,14 @@ function MainContent() {
                 <Route path="/tg-icet/mock-counselling" element={<ProtectedRoute><IcetMockCounsellingPage /></ProtectedRoute>} />
                 <Route path="/exams/tg-icet/mock-counselling" element={<ProtectedRoute><IcetMockCounsellingPage /></ProtectedRoute>} />
 
+                <Route path="/icet/compare" element={<IcetComparePage />} />
+                <Route path="/tg-icet/compare" element={<IcetComparePage />} />
+                <Route path="/exams/tg-icet/compare" element={<IcetComparePage />} />
+
+                <Route path="/icet/documents" element={<IcetDocumentsPage />} />
+                <Route path="/tg-icet/documents" element={<IcetDocumentsPage />} />
+                <Route path="/exams/tg-icet/documents" element={<IcetDocumentsPage />} />
+
                 {/* EAPCET Dedicated Pages */}
                 <Route path="/eapcet/predictor" element={<EapcetPredictorPage />} />
                 <Route path="/tg-eapcet/predictor" element={<EapcetPredictorPage />} />
@@ -95,6 +115,14 @@ function MainContent() {
                 <Route path="/eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
                 <Route path="/tg-eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
                 <Route path="/exams/tg-eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
+
+                <Route path="/tg-eapcet/documents" element={<EapcetDocumentsPage />} />
+                <Route path="/eapcet/compare" element={<EapcetComparePage />} />
+                <Route path="/tg-eapcet/compare" element={<EapcetComparePage />} />
+                <Route path="/exams/tg-eapcet/compare" element={<EapcetComparePage />} />
+
+                <Route path="/tg-eapcet/allotments" element={<EapcetAllotmentsPage />} />
+                <Route path="/eapcet/allotments" element={<EapcetAllotmentsPage />} />
 
                 {/* ECET Dedicated Pages */}
                 <Route path="/ecet/predictor" element={<ProtectedRoute><EcetPredictorPage /></ProtectedRoute>} />
@@ -105,6 +133,18 @@ function MainContent() {
                 <Route path="/tg-ecet/mock-counselling" element={<ProtectedRoute><EcetMockCounsellingPage /></ProtectedRoute>} />
                 <Route path="/exams/tg-ecet/mock-counselling" element={<ProtectedRoute><EcetMockCounsellingPage /></ProtectedRoute>} />
 
+                <Route path="/ecet/compare" element={<EcetComparePage />} />
+                <Route path="/tg-ecet/compare" element={<EcetComparePage />} />
+                <Route path="/exams/tg-ecet/compare" element={<EcetComparePage />} />
+
+                <Route path="/ecet/documents" element={<EcetDocumentsPage />} />
+                <Route path="/tg-ecet/documents" element={<EcetDocumentsPage />} />
+                <Route path="/exams/tg-ecet/documents" element={<EcetDocumentsPage />} />
+
+                <Route path="/ecet/allotments" element={<EcetAllotmentsPage />} />
+                <Route path="/tg-ecet/allotments" element={<EcetAllotmentsPage />} />
+                <Route path="/exams/tg-ecet/allotments" element={<EcetAllotmentsPage />} />
+
                 {/* POLYCET Dedicated Pages */}
                 <Route path="/polycet/predictor" element={<ProtectedRoute><PolycetPredictorPage /></ProtectedRoute>} />
                 <Route path="/tg-polycet/predictor" element={<ProtectedRoute><PolycetPredictorPage /></ProtectedRoute>} />
@@ -114,6 +154,18 @@ function MainContent() {
                 <Route path="/tg-polycet/mock-counselling" element={<ProtectedRoute><PolycetMockCounsellingPage /></ProtectedRoute>} />
                 <Route path="/exams/tg-polycet/mock-counselling" element={<ProtectedRoute><PolycetMockCounsellingPage /></ProtectedRoute>} />
 
+                <Route path="/polycet/allotments" element={<PolycetAllotmentsPage />} />
+                <Route path="/tg-polycet/allotments" element={<PolycetAllotmentsPage />} />
+                <Route path="/exams/tg-polycet/allotments" element={<PolycetAllotmentsPage />} />
+
+                <Route path="/polycet/compare" element={<PolycetComparePage />} />
+                <Route path="/tg-polycet/compare" element={<PolycetComparePage />} />
+                <Route path="/exams/tg-polycet/compare" element={<PolycetComparePage />} />
+
+                <Route path="/polycet/documents" element={<PolycetDocumentsPage />} />
+                <Route path="/tg-polycet/documents" element={<PolycetDocumentsPage />} />
+                <Route path="/exams/tg-polycet/documents" element={<PolycetDocumentsPage />} />
+
                 {/* Fallbacks for other dynamic exam slugs */}
                 <Route path="/exams/:examSlug" element={<ExamLandingPage />} />
                 <Route path="/exams/:examSlug/predictor" element={<ExamFeaturePage feature="predictor" />} />
@@ -122,6 +174,9 @@ function MainContent() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Global Bottom-Left Floating Share Button on Every Page */}
+        <FloatingShareButton />
 
         <Footer openPanel={openPanel} setOpenPanel={setOpenPanel} />
       </div>

@@ -1,0 +1,106 @@
+{
+  "code": "WESL",
+  "name": "WESL - CSI WESLEY INST OF TECHNOLOGY AND SCIENCES, SECUNDERABAD",
+  "totalAllotted": 9,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 9,
+      "openingRank": 579,
+      "closingRank": 5337,
+      "candidates": [
+        {
+          "rank": 579,
+          "hallTicket": "1401051588",
+          "name": "VADLA SUCHITRA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2048,
+          "hallTicket": "1301021279",
+          "name": "GOLLA HANSIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2157,
+          "hallTicket": "1401091912",
+          "name": "MANDULA TARUN SAI",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2601,
+          "hallTicket": "1201011055",
+          "name": "MALLEBOINA BHAVYASRI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2839,
+          "hallTicket": "1201011209",
+          "name": "JUPUDI KEROLIN",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3003,
+          "hallTicket": "1201062449",
+          "name": "KOLAKANI MANOJ",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3823,
+          "hallTicket": "1301031650",
+          "name": "PINNINTI SAI GANESH",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4457,
+          "hallTicket": "1216086798",
+          "name": "MOHAMMED SAMEERA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 5337,
+          "hallTicket": "1203064101",
+          "name": "KOTTAPALLI CHANDU",
+          "gender": "Male",
+          "caste": "SC_I",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "code": "DARE",
+  "name": "DARIPALLY ANANTHA RAMULU COLLEGE OF ENGG. AND TECH",
+  "district": "KHM",
+  "place": "KHAMMAM",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 16,
+  "branchesCount": 4,
+  "branches": [
+    {
+      "branchCode": "CE",
+      "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 28880,
+      "closingRank": 56394,
+      "candidates": [
+        {
+          "sno": 1,
+          "hallTicket": "4706111",
+          "rank": 28880,
+          "name": "SOLAM YOGESHWAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "5401011",
+          "rank": 56394,
+          "name": "SHAIK RASOOL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)"
+        }
+      ]
+    },
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 44461,
+      "closingRank": 76815,
+      "candidates": [
+        {
+          "sno": 3,
+          "hallTicket": "5904243",
+          "rank": 44461,
+          "name": "PITHANI DURGA BHAGAVAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "5406358",
+          "rank": 66881,
+          "name": "DAMALA GOWTHAM",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "5401004",
+          "rank": 76815,
+          "name": "BALANTHU DHANUSU",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 73838,
+      "closingRank": 80093,
+      "candidates": [
+        {
+          "sno": 2,
+          "hallTicket": "5408451",
+          "rank": 73838,
+          "name": "BHUKYA HAREESH",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2902265",
+          "rank": 80093,
+          "name": "BANOTHU VEERENDAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "MN",
+      "branchName": "DIPLOMA IN MINING ENGINEERING",
+      "totalAllotted": 9,
+      "openingRank": 19816,
+      "closingRank": 80994,
+      "candidates": [
+        {
+          "sno": 7,
+          "hallTicket": "5401750",
+          "rank": 19816,
+          "name": "KARANGULA VISHNUVARDHAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1315760",
+          "rank": 24464,
+          "name": "GOPAGANI SHIVANI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1305338",
+          "rank": 37073,
+          "name": "CHATLA SIRI CHANDANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "5408121",
+          "rank": 46987,
+          "name": "ANGIREKULA GOUTHAM",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "3317340",
+          "rank": 58600,
+          "name": "AAKUDHARI VISHNUVARDHAN",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "5401149",
+          "rank": 59120,
+          "name": "KOPPULA JESSICA SREE",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_UR"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "5401622",
+          "rank": 71466,
+          "name": "BADAVATH RAM CHARAN",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_B_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "5406090",
+          "rank": 79319,
+          "name": "DAMARLA ADITHYA",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_UR"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "4706135",
+          "rank": 80994,
+          "name": "BANOTH JASHWANTH",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        }
+      ]
+    }
+  ]
+}

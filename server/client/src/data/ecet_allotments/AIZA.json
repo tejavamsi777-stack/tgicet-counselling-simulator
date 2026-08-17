@@ -1,0 +1,84 @@
+{
+  "code": "AIZA",
+  "name": "AIZA - AIZZA COLLEGE OF ENGG AND TECHNOLOGY, MANCHERIAL",
+  "totalAllotted": 5,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 1850,
+      "closingRank": 1850,
+      "candidates": [
+        {
+          "rank": 1850,
+          "hallTicket": "1402082387",
+          "name": "CHALLURI BHAVANA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 547,
+      "closingRank": 547,
+      "candidates": [
+        {
+          "rank": 547,
+          "hallTicket": "1401091921",
+          "name": "HANUMANDLA SAITEJA",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 55,
+      "closingRank": 96,
+      "candidates": [
+        {
+          "rank": 55,
+          "hallTicket": "2610041168",
+          "name": "IQRA THAHIMIM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 64,
+          "hallTicket": "2607011111",
+          "name": "MOOD SIDDU",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 96,
+          "hallTicket": "2607051138",
+          "name": "SHAIK JOHN SAIDA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MIN"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "code": "SMED",
+  "name": "SMED - ST MARYS GROUP OF INSTITUTIONS AUTONOMOUS, DESHMUKHI",
+  "totalAllotted": 9,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 738,
+      "closingRank": 4535,
+      "candidates": [
+        {
+          "rank": 738,
+          "hallTicket": "1201011195",
+          "name": "SANDEEP THADIGOPPULA",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2257,
+          "hallTicket": "1216026473",
+          "name": "POOJARI KARTHAVYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4535,
+          "hallTicket": "1203074305",
+          "name": "PONAMONI VAISHNAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 6,
+      "openingRank": 3052,
+      "closingRank": 5535,
+      "candidates": [
+        {
+          "rank": 3052,
+          "hallTicket": "1201102713",
+          "name": "BANDA HEMA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 3118,
+          "hallTicket": "1203074197",
+          "name": "RAPOLU GANESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 3752,
+          "hallTicket": "1201102698",
+          "name": "LAGGONI RESHMITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 4593,
+          "hallTicket": "1203074246",
+          "name": "VOGGU SRIJA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 4678,
+          "hallTicket": "1201092613",
+          "name": "YELLAMLA RESHMA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 5535,
+          "hallTicket": "1207035162",
+          "name": "RAYALA SUPRIYA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    }
+  ]
+}

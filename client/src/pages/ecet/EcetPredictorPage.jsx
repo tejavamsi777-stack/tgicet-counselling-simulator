@@ -200,7 +200,6 @@ export default function EcetPredictorPage() {
 
             {lastCriteria && (
               <div id="results" className="space-y-6">
-                <StatsGrid results={result} />
                 <ResultsTable
                   results={sortedResult}
                   activeYears={activeYears}

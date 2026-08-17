@@ -1,0 +1,56 @@
+{
+  "code": "KUCP",
+  "name": "KUCP - K U COLLEGE OF PHARMACEUTICAL SCIENCES, WARANGAL",
+  "totalAllotted": 4,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 4,
+      "openingRank": 24,
+      "closingRank": 51,
+      "candidates": [
+        {
+          "rank": 24,
+          "hallTicket": "2702041029",
+          "name": "MADUNALA PRAVALIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 27,
+          "hallTicket": "2701051007",
+          "name": "DABBA INDU",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 34,
+          "hallTicket": "2704041058",
+          "name": "NASPURI ASHVITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 51,
+          "hallTicket": "2701071017",
+          "name": "PILLI NANDHINI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

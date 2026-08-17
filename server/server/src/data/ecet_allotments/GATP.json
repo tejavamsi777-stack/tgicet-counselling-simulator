@@ -1,0 +1,26 @@
+{
+  "code": "GATP",
+  "name": "GATP - GATE INSTITUTE OF PHARAMACEUTICAL SCIENCES, KODAD",
+  "totalAllotted": 1,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 1,
+      "openingRank": 12,
+      "closingRank": 12,
+      "candidates": [
+        {
+          "rank": 12,
+          "hallTicket": "2701061014",
+          "name": "SUMAIYA JABEEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

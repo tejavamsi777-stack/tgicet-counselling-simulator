@@ -1,0 +1,114 @@
+{
+  "code": "VITS",
+  "name": "VITS - SRI VISHWESWARAYA INST OF TECHNOLOGY AND SCI, MAHABUBNAGAR",
+  "totalAllotted": 8,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 1714,
+      "closingRank": 3053,
+      "candidates": [
+        {
+          "rank": 1714,
+          "hallTicket": "2301031233",
+          "name": "PASPULA PAVAN SAI",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3053,
+          "hallTicket": "1201021504",
+          "name": "PUNJALA PRAVALIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 518,
+      "closingRank": 713,
+      "candidates": [
+        {
+          "rank": 518,
+          "hallTicket": "1412014170",
+          "name": "GODUGU SWAPNA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 654,
+          "hallTicket": "1404083209",
+          "name": "MALA ARUN KUMAR",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 713,
+          "hallTicket": "1401041446",
+          "name": "S K RIYAZ",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 920,
+      "closingRank": 4008,
+      "candidates": [
+        {
+          "rank": 920,
+          "hallTicket": "1301021372",
+          "name": "KURVA INDHU",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3128,
+          "hallTicket": "1301051943",
+          "name": "ELLAPU NAVYA TEJA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4008,
+          "hallTicket": "1301062015",
+          "name": "KOLAGANI SNEHA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

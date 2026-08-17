@@ -1,0 +1,26 @@
+{
+  "code": "TALP",
+  "name": "TALP - TALLA PADMAVATHI COLLEGE OF PHARMACY, WARANGAL",
+  "totalAllotted": 1,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 1,
+      "openingRank": 7,
+      "closingRank": 7,
+      "candidates": [
+        {
+          "rank": 7,
+          "hallTicket": "2716081067",
+          "name": "SOHA TABASSUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "code": "VRKW",
+  "name": "VRKW - DR VRK WOMENS COLL OF ENGG AND TECHNOLOGY (AUTONOMOUS), MOINABAD",
+  "totalAllotted": 6,
+  "branches": [
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 169,
+      "closingRank": 1942,
+      "candidates": [
+        {
+          "rank": 169,
+          "hallTicket": "1403012489",
+          "name": "G JAHNAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1037,
+          "hallTicket": "1404013015",
+          "name": "SHAIK SHAMEERA BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1942,
+          "hallTicket": "1401021160",
+          "name": "AYESHA AFREEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1155,
+      "closingRank": 1805,
+      "candidates": [
+        {
+          "rank": 1155,
+          "hallTicket": "1302022642",
+          "name": "ELIJALA DEVIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1719,
+          "hallTicket": "1304033869",
+          "name": "YANUMULA SATHVIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1805,
+          "hallTicket": "1301051902",
+          "name": "CHOWDARI ASWINI",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

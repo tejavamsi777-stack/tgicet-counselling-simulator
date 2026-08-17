@@ -1,0 +1,86 @@
+{
+  "code": "PLMU",
+  "name": "PLMU - PALAMUR UNIVERSITY, MAHABUBNAGAR",
+  "totalAllotted": 7,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 7,
+      "openingRank": 15,
+      "closingRank": 55,
+      "candidates": [
+        {
+          "rank": 15,
+          "hallTicket": "2701101025",
+          "name": "MOHAMMAD ADIL KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 15,
+          "hallTicket": "2704081060",
+          "name": "S AKSHAY KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 24,
+          "hallTicket": "2701061015",
+          "name": "SUNKARI BHAVANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_CAP_GEN_UR(0)",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 30,
+          "hallTicket": "2702061035",
+          "name": "MD ASHFAQ",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 30,
+          "hallTicket": "2704031054",
+          "name": "GUNTI JYOSHNA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 46,
+          "hallTicket": "2701051011",
+          "name": "MD SOHEL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 55,
+          "hallTicket": "2701091021",
+          "name": "DODDI BALARAJU",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

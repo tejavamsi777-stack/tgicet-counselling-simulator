@@ -1,0 +1,202 @@
+{
+  "code": "GATE",
+  "name": "GATE - GATE INSTITUTE OF TECHNOLOGYAND SCIENCES, KODAD",
+  "totalAllotted": 15,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 264,
+      "closingRank": 882,
+      "candidates": [
+        {
+          "rank": 264,
+          "hallTicket": "2301021129",
+          "name": "DARIPELLY PRABHUDAS",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 789,
+          "hallTicket": "2302041723",
+          "name": "PINKY",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 882,
+          "hallTicket": "2303031919",
+          "name": "MEKALA GAYATHRI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 743,
+      "closingRank": 2255,
+      "candidates": [
+        {
+          "rank": 743,
+          "hallTicket": "1403072803",
+          "name": "RUQSAR BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 829,
+          "hallTicket": "1401101972",
+          "name": "ALAKUNTA KEERTHANA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2255,
+          "hallTicket": "1401091858",
+          "name": "KAMPELLI SHIVAMANI",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_PHM_GEN_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1516,
+      "closingRank": 3726,
+      "candidates": [
+        {
+          "rank": 1516,
+          "hallTicket": "1306014099",
+          "name": "SUDA JASWANTH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1569,
+          "hallTicket": "1316105647",
+          "name": "THAMPU JASWANTH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3726,
+          "hallTicket": "1301051938",
+          "name": "THOKALA DIVYA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 896,
+      "closingRank": 1482,
+      "candidates": [
+        {
+          "rank": 896,
+          "hallTicket": "2403072013",
+          "name": "BASA ANIL RAO",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 1241,
+          "hallTicket": "2401061336",
+          "name": "MANDARI SUJITH KUMAR",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 1482,
+          "hallTicket": "2403072016",
+          "name": "MOHAMMED SOHAIL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "MEC"
+        }
+      ]
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 17,
+      "closingRank": 76,
+      "candidates": [
+        {
+          "rank": 17,
+          "hallTicket": "2601061018",
+          "name": "RAMTENKI ROHITH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 48,
+          "hallTicket": "2610071175",
+          "name": "PULJALE ABHINAY",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 76,
+          "hallTicket": "2607021115",
+          "name": "ATIKETI SANKSHITH",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_OU",
+          "branchCode": "MIN"
+        }
+      ]
+    }
+  ]
+}

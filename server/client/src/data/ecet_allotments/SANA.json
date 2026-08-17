@@ -1,0 +1,115 @@
+{
+  "code": "SANA",
+  "name": "SANA - SANA ENGINEERING COLLGE, KODAD",
+  "totalAllotted": 9,
+  "branches": [
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 1380,
+      "closingRank": 2326,
+      "candidates": [
+        {
+          "rank": 1380,
+          "hallTicket": "1412014183",
+          "name": "SYED RAZIUDDIN AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1824,
+          "hallTicket": "1403012483",
+          "name": "MUDAVATH RAGHAVENDRA",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1844,
+          "hallTicket": "1407033517",
+          "name": "SHAIK UBED REHMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2172,
+          "hallTicket": "1412014185",
+          "name": "MOHAMMED MUKRAM SHAREEF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2228,
+          "hallTicket": "1401081836",
+          "name": "NUNE SAI KUMAR",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2326,
+          "hallTicket": "1408013656",
+          "name": "ANGOTH GANESH",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 2391,
+      "closingRank": 4154,
+      "candidates": [
+        {
+          "rank": 2391,
+          "hallTicket": "1310054454",
+          "name": "GODISHALA SPOORTHI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3661,
+          "hallTicket": "1313014917",
+          "name": "CHITTIPROLU DHARAN SAMPATH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4154,
+          "hallTicket": "1310084512",
+          "name": "KONKATI VYSHNAVI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

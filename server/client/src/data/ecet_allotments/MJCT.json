@@ -1,0 +1,910 @@
+{
+  "code": "MJCT",
+  "name": "MJCT - M J COLLEGE OF ENGINEERING AND TECHNOLOGY, BANJARA HILLS",
+  "totalAllotted": 84,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 59,
+      "closingRank": 203,
+      "candidates": [
+        {
+          "rank": 59,
+          "hallTicket": "2316032886",
+          "name": "MOHAMMED MUSTAFA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 98,
+          "hallTicket": "2301021117",
+          "name": "MOHAMMED KAIF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 173,
+          "hallTicket": "2301051321",
+          "name": "SHAIK YASEEN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 184,
+          "hallTicket": "2301011022",
+          "name": "MOHAMMAD MOIZUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 195,
+          "hallTicket": "2301011072",
+          "name": "AHMED SAYEEDUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 203,
+          "hallTicket": "2301021097",
+          "name": "MOHAMMAD ABDUL MUHEETH",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSA",
+      "name": "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)",
+      "totalAllotted": 6,
+      "openingRank": 1757,
+      "closingRank": 3448,
+      "candidates": [
+        {
+          "rank": 1757,
+          "hallTicket": "1201112799",
+          "name": "OWAIZ AHMED QURAISHI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSA"
+        },
+        {
+          "rank": 1827,
+          "hallTicket": "1201011200",
+          "name": "MOHD AYAAN MOHD HAFIZ KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSA"
+        },
+        {
+          "rank": 2923,
+          "hallTicket": "1201112797",
+          "name": "MOHAMMED UZAIR KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSA"
+        },
+        {
+          "rank": 3239,
+          "hallTicket": "1202033093",
+          "name": "KHAJA MUBASHIR UDDIN SABIR",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSA"
+        },
+        {
+          "rank": 3367,
+          "hallTicket": "1201072549",
+          "name": "MOHAMMED ISMAIL PASHA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSA"
+        },
+        {
+          "rank": 3448,
+          "hallTicket": "1213016217",
+          "name": "ABDUL MUQSITH",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSA"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 48,
+      "openingRank": 594,
+      "closingRank": 3208,
+      "candidates": [
+        {
+          "rank": 594,
+          "hallTicket": "1204084746",
+          "name": "AYESHA FAZAL",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 659,
+          "hallTicket": "1203033636",
+          "name": "SYEDA TAHURA TASNEEM",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 759,
+          "hallTicket": "1201021393",
+          "name": "SALEEM MUJAHID",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 814,
+          "hallTicket": "1203074348",
+          "name": "MOHAMMED ISMAIL KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 962,
+          "hallTicket": "1215016298",
+          "name": "MOHAMMED ALMAS",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1113,
+          "hallTicket": "1201011021",
+          "name": "MOHAMMED AAMIR",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1136,
+          "hallTicket": "1207045204",
+          "name": "FARHAN SHAIK",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1223,
+          "hallTicket": "1204024512",
+          "name": "SHAIK FAIZAAN MOHAMMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1352,
+          "hallTicket": "1204024494",
+          "name": "MOHAMMED SUFIYAAN UDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1469,
+          "hallTicket": "1201031812",
+          "name": "MOHAMMED KHAJA AHMED FAROOQI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1504,
+          "hallTicket": "1204024541",
+          "name": "SHAIK UMAR FAROOKH",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1511,
+          "hallTicket": "1201062245",
+          "name": "MOHAMMED ABDUL AADIL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1661,
+          "hallTicket": "1201062306",
+          "name": "UMME KULSUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1699,
+          "hallTicket": "1203063928",
+          "name": "SYED AYAAN KAMRAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1706,
+          "hallTicket": "1215016299",
+          "name": "MOHAMMED ABDUL HADI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1769,
+          "hallTicket": "1204014475",
+          "name": "MAAHINA RAHMANI",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1773,
+          "hallTicket": "1201021464",
+          "name": "MOHD UMAIR HARIS",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1802,
+          "hallTicket": "1214016261",
+          "name": "SHAIKH ZAHEER",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1849,
+          "hallTicket": "1201062371",
+          "name": "MOHAMMAD AFFANUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1894,
+          "hallTicket": "1201082570",
+          "name": "MOHAMMED IRFAN HUSSAIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1951,
+          "hallTicket": "1201052092",
+          "name": "MOHAMMED SOHAIL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2006,
+          "hallTicket": "1204024508",
+          "name": "MOHD MUNAF AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2032,
+          "hallTicket": "1201021622",
+          "name": "MOHAMMED SHOAIB",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2040,
+          "hallTicket": "1214016249",
+          "name": "SHAIK ANAS",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2094,
+          "hallTicket": "1215016272",
+          "name": "MOHAMMED SULEMAN ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2096,
+          "hallTicket": "1203033751",
+          "name": "SALEHA BEGUM",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2114,
+          "hallTicket": "1201112787",
+          "name": "MOHAMMAD ABDUL RAHIM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2131,
+          "hallTicket": "1203053804",
+          "name": "MD MASOOM BABA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2151,
+          "hallTicket": "1210105800",
+          "name": "MOHAMMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2160,
+          "hallTicket": "1201041902",
+          "name": "SYED SHOAIB",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2161,
+          "hallTicket": "1203074295",
+          "name": "MOHAMMED ALMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2163,
+          "hallTicket": "1201062387",
+          "name": "SYED KHAJA SAAD UDDIN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2186,
+          "hallTicket": "1201031802",
+          "name": "MOHAMMED KAIF UDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2333,
+          "hallTicket": "1202012950",
+          "name": "SYED RAYYAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2445,
+          "hallTicket": "1201062277",
+          "name": "MOHAMMED ABDUL AHAD",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2480,
+          "hallTicket": "1201011219",
+          "name": "MOHD MUJTABA SHAREEF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2547,
+          "hallTicket": "1201062301",
+          "name": "MOHAMMAD ZEESHAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2589,
+          "hallTicket": "1201102722",
+          "name": "SYED ALI ASHRAF",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2608,
+          "hallTicket": "1210115906",
+          "name": "MOHAMMAD FARHAN PASHA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2804,
+          "hallTicket": "1203063938",
+          "name": "MOHAMMED ABDUL HAMEED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2841,
+          "hallTicket": "1201011366",
+          "name": "SYED MUZAMMIL ANSAR",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2870,
+          "hallTicket": "1215016319",
+          "name": "NASEER NAYEEM MUZZAMMIL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2888,
+          "hallTicket": "1211016023",
+          "name": "MOHAMMAD GOUSE PASHA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2958,
+          "hallTicket": "1204044600",
+          "name": "MOHD ABDUL RAUF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2969,
+          "hallTicket": "1201041921",
+          "name": "MEHERAJ BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3000,
+          "hallTicket": "1206014906",
+          "name": "MOHAMMED SADIYA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3084,
+          "hallTicket": "1201062273",
+          "name": "MOHAMMED REHAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3208,
+          "hallTicket": "1201021450",
+          "name": "SHAMIKH RAMEEZ AHMED",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 6,
+      "openingRank": 402,
+      "closingRank": 1687,
+      "candidates": [
+        {
+          "rank": 402,
+          "hallTicket": "1201052001",
+          "name": "MOHAMMED ZAID FAROOQI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 964,
+          "hallTicket": "1201021486",
+          "name": "ABDUL RAHMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 1111,
+          "hallTicket": "1201011294",
+          "name": "MOHAMMED ABDUL FAIZAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 1310,
+          "hallTicket": "1201041924",
+          "name": "MOHAMMED KAASHIF AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 1670,
+          "hallTicket": "1203023609",
+          "name": "MOHD AKBAR ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 1687,
+          "hallTicket": "1201011079",
+          "name": "MOHAMMED SAMI AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)",
+      "totalAllotted": 6,
+      "openingRank": 1889,
+      "closingRank": 3031,
+      "candidates": [
+        {
+          "rank": 1889,
+          "hallTicket": "1210135994",
+          "name": "MD ABDUL RAHAMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 1969,
+          "hallTicket": "1203063994",
+          "name": "MOHAMMED ABDUL SATTAR",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 1979,
+          "hallTicket": "1204044623",
+          "name": "SYED KHALEEL UR RAHMAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 2927,
+          "hallTicket": "1201021547",
+          "name": "AISHA MOHD HAFIZ KHAN",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 3028,
+          "hallTicket": "1201011377",
+          "name": "UMAR SHAREEF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 3031,
+          "hallTicket": "1203074189",
+          "name": "MOHAMMED ISHAQUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSD"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 283,
+      "closingRank": 1271,
+      "candidates": [
+        {
+          "rank": 283,
+          "hallTicket": "1301031553",
+          "name": "SYED ABDUL RAHEEM",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 337,
+          "hallTicket": "1301031647",
+          "name": "SOHA FATIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 357,
+          "hallTicket": "1301021276",
+          "name": "SYED FUZAIL AHMED",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 524,
+          "hallTicket": "1301031624",
+          "name": "MOHAMMED SAAD",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1011,
+          "hallTicket": "1301072177",
+          "name": "MOHAMMED YOUNUS GHOUSE",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1271,
+          "hallTicket": "1315014966",
+          "name": "ARHAAN MOHIUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 19,
+      "closingRank": 234,
+      "candidates": [
+        {
+          "rank": 19,
+          "hallTicket": "2401081410",
+          "name": "SYED ABDUL RAHEEM",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 74,
+          "hallTicket": "2401071376",
+          "name": "SHAIK AHAD ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 158,
+          "hallTicket": "2401011048",
+          "name": "MAHBOOB MUZAMMIL KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 180,
+          "hallTicket": "2401011051",
+          "name": "SHAIK ETHESHAM",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 209,
+          "hallTicket": "2402071738",
+          "name": "MOHAMMED ANAS NAWAZ KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 234,
+          "hallTicket": "2401041168",
+          "name": "MOHAMMED YOUNUS HUSSAIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MEC"
+        }
+      ]
+    }
+  ]
+}

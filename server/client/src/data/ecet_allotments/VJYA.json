@@ -1,0 +1,135 @@
+{
+  "code": "VJYA",
+  "name": "VJYA - VIJAYA ENGINEERING COLLEGE, KHAMMAM",
+  "totalAllotted": 11,
+  "branches": [
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 922,
+      "closingRank": 2860,
+      "candidates": [
+        {
+          "rank": 922,
+          "hallTicket": "1403032548",
+          "name": "B YUVARAJU",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1653,
+          "hallTicket": "1403062712",
+          "name": "EGURAM KOUSHIK",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1681,
+          "hallTicket": "1407013445",
+          "name": "GUNUGUNTLA ANUSHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2008,
+          "hallTicket": "1406013319",
+          "name": "BHUKYA AJAY KUMAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2071,
+          "hallTicket": "1407053603",
+          "name": "MATHIPOGU GOVARDHAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 2860,
+          "hallTicket": "1407013452",
+          "name": "KANDULA DRAKSHAYANI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_CAP_GIRLS_UR(0)",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 5,
+      "openingRank": 2971,
+      "closingRank": 4211,
+      "candidates": [
+        {
+          "rank": 2971,
+          "hallTicket": "1304023841",
+          "name": "SINGOOR MAHESH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3202,
+          "hallTicket": "1316025231",
+          "name": "DAMERA GANESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3410,
+          "hallTicket": "1301021267",
+          "name": "GOUNI ROHITH KUMAR REDDY",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3865,
+          "hallTicket": "1307014182",
+          "name": "BATHULA VIVEK",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4211,
+          "hallTicket": "1302042738",
+          "name": "DEVASOTH RAJITHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

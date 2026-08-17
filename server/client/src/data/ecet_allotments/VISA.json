@@ -1,0 +1,221 @@
+{
+  "code": "VISA",
+  "name": "VISA - VATHSALYA INSTITUTE OF SCI AND TECHNOLOGY, BHONGIR",
+  "totalAllotted": 16,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 404,
+      "closingRank": 891,
+      "candidates": [
+        {
+          "rank": 404,
+          "hallTicket": "2301051343",
+          "name": "BACCHU NAVYASRI",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_UR",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 561,
+          "hallTicket": "2302021679",
+          "name": "DHAMMAM SRAVANI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHM_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 671,
+          "hallTicket": "2305012326",
+          "name": "MACHARLA SRAVANTHI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 891,
+          "hallTicket": "2302011656",
+          "name": "GAJAM POOJA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 2010,
+      "closingRank": 5045,
+      "candidates": [
+        {
+          "rank": 2010,
+          "hallTicket": "1201052205",
+          "name": "AACHAL GUPTHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3504,
+          "hallTicket": "1201021435",
+          "name": "VADLA SWETHA BHAVANI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 5045,
+          "hallTicket": "1216086871",
+          "name": "PATTAPURAM ROHITH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 1,
+      "openingRank": 1865,
+      "closingRank": 1865,
+      "candidates": [
+        {
+          "rank": 1865,
+          "hallTicket": "1401112010",
+          "name": "KOTAGIRI KARTHIK",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1042,
+      "closingRank": 3189,
+      "candidates": [
+        {
+          "rank": 1042,
+          "hallTicket": "1303053269",
+          "name": "BATHULA CHANDINI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1508,
+          "hallTicket": "1302092972",
+          "name": "AKULA MANIKUMAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3189,
+          "hallTicket": "1301092256",
+          "name": "MANCHALA PRAVALIKA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY",
+      "totalAllotted": 2,
+      "openingRank": 2829,
+      "closingRank": 3927,
+      "candidates": [
+        {
+          "rank": 2829,
+          "hallTicket": "1401051489",
+          "name": "DARAVATH SURESH",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "INF"
+        },
+        {
+          "rank": 3927,
+          "hallTicket": "1301031616",
+          "name": "KARTHALA ROHITH RAJ",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "INF"
+        }
+      ]
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 79,
+      "closingRank": 624,
+      "candidates": [
+        {
+          "rank": 79,
+          "hallTicket": "2403071979",
+          "name": "CHEKKA SATHYANARAYANA",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 505,
+          "hallTicket": "2402091807",
+          "name": "PANNEERU SAIKUMAR",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 624,
+          "hallTicket": "2404082184",
+          "name": "CHINTHAKINDI KARUNAKAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "MEC"
+        }
+      ]
+    }
+  ]
+}

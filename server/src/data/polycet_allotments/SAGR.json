@@ -1,0 +1,109 @@
+{
+  "code": "SAGR",
+  "name": "SAGAR GROUP OF INSTITUTIONS",
+  "district": "RR",
+  "place": "CHEVELLA",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 7,
+  "branchesCount": 3,
+  "branches": [
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 47170,
+      "closingRank": 60922,
+      "candidates": [
+        {
+          "sno": 3,
+          "hallTicket": "4512160",
+          "rank": 47170,
+          "name": "KOYYADA NANDISHWAR GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "4110054",
+          "rank": 49200,
+          "name": "GUNDA BHAVYA SAI",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1912051",
+          "rank": 60922,
+          "name": "DUVVARI KAVYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 48733,
+      "closingRank": 56666,
+      "candidates": [
+        {
+          "sno": 2,
+          "hallTicket": "3501551",
+          "rank": 48733,
+          "name": "YATAKARLA JESHWANTH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2108108",
+          "rank": 56666,
+          "name": "MEGAVATH CHARAN",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_PHM_GEN_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "EC",
+      "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 32825,
+      "closingRank": 61272,
+      "candidates": [
+        {
+          "sno": 1,
+          "hallTicket": "2302966",
+          "rank": 32825,
+          "name": "NUKAM SHIVA KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "4511201",
+          "rank": 61272,
+          "name": "PEDDIGARI SHRUTHI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        }
+      ]
+    }
+  ]
+}

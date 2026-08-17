@@ -1,0 +1,133 @@
+{
+  "code": "BSKR",
+  "name": "BSKR - BHASKAR ENGINEERING COLLEGE, YENKAPALLY",
+  "totalAllotted": 9,
+  "branches": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE",
+      "totalAllotted": 1,
+      "openingRank": 1291,
+      "closingRank": 1291,
+      "candidates": [
+        {
+          "rank": 1291,
+          "hallTicket": "1403072775",
+          "name": "D PRABHUDAS",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "AID"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 2096,
+      "closingRank": 2096,
+      "candidates": [
+        {
+          "rank": 2096,
+          "hallTicket": "1301031609",
+          "name": "KUNAPULLA PARAMESH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 3,
+      "openingRank": 2755,
+      "closingRank": 4690,
+      "candidates": [
+        {
+          "rank": 2755,
+          "hallTicket": "1301072191",
+          "name": "CHIRUVOLU NAGA ANANDRAJ",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 4036,
+          "hallTicket": "1212016165",
+          "name": "S SOWMYA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 4690,
+          "hallTicket": "1210125968",
+          "name": "THATIKONDA MANIDEEP",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 846,
+      "closingRank": 3233,
+      "candidates": [
+        {
+          "rank": 846,
+          "hallTicket": "1301021437",
+          "name": "P SRIDHAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1482,
+          "hallTicket": "1304013742",
+          "name": "MADHESIYA PRIYANKA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2748,
+          "hallTicket": "1301011082",
+          "name": "GADHARI AMULYA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3233,
+          "hallTicket": "1310084519",
+          "name": "GERIGANTI HASINI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

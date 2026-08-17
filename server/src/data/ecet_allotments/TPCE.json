@@ -1,0 +1,95 @@
+{
+  "code": "TPCE",
+  "name": "TPCE - TALLA PADMAVATHI COLL OF ENGINEERING (AUTONOMOUS), KAZIPET",
+  "totalAllotted": 7,
+  "branches": [
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 1,
+      "openingRank": 1578,
+      "closingRank": 1578,
+      "candidates": [
+        {
+          "rank": 1578,
+          "hallTicket": "2316062937",
+          "name": "BOINI DHEERAJ",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 2261,
+      "closingRank": 3433,
+      "candidates": [
+        {
+          "rank": 2261,
+          "hallTicket": "1316075458",
+          "name": "PANUGANTI SAI SRI VIDYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2506,
+          "hallTicket": "1310104681",
+          "name": "NAGAM RAHUL",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2509,
+          "hallTicket": "1316035288",
+          "name": "VANGARI POOJITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2644,
+          "hallTicket": "1316035297",
+          "name": "KURAPATI ANOOHYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 2897,
+          "hallTicket": "1301051913",
+          "name": "G LAXMI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_C_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3433,
+          "hallTicket": "1316045320",
+          "name": "PRUNITH KANNAM",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_PHO_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

@@ -2,9 +2,58 @@ import { useState, useRef, useEffect } from "react";
 import { X, Mail, Shield, Info, HelpCircle } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "./Logo";
+import { ShareButton } from "../shared/ShareModal";
 
 export const ABOUT_TEXT =
-  "TG Counselling is an independent educational platform designed to help students navigate Telangana entrance exams including TG ICET, TG EAPCET, TG ECET, and TG POLYCET. We provide data-driven College Predictors based on verified previous-year cutoff trends and interactive Mock Counselling Simulators for practicing web options entry and simulated seat allotments.";
+  "TG Counselling is a 100% free, independent educational guidance platform built to empower students navigating Telangana admissions (TG EAPCET, TG ICET, TG ECET, and TG POLYCET). We provide data-driven College Predictors based on verified government cutoffs, official college-wise seat allotment explorers, interactive Web Options practice simulators, and comprehensive HLC certificate verification guides — completely free with zero hidden costs, paywalls, or subscriptions.";
+
+export const ABOUT_PANEL_CONTENT = (
+  <div className="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 text-[11px] font-bold text-emerald-300">
+        ✨ 100% Free Forever
+      </span>
+      <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/15 border border-purple-500/30 px-2.5 py-0.5 text-[11px] font-bold text-purple-300">
+        🏛️ Official TG Admissions Data
+      </span>
+      <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 px-2.5 py-0.5 text-[11px] font-bold text-cyan-300">
+        ⚡ Zero Paywalls
+      </span>
+    </div>
+
+    <p>
+      <strong className="text-white">TG Counselling</strong> is an independent educational platform created to help students across Telangana make informed, confident admission decisions.
+    </p>
+
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 space-y-2 text-xs">
+      <div className="font-semibold text-white flex items-center gap-1.5">
+        <span>What We Provide (Always Free for All Students):</span>
+      </div>
+      <ul className="space-y-1.5 text-gray-300">
+        <li className="flex items-start gap-1.5">
+          <span className="text-purple-400 font-bold">•</span>
+          <span><strong className="text-white">College Predictor:</strong> Data-driven cutoff estimation based on rank, caste category, and quota reservation.</span>
+        </li>
+        <li className="flex items-start gap-1.5">
+          <span className="text-purple-400 font-bold">•</span>
+          <span><strong className="text-white">Official Seat Allotment Explorer:</strong> Official candidate-level allotments across TG EAPCET, TG ECET, and TG POLYCET.</span>
+        </li>
+        <li className="flex items-start gap-1.5">
+          <span className="text-purple-400 font-bold">•</span>
+          <span><strong className="text-white">Exercise Web Options:</strong> Realistic practice simulator to build and test preference lists before official counselling.</span>
+        </li>
+        <li className="flex items-start gap-1.5">
+          <span className="text-purple-400 font-bold">•</span>
+          <span><strong className="text-white">HLC Document Guides:</strong> Complete certificate checklists with MeeSeva validity rules and account sync.</span>
+        </li>
+      </ul>
+    </div>
+
+    <p className="text-[11px] text-gray-400">
+      * TG Counselling is an independent guidance initiative designed to make Telangana higher education admissions transparent and accessible for every student.
+    </p>
+  </div>
+);
 
 export const PRIVACY_TEXT = (
   <div className="space-y-3 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
@@ -96,8 +145,14 @@ export default function Footer({ openPanel, setOpenPanel }) {
     };
   }, [openPanel, setOpenPanel]);
 
+  useEffect(() => {
+    if (openPanel && panelRef.current) {
+      panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [openPanel]);
+
   return (
-    <footer className="relative z-10 mt-24 border-t border-white/10 bg-black/80 backdrop-blur-xl text-gray-300">
+    <footer className="relative z-[90] mt-24 border-t border-white/10 bg-black/80 backdrop-blur-xl text-gray-300">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-center md:flex-row">
         <div className="flex items-center gap-3">
           <Logo size={34} />
@@ -140,21 +195,25 @@ export default function Footer({ openPanel, setOpenPanel }) {
             </button>
           </div>
 
+          <div className="relative">
+            <ShareButton variant="pill" label="Share Portal" className="text-white hover:text-purple-300" />
+          </div>
+
           <AnimatePresence>
             {openPanel && (
               <motion.div
                 ref={panelRef}
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                initial={{ opacity: 0, y: 15, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                exit={{ opacity: 0, y: 15, scale: 0.95 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute bottom-full mb-3 right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 z-[90] w-[min(92vw,460px)] rounded-3xl border border-white/20 bg-[#120d1f]/98 p-5 sm:p-6 text-left shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
+                className="absolute bottom-full mb-4 right-1/2 translate-x-1/2 md:translate-x-0 md:right-0 z-[100] w-[min(92vw,480px)] max-h-[82vh] overflow-y-auto rounded-3xl border border-white/20 bg-[#120d1f]/98 p-5 sm:p-6 text-left shadow-[0_25px_70px_rgba(0,0,0,0.95),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white custom-scrollbar"
               >
-                <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-2.5">
-                  <h4 className="text-base font-semibold text-white flex items-center gap-2">
-                    {openPanel === "about" && <Info size={16} className="text-purple-300" />}
-                    {openPanel === "privacy" && <Shield size={16} className="text-purple-300" />}
-                    {openPanel === "contact" && <HelpCircle size={16} className="text-purple-300" />}
+                <div className="mb-3.5 flex items-center justify-between border-b border-white/10 pb-2.5">
+                  <h4 className="text-base font-bold text-white flex items-center gap-2">
+                    {openPanel === "about" && <Info size={18} className="text-purple-300" />}
+                    {openPanel === "privacy" && <Shield size={18} className="text-purple-300" />}
+                    {openPanel === "contact" && <HelpCircle size={18} className="text-purple-300" />}
                     <span>
                       {openPanel === "about" && "About TG Counselling"}
                       {openPanel === "privacy" && "Privacy & Cookie Policy"}
@@ -164,17 +223,13 @@ export default function Footer({ openPanel, setOpenPanel }) {
                   <button
                     onClick={() => setOpenPanel(null)}
                     aria-label="Close"
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-gray-400 hover:bg-white/10 hover:text-white"
+                    className="flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-gray-300 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
                   >
                     <X size={15} />
                   </button>
                 </div>
 
-                {openPanel === "about" && (
-                  <p className="text-xs sm:text-sm leading-relaxed text-gray-300">
-                    {ABOUT_TEXT}
-                  </p>
-                )}
+                {openPanel === "about" && ABOUT_PANEL_CONTENT}
                 {openPanel === "privacy" && PRIVACY_TEXT}
                 {openPanel === "contact" && CONTACT_TEXT}
               </motion.div>

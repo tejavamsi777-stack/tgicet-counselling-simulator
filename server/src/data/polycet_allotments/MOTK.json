@@ -1,0 +1,345 @@
+{
+  "code": "MOTK",
+  "name": "MOTHER TERESA INSTITUTE OF SCI. AND TECHNOLOGY",
+  "district": "KHM",
+  "place": "SATHUPALLY",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 29,
+  "branchesCount": 5,
+  "branches": [
+    {
+      "branchCode": "CE",
+      "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+      "totalAllotted": 0,
+      "openingRank": null,
+      "closingRank": null,
+      "candidates": []
+    },
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 18,
+      "openingRank": 2459,
+      "closingRank": 81086,
+      "candidates": [
+        {
+          "sno": 15,
+          "hallTicket": "5801468",
+          "rank": 2459,
+          "name": "GANDLA VENKATA MOHITH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "5801461",
+          "rank": 13839,
+          "name": "BONTHU YASMITHA SAI NEHA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "2213295",
+          "rank": 14927,
+          "name": "SHAIK JAMEER PASHA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_UR"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "5801368",
+          "rank": 19344,
+          "name": "MALLELLI RESHMITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "5802098",
+          "rank": 20718,
+          "name": "NADIPALLI MOHANA KRISHNA",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "4807227",
+          "rank": 21272,
+          "name": "AVADURTHI NIRISH KUMAR",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "5803112",
+          "rank": 30453,
+          "name": "PANDURI PAVAN SAI SRINIVAS",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "2213020",
+          "rank": 32527,
+          "name": "NELLELA RAKSHITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "5801106",
+          "rank": 36119,
+          "name": "CHIDIPI VINCENT BENNY",
+          "gender": "Male",
+          "caste": "BC_C",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "5802199",
+          "rank": 48645,
+          "name": "KANCHARLA JASWANTH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "5801202",
+          "rank": 49103,
+          "name": "AKULA BALA VIGNESH VARDHAN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GEN_OU"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "4807299",
+          "rank": 51806,
+          "name": "SURAM LASYAKSHARA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "5801009",
+          "rank": 53138,
+          "name": "TELLURI RAJESH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "3801128",
+          "rank": 60406,
+          "name": "PAMMI HEMANTH RAM CHARAN TEJA",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GIRLS_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "5801213",
+          "rank": 63332,
+          "name": "KUVVARAPU JOYAL",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "BC_C_GEN_UR"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "5801109",
+          "rank": 68971,
+          "name": "SADU SANTHOSH KUMAR",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_I_GEN_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "3807074",
+          "rank": 71989,
+          "name": "NANDRU BHAVITHA KEERTHANA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2205152",
+          "rank": 81086,
+          "name": "GODLA VENKATESH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_UR"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 5,
+      "openingRank": 11480,
+      "closingRank": 60733,
+      "candidates": [
+        {
+          "sno": 2,
+          "hallTicket": "5801392",
+          "rank": 11480,
+          "name": "MALLURU SATHYA SRUJANA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "5803173",
+          "rank": 26707,
+          "name": "KANKATI SAICHARAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "5802057",
+          "rank": 48733,
+          "name": "KUNJA RETHESH",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "5802055",
+          "rank": 60283,
+          "name": "REGULA UDAY KIRAN",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "5801307",
+          "rank": 60733,
+          "name": "CHERUKU HRUTHIN CHANDRA",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GEN_OU(0)"
+        }
+      ]
+    },
+    {
+      "branchCode": "EC",
+      "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 8644,
+      "closingRank": 75481,
+      "candidates": [
+        {
+          "sno": 3,
+          "hallTicket": "5801030",
+          "rank": 8644,
+          "name": "PATHAN ASHFAQ KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "3807176",
+          "rank": 42245,
+          "name": "MANDADAPU GNANESWAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "5802149",
+          "rank": 44432,
+          "name": "MOHAMMAD HAYATH ALI IRFAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "4807258",
+          "rank": 58129,
+          "name": "VEMULA AKSHAYA CHANDRA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "5803130",
+          "rank": 59844,
+          "name": "MALLELLI MAHIDAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "5801363",
+          "rank": 75481,
+          "name": "VANAPARLA MEGHANA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "ME",
+      "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+      "totalAllotted": 0,
+      "openingRank": null,
+      "closingRank": null,
+      "candidates": []
+    }
+  ]
+}

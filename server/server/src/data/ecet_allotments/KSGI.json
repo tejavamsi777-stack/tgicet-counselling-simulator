@@ -1,0 +1,84 @@
+{
+  "code": "KSGI",
+  "name": "KSGI - GOVERNMENT ENGINEERING COLLEGE KOSGI, KOSGI",
+  "totalAllotted": 5,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 2423,
+      "closingRank": 5169,
+      "candidates": [
+        {
+          "rank": 2423,
+          "hallTicket": "1201062229",
+          "name": "PALAKONDA SAIPRAKASH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 5169,
+          "hallTicket": "1201031810",
+          "name": "SAIDUGARI SREENIJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 2,
+      "openingRank": 3309,
+      "closingRank": 3566,
+      "candidates": [
+        {
+          "rank": 3309,
+          "hallTicket": "1201021533",
+          "name": "BANDARU ADI KUMAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 3566,
+          "hallTicket": "1303073618",
+          "name": "E NAGESH GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)",
+      "totalAllotted": 1,
+      "openingRank": 4645,
+      "closingRank": 4645,
+      "candidates": [
+        {
+          "rank": 4645,
+          "hallTicket": "1203023549",
+          "name": "BODDU ANIKETH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "CSD"
+        }
+      ]
+    }
+  ]
+}

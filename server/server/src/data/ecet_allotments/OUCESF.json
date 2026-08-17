@@ -1,0 +1,46 @@
+{
+  "code": "OUCESF",
+  "name": "OUCESF - O U COLLEGE OF ENGG HYDERABAD - SELF FINANCE, HYDERABAD",
+  "totalAllotted": 3,
+  "branches": [
+    {
+      "code": "BME",
+      "name": "BIO-MEDICAL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 633,
+      "closingRank": 3692,
+      "candidates": [
+        {
+          "rank": 633,
+          "hallTicket": "1309014304",
+          "name": "POLAMPALLY VAISHNAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "BME"
+        },
+        {
+          "rank": 2609,
+          "hallTicket": "1301021496",
+          "name": "AMGOTH LALITHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "BME"
+        },
+        {
+          "rank": 3692,
+          "hallTicket": "1304073998",
+          "name": "MOHAMMED ABDUL REHAAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "BME"
+        }
+      ]
+    }
+  ]
+}

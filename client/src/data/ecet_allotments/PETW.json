@@ -1,0 +1,202 @@
+{
+  "code": "PETW",
+  "name": "PETW - PRINCETON INST OF ENGG TECH FOR WOMEN AUTONOMOUS, GHATKESAR",
+  "totalAllotted": 15,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 530,
+      "closingRank": 811,
+      "candidates": [
+        {
+          "rank": 530,
+          "hallTicket": "2301011071",
+          "name": "DHARNI MALLISHWARI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 557,
+          "hallTicket": "2301021092",
+          "name": "BOMPALLY POOJITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 811,
+          "hallTicket": "2302011663",
+          "name": "INDUR SANGHAMITHRA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1088,
+      "closingRank": 3283,
+      "candidates": [
+        {
+          "rank": 1088,
+          "hallTicket": "2301011068",
+          "name": "SINGIREDDY SRIJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1763,
+          "hallTicket": "1311024841",
+          "name": "SIDDIPETA ARCHANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3283,
+          "hallTicket": "1203033667",
+          "name": "BANDLOLLU BHAVANA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 2,
+      "openingRank": 2371,
+      "closingRank": 3334,
+      "candidates": [
+        {
+          "rank": 2371,
+          "hallTicket": "1216066754",
+          "name": "ELLENDALA SATHWIKA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 3334,
+          "hallTicket": "1216086815",
+          "name": "BANKA SUMANJALI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)",
+      "totalAllotted": 1,
+      "openingRank": 758,
+      "closingRank": 758,
+      "candidates": [
+        {
+          "rank": 758,
+          "hallTicket": "2401071378",
+          "name": "KEMIDI GOUTHAMI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSD"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 510,
+      "closingRank": 4133,
+      "candidates": [
+        {
+          "rank": 510,
+          "hallTicket": "1306024131",
+          "name": "HASHMATH TABASSUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 735,
+          "hallTicket": "1316015082",
+          "name": "CHIDURALA NITHYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_SG_GIRLS_OU(0)",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1396,
+          "hallTicket": "1301051792",
+          "name": "NOMULA SAI KEERTHANA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1471,
+          "hallTicket": "1303063327",
+          "name": "KARUVANGA SHIRISHA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3560,
+          "hallTicket": "1301041676",
+          "name": "MANNE AKHILA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4133,
+          "hallTicket": "1301051872",
+          "name": "KATROTH SANDHYA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

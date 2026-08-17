@@ -1,0 +1,75 @@
+{
+  "code": "MMTZ",
+  "name": "MMTZ - MUMTAZ COLL OF ENGG TECHNOLOGY, HYDERABAD",
+  "totalAllotted": 5,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 553,
+      "closingRank": 931,
+      "candidates": [
+        {
+          "rank": 553,
+          "hallTicket": "2301061449",
+          "name": "MOHAMMAD ALMASODDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 583,
+          "hallTicket": "2301061431",
+          "name": "GULAM MOHAMMED REHAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 931,
+          "hallTicket": "2301061427",
+          "name": "GULAM MOHAMMED AYAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 1839,
+      "closingRank": 3667,
+      "candidates": [
+        {
+          "rank": 1839,
+          "hallTicket": "2302021686",
+          "name": "KOMATI AJAY",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3667,
+          "hallTicket": "1304013733",
+          "name": "BENNUR MOUNIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "code": "AURN",
+  "name": "AURN - AURORAS TECHNOLOGICAL INST, CHIKKADPALLY HYDERABAD",
+  "totalAllotted": 6,
+  "branches": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+      "totalAllotted": 6,
+      "openingRank": 471,
+      "closingRank": 3445,
+      "candidates": [
+        {
+          "rank": 471,
+          "hallTicket": "1301061993",
+          "name": "PERUGU YUKTHASRI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1209,
+          "hallTicket": "2316072949",
+          "name": "GANDU ANUPRIYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1434,
+          "hallTicket": "2301051301",
+          "name": "GUDUGUNTLA SAI SRAVAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1570,
+          "hallTicket": "1204054668",
+          "name": "KOKA LOHITHAKSH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 2916,
+          "hallTicket": "1302032694",
+          "name": "GANJPALWAR SRI KRISHNA",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 3445,
+          "hallTicket": "1210105804",
+          "name": "PITTALA SAI RISHIK",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "AIM"
+        }
+      ]
+    }
+  ]
+}

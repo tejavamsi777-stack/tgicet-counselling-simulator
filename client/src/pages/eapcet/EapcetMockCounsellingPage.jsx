@@ -268,7 +268,7 @@ export default function EapcetMockCounsellingPage() {
   }
 
   return (
-    <main className={`relative mx-auto overflow-visible ${step === "list" ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2" : "max-w-6xl space-y-8 px-6 pb-44 pt-6"}`}>
+    <main className={`relative mx-auto overflow-visible w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 ${step === "list" ? "space-y-1.5 pb-4 pt-2" : "space-y-8 pb-44 pt-6"}`}>
       <button onClick={handleBack} className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-gray-300 hover:text-white">
         <ArrowLeft size={16} /> Back
       </button>

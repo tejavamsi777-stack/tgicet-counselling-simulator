@@ -1,0 +1,4454 @@
+[
+  {
+    "code": "ADBP",
+    "name": "S.G GOVT POLYTECHNIC",
+    "district": "ADB",
+    "place": "ADILABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 0,
+    "branches": []
+  },
+  {
+    "code": "AITH",
+    "name": "ANNAMACHARYA INST. OF TECHNOLOGY. AND SCI.",
+    "district": "RR",
+    "place": "HAYATHNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 113,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 81,
+        "openingRank": 13446,
+        "closingRank": 81104
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 12,
+        "openingRank": 37103,
+        "closingRank": 80577
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 5641,
+        "closingRank": 69780
+      }
+    ]
+  },
+  {
+    "code": "AIZA",
+    "name": "AIZZA COLLEGE OF ENGG AND TECHNOLOGY",
+    "district": "MNC",
+    "place": "MANCHERIAL",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 20,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 32702,
+        "closingRank": 75541
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 14,
+        "openingRank": 8768,
+        "closingRank": 67313
+      }
+    ]
+  },
+  {
+    "code": "AKIT",
+    "name": "ABDULKALAM INST. OF TECHNOLOGY AND SCI.",
+    "district": "KGM",
+    "place": "KOTHAGUDEM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 34,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 4528,
+        "closingRank": 74514
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 27749,
+        "closingRank": 80856
+      }
+    ]
+  },
+  {
+    "code": "ANRK",
+    "name": "ANURAG ENGINNERING COLLGE",
+    "district": "SRP",
+    "place": "KODAD",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 167,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 70,
+        "openingRank": 7727,
+        "closingRank": 80831
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 47,
+        "openingRank": 4681,
+        "closingRank": 81153
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 2167,
+        "closingRank": 80688
+      }
+    ]
+  },
+  {
+    "code": "ARJN",
+    "name": "ARJUN COLLEGE OF TECHNOLOGY AND SCIENCE",
+    "district": "RR",
+    "place": "BATASINGARAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 71,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 53,
+        "openingRank": 17272,
+        "closingRank": 81008
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 23732,
+        "closingRank": 80093
+      }
+    ]
+  },
+  {
+    "code": "ASRA",
+    "name": "AVANTHIS SCIENTIFIC TECH AND RESEARCH ACADEMY",
+    "district": "RR",
+    "place": "HAYATHNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 58,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 10425,
+        "closingRank": 81239
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 6175,
+        "closingRank": 76790
+      }
+    ]
+  },
+  {
+    "code": "BLMP",
+    "name": "GOVT POLYTECHNIC",
+    "district": "MNC",
+    "place": "BELLAMPALLI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 221,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 57,
+        "openingRank": 4498,
+        "closingRank": 80197
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 62,
+        "openingRank": 685,
+        "closingRank": 72844
+      },
+      {
+        "branchCode": "EI",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; INSTRUMENTATION ENGINEERING",
+        "totalAllotted": 46,
+        "openingRank": 16986,
+        "closingRank": 79192
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 56,
+        "openingRank": 5616,
+        "closingRank": 61883
+      }
+    ]
+  },
+  {
+    "code": "BOMA",
+    "name": "BOMMA INST. OF TECHNOLOGY AND SCI.",
+    "district": "KHM",
+    "place": "KHAMMAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 28,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 13,
+        "openingRank": 38193,
+        "closingRank": 78453
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 24583,
+        "closingRank": 75595
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 27693,
+        "closingRank": 81180
+      }
+    ]
+  },
+  {
+    "code": "BOSE",
+    "name": "ANU BOSE INSTT OF TECHNOLOGY",
+    "district": "KGM",
+    "place": "PALONCHA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 57,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 33,
+        "openingRank": 17153,
+        "closingRank": 78413
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 24,
+        "openingRank": 8239,
+        "closingRank": 81244
+      }
+    ]
+  },
+  {
+    "code": "BRAW",
+    "name": "B R AMBEDKAR GMR POLYTECHNIC FOR WOMEN",
+    "district": "KRM",
+    "place": "KARIMNAGAR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 276,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 66,
+        "openingRank": 3255,
+        "closingRank": 74604
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 64,
+        "openingRank": 3267,
+        "closingRank": 76859
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 64,
+        "openingRank": 2882,
+        "closingRank": 76975
+      },
+      {
+        "branchCode": "EI",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; INSTRUMENTATION ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 11157,
+        "closingRank": 80695
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 41,
+        "openingRank": 14556,
+        "closingRank": 81047
+      }
+    ]
+  },
+  {
+    "code": "BRIG",
+    "name": "BRILLIANT GRAMMAR SCHOOL EDUCATIONAL SOCIETYS GROUP OF INSTITUTIONS",
+    "district": "RR",
+    "place": "HAYATHNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 196,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 22,
+        "openingRank": 16063,
+        "closingRank": 79044
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 7848,
+        "closingRank": 75939
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 22953,
+        "closingRank": 79608
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 8564,
+        "closingRank": 81118
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 36420,
+        "closingRank": 80837
+      }
+    ]
+  },
+  {
+    "code": "BRIL",
+    "name": "BRILLIANT INSTT OF ENGG AND TECHNOLOGY",
+    "district": "RR",
+    "place": "HAYATHNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 196,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 22,
+        "openingRank": 18179,
+        "closingRank": 80070
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 8779,
+        "closingRank": 80506
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 43,
+        "openingRank": 23793,
+        "closingRank": 79724
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 17706,
+        "closingRank": 81266
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 22,
+        "openingRank": 23976,
+        "closingRank": 81263
+      }
+    ]
+  },
+  {
+    "code": "CGNT",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "MED",
+    "place": "CHEGUNTA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 119,
+    "branches": [
+      {
+        "branchCode": "CTM",
+        "branchName": "DIPLOMA IN CONSTRUCTION TECHNOLOGY AND MANAGEMENT",
+        "totalAllotted": 17,
+        "openingRank": 44200,
+        "closingRank": 77955
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 46,
+        "openingRank": 8817,
+        "closingRank": 75760
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 56,
+        "openingRank": 28574,
+        "closingRank": 78474
+      }
+    ]
+  },
+  {
+    "code": "CHET",
+    "name": "SRI CHAITANYA TECHNICAL CAMPUS",
+    "district": "RR",
+    "place": "IBRAHIMPATNAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 29,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 17,
+        "openingRank": 15452,
+        "closingRank": 70580
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 10,
+        "openingRank": 10898,
+        "closingRank": 69946
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 2,
+        "openingRank": 27336,
+        "closingRank": 35066
+      }
+    ]
+  },
+  {
+    "code": "CJIT",
+    "name": "CHRISTU JYOTHI INSTITUTE OF TECHNOLOGY AND SCI.",
+    "district": "JGN",
+    "place": "JANGAON",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 41,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 17,
+        "openingRank": 26619,
+        "closingRank": 78779
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 24,
+        "openingRank": 6668,
+        "closingRank": 80809
+      }
+    ]
+  },
+  {
+    "code": "CRYL",
+    "name": "GOVT POLYTECHNIC",
+    "district": "SDP",
+    "place": "CHERIYAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 136,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 35,
+        "openingRank": 20363,
+        "closingRank": 80536
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 11065,
+        "closingRank": 76746
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 13378,
+        "closingRank": 76685
+      }
+    ]
+  },
+  {
+    "code": "DARE",
+    "name": "DARIPALLY ANANTHA RAMULU COLLEGE OF ENGG. AND TECH",
+    "district": "KHM",
+    "place": "KHAMMAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 16,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 2,
+        "openingRank": 28880,
+        "closingRank": 56394
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 3,
+        "openingRank": 44461,
+        "closingRank": 76815
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 2,
+        "openingRank": 73838,
+        "closingRank": 80093
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 19816,
+        "closingRank": 80994
+      }
+    ]
+  },
+  {
+    "code": "DDHD",
+    "name": "SDDGWTTI HYDERABAD",
+    "district": "HYD",
+    "place": "HYDERABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 95,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 6552,
+        "closingRank": 37197
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 19,
+        "openingRank": 2361,
+        "closingRank": 25871
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 6702,
+        "closingRank": 37961
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 1862,
+        "closingRank": 48510
+      },
+      {
+        "branchCode": "LD",
+        "branchName": "DIPLOMA IN LANDSCAPE DESIGN",
+        "totalAllotted": 12,
+        "openingRank": 14710,
+        "closingRank": 72077
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 14,
+        "openingRank": 12,
+        "closingRank": 40900
+      }
+    ]
+  },
+  {
+    "code": "ELEN",
+    "name": "ELLENKI COLLGE OF ENGG. AND TECHNOLOGY",
+    "district": "SRD",
+    "place": "PATANCHERU",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 173,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 13467,
+        "closingRank": 79018
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 98,
+        "openingRank": 6286,
+        "closingRank": 79895
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 32952,
+        "closingRank": 76022
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 34,
+        "openingRank": 1576,
+        "closingRank": 73631
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 11,
+        "openingRank": 15353,
+        "closingRank": 72844
+      }
+    ]
+  },
+  {
+    "code": "GDWL",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "GDL",
+    "place": "GADWAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 114,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 6937,
+        "closingRank": 74299
+      },
+      {
+        "branchCode": "CPS",
+        "branchName": "DIPLOMA IN CYBER PHYSICAL SYSTEMS AND SECURITY",
+        "totalAllotted": 37,
+        "openingRank": 8564,
+        "closingRank": 76666
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 36,
+        "openingRank": 13282,
+        "closingRank": 70165
+      }
+    ]
+  },
+  {
+    "code": "GNPR",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "JGN",
+    "place": "STATION GHANAPUR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 170,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 62,
+        "openingRank": 1575,
+        "closingRank": 73170
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 18105,
+        "closingRank": 70536
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 5647,
+        "closingRank": 68898
+      }
+    ]
+  },
+  {
+    "code": "GPWS",
+    "name": "GOVT POLYTECHNIC FOR WOMEN",
+    "district": "HYD",
+    "place": "SECUNDERABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 339,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 4718,
+        "closingRank": 55499
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 889,
+        "closingRank": 67216
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 61,
+        "openingRank": 1761,
+        "closingRank": 67542
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1885,
+        "closingRank": 53142
+      },
+      {
+        "branchCode": "HS",
+        "branchName": "DIPLOMA IN HOME SCIENCE",
+        "totalAllotted": 39,
+        "openingRank": 21941,
+        "closingRank": 75683
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 63,
+        "openingRank": 3995,
+        "closingRank": 77096
+      }
+    ]
+  },
+  {
+    "code": "GTSR",
+    "name": "GAYATRI INST OF TECH AND SCI",
+    "district": "WNP",
+    "place": "WANAPARTHY",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 108,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 12,
+        "openingRank": 34242,
+        "closingRank": 78657
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 33,
+        "openingRank": 15924,
+        "closingRank": 78565
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 38,
+        "openingRank": 24722,
+        "closingRank": 75353
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 25,
+        "openingRank": 27159,
+        "closingRank": 79687
+      }
+    ]
+  },
+  {
+    "code": "GWMB",
+    "name": "GOVT POLY. FOR WOMEN AND MINORITIES",
+    "district": "RR",
+    "place": "BADANGPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 217,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 3538,
+        "closingRank": 72729
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 1658,
+        "closingRank": 31181
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 479,
+        "closingRank": 61766
+      },
+      {
+        "branchCode": "ID",
+        "branchName": "DIPLOMA IN INTERIOR DESIGN",
+        "totalAllotted": 21,
+        "openingRank": 26335,
+        "closingRank": 78565
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 52,
+        "openingRank": 9308,
+        "closingRank": 78582
+      }
+    ]
+  },
+  {
+    "code": "GWNZ",
+    "name": "GOVT POLYTECHNIC FOR WOMEN",
+    "district": "NZB",
+    "place": "NIZAMABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 152,
+    "branches": [
+      {
+        "branchCode": "BT",
+        "branchName": "DIPLOMA IN BIOTECHNOLOGY",
+        "totalAllotted": 44,
+        "openingRank": 17751,
+        "closingRank": 77566
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 1635,
+        "closingRank": 70877
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 2659,
+        "closingRank": 76727
+      }
+    ]
+  },
+  {
+    "code": "GZWL",
+    "name": "GOVT MODEL RESIDENTIAL POLYTECHNIC",
+    "district": "SDP",
+    "place": "GAJWEL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 208,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 64,
+        "openingRank": 3756,
+        "closingRank": 80885
+      },
+      {
+        "branchCode": "CBM",
+        "branchName": "DIPLOMA IN COMPUTER APPLICATION &amp; BUSINESS MANAGEMENT",
+        "totalAllotted": 31,
+        "openingRank": 15973,
+        "closingRank": 80286
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 3267,
+        "closingRank": 77609
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 15713,
+        "closingRank": 80632
+      }
+    ]
+  },
+  {
+    "code": "HOLY",
+    "name": "HOLY MARY INSTITUTE OF TECH. SCIENCE",
+    "district": "MDL",
+    "place": "KEESARA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 44,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 8,
+        "openingRank": 28125,
+        "closingRank": 78947
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 40152,
+        "closingRank": 78224
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 21,
+        "openingRank": 4988,
+        "closingRank": 75091
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 23237,
+        "closingRank": 78474
+      }
+    ]
+  },
+  {
+    "code": "HSBD",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "SDP",
+    "place": "HUSNABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 150,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 57,
+        "openingRank": 7271,
+        "closingRank": 75645
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 8167,
+        "closingRank": 74056
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 11806,
+        "closingRank": 80089
+      }
+    ]
+  },
+  {
+    "code": "IITT",
+    "name": "INDUR INSTITUTE OF ENGINEERING AND TECHNOLOGY",
+    "district": "SDP",
+    "place": "SIDDIPET",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 122,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 21687,
+        "closingRank": 76666
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 29,
+        "openingRank": 9886,
+        "closingRank": 80432
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 14995,
+        "closingRank": 76957
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 7,
+        "openingRank": 42696,
+        "closingRank": 80771
+      }
+    ]
+  },
+  {
+    "code": "IOEPH",
+    "name": "GOVT INSTITUTE OF ELECTRONICS",
+    "district": "HYD",
+    "place": "SECUNDERABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 33,
+    "branches": [
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 33,
+        "openingRank": 1111,
+        "closingRank": 64247
+      }
+    ]
+  },
+  {
+    "code": "IOES",
+    "name": "GOVT INSTITUTE OF ELECTRONICS",
+    "district": "HYD",
+    "place": "SECUNDERABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 613,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 66,
+        "openingRank": 296,
+        "closingRank": 22929
+      },
+      {
+        "branchCode": "BM",
+        "branchName": "DIPLOMA IN BIOMEDICAL ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 2316,
+        "closingRank": 68971
+      },
+      {
+        "branchCode": "CCB",
+        "branchName": "DIPLOMA IN CLOUD COMPUTING AND BIG DATA",
+        "totalAllotted": 66,
+        "openingRank": 1218,
+        "closingRank": 25219
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 79,
+        "closingRank": 21275
+      },
+      {
+        "branchCode": "CPS",
+        "branchName": "DIPLOMA IN CYBER PHYSICAL SYSTEMS AND SECURITY",
+        "totalAllotted": 66,
+        "openingRank": 362,
+        "closingRank": 60566
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 43,
+        "closingRank": 30770
+      },
+      {
+        "branchCode": "EI",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; INSTRUMENTATION ENGINEERING",
+        "totalAllotted": 53,
+        "openingRank": 1257,
+        "closingRank": 50126
+      },
+      {
+        "branchCode": "ES",
+        "branchName": "DIPLOMA IN EMBEDDED SYSTEMS ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 362,
+        "closingRank": 53178
+      },
+      {
+        "branchCode": "MEE",
+        "branchName": "DIPLOMA IN MULTIMEDIA AND ELECTRONICS ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 4115,
+        "closingRank": 77789
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 66,
+        "openingRank": 263,
+        "closingRank": 55958
+      }
+    ]
+  },
+  {
+    "code": "JGPT",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "SRD",
+    "place": "JOGIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 214,
+    "branches": [
+      {
+        "branchCode": "BM",
+        "branchName": "DIPLOMA IN BIOMEDICAL ENGINEERING",
+        "totalAllotted": 22,
+        "openingRank": 17878,
+        "closingRank": 80546
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 47,
+        "openingRank": 6049,
+        "closingRank": 79600
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 47,
+        "openingRank": 21374,
+        "closingRank": 78426
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 56,
+        "openingRank": 11339,
+        "closingRank": 71727
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 12304,
+        "closingRank": 77523
+      }
+    ]
+  },
+  {
+    "code": "JGPW",
+    "name": "GOVERNMENT POLYTECHNIC FOR WOMEN",
+    "district": "SRD",
+    "place": "JOGIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 178,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 4191,
+        "closingRank": 57780
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 19213,
+        "closingRank": 79838
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 3276,
+        "closingRank": 68204
+      }
+    ]
+  },
+  {
+    "code": "JMTS",
+    "name": "JYOTHISHMATHI INSTITUTE OF TECHNOLOGY AND SCI.",
+    "district": "KRM",
+    "place": "KARIMNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 236,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 146,
+        "openingRank": 273,
+        "closingRank": 79456
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 4197,
+        "closingRank": 80226
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 7564,
+        "closingRank": 80749
+      }
+    ]
+  },
+  {
+    "code": "JNGP",
+    "name": "J N GOVT POLYTECHNIC",
+    "district": "MDL",
+    "place": "RAMANTHAPUR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 680,
+    "branches": [
+      {
+        "branchCode": "AME",
+        "branchName": "DIPLOMA IN AIRCRAFT MAINTENANCE ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 767,
+        "closingRank": 69367
+      },
+      {
+        "branchCode": "CH",
+        "branchName": "DIPLOMA IN CHEMICAL ENGINEERING",
+        "totalAllotted": 58,
+        "openingRank": 1158,
+        "closingRank": 48510
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 878,
+        "closingRank": 65979
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 228,
+        "closingRank": 43509
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 507,
+        "closingRank": 52813
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 131,
+        "openingRank": 2992,
+        "closingRank": 65080
+      },
+      {
+        "branchCode": "MT",
+        "branchName": "DIPLOMA IN METALLURGICAL ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 9601,
+        "closingRank": 72960
+      },
+      {
+        "branchCode": "PK",
+        "branchName": "DIPLOMA IN PACKAGING TECHNOLOGY",
+        "totalAllotted": 56,
+        "openingRank": 7371,
+        "closingRank": 78193
+      }
+    ]
+  },
+  {
+    "code": "JPNE",
+    "name": "JAYA PRAKASH NARAYAN COLLEGE OF ENGINEERING",
+    "district": "MBN",
+    "place": "MAHABUBNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 206,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 31276,
+        "closingRank": 79268
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 78,
+        "openingRank": 7315,
+        "closingRank": 80360
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 20365,
+        "closingRank": 79806
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 7078,
+        "closingRank": 79744
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 35620,
+        "closingRank": 77041
+      }
+    ]
+  },
+  {
+    "code": "KCEA",
+    "name": "KSHATRIYA COLLEGE OF ENGINEERING",
+    "district": "NZB",
+    "place": "ARMOOR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 101,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 17,
+        "openingRank": 26951,
+        "closingRank": 80672
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 12781,
+        "closingRank": 74372
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 27232,
+        "closingRank": 79949
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 28,
+        "openingRank": 28552,
+        "closingRank": 80941
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      }
+    ]
+  },
+  {
+    "code": "KDDW",
+    "name": "KODADA INST OF TECHNOLOGY AND SCIENCE FOR WOMEN",
+    "district": "SRP",
+    "place": "KODADA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 78,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 32647,
+        "closingRank": 78958
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 11896,
+        "closingRank": 80314
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 14,
+        "openingRank": 20164,
+        "closingRank": 80717
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 30158,
+        "closingRank": 80160
+      }
+    ]
+  },
+  {
+    "code": "KLRT",
+    "name": "K.L.R.COLLEGE OF ENGG AND TECHNOLOGY PALONCHA",
+    "district": "KGM",
+    "place": "PALONCHA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 0,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      }
+    ]
+  },
+  {
+    "code": "KNRR",
+    "name": "KASIREDDY NARAYANAREDDY COLL ENGG RES.",
+    "district": "RR",
+    "place": "HAYATHNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 136,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 35030,
+        "closingRank": 79744
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 21,
+        "openingRank": 1004,
+        "closingRank": 74299
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 36,
+        "openingRank": 12721,
+        "closingRank": 80863
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 35,
+        "openingRank": 9944,
+        "closingRank": 66681
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 26,
+        "openingRank": 13586,
+        "closingRank": 79256
+      }
+    ]
+  },
+  {
+    "code": "KRTL",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "JTL",
+    "place": "KORUTLA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 148,
+    "branches": [
+      {
+        "branchCode": "AMT",
+        "branchName": "DIPLOMA IN ADVANCED MANUFACTURING TECHNOLOGY",
+        "totalAllotted": 51,
+        "openingRank": 8521,
+        "closingRank": 80788
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 47,
+        "openingRank": 4516,
+        "closingRank": 74299
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 9424,
+        "closingRank": 81261
+      }
+    ]
+  },
+  {
+    "code": "KSDM",
+    "name": "GOVERNMENT POLYTECHNIC KESAMUDRAM",
+    "district": "MHB",
+    "place": "KESAMUDRAM",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 168,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 52,
+        "openingRank": 3730,
+        "closingRank": 64443
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 9937,
+        "closingRank": 71876
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 37,
+        "openingRank": 27138,
+        "closingRank": 80863
+      },
+      {
+        "branchCode": "ES",
+        "branchName": "DIPLOMA IN EMBEDDED SYSTEMS ENGINEERING",
+        "totalAllotted": 14,
+        "openingRank": 24162,
+        "closingRank": 80595
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 17,
+        "openingRank": 23044,
+        "closingRank": 78803
+      }
+    ]
+  },
+  {
+    "code": "KSGI",
+    "name": "GOVERNMENT ENGINEERING COLLEGE KOSGI",
+    "district": "NPT",
+    "place": "KOSGI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 149,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 10268,
+        "closingRank": 80515
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 13139,
+        "closingRank": 76179
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 46,
+        "openingRank": 25367,
+        "closingRank": 80406
+      }
+    ]
+  },
+  {
+    "code": "KTGM",
+    "name": "GOVT POLYTECHNIC",
+    "district": "KGM",
+    "place": "KOTHAGUDEM",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 473,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 51,
+        "openingRank": 16182,
+        "closingRank": 78061
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 96,
+        "openingRank": 5896,
+        "closingRank": 79931
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 1599,
+        "closingRank": 77147
+      },
+      {
+        "branchCode": "EI",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; INSTRUMENTATION ENGINEERING",
+        "totalAllotted": 61,
+        "openingRank": 6049,
+        "closingRank": 73320
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 107,
+        "openingRank": 10094,
+        "closingRank": 76648
+      },
+      {
+        "branchCode": "MT",
+        "branchName": "DIPLOMA IN METALLURGICAL ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 1707,
+        "closingRank": 80950
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 53,
+        "openingRank": 3944,
+        "closingRank": 72780
+      }
+    ]
+  },
+  {
+    "code": "KTGR",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "NZB",
+    "place": "KOTAGIRI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 144,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 8063,
+        "closingRank": 62472
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 6828,
+        "closingRank": 75645
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 24151,
+        "closingRank": 80049
+      }
+    ]
+  },
+  {
+    "code": "KTRM",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "JBP",
+    "place": "KATARAM",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 134,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 6828,
+        "closingRank": 79857
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 15963,
+        "closingRank": 80059
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 24221,
+        "closingRank": 80816
+      }
+    ]
+  },
+  {
+    "code": "LTHD",
+    "name": "GOVT. INSTT OF LEATHER TECHNOLOGY",
+    "district": "HYD",
+    "place": "HYDERABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 297,
+    "branches": [
+      {
+        "branchCode": "CBS",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING (BUILDING SERVICES ENGINEERING)",
+        "totalAllotted": 41,
+        "openingRank": 6652,
+        "closingRank": 80414
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 1829,
+        "closingRank": 74593
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 4362,
+        "closingRank": 65196
+      },
+      {
+        "branchCode": "LF",
+        "branchName": "DIPLOMA IN LEATHER AND FASHION TECHNOLOGY",
+        "totalAllotted": 30,
+        "openingRank": 1733,
+        "closingRank": 81195
+      },
+      {
+        "branchCode": "LG",
+        "branchName": "DIPLOMA IN LEATHER GOODS &amp; FOOTWEAR TECHNOLOGY",
+        "totalAllotted": 42,
+        "openingRank": 19875,
+        "closingRank": 80907
+      },
+      {
+        "branchCode": "PDA",
+        "branchName": "DIPLOMA IN PRINTING AND DATA ANALYTICS",
+        "totalAllotted": 53,
+        "openingRank": 23914,
+        "closingRank": 79044
+      }
+    ]
+  },
+  {
+    "code": "MAHM",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "RR",
+    "place": "MAHESHWARAM",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 238,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 11228,
+        "closingRank": 78174
+      },
+      {
+        "branchCode": "CBS",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING (BUILDING SERVICES ENGINEERING)",
+        "totalAllotted": 28,
+        "openingRank": 35534,
+        "closingRank": 79797
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 63,
+        "openingRank": 4849,
+        "closingRank": 80540
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 55,
+        "openingRank": 11531,
+        "closingRank": 77716
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 51,
+        "openingRank": 9858,
+        "closingRank": 81147
+      }
+    ]
+  },
+  {
+    "code": "MASB",
+    "name": "GOVT POLYTECHNIC",
+    "district": "HYD",
+    "place": "MASAB TANK",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 732,
+    "branches": [
+      {
+        "branchCode": "AMT",
+        "branchName": "DIPLOMA IN ADVANCED MANUFACTURING TECHNOLOGY",
+        "totalAllotted": 56,
+        "openingRank": 2945,
+        "closingRank": 57403
+      },
+      {
+        "branchCode": "AU",
+        "branchName": "DIPLOMA IN AUTOMOBILE ENGINEERING",
+        "totalAllotted": 53,
+        "openingRank": 2088,
+        "closingRank": 33481
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 124,
+        "openingRank": 67,
+        "closingRank": 52990
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 1,
+        "closingRank": 46758
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 54,
+        "closingRank": 22370
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 64,
+        "openingRank": 834,
+        "closingRank": 79996
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 21,
+        "closingRank": 38437
+      },
+      {
+        "branchCode": "ID",
+        "branchName": "DIPLOMA IN INTERIOR DESIGN",
+        "totalAllotted": 40,
+        "openingRank": 5792,
+        "closingRank": 61078
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 281,
+        "closingRank": 34912
+      }
+    ]
+  },
+  {
+    "code": "MBNR",
+    "name": "GOVT POLYTECHNIC",
+    "district": "MBN",
+    "place": "MAHABUB NAGAR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 562,
+    "branches": [
+      {
+        "branchCode": "AU",
+        "branchName": "DIPLOMA IN AUTOMOBILE ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 15755,
+        "closingRank": 76975
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 113,
+        "openingRank": 4658,
+        "closingRank": 80421
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 1658,
+        "closingRank": 69266
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 127,
+        "openingRank": 217,
+        "closingRank": 69780
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 56,
+        "openingRank": 4922,
+        "closingRank": 75993
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 281,
+        "closingRank": 72321
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 83,
+        "openingRank": 4257,
+        "closingRank": 80974
+      }
+    ]
+  },
+  {
+    "code": "MDCL",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "MDL",
+    "place": "MEDCHAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 224,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 48,
+        "openingRank": 3884,
+        "closingRank": 74264
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 1520,
+        "closingRank": 67313
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 1305,
+        "closingRank": 64785
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 5064,
+        "closingRank": 79155
+      }
+    ]
+  },
+  {
+    "code": "MDKW",
+    "name": "GOVT POLYTECHNIC FOR WOMEN",
+    "district": "MED",
+    "place": "MEDAK",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 162,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 33,
+        "openingRank": 22830,
+        "closingRank": 71056
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 4922,
+        "closingRank": 58922
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 8766,
+        "closingRank": 78288
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 43,
+        "openingRank": 8554,
+        "closingRank": 79762
+      }
+    ]
+  },
+  {
+    "code": "MDRA",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "KHM",
+    "place": "MADHIRA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 156,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 47,
+        "openingRank": 7727,
+        "closingRank": 78494
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 5289,
+        "closingRank": 73939
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 58,
+        "openingRank": 1,
+        "closingRank": 79456
+      }
+    ]
+  },
+  {
+    "code": "MDRK",
+    "name": "MADHIRA INSTITUTE OF TECHNOLOGY AND SCI.",
+    "district": "SRP",
+    "place": "KODAD",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 19,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 10,
+        "openingRank": 40959,
+        "closingRank": 80264
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 8,
+        "openingRank": 16517,
+        "closingRank": 79521
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 1,
+        "openingRank": 81208,
+        "closingRank": 81208
+      }
+    ]
+  },
+  {
+    "code": "MGHA",
+    "name": "MEGHA INST OF ENGG AND TECHNOLOGY FOR WOMEN",
+    "district": "MDL",
+    "place": "GHATKESAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 167,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 26297,
+        "closingRank": 76842
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 125,
+        "openingRank": 7180,
+        "closingRank": 80632
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 36,
+        "openingRank": 14525,
+        "closingRank": 77686
+      }
+    ]
+  },
+  {
+    "code": "MHVR",
+    "name": "MAHAVEER INSTITUTE OF SCI. AND TECHNOLOGY",
+    "district": "HYD",
+    "place": "BANDLAGUDA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 313,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 12630,
+        "closingRank": 79540
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 3582,
+        "closingRank": 70067
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 58,
+        "openingRank": 13033,
+        "closingRank": 80279
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 87,
+        "openingRank": 7467,
+        "closingRank": 79428
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 76,
+        "openingRank": 12237,
+        "closingRank": 81132
+      }
+    ]
+  },
+  {
+    "code": "MINA",
+    "name": "MINA INST OF ENGG AND TECHNOLOGY FOR WOMEN",
+    "district": "NLG",
+    "place": "MIRYALAGUDA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 60,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 21,
+        "openingRank": 30474,
+        "closingRank": 79744
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 9542,
+        "closingRank": 81182
+      }
+    ]
+  },
+  {
+    "code": "MNGR",
+    "name": "GOVT MODEL RESIDENTIAL POLYTECHNIC",
+    "district": "KGM",
+    "place": "MANUGURU ASWAPURAM",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 150,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 31,
+        "openingRank": 15348,
+        "closingRank": 81221
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 6528,
+        "closingRank": 81138
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 34,
+        "openingRank": 8625,
+        "closingRank": 81226
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 19558,
+        "closingRank": 80360
+      }
+    ]
+  },
+  {
+    "code": "MOTK",
+    "name": "MOTHER TERESA INSTITUTE OF SCI. AND TECHNOLOGY",
+    "district": "KHM",
+    "place": "SATHUPALLY",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 29,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 2459,
+        "closingRank": 81086
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 5,
+        "openingRank": 11480,
+        "closingRank": 60733
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 8644,
+        "closingRank": 75481
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      }
+    ]
+  },
+  {
+    "code": "MTEC",
+    "name": "MOTHER THERESA COLLEGE OF ENGG. AND TECHNOLOGY",
+    "district": "PDL",
+    "place": "PEDDAPALLY",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 65,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 10,
+        "openingRank": 3569,
+        "closingRank": 67817
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 12189,
+        "closingRank": 80049
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 17,
+        "openingRank": 23091,
+        "closingRank": 79617
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 1,
+        "openingRank": 19165,
+        "closingRank": 19165
+      }
+    ]
+  },
+  {
+    "code": "NALG",
+    "name": "GOVT POLYTECHNIC",
+    "district": "NLG",
+    "place": "NALGONDA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 443,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 106,
+        "openingRank": 6032,
+        "closingRank": 71916
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 63,
+        "openingRank": 3863,
+        "closingRank": 78114
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 131,
+        "openingRank": 1401,
+        "closingRank": 74487
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 49,
+        "openingRank": 8217,
+        "closingRank": 76269
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 94,
+        "openingRank": 11155,
+        "closingRank": 79319
+      }
+    ]
+  },
+  {
+    "code": "NAWB",
+    "name": "NAWAB SHAH ALAM KHAN COLL OF ENGG AND TECH",
+    "district": "HYD",
+    "place": "NEW MALAKPET",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 52,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 16,
+        "openingRank": 4824,
+        "closingRank": 44432
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 7,
+        "openingRank": 17153,
+        "closingRank": 56080
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 2902,
+        "closingRank": 42491
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 25521,
+        "closingRank": 51162
+      }
+    ]
+  },
+  {
+    "code": "NDPT",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "NZB",
+    "place": "NANDIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 144,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 56,
+        "openingRank": 4285,
+        "closingRank": 59540
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 11936,
+        "closingRank": 74576
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 22641,
+        "closingRank": 80877
+      }
+    ]
+  },
+  {
+    "code": "NKHD",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "SRD",
+    "place": "NARAYANKHED",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 85,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 35,
+        "openingRank": 25210,
+        "closingRank": 75742
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 12304,
+        "closingRank": 77653
+      },
+      {
+        "branchCode": "MEE",
+        "branchName": "DIPLOMA IN MULTIMEDIA AND ELECTRONICS ENGINEERING",
+        "totalAllotted": 13,
+        "openingRank": 23515,
+        "closingRank": 81169
+      }
+    ]
+  },
+  {
+    "code": "NRML",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "NRM",
+    "place": "NIRMAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 147,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 46,
+        "openingRank": 14078,
+        "closingRank": 81242
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 53,
+        "openingRank": 7302,
+        "closingRank": 79456
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 5196,
+        "closingRank": 78993
+      }
+    ]
+  },
+  {
+    "code": "NSGR",
+    "name": "GOVT POLYTECHNIC",
+    "district": "NLG",
+    "place": "NAGARJUNASAGAR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 136,
+    "branches": [
+      {
+        "branchCode": "AMT",
+        "branchName": "DIPLOMA IN ADVANCED MANUFACTURING TECHNOLOGY",
+        "totalAllotted": 38,
+        "openingRank": 33999,
+        "closingRank": 80727
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 38,
+        "openingRank": 35299,
+        "closingRank": 76206
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 60,
+        "openingRank": 7328,
+        "closingRank": 78474
+      }
+    ]
+  },
+  {
+    "code": "NSPR",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "MED",
+    "place": "GOMARAM NEAR NARSAPUR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 101,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 16614,
+        "closingRank": 77105
+      },
+      {
+        "branchCode": "CTM",
+        "branchName": "DIPLOMA IN CONSTRUCTION TECHNOLOGY AND MANAGEMENT",
+        "totalAllotted": 3,
+        "openingRank": 49821,
+        "closingRank": 74074
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 15644,
+        "closingRank": 77778
+      }
+    ]
+  },
+  {
+    "code": "NVPT",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "NZB",
+    "place": "NAVIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 109,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 26,
+        "openingRank": 15050,
+        "closingRank": 80900
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 17583,
+        "closingRank": 72711
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 44,
+        "openingRank": 28862,
+        "closingRank": 79268
+      }
+    ]
+  },
+  {
+    "code": "NZBD",
+    "name": "GOVT POLYTECHNIC",
+    "district": "NZB",
+    "place": "NIZAMABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 615,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 64,
+        "openingRank": 5214,
+        "closingRank": 72898
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 153,
+        "closingRank": 39172
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 2481,
+        "closingRank": 58886
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 390,
+        "closingRank": 77399
+      },
+      {
+        "branchCode": "ES",
+        "branchName": "DIPLOMA IN EMBEDDED SYSTEMS ENGINEERING",
+        "totalAllotted": 58,
+        "openingRank": 5295,
+        "closingRank": 74598
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 101,
+        "openingRank": 6295,
+        "closingRank": 78741
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 62,
+        "openingRank": 7857,
+        "closingRank": 79703
+      }
+    ]
+  },
+  {
+    "code": "PBRW",
+    "name": "GOVERNMENT POLYTECHNIC FOR WOMEN",
+    "district": "WNP",
+    "place": "PEBBAIR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 134,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 12726,
+        "closingRank": 77197
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 5283,
+        "closingRank": 66965
+      },
+      {
+        "branchCode": "MEE",
+        "branchName": "DIPLOMA IN MULTIMEDIA AND ELECTRONICS ENGINEERING",
+        "totalAllotted": 9,
+        "openingRank": 49821,
+        "closingRank": 74120
+      }
+    ]
+  },
+  {
+    "code": "PETW",
+    "name": "PRINCETON INST OF ENGG TECH FOR WOMEN",
+    "district": "MDL",
+    "place": "GHATKESAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 157,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 29,
+        "openingRank": 6472,
+        "closingRank": 68672
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 10,
+        "openingRank": 36891,
+        "closingRank": 72757
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 88,
+        "openingRank": 9115,
+        "closingRank": 77000
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 30,
+        "openingRank": 19502,
+        "closingRank": 80752
+      }
+    ]
+  },
+  {
+    "code": "PRKL",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "HNK",
+    "place": "PARKAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 155,
+    "branches": [
+      {
+        "branchCode": "CCB",
+        "branchName": "DIPLOMA IN CLOUD COMPUTING AND BIG DATA",
+        "totalAllotted": 50,
+        "openingRank": 6883,
+        "closingRank": 79975
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 60,
+        "openingRank": 5502,
+        "closingRank": 68823
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 13763,
+        "closingRank": 77606
+      }
+    ]
+  },
+  {
+    "code": "PTCR",
+    "name": "GOVERNMENT POLYTECHNIC PATANCHERU",
+    "district": "SRD",
+    "place": "PATANCHERU",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 291,
+    "branches": [
+      {
+        "branchCode": "AR",
+        "branchName": "DIPLOMA IN AUTOMATION AND ROBOTICS",
+        "totalAllotted": 57,
+        "openingRank": 2473,
+        "closingRank": 74154
+      },
+      {
+        "branchCode": "CH",
+        "branchName": "DIPLOMA IN CHEMICAL ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 13822,
+        "closingRank": 79161
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1714,
+        "closingRank": 54808
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 8595,
+        "closingRank": 68516
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 64,
+        "openingRank": 3628,
+        "closingRank": 75657
+      }
+    ]
+  },
+  {
+    "code": "QQHD",
+    "name": "QQ GOVT POLYTECHNIC",
+    "district": "HYD",
+    "place": "CHENDULALBARADARI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 391,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 60,
+        "openingRank": 10105,
+        "closingRank": 78624
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1228,
+        "closingRank": 74994
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 38,
+        "openingRank": 4720,
+        "closingRank": 71344
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 97,
+        "openingRank": 2816,
+        "closingRank": 66121
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 67,
+        "openingRank": 4751,
+        "closingRank": 76610
+      },
+      {
+        "branchCode": "PDA",
+        "branchName": "DIPLOMA IN PRINTING AND DATA ANALYTICS",
+        "totalAllotted": 32,
+        "openingRank": 11652,
+        "closingRank": 80651
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 31,
+        "openingRank": 12599,
+        "closingRank": 78494
+      }
+    ]
+  },
+  {
+    "code": "RITM",
+    "name": "RATNAPURI INSTITUTE OF TECH. COLL. OF POLYTECHNIC",
+    "district": "SRD",
+    "place": "TURAKALA KHANAPUR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 106,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 11058,
+        "closingRank": 79579
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 31623,
+        "closingRank": 78602
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 19410,
+        "closingRank": 80388
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 15,
+        "openingRank": 13705,
+        "closingRank": 77471
+      }
+    ]
+  },
+  {
+    "code": "SAGR",
+    "name": "SAGAR GROUP OF INSTITUTIONS",
+    "district": "RR",
+    "place": "CHEVELLA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 7,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 3,
+        "openingRank": 47170,
+        "closingRank": 60922
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 2,
+        "openingRank": 48733,
+        "closingRank": 56666
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 2,
+        "openingRank": 32825,
+        "closingRank": 61272
+      }
+    ]
+  },
+  {
+    "code": "SAIS",
+    "name": "SAI SPURTI INSTITUTE OF TECHNOLOGY",
+    "district": "KHM",
+    "place": "SATHUPALLY",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 45,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 24,
+        "openingRank": 24195,
+        "closingRank": 80038
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 8,
+        "openingRank": 31230,
+        "closingRank": 72925
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 13,
+        "openingRank": 7085,
+        "closingRank": 68342
+      }
+    ]
+  },
+  {
+    "code": "SBIT",
+    "name": "SWARNA BHARATHI INSTITUTE OF SCI. AND TECHNOLOGY",
+    "district": "KHM",
+    "place": "KHAMMAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 115,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 821,
+        "closingRank": 78582
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 30,
+        "openingRank": 5525,
+        "closingRank": 75272
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 28,
+        "openingRank": 1353,
+        "closingRank": 68971
+      }
+    ]
+  },
+  {
+    "code": "SCCL",
+    "name": "SINGARENI COLLIERIES POLYTECHNIC COLLEGE",
+    "district": "MNC",
+    "place": "NASPUR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 150,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 28,
+        "openingRank": 11278,
+        "closingRank": 70499
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 32,
+        "openingRank": 943,
+        "closingRank": 73772
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 32,
+        "openingRank": 427,
+        "closingRank": 51020
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 27,
+        "openingRank": 9680,
+        "closingRank": 75196
+      },
+      {
+        "branchCode": "MN",
+        "branchName": "DIPLOMA IN MINING ENGINEERING",
+        "totalAllotted": 31,
+        "openingRank": 8160,
+        "closingRank": 73228
+      }
+    ]
+  },
+  {
+    "code": "SCIT",
+    "name": "SRI CHAITANYA INSTITUTE OF TECHNOLOGY AND RESEARCH",
+    "district": "KHM",
+    "place": "KHAMMAM",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 191,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 25,
+        "openingRank": 17674,
+        "closingRank": 80626
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 85,
+        "openingRank": 7324,
+        "closingRank": 80013
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 28,
+        "openingRank": 11556,
+        "closingRank": 79174
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 27,
+        "openingRank": 821,
+        "closingRank": 73838
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 26,
+        "openingRank": 22561,
+        "closingRank": 80936
+      }
+    ]
+  },
+  {
+    "code": "SDES",
+    "name": "SREE DATTHA INSTITUTE OF ENGINEERING AND SCIENCE",
+    "district": "RR",
+    "place": "IBRAHIMPATAN",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 140,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 8,
+        "openingRank": 22763,
+        "closingRank": 78721
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 55,
+        "openingRank": 5064,
+        "closingRank": 79071
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 9633,
+        "closingRank": 81198
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 8813,
+        "closingRank": 78281
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 12,
+        "openingRank": 23028,
+        "closingRank": 80070
+      }
+    ]
+  },
+  {
+    "code": "SDPT",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "SDP",
+    "place": "SIDDIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 177,
+    "branches": [
+      {
+        "branchCode": "AMT",
+        "branchName": "DIPLOMA IN ADVANCED MANUFACTURING TECHNOLOGY",
+        "totalAllotted": 46,
+        "openingRank": 16273,
+        "closingRank": 80497
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1392,
+        "closingRank": 76215
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 6023,
+        "closingRank": 71431
+      }
+    ]
+  },
+  {
+    "code": "SDPW",
+    "name": "GOVERNMENT POLYTECHNIC FOR WOMEN",
+    "district": "SDP",
+    "place": "SIDDIPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 213,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 63,
+        "openingRank": 12858,
+        "closingRank": 70313
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 2235,
+        "closingRank": 60566
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 63,
+        "openingRank": 3583,
+        "closingRank": 76546
+      },
+      {
+        "branchCode": "ID",
+        "branchName": "DIPLOMA IN INTERIOR DESIGN",
+        "totalAllotted": 21,
+        "openingRank": 22142,
+        "closingRank": 77041
+      }
+    ]
+  },
+  {
+    "code": "SGMA",
+    "name": "S G M GOVT POLYTECHNIC",
+    "district": "RR",
+    "place": "ABDULLAPURMET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 270,
+    "branches": [
+      {
+        "branchCode": "AA",
+        "branchName": "DIPLOMA IN ARCHITECTURAL ASSISTANTSHIP",
+        "totalAllotted": 35,
+        "openingRank": 654,
+        "closingRank": 79792
+      },
+      {
+        "branchCode": "AU",
+        "branchName": "DIPLOMA IN AUTOMOBILE ENGINEERING",
+        "totalAllotted": 59,
+        "openingRank": 6652,
+        "closingRank": 74475
+      },
+      {
+        "branchCode": "CBM",
+        "branchName": "DIPLOMA IN COMPUTER APPLICATION &amp; BUSINESS MANAGEMENT",
+        "totalAllotted": 59,
+        "openingRank": 3142,
+        "closingRank": 70954
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 2301,
+        "closingRank": 47493
+      },
+      {
+        "branchCode": "EEV",
+        "branchName": "DIPLOMA IN ELECTRICAL ENG &amp; ELECTRIC VEHICLE TECHNOLOGY",
+        "totalAllotted": 51,
+        "openingRank": 7927,
+        "closingRank": 78180
+      }
+    ]
+  },
+  {
+    "code": "SGRD",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "SRD",
+    "place": "SANGA REDDY",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 145,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 9209,
+        "closingRank": 78825
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 3344,
+        "closingRank": 80709
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 45,
+        "openingRank": 11571,
+        "closingRank": 80169
+      }
+    ]
+  },
+  {
+    "code": "SHAD",
+    "name": "GOVERNMENT POLYTECHNIC SHADNAGAR",
+    "district": "RR",
+    "place": "SHADNAGAR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 171,
+    "branches": [
+      {
+        "branchCode": "CRV",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING REALESTATE AND VALUATION",
+        "totalAllotted": 16,
+        "openingRank": 24999,
+        "closingRank": 76412
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 6423,
+        "closingRank": 68057
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 13379,
+        "closingRank": 75913
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 50,
+        "openingRank": 8994,
+        "closingRank": 72110
+      }
+    ]
+  },
+  {
+    "code": "SISG",
+    "name": "SIDDHARTHA INSTT OF TECHNOLOGY AND SCIENCES",
+    "district": "MDL",
+    "place": "GHATKESAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 199,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 58,
+        "openingRank": 4149,
+        "closingRank": 79594
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 43226,
+        "closingRank": 72584
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 2872,
+        "closingRank": 75829
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 14071,
+        "closingRank": 78845
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 11995,
+        "closingRank": 79931
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 26,
+        "openingRank": 11730,
+        "closingRank": 80583
+      }
+    ]
+  },
+  {
+    "code": "SMSK",
+    "name": "SAMSKRUTHI COLLEGE OF ENGG. AND TECHNOLOGY.",
+    "district": "MDL",
+    "place": "GHATKESAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 341,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 102,
+        "openingRank": 5466,
+        "closingRank": 80852
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 13,
+        "openingRank": 14710,
+        "closingRank": 81216
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 125,
+        "openingRank": 6481,
+        "closingRank": 80912
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 25,
+        "openingRank": 8848,
+        "closingRank": 79473
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 76,
+        "openingRank": 6512,
+        "closingRank": 81213
+      }
+    ]
+  },
+  {
+    "code": "SRPW",
+    "name": "GOVT POLYTECHNIC FOR WOMEN",
+    "district": "SRP",
+    "place": "SURYAPET",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 179,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 51,
+        "openingRank": 11624,
+        "closingRank": 73614
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 3363,
+        "closingRank": 59913
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 60,
+        "openingRank": 2853,
+        "closingRank": 70710
+      },
+      {
+        "branchCode": "LD",
+        "branchName": "DIPLOMA IN LANDSCAPE DESIGN",
+        "totalAllotted": 2,
+        "openingRank": 71275,
+        "closingRank": 72236
+      }
+    ]
+  },
+  {
+    "code": "SRRS",
+    "name": "SRRS GOVT POLYTECHNIC",
+    "district": "SRC",
+    "place": "SIRCILLA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 417,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 65,
+        "openingRank": 3547,
+        "closingRank": 76566
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 113,
+        "openingRank": 2221,
+        "closingRank": 80621
+      },
+      {
+        "branchCode": "CBM",
+        "branchName": "DIPLOMA IN COMPUTER APPLICATION &amp; BUSINESS MANAGEMENT",
+        "totalAllotted": 39,
+        "openingRank": 9428,
+        "closingRank": 79857
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 119,
+        "openingRank": 6665,
+        "closingRank": 76087
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 10605,
+        "closingRank": 80999
+      },
+      {
+        "branchCode": "TF",
+        "branchName": "DIPLOMA IN TEXTILE AND FASHION TECHNOLOGY",
+        "totalAllotted": 39,
+        "openingRank": 19764,
+        "closingRank": 81200
+      }
+    ]
+  },
+  {
+    "code": "SVES",
+    "name": "SRI VENKATESWARA ENGINEERING COLLEGE",
+    "district": "SRP",
+    "place": "SURYAPETA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 97,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 13,
+        "openingRank": 21255,
+        "closingRank": 79219
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 11885,
+        "closingRank": 79439
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 45,
+        "openingRank": 1770,
+        "closingRank": 80615
+      }
+    ]
+  },
+  {
+    "code": "SVSE",
+    "name": "SVS GRP OF INSTNS - SVS INST OF TECH.",
+    "district": "HNK",
+    "place": "HANAMKONDA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 241,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 12,
+        "openingRank": 28993,
+        "closingRank": 79931
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 137,
+        "openingRank": 8919,
+        "closingRank": 81046
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 33,
+        "openingRank": 20859,
+        "closingRank": 77632
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 55,
+        "openingRank": 9347,
+        "closingRank": 81008
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 4,
+        "openingRank": 38120,
+        "closingRank": 73452
+      }
+    ]
+  },
+  {
+    "code": "TCEK",
+    "name": "TRINITY COLLEGE OF ENGINEERING AND TECHNOLOGY",
+    "district": "PDL",
+    "place": "PEDDAPALLY",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 44,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 36,
+        "openingRank": 10147,
+        "closingRank": 70989
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 8,
+        "openingRank": 35608,
+        "closingRank": 75769
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      }
+    ]
+  },
+  {
+    "code": "TCTK",
+    "name": "TRINITY COLLEGE OF ENGINEERING AND TECHNOLOGY",
+    "district": "KRM",
+    "place": "KARIMNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 82,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 30,
+        "openingRank": 1809,
+        "closingRank": 80146
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 24852,
+        "closingRank": 81030
+      }
+    ]
+  },
+  {
+    "code": "TKEM",
+    "name": "TEEGALA KRISHNA REDDY ENGINEERING COLLEGE",
+    "district": "RR",
+    "place": "MIRPET",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 356,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 26,
+        "openingRank": 12797,
+        "closingRank": 80557
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 157,
+        "openingRank": 1491,
+        "closingRank": 80197
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 10470,
+        "closingRank": 76899
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 131,
+        "openingRank": 4003,
+        "closingRank": 80215
+      }
+    ]
+  },
+  {
+    "code": "TKRC",
+    "name": "T K R COLLEGE OF ENGG. AND TECHNOLOGY",
+    "district": "RR",
+    "place": "MIRPET",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 415,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 23,
+        "openingRank": 12292,
+        "closingRank": 79895
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 185,
+        "openingRank": 1922,
+        "closingRank": 79949
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 56,
+        "openingRank": 4942,
+        "closingRank": 76899
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 119,
+        "openingRank": 4942,
+        "closingRank": 79063
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 32,
+        "openingRank": 124,
+        "closingRank": 78565
+      }
+    ]
+  },
+  {
+    "code": "TRMG",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "SRP",
+    "place": "TIRUMALAGIRI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 113,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 29,
+        "openingRank": 12712,
+        "closingRank": 78958
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 13979,
+        "closingRank": 80177
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 11304,
+        "closingRank": 78474
+      }
+    ]
+  },
+  {
+    "code": "TRRM",
+    "name": "TRR POLYTECHNIC",
+    "district": "RR",
+    "place": "MEERPET",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 260,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 151,
+        "openingRank": 5052,
+        "closingRank": 81233
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 27,
+        "openingRank": 10081,
+        "closingRank": 77534
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 82,
+        "openingRank": 614,
+        "closingRank": 81170
+      }
+    ]
+  },
+  {
+    "code": "UTNR",
+    "name": "GOVT MODEL RESIDENTIAL POLYTECHNIC",
+    "district": "ADB",
+    "place": "UTNOOR",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 149,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 40,
+        "openingRank": 15249,
+        "closingRank": 81002
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 60,
+        "openingRank": 34527,
+        "closingRank": 80524
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 25613,
+        "closingRank": 81065
+      }
+    ]
+  },
+  {
+    "code": "VDPL",
+    "name": "GOVERNMENT POLYTECHNIC",
+    "district": "GDL",
+    "place": "VADEPALLI",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 122,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 10741,
+        "closingRank": 80038
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 46,
+        "openingRank": 12576,
+        "closingRank": 80026
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 28839,
+        "closingRank": 79949
+      }
+    ]
+  },
+  {
+    "code": "VGSE",
+    "name": "VAAGESHWARI COLL. OF ENGINEERING",
+    "district": "KRM",
+    "place": "KARIMNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 137,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 21,
+        "openingRank": 20795,
+        "closingRank": 78454
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 55,
+        "openingRank": 7769,
+        "closingRank": 74959
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 19,
+        "openingRank": 34127,
+        "closingRank": 79579
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 31,
+        "openingRank": 20475,
+        "closingRank": 79625
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 11,
+        "openingRank": 24211,
+        "closingRank": 69780
+      }
+    ]
+  },
+  {
+    "code": "VGWL",
+    "name": "VAAGDEVI ENGINEERING COLLEGE",
+    "district": "WGL",
+    "place": "WARANGAL",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 73,
+    "branches": [
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 21,
+        "openingRank": 24474,
+        "closingRank": 79975
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 52,
+        "openingRank": 11428,
+        "closingRank": 80140
+      }
+    ]
+  },
+  {
+    "code": "VISA",
+    "name": "VATHSALYA INSTITUTE OF SCI. AND TECHNOLOGY",
+    "district": "YBG",
+    "place": "BHONGIR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 64,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 11,
+        "openingRank": 34890,
+        "closingRank": 79417
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 22,
+        "openingRank": 4556,
+        "closingRank": 78224
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 7,
+        "openingRank": 36455,
+        "closingRank": 65526
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 18,
+        "openingRank": 19547,
+        "closingRank": 79268
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 17259,
+        "closingRank": 81110
+      }
+    ]
+  },
+  {
+    "code": "VITS",
+    "name": "SRI VISHWESWARAYA INST. OF TECHNOLOGY AND SCI.",
+    "district": "MBN",
+    "place": "MAHABUBNAGAR",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 26,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 16874,
+        "closingRank": 78061
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 6,
+        "openingRank": 43058,
+        "closingRank": 68463
+      }
+    ]
+  },
+  {
+    "code": "VKBD",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "VKB",
+    "place": "VIKARABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 207,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 37,
+        "openingRank": 13261,
+        "closingRank": 78967
+      },
+      {
+        "branchCode": "CCB",
+        "branchName": "DIPLOMA IN CLOUD COMPUTING AND BIG DATA",
+        "totalAllotted": 51,
+        "openingRank": 4645,
+        "closingRank": 81195
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 10488,
+        "closingRank": 77446
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 62,
+        "openingRank": 2559,
+        "closingRank": 77682
+      }
+    ]
+  },
+  {
+    "code": "VMRH",
+    "name": "VMR PRADEEP KUMAR INSTITUTE OF ENGINEERING AND TECHNOLOGY",
+    "district": "HNK",
+    "place": "HANAMKONDA",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 375,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 121,
+        "openingRank": 9902,
+        "closingRank": 78909
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 35155,
+        "closingRank": 78582
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 97,
+        "openingRank": 5597,
+        "closingRank": 80421
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 11928,
+        "closingRank": 80546
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 77,
+        "openingRank": 7271,
+        "closingRank": 80974
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 16,
+        "openingRank": 28710,
+        "closingRank": 77197
+      }
+    ]
+  },
+  {
+    "code": "VREC",
+    "name": "VIJAYA RURAL ENGINEERING COLLEGE",
+    "district": "NZB",
+    "place": "NIZAMABAD",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 156,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 23,
+        "openingRank": 15098,
+        "closingRank": 78940
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 54,
+        "openingRank": 6891,
+        "closingRank": 80725
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 31,
+        "openingRank": 10015,
+        "closingRank": 75871
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 48,
+        "openingRank": 21303,
+        "closingRank": 80781
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 0,
+        "openingRank": null,
+        "closingRank": null
+      }
+    ]
+  },
+  {
+    "code": "WITS",
+    "name": "WARANGAL INST OF TECHNOLOGY SCIENCE",
+    "district": "WGL",
+    "place": "WARANGAL",
+    "type": "Private Polytechnic",
+    "annualFee": 15500,
+    "totalAllotted": 34,
+    "branches": [
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 20,
+        "openingRank": 18031,
+        "closingRank": 75903
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 14,
+        "openingRank": 14382,
+        "closingRank": 79238
+      }
+    ]
+  },
+  {
+    "code": "WLGW",
+    "name": "GOVT POLYTECHNIC FOR WOMEN",
+    "district": "WGL",
+    "place": "WARANGAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 280,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 66,
+        "openingRank": 239,
+        "closingRank": 41465
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 2284,
+        "closingRank": 48510
+      },
+      {
+        "branchCode": "CBM",
+        "branchName": "DIPLOMA IN COMPUTER APPLICATION &amp; BUSINESS MANAGEMENT",
+        "totalAllotted": 45,
+        "openingRank": 6383,
+        "closingRank": 75441
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 338,
+        "closingRank": 76116
+      },
+      {
+        "branchCode": "SCT",
+        "branchName": "DIPLOMA IN SEMI CONDUCTOR TECHNOLOGY",
+        "totalAllotted": 55,
+        "openingRank": 1004,
+        "closingRank": 80816
+      }
+    ]
+  },
+  {
+    "code": "WNPT",
+    "name": "KDR GOVT POLYTECHNIC",
+    "district": "WNP",
+    "place": "WANAPARTHY",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 295,
+    "branches": [
+      {
+        "branchCode": "BT",
+        "branchName": "DIPLOMA IN BIOTECHNOLOGY",
+        "totalAllotted": 27,
+        "openingRank": 14051,
+        "closingRank": 79360
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 55,
+        "openingRank": 10155,
+        "closingRank": 80546
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 64,
+        "openingRank": 589,
+        "closingRank": 74813
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1184,
+        "closingRank": 59019
+      },
+      {
+        "branchCode": "EI",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; INSTRUMENTATION ENGINEERING",
+        "totalAllotted": 42,
+        "openingRank": 8463,
+        "closingRank": 80943
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 41,
+        "openingRank": 18653,
+        "closingRank": 76957
+      }
+    ]
+  },
+  {
+    "code": "WRGL",
+    "name": "GOVT POLYTECHNIC",
+    "district": "WGL",
+    "place": "WARANGAL",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 588,
+    "branches": [
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 65,
+        "openingRank": 3543,
+        "closingRank": 80745
+      },
+      {
+        "branchCode": "CRV",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING REALESTATE AND VALUATION",
+        "totalAllotted": 40,
+        "openingRank": 9274,
+        "closingRank": 81134
+      },
+      {
+        "branchCode": "CS",
+        "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 138,
+        "closingRank": 71247
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 66,
+        "openingRank": 1714,
+        "closingRank": 23057
+      },
+      {
+        "branchCode": "EC",
+        "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+        "totalAllotted": 132,
+        "openingRank": 432,
+        "closingRank": 34933
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 153,
+        "openingRank": 5442,
+        "closingRank": 79604
+      }
+    ]
+  },
+  {
+    "code": "YDGR",
+    "name": "GOVT.POLYTECHNIC",
+    "district": "YBG",
+    "place": "YADAGIRIGUTTA",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 172,
+    "branches": [
+      {
+        "branchCode": "AI",
+        "branchName": "DIPLOMA IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+        "totalAllotted": 66,
+        "openingRank": 2327,
+        "closingRank": 69163
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 57,
+        "openingRank": 5640,
+        "closingRank": 73047
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 49,
+        "openingRank": 14411,
+        "closingRank": 81108
+      }
+    ]
+  },
+  {
+    "code": "ZHBD",
+    "name": "SS GOVT POLYTECHNIC",
+    "district": "SRD",
+    "place": "ZAHIRABAD",
+    "type": "Government Polytechnic",
+    "annualFee": 3800,
+    "totalAllotted": 292,
+    "branches": [
+      {
+        "branchCode": "AU",
+        "branchName": "DIPLOMA IN AUTOMOBILE ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 35481,
+        "closingRank": 80059
+      },
+      {
+        "branchCode": "CE",
+        "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+        "totalAllotted": 39,
+        "openingRank": 9516,
+        "closingRank": 79115
+      },
+      {
+        "branchCode": "EE",
+        "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+        "totalAllotted": 112,
+        "openingRank": 6399,
+        "closingRank": 80757
+      },
+      {
+        "branchCode": "ME",
+        "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+        "totalAllotted": 102,
+        "openingRank": 9731,
+        "closingRank": 80994
+      }
+    ]
+  }
+]

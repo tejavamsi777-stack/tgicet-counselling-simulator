@@ -1,0 +1,46 @@
+{
+  "code": "AURH",
+  "name": "AURH - RAMAPPA ENGINEERING COLLEGE, SHAYAMPET",
+  "totalAllotted": 3,
+  "branches": [
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)",
+      "totalAllotted": 3,
+      "openingRank": 736,
+      "closingRank": 3318,
+      "candidates": [
+        {
+          "rank": 736,
+          "hallTicket": "2316062944",
+          "name": "JAGARI AKSHITH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 852,
+          "hallTicket": "2316082986",
+          "name": "MORE SAI VARUN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CSD"
+        },
+        {
+          "rank": 3318,
+          "hallTicket": "1301102364",
+          "name": "RACHARLA VARUN TEJ",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CSD"
+        }
+      ]
+    }
+  ]
+}

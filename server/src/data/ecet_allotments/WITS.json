@@ -1,0 +1,114 @@
+{
+  "code": "WITS",
+  "name": "WITS - WARANGAL INST OF TECHNOLOGY SCIENCE, WARANGAL",
+  "totalAllotted": 8,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 258,
+      "closingRank": 857,
+      "candidates": [
+        {
+          "rank": 258,
+          "hallTicket": "2316093030",
+          "name": "GANDEM SRINAVYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 472,
+          "hallTicket": "2310052562",
+          "name": "GINNELA VENKATA SHIVASAI",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 857,
+          "hallTicket": "2316062946",
+          "name": "MALOTH SREELEKHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 124,
+      "closingRank": 631,
+      "candidates": [
+        {
+          "rank": 124,
+          "hallTicket": "1502091044",
+          "name": "MALOTH YAMUNA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 631,
+          "hallTicket": "2310052544",
+          "name": "VELISHALA JAGADISHWAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1604,
+      "closingRank": 3243,
+      "candidates": [
+        {
+          "rank": 1604,
+          "hallTicket": "1316035248",
+          "name": "KUPPALA SAIKIRAN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_CAP_GEN_UR(0)",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1859,
+          "hallTicket": "1301021275",
+          "name": "JANGA VARSHINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3243,
+          "hallTicket": "1303023089",
+          "name": "MADA ROSHINI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

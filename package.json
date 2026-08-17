@@ -1,4 +1,12 @@
 {
+  "name": "tgicet-simulator",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client"
+  },
   "dependencies": {
     "clsx": "^2.1.1",
     "lenis": "^1.3.25",

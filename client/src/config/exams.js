@@ -1,5 +1,16 @@
 export const exams = [
   {
+    id: "tg-eapcet",
+    slug: "tg-eapcet",
+    shortName: "TG EAPCET",
+    name: "Telangana Engineering, Agriculture & Pharmacy Common Entrance Test",
+    description: "Engineering, agriculture and pharmacy admissions guidance.",
+    programs: ["ENGINEERING", "AGRICULTURE", "PHARMACY"],
+    predictorAvailable: true,
+    counsellingAvailable: true,
+    status: "available",
+  },
+  {
     id: "tg-icet",
     slug: "tg-icet",
     shortName: "TG ICET",
@@ -10,17 +21,6 @@ export const exams = [
     counsellingAvailable: true,
     status: "available",
     legacyPath: "/icet",
-  },
-  {
-    id: "tg-eapcet",
-    slug: "tg-eapcet",
-    shortName: "TG EAPCET",
-    name: "Telangana Engineering, Agriculture & Pharmacy Common Entrance Test",
-    description: "Engineering, agriculture and pharmacy admissions guidance.",
-    programs: ["ENGINEERING", "AGRICULTURE", "PHARMACY"],
-    predictorAvailable: true,
-    counsellingAvailable: true,
-    status: "available",
   },
   {
     id: "tg-ecet",
@@ -47,9 +47,9 @@ export const exams = [
   { id: "tg-pgecet", slug: "tg-pgecet", shortName: "TG PGECET", name: "Telangana Post Graduate Engineering Common Entrance Test", description: "Postgraduate engineering admissions guidance.", programs: ["M.E.", "M.TECH", "M.PHARMACY"], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
   { id: "tg-edcet", slug: "tg-edcet", shortName: "TG EDCET", name: "Telangana Education Common Entrance Test", description: "B.Ed. admissions guidance.", programs: ["B.ED."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
   { id: "tg-lawcet", slug: "tg-lawcet", shortName: "TG LAWCET", name: "Telangana Law Common Entrance Test", description: "Law admissions guidance.", programs: ["LL.B. 3 YEAR", "LL.B. 5 YEAR"], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
-  { id: "ts-cpget", slug: "ts-cpget", shortName: "TS CPGET", name: "Telangana Common Post Graduate Entrance Tests", description: "Postgraduate programme admissions guidance.", programs: ["M.A.", "M.SC.", "M.COM."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
-  { id: "ts-pglcet", slug: "ts-pglcet", shortName: "TS PGLCET", name: "Telangana Post Graduate Law Common Entrance Test", description: "LL.M. admissions guidance.", programs: ["LL.M."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
-  { id: "ts-pecet", slug: "ts-pecet", shortName: "TS PECET", name: "Telangana Physical Education Common Entrance Test", description: "Physical education admissions guidance.", programs: ["B.P.ED.", "D.P.ED."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
+  { id: "tg-cpget", slug: "tg-cpget", shortName: "TG CPGET", name: "Telangana Common Post Graduate Entrance Tests", description: "Postgraduate programme admissions guidance.", programs: ["M.A.", "M.SC.", "M.COM."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
+  { id: "tg-pglcet", slug: "tg-pglcet", shortName: "TG PGLCET", name: "Telangana Post Graduate Law Common Entrance Test", description: "LL.M. admissions guidance.", programs: ["LL.M."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
+  { id: "tg-pecet", slug: "tg-pecet", shortName: "TG PECET", name: "Telangana Physical Education Common Entrance Test", description: "Physical education admissions guidance.", programs: ["B.P.ED.", "D.P.ED."], predictorAvailable: false, counsellingAvailable: false, status: "coming-soon" },
 ];
 
 export const getExamBySlug = (slug) => exams.find((exam) => exam.slug === slug);

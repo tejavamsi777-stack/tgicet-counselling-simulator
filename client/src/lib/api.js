@@ -66,3 +66,5 @@ export const api = {
   post: (path, data) => request(path, { method: "POST", body: JSON.stringify(data) }),
   patch: (path, data) => request(path, { method: "PATCH", body: JSON.stringify(data) }),
 };
+
+export default api;

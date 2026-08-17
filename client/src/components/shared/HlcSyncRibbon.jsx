@@ -1,0 +1,107 @@
+import { Link, useLocation } from 'react-router-dom';
+import { Sparkles, ShieldCheck, ArrowRight, Lock, AlertCircle } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+
+export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
+  const { user } = useAuth();
+  const location = useLocation();
+
+  const isGuest = user?.is_guest;
+  const isRegisteredUser = Boolean(user && !user.is_guest);
+
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-purple-500/30 bg-gradient-to-r from-purple-950/70 via-black/90 to-indigo-950/70 p-1 shadow-lg shadow-purple-950/40 mb-6 group">
+      {/* Animated subtle background glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/15 via-amber-500/10 to-purple-600/15 opacity-80 animate-pulse pointer-events-none" />
+
+      <div className="relative flex flex-col sm:flex-row items-center justify-between gap-3 px-3.5 py-2.5">
+        {/* Left Badge */}
+        <div className="flex items-center gap-2 shrink-0 z-10">
+          <span className={`flex h-2 w-2 rounded-full ${isRegisteredUser ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-ping'}`} />
+          <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider shadow-sm ${
+            isRegisteredUser 
+              ? 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-300' 
+              : 'bg-amber-500/15 border border-amber-500/30 text-amber-300'
+          }`}>
+            <Sparkles size={12} className={isRegisteredUser ? 'text-emerald-400' : 'text-amber-400'} />
+            {isRegisteredUser ? 'Cloud Synced' : 'HLC Notice'}
+          </span>
+        </div>
+
+        {/* Center Marquee Ribbon Text (Scrolling Right to Left) */}
+        <div className="flex-1 overflow-hidden relative mx-2 w-full select-none">
+          <div className="flex whitespace-nowrap animate-marquee hover:[animation-play-state:paused] text-xs font-medium text-purple-100/90">
+            <span className="mx-6 inline-flex items-center gap-2">
+              <span>🔔</span>
+              {isRegisteredUser ? (
+                <>
+                  <strong className="text-emerald-300">Account Synced:</strong>
+                  <span>Your {examTitle} HLC checklist progress is saved to your account and accessible across all your logged-in devices.</span>
+                </>
+              ) : isGuest ? (
+                <>
+                  <strong className="text-amber-300">Guest Mode Active:</strong>
+                  <span>Guest progress is temporary and will reset on page refresh. Log in or create a free account to permanently save your checklist across devices!</span>
+                </>
+              ) : (
+                <>
+                  <strong className="text-amber-300">Save Your Checklist:</strong>
+                  <span>Sign in to permanently save your {examTitle} HLC Document verification checklist across all devices. Guest mode resets on refresh!</span>
+                </>
+              )}
+              <span className="text-purple-400 font-bold">•</span>
+              <span className="text-purple-300">Real-time multi-device continuation</span>
+              <span className="text-purple-400 font-bold">•</span>
+              <span>100% Free for all Telangana students</span>
+            </span>
+
+            {/* Repeated text for seamless continuous marquee loop */}
+            <span className="mx-6 inline-flex items-center gap-2" aria-hidden="true">
+              <span>🔔</span>
+              {isRegisteredUser ? (
+                <>
+                  <strong className="text-emerald-300">Account Synced:</strong>
+                  <span>Your {examTitle} HLC checklist progress is saved to your account and accessible across all your logged-in devices.</span>
+                </>
+              ) : isGuest ? (
+                <>
+                  <strong className="text-amber-300">Guest Mode Active:</strong>
+                  <span>Guest progress is temporary and will reset on page refresh. Log in or create a free account to permanently save your checklist across devices!</span>
+                </>
+              ) : (
+                <>
+                  <strong className="text-amber-300">Save Your Checklist:</strong>
+                  <span>Sign in to permanently save your {examTitle} HLC Document verification checklist across all devices. Guest mode resets on refresh!</span>
+                </>
+              )}
+              <span className="text-purple-400 font-bold">•</span>
+              <span className="text-purple-300">Real-time multi-device continuation</span>
+              <span className="text-purple-400 font-bold">•</span>
+              <span>100% Free for all Telangana students</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Right Action Button */}
+        <div className="shrink-0 z-10">
+          {isRegisteredUser ? (
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300 bg-emerald-950/50 border border-emerald-500/30 px-3 py-1.5 rounded-lg shadow-sm">
+              <ShieldCheck size={13} className="text-emerald-400" />
+              <span>Saved to Account</span>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              state={{ from: location }}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-purple-400/40 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-purple-900/50 transition-all duration-200 active:scale-95"
+            >
+              <Lock size={12} />
+              <span>Sign in to Save</span>
+              <ArrowRight size={12} />
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

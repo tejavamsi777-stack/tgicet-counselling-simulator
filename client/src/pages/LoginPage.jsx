@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Navigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft, Check, Loader2, Sparkles } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/shared/GoogleSignInButton";
 import Logo from "../components/layout/Logo";
@@ -24,7 +24,7 @@ function Input({ className, type, ...props }) {
 }
 
 export default function LoginPage({ initialMode }) {
-  const { user, loading, login, register, forgotPassword } = useAuth();
+  const { user, loading, login, loginAsGuest, register, forgotPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -57,7 +57,8 @@ export default function LoginPage({ initialMode }) {
 
   const redirectTo = location.state?.from?.pathname || "/";
 
-  if (!loading && user && !success) {
+  // Only redirect if already authenticated as a full registered user (not a guest)
+  if (!loading && user && !user.is_guest && !success) {
     return <Navigate to={redirectTo} replace />;
   }
 
@@ -296,34 +297,24 @@ export default function LoginPage({ initialMode }) {
                   </div>
                 )}
 
-                {/* Remember me & Forgot password in Login mode */}
+                {/* Continue as Guest & Forgot password in Login mode */}
                 {mode === "login" && (
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center space-x-2">
-                      <div className="relative flex items-center">
-                        <input
-                          id="remember-me"
-                          name="remember-me"
-                          type="checkbox"
-                          checked={rememberMe}
-                          onChange={() => setRememberMe(!rememberMe)}
-                          className="h-4 w-4 appearance-none rounded border border-white/20 bg-white/5 transition-all duration-200 checked:border-white checked:bg-white focus:outline-none focus:ring-1 focus:ring-white/30 cursor-pointer"
-                        />
-                        {rememberMe && (
-                          <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-black">
-                            <Check size={11} strokeWidth={3} />
-                          </div>
-                        )}
-                      </div>
-                      <label
-                        htmlFor="remember-me"
-                        className="cursor-pointer text-xs text-white/60 transition-colors duration-200 hover:text-white/80"
-                      >
-                        Remember me
-                      </label>
-                    </div>
+                  <div className="flex items-center justify-between gap-2 pt-0.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        loginAsGuest();
+                        setSuccess(true);
+                        setTimeout(() => navigate(redirectTo, { replace: true }), 600);
+                      }}
+                      className="group/guest inline-flex items-center gap-1.5 rounded-lg border border-purple-400/30 bg-purple-500/10 hover:bg-purple-500/20 px-2.5 py-1 text-xs font-semibold text-purple-200 hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
+                      title="Explore instantly without creating an account"
+                    >
+                      <Sparkles size={13} className="text-amber-400 shrink-0 transition-transform group-hover/guest:scale-110" />
+                      <span className="truncate">Continue as Guest</span>
+                    </button>
 
-                    <div className="relative z-30 text-xs">
+                    <div className="relative z-30 text-xs shrink-0">
                       <button
                         type="button"
                         onClick={(e) => {

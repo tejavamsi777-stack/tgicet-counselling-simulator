@@ -1,0 +1,1427 @@
+{
+  "code": "VGSE",
+  "name": "VAAGESHWARI COLL. OF ENGINEERING",
+  "district": "KRM",
+  "place": "KARIMNAGAR",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 137,
+  "branchesCount": 5,
+  "branches": [
+    {
+      "branchCode": "CE",
+      "branchName": "DIPLOMA IN CIVIL ENGINEERING",
+      "totalAllotted": 21,
+      "openingRank": 20795,
+      "closingRank": 78454,
+      "candidates": [
+        {
+          "sno": 3,
+          "hallTicket": "3103310",
+          "rank": 20795,
+          "name": "GAJULA SINDHU",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "3111181",
+          "rank": 26429,
+          "name": "SAYED WAHAZ",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_OU"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "3111009",
+          "rank": 29431,
+          "name": "MOHAMMAD MUDASSIR HUSSAIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "3109002",
+          "rank": 31426,
+          "name": "SYED KAMRAN AHMED",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "3109185",
+          "rank": 31983,
+          "name": "BITLA HARSHITH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "3113035",
+          "rank": 34025,
+          "name": "KATAM OMKAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_UR"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "5118131",
+          "rank": 35710,
+          "name": "SHAIK RAMEEZ",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_UR"
+        },
+        {
+          "sno": 21,
+          "hallTicket": "5508185",
+          "rank": 37182,
+          "name": "BASAMALLA SHAINIKA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1802180",
+          "rank": 47046,
+          "name": "CHILLA ADITHYA",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 19,
+          "hallTicket": "5501469",
+          "rank": 55751,
+          "name": "UMAR RAYAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_UR"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "3108208",
+          "rank": 57050,
+          "name": "GUDIMALLA RISHI",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "5110271",
+          "rank": 58973,
+          "name": "MERUGAVENI KEERTHANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU"
+        },
+        {
+          "sno": 20,
+          "hallTicket": "5503201",
+          "rank": 59577,
+          "name": "MD MUDABBIR AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "5501455",
+          "rank": 60092,
+          "name": "NEERATI AKSHARA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "4112140",
+          "rank": 60283,
+          "name": "CHAMANTHULA HARSHITH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "5112108",
+          "rank": 62793,
+          "name": "SYED ISHAQ SHA",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_UR"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "3109404",
+          "rank": 68848,
+          "name": "JINDAM PRANAY",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "3111065",
+          "rank": 69564,
+          "name": "KADARI SRI VALLIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "4110180",
+          "rank": 73170,
+          "name": "GADDALA HIMABINDU",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1202439",
+          "rank": 73200,
+          "name": "KAVVAMPELLI PUSHKAR",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "4112110",
+          "rank": 78454,
+          "name": "MOLUGU SPURTHI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 55,
+      "openingRank": 7769,
+      "closingRank": 74959,
+      "candidates": [
+        {
+          "sno": 34,
+          "hallTicket": "3109405",
+          "rank": 7769,
+          "name": "ZAINAB BANU",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 29,
+          "hallTicket": "3105232",
+          "rank": 8998,
+          "name": "RIDA FATHIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 35,
+          "hallTicket": "3111335",
+          "rank": 12073,
+          "name": "MALYALA SAGAR",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "1805253",
+          "rank": 12678,
+          "name": "CHENNOJI ALEKHYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 41,
+          "hallTicket": "3305185",
+          "rank": 14276,
+          "name": "KATKURI MANASA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "3103276",
+          "rank": 15044,
+          "name": "SHAIK ABDUL AMAAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 24,
+          "hallTicket": "3103629",
+          "rank": 15461,
+          "name": "ZAINAB IFRA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "3101187",
+          "rank": 16494,
+          "name": "KACHU PRANAY",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 27,
+          "hallTicket": "3105059",
+          "rank": 17374,
+          "name": "SRIRAMOJU INDUPRIYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 21,
+          "hallTicket": "3103535",
+          "rank": 18343,
+          "name": "KANAPARTHI JESHWANTH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 47,
+          "hallTicket": "5111090",
+          "rank": 18613,
+          "name": "ADUVALA THAPASWINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 30,
+          "hallTicket": "3105469",
+          "rank": 20464,
+          "name": "SYED TAQIUDDIN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 43,
+          "hallTicket": "4101127",
+          "rank": 20487,
+          "name": "SANDANALA DEEKSHITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 37,
+          "hallTicket": "3301509",
+          "rank": 21586,
+          "name": "ERROJU VYSHNAVI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 52,
+          "hallTicket": "5501534",
+          "rank": 22751,
+          "name": "BOOSA MANASA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 19,
+          "hallTicket": "3103357",
+          "rank": 23170,
+          "name": "KANAPARTHI LAXMI PRANATHI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1415190",
+          "rank": 23450,
+          "name": "RODDA JASHWANTH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "3103034",
+          "rank": 24801,
+          "name": "SAFURA SHAIK",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_PHO_GEN_OU"
+        },
+        {
+          "sno": 36,
+          "hallTicket": "3113012",
+          "rank": 25400,
+          "name": "SAFURA KONAIN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_OU"
+        },
+        {
+          "sno": 39,
+          "hallTicket": "3304152",
+          "rank": 25541,
+          "name": "VOLABOJU HASINI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_UR"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "3103139",
+          "rank": 25966,
+          "name": "PAIDIPALA SRI VARSHITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GEN_OU(0)"
+        },
+        {
+          "sno": 26,
+          "hallTicket": "3105038",
+          "rank": 26033,
+          "name": "PUTTAPAKA SRIVARSHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_C_GEN_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1802172",
+          "rank": 28023,
+          "name": "PADIGE NAVANITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "3101244",
+          "rank": 28261,
+          "name": "SINGAM NITHYA SRI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU"
+        },
+        {
+          "sno": 50,
+          "hallTicket": "5117091",
+          "rank": 29963,
+          "name": "JANGAPELLI VARSHITH",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU"
+        },
+        {
+          "sno": 25,
+          "hallTicket": "3103639",
+          "rank": 30973,
+          "name": "MD SAMEERULLAH",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU"
+        },
+        {
+          "sno": 23,
+          "hallTicket": "3103614",
+          "rank": 32152,
+          "name": "SWATHI ASHRUTHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 46,
+          "hallTicket": "4112256",
+          "rank": 32595,
+          "name": "SOMA SAHARSHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 38,
+          "hallTicket": "3304120",
+          "rank": 33827,
+          "name": "KOTTE SIDHARTHA",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 48,
+          "hallTicket": "5111105",
+          "rank": 34302,
+          "name": "KALAVENA ABHILASH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "1810069",
+          "rank": 34588,
+          "name": "JINDAM RAKESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 44,
+          "hallTicket": "4106172",
+          "rank": 39656,
+          "name": "DEVISHETTI ARUN",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU"
+        },
+        {
+          "sno": 49,
+          "hallTicket": "5112138",
+          "rank": 40187,
+          "name": "GUMMADI RISHIKESH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 42,
+          "hallTicket": "4002321",
+          "rank": 40388,
+          "name": "KOMMU PRANUTHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_OU"
+        },
+        {
+          "sno": 22,
+          "hallTicket": "3103592",
+          "rank": 41505,
+          "name": "NERELLA SIRI HARSHINI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 54,
+          "hallTicket": "5506232",
+          "rank": 41575,
+          "name": "CHITTIMALLA SUNAYANA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_UR"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "1806025",
+          "rank": 42025,
+          "name": "ADDAGATLA MANIDEEP",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "3102354",
+          "rank": 43436,
+          "name": "ERRAM SHRAVANI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "1805157",
+          "rank": 44075,
+          "name": "BOORA RAMCHARAN",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "3008080",
+          "rank": 48204,
+          "name": "KONDA RAKSHITH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_PHA_GEN_OU"
+        },
+        {
+          "sno": 33,
+          "hallTicket": "3109227",
+          "rank": 50556,
+          "name": "SUNDARAGIRI SAI CHARAN",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "3002197",
+          "rank": 51121,
+          "name": "DONGRI AKSHAY KUMAR",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_UR"
+        },
+        {
+          "sno": 20,
+          "hallTicket": "3103437",
+          "rank": 51479,
+          "name": "PALLE SATHWIK",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_OU"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "1804325",
+          "rank": 52511,
+          "name": "UPPULA RAM CHARAN REDDY",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_OU"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "3102185",
+          "rank": 52923,
+          "name": "SUNKE SUSHANTH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_UR"
+        },
+        {
+          "sno": 31,
+          "hallTicket": "3108170",
+          "rank": 54409,
+          "name": "HASTHAPURAPU SRI HARSHA",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU"
+        },
+        {
+          "sno": 40,
+          "hallTicket": "3305091",
+          "rank": 56462,
+          "name": "REGUNTA KARTHIK",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "3006128",
+          "rank": 58619,
+          "name": "KOTA SAHASRA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_UR"
+        },
+        {
+          "sno": 32,
+          "hallTicket": "3108199",
+          "rank": 58653,
+          "name": "PAIDI SHIVA RAM",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU"
+        },
+        {
+          "sno": 28,
+          "hallTicket": "3105183",
+          "rank": 59844,
+          "name": "NEDUNOORI HARSHAVARDHAN",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 55,
+          "hallTicket": "5507068",
+          "rank": 67258,
+          "name": "NALLA PRANITHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU"
+        },
+        {
+          "sno": 53,
+          "hallTicket": "5502262",
+          "rank": 68263,
+          "name": "SHEELAM RUTHIK",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_PHM_GEN_OU"
+        },
+        {
+          "sno": 51,
+          "hallTicket": "5501368",
+          "rank": 73971,
+          "name": "KOTHURI PAVAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU"
+        },
+        {
+          "sno": 45,
+          "hallTicket": "4109254",
+          "rank": 74632,
+          "name": "TEKU PRASHANTH",
+          "gender": "Male",
+          "caste": "SC_I",
+          "region": "OU",
+          "seatCategory": "SC_I_GEN_OU"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "3101327",
+          "rank": 74959,
+          "name": "BANDI SAHITH KUMAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 19,
+      "openingRank": 34127,
+      "closingRank": 79579,
+      "candidates": [
+        {
+          "sno": 6,
+          "hallTicket": "3103185",
+          "rank": 34127,
+          "name": "SHAIK ABDUL ADNAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 19,
+          "hallTicket": "5501159",
+          "rank": 36023,
+          "name": "MOHAMMED EHTESHAMUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "1806275",
+          "rank": 42297,
+          "name": "JAGIRI CHARAN TEJA",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_PHA_GEN_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "4109002",
+          "rank": 45161,
+          "name": "GANGADHARI NIKITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "3103432",
+          "rank": 45871,
+          "name": "MALOTHU ALEKHYA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1801240",
+          "rank": 48403,
+          "name": "PULLURI RUTHVIK",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "5201126",
+          "rank": 50580,
+          "name": "THIPIRI SAMATHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "3105355",
+          "rank": 51806,
+          "name": "GUGULOTH ANJANEYULU",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "4106440",
+          "rank": 51925,
+          "name": "KUCHALA SRINIDHI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "4101055",
+          "rank": 53911,
+          "name": "PANTHAM SAI CHARAN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_UR"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "4112130",
+          "rank": 58044,
+          "name": "POGULA KAARTHIK",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_CAP_GEN_UR(0)"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "3109337",
+          "rank": 59099,
+          "name": "MOHAMMAD IQBAL",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1402217",
+          "rank": 63647,
+          "name": "KATKURI VASANTH REDDY",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "1806211",
+          "rank": 63647,
+          "name": "MORRI VAMSHI",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "4910004",
+          "rank": 65626,
+          "name": "CHETTI SATHWIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "3301510",
+          "rank": 73236,
+          "name": "ITHA KARTHIK",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_UR"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "4001250",
+          "rank": 78017,
+          "name": "PERUMANDLA VARUN",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_UR"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "3301318",
+          "rank": 78376,
+          "name": "DASARI RAHUL",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "3101003",
+          "rank": 79579,
+          "name": "KEDAM CHAITHRA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_UR"
+        }
+      ]
+    },
+    {
+      "branchCode": "EC",
+      "branchName": "DIPLOMA IN ELECTRONICS &amp; COMMUNICATION ENGINEERING",
+      "totalAllotted": 31,
+      "openingRank": 20475,
+      "closingRank": 79625,
+      "candidates": [
+        {
+          "sno": 19,
+          "hallTicket": "3109050",
+          "rank": 20475,
+          "name": "CHENNURI ATHITHJAYARAM",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "3108045",
+          "rank": 25559,
+          "name": "MITTAPELLI AKSHAYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 23,
+          "hallTicket": "4101026",
+          "rank": 30995,
+          "name": "NUNE SRIVARSHINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1805103",
+          "rank": 33888,
+          "name": "KURRA ANAND",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GEN_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "3105194",
+          "rank": 37457,
+          "name": "GALI LASYA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "3002152",
+          "rank": 37654,
+          "name": "APPALA PAVAN KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "3101462",
+          "rank": 38453,
+          "name": "MOHAMMAD SANA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 29,
+          "hallTicket": "5111050",
+          "rank": 40029,
+          "name": "SHEEFA MEHNAAZ",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "1810055",
+          "rank": 40703,
+          "name": "SINGARAVENI POOJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "3102254",
+          "rank": 40989,
+          "name": "PERUMANDLA DEEPIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_UR"
+        },
+        {
+          "sno": 22,
+          "hallTicket": "4004139",
+          "rank": 42491,
+          "name": "RANGU DEEPTHI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1801067",
+          "rank": 43085,
+          "name": "REGULA KAVERI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU"
+        },
+        {
+          "sno": 20,
+          "hallTicket": "3109130",
+          "rank": 48562,
+          "name": "RUDRAKSHA SREEJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_UR"
+        },
+        {
+          "sno": 31,
+          "hallTicket": "5118095",
+          "rank": 48562,
+          "name": "NAKKALA SHUSHANTH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 21,
+          "hallTicket": "3109436",
+          "rank": 49127,
+          "name": "PRODDUTOORI MANVITHA KOMALI",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GIRLS_UR"
+        },
+        {
+          "sno": 30,
+          "hallTicket": "5117179",
+          "rank": 49778,
+          "name": "BHOOPELLI SAMRAJ",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU"
+        },
+        {
+          "sno": 26,
+          "hallTicket": "4106441",
+          "rank": 55208,
+          "name": "PERABOINA SAI VARSHINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU"
+        },
+        {
+          "sno": 24,
+          "hallTicket": "4101079",
+          "rank": 56931,
+          "name": "NAGAPURI MANIKANTA",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "3108302",
+          "rank": 57050,
+          "name": "KANDLE VARSHITHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_OU"
+        },
+        {
+          "sno": 25,
+          "hallTicket": "4104120",
+          "rank": 58231,
+          "name": "SEETHA VAISHNAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "3001276",
+          "rank": 59237,
+          "name": "INDURI CHARAN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 27,
+          "hallTicket": "4111278",
+          "rank": 61530,
+          "name": "SHETTAM SRINIDHI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_C_GIRLS_OU"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "3101355",
+          "rank": 62312,
+          "name": "VADLOORI SAI PRASAD",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_UR"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "3101099",
+          "rank": 64967,
+          "name": "MOHAMMAD ZAMEER BEG",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_UR"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "3002393",
+          "rank": 66496,
+          "name": "MOHAMMAD SAIF",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_UR"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "3103206",
+          "rank": 66818,
+          "name": "AKULA HARSHITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "3101354",
+          "rank": 67130,
+          "name": "MENDE ABHILASH",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "3108243",
+          "rank": 68375,
+          "name": "VADAI SAILAJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU"
+        },
+        {
+          "sno": 28,
+          "hallTicket": "4112285",
+          "rank": 70877,
+          "name": "KASHABOINA SRIHITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "3102258",
+          "rank": 71069,
+          "name": "THAMMADAVENI VARSHINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "1806175",
+          "rank": 79625,
+          "name": "ORUGANTI CHANDRAKAMAL",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "ME",
+      "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+      "totalAllotted": 11,
+      "openingRank": 24211,
+      "closingRank": 69780,
+      "candidates": [
+        {
+          "sno": 8,
+          "hallTicket": "4112233",
+          "rank": 24211,
+          "name": "THARRALA KARTHIK",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "3105265",
+          "rank": 29036,
+          "name": "MOHAMMED ASHRAF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "3102187",
+          "rank": 42245,
+          "name": "THOUTU RAJ KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GEN_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "3108245",
+          "rank": 49040,
+          "name": "THATIPALLI SAI CHARAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "3111046",
+          "rank": 55571,
+          "name": "MACHARLA RISHIKESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_UR"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "3111186",
+          "rank": 56054,
+          "name": "MOHAMMAD ARFAN HUSSAIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "5504248",
+          "rank": 59193,
+          "name": "ANAGANTI MANOJU KUMAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "3103174",
+          "rank": 59257,
+          "name": "ANUMALLA HARSHA VARDHAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "3108363",
+          "rank": 69220,
+          "name": "KOTAGIRI DEVI NARASIMHAPRASAD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "5114216",
+          "rank": 69266,
+          "name": "ERUGURALLA VIGNESH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "5502239",
+          "rank": 69780,
+          "name": "UPPULA AJAY",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "code": "PRIW",
+  "name": "PRIW - PRIYADARSHINI INSTITUTE OF SCIENCE & TECHNOLOGY FOR WOMEN, KHAMMAM",
+  "totalAllotted": 9,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 1534,
+      "closingRank": 4008,
+      "candidates": [
+        {
+          "rank": 1534,
+          "hallTicket": "2316052915",
+          "name": "BHUKYA SRILEKHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1642,
+          "hallTicket": "1207014958",
+          "name": "SHAIK SOFIYA MAHEK",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4008,
+          "hallTicket": "1207014985",
+          "name": "PONAMALA BHAVANA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 3323,
+      "closingRank": 4172,
+      "candidates": [
+        {
+          "rank": 3323,
+          "hallTicket": "1307034226",
+          "name": "SHAIK AFREEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3462,
+          "hallTicket": "1307014141",
+          "name": "RUPANI DEEPIKA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_E_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3495,
+          "hallTicket": "1316085553",
+          "name": "YETTI SHALINI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_C_PHH_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 3583,
+          "hallTicket": "1303063417",
+          "name": "KANAVENA HARINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4057,
+          "hallTicket": "1306014076",
+          "name": "RAVULA RASMIKA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 4172,
+          "hallTicket": "1307044245",
+          "name": "YASARAPU RUCHITHA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    }
+  ]
+}

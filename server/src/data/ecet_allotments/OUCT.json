@@ -1,0 +1,125 @@
+{
+  "code": "OUCT",
+  "name": "OUCT - O U COLLEGE OF TECH HYDERABAD, HYDERABAD",
+  "totalAllotted": 10,
+  "branches": [
+    {
+      "code": "CHE",
+      "name": "CHEMICAL ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 1,
+      "closingRank": 24,
+      "candidates": [
+        {
+          "rank": 1,
+          "hallTicket": "2203011064",
+          "name": "RUPANI NARENDRA",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CHE"
+        },
+        {
+          "rank": 2,
+          "hallTicket": "2201011005",
+          "name": "BANOTH PRATHIBHA SREE",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CHE"
+        },
+        {
+          "rank": 3,
+          "hallTicket": "2201011004",
+          "name": "BARLA KAVITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GIRLS_OU",
+          "branchCode": "CHE"
+        },
+        {
+          "rank": 5,
+          "hallTicket": "2203031068",
+          "name": "SANGEM VAISHNAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_OU",
+          "branchCode": "CHE"
+        },
+        {
+          "rank": 6,
+          "hallTicket": "2203011065",
+          "name": "SIRISILLA RAKESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CHE"
+        },
+        {
+          "rank": 24,
+          "hallTicket": "2201101040",
+          "name": "MOTHE PALLAVI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CHE"
+        }
+      ]
+    },
+    {
+      "code": "TEX",
+      "name": "TEXTILE TECHNOLOGY / TEXTILE ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 32,
+      "closingRank": 46,
+      "candidates": [
+        {
+          "rank": 32,
+          "hallTicket": "2210081088",
+          "name": "BONALA SIRI CHANDANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "TEX"
+        },
+        {
+          "rank": 35,
+          "hallTicket": "2216031092",
+          "name": "PONNAM MAYURI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "TEX"
+        },
+        {
+          "rank": 41,
+          "hallTicket": "2201101041",
+          "name": "KOTOJU BHARATH KUMAR CHARY",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "TEX"
+        },
+        {
+          "rank": 46,
+          "hallTicket": "2211011089",
+          "name": "KORE ABHINAYA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "TEX"
+        }
+      ]
+    }
+  ]
+}

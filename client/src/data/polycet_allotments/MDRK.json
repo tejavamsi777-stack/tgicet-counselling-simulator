@@ -1,0 +1,229 @@
+{
+  "code": "MDRK",
+  "name": "MADHIRA INSTITUTE OF TECHNOLOGY AND SCI.",
+  "district": "SRP",
+  "place": "KODAD",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 19,
+  "branchesCount": 3,
+  "branches": [
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 10,
+      "openingRank": 40959,
+      "closingRank": 80264,
+      "candidates": [
+        {
+          "sno": 6,
+          "hallTicket": "2915021",
+          "rank": 40959,
+          "name": "THONUKUNURI YASHASWINI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "2902185",
+          "rank": 44125,
+          "name": "MOOD ANUSHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "2915221",
+          "rank": 51107,
+          "name": "BACHALAKURI CHARAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GEN_OU"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "2917094",
+          "rank": 52990,
+          "name": "ARVAPALLI GEETHA KRISHNA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_UR"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "2115129",
+          "rank": 54278,
+          "name": "ROMMULA SOWMYA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2103397",
+          "rank": 64382,
+          "name": "POLAGANI DIVYA SRI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_C_GIRLS_UR"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "2916035",
+          "rank": 71611,
+          "name": "BHUKYA SRAVANTHI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "2904289",
+          "rank": 75515,
+          "name": "DEERAVATH MOULAL",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "2917135",
+          "rank": 78677,
+          "name": "BHUKYA JESWITHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "SC_I_GIRLS_UR"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "2902209",
+          "rank": 80264,
+          "name": "DAGGUPATI SRUTHI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 8,
+      "openingRank": 16517,
+      "closingRank": 79521,
+      "candidates": [
+        {
+          "sno": 8,
+          "hallTicket": "2909105",
+          "rank": 16517,
+          "name": "NANDIGAMA JASWANTH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "2110072",
+          "rank": 28357,
+          "name": "PEETHALA ARAVIND SWAMY",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "2108418",
+          "rank": 63609,
+          "name": "MIDASANAMETLA JAGAN",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_SG_GEN_OU(0)"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "2901359",
+          "rank": 72294,
+          "name": "GUDIGUNTLA SANJAY",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2101134",
+          "rank": 76555,
+          "name": "GAJULA NAGALAXMI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_PHA_GEN_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "2109390",
+          "rank": 76943,
+          "name": "PANUGOTHU ANIL",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "2109152",
+          "rank": 78081,
+          "name": "CHINTHAMALLA SHAILAJA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "2901231",
+          "rank": 79521,
+          "name": "AALLURI SANDHEEP",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        }
+      ]
+    },
+    {
+      "branchCode": "ME",
+      "branchName": "DIPLOMA IN MECHANICAL ENGINEERING",
+      "totalAllotted": 1,
+      "openingRank": 81208,
+      "closingRank": 81208,
+      "candidates": [
+        {
+          "sno": 1,
+          "hallTicket": "2901011",
+          "rank": 81208,
+          "name": "KORRA YASHWANTH",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU"
+        }
+      ]
+    }
+  ]
+}

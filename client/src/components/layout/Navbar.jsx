@@ -21,6 +21,7 @@ import {
 import { ABOUT_TEXT } from "./Footer";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
+import { ShareButton } from "../shared/ShareModal";
 import { useAuth } from "../../context/AuthContext";
 
 const EXAM_MENU_ITEMS = [
@@ -38,10 +39,10 @@ const PREDICTOR_MENU_ITEMS = [
 ];
 
 const COUNSELLING_MENU_ITEMS = [
-  { name: "TG EAPCET Web Options", subtitle: "Branch-wise Option Simulator", path: "/tg-eapcet/mock-counselling" },
-  { name: "TG ICET Mock Counselling", subtitle: "Interactive Allotment Practice", path: "/tg-icet/mock-counselling" },
-  { name: "TG ECET Web Options", subtitle: "Diploma Priority Ordering", path: "/tg-ecet/mock-counselling" },
-  { name: "TG POLYCET Web Options", subtitle: "Polytechnic Preference Simulator", path: "/tg-polycet/mock-counselling" },
+  { name: "TG EAPCET Exercise Web Options", subtitle: "Branch & College Priority Simulator", path: "/tg-eapcet/mock-counselling" },
+  { name: "TG ICET Exercise Web Options", subtitle: "MBA & MCA Priority Ordering Simulator", path: "/tg-icet/mock-counselling" },
+  { name: "TG ECET Exercise Web Options", subtitle: "Diploma Lateral Entry Priority Ordering", path: "/tg-ecet/mock-counselling" },
+  { name: "TG POLYCET Exercise Web Options", subtitle: "Polytechnic Preference Simulator", path: "/tg-polycet/mock-counselling" },
 ];
 
 export default function Navbar() {
@@ -251,7 +252,7 @@ export default function Navbar() {
                   className="absolute right-0 top-full z-50 mt-2 w-80 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
                 >
                   <div className="mb-2 px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-purple-300">
-                    Web Options & Practice Allotment
+                    Exercise Web Options
                   </div>
                   <div className="space-y-1">
                     {COUNSELLING_MENU_ITEMS.map((item) => (
@@ -304,11 +305,16 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.96 }}
                   transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute right-0 top-full z-50 mt-2 w-84 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-5 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
+                  className="absolute right-0 top-full z-50 mt-2 w-88 rounded-3xl border border-white/20 bg-[#120d1f]/98 p-5 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
                 >
-                  <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
-                    <Info size={16} className="text-purple-300" />
-                    <span>About TG Counselling</span>
+                  <div className="mb-2.5 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                      <Info size={16} className="text-purple-300" />
+                      <span>About TG Counselling</span>
+                    </div>
+                    <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
+                      100% Free
+                    </span>
                   </div>
                   <p className="text-xs leading-relaxed text-gray-300">{ABOUT_TEXT}</p>
                 </motion.div>
@@ -317,8 +323,11 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* User Profile & Mobile Toggle */}
+        {/* User Profile, Share & Mobile Toggle */}
         <div className="flex items-center gap-2">
+          {/* Share Button (Desktop & Tablet) */}
+          <ShareButton variant="icon" className="hidden sm:flex" />
+
           <div className="hidden md:block">
             <ProfileMenu />
           </div>
@@ -716,6 +725,15 @@ function MobileMenuList({ onClose }) {
             </motion.p>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* Share Portal Button */}
+      <div className="border-b border-white/10 px-4 py-2">
+        <ShareButton
+          variant="menu"
+          label="Share TG Counselling Portal"
+          className="w-full justify-start rounded-2xl bg-white/5 py-3 hover:bg-white/10 text-white"
+        />
       </div>
 
       {user && (

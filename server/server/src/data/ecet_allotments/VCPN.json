@@ -1,0 +1,36 @@
+{
+  "code": "VCPN",
+  "name": "VCPN - VIJAY COLL OF PHARMACY, NIZAMABAD",
+  "totalAllotted": 2,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 2,
+      "openingRank": 2,
+      "closingRank": 11,
+      "candidates": [
+        {
+          "rank": 2,
+          "hallTicket": "2701011002",
+          "name": "SIDRA RUHEE",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 11,
+          "hallTicket": "2701011001",
+          "name": "SAMREEN BANU",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

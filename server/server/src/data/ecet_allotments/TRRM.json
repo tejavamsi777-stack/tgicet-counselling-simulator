@@ -1,0 +1,96 @@
+{
+  "code": "TRRM",
+  "name": "TRRM - TRR COLLEGE OF TECHNOLOGY, MEERPET",
+  "totalAllotted": 8,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 8,
+      "openingRank": 1308,
+      "closingRank": 4906,
+      "candidates": [
+        {
+          "rank": 1308,
+          "hallTicket": "1201062256",
+          "name": "MOHD KHAJA ZAIN UDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2135,
+          "hallTicket": "1201062382",
+          "name": "KOMMU UMESH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2147,
+          "hallTicket": "1203074161",
+          "name": "CHILAGANI HIMESH BOBBY RAJ",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2190,
+          "hallTicket": "1201052129",
+          "name": "N NATISH GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2229,
+          "hallTicket": "1303063303",
+          "name": "CHEVILI SAI CHARAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2367,
+          "hallTicket": "1203023621",
+          "name": "GUDDETI VISHREETH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4827,
+          "hallTicket": "1201102771",
+          "name": "BOLLI KARTHIK",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4906,
+          "hallTicket": "1201051998",
+          "name": "ACHIGARI SHIVA CHARAN GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    }
+  ]
+}

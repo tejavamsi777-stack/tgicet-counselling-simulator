@@ -1,0 +1,26 @@
+{
+  "code": "SWCP",
+  "name": "SWCP - SHADHAN WOMENS COLL OF PHARM, KHAIRATABAD",
+  "totalAllotted": 1,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 1,
+      "openingRank": 26,
+      "closingRank": 26,
+      "candidates": [
+        {
+          "rank": 26,
+          "hallTicket": "2704011050",
+          "name": "SUMIYA BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GIRLS_UR",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

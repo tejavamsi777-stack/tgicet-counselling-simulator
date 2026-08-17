@@ -1,0 +1,26 @@
+{
+  "code": "NTJP",
+  "name": "NTJP - NETHAJI INSTT OF PHARM SCI, TOOPRANPET",
+  "totalAllotted": 1,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 1,
+      "openingRank": 3,
+      "closingRank": 3,
+      "candidates": [
+        {
+          "rank": 3,
+          "hallTicket": "2711011064",
+          "name": "KOYYADA GANGABHAVANI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "NL",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "code": "AURK",
+  "name": "AURK - AURORA S TECHNOLOGICAL AND MANAGEMENT ACADEMY, PARVATHAPUR",
+  "totalAllotted": 6,
+  "branches": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+      "totalAllotted": 6,
+      "openingRank": 804,
+      "closingRank": 4221,
+      "candidates": [
+        {
+          "rank": 804,
+          "hallTicket": "2401041157",
+          "name": "A BHAVYESH GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1012,
+          "hallTicket": "1301021309",
+          "name": "ANCHE RAGHAVENDRA",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1407,
+          "hallTicket": "2403061900",
+          "name": "MD ABDUL RAHEMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 2820,
+          "hallTicket": "1203033656",
+          "name": "GAJULA HANOK",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 4171,
+          "hallTicket": "1303073595",
+          "name": "KARKALA SIPHORA PREM",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 4221,
+          "hallTicket": "1302052808",
+          "name": "BOTLA SAI TEJA",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "AIM"
+        }
+      ]
+    }
+  ]
+}

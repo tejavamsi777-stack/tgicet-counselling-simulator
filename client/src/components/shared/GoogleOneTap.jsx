@@ -1,8 +1,11 @@
-import { useEffect } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function GoogleOneTap() {
-  const { user, loading, loginWithGoogle } = useAuth();
+  const auth = useContext(AuthContext);
+  const user = auth?.user;
+  const loading = auth?.loading;
+  const loginWithGoogle = auth?.loginWithGoogle;
 
   useEffect(() => {
     // Only prompt when the user is NOT logged in and initial auth check has completed

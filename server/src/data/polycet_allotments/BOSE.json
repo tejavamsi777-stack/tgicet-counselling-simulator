@@ -1,0 +1,600 @@
+{
+  "code": "BOSE",
+  "name": "ANU BOSE INSTT OF TECHNOLOGY",
+  "district": "KGM",
+  "place": "PALONCHA",
+  "type": "Private Polytechnic",
+  "annualFee": 15500,
+  "totalAllotted": 57,
+  "branchesCount": 2,
+  "branches": [
+    {
+      "branchCode": "CS",
+      "branchName": "DIPLOMA IN COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 33,
+      "openingRank": 17153,
+      "closingRank": 78413,
+      "candidates": [
+        {
+          "sno": 32,
+          "hallTicket": "5903100",
+          "rank": 17153,
+          "name": "KURMARAPU SANJANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "2203126",
+          "rank": 17485,
+          "name": "PALLAPU SRILEKHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 21,
+          "hallTicket": "4801047",
+          "rank": 23834,
+          "name": "KORLAPATI ASHWIKA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 24,
+          "hallTicket": "4807047",
+          "rank": 32691,
+          "name": "BATHULA SRI SAI GEETHIKA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 23,
+          "hallTicket": "4801377",
+          "rank": 35430,
+          "name": "PODILA SRAVANI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 20,
+          "hallTicket": "4718052",
+          "rank": 39243,
+          "name": "THIGALA PALLAVI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "2213224",
+          "rank": 39928,
+          "name": "MASABATHULA GOUTHAMI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "2213143",
+          "rank": 40818,
+          "name": "LAKAVATH REECHA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 19,
+          "hallTicket": "4706333",
+          "rank": 41492,
+          "name": "MACHARLA PRANAVI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "3111450",
+          "rank": 43392,
+          "name": "KANDIKATLA UMA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "2207049",
+          "rank": 44550,
+          "name": "JORIGE SINDHU PRIYA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "2203414",
+          "rank": 47181,
+          "name": "RUDROJU SRI CHAITRA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 22,
+          "hallTicket": "4801179",
+          "rank": 48810,
+          "name": "PUPPALA PAVANA AKSHAYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 31,
+          "hallTicket": "5402363",
+          "rank": 51192,
+          "name": "DOBBALA GOPIKA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 26,
+          "hallTicket": "4807208",
+          "rank": 51584,
+          "name": "YARRAVULA BHAVYA SREE",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "2213216",
+          "rank": 53470,
+          "name": "VEMULAPALLI JASWANTHI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "2203357",
+          "rank": 53960,
+          "name": "GUGULOTH UDAYASIRI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "1309241",
+          "rank": 54707,
+          "name": "PARIKIRALA AKSHARA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "4204158",
+          "rank": 58509,
+          "name": "BOGAM HARIKA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 27,
+          "hallTicket": "5002106",
+          "rank": 59577,
+          "name": "LENDUGURE VIJAYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "2206164",
+          "rank": 60996,
+          "name": "EESAM SRAVANTHI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_PHM_GIRLS_OU"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "2206202",
+          "rank": 67216,
+          "name": "BANDI TEJA SRI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GIRLS_OU"
+        },
+        {
+          "sno": 29,
+          "hallTicket": "5110288",
+          "rank": 67520,
+          "name": "KANCHARLA BHARGAVA PRAVALIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GIRLS_OU"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "2213024",
+          "rank": 68898,
+          "name": "SHAIK SHAMA ANJUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_UR"
+        },
+        {
+          "sno": 25,
+          "hallTicket": "4807194",
+          "rank": 69629,
+          "name": "GUNJI KIRANMYE",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_PHA_GIRLS_OU"
+        },
+        {
+          "sno": 28,
+          "hallTicket": "5004160",
+          "rank": 70313,
+          "name": "SENDE KEERTHANA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_D_GIRLS_UR"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "2213193",
+          "rank": 71516,
+          "name": "EKKIRALA SRIVIDHYA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "2213063",
+          "rank": 74179,
+          "name": "BHATTU AKSHAYA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_UR"
+        },
+        {
+          "sno": 30,
+          "hallTicket": "5402350",
+          "rank": 75635,
+          "name": "BHURGULA KEERTHANA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_UR"
+        },
+        {
+          "sno": 33,
+          "hallTicket": "5903213",
+          "rank": 76666,
+          "name": "JARUPULA AKHILA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_UR"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "3103072",
+          "rank": 77510,
+          "name": "CHANDRAGIRI SHIVARCHITA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_UR"
+        },
+        {
+          "sno": 9,
+          "hallTicket": "2208148",
+          "rank": 78224,
+          "name": "APPALA SAHASRA SRI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "1307391",
+          "rank": 78413,
+          "name": "BODA VIGNESHWARI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GIRLS_UR"
+        }
+      ]
+    },
+    {
+      "branchCode": "EE",
+      "branchName": "DIPLOMA IN ELECTRICAL &amp; ELECTRONICS ENGINEERING",
+      "totalAllotted": 24,
+      "openingRank": 8239,
+      "closingRank": 81244,
+      "candidates": [
+        {
+          "sno": 9,
+          "hallTicket": "2213025",
+          "rank": 8239,
+          "name": "DHARLA BHAGYA SRI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 12,
+          "hallTicket": "2213085",
+          "rank": 11244,
+          "name": "NOMULA YAKESH KAMALINI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 6,
+          "hallTicket": "2207118",
+          "rank": 17163,
+          "name": "SAYYAD AFIFA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 22,
+          "hallTicket": "5409118",
+          "rank": 29810,
+          "name": "BONTHU SRAVYA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 5,
+          "hallTicket": "2206072",
+          "rank": 30104,
+          "name": "KOLAPUDI PRANITHA KUMARI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 1,
+          "hallTicket": "2203043",
+          "rank": 34406,
+          "name": "MOHAMMAD MASTAN BEE",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 11,
+          "hallTicket": "2213083",
+          "rank": 40029,
+          "name": "PEDDOJU MADHAVI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR"
+        },
+        {
+          "sno": 7,
+          "hallTicket": "2208103",
+          "rank": 41621,
+          "name": "KAAMPATI AKSHITHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 19,
+          "hallTicket": "4801087",
+          "rank": 44371,
+          "name": "PALLAPU SIRI TEJASWI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)"
+        },
+        {
+          "sno": 8,
+          "hallTicket": "2208125",
+          "rank": 51446,
+          "name": "NARUMALLA SHASHI PRIYA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 20,
+          "hallTicket": "4807108",
+          "rank": 52472,
+          "name": "JINKALA MOUNIKA REDDY",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 15,
+          "hallTicket": "2213398",
+          "rank": 54214,
+          "name": "BANDARI SIRI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 4,
+          "hallTicket": "2206002",
+          "rank": 59844,
+          "name": "CHENNU PRANITHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 17,
+          "hallTicket": "4706130",
+          "rank": 61685,
+          "name": "PALLE RITHU",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 14,
+          "hallTicket": "2213290",
+          "rank": 63181,
+          "name": "VEERABOINA HEMALATHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 21,
+          "hallTicket": "5401404",
+          "rank": 63181,
+          "name": "JAMPALA BHARGAVI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 3,
+          "hallTicket": "2203193",
+          "rank": 66818,
+          "name": "DHARAVATH NAGA VINEELA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 16,
+          "hallTicket": "4706127",
+          "rank": 67192,
+          "name": "DUNDRA YASHWITHA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 24,
+          "hallTicket": "5904007",
+          "rank": 77131,
+          "name": "VANKA NANDHINI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 18,
+          "hallTicket": "4801019",
+          "rank": 78741,
+          "name": "KODI DEVI PRIYA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 23,
+          "hallTicket": "5801032",
+          "rank": 79891,
+          "name": "JONNALAGADDA MEGHANA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 13,
+          "hallTicket": "2213212",
+          "rank": 80377,
+          "name": "HALAVATH INDU",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 10,
+          "hallTicket": "2213035",
+          "rank": 80983,
+          "name": "BANOTH SIRIVALLY",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        },
+        {
+          "sno": 2,
+          "hallTicket": "2203177",
+          "rank": 81244,
+          "name": "BORRA NIHARIKA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU"
+        }
+      ]
+    }
+  ]
+}

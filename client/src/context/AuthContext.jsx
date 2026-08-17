@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import { api, getUserToken, setUserToken, getStoredUser, setStoredUser } from "../lib/api";
 import posthog from "posthog-js";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   // Synchronous initialization from localStorage so the user is immediately recognized on new tabs/refresh
@@ -64,6 +64,15 @@ export function AuthProvider({ children }) {
         return;
       }
 
+      if (token.startsWith("guest_token_")) {
+        const stored = getStoredUser();
+        if (stored) {
+          setUser(stored);
+        }
+        setLoading(false);
+        return;
+      }
+
       try {
         const data = await api.get("/auth/me");
         if (!cancelled) {
@@ -94,6 +103,20 @@ export function AuthProvider({ children }) {
     return () => {
       cancelled = true;
     };
+  }, []);
+
+  const loginAsGuest = useCallback(() => {
+    const guestUser = {
+      id: "guest_" + Date.now(),
+      email: "guest@tgcounselling.org",
+      first_name: "Guest",
+      last_name: "User",
+      is_guest: true,
+    };
+    setUserToken("guest_token_" + Date.now());
+    setStoredUser(guestUser);
+    setUser(guestUser);
+    return guestUser;
   }, []);
 
   const login = useCallback(async (email, password) => {
@@ -160,6 +183,7 @@ export function AuthProvider({ children }) {
     user,
     loading,
     login,
+    loginAsGuest,
     register,
     loginWithGoogle,
     logout,

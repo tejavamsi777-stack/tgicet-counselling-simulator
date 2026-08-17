@@ -1,0 +1,74 @@
+{
+  "code": "SMCD",
+  "name": "SMCD - ST MARYS ENGINEERING COLLEGE (AUTONOMOUS), DESHMUKHI",
+  "totalAllotted": 4,
+  "branches": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE",
+      "totalAllotted": 1,
+      "openingRank": 1098,
+      "closingRank": 1098,
+      "candidates": [
+        {
+          "rank": 1098,
+          "hallTicket": "2401051219",
+          "name": "DAMERLA RITHVIK REDDY",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "AID"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 2,
+      "openingRank": 2985,
+      "closingRank": 5319,
+      "candidates": [
+        {
+          "rank": 2985,
+          "hallTicket": "1201011241",
+          "name": "BANIKANI SHIRISHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 5319,
+          "hallTicket": "1203033714",
+          "name": "CHUKKA ARAVIND GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 1,
+      "openingRank": 4524,
+      "closingRank": 4524,
+      "candidates": [
+        {
+          "rank": 4524,
+          "hallTicket": "1207015126",
+          "name": "DEEKONDA PAVAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "CSM"
+        }
+      ]
+    }
+  ]
+}

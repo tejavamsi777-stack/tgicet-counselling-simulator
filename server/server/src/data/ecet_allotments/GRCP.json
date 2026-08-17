@@ -1,0 +1,36 @@
+{
+  "code": "GRCP",
+  "name": "GRCP - GOKARAJU RANGARAJU COLLEGE OF PHARMACY, BACHUPALLI",
+  "totalAllotted": 2,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 2,
+      "openingRank": 53,
+      "closingRank": 55,
+      "candidates": [
+        {
+          "rank": 53,
+          "hallTicket": "2702021028",
+          "name": "BADHAVATH PRAVALIKA",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 55,
+          "hallTicket": "2701061013",
+          "name": "RAYI POOJITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

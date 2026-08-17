@@ -1,0 +1,164 @@
+{
+  "code": "ESUT",
+  "name": "ESUT - EARTH SCIENCES UNIV OF TELANGANA (FORMERLY K U COLLEGE OF ENGG KOTHAGUDEM), KOTHAGUDEM",
+  "totalAllotted": 13,
+  "branches": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 1556,
+      "closingRank": 4728,
+      "candidates": [
+        {
+          "rank": 1556,
+          "hallTicket": "1207015100",
+          "name": "YERRA SATHWIK",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1906,
+          "hallTicket": "1207045189",
+          "name": "VALLA SREELAKSHMI",
+          "gender": "Female",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3065,
+          "hallTicket": "1208015272",
+          "name": "GADDALA JASHWANTH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 4728,
+          "hallTicket": "1209015314",
+          "name": "CHAPALAMADUGU AKHIL",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 5,
+      "openingRank": 37,
+      "closingRank": 1202,
+      "candidates": [
+        {
+          "rank": 37,
+          "hallTicket": "1408013637",
+          "name": "MADUGULA SAI RISHITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 49,
+          "hallTicket": "1401061782",
+          "name": "PULKARAM BHANUPRAKASH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 101,
+          "hallTicket": "1408013652",
+          "name": "PODILI YAMINI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 171,
+          "hallTicket": "1407013458",
+          "name": "PENDATI ASHWITHA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1202,
+          "hallTicket": "1401011064",
+          "name": "VANKUDOTH BADRI KUMAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 3,
+      "closingRank": 46,
+      "candidates": [
+        {
+          "rank": 3,
+          "hallTicket": "2601061020",
+          "name": "PASI RUSHI",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 14,
+          "hallTicket": "2610131212",
+          "name": "SHAKAPURAM RANJITH",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 28,
+          "hallTicket": "2609011159",
+          "name": "TEKULA PRASHANTHI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "MIN"
+        },
+        {
+          "rank": 46,
+          "hallTicket": "2610121207",
+          "name": "GAIN SUMAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "EWS_GEN_OU",
+          "branchCode": "MIN"
+        }
+      ]
+    }
+  ]
+}

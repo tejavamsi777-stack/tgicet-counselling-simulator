@@ -1,0 +1,46 @@
+{
+  "code": "MIPM",
+  "name": "MIPM - MOONRAY INST OF PHARM SCI, RAIKAL",
+  "totalAllotted": 3,
+  "branches": [
+    {
+      "code": "PHM",
+      "name": "B. PHARMACY",
+      "totalAllotted": 3,
+      "openingRank": 7,
+      "closingRank": 34,
+      "candidates": [
+        {
+          "rank": 7,
+          "hallTicket": "2703081049",
+          "name": "MEKALA MOUNIKA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 13,
+          "hallTicket": "2702061034",
+          "name": "KOTHA KURVA MALLESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "PHM"
+        },
+        {
+          "rank": 34,
+          "hallTicket": "2702081041",
+          "name": "AMEEMA RANA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "PHM"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "code": "JPNH",
+  "name": "JPNH - JAYAPRAKASH NARAYAN ENGINEERING COLLEGE, BANDLAGUDA",
+  "totalAllotted": 13,
+  "branches": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING",
+      "totalAllotted": 6,
+      "openingRank": 1143,
+      "closingRank": 500002,
+      "candidates": [
+        {
+          "rank": 1143,
+          "hallTicket": "2402051692",
+          "name": "SYED HASEEB AHMED",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 1629,
+          "hallTicket": "2310102663",
+          "name": "BOBBATI VARUDHINI",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 2904,
+          "hallTicket": "1406013340",
+          "name": "NIMMA BINDU",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 3015,
+          "hallTicket": "1306024139",
+          "name": "AMBALA SANDEEP",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 4459,
+          "hallTicket": "1201011216",
+          "name": "TALARI ADITHYA",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "AIM"
+        },
+        {
+          "rank": 500002,
+          "hallTicket": "900000040",
+          "name": "MOHAMMED ABDUL NAYEEM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "AIM"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 4,
+      "openingRank": 2900,
+      "closingRank": 3486,
+      "candidates": [
+        {
+          "rank": 2900,
+          "hallTicket": "1410113989",
+          "name": "AKUNOORI AKSHAYKUMAR",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3125,
+          "hallTicket": "1301031593",
+          "name": "KERELLI ASHOK",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3463,
+          "hallTicket": "1201021602",
+          "name": "ERABOINA SPURTHI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3486,
+          "hallTicket": "1301021320",
+          "name": "CHAKATI PREMALA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 2,
+      "openingRank": 2019,
+      "closingRank": 3795,
+      "candidates": [
+        {
+          "rank": 2019,
+          "hallTicket": "1404083206",
+          "name": "MANDULA AJAY PRASAD",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 3795,
+          "hallTicket": "1301021297",
+          "name": "MITTAPALLY BHUVANESHWARI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)",
+      "totalAllotted": 1,
+      "openingRank": 2251,
+      "closingRank": 2251,
+      "candidates": [
+        {
+          "rank": 2251,
+          "hallTicket": "1401061753",
+          "name": "KARANKOTA VARSHITHA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "CSD"
+        }
+      ]
+    }
+  ]
+}

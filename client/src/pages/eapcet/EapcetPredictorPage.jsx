@@ -130,7 +130,7 @@ export default function EapcetPredictorPage() {
   );
 
   return (
-    <main className="relative z-30 mx-auto max-w-7xl px-6 pt-10 pb-56">
+    <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
       <Seo
         title="TG EAPCET College Predictor 2025"
         description="Predict TG EAPCET college options by rank, category, gender and engineering branch."
@@ -265,7 +265,6 @@ export default function EapcetPredictorPage() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 space-y-8"
           >
-            <StatsGrid {...stats} />
             <ResultsTable results={results} year={Number(year)} showYear />
             {/* Passive ad unit placed safely below prediction results */}
             <AdSenseUnit slotName="predictorResults" minHeight={90} />

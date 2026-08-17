@@ -1,0 +1,261 @@
+{
+  "code": "VREC",
+  "name": "VREC - VIJAYA RURAL ENGINEERING COLLEGE, NIZAMABAD",
+  "totalAllotted": 20,
+  "branches": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 283,
+      "closingRank": 982,
+      "candidates": [
+        {
+          "rank": 283,
+          "hallTicket": "2301011001",
+          "name": "BANOTH RAHUL",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 454,
+          "hallTicket": "2302011597",
+          "name": "JADHAV PALLAVI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "CIV"
+        },
+        {
+          "rank": 982,
+          "hallTicket": "2315022837",
+          "name": "AILAPURAM SHIVA KUMAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "CIV"
+        }
+      ]
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING",
+      "totalAllotted": 6,
+      "openingRank": 503,
+      "closingRank": 3215,
+      "candidates": [
+        {
+          "rank": 503,
+          "hallTicket": "1215016287",
+          "name": "MIRZA SOHBAN BAIG",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1522,
+          "hallTicket": "1215036369",
+          "name": "CHITTIMALLI SRAVANTHI",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 1544,
+          "hallTicket": "1215016281",
+          "name": "MOHAMMED NOUMAN ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "SC_III_GIRLS_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2115,
+          "hallTicket": "1202012978",
+          "name": "NADAPURAM NEERAJ",
+          "gender": "Male",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "SC_II_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 2180,
+          "hallTicket": "1201052068",
+          "name": "BHEMARI RAMYA SRI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "CSE"
+        },
+        {
+          "rank": 3215,
+          "hallTicket": "1215026324",
+          "name": "SHAIK SOFIYAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_SG_GIRLS_OU(0)",
+          "branchCode": "CSE"
+        }
+      ]
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)",
+      "totalAllotted": 2,
+      "openingRank": 887,
+      "closingRank": 2435,
+      "candidates": [
+        {
+          "rank": 887,
+          "hallTicket": "2315012829",
+          "name": "MOHAMMED NAWAZ AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "CSM"
+        },
+        {
+          "rank": 2435,
+          "hallTicket": "1415014272",
+          "name": "SHAIK MUTAYEEB AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_OU",
+          "branchCode": "CSM"
+        }
+      ]
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 586,
+      "closingRank": 1610,
+      "candidates": [
+        {
+          "rank": 586,
+          "hallTicket": "1401061781",
+          "name": "KATTERA SACHIN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1180,
+          "hallTicket": "1401011019",
+          "name": "GUGULOTH AMAN NAYAK",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_OU",
+          "branchCode": "EEE"
+        },
+        {
+          "rank": 1610,
+          "hallTicket": "1411024124",
+          "name": "POTHUGANTI PRASANNANJALI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_B_GIRLS_OU",
+          "branchCode": "EEE"
+        }
+      ]
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 508,
+      "closingRank": 1080,
+      "candidates": [
+        {
+          "rank": 508,
+          "hallTicket": "1315014940",
+          "name": "SHAIK MOHAMMED WAJAHAT ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 781,
+          "hallTicket": "1301011188",
+          "name": "RAVULA SRIKANTH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_PHA_GEN_OU",
+          "branchCode": "ECE"
+        },
+        {
+          "rank": 1080,
+          "hallTicket": "1301021518",
+          "name": "MOHAMMED AYAN KHAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "SC_II_GIRLS_OU",
+          "branchCode": "ECE"
+        }
+      ]
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING",
+      "totalAllotted": 3,
+      "openingRank": 184,
+      "closingRank": 1087,
+      "candidates": [
+        {
+          "rank": 184,
+          "hallTicket": "2415022452",
+          "name": "SHAIK ADNAN HUSSAIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 261,
+          "hallTicket": "2415022454",
+          "name": "MOHAMMED HAMMAAD",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "BC_E_GEN_OU",
+          "branchCode": "MEC"
+        },
+        {
+          "rank": 1087,
+          "hallTicket": "2415032472",
+          "name": "KARROLLA NILESH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "SC_III_GEN_OU",
+          "branchCode": "MEC"
+        }
+      ]
+    }
+  ]
+}
