@@ -89,4 +89,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  import("./services/scraperService.js")
+    .then(({ initLiveScraperScheduler }) => initLiveScraperScheduler())
+    .catch((err) => console.warn("[Scraper Init Error]:", err.message));
 });

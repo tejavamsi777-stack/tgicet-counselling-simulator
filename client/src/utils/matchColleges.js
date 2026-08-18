@@ -1,20 +1,23 @@
-import { getStatus } from "./status";
+import { getStatus, STATUS_ORDER } from "./status";
 
 export function computeMatches(dataset, criteria) {
+  const rankNum = Number(criteria.rank);
+  const minCutoff = Math.floor(rankNum * 0.85);
+
   return dataset
     .filter(
       (college) =>
         college.course === criteria.course &&
         college.category === criteria.category &&
         college.gender === criteria.gender &&
-        Number(criteria.rank) <= Number(college.cutoff)
+        Number(college.cutoff) >= minCutoff
     )
     .map((college) => {
       const status = getStatus(criteria.rank, college.cutoff);
       return {
         ...college,
         status,
-        statusPriority: status === "safe" ? 0 : status === "moderate" ? 1 : 2,
+        statusPriority: STATUS_ORDER[status] ?? 2,
       };
     })
     .sort((a, b) => {

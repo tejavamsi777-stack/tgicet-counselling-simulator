@@ -1,18 +1,15 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { api } from "../../lib/api";
 
 import Hero from "../../components/layout/Hero";
 import PageTransition from "../../components/layout/PageTransition";
 import FeatureStats from "../../components/dashboard/FeatureStats";
-import StatsGrid from "../../components/dashboard/StatsGrid";
 import PredictorForm from "../../components/dashboard/PredictorForm";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
-import Seo from "../../components/shared/Seo";
 import { AnimatePresence } from "framer-motion";
 
 function mapResults(results, gender, year) {
@@ -25,7 +22,7 @@ function mapResults(results, gender, year) {
     courseName: r.course_name,
     category: r.category_code,
     gender,
-    year,
+    year: r.year || year,
     cutoff: r.cutoff_rank,
     fee: r.fee,
     university: r.university,
@@ -36,12 +33,13 @@ function mapResults(results, gender, year) {
 
 export default function EcetPredictorPage() {
   const navigate = useNavigate();
-  const lenisRef = useSmoothScroll();
 
   const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("OC");
+  const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");
-  const [course, setCourse] = useState("CSE");
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
+  const [selectedYears, setSelectedYears] = useState([]);
   const [error, setError] = useState("");
 
   const [result, setResult] = useState([]);
@@ -55,6 +53,7 @@ export default function EcetPredictorPage() {
         const years = await api.get("/years?exam=tg-ecet");
         if (cancelled) return;
         setActiveYears(years);
+        setSelectedYears(years.map((y) => Number(y.year)));
         if (years.length > 0) setYear(years[0].year);
       } catch (err) {
         console.error("Failed to load active years:", err);
@@ -110,6 +109,14 @@ export default function EcetPredictorPage() {
       setError("Please enter a valid rank.");
       return;
     }
+    if (!category) {
+      setError("Please select a category.");
+      return;
+    }
+    if (!selectedCourses || selectedCourses.length === 0) {
+      setError("Please select at least one branch.");
+      return;
+    }
     setError("");
 
     runPrediction(
@@ -117,21 +124,14 @@ export default function EcetPredictorPage() {
         rank: Number(rank),
         category,
         gender,
-        course,
+        courses: selectedCourses,
+        districts: selectedDistricts,
+        years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
         year,
       },
       { showLoader: true, scrollAfter: true }
     );
   }
-
-  const handleYearChange = useCallback((newYear) => {
-    setYear(newYear);
-    if (!lastCriteria) return;
-    runPrediction(
-      { ...lastCriteria, year: newYear },
-      { showLoader: false, scrollAfter: false }
-    );
-  }, [lastCriteria]);
 
   function scrollToResults() {
     setTimeout(() => {
@@ -170,7 +170,7 @@ export default function EcetPredictorPage() {
           )}
         </AnimatePresence>
 
-        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-7xl px-4 pt-8 pb-56 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate("/")}
             className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
@@ -190,8 +190,15 @@ export default function EcetPredictorPage() {
               setCategory={setCategory}
               gender={gender}
               setGender={setGender}
-              course={course}
-              setCourse={setCourse}
+              selectedCourses={selectedCourses}
+              setSelectedCourses={setSelectedCourses}
+              selectedDistricts={selectedDistricts}
+              setSelectedDistricts={setSelectedDistricts}
+              year={year}
+              setYear={setYear}
+              selectedYears={selectedYears}
+              setSelectedYears={setSelectedYears}
+              years={activeYears}
               onPredict={handleFormPredict}
               error={error}
               examSlug="tg-ecet"
@@ -203,8 +210,8 @@ export default function EcetPredictorPage() {
                 <ResultsTable
                   results={sortedResult}
                   activeYears={activeYears}
-                  selectedYear={year}
-                  onYearChange={handleYearChange}
+                  showYear
+                  examTitle="TG ECET 2025"
                 />
                 {/* Passive ad unit placed safely below prediction results */}
                 <AdSenseUnit slotName="predictorResults" minHeight={90} />

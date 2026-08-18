@@ -1,16 +1,21 @@
 import { pool } from "../config/database.js";
 
 export const predictionRepository = {
-  async findMatches({ rank, category, gender, course, year, examId }) {
-    const sql = `
+  async findMatches({ rank, category, gender, courses = [], districts = [], years = [], year, examId }) {
+    const yearList = Array.isArray(years) && years.length > 0 ? years : (year ? [Number(year)] : []);
+    const params = [examId, category, gender, rank];
+
+    let sql = `
       SELECT
         col.code, col.name, col.place, col.university,
         col.ownership_type, col.is_minority, col.is_girls, col.is_self_finance,
         d.code AS district_code,
+        d.name AS district_name,
         cu.cutoff_rank,
         cu.gender AS gender,
         crs.code AS course_code, crs.name AS course_name,
         cat.code AS category_code,
+        y.year AS year,
         cc.fee
       FROM cutoffs cu
       JOIN colleges col ON col.id = cu.college_id
@@ -24,15 +29,31 @@ export const predictionRepository = {
         AND crs.exam_id = $1
         AND cat.exam_id = $1
         AND y.exam_id = $1
-        AND crs.code = $2
-        AND cat.code = $3
-        AND cu.gender = $4
-        AND y.year = $5
-        AND cu.cutoff_rank >= $6
+        AND cat.code = $2
+        AND cu.gender = $3
+        AND cu.cutoff_rank >= FLOOR($4 * 0.85)
         AND col.is_active = true
-      ORDER BY cu.cutoff_rank ASC
     `;
-    const { rows } = await pool.query(sql, [examId, course, category, gender, year, rank]);
+
+    if (Array.isArray(yearList) && yearList.length > 0 && !yearList.includes("ALL")) {
+      params.push(yearList);
+      sql += ` AND y.year = ANY($${params.length}::int[])`;
+    }
+
+    if (Array.isArray(courses) && courses.length > 0 && !courses.includes("ALL")) {
+      params.push(courses);
+      sql += ` AND crs.code = ANY($${params.length}::text[])`;
+    }
+
+    if (Array.isArray(districts) && districts.length > 0 && !districts.includes("ALL")) {
+      params.push(districts);
+      sql += ` AND (d.code = ANY($${params.length}::text[]) OR UPPER(d.name) = ANY($${params.length}::text[]))`;
+    }
+
+    sql += ` ORDER BY cu.cutoff_rank ASC`;
+
+    const { rows } = await pool.query(sql, params);
     return rows;
   },
 };
+

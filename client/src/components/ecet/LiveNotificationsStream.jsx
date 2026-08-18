@@ -23,6 +23,10 @@ export default function LiveNotificationsStream() {
 
   useEffect(() => {
     fetchNotifs(false).finally(() => setLoading(false));
+    const interval = setInterval(() => {
+      fetchNotifs(false);
+    }, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleSync = async () => {

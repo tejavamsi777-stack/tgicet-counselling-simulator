@@ -101,16 +101,22 @@ export default function LiveNotificationsStream() {
   const [lastSynced, setLastSynced] = useState('Just now');
   const [syncSuccess, setSyncSuccess] = useState(false);
 
-  // Fetch initial live notifications
+  // Fetch initial live notifications and auto-refresh every 60s
   useEffect(() => {
-    polycetApi
-      .getNotifications()
-      .then((res) => {
-        if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
-          setNotifications(res.data);
-        }
-      })
-      .catch(() => {});
+    const fetchPolycetNotifs = () => {
+      polycetApi
+        .getNotifications()
+        .then((res) => {
+          if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+            setNotifications(res.data);
+          }
+        })
+        .catch(() => {});
+    };
+
+    fetchPolycetNotifs();
+    const interval = setInterval(fetchPolycetNotifs, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   // Force Sync with Official Website

@@ -17,7 +17,7 @@ function toRows(results) {
   }));
 }
 
-export function exportToExcel(results, filename = "tgicet-predictions.xlsx") {
+export function exportToExcel(results, filename = "college-predictions.xlsx") {
   const rows = toRows(results);
   const worksheet = XLSX.utils.json_to_sheet(rows);
   const workbook = XLSX.utils.book_new();
@@ -25,19 +25,19 @@ export function exportToExcel(results, filename = "tgicet-predictions.xlsx") {
   XLSX.writeFile(workbook, filename);
 }
 
-export function exportToPDF(results, filename = "tgicet-predictions.pdf") {
+export function exportToPDF(results, filename = "college-predictions.pdf", title = "TG Counselling College Predictor Results") {
   const doc = new jsPDF({ orientation: "landscape" });
   const rows = toRows(results);
 
   doc.setFontSize(14);
-  doc.text("TG ICET Counselling Simulator - Predictions", 14, 15);
+  doc.text(title, 14, 15);
 
   autoTable(doc, {
     startY: 22,
     head: [Object.keys(rows[0] ?? {})],
     body: rows.map((r) => Object.values(r)),
     styles: { fontSize: 8 },
-    headStyles: { fillColor: [37, 99, 235] },
+    headStyles: { fillColor: [124, 58, 237] },
   });
 
   doc.save(filename);

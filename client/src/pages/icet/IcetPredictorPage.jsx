@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useSmoothScroll } from "../../hooks/useSmoothScroll";
@@ -22,7 +22,7 @@ function mapResults(results, gender, year) {
     course: r.course_code,
     category: r.category_code,
     gender,
-    year,
+    year: r.year || year,
     cutoff: r.cutoff_rank,
     fee: r.fee,
     university: r.university,
@@ -36,9 +36,11 @@ export default function IcetPredictorPage() {
   const lenisRef = useSmoothScroll();
 
   const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("OC");
+  const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");
-  const [course, setCourse] = useState("MBA");
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
+  const [selectedYears, setSelectedYears] = useState([]);
   const [error, setError] = useState("");
 
   const [result, setResult] = useState([]);
@@ -52,6 +54,7 @@ export default function IcetPredictorPage() {
         const years = await api.get("/years?exam=tg-icet");
         if (cancelled) return;
         setActiveYears(years);
+        setSelectedYears(years.map((y) => Number(y.year)));
         if (years.length > 0) setYear(years[0].year);
       } catch (err) {
         console.error("Failed to load active years:", err);
@@ -69,6 +72,14 @@ export default function IcetPredictorPage() {
       setError("Please enter a valid TG ICET Rank.");
       return;
     }
+    if (!category) {
+      setError("Please select a category.");
+      return;
+    }
+    if (!selectedCourses || selectedCourses.length === 0) {
+      setError("Please select at least one course / branch.");
+      return;
+    }
     setError("");
     setLoaderStats(null);
     setIsLoading(true);
@@ -79,7 +90,9 @@ export default function IcetPredictorPage() {
           rank: Number(rank),
           category,
           gender,
-          course,
+          courses: selectedCourses,
+          districts: selectedDistricts,
+          years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
           year,
           exam: "tg-icet",
         }),
@@ -136,29 +149,8 @@ export default function IcetPredictorPage() {
       <Hero onGetStarted={scrollToPredictor} />
 
       <PageTransition>
-        <main className="mx-auto max-w-7xl space-y-16 px-6 pb-24">
+        <main className="mx-auto max-w-7xl space-y-16 px-6 pb-56">
           <FeatureStats />
-
-          {activeYears.length >= 2 && (
-            <div className="flex items-center justify-center gap-3">
-              <span className="text-sm font-bold text-white tracking-wide">Cutoff Year:</span>
-              <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]">
-                {activeYears.map((y) => (
-                  <button
-                    key={y.year}
-                    onClick={() => setYear(y.year)}
-                    className={`rounded-full px-5 py-1.5 text-sm font-semibold transition-all duration-200 ${
-                      year === y.year
-                        ? "bg-white/25 text-white shadow-[0_4px_20px_rgba(124,58,237,0.4),inset_0_1px_0_0_rgba(255,255,255,0.5)] border border-white/30"
-                        : "text-gray-300 hover:bg-white/15 hover:text-white"
-                    }`}
-                  >
-                    {y.year}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
           <PredictorForm
             rank={rank}
@@ -167,10 +159,19 @@ export default function IcetPredictorPage() {
             setCategory={setCategory}
             gender={gender}
             setGender={setGender}
-            course={course}
-            setCourse={setCourse}
+            selectedCourses={selectedCourses}
+            setSelectedCourses={setSelectedCourses}
+            selectedDistricts={selectedDistricts}
+            setSelectedDistricts={setSelectedDistricts}
+            year={year}
+            setYear={setYear}
+            selectedYears={selectedYears}
+            setSelectedYears={setSelectedYears}
+            years={activeYears}
             onPredict={handlePredict}
             error={error}
+            examSlug="tg-icet"
+            examBadge="TG ICET 2025"
           />
 
           <AnimatePresence>
@@ -186,7 +187,7 @@ export default function IcetPredictorPage() {
 
           {result.length > 0 && (
             <div id="results" className="space-y-8">
-              <ResultsTable results={result} year={year} showYear={activeYears.length >= 2} />
+              <ResultsTable results={result} activeYears={activeYears} showYear examTitle="TG ICET 2025" />
               {/* Passive ad unit placed safely below prediction results */}
               <AdSenseUnit slotName="predictorResults" minHeight={90} />
             </div>

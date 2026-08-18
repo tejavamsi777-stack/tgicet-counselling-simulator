@@ -3,6 +3,9 @@ import { GlowCard } from "../ui/spotlight-card";
 import { GlassButton } from "../ui/glass-button";
 import GenderDropdown from "../shared/GenderDropdown";
 import CategoryDropdown from "../shared/CategoryDropdown";
+import BranchMultiSelect from "../shared/BranchMultiSelect";
+import DistrictMultiSelect from "../shared/DistrictMultiSelect";
+import YearDropdown from "../shared/YearDropdown";
 import CourseDropdown from "../shared/CourseDropdown";
 
 export default function PredictorForm({
@@ -14,14 +17,27 @@ export default function PredictorForm({
   setGender,
   course,
   setCourse,
+  selectedCourses,
+  setSelectedCourses,
+  selectedDistricts,
+  setSelectedDistricts,
+  year,
+  setYear,
+  selectedYears,
+  setSelectedYears,
+  years,
   onPredict,
   error,
   examSlug = "tg-icet",
   rankLabel,
   examBadge = "TG ICET 2025",
+  loading = false,
 }) {
   const displayRankLabel =
     rankLabel || (examSlug ? `${examSlug.replace("tg-", "TG ").toUpperCase()} Rank` : "TG ICET Rank");
+
+  const useMultiCourse = Boolean(setSelectedCourses);
+  const useMultiDistrict = Boolean(setSelectedDistricts);
 
   return (
     <motion.div
@@ -47,9 +63,9 @@ export default function PredictorForm({
           </p>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* 1. Rank (Full width on mobile) */}
-          <div className="relative z-[40]">
+          <div className="relative z-[60]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
               {displayRankLabel}
             </label>
@@ -64,14 +80,14 @@ export default function PredictorForm({
 
           {/* 2. Category & Gender (Side-by-side on mobile) */}
           <div className="grid grid-cols-2 gap-3 sm:contents">
-            <div className="relative z-[30]">
+            <div className="relative z-[50]">
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
                 Category
               </label>
               <CategoryDropdown category={category} setCategory={setCategory} examSlug={examSlug} />
             </div>
 
-            <div className="relative z-[20]">
+            <div className="relative z-[40]">
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
                 Gender
               </label>
@@ -79,13 +95,51 @@ export default function PredictorForm({
             </div>
           </div>
 
-          {/* 3. Course / Branch (Full width on mobile) */}
-          <div className="relative z-[10]">
+          {/* 3. Branch (Multi-select or single) */}
+          <div className="relative z-[30]">
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-              Course
+              {useMultiCourse ? "Branch (One or More)" : "Branch"}
             </label>
-            <CourseDropdown course={course} setCourse={setCourse} examSlug={examSlug} />
+            {useMultiCourse ? (
+              <BranchMultiSelect
+                selectedCourses={selectedCourses}
+                setSelectedCourses={setSelectedCourses}
+                examSlug={examSlug}
+              />
+            ) : (
+              <CourseDropdown course={course} setCourse={setCourse} examSlug={examSlug} />
+            )}
           </div>
+
+          {/* 4. District (Multi-select if enabled) */}
+          {useMultiDistrict && (
+            <div className="relative z-[20]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                District (One or More)
+              </label>
+              <DistrictMultiSelect
+                selectedDistricts={selectedDistricts}
+                setSelectedDistricts={setSelectedDistricts}
+                examSlug={examSlug}
+              />
+            </div>
+          )}
+
+          {/* 5. Cutoff Year (If provided) */}
+          {(setSelectedYears || setYear) && years && (
+            <div className="relative z-[10]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                {setSelectedYears ? "Cutoff Year (One or More)" : "Cutoff Year"}
+              </label>
+              <YearDropdown
+                year={year}
+                setYear={setYear}
+                selectedYears={selectedYears}
+                setSelectedYears={setSelectedYears}
+                years={years}
+              />
+            </div>
+          )}
         </div>
 
         {error && (
@@ -94,12 +148,13 @@ export default function PredictorForm({
 
         <div className="relative z-[1] mt-7 flex justify-center">
           <GlassButton
+            disabled={loading}
             onClick={onPredict}
             size="default"
             className="w-full sm:w-auto min-w-[180px]"
             contentClassName="flex items-center justify-center gap-2 font-semibold"
           >
-            Predict Colleges
+            {loading ? "Predicting…" : "Predict Colleges"}
           </GlassButton>
         </div>
       </GlowCard>

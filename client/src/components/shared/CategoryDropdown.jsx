@@ -66,7 +66,7 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
         className="flex h-11 w-full items-center justify-between rounded-2xl border border-white/20 bg-white/10 pl-10 pr-3.5 text-sm font-medium text-white outline-none backdrop-blur-2xl transition-all hover:border-white/40 hover:bg-white/15 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
       >
         <span className="truncate">
-          {category === "" ? <span className="text-gray-400">Select Category</span> : category}
+          {category === "" ? <span className="text-gray-400">Select</span> : category}
         </span>
         <ChevronDown
           size={16}

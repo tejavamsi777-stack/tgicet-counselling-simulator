@@ -1,11 +1,10 @@
 export function getStatus(rank, cutoff) {
   const r = Number(rank);
   const c = Number(cutoff);
-  if (!r || !c || r > c) return "risky";
+  if (!r || !c) return "risky";
 
-  const ratio = r / c;
-  if (ratio <= 0.75) return "safe";
-  if (ratio <= 0.92) return "moderate";
+  if (c >= r * 1.20) return "safe";
+  if (c >= r * 0.95) return "moderate";
   return "risky";
 }
 
@@ -15,4 +14,4 @@ export const STATUS_META = {
   risky: { label: "Risky", emoji: "🔴", tone: "risky" },
 };
 
-export const STATUS_ORDER = { safe: 0, moderate: 1, risky: 2 };
+export const STATUS_ORDER = { risky: 0, moderate: 1, safe: 2 };

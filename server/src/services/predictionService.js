@@ -2,13 +2,15 @@ import { predictionRepository } from "../repositories/predictionRepository.js";
 import { examService } from "./examService.js";
 
 function getStatus(rank, cutoffRank) {
-  const ratio = rank / cutoffRank;
-  if (ratio <= 0.85) return "safe";
-  if (ratio <= 0.97) return "moderate";
-  return "risky";
+  const r = Number(rank);
+  const c = Number(cutoffRank);
+  if (!r || !c) return "risky";
+  if (c >= r * 1.20) return "safe";       // Cutoff is 20%+ higher than rank -> Safe
+  if (c >= r * 0.95) return "moderate";   // Cutoff is between 95% and 120% of rank -> Moderate
+  return "risky";                         // Cutoff is 85% to 95% (reach / ambitious) -> Risky / Dream
 }
 
-const STATUS_PRIORITY = { safe: 0, moderate: 1, risky: 2 };
+const STATUS_PRIORITY = { risky: 0, moderate: 1, safe: 2 };
 
 function normalizeCourseCode(course, examSlug) {
   if (!course) return course;
@@ -24,18 +26,45 @@ function normalizeCourseCode(course, examSlug) {
 }
 
 export const predictionService = {
-  async predict({ rank, category, gender, course, year, exam: examSlug }) {
+  async predict({ rank, category, gender, course, courses, district, districts, year, years, exam: examSlug }) {
     const exam = await examService.resolve(examSlug);
     const rankNum = Number(rank);
-    const yearNum = Number(year);
-    const normalizedCourse = normalizeCourseCode(course, examSlug);
+
+    // Normalize years list
+    let yearList = [];
+    if (Array.isArray(years) && years.length > 0) {
+      yearList = years.map(Number).filter((y) => !isNaN(y) && y > 0);
+    } else if (year && !isNaN(Number(year))) {
+      yearList = [Number(year)];
+    }
+
+    // Normalize courses list
+    let courseList = [];
+    if (Array.isArray(courses)) {
+      courseList = courses
+        .map((c) => normalizeCourseCode(c, examSlug))
+        .filter(Boolean);
+    } else if (course && typeof course === "string") {
+      courseList = [normalizeCourseCode(course, examSlug)].filter(Boolean);
+    }
+
+    // Normalize districts list
+    let districtList = [];
+    if (Array.isArray(districts)) {
+      districtList = districts
+        .map((d) => (d ? String(d).trim().toUpperCase() : ""))
+        .filter(Boolean);
+    } else if (district && typeof district === "string") {
+      districtList = [district.trim().toUpperCase()].filter(Boolean);
+    }
 
     const matches = await predictionRepository.findMatches({
       rank: rankNum,
       category,
       gender,
-      course: normalizedCourse,
-      year: yearNum,
+      courses: courseList,
+      districts: districtList,
+      years: yearList,
       examId: exam.id,
     });
 
@@ -52,3 +81,4 @@ export const predictionService = {
     return withStatus;
   },
 };
+
