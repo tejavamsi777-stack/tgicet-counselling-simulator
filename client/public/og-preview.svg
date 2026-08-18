@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="#0b0714"/>
+  
+  <!-- Glowing background orbs -->
+  <circle cx="200" cy="150" r="300" fill="#7c3aed" fill-opacity="0.25" filter="blur(120px)"/>
+  <circle cx="1000" cy="450" r="350" fill="#3b82f6" fill-opacity="0.2" filter="blur(140px)"/>
+  <circle cx="600" cy="315" r="250" fill="#9333ea" fill-opacity="0.15" filter="blur(100px)"/>
+
+  <!-- Glass Card Border & Background -->
+  <rect x="80" y="60" width="1040" height="510" rx="32" fill="#140e24" fill-opacity="0.75" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2"/>
+  
+  <!-- Header Badge -->
+  <g transform="translate(140, 120)">
+    <rect width="320" height="42" rx="21" fill="#7c3aed" fill-opacity="0.2" stroke="#a855f7" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="22" cy="21" r="6" fill="#10b981"/>
+    <text x="38" y="27" fill="#e9d5ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" letter-spacing="1">TELANGANA ADMISSIONS 2026</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="140" y="235" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="800" letter-spacing="-1">
+    TG Counselling Simulator
+  </text>
+  <text x="140" y="295" fill="#c084fc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="700" letter-spacing="-0.5">
+    &amp; College Predictor
+  </text>
+
+  <!-- Subheading -->
+  <text x="140" y="360" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="400">
+    Predict admission chances with authentic cutoffs across Dream, Target &amp; Safe tiers.
+  </text>
+
+  <!-- Exam Badges -->
+  <g transform="translate(140, 420)">
+    <!-- EAPCET -->
+    <g transform="translate(0, 0)">
+      <rect width="180" height="54" rx="16" fill="#1e153a" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.5"/>
+      <text x="90" y="34" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" text-anchor="middle">TG EAPCET</text>
+    </g>
+    <!-- ECET -->
+    <g transform="translate(195, 0)">
+      <rect width="160" height="54" rx="16" fill="#1e153a" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.5"/>
+      <text x="80" y="34" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" text-anchor="middle">TG ECET</text>
+    </g>
+    <!-- ICET -->
+    <g transform="translate(370, 0)">
+      <rect width="160" height="54" rx="16" fill="#1e153a" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.5"/>
+      <text x="80" y="34" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" text-anchor="middle">TG ICET</text>
+    </g>
+    <!-- POLYCET -->
+    <g transform="translate(545, 0)">
+      <rect width="180" height="54" rx="16" fill="#1e153a" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.5"/>
+      <text x="90" y="34" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" text-anchor="middle">TG POLYCET</text>
+    </g>
+  </g>
+
+  <!-- URL Tag -->
+  <g transform="translate(140, 515)">
+    <text x="0" y="0" fill="#a855f7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">🌐 tgcounselling.vercel.app</text>
+  </g>
+</svg>
