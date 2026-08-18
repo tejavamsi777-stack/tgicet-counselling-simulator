@@ -4,6 +4,20 @@ import { ALL_TSCHE_COLLEGES } from "../data/allTscheInstitutions.js";
 import { ALLOTMENT_YEARS, ALLOTMENT_BRANCHES, getAllotmentDataset } from "../services/allotmentService.js";
 import { allotmentRepository } from "../repositories/allotmentRepository.js";
 import { allotmentImportService } from "../services/allotmentImportService.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+let OFFICIAL_COLLEGE_BRANCHES = {};
+try {
+  const branchesPath = path.resolve(__dirname, "../data/officialCollegeBranches.json");
+  if (fs.existsSync(branchesPath)) {
+    OFFICIAL_COLLEGE_BRANCHES = JSON.parse(fs.readFileSync(branchesPath, "utf-8"));
+  }
+} catch (e) {
+  console.warn("[EAPCET Controller] Could not load officialCollegeBranches.json:", e.message);
+}
 
 // -----------------------------------------------------------------------
 // Static authoritative data (rules, eligibility, documents)
@@ -410,99 +424,50 @@ export const eapcetController = {
         years: ALLOTMENT_YEARS,
         colleges: ALL_TSCHE_COLLEGES,
         branches: ALLOTMENT_BRANCHES,
+        collegeBranches: OFFICIAL_COLLEGE_BRANCHES,
       },
     });
   },
 
-  // GET /api/eapcet/allotments?year=2026-phase2&college=CBIT&branch=CIV&search=...&page=1&limit=50
+  // GET /api/eapcet/colleges/:code/branches — get exact branches for a specific college
+  async getCollegeBranches(req, res) {
+    const code = (req.params.code || "").toUpperCase();
+    const branches = OFFICIAL_COLLEGE_BRANCHES[code] || [];
+    res.json({
+      success: true,
+      collegeCode: code,
+      branches,
+    });
+  },
+
+  // GET /api/eapcet/allotments?year=2026-final&college=CBIT&branch=CSE&search=...&page=1&limit=50
   async getAllotmentData(req, res, next) {
     try {
-      const { year = "2026-phase2", college = "CBIT", branch = "CIV", search = "", category = "", gender = "", page = 1, limit = 50 } = req.query;
+      const {
+        year = "2026-final",
+        college = "CBIT",
+        branch = "CSE",
+        search = "",
+        category = "",
+        gender = "",
+        page = 1,
+        limit = 50,
+      } = req.query;
 
-      const pageNum = parseInt(page, 10) || 1;
-      const limitNum = parseInt(limit, 10) || 50;
-
-      const parts = year.split("-");
-      const admissionYear = parseInt(parts[0], 10) || 2026;
-      const phase = parts[1] || "phase2";
-
-      const collegeObj = ALL_TSCHE_COLLEGES.find((c) => c.code === college.toUpperCase()) || {
-        code: college.toUpperCase(),
-        name: `${college} Engineering College`,
-        shortName: college.toUpperCase(),
-      };
-      const branchObj = ALLOTMENT_BRANCHES.find((b) => b.code === branch.toUpperCase()) || {
-        code: branch.toUpperCase(),
-        name: branch.toUpperCase(),
-      };
-
-      try {
-        // Query PostgreSQL / Supabase
-        const dbResult = await allotmentRepository.queryAllotments({
-          year: admissionYear,
-          phase,
-          collegeCode: college,
-          branchCode: branch,
-          search,
-          category,
-          gender,
-          page: pageNum,
-          limit: limitNum,
-        });
-
-        if (dbResult && dbResult.totalRecords > 0) {
-          return res.json({
-            success: true,
-            data: {
-              ...dbResult,
-              isOfficialLiveScraped: true,
-              source: "https://tgeapcet.nic.in/college_allotment.aspx",
-              year,
-              historicalExamName: admissionYear < 2024 ? "TS EAMCET" : "TG EAPCET",
-              college: collegeObj,
-              branch: branchObj,
-            },
-          });
-        }
-      } catch (dbErr) {
-        console.warn("[Allotment DB Query Warn]:", dbErr.message);
-      }
-
-      // Fallback to in-memory verified dataset generator
-      const fallbackDataset = getAllotmentDataset(year, college, branch);
-      let candidates = fallbackDataset.candidates;
-      if (search && search.trim()) {
-        const term = search.trim().toLowerCase();
-        candidates = candidates.filter(
-          (c) =>
-            c.candidateName.toLowerCase().includes(term) ||
-            c.rollNo.toLowerCase().includes(term) ||
-            c.seatCategory.toLowerCase().includes(term) ||
-            String(c.rank).includes(term)
-        );
-      }
-      if (gender) {
-        candidates = candidates.filter((c) => c.gender.toUpperCase() === gender.toUpperCase());
-      }
-      if (category) {
-        candidates = candidates.filter(
-          (c) => c.category.toUpperCase() === category.toUpperCase() || c.seatCategory.toUpperCase().includes(category.toUpperCase())
-        );
-      }
-
-      const totalFiltered = candidates.length;
-      const paginated = candidates.slice((pageNum - 1) * limitNum, pageNum * limitNum);
+      const dataset = await getAllotmentDataset({
+        year,
+        college,
+        branch,
+        search,
+        category,
+        gender,
+        page,
+        limit,
+      });
 
       res.json({
         success: true,
-        data: {
-          ...fallbackDataset,
-          totalRecords: totalFiltered,
-          page: pageNum,
-          pageSize: limitNum,
-          totalPages: Math.max(1, Math.ceil(totalFiltered / limitNum)),
-          candidates: paginated,
-        },
+        data: dataset,
       });
     } catch (err) {
       next(err);
@@ -557,6 +522,31 @@ export const eapcetController = {
       }
 
       const result = await allotmentImportService.commitImport(records, meta, user);
+      res.json({ success: true, data: result });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // POST /api/admin/eapcet/allotments/fetch-live — Admin live official extraction
+  async fetchOfficialAllotmentLive(req, res, next) {
+    try {
+      const {
+        examId = "tg-eapcet",
+        admissionYear = 2026,
+        phase = "final",
+        collegeCode = "CBIT",
+        branchCode = "CSE"
+      } = req.body;
+
+      const result = await allotmentImportService.fetchOfficialLiveAllotments({
+        examId,
+        admissionYear,
+        phase,
+        collegeCode,
+        branchCode
+      });
+
       res.json({ success: true, data: result });
     } catch (err) {
       next(err);

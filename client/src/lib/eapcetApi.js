@@ -8,6 +8,7 @@ export const eapcetApi = {
     return api.get(`/eapcet/colleges${query ? `?${query}` : ''}`);
   },
   getCollegeByCode: (code) => api.get(`/eapcet/colleges/${code}`),
+  getCollegeBranches: (code) => api.get(`/eapcet/colleges/${code}/branches`),
   compare: (c1, c2, branch = 'CSE') => api.get(`/eapcet/compare?c1=${c1}&c2=${c2}&branch=${branch}`),
   getAllotmentMeta: () => api.get('/eapcet/allotments/meta'),
   getAllotments: (params = {}) => {

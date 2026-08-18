@@ -10,9 +10,11 @@ router.post('/refresh', polycetController.refreshNotifications);
 
 // Colleges & Matrix
 router.get('/colleges', polycetController.getColleges);
+router.get('/colleges/:code/branches', polycetController.getCollegeBranches);
 router.get('/compare', polycetController.compareColleges);
 
 // Allotments
+router.get('/allotments/meta', polycetController.getAllotmentMeta);
 router.get('/allotments/summary', polycetController.getAllotmentsSummary);
 router.get('/allotments/:collegeCode', polycetController.getCollegeAllotments);
 

@@ -31,32 +31,37 @@ import SearchableSelect from '../shared/SearchableSelect';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
-  const c = cat.toUpperCase();
-  if (c.startsWith('OC_GEN')) return 'bg-sky-500/15 border-sky-500/30 text-sky-300';
-  if (c.startsWith('OC_GIRLS') || c.startsWith('OC_GIRL')) return 'bg-pink-500/15 border-pink-500/30 text-pink-300';
-  if (c.startsWith('BC_A')) return 'bg-orange-500/15 border-orange-500/30 text-orange-300';
-  if (c.startsWith('BC_B')) return 'bg-amber-500/15 border-amber-500/30 text-amber-300';
-  if (c.startsWith('BC_C')) return 'bg-yellow-500/15 border-yellow-500/30 text-yellow-300';
-  if (c.startsWith('BC_D')) return 'bg-lime-500/15 border-lime-500/30 text-lime-300';
-  if (c.startsWith('BC_E')) return 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300';
-  if (c.startsWith('SC')) return 'bg-purple-500/15 border-purple-500/30 text-purple-300';
-  if (c.startsWith('ST')) return 'bg-rose-500/15 border-rose-500/30 text-rose-300';
-  if (c.startsWith('EWS')) return 'bg-cyan-500/15 border-cyan-500/30 text-cyan-300';
-  return 'bg-white/5 border-white/10 text-white/50';
+  const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
+  if (c.startsWith('OC-GIRL')) return 'bg-pink-500/20 border-pink-400/40 text-pink-300 shadow-sm shadow-pink-500/20';
+  if (c.startsWith('OC')) return 'bg-sky-500/20 border-sky-400/40 text-sky-300 shadow-sm shadow-sky-500/20';
+  if (c.startsWith('EWS')) return 'bg-teal-500/20 border-teal-400/40 text-teal-300 shadow-sm shadow-teal-500/20';
+  if (c.startsWith('BC-A')) return 'bg-orange-500/20 border-orange-400/40 text-orange-300 shadow-sm shadow-orange-500/20';
+  if (c.startsWith('BC-B')) return 'bg-amber-500/20 border-amber-400/40 text-amber-300 shadow-sm shadow-amber-500/20';
+  if (c.startsWith('BC-C')) return 'bg-lime-500/20 border-lime-400/40 text-lime-300 shadow-sm shadow-lime-500/20';
+  if (c.startsWith('BC-D')) return 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300 shadow-sm shadow-emerald-500/20';
+  if (c.startsWith('BC-E')) return 'bg-indigo-500/20 border-indigo-400/40 text-indigo-300 shadow-sm shadow-indigo-500/20';
+  if (c.startsWith('ST')) return 'bg-rose-500/20 border-rose-400/40 text-rose-300 shadow-sm shadow-rose-500/20';
+  if (c.includes('SC-3') || c.includes('SC-III') || c.includes('SC3')) return 'bg-pink-500/20 border-pink-400/40 text-pink-300 shadow-sm shadow-pink-500/20';
+  if (c.includes('SC-2') || c.includes('SC-II') || c.includes('SC2')) return 'bg-fuchsia-500/20 border-fuchsia-400/40 text-fuchsia-300 shadow-sm shadow-fuchsia-500/20';
+  if (c.startsWith('SC')) return 'bg-purple-500/20 border-purple-400/40 text-purple-300 shadow-sm shadow-purple-500/20';
+  return 'bg-violet-500/20 border-violet-400/40 text-violet-300 shadow-sm shadow-violet-500/20';
 }
 
 function getCategoryColor(cat = '') {
-  const c = cat.toUpperCase();
-  if (c.startsWith('OC')) return { primary: '#38bdf8', secondary: '#0284c7', glow: 'rgba(56, 189, 248, 0.4)' };
-  if (c.startsWith('BC_A')) return { primary: '#fb923c', secondary: '#c2410c', glow: 'rgba(251, 146, 60, 0.4)' };
-  if (c.startsWith('BC_B')) return { primary: '#fbbf24', secondary: '#d97706', glow: 'rgba(251, 191, 36, 0.4)' };
-  if (c.startsWith('BC_C')) return { primary: '#facc15', secondary: '#ca8a04', glow: 'rgba(250, 204, 21, 0.4)' };
-  if (c.startsWith('BC_D')) return { primary: '#a3e635', secondary: '#65a30d', glow: 'rgba(163, 230, 53, 0.4)' };
-  if (c.startsWith('BC_E')) return { primary: '#34d399', secondary: '#059669', glow: 'rgba(52, 211, 153, 0.4)' };
-  if (c.startsWith('SC')) return { primary: '#c084fc', secondary: '#9333ea', glow: 'rgba(192, 132, 252, 0.4)' };
-  if (c.startsWith('ST')) return { primary: '#fb7185', secondary: '#e11d48', glow: 'rgba(251, 113, 133, 0.4)' };
-  if (c.startsWith('EWS')) return { primary: '#22d3ee', secondary: '#0891b2', glow: 'rgba(34, 211, 238, 0.4)' };
-  return { primary: '#a855f7', secondary: '#7e22ce', glow: 'rgba(168, 85, 247, 0.4)' };
+  const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
+  if (c.startsWith('OC-GIRL')) return { primary: '#f472b6', secondary: '#db2777', glow: 'rgba(244, 114, 182, 0.6)' };
+  if (c.startsWith('OC')) return { primary: '#38bdf8', secondary: '#0284c7', glow: 'rgba(56, 189, 248, 0.6)' };
+  if (c.startsWith('EWS')) return { primary: '#2dd4bf', secondary: '#0f766e', glow: 'rgba(45, 212, 191, 0.6)' };
+  if (c.startsWith('BC-A')) return { primary: '#fb923c', secondary: '#ea580c', glow: 'rgba(251, 146, 60, 0.6)' };
+  if (c.startsWith('BC-B')) return { primary: '#f59e0b', secondary: '#d97706', glow: 'rgba(245, 158, 11, 0.6)' };
+  if (c.startsWith('BC-C')) return { primary: '#a3e635', secondary: '#65a30d', glow: 'rgba(163, 230, 53, 0.6)' };
+  if (c.startsWith('BC-D')) return { primary: '#10b981', secondary: '#047857', glow: 'rgba(16, 185, 129, 0.6)' };
+  if (c.startsWith('BC-E')) return { primary: '#818cf8', secondary: '#4f46e5', glow: 'rgba(129, 140, 248, 0.6)' };
+  if (c.startsWith('ST')) return { primary: '#f43f5e', secondary: '#be123c', glow: 'rgba(244, 63, 94, 0.6)' };
+  if (c.includes('SC-3') || c.includes('SC-III') || c.includes('SC3')) return { primary: '#f472b6', secondary: '#be185d', glow: 'rgba(244, 114, 182, 0.6)' };
+  if (c.includes('SC-2') || c.includes('SC-II') || c.includes('SC2')) return { primary: '#e879f9', secondary: '#a21caf', glow: 'rgba(232, 121, 249, 0.6)' };
+  if (c.startsWith('SC')) return { primary: '#c084fc', secondary: '#7e22ce', glow: 'rgba(192, 132, 252, 0.6)' };
+  return { primary: '#a855f7', secondary: '#7e22ce', glow: 'rgba(168, 85, 247, 0.6)' };
 }
 
 // ─── Stat card ──────────────────────────────────────────────────────────────
@@ -306,17 +311,58 @@ function InteractiveGenderChart({ candidates = [], male = 0, female = 0, maleP =
   );
 }
 
+// Helper to format Caste nicely
+function formatCasteLabel(raw = '') {
+  const c = String(raw).toUpperCase().trim().replace(/_/g, '-');
+  if (c.startsWith('OC')) return 'OC';
+  if (c.startsWith('EWS')) return 'EWS';
+  if (c.startsWith('BC-A')) return 'BC-A';
+  if (c.startsWith('BC-B')) return 'BC-B';
+  if (c.startsWith('BC-C')) return 'BC-C';
+  if (c.startsWith('BC-D')) return 'BC-D';
+  if (c.startsWith('BC-E')) return 'BC-E';
+  if (c.startsWith('ST')) return 'ST';
+  if (c === 'SC-1' || c === 'SC-I' || c === 'SC1' || c === 'SC_I') return 'SC-1';
+  if (c === 'SC-2' || c === 'SC-II' || c === 'SC2' || c === 'SC_II') return 'SC-2';
+  if (c === 'SC-3' || c === 'SC-III' || c === 'SC3' || c === 'SC_III') return 'SC-3';
+  if (c.startsWith('SC')) return 'SC';
+  return c || 'OC';
+}
+
+const CASTE_ORDER_MAP = {
+  'OC': 1,
+  'EWS': 2,
+  'BC-A': 3,
+  'BC-B': 4,
+  'BC-C': 5,
+  'BC-D': 6,
+  'BC-E': 7,
+  'ST': 8,
+  'SC': 9,
+  'SC-1': 10,
+  'SC-I': 10,
+  'SC-2': 11,
+  'SC-II': 11,
+  'SC-3': 12,
+  'SC-III': 12,
+};
+
+function getCastePriority(caste = '') {
+  const key = formatCasteLabel(caste);
+  return CASTE_ORDER_MAP[key] || 999;
+}
+
 // ─── Interactive Seats by Category Bar Graph (With Live Floating Tooltip) ────
 function InteractiveCategoryChart({ candidates = [] }) {
-  const [viewMode, setViewMode] = useState('detailed'); // 'grouped' | 'detailed'
+  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'quota'
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
-  // Grouped Categories (OC, BC-A, BC-B, BC-C, BC-D, BC-E, SC, ST, EWS)
-  const groupedData = useMemo(() => {
+  // Grouped by Candidate Actual Caste (OC, EWS, BC-A, BC-B, BC-C, BC-D, BC-E, ST, SC, SC-1, SC-2, SC-3)
+  const casteData = useMemo(() => {
     const map = {};
     const total = candidates.length || 1;
     candidates.forEach((c) => {
-      const rootCat = (c.caste || c.category || c.seatCategory?.split('_')[0] || 'OC').toUpperCase();
+      const rootCat = formatCasteLabel(c.caste || c.category || c.seatCategory?.split('_')[0] || 'OC');
       if (!map[rootCat]) {
         map[rootCat] = {
           name: rootCat,
@@ -339,11 +385,11 @@ function InteractiveCategoryChart({ candidates = [] }) {
         ...item,
         percent: Math.round((item.count / total) * 100),
       }))
-      .sort((a, b) => b.count - a.count);
+      .sort((a, b) => getCastePriority(a.name) - getCastePriority(b.name));
   }, [candidates]);
 
-  // Detailed Sub-quota Categories (OC_GEN_OU, BC_A_GIRLS_OU, etc.)
-  const detailedData = useMemo(() => {
+  // Sub-quota Allotment Categories (OC_GEN_OU, BC_A_GIRLS_OU, etc.)
+  const quotaData = useMemo(() => {
     const map = {};
     const total = candidates.length || 1;
     candidates.forEach((c) => {
@@ -373,7 +419,7 @@ function InteractiveCategoryChart({ candidates = [] }) {
       .sort((a, b) => b.count - a.count);
   }, [candidates]);
 
-  const activeDataset = viewMode === 'grouped' ? groupedData : detailedData;
+  const activeDataset = viewMode === 'caste' ? casteData : quotaData;
   const maxCount = Math.max(...activeDataset.map((d) => d.count), 1);
   const activeTooltipItem = hoveredCategory || activeDataset[0];
 
@@ -387,7 +433,7 @@ function InteractiveCategoryChart({ candidates = [] }) {
           </div>
           <div>
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-              Seats Allotted by Category
+              Seats Allotted by {viewMode === 'caste' ? 'Candidate Caste' : 'Allotted Quota'}
             </h4>
             <p className="text-[10px] text-white/40">Touch or hover any bar for rank range and demographic details</p>
           </div>
@@ -397,25 +443,25 @@ function InteractiveCategoryChart({ candidates = [] }) {
         <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto">
           <button
             type="button"
-            onClick={() => setViewMode('detailed')}
+            onClick={() => setViewMode('caste')}
             className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-              viewMode === 'detailed'
+              viewMode === 'caste'
                 ? 'bg-purple-500 text-white shadow-md shadow-purple-500/30'
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            Sub-Quotas ({detailedData.length})
+            Candidate Caste ({casteData.length})
           </button>
           <button
             type="button"
-            onClick={() => setViewMode('grouped')}
+            onClick={() => setViewMode('quota')}
             className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-              viewMode === 'grouped'
+              viewMode === 'quota'
                 ? 'bg-purple-500 text-white shadow-md shadow-purple-500/30'
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            Grouped ({groupedData.length})
+            Allotted Quotas ({quotaData.length})
           </button>
         </div>
       </div>
@@ -433,7 +479,7 @@ function InteractiveCategoryChart({ candidates = [] }) {
                 {activeTooltipItem.name}
               </span>
               <span className="text-xs font-bold text-white font-mono">
-                {activeTooltipItem.count} Allotted Seats ({activeTooltipItem.percent}%)
+                {activeTooltipItem.count} Allotted Candidates ({activeTooltipItem.percent}%)
               </span>
             </div>
 
@@ -489,18 +535,18 @@ function InteractiveCategoryChart({ candidates = [] }) {
                 </div>
                 <div className="flex items-center gap-2 font-mono text-xs">
                   <span className="text-white/40 text-[10px]">({row.percent}%)</span>
-                  <span className="font-bold text-white">{row.count} Seats</span>
+                  <span className="font-bold text-white">{row.count} {viewMode === 'caste' ? 'Candidates' : 'Seats'}</span>
                 </div>
               </div>
 
               {/* Progress Bar */}
-              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.06]">
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
                 <div
                   className="h-full rounded-full transition-all duration-700 ease-out"
                   style={{
                     width: `${fillWidth}%`,
                     background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                    boxShadow: isHovered ? `0 0 10px ${colors.glow}` : 'none',
+                    boxShadow: `0 0 10px ${colors.glow}`,
                   }}
                 />
               </div>
@@ -514,14 +560,29 @@ function InteractiveCategoryChart({ candidates = [] }) {
 
 // ─── Interactive Category-Wise Closing Ranks Breakdown ──────────────────────
 function CategoryClosingRanksBreakdown({ candidates = [] }) {
+  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'quota'
   const [hoveredRow, setHoveredRow] = useState(null);
 
-  const categoryRanks = useMemo(() => {
+  const casteRanks = useMemo(() => {
+    const map = {};
+    candidates.forEach((c) => {
+      const cat = formatCasteLabel(c.caste || c.category || c.seatCategory?.split('_')[0] || 'OC');
+      if (!map[cat]) {
+        map[cat] = { category: cat, openingRank: c.rank, closingRank: c.rank, count: 0 };
+      }
+      map[cat].openingRank = Math.min(map[cat].openingRank, c.rank);
+      map[cat].closingRank = Math.max(map[cat].closingRank, c.rank);
+      map[cat].count++;
+    });
+    return Object.values(map).sort((a, b) => getCastePriority(a.category) - getCastePriority(b.category));
+  }, [candidates]);
+
+  const quotaRanks = useMemo(() => {
     const map = {};
     candidates.forEach((c) => {
       const cat = c.seatCategory || 'OC_GEN_OU';
       if (!map[cat]) {
-        map[cat] = { seatCategory: cat, openingRank: c.rank, closingRank: c.rank, count: 0 };
+        map[cat] = { category: cat, openingRank: c.rank, closingRank: c.rank, count: 0 };
       }
       map[cat].openingRank = Math.min(map[cat].openingRank, c.rank);
       map[cat].closingRank = Math.max(map[cat].closingRank, c.rank);
@@ -530,67 +591,97 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
     return Object.values(map).sort((a, b) => a.openingRank - b.openingRank);
   }, [candidates]);
 
-  if (!categoryRanks.length) return null;
-  const maxRank = Math.max(...categoryRanks.map((r) => r.closingRank || 1));
+  const activeRanks = viewMode === 'caste' ? casteRanks : quotaRanks;
+  if (!activeRanks.length) return null;
+  const maxRank = Math.max(...activeRanks.map((r) => r.closingRank || 1));
 
   return (
     <div className="rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
-      <div className="flex items-center justify-between gap-2 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-300">
             <Award size={15} />
           </div>
           <div>
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-              Category Closing Trajectory
+              {viewMode === 'caste' ? 'Caste-Wise Closing Ranks' : 'Quota Closing Trajectory'}
             </h4>
             <p className="text-[10px] text-white/40">Opening rank ➔ Closing cutoff threshold</p>
           </div>
         </div>
-        <span className="text-[11px] text-white/40 font-mono">{categoryRanks.length} Quotas</span>
+
+        {/* Mode switcher */}
+        <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => setViewMode('caste')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              viewMode === 'caste'
+                ? 'bg-amber-500 text-black shadow-md shadow-amber-500/30'
+                : 'text-white/50 hover:text-white'
+            }`}
+          >
+            Caste ({casteRanks.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('quota')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              viewMode === 'quota'
+                ? 'bg-amber-500 text-black shadow-md shadow-amber-500/30'
+                : 'text-white/50 hover:text-white'
+            }`}
+          >
+            Quota ({quotaRanks.length})
+          </button>
+        </div>
       </div>
 
       <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1 scrollbar-thin">
-        {categoryRanks.map((r) => {
+        {activeRanks.map((r) => {
           const fillWidth = Math.min(100, Math.max(8, Math.round((r.closingRank / maxRank) * 100)));
-          const colors = getCategoryColor(r.seatCategory);
-          const isHovered = hoveredRow?.seatCategory === r.seatCategory;
+          const colors = getCategoryColor(r.category);
+          const isHovered = hoveredRow?.category === r.category;
 
           return (
             <div
-              key={r.seatCategory}
+              key={r.category}
               onMouseEnter={() => setHoveredRow(r)}
               onMouseLeave={() => setHoveredRow(null)}
               onTouchStart={() => setHoveredRow(r)}
-              className={`group rounded-xl border p-2.5 transition-all duration-200 cursor-pointer ${
+              style={{
+                borderColor: isHovered ? colors.primary : undefined,
+                boxShadow: isHovered ? `0 0 16px ${colors.glow}` : undefined,
+              }}
+              className={`group rounded-2xl border p-3 transition-all duration-200 cursor-pointer ${
                 isHovered
-                  ? 'border-amber-400/50 bg-amber-950/20 shadow-md shadow-amber-950/40 scale-[1.01]'
-                  : 'border-white/[0.04] bg-white/[0.015] hover:border-white/10'
+                  ? 'bg-white/[0.06] scale-[1.01]'
+                  : 'border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
               }`}
             >
-              <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
+              <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
                 <span
-                  className={`inline-flex rounded border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${getSeatCategoryStyle(
-                    r.seatCategory
+                  className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider font-mono ${getSeatCategoryStyle(
+                    r.category
                   )}`}
                 >
-                  {r.seatCategory}
+                  {r.category}
                 </span>
-                <span className="font-mono text-xs text-white/60">
-                  <span className="text-white/40 text-[10px] uppercase mr-1">Cutoff:</span>
-                  <span className="text-white/80 font-semibold">{r.openingRank?.toLocaleString()}</span>
-                  <span className="mx-1 text-purple-400 font-bold">→</span>
-                  <span className="text-amber-300 font-bold">#{r.closingRank?.toLocaleString()}</span>
+                <span className="font-mono text-xs text-white/80">
+                  <span className="text-white/40 text-[10px] uppercase mr-1.5 font-bold">Cutoff:</span>
+                  <span className="text-white/60 font-semibold">{r.openingRank?.toLocaleString()}</span>
+                  <span className="mx-1.5 text-white/40 font-bold">→</span>
+                  <span style={{ color: colors.primary }} className="font-bold text-sm">#{r.closingRank?.toLocaleString()}</span>
                 </span>
               </div>
 
-              <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
                 <div
                   className="h-full rounded-full transition-all duration-700"
                   style={{
                     width: `${fillWidth}%`,
                     background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                    boxShadow: isHovered ? `0 0 8px ${colors.glow}` : 'none',
+                    boxShadow: `0 0 10px ${colors.glow}`,
                   }}
                 />
               </div>
@@ -729,6 +820,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 
 export default function EcetAllotmentExplorer() {
   const [colleges, setColleges] = useState(ECET_INSTITUTIONS);
+  const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('');
@@ -741,22 +833,29 @@ export default function EcetAllotmentExplorer() {
     let mounted = true;
     ecetApi.getAllotmentMeta()
       .then((res) => {
-        if (mounted && res?.success && res?.data?.colleges?.length > 0) {
-          const remoteColleges = res.data.colleges;
-          const merged = remoteColleges.map((rc) => {
-            const local = ECET_INSTITUTIONS.find((l) => l.code === rc.code);
-            return local ? { ...local, name: rc.name } : {
-              code: rc.code,
-              name: rc.name,
-              shortName: rc.code,
-              district: "Telangana",
-              region: "OU",
-              type: "TSCHE Participating Institution",
-              annualFee: 100000,
-              courses: [],
-            };
-          });
-          setColleges(merged);
+        if (mounted && res?.success && res?.data) {
+          if (res.data.collegeBranches) setCollegeBranchesMap(res.data.collegeBranches);
+          if (res.data.colleges?.length > 0) {
+            const remoteColleges = res.data.colleges;
+            const merged = remoteColleges.map((rc) => {
+              const local = ECET_INSTITUTIONS.find((l) => l.code === rc.code);
+              const rawName = rc.name || local?.name || rc.code;
+              const cleanName = rawName.replace(new RegExp(`^${rc.code}\\s*[-–—:]\\s*`, 'i'), '').trim();
+              return {
+                ...(local || {}),
+                code: rc.code,
+                name: cleanName || rawName,
+                fullName: cleanName || rawName,
+                shortName: rc.code,
+                district: local?.district || "Telangana",
+                region: local?.region || "OU",
+                type: local?.type || "TSCHE Participating Institution",
+                annualFee: local?.annualFee || 100000,
+                courses: local?.courses || [],
+              };
+            });
+            setColleges(merged);
+          }
         }
       })
       .catch((err) => console.warn("Failed to load official colleges list:", err));
@@ -783,6 +882,13 @@ export default function EcetAllotmentExplorer() {
 
   const availableBranches = useMemo(() => {
     if (!selectedCollege) return [];
+    if (collegeBranchesMap[selectedCollege]?.length > 0) {
+      return collegeBranchesMap[selectedCollege].map((b) => ({
+        code: b.code,
+        name: b.name || b.code,
+        totalAllotted: b.totalAllotted || '',
+      }));
+    }
     if (summaryEntry?.branches && summaryEntry.branches.length > 0) {
       return summaryEntry.branches.map((b) => ({
         code: b.branchCode,
@@ -798,7 +904,7 @@ export default function EcetAllotmentExplorer() {
       }));
     }
     return [];
-  }, [summaryEntry, currentInst, selectedCollege]);
+  }, [collegeBranchesMap, summaryEntry, currentInst, selectedCollege]);
 
   // Handle Query Trigger
   const handleFetch = useCallback(async () => {
@@ -819,7 +925,7 @@ export default function EcetAllotmentExplorer() {
       if (res.success && res.data) {
         setResults(res.data);
       } else {
-        setError('Unable to load official allotment records for this selection.');
+        setError('Unable to load allotment records for this selection.');
         setResults(null);
       }
     } catch {
@@ -1015,11 +1121,14 @@ export default function EcetAllotmentExplorer() {
               }}
               placeholder="-- Search / Select Engineering College --"
               searchPlaceholder="Search by college code, name, district..."
-              options={colleges.map((c) => ({
-                value: c.code,
-                label: `${c.code} — ${c.shortName || c.name}`,
-                sublabel: `${c.district} · ₹${c.annualFee?.toLocaleString()}/yr`,
-              }))}
+              options={colleges.map((c) => {
+                const cleanName = (c.fullName || c.name || "").replace(new RegExp(`^${c.code}\\s*[-–—:]\\s*`, 'i'), '').trim();
+                return {
+                  value: c.code,
+                  label: `${c.code} — ${cleanName || c.code}`,
+                  sublabel: c.district && c.district !== 'Telangana' ? `${c.district} District` : undefined,
+                };
+              })}
             />
           </div>
 
@@ -1165,7 +1274,7 @@ export default function EcetAllotmentExplorer() {
               <div className="flex items-center gap-2">
                 <ShieldCheck size={18} className="text-emerald-400" />
                 <h3 className="text-sm sm:text-base font-bold text-white">
-                  Official Candidate Allotments ({filteredCandidates.length})
+                  Candidate Seat Allotments ({filteredCandidates.length})
                 </h3>
               </div>
 
@@ -1381,7 +1490,7 @@ export default function EcetAllotmentExplorer() {
           <Database size={40} className="mx-auto mb-4 text-purple-500/40" />
           <p className="text-base font-semibold text-white/40">Select Year, College &amp; Lateral Branch above</p>
           <p className="text-sm text-white/20 mt-1">
-            then click <span className="text-purple-400 font-bold">Show Allotment Data</span> to view official TSCHE lateral entry candidate records &amp; visual analytics
+            then click <span className="text-purple-400 font-bold">Show Allotment Data</span> to view lateral entry candidate records &amp; visual analytics
           </p>
         </div>
       )}

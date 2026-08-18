@@ -436,65 +436,24 @@ async function fetchLiveEcetNotifications(force = false) {
   return fallbackNotifs;
 }
 
-// Deterministic Candidate Allotment Generator for ECET
-function generateEcetCandidates(collegeCode, branchCode) {
-  const code = (collegeCode || "CBIT").toUpperCase();
-  const branch = (branchCode || "CSE").toUpperCase();
-
-  let seed = 0;
-  for (let i = 0; i < code.length; i++) seed = (seed * 31 + code.charCodeAt(i)) & 0xffffffff;
-  for (let i = 0; i < branch.length; i++) seed = (seed * 37 + branch.charCodeAt(i)) & 0xffffffff;
-  seed = Math.abs(seed);
-
-  const collegeBaseRank = (seed % 300) + 15;
-  const branchFactor = branch.startsWith("CS") ? 1 : branch === "INF" ? 1.3 : branch === "ECE" ? 1.5 : branch === "EEE" ? 2.0 : 2.5;
-  const baseOpening = Math.round(collegeBaseRank * branchFactor);
-
-  const firstNames = [
-    "SURESH", "RAVI", "PRANAY", "KALYAN", "ANIL", "HARSHITH", "AKHIL", "DIVYA", "SOWMYA", "TEJASWI", "MADHAVI", "BHAVANA", "DEEPAK", "NIKHILA", "SRIKANTH", "VINEETH", "SWETHA", "GOWTHAM", "MANASA", "NARESH"
-  ];
-  const lastNames = [
-    "KOTHA", "BODDU", "GOPAL", "MUDIGONDA", "CHILUKURI", "VEMULAPALLI", "SURAPUREDDY", "THUMMA", "BANDARI", "KODALI", "CHINTA", "NAGARAM", "KOPPULA", "GADDAM", "BATHULA", "GUNDA"
-  ];
-  const quotas = ["OC_GEN_OU", "OC_GIRLS_OU", "BC_A_GEN_OU", "BC_B_GEN_OU", "BC_B_GIRLS_OU", "BC_D_GEN_OU", "SC_GEN_OU", "SC_GIRLS_OU", "ST_GEN_OU", "EWS_GEN_OU", "OC_GEN_UR", "BC_E_GEN_OU"];
-
-  const candidates = [];
-  let currentRank = baseOpening;
-  const totalSeats = 18;
-
-  for (let i = 0; i < totalSeats; i++) {
-    const isFemale = (seed + i) % 3 === 1;
-    const gender = isFemale ? "Female" : "Male";
-    const firstName = firstNames[(seed + i * 7) % firstNames.length];
-    const lastName = lastNames[(seed + i * 11) % lastNames.length];
-    const seatCategory = quotas[(seed + i) % quotas.length];
-    const caste = seatCategory.startsWith("OC") ? "OC" : seatCategory.startsWith("BC") ? seatCategory.slice(0, 4).replace("_", "-") : seatCategory.startsWith("SC") ? "SC" : seatCategory.startsWith("ST") ? "ST" : "EWS";
-
-    currentRank += ((seed + i * 13) % 40) + 15;
-
-    candidates.push({
-      rank: currentRank,
-      hallTicket: `12${((seed + i * 997) % 899999 + 100000)}`,
-      name: `${firstName} ${lastName}`,
-      gender,
-      caste,
-      region: (seed + i) % 12 === 0 ? "NL" : "OU",
-      seatCategory,
-      branchCode: branch,
+// Load official 293-college ECET branch mappings from allotments_summary.json
+let ECET_COLLEGE_BRANCHES = {};
+let ECET_OFFICIAL_COLLEGES = [];
+try {
+  const summaryFile = path.resolve(__dirname, "../data/ecet_allotments/allotments_summary.json");
+  if (fs.existsSync(summaryFile)) {
+    const summaryData = JSON.parse(fs.readFileSync(summaryFile, "utf8"));
+    const cols = summaryData.colleges || [];
+    cols.forEach((col) => {
+      ECET_OFFICIAL_COLLEGES.push({ code: col.code, name: col.name });
+      ECET_COLLEGE_BRANCHES[col.code] = (col.branches || []).map((b) => ({
+        code: b.branchCode,
+        name: b.branchName || b.branchCode,
+      }));
     });
   }
-
-  return {
-    collegeCode: code,
-    branchCode: branch,
-    totalSeats: candidates.length,
-    openingRank: candidates[0]?.rank,
-    closingRank: candidates[candidates.length - 1]?.rank,
-    candidates,
-    isLiveScraped: false,
-    source: "https://tgecet.nic.in/college_allotment.aspx",
-    lastUpdated: new Date().toISOString(),
-  };
+} catch (e) {
+  console.warn("[ECET Controller] Could not load allotments_summary.json:", e.message);
 }
 
 export const ecetController = {
@@ -569,6 +528,17 @@ export const ecetController = {
     res.json({ success: true, data: college });
   },
 
+  // GET /api/ecet/colleges/:code/branches
+  async getCollegeBranches(req, res) {
+    const code = (req.params.code || "").toUpperCase();
+    const branches = ECET_COLLEGE_BRANCHES[code] || [];
+    res.json({
+      success: true,
+      collegeCode: code,
+      branches,
+    });
+  },
+
   // GET /api/ecet/compare
   async compareInstitutions(req, res) {
     const { c1, c2, branch = "CSE" } = req.query;
@@ -587,29 +557,17 @@ export const ecetController = {
 
   // GET /api/ecet/allotments/meta
   async getAllotmentMeta(req, res) {
-    let colleges = ECET_INSTITUTIONS_DIRECTORY.map((c) => ({ code: c.code, name: c.name }));
-    const summaryFile = path.resolve(__dirname, "../data/ecet_allotments/official_institutions.json");
-    if (fs.existsSync(summaryFile)) {
-      try {
-        colleges = JSON.parse(fs.readFileSync(summaryFile, "utf8"));
-      } catch (err) {}
-    } else {
-      try {
-        const liveOfficialColleges = await scrapeOfficialTgEcetColleges();
-        if (liveOfficialColleges && liveOfficialColleges.length > 0) {
-          colleges = liveOfficialColleges;
-        }
-      } catch (err) {
-        console.warn("[ECET Live Colleges Scrape Note]:", err.message);
-      }
-    }
+    let colleges = ECET_OFFICIAL_COLLEGES.length > 0
+      ? ECET_OFFICIAL_COLLEGES
+      : ECET_INSTITUTIONS_DIRECTORY.map((c) => ({ code: c.code, name: c.name }));
 
     res.json({
       success: true,
       data: {
-        years: [{ id: "2026", label: "2026 college allotments" }],
+        years: [{ id: "2026", label: "2026 Final Phase Allotments" }],
         colleges,
         branches: ECET_BRANCHES_DIRECTORY.map((b) => ({ code: b.code, name: `${b.name} (${b.code})` })),
+        collegeBranches: ECET_COLLEGE_BRANCHES,
       },
     });
   },
@@ -636,6 +594,7 @@ export const ecetController = {
             openingRank: branchData.openingRank,
             closingRank: branchData.closingRank,
             candidates: branchData.candidates,
+            totalRecords: branchData.candidates.length,
             isLiveScraped: true,
             source: "https://tgecet.nic.in/college_allotment.aspx",
             lastUpdated: new Date().toISOString(),
@@ -655,7 +614,6 @@ export const ecetController = {
       }
     }
 
-    const result = liveScraped || generateEcetCandidates(cCode, bCode);
     const collegeObj = ECET_INSTITUTIONS_DIRECTORY.find((c) => c.code === cCode) || {
       code: cCode,
       name: `${cCode} Engineering College`,
@@ -670,15 +628,28 @@ export const ecetController = {
       name: bCode,
     };
 
+    // Strict authentic response: If not available, return 0 candidates with clear message
+    const finalData = liveScraped || {
+      collegeCode: cCode,
+      branchCode: bCode,
+      totalSeats: 0,
+      openingRank: 0,
+      closingRank: 0,
+      candidates: [],
+      totalRecords: 0,
+      isLiveScraped: false,
+      message: "No candidate allotment records published for this branch on the official TG ECET portal.",
+    };
+
     res.json({
       success: true,
       data: {
-        ...result,
+        ...finalData,
         year,
         college: collegeObj,
         branch: branchObj,
         source: "https://tgecet.nic.in/college_allotment.aspx",
-        isLiveScraped: !!liveScraped,
+        isLiveScraped: !!liveScraped?.candidates?.length,
       },
     });
   },

@@ -1,0 +1,4702 @@
+{
+  "AARM": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "ACEG": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AITH": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AIZA": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "AKIT": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "ANRK": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "ANUG": [
+    {
+      "code": "AI",
+      "name": "ARTIFICIAL INTELLIGENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "ARJN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "ASRA": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AURC": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    }
+  ],
+  "AURG": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AURH": [
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    }
+  ],
+  "AURK": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    }
+  ],
+  "AURN": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    }
+  ],
+  "AVIH": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AVNI": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "AZAD": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    }
+  ],
+  "BIET": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "BITN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSW",
+      "name": "COMPUTER ENGINEERING(SOFTWARE ENGINEERING)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "BOMA": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "BOSE": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "BREW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "BRIG": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "BRIL": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "BSKR": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "BVRI": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "BME",
+      "name": "BIO-MEDICAL ENGINEERING"
+    },
+    {
+      "code": "CHE",
+      "name": "CHEMICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "PHE",
+      "name": "PHARMACEUTICAL ENGINEERING"
+    }
+  ],
+  "BVRW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "CASR": [
+    {
+      "code": "AGR",
+      "name": "AGRICULTURAL ENGINEERING"
+    }
+  ],
+  "CBIT": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CHE",
+      "name": "CHEMICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CIC",
+      "name": "CSE (IoT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "CDTK": [
+    {
+      "code": "DRG",
+      "name": "DAIRYING"
+    }
+  ],
+  "CFSR": [
+    {
+      "code": "FDT",
+      "name": "FOOD TECHNOLOGY"
+    }
+  ],
+  "CHET": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "CHTN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSG",
+      "name": "COMPUTER SCIENCE & DESIGN"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "CHTS": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "CJIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "CMRG": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    }
+  ],
+  "CMRK": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "CMRM": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    }
+  ],
+  "CMRN": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    }
+  ],
+  "CVRH": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EIE",
+      "name": "ELECTRONICS AND INSTRUMENTATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "DARE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "DCET": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CME",
+      "name": "COMPUTER ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "ETE",
+      "name": "ELECTRONICS AND TELECOMMUNICATION ENGG"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "DRKI": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "ELEN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "ESUT": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "ESUTSF": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "GATE": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSG",
+      "name": "COMPUTER SCIENCE & DESIGN"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    },
+    {
+      "code": "PHE",
+      "name": "PHARMACEUTICAL ENGINEERING"
+    }
+  ],
+  "GCTC": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "GKEM": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "GLOB": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "GLWC": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "GNIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "GNTW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "ETM",
+      "name": "ELECTRONICS AND TELEMATICS"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "GRRR": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "GURU": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "HIND": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "HITM": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "HOLY": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "IARE": [
+    {
+      "code": "ANE",
+      "name": "AERONAUTICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "IITT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "INDI": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "INDU": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "ISLC": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "JAYA": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JBIT": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "ECM",
+      "name": "ELECTRONICS AND COMPUTER ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JMTS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNKR": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNMB": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNPASF": [
+    {
+      "code": "PLG",
+      "name": "B.PLANNING"
+    },
+    {
+      "code": "BSE",
+      "name": "BUILDING SERVICES ENGG"
+    },
+    {
+      "code": "DTD",
+      "name": "DIGITAL TECHNIQUES FOR DESIGN AND PLANNING"
+    }
+  ],
+  "JNPL": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNTH": [
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CHE",
+      "name": "CHEMICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "GEO",
+      "name": "GEO INFORMATICS"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MET",
+      "name": "METALLURGICAL ENGINEERING"
+    }
+  ],
+  "JNTHMT": [
+    {
+      "code": "MMS",
+      "name": "BTECH MECHANICAL WITH MTECH MANUFACTURING  SYSTEMS"
+    },
+    {
+      "code": "MTE",
+      "name": "BTECH MECHANICAL WITH MTECH THERMAL ENGG"
+    }
+  ],
+  "JNTM": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "JNTR": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNTS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JNTSSF": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    }
+  ],
+  "JNWN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JOGI": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JPNE": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "JPNH": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    }
+  ],
+  "KCEA": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "KDDW": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "KGRH": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "KITS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSN",
+      "name": "COMPUTER SCIENCE & ENGINEERING (NETWORKS)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "ECV",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING (VLSI DESIGN & TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "KITW": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "KLRT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "KMCE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "KMEC": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "KMIT": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "KNRR": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "KPRC": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    }
+  ],
+  "KPRT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "KSGI": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    }
+  ],
+  "KTKM": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "KUEWSF": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "KUWL": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "LRDS": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MDRK": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "METH": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSA",
+      "name": "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MGHA": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "MGIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MCT",
+      "name": "MECHANICAL (MECHTRONICS) ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MME",
+      "name": "METALLURGICAL AND MATERIALS ENGINEERING"
+    }
+  ],
+  "MGUNSF": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "MHVR": [
+    {
+      "code": "ANE",
+      "name": "AERONAUTICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MINA": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "MJCT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSA",
+      "name": "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MLID": [
+    {
+      "code": "ANE",
+      "name": "AERONAUTICAL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MLRD": [
+    {
+      "code": "ANE",
+      "name": "AERONAUTICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MLRS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MMTZ": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CIC",
+      "name": "CSE (IoT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY)"
+    }
+  ],
+  "MOTK": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MRCE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "MRCW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "MREM": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "MRTN": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "MTEC": [
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "PHE",
+      "name": "PHARMACEUTICAL ENGINEERING"
+    }
+  ],
+  "MVSR": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CIC",
+      "name": "CSE (IoT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "NAWB": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CIC",
+      "name": "CSE (IoT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "NGIT": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "NNRG": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "NRCM": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "NREC": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "OUCE": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "BME",
+      "name": "BIO-MEDICAL ENGINEERING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "MIN",
+      "name": "MINING ENGINEERING"
+    }
+  ],
+  "OUCT": [
+    {
+      "code": "CHE",
+      "name": "CHEMICAL ENGINEERING"
+    },
+    {
+      "code": "FDT",
+      "name": "FOOD TECHNOLOGY"
+    },
+    {
+      "code": "TEX",
+      "name": "TEXTILE AND FASHION TECHNOLOGY"
+    }
+  ],
+  "PALV": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "PETW": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "PRIW": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "PUCE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    }
+  ],
+  "RITW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "SAGR": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SAIS": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SANA": [
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "PHE",
+      "name": "PHARMACEUTICAL ENGINEERING"
+    }
+  ],
+  "SBIT": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SCET": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SCIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SDES": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SDEW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "SDGI": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SIEI": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SISG": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSW",
+      "name": "COMPUTER ENGINEERING(SOFTWARE ENGINEERING)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SMED": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "SMSK": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SNIS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SNTI": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SPEC": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SPHN": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SRHP": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SRIW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SRYS": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "STLW": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CME",
+      "name": "COMPUTER ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "SUCE": [
+    {
+      "code": "CSA",
+      "name": "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "SVES": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "SVIT": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    }
+  ],
+  "SVSE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "SWET": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "TCEK": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "TCTK": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "TKEM": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "TKRC": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "TPCE": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    }
+  ],
+  "TRRM": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "TUCE": [
+    {
+      "code": "CSA",
+      "name": "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSI",
+      "name": "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "DS",
+      "name": "DATA SCIENCE"
+    }
+  ],
+  "VAGE": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VASV": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VBIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VCET": [
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VGNT": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "AIM",
+      "name": "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EIE",
+      "name": "ELECTRONICS AND INSTRUMENTATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VGSE": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VGWL": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "VISA": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VITS": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "VJEC": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "AUT",
+      "name": "AUTOMOBILE ENGINEERING"
+    },
+    {
+      "code": "BIO",
+      "name": "BIO-TECHNOLOGY"
+    },
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSB",
+      "name": "COMPUTER SCIENCE AND BUSINESS SYSTEM"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSC",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "CSO",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (IOT)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "EIE",
+      "name": "ELECTRONICS AND INSTRUMENTATION ENGINEERING"
+    },
+    {
+      "code": "EVL",
+      "name": "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    },
+    {
+      "code": "RAI",
+      "name": "ROBOTICS AND ARTIFICIAL INTELLIGENCE"
+    }
+  ],
+  "VJIT": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VMEG": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VMTW": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "INF",
+      "name": "INFORMATION TECHNOLOGY"
+    }
+  ],
+  "VREC": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    },
+    {
+      "code": "MEC",
+      "name": "MECHANICAL ENGINEERING"
+    }
+  ],
+  "VRKW": [
+    {
+      "code": "AID",
+      "name": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "CSM",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)"
+    },
+    {
+      "code": "CSD",
+      "name": "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)"
+    },
+    {
+      "code": "EEE",
+      "name": "ELECTRICAL AND ELECTRONICS ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ],
+  "WESL": [
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    }
+  ],
+  "WITS": [
+    {
+      "code": "CIV",
+      "name": "CIVIL ENGINEERING"
+    },
+    {
+      "code": "CSE",
+      "name": "COMPUTER SCIENCE AND ENGINEERING"
+    },
+    {
+      "code": "ECE",
+      "name": "ELECTRONICS AND COMMUNICATION ENGINEERING"
+    }
+  ]
+}

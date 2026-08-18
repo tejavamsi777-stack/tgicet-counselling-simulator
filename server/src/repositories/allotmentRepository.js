@@ -54,7 +54,7 @@ export const allotmentRepository = {
             branch_code, branch_name, rank, roll_no, candidate_name,
             gender, region, caste, seat_category
           ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
-          ON CONFLICT (admission_year, phase, college_code, branch_code, roll_no)
+          ON CONFLICT (exam_id, admission_year, phase, college_code, branch_code, roll_no)
           DO NOTHING
           RETURNING id;
         `;
@@ -99,7 +99,7 @@ export const allotmentRepository = {
   /**
    * Query filtered allotments with pagination and analytics summary
    */
-  async queryAllotments({ year, phase, collegeCode, branchCode, search = "", category = "", gender = "", page = 1, limit = 50 }) {
+  async queryAllotments({ examId = "tg-eapcet", year, phase, collegeCode, branchCode, search = "", category = "", gender = "", page = 1, limit = 50 }) {
     let yearNum = 2026;
     let phaseStr = "phase2";
 
@@ -119,13 +119,14 @@ export const allotmentRepository = {
 
     // 1. Fetch Candidates
     const conditions = [
-      `admission_year = $1`,
-      `phase = $2`,
-      `college_code = $3`,
-      `branch_code = $4`
+      `exam_id = $1`,
+      `admission_year = $2`,
+      `phase = $3`,
+      `college_code = $4`,
+      `branch_code = $5`
     ];
-    const params = [yearNum, phaseStr, cCode, bCode];
-    let pIdx = 5;
+    const params = [examId, yearNum, phaseStr, cCode, bCode];
+    let pIdx = 6;
 
     if (gender) {
       conditions.push(`gender = $${pIdx}`);
@@ -174,9 +175,9 @@ export const allotmentRepository = {
         COUNT(CASE WHEN gender = 'M' THEN 1 END) as male_count,
         COUNT(CASE WHEN gender = 'F' THEN 1 END) as female_count
       FROM eapcet_allotment_records
-      WHERE admission_year = $1 AND phase = $2 AND college_code = $3 AND branch_code = $4;
+      WHERE exam_id = $1 AND admission_year = $2 AND phase = $3 AND college_code = $4 AND branch_code = $5;
     `;
-    const { rows: statsRows } = await pool.query(statsQuery, [yearNum, phaseStr, cCode, bCode]);
+    const { rows: statsRows } = await pool.query(statsQuery, [examId, yearNum, phaseStr, cCode, bCode]);
     const stats = statsRows[0] || {};
     const totalSeats = parseInt(stats.total_seats || "0", 10);
     const maleCount = parseInt(stats.male_count || "0", 10);
@@ -190,11 +191,11 @@ export const allotmentRepository = {
         MIN(rank) as opening_rank,
         MAX(rank) as closing_rank
       FROM eapcet_allotment_records
-      WHERE admission_year = $1 AND phase = $2 AND college_code = $3 AND branch_code = $4
+      WHERE exam_id = $1 AND admission_year = $2 AND phase = $3 AND college_code = $4 AND branch_code = $5
       GROUP BY seat_category
       ORDER BY MIN(rank) ASC;
     `;
-    const { rows: catRows } = await pool.query(catQuery, [yearNum, phaseStr, cCode, bCode]);
+    const { rows: catRows } = await pool.query(catQuery, [examId, yearNum, phaseStr, cCode, bCode]);
 
     const categoryCounts = {};
     catRows.forEach(r => {

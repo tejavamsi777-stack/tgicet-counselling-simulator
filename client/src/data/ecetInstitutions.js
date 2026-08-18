@@ -26,9 +26,11 @@ export const ECET_BRANCHES = [
 
 export const ALL_TSCHE_COLLEGES = OFFICIAL_293_COLLEGES.map((c) => {
   const isGovt = c.name.includes("UNIVERSITY") || c.name.includes("GOVT") || c.name.startsWith("OU") || c.name.startsWith("JN");
+  const cleanFullName = (c.name || "").replace(new RegExp(`^${c.code}\\s*[-–—:]\\s*`, 'i'), '').trim();
   return {
     code: c.code,
-    name: c.name,
+    name: cleanFullName || c.name,
+    fullName: cleanFullName || c.name,
     shortName: c.code,
     district: "Telangana",
     region: "OU",

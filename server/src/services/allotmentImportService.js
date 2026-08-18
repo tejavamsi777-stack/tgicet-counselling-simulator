@@ -132,15 +132,148 @@ export const allotmentImportService = {
   },
 
   /**
+   * Fetch official data directly from live portal and preview for Admin
+   */
+  async fetchOfficialLiveAllotments({ examId = "tg-eapcet", admissionYear = 2026, phase = "final", collegeCode = "CBIT", branchCode = "CSE" }) {
+    let result = null;
+    let sourceUrl = "https://tgeapcet.nic.in/college_allotment.aspx";
+    let sourceName = "Official TG EAPCET Portal";
+    let defaultExamName = "TG EAPCET";
+
+    if (examId === "tg-ecet") {
+      sourceUrl = "https://tgecet.nic.in/college_allotment.aspx";
+      sourceName = "Official TG ECET Portal";
+      defaultExamName = "TG ECET";
+      const { scrapeOfficialTgEcetAllotment } = await import("./tgEcetAllotmentScraper.js");
+      result = await scrapeOfficialTgEcetAllotment(collegeCode, branchCode);
+      if (result && result.candidates) {
+        result.available = result.candidates.length > 0;
+        result.genderSplit = {
+          male: result.candidates.filter(c => (c.gender || "").toLowerCase().startsWith("m")).length,
+          female: result.candidates.filter(c => (c.gender || "").toLowerCase().startsWith("f")).length
+        };
+        result.categoryCounts = {};
+        result.candidates.forEach(c => {
+          result.categoryCounts[c.seatCategory] = (result.categoryCounts[c.seatCategory] || 0) + 1;
+        });
+      }
+    } else if (examId === "tg-polycet") {
+      sourceUrl = "https://tgpolycet.nic.in/college_allotment.aspx";
+      sourceName = "Official TG POLYCET Portal";
+      defaultExamName = "TG POLYCET";
+      const fs = await import("fs");
+      const path = await import("path");
+      const { fileURLToPath } = await import("url");
+      const __dirname = path.dirname(fileURLToPath(import.meta.url));
+      const polyFile = path.resolve(__dirname, `../data/polycet_allotments/${collegeCode.toUpperCase()}.json`);
+      if (fs.existsSync(polyFile)) {
+        const polyData = JSON.parse(fs.readFileSync(polyFile, "utf8"));
+        const branchObj = (polyData.branches || []).find(b => b.branchCode.toUpperCase() === branchCode.toUpperCase());
+        if (branchObj && branchObj.candidates?.length > 0) {
+          result = {
+            available: true,
+            totalSeats: branchObj.totalAllotted,
+            openingRank: branchObj.openingRank,
+            closingRank: branchObj.closingRank,
+            candidates: branchObj.candidates.map(c => ({
+              rollNo: c.hallTicket,
+              rank: c.rank,
+              candidateName: c.name,
+              gender: c.gender?.toUpperCase().startsWith("F") ? "F" : "M",
+              region: c.region || "OU",
+              category: c.caste || "OC",
+              seatCategory: c.seatCategory || "OC_GEN_OU"
+            })),
+            genderSplit: {
+              male: branchObj.candidates.filter(c => (c.gender || "").toLowerCase().startsWith("m")).length,
+              female: branchObj.candidates.filter(c => (c.gender || "").toLowerCase().startsWith("f")).length
+            },
+            categoryCounts: {}
+          };
+        }
+      }
+    } else {
+      const { scrapeOfficialTscheAllotment } = await import("./tscheAllotmentScraper.js");
+      result = await scrapeOfficialTscheAllotment(collegeCode, branchCode);
+    }
+
+    if (!result || !result.available || !result.candidates || result.candidates.length === 0) {
+      return {
+        available: false,
+        totalRecords: 0,
+        validRecords: 0,
+        invalidRecords: 0,
+        parsedRecords: [],
+        reason: result?.reason || `No records found on official portal for ${collegeCode} - ${branchCode}.`
+      };
+    }
+
+    const collegeObj = ALL_TSCHE_COLLEGES.find(c => c.code === collegeCode.toUpperCase()) || {
+      code: collegeCode.toUpperCase(),
+      name: `${collegeCode} College`
+    };
+    const branchObj = ALLOTMENT_BRANCHES.find(b => b.code === branchCode.toUpperCase()) || {
+      code: branchCode.toUpperCase(),
+      name: branchCode.toUpperCase()
+    };
+
+    const parsedRecords = result.candidates.map(c => ({
+      examId,
+      historicalExamName: defaultExamName,
+      admissionYear: parseInt(admissionYear, 10),
+      phase,
+      collegeCode: collegeCode.toUpperCase(),
+      collegeName: collegeObj.name,
+      branchCode: branchCode.toUpperCase(),
+      branchName: branchObj.name,
+      rank: c.rank,
+      rollNo: c.rollNo || c.hallTicket,
+      candidateName: c.candidateName || c.name,
+      gender: (c.gender || "M").toUpperCase().startsWith("F") ? "F" : "M",
+      region: c.region || "OU",
+      caste: c.category || c.caste || "OC",
+      seatCategory: c.seatCategory,
+      sourceUrl,
+      sourceName
+    }));
+
+    return {
+      available: true,
+      totalRecords: parsedRecords.length,
+      validRecords: parsedRecords.length,
+      invalidRecords: 0,
+      openingRank: result.openingRank,
+      closingRank: result.closingRank,
+      genderSplit: result.genderSplit,
+      categoryCounts: result.categoryCounts,
+      parsedRecords,
+      meta: {
+        examId,
+        sourceUrl,
+        sourceName,
+        admissionYear: parseInt(admissionYear, 10),
+        phase,
+        collegeCode: collegeCode.toUpperCase(),
+        collegeName: collegeObj.name,
+        branchCode: branchCode.toUpperCase(),
+        branchName: branchObj.name
+      }
+    };
+  },
+
+  /**
    * Commit verified batch into Supabase idempotently
    */
   async commitImport(records, meta = {}, user = "system_admin") {
+    const examId = meta.examId || (records[0]?.examId) || "tg-eapcet";
+    const historicalExamName = examId === "tg-ecet" ? "TG ECET" : examId === "tg-polycet" ? "TG POLYCET" : (meta.admissionYear < 2024 ? "TS EAMCET" : "TG EAPCET");
+
     // 1. Create audit log
     const log = await allotmentRepository.createImportLog({
       sourceUrl: meta.sourceUrl || "https://tgeapcet.nic.in/college_allotment.aspx",
       sourceName: meta.sourceName || "Official TSCHE Allotment Order",
-      examId: "tg-eapcet",
-      historicalExamName: meta.admissionYear < 2024 ? "TS EAMCET" : "TG EAPCET",
+      examId,
+      historicalExamName,
       admissionYear: meta.admissionYear || 2026,
       phase: meta.phase || "phase2",
       totalRecords: records.length,

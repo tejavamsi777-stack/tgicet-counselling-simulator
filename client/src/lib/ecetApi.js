@@ -13,6 +13,7 @@ export const ecetApi = {
     return api.get(`/ecet/colleges${query ? `?${query}` : ''}`);
   },
   getCollegeByCode: (code) => api.get(`/ecet/colleges/${code}`),
+  getCollegeBranches: (code) => api.get(`/ecet/colleges/${code}/branches`),
   compare: (c1, c2, branch = 'CSE') => api.get(`/ecet/compare?c1=${c1}&c2=${c2}&branch=${branch}`),
   compareColleges: (c1, c2, branch = 'CSE') => api.get(`/ecet/compare?c1=${c1}&c2=${c2}&branch=${branch}`),
   getAllotmentMeta: () => api.get('/ecet/allotments/meta'),

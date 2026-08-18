@@ -447,6 +447,57 @@ export const polycetController = {
   },
 
   // GET /api/polycet/allotments/summary
+  // GET /api/polycet/allotments/meta
+  async getAllotmentMeta(req, res) {
+    try {
+      const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
+      let collegeBranches = {};
+      let colleges = [];
+      if (fs.existsSync(summaryPath)) {
+        const summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+        summaryData.forEach((col) => {
+          colleges.push({ code: col.code, name: col.name, district: col.district, type: col.type });
+          collegeBranches[col.code] = (col.branches || []).map((b) => ({
+            code: b.branchCode,
+            name: b.branchName || b.branchCode,
+            totalAllotted: b.totalAllotted
+          }));
+        });
+      }
+      res.json({
+        success: true,
+        data: {
+          years: [{ id: "2026", label: "2026 Final Phase Allotments" }],
+          colleges: colleges.length > 0 ? colleges : POLYCET_INSTITUTIONS,
+          branches: POLYCET_BRANCHES,
+          collegeBranches,
+        }
+      });
+    } catch (e) {
+      res.status(500).json({ success: false, error: e.message });
+    }
+  },
+
+  // GET /api/polycet/colleges/:code/branches
+  async getCollegeBranches(req, res) {
+    const code = (req.params.code || "").toUpperCase();
+    const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
+    let branches = [];
+    if (fs.existsSync(summaryPath)) {
+      const summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+      const col = summaryData.find((c) => c.code === code);
+      if (col) {
+        branches = (col.branches || []).map((b) => ({
+          code: b.branchCode,
+          name: b.branchName || b.branchCode,
+          totalAllotted: b.totalAllotted
+        }));
+      }
+    }
+    res.json({ success: true, collegeCode: code, branches });
+  },
+
+  // GET /api/polycet/allotments/summary
   async getAllotmentsSummary(req, res) {
     try {
       const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');

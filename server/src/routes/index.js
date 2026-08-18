@@ -43,6 +43,7 @@ router.get("/eapcet/counselling-data", eapcetController.getCounsellingData);
 router.get("/eapcet/notifications", eapcetController.getNotifications);
 router.get("/eapcet/colleges", eapcetController.getInstitutions);
 router.get("/eapcet/colleges/:code", eapcetController.getInstitutionByCode);
+router.get("/eapcet/colleges/:code/branches", eapcetController.getCollegeBranches);
 router.get("/eapcet/compare", eapcetController.compareInstitutions);
 router.get("/eapcet/allotments/meta", eapcetController.getAllotmentMeta);
 router.get("/eapcet/allotments", eapcetController.getAllotmentData);
@@ -53,6 +54,7 @@ router.get("/ecet/notifications", ecetController.getNotifications);
 router.post("/ecet/refresh", ecetController.refreshNotifications);
 router.get("/ecet/colleges", ecetController.getInstitutions);
 router.get("/ecet/colleges/:code", ecetController.getInstitutionByCode);
+router.get("/ecet/colleges/:code/branches", ecetController.getCollegeBranches);
 router.get("/ecet/compare", ecetController.compareInstitutions);
 router.get("/ecet/allotments/meta", ecetController.getAllotmentMeta);
 router.get("/ecet/allotments", ecetController.getAllotmentData);
@@ -91,6 +93,7 @@ router.get("/admin/dashboard/stats", requireAdminAuth, adminDashboardController.
 
 // ---------- Admin: EAPCET Scrape Trigger & Allotment Ingestion ----------
 router.post("/admin/eapcet/refresh", requireAdminAuth, eapcetController.triggerRefresh);
+router.post("/admin/eapcet/allotments/fetch-live", requireAdminAuth, requireRole("super_admin", "admin"), eapcetController.fetchOfficialAllotmentLive);
 router.post("/admin/eapcet/allotments/preview", requireAdminAuth, requireRole("super_admin", "admin"), eapcetController.previewAllotmentImport);
 router.post("/admin/eapcet/allotments/commit", requireAdminAuth, requireRole("super_admin", "admin"), eapcetController.commitAllotmentImport);
 
