@@ -1380,13 +1380,15 @@ export default function AllotmentExplorer() {
                           </span>
                         </td>
                         <td className="py-3 px-4">
-                          <span
-                            className={`text-[11px] font-semibold ${
-                              c.gender === 'Female' ? 'text-pink-400' : 'text-sky-400'
-                            }`}
-                          >
-                            {c.gender}
-                          </span>
+                          {String(c.gender).toUpperCase().startsWith('F') ? (
+                            <span className="inline-flex items-center gap-1 rounded-md border border-pink-500/30 bg-pink-500/10 px-2 py-0.5 text-xs font-bold font-mono text-pink-400">
+                              ♀ F
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 rounded-md border border-sky-500/30 bg-sky-500/10 px-2 py-0.5 text-xs font-bold font-mono text-sky-400">
+                              ♂ M
+                            </span>
+                          )}
                         </td>
                         <td className="py-3 px-4 font-mono text-white/70">{c.caste}</td>
                         <td className="py-3 px-4 font-mono text-white/50">{c.region}</td>
