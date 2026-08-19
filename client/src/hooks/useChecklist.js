@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { checklistApi } from '../lib/eapcetApi';
 import { getUserToken } from '../lib/api';
-import { supabase } from '../lib/supabase';
 
 const LS_KEY_PREFIX = 'tg_user_checklist_';
 
@@ -51,14 +50,19 @@ export function useChecklist(exam = 'tg-eapcet') {
   const { user } = useAuth();
   const token = getUserToken();
   const isRegisteredUser = Boolean((user && !user.is_guest) || token);
-  const userId = user?.id || (token ? 'active_user' : null);
 
   const [ticked, setTicked] = useState(() => readLocalChecklist(user, exam));
   const [loading, setLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState(false);
-  const [lastSavedAt, setLastSavedAt] = useState(null);
+  const [lastSavedAt, setLastSavedAt] = useState(() => {
+    try {
+      return localStorage.getItem(`tg_saved_at_${exam}`) || null;
+    } catch {
+      return null;
+    }
+  });
   const [syncStatus, setSyncStatus] = useState('synced');
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [isLiveConnected, setIsLiveConnected] = useState(true);
@@ -69,16 +73,19 @@ export function useChecklist(exam = 'tg-eapcet') {
   const userRef = useRef(user);
   userRef.current = user;
 
-  const lastMutationTimeRef = useRef(0);
+  const lastSavedAtRef = useRef(lastSavedAt);
+  lastSavedAtRef.current = lastSavedAt;
 
-  // Online / offline tracking
+  const lastLocalMutationTimeRef = useRef(0);
+
+  // Online / offline listeners
   useEffect(() => {
     const handleOnline = () => {
       setIsOffline(false);
       setIsLiveConnected(true);
     };
     const handleOffline = () => {
-      setIsOffline(true);
+      setIsOffline(false);
       setIsLiveConnected(false);
     };
     window.addEventListener('online', handleOnline);
@@ -102,7 +109,9 @@ export function useChecklist(exam = 'tg-eapcet') {
     async (force = false) => {
       const activeToken = getUserToken();
       if (!activeToken || !navigator.onLine) return;
-      if (!force && Date.now() - lastMutationTimeRef.current < 2500) return;
+
+      // Don't poll if user recently clicked a box on this device
+      if (!force && Date.now() - lastLocalMutationTimeRef.current < 4000) return;
 
       try {
         const res = await checklistApi.get(exam);
@@ -113,78 +122,38 @@ export function useChecklist(exam = 'tg-eapcet') {
           : [];
 
         const serverSet = new Set(serverList);
+        const serverTimestamp = res?.lastSavedAt || null;
 
-        // Apply server state if no recent local click
-        if (force || Date.now() - lastMutationTimeRef.current >= 2500) {
+        // If another device updated the server or on initial force load
+        const isServerNewer =
+          serverTimestamp &&
+          lastSavedAtRef.current &&
+          new Date(serverTimestamp).getTime() > new Date(lastSavedAtRef.current).getTime() + 500;
+
+        if (force || isServerNewer || !lastSavedAtRef.current) {
           if (!areSetsEqual(serverSet, tickedRef.current)) {
+            // Apply server state
             setTicked(serverSet);
             writeLocalChecklist(userRef.current, exam, serverSet);
           }
+          if (serverTimestamp) {
+            setLastSavedAt(serverTimestamp);
+            try {
+              localStorage.setItem(`tg_saved_at_${exam}`, serverTimestamp);
+            } catch {}
+          }
         }
 
-        if (res?.lastSavedAt) {
-          setLastSavedAt(res.lastSavedAt);
-        }
         setSyncStatus('synced');
         setIsLiveConnected(true);
       } catch (err) {
-        // ignore
+        // ignore network hiccups
       }
     },
     [exam]
   );
 
-  // Supabase Realtime Channel Subscription (Postgres Changes & Broadcast)
-  useEffect(() => {
-    if (!userId || userId === 'active_user') return;
-
-    const channelName = `checklist_sync_${userId}_${exam}`;
-    const channel = supabase.channel(channelName, {
-      config: {
-        broadcast: { ack: false },
-      },
-    });
-
-    // 1. Listen for Supabase Realtime Broadcast from peer devices
-    channel.on('broadcast', { event: 'tick_update' }, ({ payload }) => {
-      if (!payload || !payload.tickedDocIds) return;
-      if (Date.now() - lastMutationTimeRef.current < 1500) return;
-
-      const incomingSet = new Set(payload.tickedDocIds);
-      if (!areSetsEqual(incomingSet, tickedRef.current)) {
-        setTicked(incomingSet);
-        writeLocalChecklist(userRef.current, exam, incomingSet);
-        if (payload.lastSavedAt) setLastSavedAt(payload.lastSavedAt);
-      }
-    });
-
-    // 2. Listen for Supabase Postgres Changes on checklist_progress table
-    channel.on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'checklist_progress',
-        filter: `user_id=eq.${userId}`,
-      },
-      (change) => {
-        if (Date.now() - lastMutationTimeRef.current < 2000) return;
-        fetchFromServer(true);
-      }
-    );
-
-    channel.subscribe((status) => {
-      if (status === 'SUBSCRIBED') {
-        setIsLiveConnected(true);
-      }
-    });
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [userId, exam, fetchFromServer]);
-
-  // Initial load + Real-time 1.5-second Heartbeat
+  // Initial load + Real-time 2-second Polling for Instant Cross-Device Sync
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
@@ -200,10 +169,10 @@ export function useChecklist(exam = 'tg-eapcet') {
 
     const pollTimer = setInterval(() => {
       fetchFromServer(false);
-    }, 1500);
+    }, 2000);
 
     const handleFocus = () => {
-      fetchFromServer(false);
+      fetchFromServer(true);
     };
 
     window.addEventListener('focus', handleFocus);
@@ -217,10 +186,11 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, [user, exam, fetchFromServer]);
 
-  // Toggle document checkbox: IMMEDIATELY persists locally, syncs to DB, and broadcasts in Realtime
+  // Toggle document checkbox: IMMEDIATELY persists locally & syncs to DB
   const toggleDoc = useCallback(
     async (docId) => {
-      lastMutationTimeRef.current = Date.now();
+      lastLocalMutationTimeRef.current = Date.now();
+      const nowIso = new Date().toISOString();
 
       const current = tickedRef.current;
       const next = new Set(current);
@@ -230,29 +200,15 @@ export function useChecklist(exam = 'tg-eapcet') {
         next.add(docId);
       }
 
-      // 1. Instant local optimistic update
+      // 1. Instant optimistic update
       setTicked(next);
       writeLocalChecklist(userRef.current, exam, next);
+      setLastSavedAt(nowIso);
+      try {
+        localStorage.setItem(`tg_saved_at_${exam}`, nowIso);
+      } catch {}
 
-      // 2. Broadcast immediately over Realtime channel to other tabs/devices
-      const currentUserId = userRef.current?.id;
-      if (currentUserId) {
-        try {
-          const channelName = `checklist_sync_${currentUserId}_${exam}`;
-          supabase.channel(channelName).send({
-            type: 'broadcast',
-            event: 'tick_update',
-            payload: {
-              tickedDocIds: [...next],
-              lastSavedAt: new Date().toISOString(),
-            },
-          });
-        } catch {
-          // ignore
-        }
-      }
-
-      // 3. Instant server sync to PostgreSQL
+      // 2. Instant server sync
       const activeToken = getUserToken();
       if (activeToken && navigator.onLine) {
         setSyncStatus('syncing');
@@ -260,10 +216,12 @@ export function useChecklist(exam = 'tg-eapcet') {
 
         try {
           const res = await checklistApi.sync(exam, [...next]);
-          lastMutationTimeRef.current = Date.now();
-          if (res?.lastSavedAt) {
-            setLastSavedAt(res.lastSavedAt);
-          }
+          const confirmedTimestamp = res?.lastSavedAt || nowIso;
+          setLastSavedAt(confirmedTimestamp);
+          try {
+            localStorage.setItem(`tg_saved_at_${exam}`, confirmedTimestamp);
+          } catch {}
+
           setSyncStatus('synced');
           setSaveSuccess(true);
           setTimeout(() => setSaveSuccess(false), 2000);
@@ -284,7 +242,8 @@ export function useChecklist(exam = 'tg-eapcet') {
       return false;
     }
 
-    lastMutationTimeRef.current = Date.now();
+    lastLocalMutationTimeRef.current = Date.now();
+    const nowIso = new Date().toISOString();
     setIsSaving(true);
     setSaveError(false);
 
@@ -299,9 +258,13 @@ export function useChecklist(exam = 'tg-eapcet') {
 
       setTicked(serverSet);
       writeLocalChecklist(userRef.current, exam, serverSet);
-      if (res?.lastSavedAt) setLastSavedAt(res.lastSavedAt);
+      
+      const confirmedTimestamp = res?.lastSavedAt || nowIso;
+      setLastSavedAt(confirmedTimestamp);
+      try {
+        localStorage.setItem(`tg_saved_at_${exam}`, confirmedTimestamp);
+      } catch {}
 
-      lastMutationTimeRef.current = Date.now();
       setSyncStatus('synced');
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
