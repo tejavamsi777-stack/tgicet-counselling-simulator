@@ -1,5 +1,6 @@
 import { Bell, ArrowUpRight, ChevronRight, RefreshCw } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useIcetData } from '../../hooks/useIcetData';
 
 export default function LiveNotificationsStream() {
@@ -61,11 +62,11 @@ export default function LiveNotificationsStream() {
               <Bell size={13} />
             </div>
             <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              Official TG ICET 2026 Notifications &amp; Circulars
+              TG ICET 2026 Notifications &amp; Circulars
             </h2>
           </div>
           <p className="text-[11px] text-white/50 mt-0.5">
-            Directly verified and extracted live from official government portal (tgicet.nic.in)
+            Live circulars, admissions schedule, and verified counselling notifications
           </p>
         </div>
 
@@ -73,7 +74,7 @@ export default function LiveNotificationsStream() {
         <div className="flex items-center gap-2 self-start sm:self-auto">
           <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{syncSuccess ? 'Synced Successfully!' : `Live Official Sync • ${lastSynced}`}</span>
+            <span>{syncSuccess ? 'Synced Successfully!' : `Live Updates • ${lastSynced}`}</span>
           </div>
 
           <button
@@ -81,7 +82,7 @@ export default function LiveNotificationsStream() {
             onClick={handleManualRefresh}
             disabled={refreshing}
             className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/15 hover:bg-purple-500/25 px-2.5 py-1 text-[11px] font-bold text-purple-200 transition-all active:scale-95 cursor-pointer disabled:opacity-50"
-            title="Fetch live latest notifications from official ICET portal"
+            title="Fetch latest notifications"
           >
             <RefreshCw size={11} className={refreshing ? 'animate-spin text-purple-300' : 'text-purple-300'} />
             <span>{refreshing ? 'Syncing...' : 'Sync Live'}</span>
@@ -95,22 +96,28 @@ export default function LiveNotificationsStream() {
       ) : (
         <div className="rounded-xl border border-white/[0.08] overflow-hidden divide-y divide-white/[0.06] sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px sm:bg-white/[0.06]">
           {items.map((item, idx) => {
-            const url = item.fileUrl || item.url || item.href || 'https://tgicet.nic.in/default.aspx';
-            const isInternal = item.isExternal === false || url.startsWith('/');
-            const isPdf = item.isPdf || url.endsWith('.pdf') || item.badge?.includes('PDF');
+            const rawUrl = item.fileUrl || item.url || item.href || '';
+            const isAllotment =
+              rawUrl.toLowerCase().includes('college_allotment') ||
+              item.title?.toLowerCase().includes('allotment detail') ||
+              item.title?.toLowerCase().includes('college-wise allotment');
 
-            return (
-              <a
-                key={item.id || idx}
-                href={url}
-                target={isInternal ? '_self' : '_blank'}
-                rel={isInternal ? undefined : 'noopener noreferrer'}
-                className="group flex items-center justify-between gap-3 bg-black/60 hover:bg-purple-950/30 transition-all p-3 sm:px-4 sm:py-2.5 cursor-pointer"
-              >
+            const targetUrl = isAllotment ? '/allotments' : (rawUrl || '#');
+            const isInternal = isAllotment || item.isExternal === false || targetUrl.startsWith('/');
+            const isPdf = item.isPdf || targetUrl.endsWith('.pdf') || item.badge?.includes('PDF');
+
+            const badgeText = isAllotment || isInternal
+              ? 'LIVE DATA'
+              : isPdf
+              ? 'PDF NOTICE'
+              : (item.badge?.replace('OFFICIAL ', '') || 'CIRCULAR');
+
+            const content = (
+              <>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 mb-1 flex-wrap">
                     <span className="rounded border border-purple-400/30 bg-purple-500/10 px-1.5 py-0.2 text-[9px] font-bold font-mono text-purple-300">
-                      {isPdf ? 'OFFICIAL PDF' : isInternal ? 'LIVE DATA' : 'OFFICIAL CIRCULAR'}
+                      {badgeText}
                     </span>
                     {item.isNew && (
                       <span className="rounded bg-rose-500/20 border border-rose-500/30 px-1 py-0.2 text-[8px] font-bold text-rose-300 uppercase animate-pulse">
@@ -132,6 +139,30 @@ export default function LiveNotificationsStream() {
                     <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   )}
                 </div>
+              </>
+            );
+
+            if (isInternal) {
+              return (
+                <Link
+                  key={item.id || idx}
+                  to={targetUrl}
+                  className="group flex items-center justify-between gap-3 bg-black/60 hover:bg-purple-950/30 transition-all p-3 sm:px-4 sm:py-2.5 cursor-pointer"
+                >
+                  {content}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                key={item.id || idx}
+                href={targetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between gap-3 bg-black/60 hover:bg-purple-950/30 transition-all p-3 sm:px-4 sm:py-2.5 cursor-pointer"
+              >
+                {content}
               </a>
             );
           })}

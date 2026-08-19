@@ -6,13 +6,15 @@ import { GlassButton } from "../ui/glass-button";
 
 export default function ExamCard({ exam }) {
   const available = exam.status === "available";
-  const { user } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const navigate = useNavigate();
 
   function handleClick(e) {
     if (!user) {
       e.preventDefault();
-      navigate("/login", { state: { from: { pathname: `/exams/${exam.slug}` } } });
+      openAuthModal("login", () => {
+        navigate(`/exams/${exam.slug}`);
+      });
     }
   }
 

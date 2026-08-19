@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { checklistApi } from '../lib/eapcetApi';
 
@@ -25,38 +25,65 @@ function writeUserLocalStorage(userId, exam, set) {
 
 export function useChecklist(exam = 'tg-eapcet') {
   const { user } = useAuth();
-  // Only actual signed-in registered users (not guests) persist data
+  // Only actual signed-in registered users (not guests) persist data to server
   const isRegisteredUser = Boolean(user && !user.is_guest);
   const userId = isRegisteredUser ? (user.id || user.email) : null;
 
-  // Guest users start with a fresh in-memory Set; registered users load their saved state
+  // Initial state from localStorage if available
   const [ticked, setTicked] = useState(() => (isRegisteredUser ? readUserLocalStorage(userId, exam) : new Set()));
   const [loading, setLoading] = useState(false);
+  const [syncStatus, setSyncStatus] = useState('synced'); // 'synced' | 'syncing' | 'error'
 
-  // Sync state when user logs in or switches account
+  // Fetch and sync checklist whenever user or exam changes
   useEffect(() => {
     if (!isRegisteredUser || !userId) {
-      // Guest or logged out: in-memory state only (resets on refresh / new tab)
+      // Guest or logged out: in-memory state only
       return;
     }
 
+    let isMounted = true;
     setLoading(true);
+    setSyncStatus('syncing');
+
+    // Read initial local cache
     const localSet = readUserLocalStorage(userId, exam);
-    setTicked(localSet);
+    if (localSet.size > 0) {
+      setTicked(localSet);
+    }
 
     checklistApi.get(exam)
       .then(res => {
-        const serverIds = Array.isArray(res?.tickedDocIds) ? res.tickedDocIds : [];
-        setTicked(prev => {
-          const merged = new Set([...prev, ...serverIds]);
-          writeUserLocalStorage(userId, exam, merged);
-          return merged;
-        });
+        if (!isMounted) return;
+        const serverList = Array.isArray(res?.ticked)
+          ? res.ticked
+          : Array.isArray(res?.tickedDocIds)
+          ? res.tickedDocIds
+          : [];
+
+        const serverSet = new Set(serverList);
+
+        // Merge any local offline ticks with server ticks
+        const merged = new Set([...localSet, ...serverSet]);
+        setTicked(merged);
+        writeUserLocalStorage(userId, exam, merged);
+
+        // If local had unsynced items not yet on the server, push sync to server
+        if (merged.size > serverSet.size) {
+          checklistApi.sync(exam, [...merged]).catch(() => {});
+        }
+
+        setSyncStatus('synced');
       })
       .catch(() => {
-        // silently fallback to local storage
+        if (isMounted) setSyncStatus('error');
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [isRegisteredUser, userId, exam]);
 
   const toggleDoc = useCallback((docId) => {
@@ -69,15 +96,36 @@ export function useChecklist(exam = 'tg-eapcet') {
         next.delete(docId);
       }
 
-      // ONLY save to localStorage & backend if the user is a registered signed-in user
+      // Save to localStorage & push to backend if registered user
       if (isRegisteredUser && userId) {
         writeUserLocalStorage(userId, exam, next);
-        checklistApi.update(exam, docId, nowTicked).catch(() => {});
+        setSyncStatus('syncing');
+        checklistApi
+          .update(exam, docId, nowTicked)
+          .then(() => setSyncStatus('synced'))
+          .catch(() => setSyncStatus('error'));
       }
 
       return next;
     });
   }, [isRegisteredUser, userId, exam]);
 
-  return { ticked, toggleDoc, loading, isRegisteredUser };
+  // Backward compatibility object mapping
+  const checkedItems = useMemo(() => {
+    const obj = {};
+    for (const id of ticked) {
+      obj[id] = true;
+    }
+    return obj;
+  }, [ticked]);
+
+  return {
+    ticked,
+    toggleDoc,
+    checkedItems,
+    toggleItem: toggleDoc,
+    loading,
+    isRegisteredUser,
+    syncStatus,
+  };
 }

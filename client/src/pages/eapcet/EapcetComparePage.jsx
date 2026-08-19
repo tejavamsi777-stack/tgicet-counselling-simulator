@@ -35,7 +35,7 @@ export default function EapcetComparePage() {
           Institution Comparison Engine
         </span>
         <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          Engineering College Matrix
+          Compare Engineering Colleges
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-2xl">
           Evaluate any two Telangana engineering colleges side-by-side across 3-year cutoff benchmarks, highest/average packages, and government fee tiers.

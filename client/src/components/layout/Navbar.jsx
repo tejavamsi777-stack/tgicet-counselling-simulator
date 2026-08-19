@@ -361,7 +361,7 @@ export default function Navbar() {
 }
 
 function MobileMenuList({ onClose }) {
-  const { user, logout, updateProfile, changePassword } = useAuth();
+  const { user, logout, updateProfile, changePassword, openAuthModal } = useAuth();
   const navigate = useNavigate();
 
   const [expandedSection, setExpandedSection] = useState(null);
@@ -577,7 +577,7 @@ function MobileMenuList({ onClose }) {
         <button
           onClick={() => {
             onClose();
-            navigate("/login");
+            openAuthModal("login");
           }}
           className="border-b border-white/10 px-6 py-3.5 text-left font-semibold text-purple-300 hover:bg-white/10"
         >

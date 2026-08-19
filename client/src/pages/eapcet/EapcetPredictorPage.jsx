@@ -15,10 +15,10 @@ import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 
-import { sortCourses } from "../../hooks/useReferenceData";
+import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 
 export default function EapcetPredictorPage() {
-  const [reference, setReference] = useState({ years: [], categories: [], courses: [], districts: [] });
+  const { years, categories, courses, districts } = useReferenceData("tg-eapcet");
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");
@@ -28,31 +28,14 @@ export default function EapcetPredictorPage() {
   const [selectedYears, setSelectedYears] = useState([]);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
-  const [initLoading, setInitLoading] = useState(true);
   const [predicting, setPredicting] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
-    Promise.all([
-      api.get("/years?exam=tg-eapcet"),
-      api.get("/categories?exam=tg-eapcet"),
-      api.get("/courses?exam=tg-eapcet"),
-      api.get("/districts?exam=tg-eapcet"),
-    ])
-      .then(([years, categories, courses, districts]) => {
-        if (!cancelled) {
-          const sortedCourses = sortCourses(courses, "tg-eapcet");
-          setReference({ years, categories, courses: sortedCourses, districts });
-          setYear(String(years[0]?.year ?? ""));
-          setSelectedYears(years.map((y) => Number(y.year)));
-          setCategory("");
-          setSelectedCourses([]);
-        }
-      })
-      .catch((e) => !cancelled && setError(e.message))
-      .finally(() => !cancelled && setInitLoading(false));
-    return () => { cancelled = true; };
-  }, []);
+    if (years && years.length > 0) {
+      setYear(String(years[0]?.year ?? ""));
+      setSelectedYears(years.map((y) => Number(y.year)));
+    }
+  }, [years]);
 
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid TG EAPCET rank.");
@@ -71,7 +54,7 @@ export default function EapcetPredictorPage() {
           districts: selectedDistricts,
           years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
         }),
-        new Promise((resolve) => setTimeout(resolve, 2500)),
+        new Promise((resolve) => setTimeout(resolve, 800)),
       ]);
       const rawResults = Array.isArray(response) ? response : (response.results || []);
       setResults(
@@ -126,15 +109,8 @@ export default function EapcetPredictorPage() {
             </p>
           </div>
 
-          {initLoading ? (
-            <div className="mt-8 flex items-center gap-2 text-sm text-gray-300">
-              <Loader2 size={16} className="animate-spin" />
-              Loading reference data…
-            </div>
-          ) : (
-            <>
-              {/* Responsive Inputs Grid */}
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Responsive Inputs Grid */}
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {/* 1. Rank */}
                 <div className="relative z-[60]">
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
@@ -174,7 +150,7 @@ export default function EapcetPredictorPage() {
                   <BranchMultiSelect
                     selectedCourses={selectedCourses}
                     setSelectedCourses={setSelectedCourses}
-                    courses={reference.courses}
+                    courses={courses}
                     examSlug="tg-eapcet"
                   />
                 </div>
@@ -187,7 +163,7 @@ export default function EapcetPredictorPage() {
                   <DistrictMultiSelect
                     selectedDistricts={selectedDistricts}
                     setSelectedDistricts={setSelectedDistricts}
-                    districts={reference.districts}
+                    districts={districts}
                     examSlug="tg-eapcet"
                   />
                 </div>
@@ -202,7 +178,7 @@ export default function EapcetPredictorPage() {
                     setYear={setYear}
                     selectedYears={selectedYears}
                     setSelectedYears={setSelectedYears}
-                    years={reference.years}
+                    years={years}
                   />
                 </div>
               </div>
@@ -230,11 +206,8 @@ export default function EapcetPredictorPage() {
                   )}
                 </GlassButton>
               </div>
-            </>
-          )}
         </GlowCard>
       </section>
-
 
       <AnimatePresence>
         {predicting && (
@@ -253,7 +226,7 @@ export default function EapcetPredictorPage() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 space-y-8"
           >
-            <ResultsTable results={results} activeYears={reference.years} showYear examTitle="TG EAPCET 2025" />
+            <ResultsTable results={results} activeYears={years} showYear examTitle="TG EAPCET 2025" />
             {/* Passive ad unit placed safely below prediction results */}
             <AdSenseUnit slotName="predictorResults" minHeight={90} />
           </motion.div>

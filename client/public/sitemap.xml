@@ -151,14 +151,36 @@
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
+
+  <!-- Popular College Profile Pages -->
   <url>
-    <loc>https://tgcounselling.vercel.app/exams/tg-pglcet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://tgcounselling.vercel.app/colleges/CBIT</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://tgcounselling.vercel.app/exams/tg-pecet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <loc>https://tgcounselling.vercel.app/colleges/VNRV</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://tgcounselling.vercel.app/colleges/OUCE</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://tgcounselling.vercel.app/colleges/VASV</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://tgcounselling.vercel.app/colleges/JNTH</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://tgcounselling.vercel.app/colleges/KMIT</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

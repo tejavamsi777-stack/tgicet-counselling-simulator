@@ -88,11 +88,6 @@ export default function PolycetHome() {
         />
       </div>
 
-      {/* Community Alert Broadcast Hub */}
-      <div className="mt-12">
-        <CommunityAlertsBanner />
-      </div>
-
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
         <AdSenseUnit slotName="examBanner" minHeight={90} />

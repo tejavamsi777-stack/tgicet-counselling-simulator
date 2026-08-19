@@ -4,10 +4,12 @@ import Button from "../ui/Button";
 import { exportToExcel, exportToPDF } from "../../utils/exportResults";
 import { useAuth } from "../../context/AuthContext";
 import LoginModal from "../shared/LoginModal";
+import { ShareModal } from "../shared/ShareModal";
 
 export default function ExportButtons({ results = [], examTitle = "TG Counselling" }) {
   const { user } = useAuth();
   const [loginOpen, setLoginOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const [pendingExport, setPendingExport] = useState(null); // "excel" | "pdf" | null
 
   if (!results.length) return null;
@@ -36,28 +38,23 @@ export default function ExportButtons({ results = [], examTitle = "TG Counsellin
     }
   }
 
-  function handleWhatsAppShare() {
-    const topSafe = results.filter((r) => r.status === "safe").slice(0, 4);
-    const topColleges = (topSafe.length > 0 ? topSafe : results.slice(0, 4))
-      .map((c, i) => `${i + 1}. *${c.name}* (${c.course || "General"}) - ${c.status?.toUpperCase()}`)
-      .join("\n");
+  const topSafe = results.filter((r) => r.status === "safe").slice(0, 4);
+  const topColleges = (topSafe.length > 0 ? topSafe : results.slice(0, 4))
+    .map((c, i) => `${i + 1}. ${c.name} (${c.course || "General"}) - ${c.status?.toUpperCase()}`)
+    .join("\n");
 
-    const text = `🎓 *${examTitle} College Predictor Report*\n\nTop Recommended Eligible Colleges:\n${topColleges}\n\n📊 Total Colleges Found: *${results.length}*\n🔗 Predict your chances live:\n${window.location.href}`;
-
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
-  }
+  const shareText = `🎓 ${examTitle} College Predictor Report\n\nTop Recommended Eligible Colleges:\n${topColleges}\n\n📊 Total Colleges Found: ${results.length}\n🔗 Predict your chances live:\n`;
 
   return (
     <div className="flex flex-wrap items-center gap-2">
       <button
         type="button"
-        onClick={handleWhatsAppShare}
-        className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 transition-all hover:bg-emerald-500/20 hover:border-emerald-500/50 shadow-sm cursor-pointer"
-        title="Share summary on WhatsApp"
+        onClick={() => setShareOpen(true)}
+        className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-xs font-semibold text-purple-300 transition-all hover:bg-purple-500/20 hover:border-purple-500/50 shadow-sm cursor-pointer"
+        title="Share results via Apps"
       >
-        <Share2 size={13} className="text-emerald-400" />
-        <span>Share WhatsApp</span>
+        <Share2 size={13} className="text-purple-400" />
+        <span>Share</span>
       </button>
 
       <Button variant="secondary" size="sm" onClick={() => handleExportClick("excel")}>
@@ -69,6 +66,16 @@ export default function ExportButtons({ results = [], examTitle = "TG Counsellin
         <FileText size={14} />
         <span>PDF</span>
       </Button>
+
+      <ShareModal
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+        shareData={{
+          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
+          title: `${examTitle} Predictions Report`,
+          text: shareText,
+        }}
+      />
 
       <LoginModal
         open={loginOpen}

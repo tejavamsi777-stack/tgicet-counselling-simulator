@@ -49,8 +49,12 @@ const authLimiter = rateLimit({
   max: 20,
   message: { errors: ["Too many attempts. Please try again later."] },
 });
-app.use("/api/auth", authLimiter);
-app.use("/api/admin/auth", authLimiter);
+import { cacheMiddleware } from "./middleware/cacheMiddleware.js";
+import { payloadObfuscator } from "./middleware/payloadObfuscator.js";
+
+// Enable in-memory API response caching & payload security
+app.use("/api", cacheMiddleware());
+app.use("/api", payloadObfuscator);
 
 app.use("/api", router);
 

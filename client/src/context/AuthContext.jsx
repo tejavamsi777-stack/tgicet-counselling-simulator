@@ -179,6 +179,28 @@ export function AuthProvider({ children }) {
     return data;
   }, []);
 
+  // Global Auth Modal State
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState("login");
+  const [authModalCallback, setAuthModalCallback] = useState(null);
+
+  const openAuthModal = useCallback((mode = "login", onAuthenticated = null) => {
+    setAuthModalMode(mode);
+    setAuthModalCallback(() => onAuthenticated);
+    setAuthModalOpen(true);
+  }, []);
+
+  const closeAuthModal = useCallback(() => {
+    setAuthModalOpen(false);
+    setAuthModalCallback(null);
+  }, []);
+
+  const handleAuthModalSuccess = useCallback(() => {
+    if (authModalCallback && typeof authModalCallback === "function") {
+      authModalCallback();
+    }
+  }, [authModalCallback]);
+
   const value = {
     user,
     loading,
@@ -191,6 +213,11 @@ export function AuthProvider({ children }) {
     changePassword,
     forgotPassword,
     resetPassword,
+    authModalOpen,
+    authModalMode,
+    openAuthModal,
+    closeAuthModal,
+    handleAuthModalSuccess,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

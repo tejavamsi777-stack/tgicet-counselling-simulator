@@ -64,8 +64,8 @@ export default function IcetHome() {
         />
         <FeatureCard
           icon={ArrowLeftRight}
-          title="College Matrix"
-          detail="Compare any two MBA/MCA colleges across cutoffs, fees & placement CTCs."
+          title="Compare Colleges"
+          detail="Compare any two MBA/MCA institutions side-by-side across cutoffs, fee structures & placements."
           to="/tg-icet/compare"
           action="Compare"
         />
@@ -76,11 +76,6 @@ export default function IcetHome() {
           to="/tg-icet/documents"
           action="Check Docs"
         />
-      </div>
-
-      {/* Community Alert Broadcast Hub */}
-      <div className="mt-12">
-        <CommunityAlertsBanner />
       </div>
 
       {/* Passive ad banner */}

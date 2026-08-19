@@ -130,18 +130,40 @@ export function sortCourses(courses = [], examSlug = "tg-eapcet") {
   });
 }
 
-// In-memory cache across all dropdown instances and page navigations
+// In-memory + sessionStorage cache across all dropdown instances and page navigations
 const referenceCache = new Map();
+
+function readSessionCache(key) {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(`tg_ref_${key}`);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeSessionCache(key, val) {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(`tg_ref_${key}`, JSON.stringify(val));
+  } catch {
+    // ignore quota
+  }
+}
 
 /**
  * Fetches courses/categories/districts/years once and caches them.
  */
 export function useReferenceData(examSlug = "tg-icet") {
   const cacheKey = examSlug || "default";
-  const cached = referenceCache.get(cacheKey);
+  const cached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
 
   const [data, setData] = useState(() => {
-    if (cached) return cached;
+    if (cached) {
+      referenceCache.set(cacheKey, cached);
+      return cached;
+    }
     return {
       courses: [],
       categories: [],
@@ -153,8 +175,9 @@ export function useReferenceData(examSlug = "tg-icet") {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (referenceCache.has(cacheKey)) {
-      setData(referenceCache.get(cacheKey));
+    const memCached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+    if (memCached) {
+      setData(memCached);
       setLoading(false);
       return;
     }
@@ -177,6 +200,7 @@ export function useReferenceData(examSlug = "tg-icet") {
           years,
         };
         referenceCache.set(cacheKey, result);
+        writeSessionCache(cacheKey, result);
         if (!cancelled) {
           setData(result);
           setError(null);

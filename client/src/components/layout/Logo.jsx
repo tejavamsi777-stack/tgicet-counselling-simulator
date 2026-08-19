@@ -1,18 +1,27 @@
 import { motion } from "framer-motion";
 
-export default function Logo({ size = 36 }) {
+export default function Logo({ size = 36, shape = "square", variant = "glass" }) {
+  const isCircle = shape === "circle";
+  const isPurple = variant === "purple";
+
   return (
     <div className="glass-button-wrap relative inline-flex">
       <div
-        className="glass-button flex items-center justify-center rounded-2xl border border-white/30 bg-gradient-to-br from-white/25 via-white/10 to-white/5 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]"
+        className={`glass-button flex items-center justify-center ${
+          isCircle ? "rounded-full" : "rounded-2xl"
+        } border ${
+          isPurple
+            ? "border-purple-300/40 bg-gradient-to-br from-[#4c1d95] via-[#7c3aed] to-[#0284c7] shadow-[0_0_24px_rgba(168,85,247,0.5)]"
+            : "border-white/30 bg-gradient-to-br from-white/25 via-white/10 to-white/5 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]"
+        }`}
         style={{ width: size, height: size }}
       >
-        <svg viewBox="0 0 40 40" width={size * 0.7} height={size * 0.7} fill="none">
+        <svg viewBox="0 0 40 40" width={size * 0.65} height={size * 0.65} fill="none">
           <motion.circle
             cx="20"
             cy="20"
             r="13"
-            stroke="rgba(255,255,255,0.35)"
+            stroke="rgba(255,255,255,0.4)"
             strokeWidth="2"
             fill="none"
             initial={{ pathLength: 0 }}
@@ -24,7 +33,7 @@ export default function Logo({ size = 36 }) {
             transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
             style={{ originX: "20px", originY: "20px" }}
           >
-            <circle cx="20" cy="7" r="2.4" fill="#c084fc" />
+            <circle cx="20" cy="7" r="2.4" fill={isPurple ? "#38bdf8" : "#c084fc"} />
           </motion.g>
           <motion.path
             d="M11 25 L18 15 L23 20 L29 9"
@@ -39,7 +48,7 @@ export default function Logo({ size = 36 }) {
           />
         </svg>
       </div>
-      <div className="glass-button-shadow rounded-2xl"></div>
+      <div className={`glass-button-shadow ${isCircle ? "rounded-full" : "rounded-2xl"}`}></div>
     </div>
   );
 }

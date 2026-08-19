@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { GlassButton } from "../ui/glass-button";
 
 export default function ProfileMenu() {
-  const { user, logout, updateProfile, changePassword } = useAuth();
+  const { user, logout, updateProfile, changePassword, openAuthModal } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [view, setView] = useState("menu");
@@ -93,7 +93,7 @@ export default function ProfileMenu() {
     return (
       <GlassButton
         size="sm"
-        onClick={() => navigate("/login")}
+        onClick={() => openAuthModal("login")}
       >
         Sign In
       </GlassButton>

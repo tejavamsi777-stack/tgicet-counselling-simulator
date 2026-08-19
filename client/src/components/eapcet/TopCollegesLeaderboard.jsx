@@ -32,7 +32,7 @@ export default function TopCollegesLeaderboard() {
     setLoading(true);
     eapcetApi.getColleges({ branch, sort })
       .then((res) => {
-        if (res.data) setColleges(res.data.slice(0, 10));
+        if (res.data) setColleges(res.data.slice(0, 5));
       })
       .catch((err) => console.error('Failed to load top colleges:', err))
       .finally(() => setLoading(false));
@@ -47,9 +47,9 @@ export default function TopCollegesLeaderboard() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-purple-300">
               <Award size={16} />
             </div>
-            <h3 className="text-xl font-bold text-white">Top 10 Engineering Institutions Leaderboard</h3>
+            <h3 className="text-xl font-bold text-white">Top 5 Engineering Institutions Leaderboard</h3>
             <span className="rounded-full bg-purple-500/20 border border-purple-500/30 px-2 py-0.5 text-[10px] font-bold text-purple-300">
-              Top 10 Only
+              Top 5 Only
             </span>
           </div>
           <p className="text-xs text-white/50 mt-1">
@@ -178,10 +178,10 @@ export default function TopCollegesLeaderboard() {
                     <div className="flex items-center sm:justify-end">
                       <Link
                         to={`/tg-eapcet/compare?c1=${c.code}&c2=JNTH&branch=${branch}`}
-                        className="inline-flex items-center gap-1 rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-xs font-semibold text-purple-300 hover:bg-purple-500/20 transition-colors"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors"
                       >
                         <span>Compare</span>
-                        <ChevronRight size={12} />
+                        <ChevronRight size={13} />
                       </Link>
                     </div>
                   </div>

@@ -73,8 +73,8 @@ export default function EcetHome() {
         />
         <FeatureCard
           icon={ArrowLeftRight}
-          title="College Matrix"
-          detail="Compare any two engineering colleges across lateral cutoffs, fees & placement CTCs."
+          title="Compare Colleges"
+          detail="Compare any two engineering colleges side-by-side across cutoffs & seats."
           to="/tg-ecet/compare"
           action="Compare"
         />
@@ -85,11 +85,6 @@ export default function EcetHome() {
           to="/tg-ecet/documents"
           action="Check Docs"
         />
-      </div>
-
-      {/* Community Alert Broadcast Hub */}
-      <div className="mt-12">
-        <CommunityAlertsBanner />
       </div>
 
       {/* Passive ad banner */}

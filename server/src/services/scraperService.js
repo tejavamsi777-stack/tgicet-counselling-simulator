@@ -70,6 +70,22 @@ export async function scrapePortalNotifications(exam = "eapcet") {
       }
 
       const isPdf = href.toLowerCase().endsWith(".pdf");
+      const isAllotment =
+        href.toLowerCase().includes("college_allotment") ||
+        title.toUpperCase().includes("COLLEGE-WISE ALLOTMENT") ||
+        title.toUpperCase().includes("ALLOTMENT DETAILS");
+
+      let finalHref = href;
+      let isExternal = true;
+
+      if (isAllotment) {
+        isExternal = false;
+        if (exam === "eapcet") finalHref = "/eapcet/allotments";
+        else if (exam === "ecet") finalHref = "/tg-ecet/allotments";
+        else if (exam === "polycet") finalHref = "/tg-polycet/allotments";
+        else finalHref = "/allotments";
+      }
+
       const isNotice =
         title.toUpperCase().includes("NOTIFICATION") ||
         title.toUpperCase().includes("ORDER") ||
@@ -80,18 +96,19 @@ export async function scrapePortalNotifications(exam = "eapcet") {
         title.toUpperCase().includes("ADMISSION") ||
         title.toUpperCase().includes("PRESS") ||
         title.toUpperCase().includes("COUNSELLING") ||
+        isAllotment ||
         isPdf;
 
-      if (isNotice && !notifications.some((n => n.url === href || n.title === title))) {
+      if (isNotice && !notifications.some((n => n.url === finalHref || n.title === title))) {
         notifications.push({
           id: `${exam}_${notifications.length + 1}`,
           title,
-          url: href,
-          href,
+          url: finalHref,
+          href: finalHref,
+          isExternal,
           isPdf,
           isNew: notifications.length < 3,
-          badge: isPdf ? "OFFICIAL PDF" : "CIRCULAR",
-          source: config.source,
+          badge: !isExternal ? "LIVE DATA" : isPdf ? "PDF NOTICE" : "CIRCULAR",
           scrapedAt: new Date().toISOString(),
         });
       }

@@ -311,9 +311,32 @@ function InteractiveGenderChart({ candidates = [], male = 0, female = 0, maleP =
   );
 }
 
+// Helper to check if candidate is Physically Handicapped
+function isPHReservation(seatCategory = '', caste = '') {
+  const seat = String(seatCategory || '').toUpperCase();
+  const cst = String(caste || '').toUpperCase();
+  return (
+    seat.includes('_PHH_') ||
+    seat.includes('_PHO_') ||
+    seat.includes('_PHV_') ||
+    seat.includes('_PHM_') ||
+    seat.includes('_PH_') ||
+    seat.includes('_PWD_') ||
+    seat.includes('PHH') ||
+    seat.includes('PHO') ||
+    seat.includes('PHV') ||
+    cst.includes('PHH') ||
+    cst.includes('PHO') ||
+    cst.includes('PHV') ||
+    cst === 'PH' ||
+    cst === 'PWD'
+  );
+}
+
 // Helper to format Caste nicely
 function formatCasteLabel(raw = '') {
   const c = String(raw).toUpperCase().trim().replace(/_/g, '-');
+  if (c.startsWith('PH') || c.includes('PHH') || c.includes('PWD')) return 'PHH';
   if (c.startsWith('OC')) return 'OC';
   if (c.startsWith('EWS')) return 'EWS';
   if (c.startsWith('BC-A')) return 'BC-A';
@@ -329,6 +352,15 @@ function formatCasteLabel(raw = '') {
   return c || 'OC';
 }
 
+function resolveCandidateCaste(c = {}) {
+  // If candidate was allotted under a Physically Handicapped quota or marked PH, keep as PHH at last
+  if (isPHReservation(c.seatCategory, c.caste || c.category)) {
+    return 'PHH';
+  }
+  const rawCaste = (c.caste || c.category || '').trim();
+  return formatCasteLabel(rawCaste || 'OC');
+}
+
 const CASTE_ORDER_MAP = {
   'OC': 1,
   'EWS': 2,
@@ -337,14 +369,21 @@ const CASTE_ORDER_MAP = {
   'BC-C': 5,
   'BC-D': 6,
   'BC-E': 7,
-  'ST': 8,
-  'SC': 9,
-  'SC-1': 10,
-  'SC-I': 10,
-  'SC-2': 11,
-  'SC-II': 11,
-  'SC-3': 12,
-  'SC-III': 12,
+  'SC': 8,
+  'SC-1': 9,
+  'SC-I': 9,
+  'SC-2': 10,
+  'SC-II': 10,
+  'SC-3': 11,
+  'SC-III': 11,
+  'ST': 12,
+  'CAP': 95,
+  'NCC': 96,
+  'SPORTS': 97,
+  'PHH': 99,
+  'PH': 99,
+  'PH / PHH': 99,
+  'PWD': 99,
 };
 
 function getCastePriority(caste = '') {
@@ -357,12 +396,12 @@ function InteractiveCategoryChart({ candidates = [] }) {
   const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'quota'
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
-  // Grouped by Candidate Actual Caste (OC, EWS, BC-A, BC-B, BC-C, BC-D, BC-E, ST, SC, SC-1, SC-2, SC-3)
+  // Grouped by Candidate Actual Caste (OC, EWS, BC-A, BC-B, BC-C, BC-D, BC-E, ST, SC, SC-1, SC-2, SC-3, PHH)
   const casteData = useMemo(() => {
     const map = {};
     const total = candidates.length || 1;
     candidates.forEach((c) => {
-      const rootCat = formatCasteLabel(c.caste || c.category || c.seatCategory?.split('_')[0] || 'OC');
+      const rootCat = resolveCandidateCaste(c);
       if (!map[rootCat]) {
         map[rootCat] = {
           name: rootCat,
@@ -559,24 +598,47 @@ function InteractiveCategoryChart({ candidates = [] }) {
 }
 
 // ─── Interactive Category-Wise Closing Ranks Breakdown ──────────────────────
+// ─── Interactive Category-Wise Closing Ranks Breakdown ──────────────────────
 function CategoryClosingRanksBreakdown({ candidates = [] }) {
-  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'quota'
+  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'boys' | 'girls' | 'quota'
   const [hoveredRow, setHoveredRow] = useState(null);
 
+  // Grouped by Caste with dedicated Boys (♂) and Girls (♀) rank intervals
   const casteRanks = useMemo(() => {
     const map = {};
     candidates.forEach((c) => {
-      const cat = formatCasteLabel(c.caste || c.category || c.seatCategory?.split('_')[0] || 'OC');
+      const cat = resolveCandidateCaste(c);
+      const isBoy = (c.gender || '').toUpperCase().startsWith('M');
+      const isGirl = (c.gender || '').toUpperCase().startsWith('F');
+
       if (!map[cat]) {
-        map[cat] = { category: cat, openingRank: c.rank, closingRank: c.rank, count: 0 };
+        map[cat] = {
+          category: cat,
+          all: { openingRank: c.rank, closingRank: c.rank, count: 0 },
+          boys: { openingRank: null, closingRank: null, count: 0 },
+          girls: { openingRank: null, closingRank: null, count: 0 },
+        };
       }
-      map[cat].openingRank = Math.min(map[cat].openingRank, c.rank);
-      map[cat].closingRank = Math.max(map[cat].closingRank, c.rank);
-      map[cat].count++;
+
+      map[cat].all.openingRank = Math.min(map[cat].all.openingRank, c.rank);
+      map[cat].all.closingRank = Math.max(map[cat].all.closingRank, c.rank);
+      map[cat].all.count++;
+
+      if (isBoy) {
+        map[cat].boys.openingRank = map[cat].boys.openingRank === null ? c.rank : Math.min(map[cat].boys.openingRank, c.rank);
+        map[cat].boys.closingRank = map[cat].boys.closingRank === null ? c.rank : Math.max(map[cat].boys.closingRank, c.rank);
+        map[cat].boys.count++;
+      } else if (isGirl) {
+        map[cat].girls.openingRank = map[cat].girls.openingRank === null ? c.rank : Math.min(map[cat].girls.openingRank, c.rank);
+        map[cat].girls.closingRank = map[cat].girls.closingRank === null ? c.rank : Math.max(map[cat].girls.closingRank, c.rank);
+        map[cat].girls.count++;
+      }
     });
+
     return Object.values(map).sort((a, b) => getCastePriority(a.category) - getCastePriority(b.category));
   }, [candidates]);
 
+  // Quota Allotment Categories
   const quotaRanks = useMemo(() => {
     const map = {};
     candidates.forEach((c) => {
@@ -591,9 +653,15 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
     return Object.values(map).sort((a, b) => a.openingRank - b.openingRank);
   }, [candidates]);
 
-  const activeRanks = viewMode === 'caste' ? casteRanks : quotaRanks;
-  if (!activeRanks.length) return null;
-  const maxRank = Math.max(...activeRanks.map((r) => r.closingRank || 1));
+  const maxRank = useMemo(() => {
+    let m = 1;
+    candidates.forEach((c) => {
+      if (c.rank > m) m = c.rank;
+    });
+    return m;
+  }, [candidates]);
+
+  if (!candidates.length) return null;
 
   return (
     <div className="rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
@@ -604,14 +672,14 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
           </div>
           <div>
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-              {viewMode === 'caste' ? 'Caste-Wise Closing Ranks' : 'Quota Closing Trajectory'}
+              {viewMode === 'quota' ? 'Quota Closing Trajectory' : 'Caste & Gender Closing Ranks'}
             </h4>
-            <p className="text-[10px] text-white/40">Opening rank ➔ Closing cutoff threshold</p>
+            <p className="text-[10px] text-white/40">Opening rank ➔ Closing cutoff threshold per caste & gender</p>
           </div>
         </div>
 
-        {/* Mode switcher */}
-        <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto">
+        {/* View Switcher Pills */}
+        <div className="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto flex-wrap">
           <button
             type="button"
             onClick={() => setViewMode('caste')}
@@ -621,7 +689,29 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            Caste ({casteRanks.length})
+            All Castes
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('boys')}
+            className={`px-2 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              viewMode === 'boys'
+                ? 'bg-sky-500 text-black shadow-md shadow-sky-500/30'
+                : 'text-sky-300/60 hover:text-sky-200'
+            }`}
+          >
+            ♂ Boys
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('girls')}
+            className={`px-2 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+              viewMode === 'girls'
+                ? 'bg-pink-500 text-black shadow-md shadow-pink-500/30'
+                : 'text-pink-300/60 hover:text-pink-200'
+            }`}
+          >
+            ♀ Girls
           </button>
           <button
             type="button"
@@ -637,57 +727,148 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
         </div>
       </div>
 
-      <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1 scrollbar-thin">
-        {activeRanks.map((r) => {
-          const fillWidth = Math.min(100, Math.max(8, Math.round((r.closingRank / maxRank) * 100)));
-          const colors = getCategoryColor(r.category);
-          const isHovered = hoveredRow?.category === r.category;
+      <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin">
+        {viewMode === 'quota' ? (
+          quotaRanks.map((r) => {
+            const fillWidth = Math.min(100, Math.max(8, Math.round((r.closingRank / maxRank) * 100)));
+            const colors = getCategoryColor(r.category);
+            const isHovered = hoveredRow?.category === r.category;
 
-          return (
-            <div
-              key={r.category}
-              onMouseEnter={() => setHoveredRow(r)}
-              onMouseLeave={() => setHoveredRow(null)}
-              onTouchStart={() => setHoveredRow(r)}
-              style={{
-                borderColor: isHovered ? colors.primary : undefined,
-                boxShadow: isHovered ? `0 0 16px ${colors.glow}` : undefined,
-              }}
-              className={`group rounded-2xl border p-3 transition-all duration-200 cursor-pointer ${
-                isHovered
-                  ? 'bg-white/[0.06] scale-[1.01]'
-                  : 'border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
-              }`}
-            >
-              <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                <span
-                  className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider font-mono ${getSeatCategoryStyle(
-                    r.category
-                  )}`}
-                >
-                  {r.category}
-                </span>
-                <span className="font-mono text-xs text-white/80">
-                  <span className="text-white/40 text-[10px] uppercase mr-1.5 font-bold">Cutoff:</span>
-                  <span className="text-white/60 font-semibold">{r.openingRank?.toLocaleString()}</span>
-                  <span className="mx-1.5 text-white/40 font-bold">→</span>
-                  <span style={{ color: colors.primary }} className="font-bold text-sm">#{r.closingRank?.toLocaleString()}</span>
-                </span>
-              </div>
+            return (
+              <div
+                key={r.category}
+                onMouseEnter={() => setHoveredRow(r)}
+                onMouseLeave={() => setHoveredRow(null)}
+                style={{
+                  borderColor: isHovered ? colors.primary : undefined,
+                  boxShadow: isHovered ? `0 0 16px ${colors.glow}` : undefined,
+                }}
+                className={`group rounded-2xl border p-3 transition-all duration-200 cursor-pointer ${
+                  isHovered
+                    ? 'bg-white/[0.06] scale-[1.01]'
+                    : 'border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                  <span
+                    className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider font-mono ${getSeatCategoryStyle(
+                      r.category
+                    )}`}
+                  >
+                    {r.category}
+                  </span>
+                  <span className="font-mono text-xs text-white/80">
+                    <span className="text-white/40 text-[10px] uppercase mr-1.5 font-bold">Cutoff:</span>
+                    <span className="text-white/60 font-semibold">{r.openingRank?.toLocaleString()}</span>
+                    <span className="mx-1.5 text-white/40 font-bold">→</span>
+                    <span style={{ color: colors.primary }} className="font-bold text-sm">#{r.closingRank?.toLocaleString()}</span>
+                  </span>
+                </div>
 
-              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
-                <div
-                  className="h-full rounded-full transition-all duration-700"
-                  style={{
-                    width: `${fillWidth}%`,
-                    background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                    boxShadow: `0 0 10px ${colors.glow}`,
-                  }}
-                />
+                <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{
+                      width: `${fillWidth}%`,
+                      background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
+                      boxShadow: `0 0 10px ${colors.glow}`,
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          casteRanks.map((c) => {
+            const hasBoys = c.boys.count > 0;
+            const hasGirls = c.girls.count > 0;
+
+            if (viewMode === 'boys' && !hasBoys) return null;
+            if (viewMode === 'girls' && !hasGirls) return null;
+
+            const isHovered = hoveredRow?.category === c.category;
+
+            return (
+              <div
+                key={c.category}
+                onMouseEnter={() => setHoveredRow(c)}
+                onMouseLeave={() => setHoveredRow(null)}
+                className={`rounded-2xl border p-3 transition-all duration-200 ${
+                  isHovered
+                    ? 'border-white/20 bg-white/[0.05] shadow-lg shadow-purple-500/5'
+                    : 'border-white/[0.06] bg-white/[0.02] hover:border-white/12 hover:bg-white/[0.03]'
+                }`}
+              >
+                {/* Caste Header */}
+                <div className="flex items-center justify-between gap-2 mb-2.5 pb-1.5 border-b border-white/[0.06]">
+                  <span
+                    className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider font-mono ${getSeatCategoryStyle(
+                      c.category
+                    )}`}
+                  >
+                    {c.category}
+                  </span>
+                  <span className="text-[11px] text-white/50 font-medium">
+                    {c.all.count} Total {c.all.count === 1 ? 'Seat' : 'Seats'}
+                  </span>
+                </div>
+
+                {/* Gender Specific Closing Cutoffs */}
+                <div className="space-y-2">
+                  {/* Boys Breakdown */}
+                  {hasBoys && (viewMode === 'caste' || viewMode === 'boys') && (
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-400">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
+                          ♂ Boys ({c.boys.count}):
+                        </span>
+                        <span className="text-white/80">
+                          <span className="text-white/60 font-semibold">{c.boys.openingRank?.toLocaleString()}</span>
+                          <span className="mx-1 text-white/40 font-bold">→</span>
+                          <span className="font-bold text-sky-400 text-[13px]">#{c.boys.closingRank?.toLocaleString()}</span>
+                        </span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden border border-white/[0.06]">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-sky-600 to-sky-400 transition-all duration-700"
+                          style={{
+                            width: `${Math.min(100, Math.max(8, Math.round((c.boys.closingRank / maxRank) * 100)))}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Girls Breakdown */}
+                  {hasGirls && (viewMode === 'caste' || viewMode === 'girls') && (
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-pink-400">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-pink-400" />
+                          ♀ Girls ({c.girls.count}):
+                        </span>
+                        <span className="text-white/80">
+                          <span className="text-white/60 font-semibold">{c.girls.openingRank?.toLocaleString()}</span>
+                          <span className="mx-1 text-white/40 font-bold">→</span>
+                          <span className="font-bold text-pink-400 text-[13px]">#{c.girls.closingRank?.toLocaleString()}</span>
+                        </span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden border border-white/[0.06]">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-pink-600 to-pink-400 transition-all duration-700"
+                          style={{
+                            width: `${Math.min(100, Math.max(8, Math.round((c.girls.closingRank / maxRank) * 100)))}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

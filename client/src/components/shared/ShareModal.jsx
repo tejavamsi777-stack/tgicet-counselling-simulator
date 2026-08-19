@@ -120,6 +120,16 @@ export function ShareModal({ isOpen, onClose, shareData }) {
       href: `https://twitter.com/intent/tweet?text=${encodedText}`,
     },
     {
+      name: "Facebook",
+      icon: ({ size, className }) => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      ),
+      color: "bg-[#1877F2]/15 text-[#1877F2] border-[#1877F2]/30 hover:bg-[#1877F2]/25",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    },
+    {
       name: "LinkedIn",
       icon: ({ size, className }) => (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -128,6 +138,16 @@ export function ShareModal({ isOpen, onClose, shareData }) {
       ),
       color: "bg-[#0A66C2]/15 text-[#0A66C2] border-[#0A66C2]/30 hover:bg-[#0A66C2]/25",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    },
+    {
+      name: "Reddit",
+      icon: ({ size, className }) => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.197-2.512-.73a.326.326 0 0 0-.232-.094z" />
+        </svg>
+      ),
+      color: "bg-[#FF4500]/15 text-[#FF4500] border-[#FF4500]/30 hover:bg-[#FF4500]/25",
+      href: `https://reddit.com/submit?url=${encodedUrl}&title=${encodedSubject}`,
     },
     {
       name: "Email",
@@ -207,11 +227,10 @@ export function ShareModal({ isOpen, onClose, shareData }) {
                 <X size={16} />
               </button>
             </div>
-
             {/* Social Share Grid */}
             <div className="py-5">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-white/40 mb-3">Share directly via</p>
-              <div className="grid grid-cols-5 gap-2.5">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-white/40 mb-3">Share directly via apps</p>
+              <div className="grid grid-cols-4 sm:grid-cols-7 gap-2.5">
                 {shareLinks.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -223,7 +242,7 @@ export function ShareModal({ isOpen, onClose, shareData }) {
                       className={`flex flex-col items-center justify-center gap-1.5 rounded-2xl border p-2.5 transition-all duration-200 active:scale-95 ${item.color}`}
                     >
                       <Icon size={20} />
-                      <span className="text-[10px] font-semibold">{item.name.split(" ")[0]}</span>
+                      <span className="text-[10px] font-semibold text-center truncate w-full">{item.name.split(" ")[0]}</span>
                     </a>
                   );
                 })}
@@ -235,7 +254,7 @@ export function ShareModal({ isOpen, onClose, shareData }) {
               <div className="flex items-center justify-between">
                 <label className="text-[11px] font-bold uppercase tracking-wider text-white/50 flex items-center gap-1.5">
                   <Link2 size={13} className="text-purple-400" />
-                  <span>Active Page Link (Auto-Updated)</span>
+                  <span>Active Page Link</span>
                 </label>
                 <span className="text-[10px] rounded-full bg-purple-500/20 text-purple-300 px-2 py-0.5 font-mono">
                   Live URL
@@ -270,9 +289,6 @@ export function ShareModal({ isOpen, onClose, shareData }) {
                   )}
                 </button>
               </div>
-              <p className="text-[10px] text-white/40 px-1 truncate">
-                Dynamically resolves current domain &amp; parameters
-              </p>
             </div>
           </motion.div>
         </div>
@@ -287,7 +303,6 @@ export function ShareModal({ isOpen, onClose, shareData }) {
  */
 export function FloatingShareButton() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [toastMsg, setToastMsg] = useState("");
   const btnRef = useRef(null);
   const iconRef = useRef(null);
 
@@ -298,16 +313,16 @@ export function FloatingShareButton() {
         scale: 1.14,
         rotation: -4,
         boxShadow: "0 0 28px rgba(168, 85, 247, 0.65), 0 8px 32px rgba(0,0,0,0.6)",
-        borderColor: "rgba(192, 132, 252, 0.7)",
-        duration: 0.3,
-        ease: "back.out(2.2)"
+        borderColor: "rgba(168, 85, 247, 0.8)",
+        duration: 0.25,
+        ease: "power2.out"
       });
     }
     if (iconRef.current) {
       gsap.to(iconRef.current, {
-        scale: 1.22,
-        rotation: 18,
-        duration: 0.3,
+        scale: 1.15,
+        rotation: 12,
+        duration: 0.25,
         ease: "power2.out"
       });
     }
@@ -334,7 +349,7 @@ export function FloatingShareButton() {
     }
   };
 
-  const handleShare = async () => {
+  const handleShare = () => {
     // GSAP Click Burst Effect
     if (btnRef.current) {
       gsap.timeline()
@@ -349,23 +364,7 @@ export function FloatingShareButton() {
       });
     }
 
-    const url = typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app";
-    const title = typeof document !== "undefined" ? document.title : "TG Counselling Portal 2026";
-    const text = `Explore TG Counselling Portal — Official College Allotments, Predictors & Cutoffs!`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({ title, text, url });
-        setToastMsg("Shared successfully!");
-        setTimeout(() => setToastMsg(""), 3000);
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setModalOpen(true);
-        }
-      }
-    } else {
-      setModalOpen(true);
-    }
+    setModalOpen(true);
   };
 
   return (
@@ -386,20 +385,6 @@ export function FloatingShareButton() {
             <ModernShareIcon size={19} />
           </div>
         </button>
-
-        {/* Toast alert on share */}
-        <AnimatePresence>
-          {toastMsg && (
-            <motion.div
-              initial={{ opacity: 0, x: -10, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -10, scale: 0.9 }}
-              className="rounded-full border border-purple-500/30 bg-black/85 px-3.5 py-1.5 text-xs font-semibold text-purple-200 backdrop-blur-xl shadow-lg"
-            >
-              {toastMsg}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       <ShareModal
@@ -415,32 +400,14 @@ export function FloatingShareButton() {
   );
 }
 
-export function ShareButton({ className = "", variant = "icon", label = "Share" }) {
+export function ShareButton({ className = "", variant = "icon", label = "Share", shareData = null }) {
   const [modalOpen, setModalOpen] = useState(false);
-
-  const handleShareClick = async () => {
-    const url = typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app";
-    const title = typeof document !== "undefined" ? document.title : "TG Counselling Portal 2026";
-    const text = `Check out ${title} — Official Allotments, College Predictor & Cutoff Simulators!`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({ title, text, url });
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setModalOpen(true);
-        }
-      }
-    } else {
-      setModalOpen(true);
-    }
-  };
 
   return (
     <>
       {variant === "icon" ? (
         <button
-          onClick={handleShareClick}
+          onClick={() => setModalOpen(true)}
           className={`group flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 shadow-sm transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/20 hover:text-white active:scale-95 cursor-pointer ${className}`}
           title="Share this page"
           aria-label="Share this page"
@@ -449,7 +416,7 @@ export function ShareButton({ className = "", variant = "icon", label = "Share" 
         </button>
       ) : variant === "pill" ? (
         <button
-          onClick={handleShareClick}
+          onClick={() => setModalOpen(true)}
           className={`inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/90 shadow-sm transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/20 hover:text-white active:scale-95 cursor-pointer ${className}`}
         >
           <ModernShareIcon size={14} />
@@ -457,7 +424,7 @@ export function ShareButton({ className = "", variant = "icon", label = "Share" 
         </button>
       ) : (
         <button
-          onClick={handleShareClick}
+          onClick={() => setModalOpen(true)}
           className={`inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white/90 hover:bg-white/10 hover:text-white transition-all cursor-pointer ${className}`}
         >
           <ModernShareIcon size={15} />
@@ -468,7 +435,7 @@ export function ShareButton({ className = "", variant = "icon", label = "Share" 
       <ShareModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        shareData={{
+        shareData={shareData || {
           url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
           title: typeof document !== "undefined" ? document.title : "TG Counselling Portal 2026",
           text: "Check out TG Counselling Portal for real-time seat allotments, college cutoffs, and mock counselling simulators!",

@@ -6,7 +6,7 @@ export const checklistController = {
     try {
       const examSlug = req.query.exam || "tg-eapcet";
       const ticked = await checklistRepository.getTickedDocs(req.user.id, examSlug);
-      res.json({ success: true, ticked });
+      res.json({ success: true, ticked, tickedDocIds: ticked });
     } catch (err) {
       next(err);
     }

@@ -96,16 +96,13 @@ export default function SearchableSelect({
             : "border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/[0.08]"
         }`}
       >
-        <span className="truncate flex-1 font-medium">
+        <span className="truncate flex-1 font-medium block">
           {selectedOption ? (
-            <span className="text-white">
+            <span className="text-white truncate block">
               {selectedOption.label}
-              {selectedOption.sublabel && (
-                <span className="ml-1.5 text-xs text-white/50">({selectedOption.sublabel})</span>
-              )}
             </span>
           ) : (
-            <span className="text-white/40">{placeholder}</span>
+            <span className="text-white/40 truncate block">{placeholder}</span>
           )}
         </span>
 

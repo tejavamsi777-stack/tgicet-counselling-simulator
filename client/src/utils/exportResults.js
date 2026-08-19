@@ -29,15 +29,50 @@ export function exportToPDF(results, filename = "college-predictions.pdf", title
   const doc = new jsPDF({ orientation: "landscape" });
   const rows = toRows(results);
 
-  doc.setFontSize(14);
-  doc.text(title, 14, 15);
+  const addPageBranding = (data) => {
+    const totalPages = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+
+      // 1. Semi-transparent Diagonal Watermark
+      doc.setTextColor(200, 200, 220);
+      doc.setFontSize(28);
+      doc.setFont("helvetica", "bold");
+      try {
+        // Render angled watermark text
+        doc.text("TG COUNSELLING PORTAL 2026 • OFFICIAL REPORT", 140, 110, {
+          align: "center",
+          angle: 30,
+        });
+      } catch (e) {
+        doc.text("TG COUNSELLING PORTAL 2026", 140, 110, { align: "center" });
+      }
+
+      // 2. Top Header Branding Bar
+      doc.setFontSize(14);
+      doc.setTextColor(124, 58, 237);
+      doc.setFont("helvetica", "bold");
+      doc.text(title, 14, 15);
+
+      doc.setFontSize(9);
+      doc.setTextColor(100, 110, 130);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Generated on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()} • Verified Seat Allotment Data`, 14, 20);
+
+      // 3. Footer Page Numbers
+      doc.setFontSize(8);
+      doc.setTextColor(150, 150, 150);
+      doc.text(`Page ${i} of ${totalPages} — TG Admissions & Counselling Portal (https://tgcounselling.vercel.app)`, 14, 200);
+    }
+  };
 
   autoTable(doc, {
-    startY: 22,
+    startY: 25,
     head: [Object.keys(rows[0] ?? {})],
     body: rows.map((r) => Object.values(r)),
     styles: { fontSize: 8 },
     headStyles: { fillColor: [124, 58, 237] },
+    didDrawPage: addPageBranding,
   });
 
   doc.save(filename);

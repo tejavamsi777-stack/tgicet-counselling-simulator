@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardList, Target, FileCheck, ArrowLeftRight, Database } from 'lucide-react';
+import { ArrowRight, ClipboardList, Target, FileCheck, ArrowLeftRight, Database, Building2, ExternalLink, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GlowCard } from '../../components/ui/spotlight-card';
 import { GlassButton } from '../../components/ui/glass-button';
@@ -10,6 +10,8 @@ import PhaseScheduleTable from '../../components/eapcet/PhaseScheduleTable';
 import AdmissionConditions from '../../components/eapcet/AdmissionConditions';
 import EligibilityMatrix from '../../components/eapcet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/eapcet/TopCollegesLeaderboard';
+import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
+import CollegeProfileSelectorBanner from '../../components/eapcet/CollegeProfileSelectorBanner';
 import CutoffTrendAnalyzer from '../../components/eapcet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
 import { useEapcetData } from '../../hooks/useEapcetData';
@@ -71,7 +73,7 @@ export default function EapcetHome() {
         />
         <FeatureCard
           icon={ArrowLeftRight}
-          title="College Matrix"
+          title="Compare Colleges"
           detail="Compare any two engineering colleges across cutoffs, fees & placement CTCs."
           to="/tg-eapcet/compare"
           action="Compare"
@@ -83,11 +85,6 @@ export default function EapcetHome() {
           to="/tg-eapcet/documents"
           action="Check Docs"
         />
-      </div>
-
-      {/* Community Alert Broadcast Hub */}
-      <div className="mt-12">
-        <CommunityAlertsBanner />
       </div>
 
       {/* Passive ad banner */}
@@ -111,8 +108,18 @@ export default function EapcetHome() {
 
       <SectionDivider />
 
-      {/* Top Engineering Colleges Leaderboard */}
-      <div>
+      {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
+      <div className="relative z-30 mb-6">
+        <FeeReimbursementCalculator />
+      </div>
+
+      {/* Dedicated College Profile Selector Banner */}
+      <div className="relative z-20 mb-10">
+        <CollegeProfileSelectorBanner />
+      </div>
+
+      {/* Top 5 Engineering Colleges Leaderboard */}
+      <div className="relative z-10">
         <TopCollegesLeaderboard />
       </div>
 

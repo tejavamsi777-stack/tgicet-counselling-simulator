@@ -1,3 +1,5 @@
+import { parseApiResponse } from "./payloadDecoder";
+
 const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 const TOKEN_KEY = "tgicet_user_token";
 const USER_KEY = "tgicet_user_profile";
@@ -38,6 +40,7 @@ async function request(path, options = {}) {
     ...options,
     headers: {
       "Content-Type": "application/json",
+      "X-Client-App": "tg-counselling-v1",
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
@@ -45,7 +48,8 @@ async function request(path, options = {}) {
 
   let body = null;
   try {
-    body = await res.json();
+    const rawBody = await res.json();
+    body = parseApiResponse(rawBody);
   } catch {
     // some responses (e.g. 204) have no body — that's fine
   }

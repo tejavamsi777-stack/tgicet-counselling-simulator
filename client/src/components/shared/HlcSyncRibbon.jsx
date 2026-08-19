@@ -3,7 +3,7 @@ import { Sparkles, ShieldCheck, ArrowRight, Lock, AlertCircle } from 'lucide-rea
 import { useAuth } from '../../context/AuthContext';
 
 export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
-  const { user } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const location = useLocation();
 
   const isGuest = user?.is_guest;
@@ -90,15 +90,15 @@ export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
               <span>Saved to Account</span>
             </div>
           ) : (
-            <Link
-              to="/login"
-              state={{ from: location }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-purple-400/40 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-purple-900/50 transition-all duration-200 active:scale-95"
+            <button
+              type="button"
+              onClick={() => openAuthModal("login")}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-purple-400/40 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-purple-900/50 transition-all duration-200 active:scale-95 cursor-pointer"
             >
               <Lock size={12} />
               <span>Sign in to Save</span>
               <ArrowRight size={12} />
-            </Link>
+            </button>
           )}
         </div>
       </div>

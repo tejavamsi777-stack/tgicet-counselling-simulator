@@ -5,52 +5,60 @@ import Logo from "./Logo";
 import { ShareButton } from "../shared/ShareModal";
 
 export const ABOUT_TEXT =
-  "TG Counselling is a 100% free, independent educational guidance platform built to empower students navigating Telangana admissions (TG EAPCET, TG ICET, TG ECET, and TG POLYCET). We provide data-driven College Predictors based on verified government cutoffs, official college-wise seat allotment explorers, interactive Web Options practice simulators, and comprehensive HLC certificate verification guides — completely free with zero hidden costs, paywalls, or subscriptions.";
+  "TG Counselling is a 100% FREE educational guidance platform built to empower students navigating Telangana admissions (TG EAPCET, TG ICET, TG ECET, and TG POLYCET). We provide data-driven Rank Predictors, official college seat allotment data across all 178 institutions, interactive Web Options simulators, TS ePASS fee reimbursement calculators, and HLC certificate guides — 100% free with zero paywalls, subscriptions, or hidden charges.";
 
 export const ABOUT_PANEL_CONTENT = (
   <div className="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
     <div className="flex flex-wrap items-center gap-2">
-      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 text-[11px] font-bold text-emerald-300">
-        ✨ 100% Free Forever
+      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-emerald-300">
+        ✨ 100% Free Platform
       </span>
-      <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/15 border border-purple-500/30 px-2.5 py-0.5 text-[11px] font-bold text-purple-300">
-        🏛️ Official TG Admissions Data
+      <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/20 border border-purple-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-purple-300">
+        🏛️ 178 TG Institutions Data
       </span>
-      <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 px-2.5 py-0.5 text-[11px] font-bold text-cyan-300">
-        ⚡ Zero Paywalls
+      <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-cyan-300">
+        ⚡ Zero Subscriptions
       </span>
     </div>
 
     <p>
-      <strong className="text-white">TG Counselling</strong> is an independent educational platform created to help students across Telangana make informed, confident admission decisions.
+      <strong className="text-white">TG Counselling Portal</strong> is a <span className="text-emerald-400 font-bold">100% free</span> independent educational platform created to help students across Telangana make informed, confident, and accurate higher education admission decisions.
     </p>
 
     <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 space-y-2 text-xs">
-      <div className="font-semibold text-white flex items-center gap-1.5">
-        <span>What We Provide (Always Free for All Students):</span>
+      <div className="font-bold text-white flex items-center gap-1.5 border-b border-white/10 pb-1.5">
+        <span>What We Offer (100% Free for Every Student):</span>
       </div>
-      <ul className="space-y-1.5 text-gray-300">
-        <li className="flex items-start gap-1.5">
-          <span className="text-purple-400 font-bold">•</span>
+      <ul className="space-y-2 text-gray-300">
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
           <span><strong className="text-white">College Predictor:</strong> Data-driven cutoff estimation based on rank, caste category, and quota reservation.</span>
         </li>
-        <li className="flex items-start gap-1.5">
-          <span className="text-purple-400 font-bold">•</span>
-          <span><strong className="text-white">Official Seat Allotment Explorer:</strong> Official candidate-level allotments across TG EAPCET, TG ECET, and TG POLYCET.</span>
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
+          <span><strong className="text-white">Seat Allotment Explorer:</strong> Official candidate-level allotments across TG EAPCET, TG ICET, TG ECET, and TG POLYCET.</span>
         </li>
-        <li className="flex items-start gap-1.5">
-          <span className="text-purple-400 font-bold">•</span>
-          <span><strong className="text-white">Exercise Web Options:</strong> Realistic practice simulator to build and test preference lists before official counselling.</span>
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
+          <span><strong className="text-white">Exercise Web Options:</strong> Realistic practice simulator to build, test, and reorder preference lists before official counselling.</span>
         </li>
-        <li className="flex items-start gap-1.5">
-          <span className="text-purple-400 font-bold">•</span>
-          <span><strong className="text-white">HLC Document Guides:</strong> Complete certificate checklists with MeeSeva validity rules and account sync.</span>
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
+          <span><strong className="text-white">College Profiles &amp; Fees:</strong> Accredited branch lists, verified TAFRC fee structures, and placement CTCs for all 178 institutions.</span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
+          <span><strong className="text-white">TS ePASS Calculator:</strong> Compute net student out-of-pocket tuition fees per official G.O. Ms. reimbursement rules.</span>
+        </li>
+        <li className="flex items-start gap-2">
+          <span className="text-purple-400 font-bold shrink-0">•</span>
+          <span><strong className="text-white">HLC Certificate Guides:</strong> Complete document verification checklists with MeeSeva validity rules and account sync.</span>
         </li>
       </ul>
     </div>
 
-    <p className="text-[11px] text-gray-400">
-      * TG Counselling is an independent guidance initiative designed to make Telangana higher education admissions transparent and accessible for every student.
+    <p className="text-[11px] text-gray-400 italic">
+      * TG Counselling is dedicated to keeping higher education guidance transparent, accessible, and 100% free for all Telangana students and parents.
     </p>
   </div>
 );
