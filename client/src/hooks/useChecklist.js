@@ -34,22 +34,36 @@ export function useChecklist(exam = 'tg-eapcet') {
   const [loading, setLoading] = useState(false);
   const [syncStatus, setSyncStatus] = useState('synced'); // 'synced' | 'syncing' | 'error'
 
+  // Fetch latest ticks from server
+  const fetchLatestFromServer = useCallback(async () => {
+    if (!isRegisteredUser || !userId) return;
+    setSyncStatus('syncing');
+    try {
+      const res = await checklistApi.get(exam);
+      const serverList = Array.isArray(res?.ticked)
+        ? res.ticked
+        : Array.isArray(res?.tickedDocIds)
+        ? res.tickedDocIds
+        : [];
+      const serverSet = new Set(serverList);
+      setTicked(serverSet);
+      writeUserLocalStorage(userId, exam, serverSet);
+      setSyncStatus('synced');
+    } catch {
+      setSyncStatus('error');
+    }
+  }, [isRegisteredUser, userId, exam]);
+
   // Fetch and sync checklist whenever user or exam changes
   useEffect(() => {
-    if (!isRegisteredUser || !userId) {
-      // Guest or logged out: in-memory state only
-      return;
-    }
+    if (!isRegisteredUser || !userId) return;
 
     let isMounted = true;
     setLoading(true);
     setSyncStatus('syncing');
 
-    // Read initial local cache
     const localSet = readUserLocalStorage(userId, exam);
-    if (localSet.size > 0) {
-      setTicked(localSet);
-    }
+    if (localSet.size > 0) setTicked(localSet);
 
     checklistApi.get(exam)
       .then(res => {
@@ -61,17 +75,13 @@ export function useChecklist(exam = 'tg-eapcet') {
           : [];
 
         const serverSet = new Set(serverList);
-
-        // Merge any local offline ticks with server ticks
         const merged = new Set([...localSet, ...serverSet]);
         setTicked(merged);
         writeUserLocalStorage(userId, exam, merged);
 
-        // If local had unsynced items not yet on the server, push sync to server
         if (merged.size > serverSet.size) {
           checklistApi.sync(exam, [...merged]).catch(() => {});
         }
-
         setSyncStatus('synced');
       })
       .catch(() => {
@@ -81,10 +91,20 @@ export function useChecklist(exam = 'tg-eapcet') {
         if (isMounted) setLoading(false);
       });
 
+    // Real-time synchronization when switching tabs or opening page on mobile/PC
+    const handleFocus = () => {
+      fetchLatestFromServer();
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleFocus);
+
     return () => {
       isMounted = false;
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleFocus);
     };
-  }, [isRegisteredUser, userId, exam]);
+  }, [isRegisteredUser, userId, exam, fetchLatestFromServer]);
 
   const toggleDoc = useCallback((docId) => {
     setTicked(prev => {
@@ -96,7 +116,6 @@ export function useChecklist(exam = 'tg-eapcet') {
         next.delete(docId);
       }
 
-      // Save to localStorage & push to backend if registered user
       if (isRegisteredUser && userId) {
         writeUserLocalStorage(userId, exam, next);
         setSyncStatus('syncing');
@@ -110,6 +129,28 @@ export function useChecklist(exam = 'tg-eapcet') {
     });
   }, [isRegisteredUser, userId, exam]);
 
+  // Explicit Save & Sync Across Devices Action
+  const saveChecklist = useCallback(async () => {
+    if (!isRegisteredUser || !userId) return false;
+    setSyncStatus('syncing');
+    try {
+      const res = await checklistApi.sync(exam, [...ticked]);
+      const serverList = Array.isArray(res?.ticked)
+        ? res.ticked
+        : Array.isArray(res?.tickedDocIds)
+        ? res.tickedDocIds
+        : [...ticked];
+      const serverSet = new Set(serverList);
+      setTicked(serverSet);
+      writeUserLocalStorage(userId, exam, serverSet);
+      setSyncStatus('synced');
+      return true;
+    } catch (err) {
+      setSyncStatus('error');
+      return false;
+    }
+  }, [isRegisteredUser, userId, exam, ticked]);
+
   // Backward compatibility object mapping
   const checkedItems = useMemo(() => {
     const obj = {};
@@ -122,6 +163,8 @@ export function useChecklist(exam = 'tg-eapcet') {
   return {
     ticked,
     toggleDoc,
+    saveChecklist,
+    refreshChecklist: fetchLatestFromServer,
     checkedItems,
     toggleItem: toggleDoc,
     loading,

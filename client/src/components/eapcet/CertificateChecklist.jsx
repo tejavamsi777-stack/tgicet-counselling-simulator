@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Download, Check } from 'lucide-react';
+import { Download, Check, RefreshCw, Save } from 'lucide-react';
 import { GlassButton } from '../ui/glass-button';
 import { useChecklist } from '../../hooks/useChecklist';
 
@@ -41,12 +41,21 @@ function filterDocs(documents, pill) {
 }
 
 export default function CertificateChecklist({ documents = [], examSlug = 'tg-eapcet' }) {
-  const { ticked, toggleDoc } = useChecklist(examSlug);
+  const { ticked, toggleDoc, saveChecklist, isRegisteredUser, syncStatus } = useChecklist(examSlug);
   const [activePill, setActivePill] = useState('all');
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   const filtered = useMemo(() => filterDocs(documents, activePill), [documents, activePill]);
   const tickedCount = filtered.filter(d => ticked.has(d.id)).length;
   const progress = filtered.length ? (tickedCount / filtered.length) * 100 : 0;
+
+  const handleSaveSync = async () => {
+    const success = await saveChecklist();
+    if (success) {
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    }
+  };
 
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6">
@@ -85,16 +94,43 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
         </div>
       </div>
 
-      {/* Download button */}
-      <div className="no-print mb-5 flex justify-end">
-        <GlassButton
-          size="sm"
-          onClick={() => window.print()}
-          contentClassName="flex items-center gap-1.5"
-        >
-          <Download size={13} />
-          <span>Download Checklist</span>
-        </GlassButton>
+      {/* Save & Download Action Buttons */}
+      <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3">
+        {isRegisteredUser && (
+          <button
+            onClick={handleSaveSync}
+            disabled={syncStatus === 'syncing'}
+            className="inline-flex items-center gap-2 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 px-3.5 py-2 text-xs font-semibold text-purple-200 transition-all shadow-md active:scale-95 disabled:opacity-50"
+          >
+            {syncStatus === 'syncing' ? (
+              <>
+                <RefreshCw size={13} className="animate-spin text-purple-300" />
+                <span>Syncing Across Devices...</span>
+              </>
+            ) : saveSuccess ? (
+              <>
+                <Check size={13} className="text-emerald-400" />
+                <span className="text-emerald-300 font-bold">Saved & Synced Across Devices!</span>
+              </>
+            ) : (
+              <>
+                <Save size={13} className="text-purple-300" />
+                <span>Save & Sync Across Devices 🔄</span>
+              </>
+            )}
+          </button>
+        )}
+
+        <div className="ml-auto">
+          <GlassButton
+            size="sm"
+            onClick={() => window.print()}
+            contentClassName="flex items-center gap-1.5"
+          >
+            <Download size={13} />
+            <span>Download Checklist</span>
+          </GlassButton>
+        </div>
       </div>
 
       {/* Documents table */}

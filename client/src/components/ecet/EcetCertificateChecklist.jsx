@@ -8,16 +8,28 @@ import {
   Sparkles,
   ShieldCheck,
   AlertCircle,
-  HelpCircle
+  HelpCircle,
+  Save,
+  RefreshCw,
+  Check
 } from 'lucide-react';
 import { useChecklist } from '../../hooks/useChecklist';
 import { ECET_DOCUMENTS } from '../../hooks/useEcetData';
 
 export default function EcetCertificateChecklist() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const { checkedItems, toggleItem, syncStatus } = useChecklist('tg-ecet');
+  const { checkedItems, toggleItem, saveChecklist, isRegisteredUser, syncStatus } = useChecklist('tg-ecet');
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   const categories = ['All', 'OC', 'EWS', 'BC', 'SC/ST', 'Minority', 'Special Quota'];
+
+  const handleSaveSync = async () => {
+    const success = await saveChecklist();
+    if (success) {
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    }
+  };
 
   const filteredDocs = useMemo(() => {
     if (selectedCategory === 'All') return ECET_DOCUMENTS;
@@ -49,7 +61,32 @@ export default function EcetCertificateChecklist() {
             </h3>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            {isRegisteredUser && (
+              <button
+                type="button"
+                onClick={handleSaveSync}
+                disabled={syncStatus === 'syncing'}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/40 bg-purple-600/30 hover:bg-purple-600/50 px-3.5 py-2 text-xs font-bold text-purple-200 transition cursor-pointer disabled:opacity-50"
+              >
+                {syncStatus === 'syncing' ? (
+                  <>
+                    <RefreshCw size={13} className="animate-spin text-purple-300" />
+                    <span>Syncing...</span>
+                  </>
+                ) : saveSuccess ? (
+                  <>
+                    <Check size={13} className="text-emerald-400" />
+                    <span className="text-emerald-300 font-bold">Synced Across Devices!</span>
+                  </>
+                ) : (
+                  <>
+                    <Save size={13} className="text-purple-300" />
+                    <span>Save & Sync 🔄</span>
+                  </>
+                )}
+              </button>
+            )}
             <button
               type="button"
               onClick={handlePrint}
