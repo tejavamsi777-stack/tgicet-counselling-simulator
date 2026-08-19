@@ -114,15 +114,31 @@ export async function scrapePortalNotifications(exam = "eapcet") {
       }
     });
 
-    if (notifications.length > 0) {
-      inMemoryCache.set(config.cacheKey, { data: notifications, timestamp: Date.now() });
-      await persistEapcetCache(config.cacheKey, notifications);
-      console.log(`[Scraper] Successfully scraped ${notifications.length} official items from ${config.source}`);
+    // Pre-Ingestion Data Validation Guard
+    const isValidStructure = notifications.length >= 2;
+    const hasMalformedEntries = notifications.some(n => !n.title || !n.url);
+
+    if (notifications.length === 0 || !isValidStructure || hasMalformedEntries) {
+      const errorDetails = notifications.length === 0
+        ? "Zero items scraped (portal structural change or fetch block)"
+        : hasMalformedEntries
+        ? "Malformed entries detected in scraped payload"
+        : `Unusually low record count (${notifications.length} items)`;
+      
+      console.warn(`[Scraper Validation Guard] ⚠️ Ingestion blocked for ${config.source}. Reason: ${errorDetails}. Preserving previous production dataset.`);
+      
+      // Preserve active production data & return cached fallback
+      const cached = inMemoryCache.get(config.cacheKey);
+      return cached?.data || [];
     }
+
+    inMemoryCache.set(config.cacheKey, { data: notifications, timestamp: Date.now() });
+    await persistEapcetCache(config.cacheKey, notifications);
+    console.log(`[Scraper] Successfully scraped & validated ${notifications.length} official items from ${config.source}`);
 
     return notifications;
   } catch (err) {
-    console.warn(`[Scraper] Notice for ${config.source}: ${err.message}`);
+    console.warn(`[Scraper Pipeline Error] ${config.source}: ${err.message}. Rolling back to active cache.`);
     const cached = inMemoryCache.get(config.cacheKey);
     return cached?.data || [];
   }
