@@ -31,18 +31,6 @@ function readLocalItems(user, exam) {
     const guestRaw = localStorage.getItem(`${LS_PREFIX}guest_${exam}`);
     if (guestRaw) return JSON.parse(guestRaw);
 
-    // Fallback: check legacy set format
-    const legacyRaw = localStorage.getItem(`tg_user_checklist_${exam}`);
-    if (legacyRaw) {
-      const arr = JSON.parse(legacyRaw);
-      const map = {};
-      const now = Date.now();
-      for (const id of arr) {
-        map[id] = { isChecked: true, updatedAt: now };
-      }
-      return map;
-    }
-
     return {};
   } catch {
     return {};
@@ -54,7 +42,7 @@ function writeLocalItems(user, exam, map) {
     const key = getStorageKey(user, exam);
     localStorage.setItem(key, JSON.stringify(map));
   } catch {
-    // ignore storage quota errors
+    // ignore
   }
 }
 
@@ -119,7 +107,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     return set;
   }, [itemsMap]);
 
-  // Flush persistent outbox queue with exponential retry
+  // Flush persistent outbox queue
   const flushOutbox = useCallback(async () => {
     const activeToken = getUserToken();
     if (!activeToken || !navigator.onLine || isFlushingOutboxRef.current) return;
@@ -176,7 +164,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     }
   }, [user, exam]);
 
-  // Pull server changes and merge using Last-Write-Wins (LWW) per item
+  // Pull server changes and merge authoritative database records
   const fetchFromServer = useCallback(
     async () => {
       const activeToken = getUserToken();
@@ -195,19 +183,27 @@ export function useChecklist(exam = 'tg-eapcet') {
           }
         }
 
-        // LWW Delta Merge: Merge each doc individually based on timestamp
+        // Outbox map: don't overwrite items that user clicked and are currently uploading
+        const pendingOutboxMap = {};
+        for (const item of readOutbox(userRef.current, exam)) {
+          pendingOutboxMap[item.docId] = item;
+        }
+
         let hasChanges = false;
         const merged = { ...itemsMapRef.current };
 
         for (const [docId, serverRecord] of Object.entries(serverItems)) {
-          const localRecord = merged[docId];
-          const serverTime = new Date(serverRecord.updatedAt || 0).getTime();
-          const localTime = localRecord?.updatedAt || 0;
+          // If this item has an active local click in the outbox queue, preserve user's click
+          if (pendingOutboxMap[docId]) {
+            continue;
+          }
 
-          // If server record is newer than local, apply it
-          if (!localRecord || serverTime > localTime) {
+          const isChecked = Boolean(serverRecord.isChecked ?? serverRecord.is_checked);
+          const serverTime = new Date(serverRecord.updatedAt || Date.now()).getTime();
+
+          if (!merged[docId] || merged[docId].isChecked !== isChecked) {
             merged[docId] = {
-              isChecked: Boolean(serverRecord.isChecked ?? serverRecord.is_checked),
+              isChecked,
               updatedAt: serverTime,
             };
             hasChanges = true;
@@ -250,19 +246,16 @@ export function useChecklist(exam = 'tg-eapcet') {
       const remoteTime = new Date(timestamp || Date.now()).getTime();
 
       setItemsMap((prev) => {
-        const local = prev[docId];
-        const localTime = local?.updatedAt || 0;
+        // If device has a pending click in outbox for this doc, preserve it
+        const queue = readOutbox(userRef.current, exam);
+        if (queue.some((q) => q.docId === docId)) return prev;
 
-        // Apply only if remote timestamp is strictly newer
-        if (!local || remoteTime > localTime) {
-          const nextMap = {
-            ...prev,
-            [docId]: { isChecked, updatedAt: remoteTime },
-          };
-          writeLocalItems(userRef.current, exam, nextMap);
-          return nextMap;
-        }
-        return prev;
+        const nextMap = {
+          ...prev,
+          [docId]: { isChecked, updatedAt: remoteTime },
+        };
+        writeLocalItems(userRef.current, exam, nextMap);
+        return nextMap;
       });
 
       if (payload.lastSavedAt) {
@@ -281,7 +274,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, [userId, exam]);
 
-  // Polling Heartbeat
+  // Real-time Heartbeat & Outbox Drain
   useEffect(() => {
     fetchFromServer();
 
@@ -333,8 +326,10 @@ export function useChecklist(exam = 'tg-eapcet') {
 
       // 2. Queue mutation in persistent outbox
       const queue = readOutbox(userRef.current, exam);
-      queue.push({ docId, isChecked: newChecked, timestamp: nowIso });
-      writeOutbox(userRef.current, exam, queue);
+      // Replace existing pending mutation for this doc or append
+      const filteredQueue = queue.filter((q) => q.docId !== docId);
+      filteredQueue.push({ docId, isChecked: newChecked, timestamp: nowIso });
+      writeOutbox(userRef.current, exam, filteredQueue);
 
       // 3. Broadcast delta over Supabase Realtime channel
       const currentUserId = userRef.current?.id;
