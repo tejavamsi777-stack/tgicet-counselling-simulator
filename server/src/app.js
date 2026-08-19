@@ -47,8 +47,13 @@ app.use(
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
-  message: { errors: ["Too many attempts. Please try again later."] },
+  message: { error: "Too many login/registration attempts. Please try again in 15 minutes." },
 });
+
+app.use("/api/auth/login", authLimiter);
+app.use("/api/auth/register", authLimiter);
+app.use("/api/admin/auth/login", authLimiter);
+
 import { cacheMiddleware } from "./middleware/cacheMiddleware.js";
 import { payloadObfuscator } from "./middleware/payloadObfuscator.js";
 

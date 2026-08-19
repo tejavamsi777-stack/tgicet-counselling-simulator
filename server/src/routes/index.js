@@ -48,10 +48,10 @@ router.get("/eapcet/compare", eapcetController.compareInstitutions);
 router.get("/eapcet/allotments/meta", eapcetController.getAllotmentMeta);
 router.get("/eapcet/allotments", eapcetController.getAllotmentData);
 
-// ---------- TG ECET Public Lateral Entry Data (no auth required) ----------
+// ---------- TG ECET Data ----------
 router.get("/ecet/counselling-data", ecetController.getCounsellingData);
 router.get("/ecet/notifications", ecetController.getNotifications);
-router.post("/ecet/refresh", ecetController.refreshNotifications);
+router.post("/ecet/refresh", requireAdminAuth, ecetController.refreshNotifications);
 router.get("/ecet/colleges", ecetController.getInstitutions);
 router.get("/ecet/colleges/:code", ecetController.getInstitutionByCode);
 router.get("/ecet/colleges/:code/branches", ecetController.getCollegeBranches);
@@ -59,13 +59,13 @@ router.get("/ecet/compare", ecetController.compareInstitutions);
 router.get("/ecet/allotments/meta", ecetController.getAllotmentMeta);
 router.get("/ecet/allotments", ecetController.getAllotmentData);
 
-// ---------- TG ICET Admissions & Counselling Intelligence Hub ----------
+// ---------- TG ICET Data ----------
 router.get("/icet/counselling-data", icetController.getCounsellingData);
 router.get("/icet/notifications", icetController.getNotifications);
 router.get("/icet/colleges", icetController.getColleges);
 router.get("/icet/colleges/:code", icetController.getCollegeByCode);
 router.get("/icet/compare", icetController.compareColleges);
-router.post("/icet/refresh", icetController.triggerRefresh);
+router.post("/icet/refresh", requireAdminAuth, icetController.triggerRefresh);
 
 // ---------- Student auth ----------
 router.post("/auth/register", authController.register);
