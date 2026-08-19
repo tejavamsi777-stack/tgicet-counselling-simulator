@@ -40,15 +40,23 @@ function filterDocs(documents, pill) {
   }
 }
 
-function formatLastSaved(timestamp) {
+export function formatLastSaved(timestamp) {
   if (!timestamp) return null;
-  const diffMs = Date.now() - new Date(timestamp).getTime();
+  const now = Date.now();
+  const time = new Date(timestamp).getTime();
+  const diffMs = now - time;
+
+  // Handle clock skew (if server/client clock diff is within a few minutes)
+  if (diffMs <= 60000 && diffMs >= -300000) return 'Saved just now';
+
   const diffMins = Math.floor(diffMs / 60000);
   if (diffMins < 1) return 'Saved just now';
   if (diffMins === 1) return 'Last saved 1 minute ago';
   if (diffMins < 60) return `Last saved ${diffMins} minutes ago`;
   const diffHours = Math.floor(diffMins / 60);
-  return `Last saved ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+  if (diffHours < 24) return `Last saved ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `Last saved ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
 }
 
 export default function CertificateChecklist({ documents = [], examSlug = 'tg-eapcet' }) {
