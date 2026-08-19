@@ -34,10 +34,9 @@ export function useChecklist(exam = 'tg-eapcet') {
   const [loading, setLoading] = useState(false);
   const [syncStatus, setSyncStatus] = useState('synced'); // 'synced' | 'syncing' | 'error'
 
-  // Fetch latest ticks from server
+  // Fetch latest ticks from server (silent background sync)
   const fetchLatestFromServer = useCallback(async () => {
     if (!isRegisteredUser || !userId) return;
-    setSyncStatus('syncing');
     try {
       const res = await checklistApi.get(exam);
       const serverList = Array.isArray(res?.ticked)
@@ -50,7 +49,7 @@ export function useChecklist(exam = 'tg-eapcet') {
       writeUserLocalStorage(userId, exam, serverSet);
       setSyncStatus('synced');
     } catch {
-      setSyncStatus('error');
+      // keep existing state on background fetch error
     }
   }, [isRegisteredUser, userId, exam]);
 
@@ -60,11 +59,8 @@ export function useChecklist(exam = 'tg-eapcet') {
 
     let isMounted = true;
     setLoading(true);
-    setSyncStatus('syncing');
 
-    const localSet = readUserLocalStorage(userId, exam);
-    if (localSet.size > 0) setTicked(localSet);
-
+    // Initial load: fetch authoritative server state
     checklistApi.get(exam)
       .then(res => {
         if (!isMounted) return;
@@ -75,23 +71,26 @@ export function useChecklist(exam = 'tg-eapcet') {
           : [];
 
         const serverSet = new Set(serverList);
-        const merged = new Set([...localSet, ...serverSet]);
-        setTicked(merged);
-        writeUserLocalStorage(userId, exam, merged);
-
-        if (merged.size > serverSet.size) {
-          checklistApi.sync(exam, [...merged]).catch(() => {});
-        }
+        setTicked(serverSet);
+        writeUserLocalStorage(userId, exam, serverSet);
         setSyncStatus('synced');
       })
       .catch(() => {
-        if (isMounted) setSyncStatus('error');
+        if (isMounted) {
+          const localSet = readUserLocalStorage(userId, exam);
+          if (localSet.size > 0) setTicked(localSet);
+          setSyncStatus('error');
+        }
       })
       .finally(() => {
         if (isMounted) setLoading(false);
       });
 
-    // Real-time synchronization when switching tabs or opening page on mobile/PC
+    // Real-time synchronization: poll server every 3 seconds for instant mobile <-> PC sync
+    const pollInterval = setInterval(() => {
+      fetchLatestFromServer();
+    }, 3000);
+
     const handleFocus = () => {
       fetchLatestFromServer();
     };
@@ -101,6 +100,7 @@ export function useChecklist(exam = 'tg-eapcet') {
 
     return () => {
       isMounted = false;
+      clearInterval(pollInterval);
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
     };
