@@ -80,14 +80,6 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, []);
 
-  // Sync initial local cache when user profile mounts
-  useEffect(() => {
-    const local = readLocalChecklist(user, exam);
-    if (local.size > 0) {
-      setTicked(local);
-    }
-  }, [user, exam]);
-
   // Fetch authoritative state from backend server
   const fetchFromServer = useCallback(
     async (force = false) => {
@@ -126,11 +118,13 @@ export function useChecklist(exam = 'tg-eapcet') {
 
   // Initial load + Real-time 2-second Polling for Instant Cross-Device Sync
   useEffect(() => {
-    const activeToken = getUserToken();
-    if (!activeToken) return;
-
     let isMounted = true;
     setLoading(true);
+
+    const local = readLocalChecklist(user, exam);
+    if (local.size > 0) {
+      setTicked(local);
+    }
 
     fetchFromServer(true).finally(() => {
       if (isMounted) setLoading(false);
@@ -153,7 +147,7 @@ export function useChecklist(exam = 'tg-eapcet') {
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
     };
-  }, [exam, fetchFromServer]);
+  }, [user, exam, fetchFromServer]);
 
   // Toggle document checkbox: IMMEDIATELY persists locally & to backend
   const toggleDoc = useCallback(
