@@ -174,7 +174,7 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
   };
 
   const positionClasses = placement === "top"
-    ? "bottom-full mb-2 right-0 sm:right-auto sm:left-0"
+    ? "bottom-full mb-3 right-0"
     : placement === "bottom-left"
     ? "bottom-full mb-3 left-0"
     : "top-full mt-2 right-0";
@@ -339,7 +339,7 @@ export function FloatingShareButton() {
   );
 }
 
-export function ShareButton({ className = "", variant = "icon", label = "Share", shareData = null }) {
+export function ShareButton({ className = "", variant = "icon", label = "Share", shareData = null, placement = "bottom" }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -402,7 +402,7 @@ export function ShareButton({ className = "", variant = "icon", label = "Share",
               title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
               text: "Check out TG Counselling Portal for real-time seat allotments, college cutoffs, and mock counselling simulators!",
             }}
-            placement="bottom"
+            placement={placement}
           />
         )}
       </AnimatePresence>

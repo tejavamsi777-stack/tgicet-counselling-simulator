@@ -204,7 +204,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
           </div>
 
           <div className="relative">
-            <ShareButton variant="pill" label="Share Portal" className="text-white hover:text-purple-300" />
+            <ShareButton variant="pill" label="Share Portal" placement="top" className="text-white hover:text-purple-300" />
           </div>
 
           <AnimatePresence>
