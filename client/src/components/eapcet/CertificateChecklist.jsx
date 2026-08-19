@@ -126,8 +126,6 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
                   ? 'bg-emerald-600/30 border border-emerald-500/50 text-emerald-200'
                   : saveError
                   ? 'bg-rose-600/30 border border-rose-500/50 text-rose-200'
-                  : hasUnsavedChanges
-                  ? 'bg-purple-600/50 border border-purple-400/60 text-white animate-pulse'
                   : 'bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 text-purple-200'
               }`}
             >
