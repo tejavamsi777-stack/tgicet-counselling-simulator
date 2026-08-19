@@ -17,7 +17,7 @@ export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
       <div className="relative flex flex-col sm:flex-row items-center justify-between gap-3 px-3.5 py-2.5 w-full">
         {/* Left Badge & Actions on Mobile */}
         <div className="flex items-center justify-between w-full sm:w-auto gap-2 shrink-0 z-10">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 flex-wrap">
             <span className={`flex h-2 w-2 rounded-full ${isRegisteredUser ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-ping'}`} />
             <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider shadow-sm ${
               isRegisteredUser 
@@ -27,6 +27,12 @@ export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
               <Sparkles size={12} className={isRegisteredUser ? 'text-emerald-400' : 'text-amber-400'} />
               {isRegisteredUser ? 'Cloud Synced' : 'HLC Notice'}
             </span>
+            {isRegisteredUser && (
+              <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span>Live sync connected</span>
+              </span>
+            )}
           </div>
 
           {/* Action Button for Mobile */}
