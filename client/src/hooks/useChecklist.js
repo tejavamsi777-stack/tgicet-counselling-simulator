@@ -106,12 +106,12 @@ export function useChecklist(exam = 'tg-eapcet') {
 
   // Fetch authoritative state from backend server
   const fetchFromServer = useCallback(
-    async (force = false) => {
+    async () => {
       const activeToken = getUserToken();
       if (!activeToken || !navigator.onLine) return;
 
-      // Don't poll if user recently clicked a box on this device
-      if (!force && Date.now() - lastLocalMutationTimeRef.current < 4000) return;
+      // Lock out server overwrite if user clicked on this device in last 5 seconds
+      if (Date.now() - lastLocalMutationTimeRef.current < 5000) return;
 
       try {
         const res = await checklistApi.get(exam);
@@ -124,24 +124,26 @@ export function useChecklist(exam = 'tg-eapcet') {
         const serverSet = new Set(serverList);
         const serverTimestamp = res?.lastSavedAt || null;
 
-        // If another device updated the server or on initial force load
-        const isServerNewer =
-          serverTimestamp &&
-          lastSavedAtRef.current &&
-          new Date(serverTimestamp).getTime() > new Date(lastSavedAtRef.current).getTime() + 500;
+        // Never wipe out non-empty local state with empty server response
+        if (serverSet.size === 0 && tickedRef.current.size > 0) {
+          // Push local state to server to populate database
+          checklistApi.sync(exam, [...tickedRef.current]).catch(() => {});
+          return;
+        }
 
-        if (force || isServerNewer || !lastSavedAtRef.current) {
-          if (!areSetsEqual(serverSet, tickedRef.current)) {
-            // Apply server state
+        // If server has items and differs from local state (and user is not currently clicking)
+        if (serverSet.size > 0 && !areSetsEqual(serverSet, tickedRef.current)) {
+          if (Date.now() - lastLocalMutationTimeRef.current >= 5000) {
             setTicked(serverSet);
             writeLocalChecklist(userRef.current, exam, serverSet);
           }
-          if (serverTimestamp) {
-            setLastSavedAt(serverTimestamp);
-            try {
-              localStorage.setItem(`tg_saved_at_${exam}`, serverTimestamp);
-            } catch {}
-          }
+        }
+
+        if (serverTimestamp) {
+          setLastSavedAt(serverTimestamp);
+          try {
+            localStorage.setItem(`tg_saved_at_${exam}`, serverTimestamp);
+          } catch {}
         }
 
         setSyncStatus('synced');
@@ -153,33 +155,20 @@ export function useChecklist(exam = 'tg-eapcet') {
     [exam]
   );
 
-  // Initial load + Real-time 2-second Polling for Instant Cross-Device Sync
+  // Real-time 2-second Polling for Instant Cross-Device Sync
   useEffect(() => {
-    let isMounted = true;
-    setLoading(true);
-
-    const local = readLocalChecklist(user, exam);
-    if (local.size > 0) {
-      setTicked(local);
-    }
-
-    fetchFromServer(true).finally(() => {
-      if (isMounted) setLoading(false);
-    });
-
     const pollTimer = setInterval(() => {
-      fetchFromServer(false);
+      fetchFromServer();
     }, 2000);
 
     const handleFocus = () => {
-      fetchFromServer(true);
+      fetchFromServer();
     };
 
     window.addEventListener('focus', handleFocus);
     document.addEventListener('visibilitychange', handleFocus);
 
     return () => {
-      isMounted = false;
       clearInterval(pollTimer);
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
@@ -200,7 +189,7 @@ export function useChecklist(exam = 'tg-eapcet') {
         next.add(docId);
       }
 
-      // 1. Instant optimistic update
+      // 1. Instant local optimistic update
       setTicked(next);
       writeLocalChecklist(userRef.current, exam, next);
       setLastSavedAt(nowIso);
