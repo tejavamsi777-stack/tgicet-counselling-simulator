@@ -15,9 +15,8 @@ function getSslConfig() {
   if (process.env.DATABASE_URL && process.env.DATABASE_URL.includes("localhost")) {
     return false;
   }
-  const isStrict = process.env.NODE_ENV === "production" || process.env.DB_SSL_STRICT === "true";
   return {
-    rejectUnauthorized: isStrict,
+    rejectUnauthorized: false,
   };
 }
 
