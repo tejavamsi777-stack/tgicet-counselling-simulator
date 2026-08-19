@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { checklistApi } from '../lib/eapcetApi';
+import { getUserToken } from '../lib/api';
 
 const LS_KEY_PREFIX = 'tg_user_checklist_';
 
@@ -18,7 +19,6 @@ function readLocalChecklist(user, exam) {
     const raw = localStorage.getItem(key);
     if (raw) return new Set(JSON.parse(raw));
 
-    // Fallback: check guest storage
     const guestRaw = localStorage.getItem(`${LS_KEY_PREFIX}guest_${exam}`);
     if (guestRaw) return new Set(JSON.parse(guestRaw));
 
@@ -48,7 +48,8 @@ function areSetsEqual(a, b) {
 
 export function useChecklist(exam = 'tg-eapcet') {
   const { user } = useAuth();
-  const isRegisteredUser = Boolean(user && !user.is_guest);
+  const token = getUserToken();
+  const isRegisteredUser = Boolean((user && !user.is_guest) || token);
 
   const [ticked, setTicked] = useState(() => readLocalChecklist(user, exam));
   const [loading, setLoading] = useState(false);
@@ -79,7 +80,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, []);
 
-  // Whenever user changes (e.g. login/logout), sync initial local cache
+  // Sync initial local cache when user profile mounts
   useEffect(() => {
     const local = readLocalChecklist(user, exam);
     if (local.size > 0) {
@@ -90,8 +91,9 @@ export function useChecklist(exam = 'tg-eapcet') {
   // Fetch authoritative state from backend server
   const fetchFromServer = useCallback(
     async (force = false) => {
-      if (!isRegisteredUser || !navigator.onLine) return;
-      if (!force && Date.now() - lastMutationTimeRef.current < 3000) return;
+      const activeToken = getUserToken();
+      if (!activeToken || !navigator.onLine) return;
+      if (!force && Date.now() - lastMutationTimeRef.current < 2500) return;
 
       try {
         const res = await checklistApi.get(exam);
@@ -103,17 +105,11 @@ export function useChecklist(exam = 'tg-eapcet') {
 
         const serverSet = new Set(serverList);
 
-        // If local mutation is not active, apply server state
-        if (force || Date.now() - lastMutationTimeRef.current >= 3000) {
+        // Apply server state if no recent local click
+        if (force || Date.now() - lastMutationTimeRef.current >= 2500) {
           if (!areSetsEqual(serverSet, tickedRef.current)) {
-            // If server has items, take server state
-            if (serverSet.size > 0) {
-              setTicked(serverSet);
-              writeLocalChecklist(userRef.current, exam, serverSet);
-            } else if (tickedRef.current.size > 0) {
-              // If server is empty but local has items, push local items to server
-              checklistApi.sync(exam, [...tickedRef.current]).catch(() => {});
-            }
+            setTicked(serverSet);
+            writeLocalChecklist(userRef.current, exam, serverSet);
           }
         }
 
@@ -125,12 +121,13 @@ export function useChecklist(exam = 'tg-eapcet') {
         // ignore
       }
     },
-    [isRegisteredUser, exam]
+    [exam]
   );
 
-  // Initial load + Real-time 2s Polling
+  // Initial load + Real-time 2-second Polling for Instant Cross-Device Sync
   useEffect(() => {
-    if (!isRegisteredUser) return;
+    const activeToken = getUserToken();
+    if (!activeToken) return;
 
     let isMounted = true;
     setLoading(true);
@@ -156,7 +153,7 @@ export function useChecklist(exam = 'tg-eapcet') {
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
     };
-  }, [isRegisteredUser, exam, fetchFromServer]);
+  }, [exam, fetchFromServer]);
 
   // Toggle document checkbox: IMMEDIATELY persists locally & to backend
   const toggleDoc = useCallback(
@@ -175,8 +172,9 @@ export function useChecklist(exam = 'tg-eapcet') {
       setTicked(next);
       writeLocalChecklist(userRef.current, exam, next);
 
-      // 2. Instant server sync if registered user
-      if (isRegisteredUser && navigator.onLine) {
+      // 2. Instant server sync
+      const activeToken = getUserToken();
+      if (activeToken && navigator.onLine) {
         setSyncStatus('syncing');
         setSaveSuccess(false);
 
@@ -194,12 +192,13 @@ export function useChecklist(exam = 'tg-eapcet') {
         }
       }
     },
-    [isRegisteredUser, exam]
+    [exam]
   );
 
   // Manual Force Save & Sync
   const saveChecklist = useCallback(async () => {
-    if (!isRegisteredUser) return false;
+    const activeToken = getUserToken();
+    if (!activeToken) return false;
     if (!navigator.onLine) {
       setIsOffline(true);
       return false;
@@ -234,7 +233,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     } finally {
       setIsSaving(false);
     }
-  }, [isRegisteredUser, exam, ticked]);
+  }, [exam, ticked]);
 
   // Backward compatibility object mapping
   const checkedItems = useMemo(() => {
