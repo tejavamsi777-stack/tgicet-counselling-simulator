@@ -14,6 +14,7 @@ import FeeReimbursementCalculator from '../../components/shared/FeeReimbursement
 import CollegeProfileSelectorBanner from '../../components/eapcet/CollegeProfileSelectorBanner';
 import CutoffTrendAnalyzer from '../../components/eapcet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
+import { DirectBannerAd } from '../../components/shared/DirectBannerAd';
 import { useEapcetData } from '../../hooks/useEapcetData';
 
 function SectionDivider() {
@@ -34,6 +35,11 @@ export default function EapcetHome() {
         description="Comprehensive Telangana EAPCET engineering admissions hub with live counselling updates, college comparison matrix, cutoff trajectories, and document checklist."
         path="/tg-eapcet"
       />
+
+      {/* Direct Sponsored College Banner */}
+      <div className="mb-6">
+        <DirectBannerAd placement="hero" />
+      </div>
 
       {/* Hero Header */}
       <div>
