@@ -23,6 +23,14 @@ function writeUserLocalStorage(userId, exam, set) {
   }
 }
 
+function areSetsEqual(a, b) {
+  if (a.size !== b.size) return false;
+  for (const item of a) {
+    if (!b.has(item)) return false;
+  }
+  return true;
+}
+
 export function useChecklist(exam = 'tg-eapcet') {
   const { user } = useAuth();
   const isRegisteredUser = Boolean(user && !user.is_guest);
@@ -40,7 +48,8 @@ export function useChecklist(exam = 'tg-eapcet') {
   const tickedRef = useRef(ticked);
   tickedRef.current = ticked;
 
-  const isMutatingRef = useRef(false);
+  // Track when user last modified checkboxes locally so polling does NOT stomp on active clicks
+  const lastMutationTimeRef = useRef(0);
 
   // Online / offline listeners
   useEffect(() => {
@@ -54,9 +63,12 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, []);
 
-  // Authoritative server fetch
-  const fetchFromServer = useCallback(async () => {
-    if (!isRegisteredUser || !userId || !navigator.onLine || isMutatingRef.current) return;
+  // Server fetch for real-time background sync
+  const fetchFromServer = useCallback(async (force = false) => {
+    if (!isRegisteredUser || !userId || !navigator.onLine) return;
+    // Don't overwrite if user clicked a checkbox in the last 4 seconds
+    if (!force && Date.now() - lastMutationTimeRef.current < 4000) return;
+
     try {
       const res = await checklistApi.get(exam);
       const serverList = Array.isArray(res?.ticked)
@@ -67,15 +79,12 @@ export function useChecklist(exam = 'tg-eapcet') {
       
       const serverSet = new Set(serverList);
 
-      // Compare with current set
-      const current = tickedRef.current;
-      const isDifferent =
-        serverSet.size !== current.size ||
-        [...serverSet].some((id) => !current.has(id));
-
-      if (isDifferent && !isMutatingRef.current) {
-        setTicked(serverSet);
-        writeUserLocalStorage(userId, exam, serverSet);
+      // Only update state if different and not recently mutated
+      if (force || Date.now() - lastMutationTimeRef.current >= 4000) {
+        if (!areSetsEqual(serverSet, tickedRef.current)) {
+          setTicked(serverSet);
+          writeUserLocalStorage(userId, exam, serverSet);
+        }
       }
 
       if (res?.lastSavedAt) {
@@ -83,28 +92,27 @@ export function useChecklist(exam = 'tg-eapcet') {
       }
       setSyncStatus('synced');
     } catch {
-      // ignore transient fetch errors
+      // ignore
     }
   }, [isRegisteredUser, userId, exam]);
 
-  // Initial load + Real-time 1.5s Polling for Instant Cross-Device Sync
+  // Initial load + Real-time 2s Polling
   useEffect(() => {
     if (!isRegisteredUser || !userId) return;
 
     let isMounted = true;
     setLoading(true);
 
-    fetchFromServer().finally(() => {
+    fetchFromServer(true).finally(() => {
       if (isMounted) setLoading(false);
     });
 
-    // 1.5-second polling interval for instant real-time sync between phone & PC
     const pollTimer = setInterval(() => {
-      fetchFromServer();
-    }, 1500);
+      fetchFromServer(false);
+    }, 2000);
 
     const handleFocus = () => {
-      fetchFromServer();
+      fetchFromServer(false);
     };
 
     window.addEventListener('focus', handleFocus);
@@ -118,37 +126,34 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, [isRegisteredUser, userId, exam, fetchFromServer]);
 
-  // Toggle document checkbox: IMMEDIATELY saves locally & pushes to backend database
+  // Toggle document checkbox: IMMEDIATELY persists locally & to backend
   const toggleDoc = useCallback(
     async (docId) => {
+      lastMutationTimeRef.current = Date.now();
+
       const current = tickedRef.current;
       const next = new Set(current);
-      const nowTicked = !next.has(docId);
-
-      if (nowTicked) {
-        next.add(docId);
-      } else {
+      if (next.has(docId)) {
         next.delete(docId);
+      } else {
+        next.add(docId);
       }
 
-      // 1. Instant local update
+      // 1. Instant local optimistic update
       setTicked(next);
       if (isRegisteredUser && userId) {
         writeUserLocalStorage(userId, exam, next);
       }
 
-      // 2. Instant server update if registered user
+      // 2. Instant server sync if registered user
       if (isRegisteredUser && userId && navigator.onLine) {
-        isMutatingRef.current = true;
         setSyncStatus('syncing');
         setSaveSuccess(false);
 
         try {
-          // Send instant tick update to DB
-          await checklistApi.update(exam, docId, nowTicked);
-          // Also sync full list to guarantee database consistency
+          // Sync full state to DB
           const res = await checklistApi.sync(exam, [...next]);
-          
+          lastMutationTimeRef.current = Date.now();
           if (res?.lastSavedAt) {
             setLastSavedAt(res.lastSavedAt);
           }
@@ -157,17 +162,13 @@ export function useChecklist(exam = 'tg-eapcet') {
           setTimeout(() => setSaveSuccess(false), 2000);
         } catch (err) {
           setSyncStatus('error');
-        } finally {
-          setTimeout(() => {
-            isMutatingRef.current = false;
-          }, 500);
         }
       }
     },
     [isRegisteredUser, userId, exam]
   );
 
-  // Manual Force Save & Sync Action
+  // Manual Force Save & Sync
   const saveChecklist = useCallback(async () => {
     if (!isRegisteredUser || !userId) return false;
     if (!navigator.onLine) {
@@ -175,9 +176,9 @@ export function useChecklist(exam = 'tg-eapcet') {
       return false;
     }
 
+    lastMutationTimeRef.current = Date.now();
     setIsSaving(true);
     setSaveError(false);
-    isMutatingRef.current = true;
 
     try {
       const res = await checklistApi.sync(exam, [...ticked]);
@@ -192,6 +193,7 @@ export function useChecklist(exam = 'tg-eapcet') {
       writeUserLocalStorage(userId, exam, serverSet);
       if (res?.lastSavedAt) setLastSavedAt(res.lastSavedAt);
       
+      lastMutationTimeRef.current = Date.now();
       setSyncStatus('synced');
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
@@ -202,9 +204,6 @@ export function useChecklist(exam = 'tg-eapcet') {
       return false;
     } finally {
       setIsSaving(false);
-      setTimeout(() => {
-        isMutatingRef.current = false;
-      }, 500);
     }
   }, [isRegisteredUser, userId, exam, ticked]);
 
