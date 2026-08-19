@@ -45,9 +45,6 @@ export default function IcetDocumentsPage() {
         </p>
       </div>
 
-      {/* Notice Scrolling Ribbon */}
-      <HlcSyncRibbon examTitle="TG ICET" />
-
       {/* Content */}
       {loading ? (
         <ShimmerRows />

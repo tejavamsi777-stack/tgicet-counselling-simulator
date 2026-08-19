@@ -45,9 +45,6 @@ export default function EcetDocumentsPage() {
         </p>
       </div>
 
-      {/* Notice Scrolling Ribbon */}
-      <HlcSyncRibbon examTitle="TG ECET" />
-
       {/* Content */}
       {loading ? (
         <ShimmerRows />

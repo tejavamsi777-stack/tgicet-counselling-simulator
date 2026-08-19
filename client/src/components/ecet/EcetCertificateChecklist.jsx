@@ -62,31 +62,6 @@ export default function EcetCertificateChecklist() {
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
-            {isRegisteredUser && (
-              <button
-                type="button"
-                onClick={handleSaveSync}
-                disabled={syncStatus === 'syncing'}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/40 bg-purple-600/30 hover:bg-purple-600/50 px-3.5 py-2 text-xs font-bold text-purple-200 transition cursor-pointer disabled:opacity-50"
-              >
-                {syncStatus === 'syncing' ? (
-                  <>
-                    <RefreshCw size={13} className="animate-spin text-purple-300" />
-                    <span>Syncing...</span>
-                  </>
-                ) : saveSuccess ? (
-                  <>
-                    <Check size={13} className="text-emerald-400" />
-                    <span className="text-emerald-300 font-bold">Synced Across Devices!</span>
-                  </>
-                ) : (
-                  <>
-                    <Save size={13} className="text-purple-300" />
-                    <span>Save & Sync 🔄</span>
-                  </>
-                )}
-              </button>
-            )}
             <button
               type="button"
               onClick={handlePrint}

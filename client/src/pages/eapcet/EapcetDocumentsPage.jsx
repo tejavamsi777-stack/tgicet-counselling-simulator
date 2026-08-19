@@ -45,9 +45,6 @@ export default function EapcetDocumentsPage() {
         </p>
       </div>
 
-      {/* Notice Scrolling Ribbon */}
-      <HlcSyncRibbon examTitle="TG EAPCET" />
-
       {/* Content */}
       {loading ? (
         <ShimmerRows />

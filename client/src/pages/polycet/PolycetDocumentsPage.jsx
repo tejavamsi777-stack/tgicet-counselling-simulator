@@ -45,9 +45,6 @@ export default function PolycetDocumentsPage() {
         </p>
       </div>
 
-      {/* Notice Scrolling Ribbon */}
-      <HlcSyncRibbon examTitle="TG POLYCET" />
-
       {/* Content */}
       {loading ? (
         <ShimmerRows />
