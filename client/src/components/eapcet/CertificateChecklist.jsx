@@ -40,22 +40,38 @@ function filterDocs(documents, pill) {
   }
 }
 
+function formatLastSaved(timestamp) {
+  if (!timestamp) return null;
+  const diffMs = Date.now() - new Date(timestamp).getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 1) return 'Saved just now';
+  if (diffMins === 1) return 'Last saved 1 minute ago';
+  if (diffMins < 60) return `Last saved ${diffMins} minutes ago`;
+  const diffHours = Math.floor(diffMins / 60);
+  return `Last saved ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+}
+
 export default function CertificateChecklist({ documents = [], examSlug = 'tg-eapcet' }) {
-  const { ticked, toggleDoc, saveChecklist, isRegisteredUser, syncStatus } = useChecklist(examSlug);
+  const {
+    ticked,
+    toggleDoc,
+    saveChecklist,
+    reloadLatestServerState,
+    isSaving,
+    saveSuccess,
+    saveError,
+    lastSavedAt,
+    hasUnsavedChanges,
+    conflictNotice,
+    isOffline,
+    isRegisteredUser,
+  } = useChecklist(examSlug);
+
   const [activePill, setActivePill] = useState('all');
-  const [saveSuccess, setSaveSuccess] = useState(false);
 
   const filtered = useMemo(() => filterDocs(documents, activePill), [documents, activePill]);
   const tickedCount = filtered.filter(d => ticked.has(d.id)).length;
   const progress = filtered.length ? (tickedCount / filtered.length) * 100 : 0;
-
-  const handleSaveSync = async () => {
-    const success = await saveChecklist();
-    if (success) {
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 3000);
-    }
-  };
 
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6">
@@ -78,6 +94,26 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
         ))}
       </div>
 
+      {/* Conflict Notice Alert */}
+      {conflictNotice && (
+        <div className="no-print mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-3.5 py-2 text-xs text-amber-200 shadow-sm">
+          <span className="font-medium">⚠️ Checklist updated on another device.</span>
+          <button
+            onClick={reloadLatestServerState}
+            className="underline font-bold text-amber-300 hover:text-white transition-colors"
+          >
+            Reload Latest Server Version
+          </button>
+        </div>
+      )}
+
+      {/* Offline Alert */}
+      {isOffline && (
+        <div className="no-print mb-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-2 text-xs text-rose-200">
+          <span>📡 Offline — changes not synced. They will remain saved locally until connection returns.</span>
+        </div>
+      )}
+
       {/* Progress bar */}
       <div className="mb-5">
         <div className="flex justify-between items-center mb-2">
@@ -97,28 +133,50 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
       {/* Save & Download Action Buttons */}
       <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3">
         {isRegisteredUser && (
-          <button
-            onClick={handleSaveSync}
-            disabled={syncStatus === 'syncing'}
-            className="inline-flex items-center gap-2 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 px-3.5 py-2 text-xs font-semibold text-purple-200 transition-all shadow-md active:scale-95 disabled:opacity-50"
-          >
-            {syncStatus === 'syncing' ? (
-              <>
-                <RefreshCw size={13} className="animate-spin text-purple-300" />
-                <span>Syncing Across Devices...</span>
-              </>
-            ) : saveSuccess ? (
-              <>
-                <Check size={13} className="text-emerald-400" />
-                <span className="text-emerald-300 font-bold">Saved & Synced Across Devices!</span>
-              </>
-            ) : (
-              <>
-                <Save size={13} className="text-purple-300" />
-                <span>Save & Sync Across Devices 🔄</span>
-              </>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 max-w-full">
+            <button
+              onClick={saveChecklist}
+              disabled={isSaving}
+              className={`inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all shadow-md active:scale-95 disabled:opacity-50 ${
+                saveSuccess
+                  ? 'bg-emerald-600/30 border border-emerald-500/50 text-emerald-200'
+                  : saveError
+                  ? 'bg-rose-600/30 border border-rose-500/50 text-rose-200'
+                  : hasUnsavedChanges
+                  ? 'bg-purple-600/50 border border-purple-400/60 text-white animate-pulse'
+                  : 'bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 text-purple-200'
+              }`}
+            >
+              {isSaving ? (
+                <>
+                  <RefreshCw size={13} className="animate-spin text-purple-300" />
+                  <span>Saving...</span>
+                </>
+              ) : saveSuccess ? (
+                <>
+                  <Check size={13} className="text-emerald-400" />
+                  <span className="text-emerald-300 font-bold">✓ Saved & Synced</span>
+                </>
+              ) : saveError ? (
+                <>
+                  <RefreshCw size={13} className="text-rose-300" />
+                  <span>Retry Save</span>
+                </>
+              ) : (
+                <>
+                  <Save size={13} className="text-purple-300" />
+                  <span>Save & Sync Across Devices</span>
+                </>
+              )}
+            </button>
+
+            {/* Subtle Timestamp Indicator */}
+            {lastSavedAt && (
+              <span className="text-[11px] text-white/40 font-mono truncate max-w-full">
+                {formatLastSaved(lastSavedAt)}
+              </span>
             )}
-          </button>
+          </div>
         )}
 
         <div className="ml-auto">

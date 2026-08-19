@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { checklistApi } from '../lib/eapcetApi';
 
@@ -25,18 +25,40 @@ function writeUserLocalStorage(userId, exam, set) {
 
 export function useChecklist(exam = 'tg-eapcet') {
   const { user } = useAuth();
-  // Only actual signed-in registered users (not guests) persist data to server
   const isRegisteredUser = Boolean(user && !user.is_guest);
   const userId = isRegisteredUser ? (user.id || user.email) : null;
 
-  // Initial state from localStorage if available
   const [ticked, setTicked] = useState(() => (isRegisteredUser ? readUserLocalStorage(userId, exam) : new Set()));
   const [loading, setLoading] = useState(false);
-  const [syncStatus, setSyncStatus] = useState('synced'); // 'synced' | 'syncing' | 'error'
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveError, setSaveError] = useState(false);
+  const [lastSavedAt, setLastSavedAt] = useState(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [conflictNotice, setConflictNotice] = useState(false);
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
-  // Fetch latest ticks from server (silent background sync)
-  const fetchLatestFromServer = useCallback(async () => {
-    if (!isRegisteredUser || !userId) return;
+  const hasUnsavedRef = useRef(hasUnsavedChanges);
+  hasUnsavedRef.current = hasUnsavedChanges;
+
+  const lastSavedAtRef = useRef(lastSavedAt);
+  lastSavedAtRef.current = lastSavedAt;
+
+  // Track online/offline status
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  // Fetch latest ticks from server
+  const fetchLatestFromServer = useCallback(async (isInitial = false) => {
+    if (!isRegisteredUser || !userId || !navigator.onLine) return;
     try {
       const res = await checklistApi.get(exam);
       const serverList = Array.isArray(res?.ticked)
@@ -45,54 +67,48 @@ export function useChecklist(exam = 'tg-eapcet') {
         ? res.tickedDocIds
         : [];
       const serverSet = new Set(serverList);
-      setTicked(serverSet);
-      writeUserLocalStorage(userId, exam, serverSet);
-      setSyncStatus('synced');
+      const serverTimestamp = res?.lastSavedAt || null;
+
+      if (isInitial) {
+        setTicked(serverSet);
+        writeUserLocalStorage(userId, exam, serverSet);
+        if (serverTimestamp) setLastSavedAt(serverTimestamp);
+        setHasUnsavedChanges(false);
+      } else {
+        // If server timestamp is newer than our last saved timestamp
+        if (serverTimestamp && lastSavedAtRef.current && new Date(serverTimestamp) > new Date(lastSavedAtRef.current)) {
+          if (!hasUnsavedRef.current) {
+            setTicked(serverSet);
+            writeUserLocalStorage(userId, exam, serverSet);
+            setLastSavedAt(serverTimestamp);
+            setConflictNotice(false);
+          } else {
+            setConflictNotice(true);
+          }
+        }
+      }
     } catch {
-      // keep existing state on background fetch error
+      // Keep local state on background fetch failure
     }
   }, [isRegisteredUser, userId, exam]);
 
-  // Fetch and sync checklist whenever user or exam changes
+  // Initial load & 4-second background poll for real-time cross-device sync
   useEffect(() => {
     if (!isRegisteredUser || !userId) return;
 
     let isMounted = true;
     setLoading(true);
 
-    // Initial load: fetch authoritative server state
-    checklistApi.get(exam)
-      .then(res => {
-        if (!isMounted) return;
-        const serverList = Array.isArray(res?.ticked)
-          ? res.ticked
-          : Array.isArray(res?.tickedDocIds)
-          ? res.tickedDocIds
-          : [];
+    fetchLatestFromServer(true).finally(() => {
+      if (isMounted) setLoading(false);
+    });
 
-        const serverSet = new Set(serverList);
-        setTicked(serverSet);
-        writeUserLocalStorage(userId, exam, serverSet);
-        setSyncStatus('synced');
-      })
-      .catch(() => {
-        if (isMounted) {
-          const localSet = readUserLocalStorage(userId, exam);
-          if (localSet.size > 0) setTicked(localSet);
-          setSyncStatus('error');
-        }
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false);
-      });
-
-    // Real-time synchronization: poll server every 3 seconds for instant mobile <-> PC sync
     const pollInterval = setInterval(() => {
-      fetchLatestFromServer();
-    }, 3000);
+      fetchLatestFromServer(false);
+    }, 4000);
 
     const handleFocus = () => {
-      fetchLatestFromServer();
+      fetchLatestFromServer(false);
     };
 
     window.addEventListener('focus', handleFocus);
@@ -106,33 +122,35 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, [isRegisteredUser, userId, exam, fetchLatestFromServer]);
 
+  // Toggle document checkbox in local memory only (prevents DB writes per click)
   const toggleDoc = useCallback((docId) => {
     setTicked(prev => {
       const next = new Set(prev);
-      const nowTicked = !next.has(docId);
-      if (nowTicked) {
-        next.add(docId);
-      } else {
+      if (next.has(docId)) {
         next.delete(docId);
+      } else {
+        next.add(docId);
       }
 
       if (isRegisteredUser && userId) {
         writeUserLocalStorage(userId, exam, next);
-        setSyncStatus('syncing');
-        checklistApi
-          .update(exam, docId, nowTicked)
-          .then(() => setSyncStatus('synced'))
-          .catch(() => setSyncStatus('error'));
+        setHasUnsavedChanges(true);
       }
 
       return next;
     });
   }, [isRegisteredUser, userId, exam]);
 
-  // Explicit Save & Sync Across Devices Action
+  // Explicit Save & Sync Action ("Save & Sync Across Devices")
   const saveChecklist = useCallback(async () => {
     if (!isRegisteredUser || !userId) return false;
-    setSyncStatus('syncing');
+    if (!navigator.onLine) {
+      setIsOffline(true);
+      return false;
+    }
+
+    setIsSaving(true);
+    setSaveError(false);
     try {
       const res = await checklistApi.sync(exam, [...ticked]);
       const serverList = Array.isArray(res?.ticked)
@@ -141,15 +159,30 @@ export function useChecklist(exam = 'tg-eapcet') {
         ? res.tickedDocIds
         : [...ticked];
       const serverSet = new Set(serverList);
+      const serverTimestamp = res?.lastSavedAt || new Date().toISOString();
+
       setTicked(serverSet);
       writeUserLocalStorage(userId, exam, serverSet);
-      setSyncStatus('synced');
+      setLastSavedAt(serverTimestamp);
+      setHasUnsavedChanges(false);
+      setConflictNotice(false);
+      setSaveSuccess(true);
+
+      setTimeout(() => setSaveSuccess(false), 3000);
       return true;
     } catch (err) {
-      setSyncStatus('error');
+      setSaveError(true);
       return false;
+    } finally {
+      setIsSaving(false);
     }
   }, [isRegisteredUser, userId, exam, ticked]);
+
+  // Force reload latest server version (to resolve conflict)
+  const reloadLatestServerState = useCallback(() => {
+    fetchLatestFromServer(true);
+    setConflictNotice(false);
+  }, [fetchLatestFromServer]);
 
   // Backward compatibility object mapping
   const checkedItems = useMemo(() => {
@@ -164,11 +197,18 @@ export function useChecklist(exam = 'tg-eapcet') {
     ticked,
     toggleDoc,
     saveChecklist,
+    reloadLatestServerState,
     refreshChecklist: fetchLatestFromServer,
     checkedItems,
     toggleItem: toggleDoc,
     loading,
+    isSaving,
+    saveSuccess,
+    saveError,
+    lastSavedAt,
+    hasUnsavedChanges,
+    conflictNotice,
+    isOffline,
     isRegisteredUser,
-    syncStatus,
   };
 }

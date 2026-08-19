@@ -6,7 +6,8 @@ export const checklistController = {
     try {
       const examSlug = req.query.exam || "tg-eapcet";
       const ticked = await checklistRepository.getTickedDocs(req.user.id, examSlug);
-      res.json({ success: true, ticked, tickedDocIds: ticked });
+      const lastSavedAt = await checklistRepository.getLastSavedAt(req.user.id, examSlug);
+      res.json({ success: true, ticked, tickedDocIds: ticked, lastSavedAt });
     } catch (err) {
       next(err);
     }
@@ -18,20 +19,19 @@ export const checklistController = {
       const { exam = "tg-eapcet", docId, ticked } = req.body;
       if (!docId) return res.status(400).json({ error: "docId is required" });
       await checklistRepository.setDocTick(req.user.id, exam, docId, !!ticked);
-      res.json({ success: true });
+      const lastSavedAt = await checklistRepository.getLastSavedAt(req.user.id, exam);
+      res.json({ success: true, lastSavedAt });
     } catch (err) {
       next(err);
     }
   },
 
   // POST /api/checklist/sync  (requires auth) body: { exam, tickedDocIds: [...] }
-  // Called on login to sync any localStorage ticks into the account
   async syncChecklist(req, res, next) {
     try {
       const { exam = "tg-eapcet", tickedDocIds = [] } = req.body;
-      await checklistRepository.bulkSetDocs(req.user.id, exam, tickedDocIds);
-      const ticked = await checklistRepository.getTickedDocs(req.user.id, exam);
-      res.json({ success: true, ticked });
+      const result = await checklistRepository.replaceChecklistState(req.user.id, exam, tickedDocIds);
+      res.json({ success: true, ticked: result.ticked, tickedDocIds: result.ticked, lastSavedAt: result.lastSavedAt });
     } catch (err) {
       next(err);
     }
