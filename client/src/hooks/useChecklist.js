@@ -4,65 +4,42 @@ import { checklistApi } from '../lib/eapcetApi';
 import { getUserToken } from '../lib/api';
 import { supabase } from '../lib/supabase';
 
-const LS_PREFIX = 'tg_l1_checklist_';
+const LS_KEY = (exam) => `tg_hlc_checked_${exam}`;
 
-function getStorageKey(user, exam) {
-  if (user && !user.is_guest) {
-    const uid = user.id || user.email || 'user';
-    return `${LS_PREFIX}${uid}_${exam}`;
-  }
-  return `${LS_PREFIX}guest_${exam}`;
-}
-
-function getOutboxKey(user, exam) {
-  if (user && !user.is_guest) {
-    const uid = user.id || user.email || 'user';
-    return `${LS_PREFIX}outbox_${uid}_${exam}`;
-  }
-  return `${LS_PREFIX}outbox_guest_${exam}`;
-}
-
-function readLocalItems(user, exam) {
+function readLocal(exam) {
   try {
-    const key = getStorageKey(user, exam);
-    const raw = localStorage.getItem(key);
-    if (raw) return JSON.parse(raw);
-
-    const guestRaw = localStorage.getItem(`${LS_PREFIX}guest_${exam}`);
-    if (guestRaw) return JSON.parse(guestRaw);
-
-    return {};
+    const raw = localStorage.getItem(LS_KEY(exam));
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return new Set(parsed);
+      if (typeof parsed === 'object' && parsed !== null) {
+        const checked = Object.entries(parsed)
+          .filter(([_, v]) => v?.isChecked ?? v === true)
+          .map(([k]) => k);
+        return new Set(checked);
+      }
+    }
   } catch {
-    return {};
+    // fallback
   }
+  return new Set();
 }
 
-function writeLocalItems(user, exam, map) {
+function writeLocal(exam, set) {
   try {
-    const key = getStorageKey(user, exam);
-    localStorage.setItem(key, JSON.stringify(map));
+    localStorage.setItem(LS_KEY(exam), JSON.stringify([...set]));
   } catch {
     // ignore
   }
 }
 
-function readOutbox(user, exam) {
-  try {
-    const key = getOutboxKey(user, exam);
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
+function areEqual(a, b) {
+  if (!a || !b) return false;
+  if (a.size !== b.size) return false;
+  for (const item of a) {
+    if (!b.has(item)) return false;
   }
-}
-
-function writeOutbox(user, exam, queue) {
-  try {
-    const key = getOutboxKey(user, exam);
-    localStorage.setItem(key, JSON.stringify(queue));
-  } catch {
-    // ignore
-  }
+  return true;
 }
 
 export function useChecklist(exam = 'tg-eapcet') {
@@ -71,8 +48,7 @@ export function useChecklist(exam = 'tg-eapcet') {
   const isRegisteredUser = Boolean((user && !user.is_guest) || token);
   const userId = user?.id || null;
 
-  // Local-First Item Map: { [docId]: { isChecked: boolean, updatedAt: number } }
-  const [itemsMap, setItemsMap] = useState(() => readLocalItems(user, exam));
+  const [ticked, setTicked] = useState(() => readLocal(exam));
   const [loading, setLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -88,60 +64,19 @@ export function useChecklist(exam = 'tg-eapcet') {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [isLiveConnected, setIsLiveConnected] = useState(true);
 
-  const itemsMapRef = useRef(itemsMap);
-  itemsMapRef.current = itemsMap;
+  const tickedRef = useRef(ticked);
+  tickedRef.current = ticked;
 
   const userRef = useRef(user);
   userRef.current = user;
 
-  const isFlushingOutboxRef = useRef(false);
-
-  // Derived set of checked document IDs
-  const ticked = useMemo(() => {
-    const set = new Set();
-    for (const [docId, item] of Object.entries(itemsMap)) {
-      if (item?.isChecked) {
-        set.add(docId);
-      }
-    }
-    return set;
-  }, [itemsMap]);
-
-  // Flush persistent outbox queue
-  const flushOutbox = useCallback(async () => {
-    const activeToken = getUserToken();
-    if (!activeToken || !navigator.onLine || isFlushingOutboxRef.current) return;
-
-    const queue = readOutbox(userRef.current, exam);
-    if (queue.length === 0) return;
-
-    isFlushingOutboxRef.current = true;
-    setSyncStatus('syncing');
-
-    const remaining = [...queue];
-    try {
-      while (remaining.length > 0) {
-        const item = remaining[0];
-        await checklistApi.update(exam, item.docId, item.isChecked);
-        remaining.shift();
-        writeOutbox(userRef.current, exam, remaining);
-      }
-      setSyncStatus('synced');
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 2000);
-    } catch {
-      setSyncStatus('error');
-    } finally {
-      isFlushingOutboxRef.current = false;
-    }
-  }, [exam]);
+  const lastUserClickTimeRef = useRef(0);
 
   // Online / Offline tracking
   useEffect(() => {
     const handleOnline = () => {
       setIsOffline(false);
       setIsLiveConnected(true);
-      flushOutbox();
     };
     const handleOffline = () => {
       setIsOffline(true);
@@ -154,65 +89,34 @@ export function useChecklist(exam = 'tg-eapcet') {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, [flushOutbox]);
+  }, []);
 
-  // Initial local storage hydration when user changes
-  useEffect(() => {
-    const local = readLocalItems(user, exam);
-    if (Object.keys(local).length > 0) {
-      setItemsMap(local);
-    }
-  }, [user, exam]);
-
-  // Pull server changes and merge authoritative database records
+  // Fetch from server
   const fetchFromServer = useCallback(
-    async () => {
+    async (force = false) => {
       const activeToken = getUserToken();
       if (!activeToken || !navigator.onLine) return;
 
+      // Don't overwrite if user clicked locally within 4 seconds
+      if (!force && Date.now() - lastUserClickTimeRef.current < 4000) return;
+
       try {
         const res = await checklistApi.get(exam);
-        const serverItems = res?.items || {};
+        const serverList = Array.isArray(res?.ticked)
+          ? res.ticked
+          : Array.isArray(res?.tickedDocIds)
+          ? res.tickedDocIds
+          : [];
+
+        const serverSet = new Set(serverList);
         const serverTimestamp = res?.lastSavedAt || null;
 
-        // If server sent legacy array without items map
-        if (Object.keys(serverItems).length === 0 && Array.isArray(res?.ticked)) {
-          const now = Date.now();
-          for (const docId of res.ticked) {
-            serverItems[docId] = { isChecked: true, updatedAt: now };
+        // If server has items or if force load
+        if (serverSet.size > 0 || force) {
+          if (!areEqual(serverSet, tickedRef.current)) {
+            setTicked(serverSet);
+            writeLocal(exam, serverSet);
           }
-        }
-
-        // Outbox map: don't overwrite items that user clicked and are currently uploading
-        const pendingOutboxMap = {};
-        for (const item of readOutbox(userRef.current, exam)) {
-          pendingOutboxMap[item.docId] = item;
-        }
-
-        let hasChanges = false;
-        const merged = { ...itemsMapRef.current };
-
-        for (const [docId, serverRecord] of Object.entries(serverItems)) {
-          // If this item has an active local click in the outbox queue, preserve user's click
-          if (pendingOutboxMap[docId]) {
-            continue;
-          }
-
-          const isChecked = Boolean(serverRecord.isChecked ?? serverRecord.is_checked);
-          const serverTime = new Date(serverRecord.updatedAt || Date.now()).getTime();
-
-          if (!merged[docId] || merged[docId].isChecked !== isChecked) {
-            merged[docId] = {
-              isChecked,
-              updatedAt: serverTime,
-            };
-            hasChanges = true;
-          }
-        }
-
-        if (hasChanges) {
-          setItemsMap(merged);
-          writeLocalItems(userRef.current, exam, merged);
         }
 
         if (serverTimestamp) {
@@ -224,42 +128,31 @@ export function useChecklist(exam = 'tg-eapcet') {
 
         setSyncStatus('synced');
         setIsLiveConnected(true);
-      } catch (err) {
-        // ignore network hiccups
+      } catch {
+        // ignore
       }
     },
     [exam]
   );
 
-  // Supabase Realtime Delta Subscription
+  // Realtime subscription
   useEffect(() => {
     if (!userId) return;
 
     const channelName = `checklist_sync_${userId}_${exam}`;
     const channel = supabase.channel(channelName);
 
-    // Listen for delta broadcast from peer devices
-    channel.on('broadcast', { event: 'delta_mutation' }, ({ payload }) => {
-      if (!payload || !payload.docId) return;
+    channel.on('broadcast', { event: 'delta_sync' }, ({ payload }) => {
+      if (!payload || !payload.tickedList) return;
+      if (Date.now() - lastUserClickTimeRef.current < 2000) return;
 
-      const { docId, isChecked, timestamp } = payload;
-      const remoteTime = new Date(timestamp || Date.now()).getTime();
-
-      setItemsMap((prev) => {
-        // If device has a pending click in outbox for this doc, preserve it
-        const queue = readOutbox(userRef.current, exam);
-        if (queue.some((q) => q.docId === docId)) return prev;
-
-        const nextMap = {
-          ...prev,
-          [docId]: { isChecked, updatedAt: remoteTime },
-        };
-        writeLocalItems(userRef.current, exam, nextMap);
-        return nextMap;
-      });
-
-      if (payload.lastSavedAt) {
-        setLastSavedAt(payload.lastSavedAt);
+      const remoteSet = new Set(payload.tickedList);
+      if (!areEqual(remoteSet, tickedRef.current)) {
+        setTicked(remoteSet);
+        writeLocal(exam, remoteSet);
+        if (payload.lastSavedAt) {
+          setLastSavedAt(payload.lastSavedAt);
+        }
       }
     });
 
@@ -274,75 +167,60 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, [userId, exam]);
 
-  // Real-time Heartbeat & Outbox Drain
+  // Initial mount & Background Polling
   useEffect(() => {
-    fetchFromServer();
+    fetchFromServer(true);
 
-    const pollTimer = setInterval(() => {
-      fetchFromServer();
-      flushOutbox();
+    const timer = setInterval(() => {
+      fetchFromServer(false);
     }, 2000);
 
-    const handleFocus = () => {
-      fetchFromServer();
-      flushOutbox();
+    const onFocus = () => {
+      fetchFromServer(false);
     };
 
-    window.addEventListener('focus', handleFocus);
-    document.addEventListener('visibilitychange', handleFocus);
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onFocus);
 
     return () => {
-      clearInterval(pollTimer);
-      window.removeEventListener('focus', handleFocus);
-      document.removeEventListener('visibilitychange', handleFocus);
+      clearInterval(timer);
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onFocus);
     };
-  }, [user, exam, fetchFromServer, flushOutbox]);
+  }, [exam, fetchFromServer]);
 
-  // Local-First Toggle: Instant 0ms update + Outbox Queue + Realtime Broadcast
+  // Toggle document checkbox: GUARANTEED INSTANT CLICK + BACKGROUND PERSISTENCE
   const toggleDoc = useCallback(
     (docId) => {
-      const now = Date.now();
-      const nowIso = new Date(now).toISOString();
+      lastUserClickTimeRef.current = Date.now();
+      const nowIso = new Date().toISOString();
 
-      // 1. Instant optimistic update
-      const current = itemsMapRef.current;
-      const currentlyChecked = Boolean(current[docId]?.isChecked);
-      const newChecked = !currentlyChecked;
+      // 1. Instant local optimistic update
+      const current = tickedRef.current;
+      const next = new Set(current);
+      if (next.has(docId)) {
+        next.delete(docId);
+      } else {
+        next.add(docId);
+      }
 
-      const nextMap = {
-        ...current,
-        [docId]: {
-          isChecked: newChecked,
-          updatedAt: now,
-        },
-      };
-
-      setItemsMap(nextMap);
-      writeLocalItems(userRef.current, exam, nextMap);
+      setTicked(next);
+      writeLocal(exam, next);
       setLastSavedAt(nowIso);
       try {
         localStorage.setItem(`tg_saved_at_${exam}`, nowIso);
       } catch {}
 
-      // 2. Queue mutation in persistent outbox
-      const queue = readOutbox(userRef.current, exam);
-      // Replace existing pending mutation for this doc or append
-      const filteredQueue = queue.filter((q) => q.docId !== docId);
-      filteredQueue.push({ docId, isChecked: newChecked, timestamp: nowIso });
-      writeOutbox(userRef.current, exam, filteredQueue);
-
-      // 3. Broadcast delta over Supabase Realtime channel
+      // 2. Broadcast via Supabase Realtime
       const currentUserId = userRef.current?.id;
       if (currentUserId) {
         try {
           const channelName = `checklist_sync_${currentUserId}_${exam}`;
           supabase.channel(channelName).send({
             type: 'broadcast',
-            event: 'delta_mutation',
+            event: 'delta_sync',
             payload: {
-              docId,
-              isChecked: newChecked,
-              timestamp: nowIso,
+              tickedList: [...next],
               lastSavedAt: nowIso,
             },
           });
@@ -351,10 +229,30 @@ export function useChecklist(exam = 'tg-eapcet') {
         }
       }
 
-      // 4. Trigger background outbox flush
-      flushOutbox();
+      // 3. Background server sync
+      const activeToken = getUserToken();
+      if (activeToken && navigator.onLine) {
+        setSyncStatus('syncing');
+        setSaveSuccess(false);
+
+        checklistApi
+          .sync(exam, [...next])
+          .then((res) => {
+            const confirmedTime = res?.lastSavedAt || nowIso;
+            setLastSavedAt(confirmedTime);
+            try {
+              localStorage.setItem(`tg_saved_at_${exam}`, confirmedTime);
+            } catch {}
+            setSyncStatus('synced');
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 2000);
+          })
+          .catch(() => {
+            setSyncStatus('error');
+          });
+      }
     },
-    [exam, flushOutbox]
+    [exam]
   );
 
   // Manual Force Save & Sync
@@ -366,24 +264,18 @@ export function useChecklist(exam = 'tg-eapcet') {
       return false;
     }
 
+    lastUserClickTimeRef.current = Date.now();
+    const nowIso = new Date().toISOString();
     setIsSaving(true);
     setSaveError(false);
 
     try {
-      const tickedList = [];
-      for (const [docId, item] of Object.entries(itemsMapRef.current)) {
-        if (item?.isChecked) tickedList.push(docId);
-      }
-
-      const res = await checklistApi.sync(exam, tickedList);
-      const confirmedTimestamp = res?.lastSavedAt || new Date().toISOString();
-      setLastSavedAt(confirmedTimestamp);
+      const res = await checklistApi.sync(exam, [...tickedRef.current]);
+      const confirmedTime = res?.lastSavedAt || nowIso;
+      setLastSavedAt(confirmedTime);
       try {
-        localStorage.setItem(`tg_saved_at_${exam}`, confirmedTimestamp);
+        localStorage.setItem(`tg_saved_at_${exam}`, confirmedTime);
       } catch {}
-
-      // Clear outbox as full sync succeeded
-      writeOutbox(userRef.current, exam, []);
 
       setSyncStatus('synced');
       setSaveSuccess(true);
@@ -401,11 +293,11 @@ export function useChecklist(exam = 'tg-eapcet') {
   // Backward compatibility object mapping
   const checkedItems = useMemo(() => {
     const obj = {};
-    for (const [docId, item] of Object.entries(itemsMap)) {
-      if (item?.isChecked) obj[docId] = true;
+    for (const id of ticked) {
+      obj[id] = true;
     }
     return obj;
-  }, [itemsMap]);
+  }, [ticked]);
 
   return {
     ticked,
