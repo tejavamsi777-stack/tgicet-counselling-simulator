@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Download, Check, Printer } from 'lucide-react';
+import { Download, Check, Printer, Save, RefreshCw } from 'lucide-react';
 import { GlassButton } from '../ui/glass-button';
 import { useChecklist } from '../../hooks/useChecklist';
 
@@ -39,7 +39,15 @@ function filterDocs(documents, pill) {
 }
 
 export default function CertificateChecklist({ documents = [], examSlug = 'tg-polycet' }) {
-  const { ticked, toggleDoc } = useChecklist(examSlug);
+  const {
+    ticked,
+    toggleDoc,
+    saveChecklist,
+    isSaving,
+    saveSuccess,
+    saveError,
+    isRegisteredUser
+  } = useChecklist(examSlug);
   const [activePill, setActivePill] = useState('all');
 
   const filtered = useMemo(() => filterDocs(documents, activePill), [documents, activePill]);
@@ -59,8 +67,8 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-po
             onClick={() => setActivePill(pill.id)}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium whitespace-nowrap transition-all duration-200 cursor-pointer ${
               activePill === pill.id
-                ? 'bg-purple-500 text-white shadow-md shadow-purple-500/30'
-                : 'bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10'
+                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                : 'text-white/60 hover:text-white hover:bg-white/5 border border-white/10'
             }`}
           >
             {pill.label}
@@ -68,10 +76,10 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-po
         ))}
       </div>
 
-      {/* Progress bar */}
-      <div className="no-print mb-6">
-        <div className="flex justify-between text-xs text-white/50 mb-1.5">
-          <span>Verification Readiness</span>
+      {/* Progress Bar */}
+      <div className="mb-6">
+        <div className="mb-2 flex items-center justify-between text-xs text-white/70">
+          <span>HLC Document Verification Progress</span>
           <span>
             {tickedCount} of {filtered.length} documents ready ({Math.round(progress)}%)
           </span>
@@ -81,6 +89,53 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-po
             className="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
+        </div>
+      </div>
+
+      {/* Save & Download Action Buttons */}
+      <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3">
+        {isRegisteredUser && (
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 max-w-full">
+            <button
+              onClick={saveChecklist}
+              disabled={isSaving}
+              className={`inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all shadow-md active:scale-95 disabled:opacity-50 ${
+                saveSuccess
+                  ? 'bg-emerald-600/30 border border-emerald-500/50 text-emerald-200'
+                  : saveError
+                  ? 'bg-rose-600/30 border border-rose-500/50 text-rose-200'
+                  : 'bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 text-purple-200'
+              }`}
+            >
+              {isSaving ? (
+                <>
+                  <RefreshCw size={13} className="animate-spin text-purple-300" />
+                  <span>Saving...</span>
+                </>
+              ) : saveSuccess ? (
+                <>
+                  <Check size={13} className="text-emerald-400" />
+                  <span className="text-emerald-300 font-bold">✓ Saved & Synced</span>
+                </>
+              ) : (
+                <>
+                  <Save size={13} className="text-purple-300" />
+                  <span>Save & Sync Across Devices</span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
+        <div className="ml-auto">
+          <GlassButton
+            size="sm"
+            onClick={() => window.print()}
+            contentClassName="flex items-center gap-1.5"
+          >
+            <Download size={13} />
+            <span>Download Checklist</span>
+          </GlassButton>
         </div>
       </div>
 

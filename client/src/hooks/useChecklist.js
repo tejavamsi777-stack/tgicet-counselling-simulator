@@ -19,7 +19,7 @@ function writeUserLocalStorage(userId, exam, set) {
   try {
     localStorage.setItem(`${LS_KEY_PREFIX}${userId}_${exam}`, JSON.stringify([...set]));
   } catch {
-    // ignore quota errors
+    // ignore
   }
 }
 
@@ -34,17 +34,15 @@ export function useChecklist(exam = 'tg-eapcet') {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState(null);
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [conflictNotice, setConflictNotice] = useState(false);
+  const [syncStatus, setSyncStatus] = useState('synced'); // 'synced' | 'syncing' | 'error'
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
-  const hasUnsavedRef = useRef(hasUnsavedChanges);
-  hasUnsavedRef.current = hasUnsavedChanges;
+  const tickedRef = useRef(ticked);
+  tickedRef.current = ticked;
 
-  const lastSavedAtRef = useRef(lastSavedAt);
-  lastSavedAtRef.current = lastSavedAt;
+  const isMutatingRef = useRef(false);
 
-  // Track online/offline status
+  // Online / offline listeners
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
@@ -56,9 +54,9 @@ export function useChecklist(exam = 'tg-eapcet') {
     };
   }, []);
 
-  // Fetch latest ticks from server
-  const fetchLatestFromServer = useCallback(async (isInitial = false) => {
-    if (!isRegisteredUser || !userId || !navigator.onLine) return;
+  // Authoritative server fetch
+  const fetchFromServer = useCallback(async () => {
+    if (!isRegisteredUser || !userId || !navigator.onLine || isMutatingRef.current) return;
     try {
       const res = await checklistApi.get(exam);
       const serverList = Array.isArray(res?.ticked)
@@ -66,49 +64,47 @@ export function useChecklist(exam = 'tg-eapcet') {
         : Array.isArray(res?.tickedDocIds)
         ? res.tickedDocIds
         : [];
+      
       const serverSet = new Set(serverList);
-      const serverTimestamp = res?.lastSavedAt || null;
 
-      if (isInitial) {
+      // Compare with current set
+      const current = tickedRef.current;
+      const isDifferent =
+        serverSet.size !== current.size ||
+        [...serverSet].some((id) => !current.has(id));
+
+      if (isDifferent && !isMutatingRef.current) {
         setTicked(serverSet);
         writeUserLocalStorage(userId, exam, serverSet);
-        if (serverTimestamp) setLastSavedAt(serverTimestamp);
-        setHasUnsavedChanges(false);
-      } else {
-        // If server timestamp is newer than our last saved timestamp
-        if (serverTimestamp && lastSavedAtRef.current && new Date(serverTimestamp) > new Date(lastSavedAtRef.current)) {
-          if (!hasUnsavedRef.current) {
-            setTicked(serverSet);
-            writeUserLocalStorage(userId, exam, serverSet);
-            setLastSavedAt(serverTimestamp);
-            setConflictNotice(false);
-          } else {
-            setConflictNotice(true);
-          }
-        }
       }
+
+      if (res?.lastSavedAt) {
+        setLastSavedAt(res.lastSavedAt);
+      }
+      setSyncStatus('synced');
     } catch {
-      // Keep local state on background fetch failure
+      // ignore transient fetch errors
     }
   }, [isRegisteredUser, userId, exam]);
 
-  // Initial load & 4-second background poll for real-time cross-device sync
+  // Initial load + Real-time 1.5s Polling for Instant Cross-Device Sync
   useEffect(() => {
     if (!isRegisteredUser || !userId) return;
 
     let isMounted = true;
     setLoading(true);
 
-    fetchLatestFromServer(true).finally(() => {
+    fetchFromServer().finally(() => {
       if (isMounted) setLoading(false);
     });
 
-    const pollInterval = setInterval(() => {
-      fetchLatestFromServer(false);
-    }, 4000);
+    // 1.5-second polling interval for instant real-time sync between phone & PC
+    const pollTimer = setInterval(() => {
+      fetchFromServer();
+    }, 1500);
 
     const handleFocus = () => {
-      fetchLatestFromServer(false);
+      fetchFromServer();
     };
 
     window.addEventListener('focus', handleFocus);
@@ -116,32 +112,62 @@ export function useChecklist(exam = 'tg-eapcet') {
 
     return () => {
       isMounted = false;
-      clearInterval(pollInterval);
+      clearInterval(pollTimer);
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
     };
-  }, [isRegisteredUser, userId, exam, fetchLatestFromServer]);
+  }, [isRegisteredUser, userId, exam, fetchFromServer]);
 
-  // Toggle document checkbox in local memory only (prevents DB writes per click)
-  const toggleDoc = useCallback((docId) => {
-    setTicked(prev => {
-      const next = new Set(prev);
-      if (next.has(docId)) {
-        next.delete(docId);
-      } else {
+  // Toggle document checkbox: IMMEDIATELY saves locally & pushes to backend database
+  const toggleDoc = useCallback(
+    async (docId) => {
+      const current = tickedRef.current;
+      const next = new Set(current);
+      const nowTicked = !next.has(docId);
+
+      if (nowTicked) {
         next.add(docId);
+      } else {
+        next.delete(docId);
       }
 
+      // 1. Instant local update
+      setTicked(next);
       if (isRegisteredUser && userId) {
         writeUserLocalStorage(userId, exam, next);
-        setHasUnsavedChanges(true);
       }
 
-      return next;
-    });
-  }, [isRegisteredUser, userId, exam]);
+      // 2. Instant server update if registered user
+      if (isRegisteredUser && userId && navigator.onLine) {
+        isMutatingRef.current = true;
+        setSyncStatus('syncing');
+        setSaveSuccess(false);
 
-  // Explicit Save & Sync Action ("Save & Sync Across Devices")
+        try {
+          // Send instant tick update to DB
+          await checklistApi.update(exam, docId, nowTicked);
+          // Also sync full list to guarantee database consistency
+          const res = await checklistApi.sync(exam, [...next]);
+          
+          if (res?.lastSavedAt) {
+            setLastSavedAt(res.lastSavedAt);
+          }
+          setSyncStatus('synced');
+          setSaveSuccess(true);
+          setTimeout(() => setSaveSuccess(false), 2000);
+        } catch (err) {
+          setSyncStatus('error');
+        } finally {
+          setTimeout(() => {
+            isMutatingRef.current = false;
+          }, 500);
+        }
+      }
+    },
+    [isRegisteredUser, userId, exam]
+  );
+
+  // Manual Force Save & Sync Action
   const saveChecklist = useCallback(async () => {
     if (!isRegisteredUser || !userId) return false;
     if (!navigator.onLine) {
@@ -151,6 +177,8 @@ export function useChecklist(exam = 'tg-eapcet') {
 
     setIsSaving(true);
     setSaveError(false);
+    isMutatingRef.current = true;
+
     try {
       const res = await checklistApi.sync(exam, [...ticked]);
       const serverList = Array.isArray(res?.ticked)
@@ -159,30 +187,26 @@ export function useChecklist(exam = 'tg-eapcet') {
         ? res.tickedDocIds
         : [...ticked];
       const serverSet = new Set(serverList);
-      const serverTimestamp = res?.lastSavedAt || new Date().toISOString();
-
+      
       setTicked(serverSet);
       writeUserLocalStorage(userId, exam, serverSet);
-      setLastSavedAt(serverTimestamp);
-      setHasUnsavedChanges(false);
-      setConflictNotice(false);
+      if (res?.lastSavedAt) setLastSavedAt(res.lastSavedAt);
+      
+      setSyncStatus('synced');
       setSaveSuccess(true);
-
       setTimeout(() => setSaveSuccess(false), 3000);
       return true;
     } catch (err) {
       setSaveError(true);
+      setSyncStatus('error');
       return false;
     } finally {
       setIsSaving(false);
+      setTimeout(() => {
+        isMutatingRef.current = false;
+      }, 500);
     }
   }, [isRegisteredUser, userId, exam, ticked]);
-
-  // Force reload latest server version (to resolve conflict)
-  const reloadLatestServerState = useCallback(() => {
-    fetchLatestFromServer(true);
-    setConflictNotice(false);
-  }, [fetchLatestFromServer]);
 
   // Backward compatibility object mapping
   const checkedItems = useMemo(() => {
@@ -197,8 +221,7 @@ export function useChecklist(exam = 'tg-eapcet') {
     ticked,
     toggleDoc,
     saveChecklist,
-    reloadLatestServerState,
-    refreshChecklist: fetchLatestFromServer,
+    refreshChecklist: fetchFromServer,
     checkedItems,
     toggleItem: toggleDoc,
     loading,
@@ -206,9 +229,8 @@ export function useChecklist(exam = 'tg-eapcet') {
     saveSuccess,
     saveError,
     lastSavedAt,
-    hasUnsavedChanges,
-    conflictNotice,
     isOffline,
     isRegisteredUser,
+    syncStatus,
   };
 }

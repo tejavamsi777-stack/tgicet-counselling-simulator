@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Download, Check } from 'lucide-react';
+import { Download, Check, Save, RefreshCw } from 'lucide-react';
 import { GlassButton } from '../ui/glass-button';
 import { useChecklist } from '../../hooks/useChecklist';
 
@@ -41,7 +41,15 @@ function filterDocs(documents, pill) {
 }
 
 export default function CertificateChecklist({ documents = [], examSlug = 'tg-icet' }) {
-  const { ticked, toggleDoc } = useChecklist(examSlug);
+  const {
+    ticked,
+    toggleDoc,
+    saveChecklist,
+    isSaving,
+    saveSuccess,
+    saveError,
+    isRegisteredUser
+  } = useChecklist(examSlug);
   const [activePill, setActivePill] = useState('all');
 
   const filtered = useMemo(() => filterDocs(documents, activePill), [documents, activePill]);
@@ -85,16 +93,51 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ic
         </div>
       </div>
 
-      {/* Download button */}
-      <div className="no-print mb-5 flex justify-end">
-        <GlassButton
-          size="sm"
-          onClick={() => window.print()}
-          contentClassName="flex items-center gap-1.5"
-        >
-          <Download size={13} />
-          <span>Download Checklist</span>
-        </GlassButton>
+      {/* Save & Download Action Buttons */}
+      <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3">
+        {isRegisteredUser && (
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 max-w-full">
+            <button
+              onClick={saveChecklist}
+              disabled={isSaving}
+              className={`inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all shadow-md active:scale-95 disabled:opacity-50 ${
+                saveSuccess
+                  ? 'bg-emerald-600/30 border border-emerald-500/50 text-emerald-200'
+                  : saveError
+                  ? 'bg-rose-600/30 border border-rose-500/50 text-rose-200'
+                  : 'bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/40 text-purple-200'
+              }`}
+            >
+              {isSaving ? (
+                <>
+                  <RefreshCw size={13} className="animate-spin text-purple-300" />
+                  <span>Saving...</span>
+                </>
+              ) : saveSuccess ? (
+                <>
+                  <Check size={13} className="text-emerald-400" />
+                  <span className="text-emerald-300 font-bold">✓ Saved & Synced</span>
+                </>
+              ) : (
+                <>
+                  <Save size={13} className="text-purple-300" />
+                  <span>Save & Sync Across Devices</span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
+        <div className="ml-auto">
+          <GlassButton
+            size="sm"
+            onClick={() => window.print()}
+            contentClassName="flex items-center gap-1.5"
+          >
+            <Download size={13} />
+            <span>Download Checklist</span>
+          </GlassButton>
+        </div>
       </div>
 
       {/* Documents table */}

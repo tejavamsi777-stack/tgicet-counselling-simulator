@@ -56,13 +56,10 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
     ticked,
     toggleDoc,
     saveChecklist,
-    reloadLatestServerState,
     isSaving,
     saveSuccess,
     saveError,
     lastSavedAt,
-    hasUnsavedChanges,
-    conflictNotice,
     isOffline,
     isRegisteredUser,
   } = useChecklist(examSlug);
@@ -93,19 +90,6 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
           </button>
         ))}
       </div>
-
-      {/* Conflict Notice Alert */}
-      {conflictNotice && (
-        <div className="no-print mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-3.5 py-2 text-xs text-amber-200 shadow-sm">
-          <span className="font-medium">⚠️ Checklist updated on another device.</span>
-          <button
-            onClick={reloadLatestServerState}
-            className="underline font-bold text-amber-300 hover:text-white transition-colors"
-          >
-            Reload Latest Server Version
-          </button>
-        </div>
-      )}
 
       {/* Offline Alert */}
       {isOffline && (
