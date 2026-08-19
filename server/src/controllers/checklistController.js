@@ -5,33 +5,63 @@ export const checklistController = {
   async getChecklist(req, res, next) {
     try {
       const examSlug = req.query.exam || "tg-eapcet";
-      const ticked = await checklistRepository.getTickedDocs(req.user.id, examSlug);
+      const records = await checklistRepository.getChecklistRecords(req.user.id, examSlug);
+      const ticked = records.filter((r) => r.is_checked).map((r) => r.doc_id);
       const lastSavedAt = await checklistRepository.getLastSavedAt(req.user.id, examSlug);
-      res.json({ success: true, ticked, tickedDocIds: ticked, lastSavedAt });
+
+      const items = {};
+      for (const r of records) {
+        items[r.doc_id] = {
+          isChecked: r.is_checked,
+          updatedAt: r.updated_at,
+        };
+      }
+
+      res.json({
+        success: true,
+        ticked,
+        tickedDocIds: ticked,
+        items,
+        lastSavedAt: lastSavedAt || new Date().toISOString(),
+      });
     } catch (err) {
       next(err);
     }
   },
 
-  // PATCH /api/checklist  (requires auth) body: { exam, docId, ticked }
+  // PATCH /api/checklist (Atomic Delta Mutation with LWW)
   async updateTick(req, res, next) {
     try {
-      const { exam = "tg-eapcet", docId, ticked } = req.body;
+      const { exam = "tg-eapcet", docId, isChecked, ticked, timestamp } = req.body;
+      const checkedVal = isChecked !== undefined ? !!isChecked : !!ticked;
       if (!docId) return res.status(400).json({ error: "docId is required" });
-      await checklistRepository.setDocTick(req.user.id, exam, docId, !!ticked);
+
+      const updatedAt = timestamp ? new Date(timestamp) : new Date();
+      await checklistRepository.setDocTick(req.user.id, exam, docId, checkedVal, updatedAt);
       const lastSavedAt = await checklistRepository.getLastSavedAt(req.user.id, exam);
-      res.json({ success: true, lastSavedAt });
+
+      res.json({
+        success: true,
+        docId,
+        isChecked: checkedVal,
+        lastSavedAt: lastSavedAt || updatedAt.toISOString(),
+      });
     } catch (err) {
       next(err);
     }
   },
 
-  // POST /api/checklist/sync  (requires auth) body: { exam, tickedDocIds: [...] }
+  // POST /api/checklist/sync (Batch state replacement)
   async syncChecklist(req, res, next) {
     try {
       const { exam = "tg-eapcet", tickedDocIds = [] } = req.body;
       const result = await checklistRepository.replaceChecklistState(req.user.id, exam, tickedDocIds);
-      res.json({ success: true, ticked: result.ticked, tickedDocIds: result.ticked, lastSavedAt: result.lastSavedAt });
+      res.json({
+        success: true,
+        ticked: result.ticked,
+        tickedDocIds: result.ticked,
+        lastSavedAt: result.lastSavedAt,
+      });
     } catch (err) {
       next(err);
     }
