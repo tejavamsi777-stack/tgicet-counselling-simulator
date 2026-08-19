@@ -124,7 +124,7 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
 
       {/* Save & Download Action Buttons */}
       <div className="no-print mb-5 flex flex-wrap items-center justify-between gap-3">
-        {isRegisteredUser && (
+        {isRegisteredUser ? (
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 max-w-full">
             <button
               onClick={saveChecklist}
@@ -166,6 +166,12 @@ export default function CertificateChecklist({ documents = [], examSlug = 'tg-ea
                 {formatLastSaved(lastSavedAt)}
               </span>
             )}
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-amber-300/80">
+              💡 Log in to your account on this device to sync ticks with PC.
+            </span>
           </div>
         )}
 
