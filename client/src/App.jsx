@@ -38,6 +38,12 @@ const PolycetAllotmentsPage = lazy(() => import("./pages/polycet/PolycetAllotmen
 const PolycetComparePage = lazy(() => import("./pages/polycet/PolycetComparePage"));
 const PolycetDocumentsPage = lazy(() => import("./pages/polycet/PolycetDocumentsPage"));
 
+const PgecetHome = lazy(() => import("./pages/pgecet/PgecetHome"));
+const PgecetAllotmentsPage = lazy(() => import("./pages/pgecet/PgecetAllotmentsPage"));
+const PgecetPredictorPage = lazy(() => import("./pages/pgecet/PgecetPredictorPage"));
+const PgecetComparePage = lazy(() => import("./pages/pgecet/PgecetComparePage"));
+const PgecetDocumentsPage = lazy(() => import("./pages/pgecet/PgecetDocumentsPage"));
+
 const ExamLandingPage = lazy(() => import("./pages/exams/ExamLandingPage"));
 const ExamFeaturePage = lazy(() => import("./pages/exams/ExamFeaturePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -207,6 +213,31 @@ function MainContent() {
                   <Route path="/polycet/documents" element={<PolycetDocumentsPage />} />
                   <Route path="/tg-polycet/documents" element={<PolycetDocumentsPage />} />
                   <Route path="/exams/tg-polycet/documents" element={<PolycetDocumentsPage />} />
+
+                  {/* PGECET Dedicated Pages */}
+                  <Route path="/pgecet" element={<PgecetHome />} />
+                  <Route path="/tg-pgecet" element={<PgecetHome />} />
+                  <Route path="/exams/tg-pgecet" element={<PgecetHome />} />
+
+                  <Route path="/pgecet/allotments" element={<PgecetAllotmentsPage />} />
+                  <Route path="/tg-pgecet/allotments" element={<PgecetAllotmentsPage />} />
+                  <Route path="/pgecet/seat-allotments" element={<PgecetAllotmentsPage />} />
+                  <Route path="/tg-pgecet/seat-allotments" element={<PgecetAllotmentsPage />} />
+                  <Route path="/exams/tg-pgecet/allotments" element={<PgecetAllotmentsPage />} />
+
+                  <Route path="/pgecet/predictor" element={<PgecetPredictorPage />} />
+                  <Route path="/tg-pgecet/predictor" element={<PgecetPredictorPage />} />
+                  <Route path="/pgecet/college-predictor" element={<PgecetPredictorPage />} />
+                  <Route path="/tg-pgecet/college-predictor" element={<PgecetPredictorPage />} />
+                  <Route path="/exams/tg-pgecet/predictor" element={<PgecetPredictorPage />} />
+
+                  <Route path="/pgecet/compare" element={<PgecetComparePage />} />
+                  <Route path="/tg-pgecet/compare" element={<PgecetComparePage />} />
+                  <Route path="/exams/tg-pgecet/compare" element={<PgecetComparePage />} />
+
+                  <Route path="/pgecet/documents" element={<PgecetDocumentsPage />} />
+                  <Route path="/tg-pgecet/documents" element={<PgecetDocumentsPage />} />
+                  <Route path="/exams/tg-pgecet/documents" element={<PgecetDocumentsPage />} />
 
                   {/* Fallbacks for other dynamic exam slugs */}
                   <Route path="/exams/:examSlug" element={<ExamLandingPage />} />

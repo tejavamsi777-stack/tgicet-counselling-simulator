@@ -131,10 +131,10 @@ export default function SearchableSelect({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 right-0 top-full z-[1000] mt-1.5 max-h-72 overflow-hidden rounded-2xl border border-white/20 bg-[#120c22]/98 shadow-[0_20px_50px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white flex flex-col"
+            className="absolute left-0 right-0 top-full z-[9999] mt-1.5 max-h-80 overflow-hidden rounded-2xl border border-purple-500/40 bg-[#120826] shadow-[0_25px_60px_rgba(0,0,0,0.98),0_0_20px_rgba(168,85,247,0.2)] text-white flex flex-col"
           >
             {/* Search Input Box */}
-            <div className="p-2.5 border-b border-white/10 bg-black/40">
+            <div className="p-2.5 border-b border-white/10 bg-[#0d051c]">
               <div className="relative flex items-center">
                 <Search size={14} className="absolute left-3 text-purple-400 pointer-events-none" />
                 <input
