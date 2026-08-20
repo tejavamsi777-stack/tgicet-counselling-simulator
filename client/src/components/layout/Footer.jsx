@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { X, Mail, Shield, Info, HelpCircle } from "lucide-react";
+import { X, Mail, Shield, Info, HelpCircle, Star } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "./Logo";
 import { ShareButton } from "../shared/ShareModal";
+import ReviewModal from "../shared/ReviewModal";
 
 export const ABOUT_TEXT =
   "TG Counselling is a 100% FREE educational guidance platform built to empower students navigating Telangana admissions (TG EAPCET, TG ICET, TG ECET, and TG POLYCET). We provide data-driven Rank Predictors, official college seat allotment data across all 178 institutions, interactive Web Options simulators, TS ePASS fee reimbursement calculators, and HLC certificate guides — 100% free with zero paywalls, subscriptions, or hidden charges.";
@@ -136,6 +137,7 @@ export const CONTACT_TEXT = (
 );
 
 export default function Footer({ openPanel, setOpenPanel }) {
+  const [reviewOpen, setReviewOpen] = useState(false);
   const panelRef = useRef(null);
 
   // Close on outside click
@@ -204,6 +206,16 @@ export default function Footer({ openPanel, setOpenPanel }) {
           </div>
 
           <div className="relative">
+            <button
+              onClick={() => setReviewOpen(true)}
+              className="inline-flex items-center gap-1.5 transition text-amber-300/80 hover:text-amber-300 cursor-pointer font-medium"
+            >
+              <Star size={13} className="fill-amber-400 text-amber-400" />
+              <span>Rate &amp; Review</span>
+            </button>
+          </div>
+
+          <div className="relative">
             <ShareButton variant="pill" label="Share Portal" placement="top" className="text-white hover:text-purple-300" />
           </div>
 
@@ -249,6 +261,12 @@ export default function Footer({ openPanel, setOpenPanel }) {
       <div className="border-t border-white/10 py-6 text-center text-xs text-gray-500">
         © {new Date().getFullYear()} TG Counselling Simulator · Educational Guidance Platform
       </div>
+
+      <ReviewModal
+        isOpen={reviewOpen}
+        onClose={() => setReviewOpen(false)}
+        examSlug="general"
+      />
     </footer>
   );
 }

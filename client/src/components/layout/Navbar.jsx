@@ -17,12 +17,14 @@ import {
   Sparkles,
   ArrowRight,
   Info,
+  Star,
 } from "lucide-react";
 import { ABOUT_TEXT } from "./Footer";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
 import { ShareButton } from "../shared/ShareModal";
 import { useAuth } from "../../context/AuthContext";
+import ReviewModal from "../shared/ReviewModal";
 
 const EXAM_MENU_ITEMS = [
   { slug: "tg-eapcet", name: "TG EAPCET", subtitle: "Engineering & Pharmacy", path: "/tg-eapcet", badge: "Live" },
@@ -49,6 +51,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hovered, setHovered] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const navRef = useRef(null);
 
   // Close dropdown on outside click
@@ -323,8 +326,19 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* User Profile, Share & Mobile Toggle */}
+        {/* User Profile, Share, Rate Us & Mobile Toggle */}
         <div className="flex items-center gap-2">
+          {/* Rate Us Button (Desktop & Tablet) */}
+          <button
+            type="button"
+            onClick={() => setReviewOpen(true)}
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-300 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            title="Rate & Review TG Counselling"
+          >
+            <Star size={13} className="fill-amber-400 text-amber-400" />
+            <span>Rate Us</span>
+          </button>
+
           {/* Share Button (Desktop & Tablet) */}
           <ShareButton variant="icon" className="hidden sm:flex" />
 
@@ -352,15 +366,24 @@ export default function Navbar() {
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-3 max-w-6xl overflow-hidden rounded-3xl border border-white/20 bg-[#100b1d]/95 shadow-[0_16px_48px_0_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-3xl md:hidden"
           >
-            <MobileMenuList onClose={() => setMobileOpen(false)} />
+            <MobileMenuList
+              onClose={() => setMobileOpen(false)}
+              onOpenReview={() => setReviewOpen(true)}
+            />
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ReviewModal
+        isOpen={reviewOpen}
+        onClose={() => setReviewOpen(false)}
+        examSlug="general"
+      />
     </header>
   );
 }
 
-function MobileMenuList({ onClose }) {
+function MobileMenuList({ onClose, onOpenReview }) {
   const { user, logout, updateProfile, changePassword, openAuthModal } = useAuth();
   const navigate = useNavigate();
 
@@ -725,6 +748,26 @@ function MobileMenuList({ onClose }) {
             </motion.p>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* Rate & Review Button */}
+      <div className="border-b border-white/10 px-4 py-2">
+        <button
+          type="button"
+          onClick={() => {
+            onClose();
+            if (onOpenReview) onOpenReview();
+          }}
+          className="flex w-full items-center justify-between rounded-2xl bg-amber-500/10 border border-amber-500/25 px-4 py-3 text-xs font-bold text-amber-300 hover:bg-amber-500/20 active:scale-95 transition cursor-pointer"
+        >
+          <span className="flex items-center gap-2.5">
+            <Star size={15} className="fill-amber-400 text-amber-400" />
+            <span>Rate & Review TG Counselling</span>
+          </span>
+          <span className="rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-extrabold text-amber-200">
+            Feedback
+          </span>
+        </button>
       </div>
 
       {/* Share Portal Button */}
