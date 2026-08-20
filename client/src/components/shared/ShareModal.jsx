@@ -280,12 +280,15 @@ export function ShareModal({ isOpen, onClose, shareData }) {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+          {/* Hardware-Accelerated Smooth Frosted Backdrop (Zero GPU Glitch) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 backdrop-blur-2xl backdrop-saturate-150 transition-opacity"
+            style={{ transform: "translateZ(0)", willChange: "opacity" }}
+            className="fixed inset-0 bg-black/65 backdrop-blur-sm"
           />
           <SharePopoverContent onClose={onClose} shareData={shareData} />
         </div>
