@@ -2,10 +2,22 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import AllotmentExplorer from '../../components/ecet/AllotmentExplorer';
+import { useReviewPrompt } from '../../hooks/useReviewPrompt';
+import ReviewModal from '../../components/shared/ReviewModal';
 
 export default function EcetAllotmentsPage() {
+  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
+    true,
+    'tg-ecet'
+  );
+
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
+      <ReviewModal
+        isOpen={isReviewOpen}
+        onClose={closeReview}
+        examSlug="tg-ecet"
+      />
       <Seo
         title="TG ECET College-Wise Seat Allotment Explorer | Lateral Entry Candidate Records"
         description="Explore TG ECET lateral entry college and branch seat allotments. View candidate ranks, category distribution, closing cutoffs, and comprehensive admission analytics."

@@ -11,6 +11,8 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
+import { useReviewPrompt } from "../../hooks/useReviewPrompt";
+import ReviewModal from "../../components/shared/ReviewModal";
 
 function mapResults(results, gender, year) {
   return results.map((r) => ({
@@ -41,10 +43,14 @@ export default function PolycetPredictorPage() {
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [selectedYears, setSelectedYears] = useState([]);
   const [error, setError] = useState("");
-
   const [result, setResult] = useState([]);
   const [activeYears, setActiveYears] = useState([]);
   const [year, setYear] = useState(null);
+
+  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
+    result.length > 0,
+    "tg-polycet"
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -172,6 +178,11 @@ export default function PolycetPredictorPage() {
         </AnimatePresence>
 
         <main className="mx-auto max-w-7xl px-4 pt-8 pb-56 sm:px-6 lg:px-8">
+          <ReviewModal
+            isOpen={isReviewOpen}
+            onClose={closeReview}
+            examSlug="tg-polycet"
+          />
           <button
             onClick={() => navigate("/")}
             className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"

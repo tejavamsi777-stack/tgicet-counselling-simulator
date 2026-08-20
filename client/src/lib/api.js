@@ -71,4 +71,10 @@ export const api = {
   patch: (path, data) => request(path, { method: "PATCH", body: JSON.stringify(data) }),
 };
 
+export const reviewApi = {
+  submit: ({ rating, feedback, examSlug, source }) =>
+    api.post("/reviews", { rating, feedback, examSlug, source }),
+  getFeatured: () => api.get("/reviews/featured"),
+};
+
 export default api;

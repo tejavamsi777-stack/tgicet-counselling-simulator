@@ -16,6 +16,8 @@ import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
+import { useReviewPrompt } from "../../hooks/useReviewPrompt";
+import ReviewModal from "../../components/shared/ReviewModal";
 
 export default function EapcetPredictorPage() {
   const { years, categories, courses, districts } = useReferenceData("tg-eapcet");
@@ -36,6 +38,11 @@ export default function EapcetPredictorPage() {
       setSelectedYears(years.map((y) => Number(y.year)));
     }
   }, [years]);
+
+  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
+    results.length > 0,
+    "tg-eapcet"
+  );
 
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid TG EAPCET rank.");
@@ -77,6 +84,11 @@ export default function EapcetPredictorPage() {
 
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
+      <ReviewModal
+        isOpen={isReviewOpen}
+        onClose={closeReview}
+        examSlug="tg-eapcet"
+      />
       <Seo
         title="TG EAPCET College Predictor 2025"
         description="Predict TG EAPCET college options by rank, category, gender, branches, and districts."

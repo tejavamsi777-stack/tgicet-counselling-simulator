@@ -12,6 +12,8 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
+import { useReviewPrompt } from "../../hooks/useReviewPrompt";
+import ReviewModal from "../../components/shared/ReviewModal";
 
 function mapResults(results, gender, year) {
   return results.map((r) => ({
@@ -46,6 +48,11 @@ export default function IcetPredictorPage() {
   const [result, setResult] = useState([]);
   const [activeYears, setActiveYears] = useState([]);
   const [year, setYear] = useState(null);
+
+  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
+    result.length > 0,
+    "tg-icet"
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -150,6 +157,11 @@ export default function IcetPredictorPage() {
 
       <PageTransition>
         <main className="mx-auto max-w-7xl space-y-16 px-6 pb-56">
+          <ReviewModal
+            isOpen={isReviewOpen}
+            onClose={closeReview}
+            examSlug="tg-icet"
+          />
           <FeatureStats />
 
           <PredictorForm

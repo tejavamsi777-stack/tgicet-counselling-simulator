@@ -22,6 +22,7 @@ import { ecetController } from "../controllers/ecetController.js";
 import { icetController } from "../controllers/icetController.js";
 import polycetRoutes from "./polycetRoutes.js";
 import { checklistController } from "../controllers/checklistController.js";
+import { reviewController } from "../controllers/reviewController.js";
 
 export const router = Router();
 
@@ -81,6 +82,10 @@ router.patch("/auth/password", requireAuth, authController.changePassword);
 router.get("/checklist", requireAuth, checklistController.getChecklist);
 router.patch("/checklist", requireAuth, checklistController.updateTick);
 router.post("/checklist/sync", requireAuth, checklistController.syncChecklist);
+
+// ---------- App Reviews & Feedback ----------
+router.post("/reviews", optionalAuth, reviewController.submit);
+router.get("/reviews/featured", reviewController.getFeatured);
 
 // ---------- Admin auth ----------
 router.post("/admin/auth/login", adminAuthController.login);
