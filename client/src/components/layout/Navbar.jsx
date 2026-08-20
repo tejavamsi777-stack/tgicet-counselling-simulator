@@ -22,7 +22,7 @@ import {
 import { ABOUT_TEXT } from "./Footer";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
-import { ShareButton } from "../shared/ShareModal";
+import { ShareModal, ModernShareIcon } from "../shared/ShareModal";
 import { useAuth } from "../../context/AuthContext";
 import ReviewModal from "../shared/ReviewModal";
 
@@ -52,6 +52,7 @@ export default function Navbar() {
   const [hovered, setHovered] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const navRef = useRef(null);
 
   // Close dropdown on outside click
@@ -340,7 +341,15 @@ export default function Navbar() {
           </button>
 
           {/* Share Button (Desktop & Tablet) */}
-          <ShareButton variant="icon" className="hidden sm:flex" />
+          <button
+            type="button"
+            onClick={() => setShareOpen(true)}
+            className="hidden sm:flex group h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 shadow-sm transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/20 hover:text-white active:scale-95 cursor-pointer"
+            title="Share this page"
+            aria-label="Share this page"
+          >
+            <ModernShareIcon size={16} />
+          </button>
 
           <div className="hidden md:block">
             <ProfileMenu />
@@ -369,6 +378,7 @@ export default function Navbar() {
             <MobileMenuList
               onClose={() => setMobileOpen(false)}
               onOpenReview={() => setReviewOpen(true)}
+              onOpenShare={() => setShareOpen(true)}
             />
           </motion.div>
         )}
@@ -379,11 +389,16 @@ export default function Navbar() {
         onClose={() => setReviewOpen(false)}
         examSlug="general"
       />
+
+      <ShareModal
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+      />
     </header>
   );
 }
 
-function MobileMenuList({ onClose, onOpenReview }) {
+function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
   const { user, logout, updateProfile, changePassword, openAuthModal } = useAuth();
   const navigate = useNavigate();
 
@@ -772,11 +787,17 @@ function MobileMenuList({ onClose, onOpenReview }) {
 
       {/* Share Portal Button */}
       <div className="border-b border-white/10 px-4 py-2">
-        <ShareButton
-          variant="menu"
-          label="Share TG Counselling Portal"
-          className="w-full justify-start rounded-2xl bg-white/5 py-3 hover:bg-white/10 text-white"
-        />
+        <button
+          type="button"
+          onClick={() => {
+            onClose();
+            if (onOpenShare) onOpenShare();
+          }}
+          className="flex w-full items-center gap-2.5 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white/90 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+        >
+          <ModernShareIcon size={16} />
+          <span>Share TG Counselling Portal</span>
+        </button>
       </div>
 
       {user && (

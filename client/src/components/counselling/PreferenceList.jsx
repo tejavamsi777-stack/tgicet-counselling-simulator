@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { COLLEGE_TYPE_COLORS } from "../../utils/collegeTypeColors";
 import { getDistrictName } from "../../utils/districtNames";
 import CollegeInfoModal from "./CollegeInfoModal";
@@ -43,12 +43,9 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
   if (courseColleges.length === 0) return null;
 
   return (
-    <section>
+    <section className="mb-2">
       <p className="px-1 pb-1 text-xs font-semibold text-white tracking-wide">{title}</p>
-      <div
-        className="max-h-[510px] overflow-y-auto overscroll-contain border border-[#52647b]"
-        style={{ touchAction: "pan-y" }}
-      >
+      <div className="border border-[#52647b] select-text">
         <table className="w-full border-collapse text-left text-[13px]">
           <thead className="sticky top-0 z-10">
             <tr className="bg-[#405755] text-[#b9df36]">
@@ -56,10 +53,10 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
               <th className="w-[105px] border-y border-black px-2 py-1.5 text-center text-[13px] font-bold">
                 College
               </th>
-              <th className="border-y border-black px-2 py-1.5 text-center text-[12px] font-normal normal-case tracking-normal text-white">
+              <th className="border-y border-black px-2 py-1.5 text-center text-[12px] font-normal normal-case tracking-normal text-white min-w-[220px]">
                 Select a college code to view courses, fees, and college details
               </th>
-              <th className="w-[160px] border-y border-black px-2 py-1.5 text-center text-[13px] font-bold text-[#b9df36]">
+              <th className="w-[140px] border-y border-black px-2 py-1.5 text-center text-[13px] font-bold text-[#b9df36]">
                 District
               </th>
               {courses.map((course) => (
@@ -84,7 +81,7 @@ function CourseTable({ title, courses, colleges, preferences, usedCounts, onPref
                     <button
                       type="button"
                       onClick={() => onSelectCollege(college)}
-                      className="inline-flex h-[26px] w-[92px] items-center justify-center border border-black bg-transparent px-1 text-[13px] font-bold text-black hover:bg-black/10 focus:outline-none focus:ring-1 focus:ring-[#0000b0]"
+                      className="inline-flex h-[26px] w-[92px] items-center justify-center border border-black bg-transparent px-1 text-[13px] font-bold text-black hover:bg-black/10 focus:outline-none focus:ring-1 focus:ring-[#0000b0] cursor-pointer"
                       title={`View details for ${college.name}`}
                     >
                       {college.code}
@@ -135,6 +132,11 @@ export default function PreferenceList({ colleges, preferences, setPreferences, 
   const [selectedCollege, setSelectedCollege] = useState(null);
   const [search, setSearch] = useState("");
 
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  const [scale, setScale] = useState(1);
+  const [scaledHeight, setScaledHeight] = useState("auto");
+
   const filteredColleges = useMemo(() => {
     const term = search.trim().toLowerCase();
     if (!term) return colleges;
@@ -167,6 +169,41 @@ export default function PreferenceList({ colleges, preferences, setPreferences, 
     return allCourses.map((c) => ({ title: `${c} Courses`, courses: [c] }));
   }, [courseGroups, colleges]);
 
+  const maxCoursesInGroup = useMemo(() => {
+    if (activeCourseGroups.length === 0) return 3;
+    return Math.max(...activeCourseGroups.map((g) => g.courses.length));
+  }, [activeCourseGroups]);
+
+  const targetWidth = useMemo(() => {
+    // 560 base width + 65px per course branch column
+    return Math.max(760, 560 + maxCoursesInGroup * 68);
+  }, [maxCoursesInGroup]);
+
+  // Automatic Mobile Zoom-Out to fit entire PC table into screen width without horizontal scrolling
+  useEffect(() => {
+    function handleResize() {
+      if (!containerRef.current || !contentRef.current) return;
+      const availableWidth = containerRef.current.clientWidth;
+      if (availableWidth > 0 && availableWidth < targetWidth) {
+        const newScale = availableWidth / targetWidth;
+        setScale(newScale);
+        const rawHeight = contentRef.current.scrollHeight || contentRef.current.offsetHeight;
+        setScaledHeight(`${rawHeight * newScale}px`);
+      } else {
+        setScale(1);
+        setScaledHeight("auto");
+      }
+    }
+
+    handleResize();
+    const timer = setTimeout(handleResize, 100);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [targetWidth, filteredColleges, activeCourseGroups]);
+
   const usedCounts = useMemo(() => {
     const counts = {};
     Object.values(preferences).forEach((v) => {
@@ -195,55 +232,72 @@ export default function PreferenceList({ colleges, preferences, setPreferences, 
   }
 
   return (
-    <div className="overflow-visible border border-[#52647b] text-[13px] text-black" style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-      <div className="border-b border-[#52647b] bg-white px-1 py-1">
-        <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1 text-[12px] text-[#0000b0]">
-          <span className="font-normal">Color Codes for Colleges :</span>
-          {Object.entries(COLLEGE_TYPE_COLORS)
-            .filter(([key]) => key !== "unknown")
-            .map(([key, { bg, label }]) => (
-              <span key={key} className="flex items-center gap-1 font-normal">
-                {label}
-                <span
-                  className="inline-block h-5 w-11 border border-[#777]"
-                  style={{ backgroundColor: bg }}
-                />
-              </span>
-            ))}
+    <div ref={containerRef} className="w-full overflow-hidden" style={{ height: scaledHeight }}>
+      <div
+        ref={contentRef}
+        className="border border-[#52647b] text-[13px] text-black bg-white"
+        style={{
+          fontFamily: "Arial, Helvetica, sans-serif",
+          width: scale < 1 ? `${targetWidth}px` : "100%",
+          transform: scale < 1 ? `scale(${scale})` : "none",
+          transformOrigin: "top left",
+        }}
+      >
+        {/* Top Legend & Search */}
+        <div className="border-b border-[#52647b] bg-white px-2 py-1.5">
+          <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1.5 text-[12px] text-[#0000b0]">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="font-normal">Color Codes for Colleges :</span>
+              {Object.entries(COLLEGE_TYPE_COLORS)
+                .filter(([key]) => key !== "unknown")
+                .map(([key, { bg, label }]) => (
+                  <span key={key} className="flex items-center gap-1 font-normal">
+                    {label}
+                    <span
+                      className="inline-block h-4 w-9 border border-[#777]"
+                      style={{ backgroundColor: bg }}
+                    />
+                  </span>
+                ))}
+            </div>
+          </div>
+
+          {/* Search Input */}
+          <div className="mt-1.5 max-w-[280px]">
+            <input
+              type="text"
+              placeholder="Search college name or code..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-6 w-full border border-[#777] px-2 text-[12px] outline-none focus:border-[#0000b0] bg-white"
+            />
+          </div>
         </div>
-        <div className="mt-1 max-w-[260px]">
-          <input
-            type="text"
-            placeholder="Search college name or code..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="h-6 w-full border border-[#777] px-2 text-[12px] outline-none focus:border-[#0000b0]"
-          />
+
+        {duplicateNumbers.length > 0 && (
+          <div className="border-b border-red-300 bg-red-50 px-2 py-1 text-xs font-normal text-red-700">
+            Duplicate preference number{duplicateNumbers.length > 1 ? "s" : ""}: {duplicateNumbers.join(", ")}. Each option must have a unique number.
+          </div>
+        )}
+
+        {/* Full PC Table Content */}
+        <div className="w-full space-y-1 p-0.5">
+          {activeCourseGroups.map((group) => (
+            <CourseTable
+              key={group.title}
+              title={group.title}
+              courses={group.courses}
+              colleges={filteredColleges}
+              preferences={preferences}
+              usedCounts={usedCounts}
+              onPreferenceChange={handlePreferenceChange}
+              onSelectCollege={setSelectedCollege}
+            />
+          ))}
         </div>
+
+        <CollegeInfoModal college={selectedCollege} onClose={() => setSelectedCollege(null)} />
       </div>
-
-      {duplicateNumbers.length > 0 && (
-        <div className="border-b border-red-300 bg-red-50 px-2 py-1 text-xs font-normal text-red-700">
-          Duplicate preference number{duplicateNumbers.length > 1 ? "s" : ""}: {duplicateNumbers.join(", ")}. Each option must have a unique number.
-        </div>
-      )}
-
-      <div className="space-y-1 overflow-x-auto">
-        {activeCourseGroups.map((group) => (
-          <CourseTable
-            key={group.title}
-            title={group.title}
-            courses={group.courses}
-            colleges={filteredColleges}
-            preferences={preferences}
-            usedCounts={usedCounts}
-            onPreferenceChange={handlePreferenceChange}
-            onSelectCollege={setSelectedCollege}
-          />
-        ))}
-      </div>
-
-      <CollegeInfoModal college={selectedCollege} onClose={() => setSelectedCollege(null)} />
     </div>
   );
 }

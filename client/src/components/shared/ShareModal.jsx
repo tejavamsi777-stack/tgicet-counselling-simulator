@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
 import {
-  Share2,
   Copy,
   Check,
   X,
   MessageCircle,
-  Send,
   Mail,
   Link2
 } from "lucide-react";
@@ -70,7 +68,12 @@ export function ModernShareIcon({ className = "", size = 20 }) {
   );
 }
 
-export function SharePopoverContent({ onClose, shareData, placement = "bottom" }) {
+export const DEFAULT_SHARE_TEXT =
+  "🏛️ TG Counselling — Official Telangana Admission Guidance Platform\n\n" +
+  "Find official 2026 seat allotments, verified college rank predictors, and mock web options simulators for TG EAPCET, TG ICET, TG ECET & TG POLYCET — 100% Free!\n\n" +
+  "👥 Please share with your classmates & leave us a quick review to help fellow students! ⭐";
+
+export function SharePopoverContent({ onClose, shareData }) {
   const [copied, setCopied] = useState(false);
   const [activeUrl, setActiveUrl] = useState("");
   const [activeTitle, setActiveTitle] = useState("");
@@ -84,7 +87,7 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
 
   const url = activeUrl || (typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app");
   const title = activeTitle || "TG Counselling Portal";
-  const text = shareData?.text || `Check out ${title} — Official Seat Allotments, College Predictors & Cutoffs for TG EAPCET, TG ICET, TG ECET & TG POLYCET!`;
+  const text = shareData?.text || DEFAULT_SHARE_TEXT;
 
   const encodedUrl = encodeURIComponent(url);
   const encodedText = encodeURIComponent(`${text}\n\n${url}`);
@@ -99,12 +102,16 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
     },
     {
       name: "Telegram",
-      icon: Send,
+      icon: ({ size, className }) => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.197 1.006.128.832.922z" />
+        </svg>
+      ),
       color: "bg-[#229ED9]/15 text-[#229ED9] border-[#229ED9]/30 hover:bg-[#229ED9]/25",
       href: `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(text)}`,
     },
     {
-      name: "X (Twitter)",
+      name: "X / Twitter",
       icon: ({ size, className }) => (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -114,24 +121,24 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
       href: `https://twitter.com/intent/tweet?text=${encodedText}`,
     },
     {
-      name: "Facebook",
-      icon: ({ size, className }) => (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-      ),
-      color: "bg-[#1877F2]/15 text-[#1877F2] border-[#1877F2]/30 hover:bg-[#1877F2]/25",
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-    },
-    {
       name: "LinkedIn",
       icon: ({ size, className }) => (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
-          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37h2.79V10.9H6.46M7.86 6.54a1.63 1.63 0 0 0-1.63 1.63c0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.63-1.63-1.63z" />
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
         </svg>
       ),
       color: "bg-[#0A66C2]/15 text-[#0A66C2] border-[#0A66C2]/30 hover:bg-[#0A66C2]/25",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    },
+    {
+      name: "Facebook",
+      icon: ({ size, className }) => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.595 0 9 1.583 9 4.615V8z" />
+        </svg>
+      ),
+      color: "bg-[#1877F2]/15 text-[#1877F2] border-[#1877F2]/30 hover:bg-[#1877F2]/25",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     },
     {
       name: "Reddit",
@@ -173,44 +180,38 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
     }
   };
 
-  const positionClasses = placement === "top"
-    ? "bottom-full mb-3 right-0"
-    : placement === "bottom-left"
-    ? "bottom-full mb-3 left-0"
-    : "top-full mt-2 right-0";
-
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.94, y: placement === "top" || placement === "bottom-left" ? 6 : -6 }}
+      initial={{ opacity: 0, scale: 0.92, y: 15 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.94, y: placement === "top" || placement === "bottom-left" ? 6 : -6 }}
-      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-      className={`absolute z-[120] w-[min(90vw,340px)] rounded-3xl border border-white/20 bg-[#120b22]/98 p-4 text-left shadow-[0_20px_50px_rgba(0,0,0,0.9),inset_0_1px_0_0_rgba(255,255,255,0.2)] text-white ${positionClasses}`}
+      exit={{ opacity: 0, scale: 0.95, y: 10 }}
+      transition={{ type: "spring", damping: 26, stiffness: 320 }}
+      className="relative z-10 w-full max-w-sm rounded-3xl border border-white/20 bg-[#120b22]/95 p-5 text-left shadow-[0_25px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-3xl text-white"
       onClick={(e) => e.stopPropagation()}
     >
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-white/10">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300">
-            <ModernShareIcon size={16} />
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-purple-500/20 border border-purple-500/30 text-purple-300 shadow-inner">
+            <ModernShareIcon size={18} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-white tracking-tight">Share Page Link</h4>
-            <p className="text-[10px] text-white/50">Direct share to apps or copy link</p>
+            <h4 className="text-sm font-bold text-white tracking-tight">Share TG Counselling</h4>
+            <p className="text-[11px] text-white/50">Direct share to apps or copy link</p>
           </div>
         </div>
         <button
           onClick={onClose}
-          className="flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-white/70 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
+          className="flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-white/70 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
           aria-label="Close"
         >
-          <X size={14} />
+          <X size={15} />
         </button>
       </div>
 
       {/* Social Apps Grid */}
-      <div className="py-3">
-        <div className="grid grid-cols-4 gap-2">
+      <div className="py-4">
+        <div className="grid grid-cols-4 gap-2.5">
           {shareLinks.map((item) => {
             const Icon = item.icon;
             return (
@@ -219,10 +220,10 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex flex-col items-center justify-center gap-1 rounded-xl border p-2 transition-all duration-150 active:scale-95 ${item.color}`}
+                className={`flex flex-col items-center justify-center gap-1.5 rounded-2xl border p-2.5 transition-all duration-150 active:scale-95 ${item.color}`}
               >
-                <Icon size={16} />
-                <span className="text-[9px] font-semibold text-center truncate w-full">{item.name.split(" ")[0]}</span>
+                <Icon size={18} />
+                <span className="text-[10px] font-semibold text-center truncate w-full">{item.name.split(" ")[0]}</span>
               </a>
             );
           })}
@@ -230,36 +231,36 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
       </div>
 
       {/* Copy Link Input */}
-      <div className="pt-2 border-t border-white/10 space-y-1.5">
+      <div className="pt-3 border-t border-white/10 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-bold text-white/50 flex items-center gap-1">
-            <Link2 size={11} className="text-purple-400" />
-            <span>Active URL</span>
+          <span className="text-[11px] font-bold text-white/60 flex items-center gap-1.5">
+            <Link2 size={12} className="text-purple-400" />
+            <span>Active Page URL</span>
           </span>
         </div>
-        <div className="flex items-center gap-1.5 rounded-xl border border-white/15 bg-black/60 p-1">
+        <div className="flex items-center gap-2 rounded-2xl border border-white/15 bg-black/60 p-1.5 shadow-inner">
           <input
             type="text"
             readOnly
             value={url}
-            className="w-full bg-transparent px-2 text-[11px] font-mono text-cyan-300 focus:outline-none select-all overflow-ellipsis"
+            className="w-full bg-transparent px-2 text-xs font-mono text-cyan-300 focus:outline-none select-all overflow-ellipsis"
           />
           <button
             onClick={handleCopy}
-            className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold transition-all duration-200 cursor-pointer shrink-0 ${
+            className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all duration-200 cursor-pointer shrink-0 ${
               copied
                 ? "bg-emerald-500 text-white shadow-md shadow-emerald-950/50"
-                : "bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-950/50 active:scale-95"
+                : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:brightness-110 text-white shadow-md shadow-purple-950/50 active:scale-95"
             }`}
           >
             {copied ? (
               <>
-                <Check size={12} />
+                <Check size={13} />
                 <span>Copied</span>
               </>
             ) : (
               <>
-                <Copy size={12} />
+                <Copy size={13} />
                 <span>Copy</span>
               </>
             )}
@@ -270,13 +271,27 @@ export function SharePopoverContent({ onClose, shareData, placement = "bottom" }
   );
 }
 
-// Fallback compatibility wrapper
+/**
+ * Universal Share Modal using React Portal
+ */
 export function ShareModal({ isOpen, onClose, shareData }) {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4" onClick={onClose}>
-      <SharePopoverContent onClose={onClose} shareData={shareData} placement="center" />
-    </div>
+  if (typeof document === "undefined" || !isOpen) return null;
+  return createPortal(
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/50 backdrop-blur-2xl backdrop-saturate-150 transition-opacity"
+          />
+          <SharePopoverContent onClose={onClose} shareData={shareData} />
+        </div>
+      )}
+    </AnimatePresence>,
+    document.body
   );
 }
 
@@ -285,36 +300,11 @@ export function ShareModal({ isOpen, onClose, shareData }) {
  */
 export function FloatingShareButton() {
   const [open, setOpen] = useState(false);
-  const btnRef = useRef(null);
-  const containerRef = useRef(null);
-
-  // Close when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("touchstart", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-    };
-  }, [open]);
-
-  const handleToggle = (e) => {
-    e.stopPropagation();
-    setOpen(!open);
-  };
 
   return (
-    <div ref={containerRef} className="fixed bottom-5 left-5 z-[100] sm:bottom-6 sm:left-6">
+    <div className="fixed bottom-5 left-5 z-[80] sm:bottom-6 sm:left-6">
       <button
-        ref={btnRef}
-        onClick={handleToggle}
+        onClick={() => setOpen(true)}
         className="group flex h-11 w-11 items-center justify-center rounded-full border border-purple-500/35 bg-[#120b22]/90 text-white shadow-[0_8px_32px_0_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.25)] transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
         title="Share this page"
         aria-label="Share this page"
@@ -322,50 +312,30 @@ export function FloatingShareButton() {
         <ModernShareIcon size={19} />
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <SharePopoverContent
-            onClose={() => setOpen(false)}
-            shareData={{
-              url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
-              title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
-              text: "Check out TG Counselling Portal for real-time seat allotments, college cutoffs, and mock counselling simulators!",
-            }}
-            placement="bottom-left"
-          />
-        )}
-      </AnimatePresence>
+      <ShareModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        shareData={{
+          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
+          title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
+          text: DEFAULT_SHARE_TEXT,
+        }}
+      />
     </div>
   );
 }
 
-export function ShareButton({ className = "", variant = "icon", label = "Share", shareData = null, placement = "bottom" }) {
+export function ShareButton({ className = "", variant = "icon", label = "Share", shareData = null, onBeforeOpen = null }) {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("touchstart", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-    };
-  }, [open]);
 
   const handleToggle = (e) => {
     e.stopPropagation();
-    setOpen(!open);
+    if (onBeforeOpen) onBeforeOpen();
+    setOpen(true);
   };
 
   return (
-    <div ref={containerRef} className="relative inline-block text-left">
+    <div className="inline-block text-left">
       {variant === "icon" ? (
         <button
           onClick={handleToggle}
@@ -393,19 +363,15 @@ export function ShareButton({ className = "", variant = "icon", label = "Share",
         </button>
       )}
 
-      <AnimatePresence>
-        {open && (
-          <SharePopoverContent
-            onClose={() => setOpen(false)}
-            shareData={shareData || {
-              url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
-              title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
-              text: "Check out TG Counselling Portal for real-time seat allotments, college cutoffs, and mock counselling simulators!",
-            }}
-            placement={placement}
-          />
-        )}
-      </AnimatePresence>
+      <ShareModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        shareData={shareData || {
+          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
+          title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
+          text: DEFAULT_SHARE_TEXT,
+        }}
+      />
     </div>
   );
 }

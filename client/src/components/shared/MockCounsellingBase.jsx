@@ -16,6 +16,8 @@ import PreferenceList from "../counselling/PreferenceList";
 import EmberField from "../effects/EmberField";
 import ScrambleText from "../effects/ScrambleText";
 import MagneticButton from "../effects/MagneticButton";
+import { useReviewPrompt } from "../../hooks/useReviewPrompt";
+import ReviewModal from "../shared/ReviewModal";
 
 const stepVariants = {
   enter: { opacity: 0, y: 24 },
@@ -99,6 +101,11 @@ export default function MockCounsellingBase({
   const [allColleges, setAllColleges] = useState([]);
   const [collegesLoading, setCollegesLoading] = useState(false);
   const [collegesError, setCollegesError] = useState("");
+
+  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
+    step === "list",
+    examSlug
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -320,13 +327,13 @@ export default function MockCounsellingBase({
     );
   } else if (step === "details") {
     stepContent = (
-      <div className="space-y-6">
+      <div className="space-y-6 overflow-visible">
         {collegesLoading ? (
-          <div className="rounded-[32px] border border-white/50 bg-white/70 p-8 text-center text-slate-500 backdrop-blur-2xl">
+          <div className="rounded-3xl border border-white/50 bg-white/70 p-8 text-center text-slate-500 backdrop-blur-2xl">
             Loading districts...
           </div>
         ) : (
-          <div className="rounded-[32px] border border-white/50 bg-white/70 p-8 shadow-[0_20px_60px_rgba(37,99,235,0.12)] backdrop-blur-2xl">
+          <div className="rounded-2xl sm:rounded-3xl border border-white/50 bg-white/70 p-1 sm:p-6 shadow-[0_20px_60px_rgba(37,99,235,0.12)] backdrop-blur-2xl overflow-x-auto">
             <DistrictSelector
               districts={availableDistricts}
               selectedDistricts={selectedDistricts}
@@ -466,10 +473,12 @@ export default function MockCounsellingBase({
 
   return (
     <main
-      className={`relative mx-auto overflow-hidden ${
+      className={`relative mx-auto ${
         step === "list"
-          ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2"
-          : "max-w-6xl space-y-8 px-6 pb-12 pt-6"
+          ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2 overflow-visible"
+          : step === "details"
+          ? "max-w-6xl space-y-6 px-1.5 sm:px-6 pb-12 pt-4 overflow-visible"
+          : "max-w-6xl space-y-8 px-4 sm:px-6 pb-12 pt-6 overflow-hidden"
       }`}
     >
       <button
@@ -566,6 +575,12 @@ export default function MockCounsellingBase({
         open={loginOpen}
         onClose={() => { setLoginOpen(false); setPendingPrint(false); }}
         onAuthenticated={handleAuthenticated}
+      />
+
+      <ReviewModal
+        isOpen={isReviewOpen}
+        onClose={closeReview}
+        examSlug={examSlug}
       />
     </main>
   );

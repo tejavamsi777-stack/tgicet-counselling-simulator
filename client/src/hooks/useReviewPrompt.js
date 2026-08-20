@@ -8,10 +8,6 @@ export function useReviewPrompt(hasViewedResults = false, examSlug = 'general') 
     try {
       const hasReviewed = localStorage.getItem('tg_has_reviewed');
       if (hasReviewed === 'true') return false;
-
-      const dismissedSession = sessionStorage.getItem('tg_review_dismissed_session');
-      if (dismissedSession === 'true') return false;
-
       return true;
     } catch {
       return false;
