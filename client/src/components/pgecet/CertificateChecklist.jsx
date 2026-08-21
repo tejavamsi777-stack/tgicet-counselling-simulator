@@ -1,398 +1,425 @@
-import { useState } from 'react';
-import { FileCheck, CheckCircle2, Circle, Star, GraduationCap, Users, AlertTriangle, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useMemo } from "react";
+import { Download, Check, RefreshCw, Save, Star, GraduationCap, Users } from "lucide-react";
+import { GlassButton } from "../ui/glass-button";
+import { useChecklist } from "../../hooks/useChecklist";
 
-/* ─── Document definitions ─── */
-const SECTIONS = [
-  {
-    id: 'entrance',
-    label: 'Entrance Exam Documents',
-    color: 'amber',
-    icon: Star,
-    note: 'Carry originals + 2 sets of self-attested photocopies',
-    docs: [
-      {
-        id: 'gate_card',
-        title: 'GATE / GPAT Score Card',
-        desc: 'Required only for candidates admitted via GATE/GPAT score. Must show valid score for 2024 or 2025 examination.',
-        tag: 'GATE/GPAT only',
-        tagColor: 'amber',
-        mandatory: false,
-        detail: 'GATE score is valid for 3 years. Minimum qualifying score: OC/EWS — 25, BC — 22.5, SC/ST/PH — 16.67 (out of 100). GPAT qualified candidates must carry GPAT score card with percentile.',
-      },
-      {
-        id: 'pgecet_rank',
-        title: 'TG PGECET 2026 Rank Card & Hall Ticket',
-        desc: 'Required for candidates admitted via TG PGECET rank. Must show HTNO, percentile, and state rank clearly.',
-        tag: 'TG PGECET only',
-        tagColor: 'cyan',
-        mandatory: false,
-        detail: 'Minimum qualifying criteria: OC — 25th percentile, BC — 22.5th percentile, SC/ST/PH — no minimum percentile. Rank card must match registration number used during web options entry.',
-      },
-      {
-        id: 'allotment_order',
-        title: 'Seat Allotment Order (Phase I / Phase II)',
-        desc: 'Downloaded from pgecetadm.tgche.ac.in after seat allotment. Print and carry for HLC verification.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: 'Allotment order contains your unique allotment ID, allotted college code, branch, category, and fee details. Required at both HLC and at the allotted college.',
-      },
-    ],
-  },
-  {
-    id: 'academic',
-    label: 'Academic / Educational Certificates',
-    color: 'purple',
-    icon: GraduationCap,
-    note: 'All marks memos must show aggregated marks / CGPA',
-    docs: [
-      {
-        id: 'ssc',
-        title: 'SSC / 10th Class Marks Memo & Pass Certificate',
-        desc: 'Proof of date of birth, father/mother name. The name must match Aadhaar and degree certificate exactly.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: null,
-      },
-      {
-        id: 'inter',
-        title: 'Intermediate (+2) Marks Memo or Diploma Certificate',
-        desc: '10+2 (PCM/PCB) pass certificate or 3-year polytechnic diploma in relevant engineering stream.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: null,
-      },
-      {
-        id: 'degree_marks',
-        title: 'B.E. / B.Tech / B.Pharm Consolidated Marks Memo (All Semesters)',
-        desc: 'Semester-wise marks memos from 1st to final semester. Minimum 50% aggregate (45% for SC/ST) in qualifying degree.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: 'For GATE candidates, qualifying degree must be in the relevant discipline. For PGECET, the qualifying exam must be B.E./B.Tech/B.Pharm/B.Sc (Engg) with ≥50% marks (≥45% for SC/ST/PH).',
-      },
-      {
-        id: 'provisional',
-        title: 'Provisional Certificate or Degree Certificate',
-        desc: 'Issued by the university after final semester. If awaiting results, a course completion letter/memo is accepted temporarily.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: null,
-      },
-      {
-        id: 'tc',
-        title: 'Transfer Certificate (T.C.) from Last Attended Institution',
-        desc: 'Original TC is submitted at the time of final reporting to the allotted college. Carry at HLC for verification.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: null,
-      },
-      {
-        id: 'study',
-        title: 'Study / Bonafide Certificates (Class 6 through Graduation)',
-        desc: 'Needed to establish local candidature under Osmania / Kakatiya / JNTUH university jurisdiction for 7 or more consecutive years.',
-        tag: 'Local category candidates',
-        tagColor: 'green',
-        mandatory: false,
-        detail: 'Candidates who studied in Telangana for 4–6 years of schooling and remaining in Telangana for graduation qualify as local candidates. Non-local candidates must declare so during web options.',
-      },
-    ],
-  },
-  {
-    id: 'identity',
-    label: 'Identity & Category Certificates',
-    color: 'cyan',
-    icon: Users,
-    note: 'Category certificates must be from a competent Telangana authority (MRO / Tahsildar)',
-    docs: [
-      {
-        id: 'aadhaar',
-        title: 'Aadhaar Card (Original + Photocopy)',
-        desc: 'Mandatory for all candidates. Name and date of birth must match SSC and degree records. Biometric-linked Aadhaar preferred.',
-        tag: 'All candidates',
-        tagColor: 'purple',
-        mandatory: true,
-        detail: null,
-      },
-      {
-        id: 'caste',
-        title: 'Integrated Community / Caste Certificate (SC / ST / BC)',
-        desc: 'Issued by MRO / Tahsildar through MeeSeva portal. Must specify community (e.g., BC-B, SC, ST). Digital-signed certificates accepted.',
-        tag: 'SC / ST / BC candidates',
-        tagColor: 'rose',
-        mandatory: false,
-        detail: 'BC candidates: must clearly mention group (BC-A, BC-B, BC-C, BC-D, BC-E). For Muslims claiming BC-E, minority status certificate may be required additionally.',
-      },
-      {
-        id: 'income',
-        title: 'Latest Income Certificate (issued after 01-01-2026)',
-        desc: 'Mandatory for Tuition Fee Reimbursement (TFR) eligibility. Annual family income must be ≤ ₹2.5 lakh for full waiver.',
-        tag: 'TFR / Fee waiver',
-        tagColor: 'green',
-        mandatory: false,
-        detail: 'Income certificate issued before 01-01-2026 will not be accepted. Must be issued by MRO/Tahsildar through MeeSeva. Required for SC/ST/BC candidates claiming fee reimbursement.',
-      },
-      {
-        id: 'ews',
-        title: 'EWS Certificate (Economically Weaker Sections)',
-        desc: 'Valid for 2025–2026 academic year. Issued by Tahsildar under G.O.Ms No. 244. Annual family income ≤ ₹8 lakh.',
-        tag: 'EWS candidates',
-        tagColor: 'teal',
-        mandatory: false,
-        detail: 'EWS candidates who are not SC/ST/BC are eligible for 10% horizontal reservation. Certificate must be for the current academic year.',
-      },
-      {
-        id: 'minority',
-        title: 'Minority Certificate (Muslim / Christian candidates)',
-        desc: 'Required if claiming seats under minority quota. Issued by authorised minority commission authority or SSC TC containing religion.',
-        tag: 'Minority candidates',
-        tagColor: 'indigo',
-        mandatory: false,
-        detail: null,
-      },
-    ],
-  },
-  {
-    id: 'special',
-    label: 'Special Category Certificates',
-    color: 'rose',
-    icon: AlertTriangle,
-    note: 'Special category candidates must attend physical HLC verification — online verification is NOT sufficient',
-    docs: [
-      {
-        id: 'ph',
-        title: 'Disability Certificate (PH / Divyangjan)',
-        desc: 'Certificate from District Medical Board (≥40% disability). Required for 3% horizontal reservation under PH category.',
-        tag: 'PH candidates',
-        tagColor: 'rose',
-        mandatory: false,
-        detail: null,
-      },
-      {
-        id: 'ncc',
-        title: 'NCC Certificate (B or C grade)',
-        desc: 'Valid NCC certificate for current or previous 2 academic years. Required for NCC special category seats.',
-        tag: 'NCC candidates',
-        tagColor: 'green',
-        mandatory: false,
-        detail: null,
-      },
-      {
-        id: 'cap',
-        title: 'CAP Certificate (Children of Armed Personnel)',
-        desc: 'Service/pension certificate of parent/spouse in Indian Armed Forces. Issued by Commanding Officer / Record Office.',
-        tag: 'CAP candidates',
-        tagColor: 'slate',
-        mandatory: false,
-        detail: null,
-      },
-      {
-        id: 'sports',
-        title: 'Sports / Games Certificate',
-        desc: 'Participation/achievement certificate in State/National level sports. Verified by Telangana Sports Authority.',
-        tag: 'Sports candidates',
-        tagColor: 'orange',
-        mandatory: false,
-        detail: null,
-      },
-      {
-        id: 'employer',
-        title: 'Employer Certificate (Govt. / PSU employees\' children)',
-        desc: 'For children of State/Central Govt., Public Sector Corporation employees posted in Telangana for ≥10 years.',
-        tag: 'Govt. employee children',
-        tagColor: 'blue',
-        mandatory: false,
-        detail: null,
-      },
-    ],
-  },
+const CATEGORY_PILLS = [
+  { id: "all",      label: "All" },
+  { id: "oc",       label: "OC (General)" },
+  { id: "ews",      label: "EWS" },
+  { id: "bc",       label: "BC" },
+  { id: "sc_st",    label: "SC/ST" },
+  { id: "minority", label: "Minority" },
+  { id: "special",  label: "Special Quota" },
 ];
 
-const TAG_STYLES = {
-  amber:  'border-amber-400/40 bg-amber-500/10 text-amber-300',
-  cyan:   'border-cyan-400/40 bg-cyan-500/10 text-cyan-300',
-  purple: 'border-purple-400/40 bg-purple-500/10 text-purple-300',
-  green:  'border-green-400/40 bg-green-500/10 text-green-300',
-  rose:   'border-rose-400/40 bg-rose-500/10 text-rose-300',
-  teal:   'border-teal-400/40 bg-teal-500/10 text-teal-300',
-  indigo: 'border-indigo-400/40 bg-indigo-500/10 text-indigo-300',
-  slate:  'border-slate-400/40 bg-slate-500/10 text-slate-300',
-  orange: 'border-orange-400/40 bg-orange-500/10 text-orange-300',
-  blue:   'border-blue-400/40 bg-blue-500/10 text-blue-300',
-};
+const SPECIAL_CATS = ["ph", "cap", "ncc", "sports", "special"];
 
-const SECTION_COLORS = {
-  amber:  { border: 'border-amber-500/25',  header: 'text-amber-300', icon: 'text-amber-400', bg: 'bg-amber-500/10 border-amber-400/30' },
-  purple: { border: 'border-purple-500/25', header: 'text-purple-300', icon: 'text-purple-400', bg: 'bg-purple-500/10 border-purple-400/30' },
-  cyan:   { border: 'border-cyan-500/25',   header: 'text-cyan-300', icon: 'text-cyan-400', bg: 'bg-cyan-500/10 border-cyan-400/30' },
-  rose:   { border: 'border-rose-500/25',   header: 'text-rose-300', icon: 'text-rose-400', bg: 'bg-rose-500/10 border-rose-400/30' },
-};
+const PGECET_DOCUMENTS = [
+  // 1. Entrance Exam Documents
+  {
+    id: "gate_score",
+    name: "GATE / GPAT Score Card",
+    note: "Required for candidates seeking admission via GATE/GPAT score. Valid score card for 2024, 2025, or 2026.",
+    xeroxSets: 2,
+    validity: "Valid for 3 years from exam date",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "pgecet_rank",
+    name: "TG PGECET 2026 Rank Card & Hall Ticket",
+    note: "Required for candidates seeking admission via PGECET. Must show HTNO and state rank clearly.",
+    xeroxSets: 2,
+    validity: "Original Rank Card + Hall Ticket",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "allotment_order",
+    name: "Seat Allotment Order & Self-Reporting Confirmation",
+    note: "Downloaded from the PGECET portal after allotment. Carry for help line verification and college reporting.",
+    xeroxSets: 2,
+    validity: "Fresh printout from official portal",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
 
-function DocItem({ doc, checked, onToggle }) {
-  const [expanded, setExpanded] = useState(false);
-  const tagStyle = TAG_STYLES[doc.tagColor] || TAG_STYLES.purple;
-  return (
-    <div className={`rounded-xl border transition ${checked ? 'border-white/10 bg-white/[0.02]' : 'border-white/[0.06] bg-black/20'}`}>
-      <label className="flex items-start gap-3 p-3.5 cursor-pointer select-none">
-        <button
-          type="button"
-          onClick={onToggle}
-          className="mt-0.5 shrink-0 transition"
-        >
-          {checked
-            ? <CheckCircle2 size={18} className="text-green-400" />
-            : <Circle size={18} className="text-white/30" />
-          }
-        </button>
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className={`text-xs sm:text-sm font-semibold ${checked ? 'line-through text-white/35' : 'text-white'}`}>
-              {doc.title}
-            </span>
-            {doc.mandatory && (
-              <span className="rounded border border-red-400/40 bg-red-500/10 px-1.5 py-0.5 text-[10px] font-bold text-red-300">Required</span>
-            )}
-          </div>
-          <span className={`inline-block rounded border px-2 py-0.5 text-[10px] font-semibold mt-1 ${tagStyle}`}>{doc.tag}</span>
-          <p className={`text-[11px] mt-1.5 leading-relaxed ${checked ? 'text-white/30' : 'text-white/50'}`}>{doc.desc}</p>
-          {doc.detail && (
-            <button
-              type="button"
-              onClick={() => setExpanded(e => !e)}
-              className="flex items-center gap-1 mt-1.5 text-[11px] text-purple-400 hover:text-purple-300 transition"
-            >
-              <Info size={11} />
-              {expanded ? 'Hide details' : 'Show eligibility details'}
-              {expanded ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
-            </button>
-          )}
-          {expanded && doc.detail && (
-            <div className="mt-2 rounded-lg border border-purple-500/20 bg-purple-500/5 p-2.5 text-[11px] text-purple-200/80 leading-relaxed">
-              {doc.detail}
-            </div>
-          )}
-        </div>
-      </label>
-    </div>
-  );
+  // 2. Academic Certificates
+  {
+    id: "ssc_memo",
+    name: "SSC or equivalent Marks Memo & Pass Certificate",
+    note: "Used to verify candidate name, parent names, and Date of Birth.",
+    xeroxSets: 2,
+    validity: "Must match name in Aadhaar & Degree",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "inter_memo",
+    name: "Intermediate (10+2) or Equivalent Marks Memo",
+    note: "Pass memo / Consolidated Marks Memo of 10+2 or equivalent 3-year Diploma.",
+    xeroxSets: 2,
+    validity: "Board of Intermediate Education / Board of Tech Ed",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "degree_memo",
+    name: "B.E. / B.Tech / B.Pharm Consolidated Marks Memo (All Semesters)",
+    note: "Semester-wise marks memos of all semesters. General/BC candidates: ≥50% aggregate. SC/ST/PH: ≥45% aggregate.",
+    xeroxSets: 2,
+    validity: "University Consolidated Marks Memo",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "degree_provisional",
+    name: "Provisional Degree Certificate (PDC)",
+    note: "PDC or original degree certificate issued by the university last attended.",
+    xeroxSets: 2,
+    validity: "Competent University Registrar",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "tc",
+    name: "Transfer Certificate (T.C.)",
+    note: "T.C. issued by the institution last attended. Carry at HLC, final submission at college.",
+    xeroxSets: 2,
+    validity: "Original TC required",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "study_certs",
+    name: "Study or Bonafide Certificates (Class 6 to Degree)",
+    note: "Required to establish local region candidature (OU/KU/JNTUH) for 7 consecutive study years.",
+    xeroxSets: 2,
+    validity: "Signed by school and college heads",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+
+  // 3. Identity & Category Certificates
+  {
+    id: "aadhaar",
+    name: "Aadhaar Card (Original + Copy)",
+    note: "Mandatory identity proof linked with mobile number. Name must match SSC record.",
+    xeroxSets: 2,
+    validity: "Valid UIDAI identity card",
+    categories: ["all", "oc", "ews", "bc", "sc", "st"]
+  },
+  {
+    id: "caste",
+    name: "Integrated Community / Caste Certificate (SC / ST / BC)",
+    note: "Required if claiming category seats or fee reimbursement. Must specify sub-group (e.g. BC-D).",
+    xeroxSets: 2,
+    validity: "Issued by Tahsildar via MeeSeva",
+    categories: ["bc", "sc", "st"]
+  },
+  {
+    id: "income",
+    name: "Latest Income Certificate (issued after 01-01-2026)",
+    note: "Mandatory for claiming Tuition Fee Reimbursement (TFR). Annual family income limit applies.",
+    xeroxSets: 2,
+    validity: "Must be issued on or after 01-01-2026",
+    categories: ["bc", "sc", "st"]
+  },
+  {
+    id: "ews_cert",
+    name: "EWS Reservation Certificate",
+    note: "For Economically Weaker Section candidates claiming 10% horizontal reservation.",
+    xeroxSets: 2,
+    validity: "Valid EWS certificate for 2026",
+    categories: ["ews"]
+  },
+  {
+    id: "minority_cert",
+    name: "Minority Status Certificate",
+    note: "For Muslim or Christian candidates claiming seats under minority quota. SSC TC showing religion is accepted.",
+    xeroxSets: 2,
+    validity: "TC or competent Minority Authority",
+    categories: ["minority"]
+  },
+
+  // 4. Special Categories
+  {
+    id: "ph_cert",
+    name: "Disability / PH (Physically Handicapped) Certificate",
+    note: "SADAREM certificate with minimum 40% disability. Physical HLC attendance required.",
+    xeroxSets: 2,
+    validity: "SADAREM Medical Board Certificate",
+    categories: ["special", "ph"]
+  },
+  {
+    id: "ncc_cert",
+    name: "NCC (National Cadet Corps) B or C Certificate",
+    note: "Original certificates showing participation at school or college level.",
+    xeroxSets: 2,
+    validity: "DG NCC Authority",
+    categories: ["special", "ncc"]
+  },
+  {
+    id: "cap_cert",
+    name: "CAP (Children of Armed Personnel) Certificate",
+    note: "Ex-servicemen identity book / serving certificate from competent military record office.",
+    xeroxSets: 2,
+    validity: "Zilla Sainik Welfare Board",
+    categories: ["special", "cap"]
+  },
+  {
+    id: "sports_cert",
+    name: "Sports Certificate (State/National Level)",
+    note: "Participation certificate signed by sports federation and counter-signed by SATS.",
+    xeroxSets: 2,
+    validity: "Telangana Sports Authority (SATS)",
+    categories: ["special", "sports"]
+  },
+  {
+    id: "employer_cert",
+    name: "Employer Certificate (for Sponsored Category)",
+    note: "For sponsored M.Tech/M.Pharm seats. Showing minimum 2 years of continuous work experience.",
+    xeroxSets: 2,
+    validity: "From active employer / organization",
+    categories: ["special"]
+  }
+];
+
+function filterDocs(documents, pill) {
+  switch (pill) {
+    case "all":
+      return documents;
+    case "oc":
+      return documents.filter(d => d.categories?.includes("all") || d.categories?.includes("oc"));
+    case "ews":
+      return documents.filter(d => d.categories?.includes("ews") || d.categories?.includes("all"));
+    case "bc":
+      return documents.filter(d => d.categories?.includes("bc") || d.categories?.includes("all"));
+    case "sc_st":
+      return documents.filter(d =>
+        d.categories?.includes("sc") ||
+        d.categories?.includes("st") ||
+        d.categories?.includes("all")
+      );
+    case "minority":
+      return documents.filter(d => d.categories?.includes("minority") || d.categories?.includes("all"));
+    case "special":
+      return documents.filter(d => d.categories?.some(c => SPECIAL_CATS.includes(c)));
+    default:
+      return documents;
+  }
+}
+
+export function formatLastSaved(timestamp) {
+  if (!timestamp) return null;
+  const now = Date.now();
+  const time = new Date(timestamp).getTime();
+  const diffMs = now - time;
+
+  if (diffMs <= 60000 && diffMs >= -300000) return "Saved just now";
+
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 1) return "Saved just now";
+  if (diffMins === 1) return "Last saved 1 minute ago";
+  if (diffMins < 60) return `Last saved ${diffMins} minutes ago`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `Last saved ${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `Last saved ${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
 }
 
 export default function CertificateChecklist() {
-  const [checked, setChecked] = useState({});
+  const {
+    ticked,
+    toggleDoc,
+    isOffline,
+  } = useChecklist("tg-pgecet");
 
-  const toggle = (id) => setChecked(prev => ({ ...prev, [id]: !prev[id] }));
+  const [activePill, setActivePill] = useState("all");
 
-  const allDocs = SECTIONS.flatMap(s => s.docs);
-  const mandatoryDocs = allDocs.filter(d => d.mandatory);
-  const checkedCount = Object.values(checked).filter(Boolean).length;
-  const mandatoryChecked = mandatoryDocs.filter(d => checked[d.id]).length;
-  const readyPct = Math.round((checkedCount / allDocs.length) * 100);
+  const filtered = useMemo(() => filterDocs(PGECET_DOCUMENTS, activePill), [activePill]);
+  const tickedCount = filtered.filter(d => ticked.has(d.id)).length;
+  
+  // Since GATE score and PGECET rank are mutually exclusive, the max possible verified count is total - 1
+  const hasBothEntranceDocs = useMemo(() => {
+    return filtered.some(d => d.id === "gate_score") && filtered.some(d => d.id === "pgecet_rank");
+  }, [filtered]);
+
+  const totalCount = hasBothEntranceDocs ? filtered.length - 1 : filtered.length;
+  const progress = totalCount ? (tickedCount / totalCount) * 100 : 0;
 
   return (
     <div className="space-y-6">
-      {/* Header + Progress */}
-      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#120a22]/90 via-[#180f2d]/90 to-[#0c0616]/90 p-5 sm:p-7 shadow-2xl backdrop-blur-2xl">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-5">
-          <div className="flex items-center gap-2.5">
-            <div className="rounded-xl border border-purple-500/30 bg-purple-500/10 p-2 text-purple-400">
-              <FileCheck size={18} />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-white">HLC Certificate Verification Checklist</h3>
-              <p className="text-xs text-white/50">
-                Document readiness tracker for TG PGECET 2026 Help Line Centre verification
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="rounded-full border border-purple-400/30 bg-purple-500/20 px-3 py-1 text-xs font-bold text-purple-300">
-              {checkedCount} / {allDocs.length} Checked
-            </div>
-            <div className={`rounded-full border px-3 py-1 text-xs font-bold ${mandatoryChecked === mandatoryDocs.length ? 'border-green-400/30 bg-green-500/20 text-green-300' : 'border-red-400/30 bg-red-500/10 text-red-300'}`}>
-              {mandatoryChecked}/{mandatoryDocs.length} Required ✓
-            </div>
-          </div>
+      {/* ─── Eligibility Cards ─── */}
+      <div className="no-print grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* GATE Card */}
+        <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 sm:p-5">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5 mb-3">
+            <Star size={14} className="text-amber-400" /> GATE / GPAT ELIGIBILITY
+          </h3>
+          <ul className="text-xs text-white/70 space-y-2 list-disc list-inside">
+            <li>Qualifying score: OC/EWS &ge; 25, BC &ge; 22.5, SC/ST/PH &ge; 16.67</li>
+            <li>GATE score valid for 3 years (2024, 2025, or 2026 exam)</li>
+            <li>GPAT qualified candidates &mdash; no minimum score required</li>
+            <li>Degree: B.E./B.Tech in relevant discipline with &gt; 50% marks</li>
+          </ul>
         </div>
 
-        {/* Progress bar */}
-        <div className="mt-5">
-          <div className="flex justify-between text-[11px] text-white/40 mb-1.5">
-            <span>Overall readiness</span>
-            <span className="font-mono font-bold text-purple-300">{readyPct}%</span>
+        {/* PGECET Card */}
+        <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-4 sm:p-5">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5 mb-3">
+            <GraduationCap size={14} className="text-cyan-400" /> TG PGECET ELIGIBILITY
+          </h3>
+          <ul className="text-xs text-white/70 space-y-2 list-disc list-inside">
+            <li>Min. percentile: OC/EWS &ge; 25th, BC &ge; 22.5th, SC/ST/PH &mdash; nil</li>
+            <li>PGECET 2026 rank card with HTNO, percentile &amp; rank clearly visible</li>
+            <li>Degree: B.E./B.Tech/B.Pharm/B.Sc (Engg) &ge; 50% (45% for SC/ST)</li>
+            <li>Final year appearing candidates also eligible (provisional basis)</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* ─── Main Checklist Container ─── */}
+      <div className="rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6">
+        <style>{`
+          @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+          }
+        `}</style>
+
+        {/* Category Filter Pills */}
+        <div className="no-print flex gap-2 overflow-x-auto pb-2 mb-5 scrollbar-none">
+          {CATEGORY_PILLS.map(pill => (
+            <button
+              key={pill.id}
+              onClick={() => setActivePill(pill.id)}
+              className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                activePill === pill.id
+                  ? "bg-purple-500/25 border border-purple-400/40 text-purple-200"
+                  : "border border-white/[0.08] bg-white/[0.03] text-white/50 hover:text-white hover:bg-white/[0.06]"
+              }`}
+            >
+              {pill.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Offline Alert */}
+        {isOffline && (
+          <div className="no-print mb-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3.5 py-2 text-xs text-rose-200">
+            <span>📡 Offline &mdash; changes not synced. They will remain saved locally until connection returns.</span>
           </div>
-          <div className="h-2 w-full bg-white/[0.06] rounded-full overflow-hidden">
+        )}
+
+        {/* Progress Bar */}
+        <div className="mb-5">
+          <div className="flex justify-between items-center mb-2">
+             <p className="text-white/60 text-xs font-medium">
+              {tickedCount} of {totalCount} documents verified
+            </p>
+            <p className="text-white/40 text-xs">{Math.round(progress)}%</p>
+          </div>
+          <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-500"
-              style={{ width: `${readyPct}%` }}
+              className="h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400 transition-all duration-500"
+              style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        {/* Quick eligibility box */}
-        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-amber-500/25 bg-amber-500/5 p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Star size={14} className="text-amber-400 shrink-0" />
-              <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">GATE / GPAT Eligibility</span>
-            </div>
-            <ul className="space-y-1 text-[11px] text-white/60">
-              <li>• Qualifying score: OC/EWS ≥ 25, BC ≥ 22.5, SC/ST/PH ≥ 16.67</li>
-              <li>• GATE score valid for 3 years (2024 or 2025 exam)</li>
-              <li>• GPAT qualified candidates — no minimum score required</li>
-              <li>• Degree: B.E./B.Tech in relevant discipline with ≥ 50% marks</li>
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-cyan-500/25 bg-cyan-500/5 p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <GraduationCap size={14} className="text-cyan-400 shrink-0" />
-              <span className="text-xs font-bold text-cyan-300 uppercase tracking-wider">TG PGECET Eligibility</span>
-            </div>
-            <ul className="space-y-1 text-[11px] text-white/60">
-              <li>• Min. percentile: OC/EWS ≥ 25th, BC ≥ 22.5th, SC/ST/PH — nil</li>
-              <li>• PGECET 2026 rank card with HTNO, percentile &amp; rank clearly visible</li>
-              <li>• Degree: B.E./B.Tech/B.Pharm/B.Sc (Engg) ≥ 50% (45% for SC/ST)</li>
-              <li>• Final year appearing candidates also eligible (provisional basis)</li>
-            </ul>
-          </div>
+        {/* Action Button */}
+        <div className="no-print mb-5 flex items-center justify-end">
+          <GlassButton
+            size="sm"
+            onClick={() => window.print()}
+            contentClassName="flex items-center gap-1.5"
+          >
+            <Download size={13} />
+            <span>Download Checklist</span>
+          </GlassButton>
+        </div>
+
+        {/* Documents Table */}
+        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-white/[0.01]">
+          <table className="w-full text-sm min-w-[650px] border-collapse">
+            <thead>
+              <tr className="border-b border-white/[0.08] text-white/40 bg-white/[0.02]">
+                <th className="py-3.5 px-4 text-left font-semibold w-8"></th>
+                <th className="py-3.5 px-3 text-left font-semibold w-8">#</th>
+                <th className="py-3.5 px-4 text-left font-semibold">Required Document</th>
+                <th className="py-3.5 px-4 text-left font-semibold hidden sm:table-cell">MeeSeva / Authority Validity Rules</th>
+                <th className="py-3.5 px-4 text-left font-semibold">Verification Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/[0.04]">
+              {filtered.map((doc, i) => {
+                const isChecked = ticked.has(doc.id);
+                const isDisabled =
+                  (doc.id === "gate_score" && ticked.has("pgecet_rank")) ||
+                  (doc.id === "pgecet_rank" && ticked.has("gate_score"));
+
+                return (
+                  <tr
+                    key={doc.id}
+                    onClick={() => {
+                      if (isDisabled) return;
+                      toggleDoc(doc.id);
+                    }}
+                    className={`transition-colors ${
+                      isDisabled
+                        ? "opacity-35 cursor-not-allowed select-none bg-black/40"
+                        : isChecked
+                        ? "bg-purple-950/20 cursor-pointer"
+                        : "hover:bg-white/[0.02] cursor-pointer"
+                    }`}
+                  >
+                    {/* Circular Checkbox */}
+                    <td className="py-3.5 px-4">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
+                        isDisabled
+                          ? "border-white/10 bg-black/40"
+                          : isChecked
+                          ? "bg-purple-500 border-purple-400"
+                          : "border-white/20 bg-transparent"
+                      }`}>
+                        {isChecked && <Check size={11} className="text-white" strokeWidth={3} />}
+                      </div>
+                    </td>
+                    
+                    <td className="py-3.5 px-3 text-white/30 text-xs font-mono">{i + 1}</td>
+                    
+                    <td className="py-3.5 px-4">
+                      <p className={`font-semibold ${isChecked ? "text-white/50 line-through" : "text-white/90"}`}>
+                        {doc.name}
+                      </p>
+                      {doc.note && (
+                        <p className="text-white/40 text-xs mt-0.5 max-w-xl">{doc.note}</p>
+                      )}
+                      {doc.xeroxSets && (
+                        <p className="text-purple-300/60 text-[11px] mt-0.5">📋 {doc.xeroxSets} photocopy sets required</p>
+                      )}
+                    </td>
+
+                    <td className="py-3.5 px-4 hidden sm:table-cell">
+                      {doc.validity && (
+                        <span className="text-amber-300/80 text-xs">{doc.validity}</span>
+                      )}
+                    </td>
+
+                    <td className="py-3.5 px-4">
+                      {isChecked ? (
+                        <span className="inline-flex items-center gap-1 bg-green-500/15 border border-green-500/20 text-green-300 text-xs px-2.5 py-0.5 rounded-full font-medium">
+                          Ready ✅
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 bg-white/5 border border-white/10 text-white/40 text-xs px-2.5 py-0.5 rounded-full font-medium">
+                          Pending ⏳
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {filtered.length === 0 && (
+            <p className="text-center text-white/30 py-8 text-sm">No documents for this category.</p>
+          )}
         </div>
       </div>
-
-      {/* Sections */}
-      {SECTIONS.map(section => {
-        const sc = SECTION_COLORS[section.color] || SECTION_COLORS.purple;
-        const SIcon = section.icon;
-        return (
-          <div key={section.id} className={`rounded-3xl border ${sc.border} bg-black/40 p-5 sm:p-6 shadow-xl`}>
-            <div className="flex items-center gap-2.5 mb-1">
-              <div className={`rounded-xl border p-1.5 ${sc.bg}`}>
-                <SIcon size={16} className={sc.icon} />
-              </div>
-              <h4 className={`text-sm sm:text-base font-bold ${sc.header}`}>{section.label}</h4>
-            </div>
-            {section.note && (
-              <p className="text-[11px] text-white/40 mb-4 ml-9">{section.note}</p>
-            )}
-            <div className="space-y-2 mt-3">
-              {section.docs.map(doc => (
-                <DocItem
-                  key={doc.id}
-                  doc={doc}
-                  checked={!!checked[doc.id]}
-                  onToggle={() => toggle(doc.id)}
-                />
-              ))}
-            </div>
-          </div>
-        );
-      })}
-
-      <p className="text-center text-[11px] text-white/30 pb-2">
-        Document requirements based on official <span className="text-purple-300">tgche.ac.in</span> guidelines &amp; <span className="text-purple-300">pgecetadm.tgche.ac.in</span> · TG PGECET 2026
-      </p>
     </div>
   );
 }

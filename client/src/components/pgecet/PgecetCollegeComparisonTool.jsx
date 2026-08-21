@@ -1,16 +1,52 @@
 import { useState, useMemo } from "react";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, CheckCircle2, Layers } from "lucide-react";
 import { PGECET_INSTITUTIONS } from "../../data/pgecetInstitutions";
 import SearchableSelect from "../shared/SearchableSelect";
 import allotmentsRaw from "../../data/pgecet_allotments/allotments.json";
 
-function computeCutoffs(collegeCode, branchFilter) {
-  const recs = allotmentsRaw.filter(a =>
-    a.college_code === collegeCode &&
-    !(a.admitted_by === "GATE/GPAT" || a.gate_score) &&
-    a.rank &&
-    (!branchFilter || a.branch_name === branchFilter)
-  );
+/* ─── Standardize & Canonicalize PG Branch Names ─── */
+export function getCanonicalBranch(rawName) {
+  if (!rawName) return "";
+  const s = rawName.toUpperCase().trim();
+  if (s.includes("COMPUTER SCIENCE") || s.includes("CSE")) return "Computer Science & Engineering (CSE)";
+  if (s.includes("ARTIFICIAL INTELLIGENCE") && (s.includes("DATA") || s.includes("DATA SCIENCE"))) return "AI & Data Science (AIDS)";
+  if (s.includes("ARTIFICIAL INTELLIGENCE") && (s.includes("MACHINE") || s.includes("AIML"))) return "AI & Machine Learning (AIML)";
+  if (s.includes("ARTIFICIAL INTELLIGENCE") || s.includes("ROBOTICS")) return "AI & Robotics";
+  if (s.includes("DATA SCIENCE")) return "Data Science";
+  if (s.includes("CYBER")) return "Cyber Security";
+  if (s.includes("SOFTWARE")) return "Software Engineering";
+  if (s.includes("VLSI") && (s.includes("EMBEDDED") || s.includes("EMBEDED"))) return "VLSI & Embedded Systems";
+  if (s.includes("VLSI")) return "VLSI System Design";
+  if (s.includes("EMBEDDED") || s.includes("EMBEDED")) return "Embedded Systems";
+  if (s.includes("POWER") && s.includes("ELECTRONIC")) return "Power Electronics & Drives";
+  if (s.includes("POWER")) return "Power Systems Engineering";
+  if (s.includes("STRUCTURAL")) return "Structural Engineering";
+  if (s.includes("TRANSPORT") || s.includes("HIGHWAY")) return "Transportation / Highway Engg";
+  if (s.includes("GEO-TECHNICAL") || s.includes("GEOTECHNICAL")) return "Geo-Technical Engineering";
+  if (s.includes("CAD") || s.includes("CAM")) return "CAD / CAM";
+  if (s.includes("THERMAL")) return "Thermal Engineering";
+  if (s.includes("MACHINE DESIGN") || s.includes("ENGINEERING DESIGN") || s.includes("DESIGN ENGINEERING")) return "Machine Design";
+  if (s.includes("ADVANCED MANUFACTURING") || s.includes("PRODUCTION")) return "Manufacturing / Production Engg";
+  if (s.includes("DIGITAL SYSTEMS") || s.includes("DIGITAL ELECTRONICS")) return "Digital Systems";
+  if (s.includes("COMMUNICATION") || s.includes("MICROWAVE") || s.includes("RADAR")) return "Communication Engineering";
+  if (s.includes("SIGNAL PROCESSING")) return "Signal Processing";
+  if (s.includes("ENVIRONMENTAL")) return "Environmental Management";
+  if (s.includes("BIO-TECHNOLOGY") || s.includes("BIOTECHNOLOGY")) return "Bio-Technology";
+  if (s.includes("BIO-MEDICAL") || s.includes("BIOMEDICAL")) return "Bio-Medical Electronics";
+  if (s.includes("CHEMICAL")) return "Chemical Engineering";
+  if (s.includes("AEROSPACE")) return "Aerospace Engineering";
+  return rawName;
+}
+
+/* ─── Compute cutoffs for a college with optional canonical branch filter ─── */
+function computeCutoffs(collegeCode, canonicalBranch) {
+  const pgecetRecs = allotmentsRaw.filter(a => {
+    if (a.college_code !== collegeCode) return false;
+    if (a.admitted_by === "GATE/GPAT" || a.gate_score) return false;
+    if (!a.rank) return false;
+    if (canonicalBranch && getCanonicalBranch(a.branch_name) !== canonicalBranch) return false;
+    return true;
+  });
 
   function normCat(q) {
     q = (q || "").toUpperCase();
@@ -29,7 +65,7 @@ function computeCutoffs(collegeCode, branchFilter) {
   const genderMap = { M: [], F: [] };
   const allRanks = [];
 
-  for (const r of recs) {
+  for (const r of pgecetRecs) {
     const cat = normCat(r.allotted_category || r.category);
     if (!catMap[cat]) catMap[cat] = [];
     catMap[cat].push(r.rank);
@@ -41,8 +77,9 @@ function computeCutoffs(collegeCode, branchFilter) {
   const catResult = {};
   for (const cat of CAT_ORDER) {
     const ranks = catMap[cat];
-    if (ranks && ranks.length)
+    if (ranks && ranks.length) {
       catResult[cat] = { open: Math.min(...ranks), close: Math.max(...ranks), count: ranks.length };
+    }
   }
 
   const gResult = {};
@@ -54,12 +91,14 @@ function computeCutoffs(collegeCode, branchFilter) {
     ? { open: Math.min(...allRanks), close: Math.max(...allRanks), count: allRanks.length }
     : null;
 
-  const gateRecs = allotmentsRaw.filter(a =>
-    a.college_code === collegeCode &&
-    (a.admitted_by === "GATE/GPAT" || a.gate_score) &&
-    a.gate_score &&
-    (!branchFilter || a.branch_name === branchFilter)
-  );
+  const gateRecs = allotmentsRaw.filter(a => {
+    if (a.college_code !== collegeCode) return false;
+    if (!(a.admitted_by === "GATE/GPAT" || a.gate_score)) return false;
+    if (!a.gate_score) return false;
+    if (canonicalBranch && getCanonicalBranch(a.branch_name) !== canonicalBranch) return false;
+    return true;
+  });
+
   const gateScores = gateRecs.map(a => Number(a.gate_score)).filter(Boolean);
   const gate = gateScores.length
     ? { high: Math.max(...gateScores), low: Math.min(...gateScores), count: gateScores.length }
@@ -69,10 +108,15 @@ function computeCutoffs(collegeCode, branchFilter) {
 }
 
 const CAT_COLORS = {
-  OC: "text-sky-300", EWS: "text-teal-300",
-  "BC-A": "text-orange-300", "BC-B": "text-amber-300",
-  "BC-C": "text-lime-300", "BC-D": "text-emerald-300",
-  "BC-E": "text-indigo-300", SC: "text-purple-300", ST: "text-rose-300",
+  OC: "text-sky-300",
+  EWS: "text-teal-300",
+  "BC-A": "text-orange-300",
+  "BC-B": "text-amber-300",
+  "BC-C": "text-lime-300",
+  "BC-D": "text-emerald-300",
+  "BC-E": "text-indigo-300",
+  SC: "text-purple-300",
+  ST: "text-rose-300",
 };
 
 function CutoffTable({ cutoffs, accentClass }) {
@@ -80,12 +124,13 @@ function CutoffTable({ cutoffs, accentClass }) {
   const hasCats = Object.keys(catResult).length > 0;
   const hasGender = Object.keys(gResult).length > 0;
 
-  if (!hasCats && !overall) {
-    return <div className="py-8 text-center text-sm text-white/30">No TG PGECET allotment data for this selection.</div>;
+  if (!hasCats && !overall && !gate) {
+    return <div className="py-8 text-center text-sm text-white/30">No allotment data available for this selection.</div>;
   }
 
   return (
     <div className="space-y-3 mt-4">
+      {/* Overall PGECET Cutoff */}
       {overall && (
         <div className={`flex flex-wrap items-center justify-between gap-2 rounded-xl border ${accentClass} bg-black/30 px-4 py-3`}>
           <span className="text-xs font-bold uppercase tracking-wider text-white/50">Overall (PGECET)</span>
@@ -93,10 +138,12 @@ function CutoffTable({ cutoffs, accentClass }) {
             <span className="text-green-400">Open #{overall.open}</span>
             <span className="text-white/20">→</span>
             <span className="text-red-300">Close #{overall.close}</span>
-            <span className="text-white/30 text-[11px]">({overall.count})</span>
+            <span className="text-white/30 text-[11px]">({overall.count} seats)</span>
           </div>
         </div>
       )}
+
+      {/* GATE / GPAT Score Range */}
       {gate && (
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-500/25 bg-amber-500/5 px-4 py-3">
           <span className="text-xs font-bold uppercase tracking-wider text-amber-300/70">GATE / GPAT Score</span>
@@ -104,10 +151,12 @@ function CutoffTable({ cutoffs, accentClass }) {
             <span className="text-amber-300">High {gate.high}</span>
             <span className="text-white/20">→</span>
             <span className="text-amber-200/60">Low {gate.low}</span>
-            <span className="text-white/30 text-[11px]">({gate.count})</span>
+            <span className="text-white/30 text-[11px]">({gate.count} admitted)</span>
           </div>
         </div>
       )}
+
+      {/* Category-wise Cutoffs */}
       {hasCats && (
         <div className="overflow-hidden rounded-xl border border-white/[0.07]">
           <div className="bg-white/[0.04] px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white/40 border-b border-white/10">
@@ -135,6 +184,8 @@ function CutoffTable({ cutoffs, accentClass }) {
           </table>
         </div>
       )}
+
+      {/* Gender-wise Cutoffs */}
       {hasGender && (
         <div className="overflow-hidden rounded-xl border border-white/[0.07]">
           <div className="bg-white/[0.04] px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white/40 border-b border-white/10">
@@ -168,8 +219,17 @@ function CutoffTable({ cutoffs, accentClass }) {
   );
 }
 
-function CollegeCard({ inst, cutoffs, accentClass, codeColorClass, borderClass }) {
+function CollegeCard({ inst, cutoffs, accentClass, codeColorClass, borderClass, selectedBranch, onSelectBranch }) {
   if (!inst) return null;
+
+  // Distinct canonical branches available for this specific college in allotments
+  const collegeBranches = useMemo(() => {
+    const rawBranches = allotmentsRaw
+      .filter(a => a.college_code === inst.code)
+      .map(a => getCanonicalBranch(a.branch_name));
+    return [...new Set(rawBranches)].filter(Boolean).sort();
+  }, [inst.code]);
+
   return (
     <div className={`rounded-3xl border ${borderClass} bg-gradient-to-br from-[#0e0820]/90 to-[#080512]/90 p-5 sm:p-6 shadow-xl`}>
       <div className="flex items-start justify-between gap-2 flex-wrap">
@@ -178,17 +238,32 @@ function CollegeCard({ inst, cutoffs, accentClass, codeColorClass, borderClass }
       </div>
       <h3 className="mt-3 text-sm sm:text-base font-bold text-white leading-snug">{inst.name}</h3>
       <p className="text-[11px] text-white/40 mt-0.5">{inst.place || "Telangana"}</p>
+      
       <CutoffTable cutoffs={cutoffs} accentClass={accentClass} />
+
       <div className="mt-5">
-        <h4 className="text-[11px] font-bold uppercase tracking-wider text-white/40 mb-2">
-          Offered PG Specializations ({inst.courses.length})
+        <h4 className="text-[11px] font-bold uppercase tracking-wider text-white/40 mb-2 flex items-center justify-between">
+          <span>Offered PG Specializations ({collegeBranches.length})</span>
+          <span className="text-[10px] text-white/30 font-normal">Click to filter</span>
         </h4>
-        <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pr-1">
-          {inst.courses.map((c) => (
-            <span key={c.branchName} className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/75">
-              {c.branchName}
-            </span>
-          ))}
+        <div className="flex flex-wrap gap-1.5 max-h-44 overflow-y-auto pr-1">
+          {collegeBranches.map((br) => {
+            const isSelected = selectedBranch === br;
+            return (
+              <button
+                key={br}
+                type="button"
+                onClick={() => onSelectBranch && onSelectBranch(isSelected ? "" : br)}
+                className={`rounded-lg border px-2.5 py-1 text-[11px] transition-all cursor-pointer text-left ${
+                  isSelected
+                    ? "border-purple-400 bg-purple-600/30 text-white font-semibold shadow-sm"
+                    : "border-white/10 bg-white/5 text-white/75 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                {br}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -207,14 +282,45 @@ export default function PgecetCollegeComparisonTool() {
   const c1 = useMemo(() => PGECET_INSTITUTIONS.find((i) => i.code === college1Code) || null, [college1Code]);
   const c2 = useMemo(() => PGECET_INSTITUTIONS.find((i) => i.code === college2Code) || null, [college2Code]);
 
-  // Union of both colleges' branches (deduplicated, sorted)
+  // Common branches intersection: ONLY specializations available in BOTH selected colleges
   const sharedBranchOpts = useMemo(() => {
-    const names = new Set();
-    (c1?.courses || []).forEach(c => names.add(c.branchName));
-    (c2?.courses || []).forEach(c => names.add(c.branchName));
-    const sorted = [...names].sort();
-    return [{ value: "", label: "All Branches" }, ...sorted.map(n => ({ value: n, label: n }))];
-  }, [c1, c2]);
+    if (!college1Code && !college2Code) return [];
+
+    if (college1Code && !college2Code) {
+      const b1 = new Set(
+        allotmentsRaw
+          .filter(a => a.college_code === college1Code)
+          .map(a => getCanonicalBranch(a.branch_name))
+      );
+      const sorted = [...b1].filter(Boolean).sort();
+      return [{ value: "", label: "All Specializations" }, ...sorted.map(n => ({ value: n, label: n }))];
+    }
+
+    if (!college1Code && college2Code) {
+      const b2 = new Set(
+        allotmentsRaw
+          .filter(a => a.college_code === college2Code)
+          .map(a => getCanonicalBranch(a.branch_name))
+      );
+      const sorted = [...b2].filter(Boolean).sort();
+      return [{ value: "", label: "All Specializations" }, ...sorted.map(n => ({ value: n, label: n }))];
+    }
+
+    // Both colleges selected -> Exact Common Intersection
+    const b1 = new Set(
+      allotmentsRaw
+        .filter(a => a.college_code === college1Code)
+        .map(a => getCanonicalBranch(a.branch_name))
+    );
+    const b2 = new Set(
+      allotmentsRaw
+        .filter(a => a.college_code === college2Code)
+        .map(a => getCanonicalBranch(a.branch_name))
+    );
+
+    const common = [...b1].filter(x => x && b2.has(x)).sort();
+    return [{ value: "", label: "All Common Specializations" }, ...common.map(n => ({ value: n, label: n }))];
+  }, [college1Code, college2Code]);
 
   const cutoffs1 = useMemo(() => college1Code ? computeCutoffs(college1Code, sharedBranch) : null, [college1Code, sharedBranch]);
   const cutoffs2 = useMemo(() => college2Code ? computeCutoffs(college2Code, sharedBranch) : null, [college2Code, sharedBranch]);
@@ -223,12 +329,10 @@ export default function PgecetCollegeComparisonTool() {
     const tmp = college1Code;
     setCollege1Code(college2Code);
     setCollege2Code(tmp);
-    setSharedBranch("");
   };
 
   return (
     <div className="relative z-20 overflow-visible rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6 sm:p-8 space-y-6">
-
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
@@ -290,18 +394,40 @@ export default function PgecetCollegeComparisonTool() {
           />
         </div>
 
-        {/* Branch filter — full width below */}
-        {(c1 || c2) && sharedBranchOpts.length > 1 && (
-          <div className="md:col-span-7">
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-white/50 mb-1.5">
-              Filter by Specialization <span className="text-white/25 font-normal normal-case">(applies to both)</span>
+        {/* Branch filter — full width below, only common branches shown */}
+        {(college1Code || college2Code) && (
+          <div className="md:col-span-7 mt-1">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-white/50 mb-1.5 flex items-center justify-between">
+              <span>
+                Filter by Common Specialization{" "}
+                <span className="text-white/25 font-normal normal-case">
+                  {college1Code && college2Code
+                    ? `(only showing ${Math.max(0, sharedBranchOpts.length - 1)} shared specializations)`
+                    : "(available specializations)"}
+                </span>
+              </span>
+              {sharedBranch && (
+                <button
+                  type="button"
+                  onClick={() => setSharedBranch("")}
+                  className="text-[10px] text-purple-300 hover:underline cursor-pointer"
+                >
+                  Clear filter
+                </button>
+              )}
             </label>
-            <SearchableSelect
-              options={sharedBranchOpts}
-              value={sharedBranch}
-              onChange={setSharedBranch}
-              placeholder="All Specializations"
-            />
+            {sharedBranchOpts.length > 1 ? (
+              <SearchableSelect
+                options={sharedBranchOpts}
+                value={sharedBranch}
+                onChange={setSharedBranch}
+                placeholder="All Common Specializations"
+              />
+            ) : (
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white/40">
+                No common specializations found between these two institutions. Both colleges offer different PG courses.
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -317,20 +443,30 @@ export default function PgecetCollegeComparisonTool() {
       {(c1 || c2) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {c1 && cutoffs1 ? (
-            <CollegeCard inst={c1} cutoffs={cutoffs1}
+            <CollegeCard
+              inst={c1}
+              cutoffs={cutoffs1}
               borderClass="border-purple-500/30"
               codeColorClass="border-purple-400/30 bg-purple-500/20 text-purple-300"
-              accentClass="border-purple-500/25" />
+              accentClass="border-purple-500/25"
+              selectedBranch={sharedBranch}
+              onSelectBranch={setSharedBranch}
+            />
           ) : (
             <div className="rounded-3xl border border-white/[0.07] bg-black/20 flex items-center justify-center min-h-[200px] text-white/30 text-sm">
               Select Institution A
             </div>
           )}
           {c2 && cutoffs2 ? (
-            <CollegeCard inst={c2} cutoffs={cutoffs2}
+            <CollegeCard
+              inst={c2}
+              cutoffs={cutoffs2}
               borderClass="border-cyan-500/30"
               codeColorClass="border-cyan-400/30 bg-cyan-500/20 text-cyan-300"
-              accentClass="border-cyan-500/25" />
+              accentClass="border-cyan-500/25"
+              selectedBranch={sharedBranch}
+              onSelectBranch={setSharedBranch}
+            />
           ) : (
             <div className="rounded-3xl border border-white/[0.07] bg-black/20 flex items-center justify-center min-h-[200px] text-white/30 text-sm">
               Select Institution B

@@ -355,8 +355,7 @@ export const PGECET_INSTITUTIONS = [
     "type": "Private Engineering College",
     "courses": [
       {
-        "branchCode": "501401",
-        "branchName": "501401"
+        "branchCode": "SE", "branchName": "STRUCTURAL ENGINEERING"
       }
     ]
   },
@@ -368,8 +367,7 @@ export const PGECET_INSTITUTIONS = [
     "type": "Private Engineering College",
     "courses": [
       {
-        "branchCode": "501401",
-        "branchName": "501401"
+        "branchCode": "SE", "branchName": "STRUCTURAL ENGINEERING"
       }
     ]
   },
@@ -381,8 +379,7 @@ export const PGECET_INSTITUTIONS = [
     "type": "Private Engineering College",
     "courses": [
       {
-        "branchCode": "501401",
-        "branchName": "501401"
+        "branchCode": "SE", "branchName": "STRUCTURAL ENGINEERING"
       }
     ]
   },
@@ -527,8 +524,7 @@ export const PGECET_INSTITUTIONS = [
     "type": "Private Engineering College",
     "courses": [
       {
-        "branchCode": "501301",
-        "branchName": "501301"
+        "branchCode": "CS", "branchName": "COMPUTER SCIENCE AND ENGINEERING"
       }
     ]
   },
@@ -553,8 +549,7 @@ export const PGECET_INSTITUTIONS = [
     "type": "Private Engineering College",
     "courses": [
       {
-        "branchCode": "500 008",
-        "branchName": "500 008"
+        "branchCode": "CS", "branchName": "COMPUTER SCIENCE AND ENGINEERING"
       }
     ]
   },
@@ -2314,18 +2309,6 @@ export const PGECET_INSTITUTIONS = [
 ];
 
 export const PGECET_BRANCHES = [
-  {
-    "code": "500 008",
-    "name": "500 008"
-  },
-  {
-    "code": "501301",
-    "name": "501301"
-  },
-  {
-    "code": "501401",
-    "name": "501401"
-  },
   {
     "code": "ADVANCED DESIGN AND MANUFACTURING",
     "name": "ADVANCED DESIGN AND MANUFACTURING"

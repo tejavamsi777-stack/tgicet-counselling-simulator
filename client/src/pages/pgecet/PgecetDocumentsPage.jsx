@@ -2,7 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Seo from '../../components/shared/Seo';
 import CertificateChecklist from '../../components/pgecet/CertificateChecklist';
-import HlcSyncRibbon from '../../components/shared/HlcSyncRibbon';
+
 
 export default function PgecetDocumentsPage() {
   return (
@@ -30,7 +30,7 @@ export default function PgecetDocumentsPage() {
         </p>
       </div>
 
-      <HlcSyncRibbon examSlug="tg-pgecet" />
+
 
       <div className="mt-8">
         <CertificateChecklist />
