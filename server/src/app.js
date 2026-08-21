@@ -17,6 +17,7 @@ app.set("trust proxy", 1);
 const allowedOrigins = [
   "https://vuelalearn.in",
   "https://www.vuelalearn.in",
+  "https://vuelalearn.vercel.app",
   "https://tgcounselling.vercel.app",
   "https://tgicetcounselling.vercel.app",
   "http://localhost:5173", // keep local dev working
