@@ -1,5 +1,16 @@
 export const exams = [
   {
+    id: "ap-eapcet",
+    slug: "ap-eapcet",
+    shortName: "AP EAPCET",
+    name: "Andhra Pradesh Engineering, Agriculture & Pharmacy Common Entrance Test",
+    description: "Engineering, agriculture and pharmacy admissions guidance.",
+    programs: ["ENGINEERING", "AGRICULTURE", "PHARMACY"],
+    predictorAvailable: true,
+    counsellingAvailable: true,
+    status: "available",
+  },
+  {
     id: "tg-eapcet",
     slug: "tg-eapcet",
     shortName: "TG EAPCET",

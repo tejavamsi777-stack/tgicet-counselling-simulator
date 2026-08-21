@@ -49,6 +49,16 @@ router.get("/eapcet/compare", eapcetController.compareInstitutions);
 router.get("/eapcet/allotments/meta", eapcetController.getAllotmentMeta);
 router.get("/eapcet/allotments", eapcetController.getAllotmentData);
 
+// ---------- AP EAPCET Public Counselling Data ----------
+router.get("/ap-eapcet/counselling-data", eapcetController.getCounsellingData);
+router.get("/ap-eapcet/notifications", eapcetController.getNotifications);
+router.get("/ap-eapcet/colleges", eapcetController.getInstitutions);
+router.get("/ap-eapcet/colleges/:code", eapcetController.getInstitutionByCode);
+router.get("/ap-eapcet/colleges/:code/branches", eapcetController.getCollegeBranches);
+router.get("/ap-eapcet/compare", eapcetController.compareInstitutions);
+router.get("/ap-eapcet/allotments/meta", eapcetController.getAllotmentMeta);
+router.get("/ap-eapcet/allotments", eapcetController.getAllotmentData);
+
 // ---------- TG ECET Data ----------
 router.get("/ecet/counselling-data", ecetController.getCounsellingData);
 router.get("/ecet/notifications", ecetController.getNotifications);

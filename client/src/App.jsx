@@ -24,6 +24,14 @@ const EapcetComparePage = lazy(() => import("./pages/eapcet/EapcetComparePage"))
 const EapcetAllotmentsPage = lazy(() => import("./pages/eapcet/EapcetAllotmentsPage"));
 const CollegeProfilePage = lazy(() => import("./pages/eapcet/CollegeProfilePage"));
 
+const ApEapcetHome = lazy(() => import("./pages/ap-eapcet/EapcetHome"));
+const ApEapcetPredictorPage = lazy(() => import("./pages/ap-eapcet/EapcetPredictorPage"));
+const ApEapcetMockCounsellingPage = lazy(() => import("./pages/ap-eapcet/EapcetMockCounsellingPage"));
+const ApEapcetDocumentsPage = lazy(() => import("./pages/ap-eapcet/EapcetDocumentsPage"));
+const ApEapcetComparePage = lazy(() => import("./pages/ap-eapcet/EapcetComparePage"));
+const ApEapcetAllotmentsPage = lazy(() => import("./pages/ap-eapcet/EapcetAllotmentsPage"));
+const ApCollegeProfilePage = lazy(() => import("./pages/ap-eapcet/CollegeProfilePage"));
+
 const EcetHome = lazy(() => import("./pages/ecet/EcetHome"));
 const EcetPredictorPage = lazy(() => import("./pages/ecet/EcetPredictorPage"));
 const EcetMockCounsellingPage = lazy(() => import("./pages/ecet/EcetMockCounsellingPage"));
@@ -123,6 +131,9 @@ function MainContent() {
                   <Route path="/tg-icet" element={<IcetHome />} />
                   <Route path="/exams/tg-icet" element={<IcetHome />} />
 
+                  <Route path="/ap-eapcet" element={<ApEapcetHome />} />
+                  <Route path="/exams/ap-eapcet" element={<ApEapcetHome />} />
+
                   <Route path="/eapcet" element={<EapcetHome />} />
                   <Route path="/tg-eapcet" element={<EapcetHome />} />
                   <Route path="/exams/tg-eapcet" element={<EapcetHome />} />
@@ -157,20 +168,36 @@ function MainContent() {
                   <Route path="/tg-eapcet/predictor" element={<EapcetPredictorPage />} />
                   <Route path="/exams/tg-eapcet/predictor" element={<EapcetPredictorPage />} />
 
+                  <Route path="/ap-eapcet/predictor" element={<ApEapcetPredictorPage />} />
+                  <Route path="/exams/ap-eapcet/predictor" element={<ApEapcetPredictorPage />} />
+
                   <Route path="/eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
                   <Route path="/tg-eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
                   <Route path="/exams/tg-eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
 
+                  <Route path="/ap-eapcet/mock-counselling" element={<ApEapcetMockCounsellingPage />} />
+                  <Route path="/exams/ap-eapcet/mock-counselling" element={<ApEapcetMockCounsellingPage />} />
+
                   <Route path="/tg-eapcet/documents" element={<EapcetDocumentsPage />} />
+                  <Route path="/ap-eapcet/documents" element={<ApEapcetDocumentsPage />} />
+                  <Route path="/exams/ap-eapcet/documents" element={<ApEapcetDocumentsPage />} />
+
                   <Route path="/eapcet/compare" element={<EapcetComparePage />} />
                   <Route path="/tg-eapcet/compare" element={<EapcetComparePage />} />
                   <Route path="/exams/tg-eapcet/compare" element={<EapcetComparePage />} />
 
+                  <Route path="/ap-eapcet/compare" element={<ApEapcetComparePage />} />
+                  <Route path="/exams/ap-eapcet/compare" element={<ApEapcetComparePage />} />
+
                   <Route path="/tg-eapcet/allotments" element={<EapcetAllotmentsPage />} />
                   <Route path="/eapcet/allotments" element={<EapcetAllotmentsPage />} />
 
+                  <Route path="/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
+
                   <Route path="/colleges/:code" element={<CollegeProfilePage />} />
                   <Route path="/tg-eapcet/colleges/:code" element={<CollegeProfilePage />} />
+
+                  <Route path="/ap-eapcet/colleges/:code" element={<ApCollegeProfilePage />} />
 
                   {/* ECET Dedicated Pages */}
                   <Route path="/ecet/predictor" element={<ProtectedRoute><EcetPredictorPage /></ProtectedRoute>} />

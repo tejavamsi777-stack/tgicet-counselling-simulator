@@ -27,6 +27,7 @@ import { useAuth } from "../../context/AuthContext";
 import ReviewModal from "../shared/ReviewModal";
 
 const EXAM_MENU_ITEMS = [
+  { slug: "ap-eapcet", name: "AP EAPCET", subtitle: "Engineering & Pharmacy", path: "/ap-eapcet", badge: "Live" },
   { slug: "tg-eapcet", name: "TG EAPCET", subtitle: "Engineering & Pharmacy", path: "/tg-eapcet", badge: "Live" },
   { slug: "tg-icet", name: "TG ICET", subtitle: "MBA & MCA Admissions", path: "/tg-icet", badge: "Live" },
   { slug: "tg-ecet", name: "TG ECET", subtitle: "Diploma Lateral Entry (B.Tech)", path: "/tg-ecet", badge: "Live" },
@@ -34,6 +35,7 @@ const EXAM_MENU_ITEMS = [
 ];
 
 const PREDICTOR_MENU_ITEMS = [
+  { name: "AP EAPCET Predictor", subtitle: "Engineering & Pharmacy Cutoffs", path: "/ap-eapcet/predictor" },
   { name: "TG EAPCET Predictor", subtitle: "Engineering & Pharmacy Cutoffs", path: "/tg-eapcet/predictor" },
   { name: "TG ICET Predictor", subtitle: "MBA & MCA Cutoffs", path: "/tg-icet/predictor" },
   { name: "TG ECET Predictor", subtitle: "Lateral Entry 2nd Year Cutoffs", path: "/tg-ecet/predictor" },
@@ -41,6 +43,7 @@ const PREDICTOR_MENU_ITEMS = [
 ];
 
 const COUNSELLING_MENU_ITEMS = [
+  { name: "AP EAPCET Exercise Web Options", subtitle: "Branch & College Priority Simulator", path: "/ap-eapcet/mock-counselling" },
   { name: "TG EAPCET Exercise Web Options", subtitle: "Branch & College Priority Simulator", path: "/tg-eapcet/mock-counselling" },
   { name: "TG ICET Exercise Web Options", subtitle: "MBA & MCA Priority Ordering Simulator", path: "/tg-icet/mock-counselling" },
   { name: "TG ECET Exercise Web Options", subtitle: "Diploma Lateral Entry Priority Ordering", path: "/tg-ecet/mock-counselling" },
