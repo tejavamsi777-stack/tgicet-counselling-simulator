@@ -58,6 +58,9 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
     }
   }
 
+  const selectedCat = categories.find((c) => (c.code || c) === category);
+  const displayName = selectedCat ? (selectedCat.name || selectedCat.code || selectedCat) : category;
+
   return (
     <div className={`relative ${open ? "z-50" : "z-10"}`} ref={containerRef} onKeyDown={handleKeyDown}>
       <button
@@ -66,7 +69,7 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
         className="flex h-11 w-full items-center justify-between rounded-2xl border border-white/20 bg-white/10 pl-10 pr-3.5 text-sm font-medium text-white outline-none backdrop-blur-2xl transition-all hover:border-white/40 hover:bg-white/15 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
       >
         <span className="truncate">
-          {category === "" ? <span className="text-gray-400">Select</span> : category}
+          {category === "" ? <span className="text-gray-400">Select</span> : displayName}
         </span>
         <ChevronDown
           size={16}
@@ -120,7 +123,7 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
                         : "text-gray-200 hover:bg-white/20 hover:text-white"
                     }`}
                   >
-                    <span>{code}</span>
+                    <span>{c.name || code}</span>
                     {isSelected && <Check size={15} className="text-purple-300 shrink-0" />}
                   </button>
                 );

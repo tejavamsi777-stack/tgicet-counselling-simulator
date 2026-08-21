@@ -32,6 +32,7 @@ export const ALLOTMENT_BRANCHES = [
  * Retrieves official candidate seat allotment dataset from PostgreSQL or on-demand official scraper
  */
 export async function getAllotmentDataset({
+  examId = "tg-eapcet",
   year = "2026-final",
   college = "CBIT",
   branch = "CSE",
@@ -61,6 +62,7 @@ export async function getAllotmentDataset({
   // 1. First, check PostgreSQL database
   try {
     const dbResult = await allotmentRepository.queryAllotments({
+      examId,
       year: admissionYear,
       phase,
       collegeCode: cCode,

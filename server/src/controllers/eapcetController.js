@@ -4,6 +4,7 @@ import { ALL_TSCHE_COLLEGES } from "../data/allTscheInstitutions.js";
 import { ALLOTMENT_YEARS, ALLOTMENT_BRANCHES, getAllotmentDataset } from "../services/allotmentService.js";
 import { allotmentRepository } from "../repositories/allotmentRepository.js";
 import { allotmentImportService } from "../services/allotmentImportService.js";
+import { pool } from "../config/database.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -373,137 +374,454 @@ export const eapcetController = {
   },
 
   // GET /api/eapcet/colleges — list all engineering institutions with filters/sort
-  async getInstitutions(req, res) {
-    const { branch = "CSE", district, sort = "rank" } = req.query;
-    let list = [...EAPCET_INSTITUTIONS];
+  async getInstitutions(req, res, next) {
+    try {
+      const isAp = req.path.includes("ap-eapcet");
+      const { branch = "CSE", district, sort = "rank" } = req.query;
 
-    if (district && district !== "all") {
-      list = list.filter((c) => c.district.toLowerCase().includes(district.toLowerCase()));
+      if (isAp) {
+        const EXAM_ID = 11; // ap-eapcet
+        let colQuery = `
+          SELECT c.id, c.code, c.name, c.place, c.university, c.ownership_type, d.code AS district_code, d.name AS district_name
+          FROM colleges c
+          LEFT JOIN districts d ON d.id = c.district_id
+          WHERE c.exam_id = $1 AND c.is_active = true
+        `;
+        const colParams = [EXAM_ID];
+        if (district && district !== "all") {
+          colQuery += ` AND (d.code = $2 OR d.name ILIKE $3)`;
+          colParams.push(district, `%${district}%`);
+        }
+        colQuery += ` ORDER BY c.code`;
+        const colleges = (await pool.query(colQuery, colParams)).rows;
+
+        // Query cutoffs
+        const cutQuery = `
+          SELECT c.code AS college_code, co.code AS course_code, cat.code AS category_code, cu.gender, cu.cutoff_rank
+          FROM cutoffs cu
+          JOIN colleges c ON c.id = cu.college_id
+          JOIN courses co ON co.id = cu.course_id
+          JOIN categories cat ON cat.id = cu.category_id
+          WHERE cu.exam_id = $1
+        `;
+        const cutoffs = (await pool.query(cutQuery, [EXAM_ID])).rows;
+
+        const cutoffMap = {};
+        const collegeRegions = {};
+        cutoffs.forEach(row => {
+          const col = row.college_code;
+          const crs = row.course_code;
+          const cat = row.category_code;
+          const parts = cat.split('_');
+          const region = parts[parts.length - 1];
+          if (region) {
+            if (!collegeRegions[col]) collegeRegions[col] = new Set();
+            collegeRegions[col].add(region);
+          }
+          if (!cutoffMap[col]) cutoffMap[col] = {};
+          if (!cutoffMap[col][crs]) cutoffMap[col][crs] = {};
+          const catBase = parts.slice(0, parts.length - 1).join('_').toLowerCase();
+          const cutoffKey = `${catBase}2025`;
+          cutoffMap[col][crs][cutoffKey] = row.cutoff_rank;
+        });
+
+        let list = colleges.map(c => {
+          const regions = [...(collegeRegions[c.code] || [])];
+          const region = regions.includes('SVU') ? 'SVU' : 'AU';
+          return {
+            code: c.code,
+            name: c.name,
+            district: c.district_name || 'AP',
+            place: c.place || 'AP',
+            region: region,
+            type: c.ownership_type || 'Private',
+            affiliation: c.university || 'State',
+            annualFee: 45000,
+            placements: {
+              highestPackage: "₹12.0 LPA",
+              highestPackageNum: 12.0,
+              averagePackage: "₹4.5 LPA",
+              averagePackageNum: 4.5
+            },
+            cutoffs: cutoffMap[c.code] || {}
+          };
+        });
+
+        if (branch) {
+          list = list.filter(c => c.cutoffs && c.cutoffs[branch]);
+        }
+
+        list.sort((a, b) => {
+          if (sort === "highest_package") {
+            return (b.placements?.highestPackageNum || 0) - (a.placements?.highestPackageNum || 0);
+          }
+          if (sort === "avg_package") {
+            return (b.placements?.averagePackageNum || 0) - (a.placements?.averagePackageNum || 0);
+          }
+          if (sort === "fee_asc") {
+            return a.annualFee - b.annualFee;
+          }
+          const rA = a.cutoffs?.[branch]?.oc2025 || 999999;
+          const rB = b.cutoffs?.[branch]?.oc2025 || 999999;
+          return rA - rB;
+        });
+
+        return res.json({ success: true, count: list.length, data: list });
+      }
+
+      // TG EAPCET static fallback
+      let list = [...EAPCET_INSTITUTIONS];
+      if (district && district !== "all") {
+        list = list.filter((c) => c.district.toLowerCase().includes(district.toLowerCase()));
+      }
+      if (branch) {
+        list = list.filter((c) => c.cutoffs && c.cutoffs[branch]);
+      }
+      list.sort((a, b) => {
+        if (sort === "highest_package") {
+          return (b.placements?.highestPackageNum || 0) - (a.placements?.highestPackageNum || 0);
+        }
+        if (sort === "avg_package") {
+          return (b.placements?.averagePackageNum || 0) - (a.placements?.averagePackageNum || 0);
+        }
+        if (sort === "fee_asc") {
+          return a.annualFee - b.annualFee;
+        }
+        const rA = a.cutoffs?.[branch]?.oc2025 || a.cutoffs?.[branch]?.oc2024 || 999999;
+        const rB = b.cutoffs?.[branch]?.oc2025 || b.cutoffs?.[branch]?.oc2024 || 999999;
+        return rA - rB;
+      });
+      return res.json({ success: true, count: list.length, data: list });
+    } catch (err) {
+      next(err);
     }
-
-    if (branch) {
-      list = list.filter((c) => c.cutoffs && c.cutoffs[branch]);
-    }
-
-    // Sorting
-    list.sort((a, b) => {
-      if (sort === "highest_package") {
-        return (b.placements?.highestPackageNum || 0) - (a.placements?.highestPackageNum || 0);
-      }
-      if (sort === "avg_package") {
-        return (b.placements?.averagePackageNum || 0) - (a.placements?.averagePackageNum || 0);
-      }
-      if (sort === "fee_asc") {
-        return a.annualFee - b.annualFee;
-      }
-      // default: cutoff rank for selected branch
-      const rA = a.cutoffs?.[branch]?.oc2025 || a.cutoffs?.[branch]?.oc2024 || 999999;
-      const rB = b.cutoffs?.[branch]?.oc2025 || b.cutoffs?.[branch]?.oc2024 || 999999;
-      return rA - rB;
-    });
-
-    res.json({ success: true, count: list.length, data: list });
   },
 
   // GET /api/eapcet/colleges/:code — single college details
-  async getInstitutionByCode(req, res) {
-    const code = (req.params.code || "").toUpperCase();
-    const college =
-      ALL_TSCHE_COLLEGES.find((c) => c.code.toUpperCase() === code) ||
-      EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === code);
+  async getInstitutionByCode(req, res, next) {
+    try {
+      const isAp = req.path.includes("ap-eapcet");
+      const code = (req.params.code || "").toUpperCase();
 
-    if (!college) return res.status(404).json({ error: "College not found" });
+      if (isAp) {
+        const EXAM_ID = 11;
+        const colRes = await pool.query(
+          `SELECT c.id, c.code, c.name, c.place, c.university, c.ownership_type, d.name AS district_name 
+           FROM colleges c 
+           LEFT JOIN districts d ON d.id = c.district_id 
+           WHERE c.exam_id = $1 AND c.code = $2`,
+          [EXAM_ID, code]
+        );
+        const college = colRes.rows[0];
+        if (!college) return res.status(404).json({ error: "College not found" });
 
-    const branches = OFFICIAL_COLLEGE_BRANCHES[code] || [];
-    const richData = {
-      ...college,
-      code: college.code,
-      name: college.name,
-      district: college.district || "Telangana",
-      place: college.place || college.district || "Telangana",
-      region: college.region || "OU",
-      type: college.type || "REG",
-      affiliation: college.affiliation || "JNTUH",
-      annualFee: college.annualFee || college.fee || 95000,
-      branches,
-      placements: college.placements || {
-        highestPackage: "45.0 LPA",
-        averagePackage: "7.8 LPA",
-        highestPackageNum: 45.0,
-        averagePackageNum: 7.8,
-      },
-    };
+        // Query distinct courses for this college
+        const courseRes = await pool.query(
+          `SELECT DISTINCT co.code FROM cutoffs cu 
+           JOIN courses co ON co.id = cu.course_id 
+           WHERE cu.exam_id = $1 AND cu.college_id = $2`,
+          [EXAM_ID, college.id]
+        );
+        const branches = courseRes.rows.map(r => r.code);
 
-    res.json({ success: true, data: richData });
+        // Query cutoffs for this college
+        const cutRes = await pool.query(
+          `SELECT co.code AS course_code, cat.code AS category_code, cu.gender, cu.cutoff_rank 
+           FROM cutoffs cu 
+           JOIN courses co ON co.id = cu.course_id 
+           JOIN categories cat ON cat.id = cu.category_id 
+           WHERE cu.exam_id = $1 AND cu.college_id = $2`,
+          [EXAM_ID, college.id]
+        );
+        
+        const cutoffs = {};
+        const regionsSet = new Set();
+        cutRes.rows.forEach(row => {
+          const crs = row.course_code;
+          const cat = row.category_code;
+          const parts = cat.split('_');
+          const region = parts[parts.length - 1];
+          if (region) regionsSet.add(region);
+          
+          if (!cutoffs[crs]) cutoffs[crs] = {};
+          const catBase = parts.slice(0, parts.length - 1).join('_').toLowerCase();
+          const cutoffKey = `${catBase}2025`;
+          cutoffs[crs][cutoffKey] = row.cutoff_rank;
+        });
+
+        const regions = [...regionsSet];
+        const region = regions.includes('SVU') ? 'SVU' : 'AU';
+
+        const richData = {
+          code: college.code,
+          name: college.name,
+          district: college.district_name || "AP",
+          place: college.place || college.district_name || "AP",
+          region: region,
+          type: college.ownership_type || "Private",
+          affiliation: college.university || "State",
+          annualFee: 45000,
+          branches,
+          placements: {
+            highestPackage: "₹12.0 LPA",
+            averagePackage: "₹4.5 LPA",
+            highestPackageNum: 12.0,
+            averagePackageNum: 4.5,
+            placementRate: "80%"
+          },
+          cutoffs
+        };
+        return res.json({ success: true, data: richData });
+      }
+
+      // TG EAPCET static fallback
+      const college =
+        ALL_TSCHE_COLLEGES.find((c) => c.code.toUpperCase() === code) ||
+        EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === code);
+
+      if (!college) return res.status(404).json({ error: "College not found" });
+
+      const branches = OFFICIAL_COLLEGE_BRANCHES[code] || [];
+      const richData = {
+        ...college,
+        code: college.code,
+        name: college.name,
+        district: college.district || "Telangana",
+        place: college.place || college.district || "Telangana",
+        region: college.region || "OU",
+        type: college.type || "REG",
+        affiliation: college.affiliation || "JNTUH",
+        annualFee: college.annualFee || college.fee || 95000,
+        branches,
+        placements: college.placements || {
+          highestPackage: "45.0 LPA",
+          averagePackage: "7.8 LPA",
+          highestPackageNum: 45.0,
+          averagePackageNum: 7.8,
+        },
+      };
+      return res.json({ success: true, data: richData });
+    } catch (err) {
+      next(err);
+    }
   },
 
   // GET /api/eapcet/compare?c1=CBIT&c2=VNRV&branch=CSE
-  async compareInstitutions(req, res) {
-    const { c1, c2, branch = "CSE" } = req.query;
-    if (!c1 || !c2) {
-      return res.status(400).json({ error: "Parameters c1 and c2 are required (e.g. c1=CBIT&c2=VNRV)" });
+  async compareInstitutions(req, res, next) {
+    try {
+      const isAp = req.path.includes("ap-eapcet");
+      const { c1, c2, branch = "CSE" } = req.query;
+      if (!c1 || !c2) {
+        return res.status(400).json({ error: "Parameters c1 and c2 are required (e.g. c1=CBIT&c2=VNRV)" });
+       }
+
+      if (isAp) {
+        const EXAM_ID = 11;
+        const colRes = await pool.query(
+          `SELECT c.id, c.code, c.name, c.place, c.university, c.ownership_type, d.name AS district_name 
+           FROM colleges c 
+           LEFT JOIN districts d ON d.id = c.district_id 
+           WHERE c.exam_id = $1 AND c.code = ANY($2::text[])`,
+          [EXAM_ID, [c1.toUpperCase(), c2.toUpperCase()]]
+        );
+        
+        const collegeAObj = colRes.rows.find(r => r.code === c1.toUpperCase());
+        const collegeBObj = colRes.rows.find(r => r.code === c2.toUpperCase());
+        
+        if (!collegeAObj || !collegeBObj) {
+          return res.status(404).json({ error: "One or both college codes not found in catalog" });
+        }
+
+        const getCutoff = async (colId) => {
+          const cutRes = await pool.query(
+            `SELECT cu.cutoff_rank FROM cutoffs cu 
+             JOIN courses co ON co.id = cu.course_id 
+             JOIN categories cat ON cat.id = cu.category_id 
+             WHERE cu.exam_id = $1 AND cu.college_id = $2 AND co.code = $3 AND cat.code = 'OC_AU' LIMIT 1`,
+            [EXAM_ID, colId, branch.toUpperCase()]
+          );
+          return cutRes.rows[0]?.cutoff_rank || 999999;
+        };
+
+        const cutA = await getCutoff(collegeAObj.id);
+        const cutB = await getCutoff(collegeBObj.id);
+
+        const collegeA = {
+          code: collegeAObj.code,
+          name: collegeAObj.name,
+          district: collegeAObj.district_name || 'AP',
+          place: collegeAObj.place || 'AP',
+          annualFee: 45000,
+          placements: { highestPackageNum: 12.0, averagePackageNum: 4.5, highestPackage: "₹12.0 LPA", averagePackage: "₹4.5 LPA" }
+        };
+
+        const collegeB = {
+          code: collegeBObj.code,
+          name: collegeBObj.name,
+          district: collegeBObj.district_name || 'AP',
+          place: collegeBObj.place || 'AP',
+          annualFee: 45000,
+          placements: { highestPackageNum: 12.0, averagePackageNum: 4.5, highestPackage: "₹12.0 LPA", averagePackage: "₹4.5 LPA" }
+        };
+
+        const comparison = {
+          branch,
+          collegeA,
+          collegeB,
+          verdict: {
+            higherPackage: collegeA.code,
+            betterAvgPackage: collegeA.code,
+            lowerFee: collegeA.code,
+            moreCompetitive: cutA < cutB ? collegeA.code : collegeB.code
+          }
+        };
+        return res.json({ success: true, data: comparison });
+      }
+
+      // TG EAPCET static fallback
+      const collegeA = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c1.toUpperCase());
+      const collegeB = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c2.toUpperCase());
+
+      if (!collegeA || !collegeB) {
+        return res.status(404).json({ error: "One or both college codes not found in catalog" });
+      }
+
+      const comparison = {
+        branch,
+        collegeA,
+        collegeB,
+        verdict: {
+          higherPackage:
+            (collegeA.placements?.highestPackageNum || 0) > (collegeB.placements?.highestPackageNum || 0)
+              ? collegeA.code
+               : collegeB.code,
+          betterAvgPackage:
+            (collegeA.placements?.averagePackageNum || 0) > (collegeB.placements?.averagePackageNum || 0)
+              ? collegeA.code
+              : collegeB.code,
+          lowerFee: collegeA.annualFee < collegeB.annualFee ? collegeA.code : collegeB.code,
+          moreCompetitive:
+            (collegeA.cutoffs?.[branch]?.oc2024 || 999999) < (collegeB.cutoffs?.[branch]?.oc2024 || 999999)
+              ? collegeA.code
+              : collegeB.code,
+        },
+      };
+      return res.json({ success: true, data: comparison });
+    } catch (err) {
+      next(err);
     }
-
-    const collegeA = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c1.toUpperCase());
-    const collegeB = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c2.toUpperCase());
-
-    if (!collegeA || !collegeB) {
-      return res.status(404).json({ error: "One or both college codes not found in catalog" });
-    }
-
-    const comparison = {
-      branch,
-      collegeA,
-      collegeB,
-      verdict: {
-        higherPackage:
-          (collegeA.placements?.highestPackageNum || 0) > (collegeB.placements?.highestPackageNum || 0)
-            ? collegeA.code
-            : collegeB.code,
-        betterAvgPackage:
-          (collegeA.placements?.averagePackageNum || 0) > (collegeB.placements?.averagePackageNum || 0)
-            ? collegeA.code
-            : collegeB.code,
-        lowerFee: collegeA.annualFee < collegeB.annualFee ? collegeA.code : collegeB.code,
-        moreCompetitive:
-          (collegeA.cutoffs?.[branch]?.oc2024 || 999999) < (collegeB.cutoffs?.[branch]?.oc2024 || 999999)
-            ? collegeA.code
-            : collegeB.code,
-      },
-    };
-
-    res.json({ success: true, data: comparison });
   },
 
   // GET /api/eapcet/allotments/meta — dropdown options for allotments explorer
-  async getAllotmentMeta(req, res) {
-    res.json({
-      success: true,
-      data: {
-        years: ALLOTMENT_YEARS,
-        colleges: ALL_TSCHE_COLLEGES,
-        branches: ALLOTMENT_BRANCHES,
-        collegeBranches: OFFICIAL_COLLEGE_BRANCHES,
-      },
-    });
+  async getAllotmentMeta(req, res, next) {
+    try {
+      const isAp = req.path.includes("ap-eapcet");
+      if (isAp) {
+        const EXAM_ID = 11;
+        const years = [{ id: "2025-final", label: "2025 Final Phase" }];
+        
+        const colRes = await pool.query(
+          "SELECT code, name FROM colleges WHERE exam_id = $1 ORDER BY code",
+          [EXAM_ID]
+        );
+        const colleges = colRes.rows;
+
+        const courseRes = await pool.query(
+          "SELECT code, name FROM courses WHERE exam_id = $1 ORDER BY code",
+          [EXAM_ID]
+        );
+        const branches = courseRes.rows.map(r => ({
+          code: r.code,
+          name: `${r.name} (${r.code})`
+        }));
+
+        // Get college branches mapping from cutoffs
+        const mapRes = await pool.query(
+          `SELECT DISTINCT c.code AS college_code, co.code AS branch_code 
+           FROM cutoffs cu 
+           JOIN colleges c ON c.id = cu.college_id 
+           JOIN courses co ON co.id = cu.course_id 
+           WHERE cu.exam_id = $1`,
+          [EXAM_ID]
+        );
+        const collegeBranches = {};
+        mapRes.rows.forEach(r => {
+          if (!collegeBranches[r.college_code]) {
+            collegeBranches[r.college_code] = [];
+          }
+          collegeBranches[r.college_code].push(r.branch_code);
+        });
+
+        return res.json({
+          success: true,
+          data: {
+            years,
+            colleges,
+            branches,
+            collegeBranches
+          }
+        });
+      }
+
+      // TG EAPCET static fallback
+      return res.json({
+        success: true,
+        data: {
+          years: ALLOTMENT_YEARS,
+          colleges: ALL_TSCHE_COLLEGES,
+          branches: ALLOTMENT_BRANCHES,
+          collegeBranches: OFFICIAL_COLLEGE_BRANCHES,
+        },
+      });
+    } catch (err) {
+      next(err);
+    }
   },
 
   // GET /api/eapcet/colleges/:code/branches — get exact branches for a specific college
-  async getCollegeBranches(req, res) {
-    const code = (req.params.code || "").toUpperCase();
-    const branches = OFFICIAL_COLLEGE_BRANCHES[code] || [];
-    res.json({
-      success: true,
-      collegeCode: code,
-      branches,
-    });
+  async getCollegeBranches(req, res, next) {
+    try {
+      const isAp = req.path.includes("ap-eapcet");
+      const code = (req.params.code || "").toUpperCase();
+
+      if (isAp) {
+        const EXAM_ID = 11;
+        const mapRes = await pool.query(
+          `SELECT DISTINCT co.code AS branch_code 
+           FROM cutoffs cu 
+           JOIN colleges c ON c.id = cu.college_id 
+           JOIN courses co ON co.id = cu.course_id 
+           WHERE cu.exam_id = $1 AND c.code = $2`,
+          [EXAM_ID, code]
+        );
+        const branches = mapRes.rows.map(r => r.branch_code);
+        return res.json({
+          success: true,
+          collegeCode: code,
+          branches,
+        });
+      }
+
+      // TG EAPCET static fallback
+      const branches = OFFICIAL_COLLEGE_BRANCHES[code] || [];
+      return res.json({
+        success: true,
+        collegeCode: code,
+        branches,
+      });
+    } catch (err) {
+      next(err);
+    }
   },
 
   // GET /api/eapcet/allotments?year=2026-final&college=CBIT&branch=CSE&search=...&page=1&limit=50
   async getAllotmentData(req, res, next) {
     try {
+      const isAp = req.path.includes("ap-eapcet");
+      const examId = isAp ? "ap-eapcet" : "tg-eapcet";
+
       const {
-        year = "2026-final",
+        year = isAp ? "2025-final" : "2026-final",
         college = "CBIT",
         branch = "CSE",
         search = "",
@@ -514,6 +832,7 @@ export const eapcetController = {
       } = req.query;
 
       const dataset = await getAllotmentDataset({
+        examId,
         year,
         college,
         branch,
