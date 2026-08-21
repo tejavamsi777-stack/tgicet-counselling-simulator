@@ -1,6 +1,6 @@
 import { parseApiResponse } from "./payloadDecoder";
 
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "https://vuelalearn-api.onrender.com/api" : "http://localhost:4000/api");
 const TOKEN_KEY = "tgicet_user_token";
 const USER_KEY = "tgicet_user_profile";
 
