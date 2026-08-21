@@ -10,6 +10,19 @@ const STATUS_STYLES = {
   'Upcoming': 'bg-sky-500/20 text-sky-300 border border-sky-500/30 text-xs px-2.5 py-0.5 rounded-full font-medium',
 };
 
+function parseDateString(str, fallbackYear) {
+  if (!str) return null;
+  const s = str.trim();
+  // Check DD.MM.YYYY or DD/MM/YYYY
+  const dmyMatch = s.match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})/);
+  if (dmyMatch) {
+    return new Date(parseInt(dmyMatch[3], 10), parseInt(dmyMatch[2], 10) - 1, parseInt(dmyMatch[1], 10));
+  }
+  // Standard text date like "July 1" or "17 August 2026"
+  const d = new Date(s.includes(String(fallbackYear)) ? s : `${s} ${fallbackYear}`);
+  return isNaN(d.getTime()) ? null : d;
+}
+
 /**
  * Parses date strings and dynamically returns 'Active' | 'Upcoming' | 'Concluded'.
  */
@@ -22,15 +35,12 @@ function resolveEventStatus(dateStr = '', parentPhaseStatus = '') {
     const yearMatch = cleanStr.match(/\b(202\d)\b/);
     const year = yearMatch ? parseInt(yearMatch[1], 10) : now.getFullYear();
 
-    const parts = cleanStr.split(/[–—\-]/);
+    const parts = cleanStr.split(/[\–\—\-]|\bto\b/i);
     if (parts.length === 2) {
-      const startStr = parts[0].trim();
-      const endStr = parts[1].trim();
+      const startDate = parseDateString(parts[0], year);
+      const endDate = parseDateString(parts[1], year);
 
-      const startDate = new Date(`${startStr} ${year}`);
-      const endDate = new Date(endStr.includes(String(year)) ? endStr : `${endStr} ${year}`);
-
-      if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+      if (startDate && endDate) {
         endDate.setHours(23, 59, 59, 999);
         startDate.setHours(0, 0, 0, 0);
         if (now >= startDate && now <= endDate) return 'Active';
@@ -38,8 +48,8 @@ function resolveEventStatus(dateStr = '', parentPhaseStatus = '') {
         if (now < startDate) return 'Upcoming';
       }
     } else {
-      const singleDate = new Date(cleanStr.includes(String(year)) ? cleanStr : `${cleanStr} ${year}`);
-      if (!isNaN(singleDate.getTime())) {
+      const singleDate = parseDateString(cleanStr, year);
+      if (singleDate) {
         const startOfDay = new Date(singleDate);
         startOfDay.setHours(0, 0, 0, 0);
         singleDate.setHours(23, 59, 59, 999);

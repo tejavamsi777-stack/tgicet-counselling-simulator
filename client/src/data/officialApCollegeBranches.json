@@ -1,0 +1,3771 @@
+{
+  "GTMW": [
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "MIET": [
+    "AIM",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "RAGU": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BVCE": [
+    "AIM",
+    "CAD",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "QISE": [
+    "AI",
+    "AID",
+    "CIC",
+    "CIT",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "QC"
+  ],
+  "VSPT": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VIEW": [
+    "CAI",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "AITSPU": [
+    "AID",
+    "AIM",
+    "CAI",
+    "CIC",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SRET": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "MVRG": [
+    "CHE",
+    "CIC",
+    "CIT",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "ASIP": [
+    "AID",
+    "AIM",
+    "CBA",
+    "CIC",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC",
+    "QC"
+  ],
+  "SVET": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "AUCE": [
+    "BIO",
+    "CHE",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "GIN",
+    "IST",
+    "MEC",
+    "MET",
+    "NAM"
+  ],
+  "SVCT": [
+    "AI",
+    "AID",
+    "CAI",
+    "CIV",
+    "CSB",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "VETS": [
+    "AIM",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "MTIE": [
+    "AID",
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "SSCE": [
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KTSP": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ALTS": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VISW": [
+    "CAD",
+    "CIV",
+    "CSC",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "MBUTPU": [
+    "CAD",
+    "CCC",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSED",
+    "CSM",
+    "ECE",
+    "ECM",
+    "EEE",
+    "EIE",
+    "INF",
+    "MEC"
+  ],
+  "GDLV": [
+    "AID",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "IOT",
+    "MEC"
+  ],
+  "SRIP": [
+    "CAD",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SRKI": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "EVT",
+    "INF",
+    "MEC"
+  ],
+  "NSPE": [
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "PRAG": [
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "PKSK": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VVITU": [
+    "CAI",
+    "CIC",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ABRK": [
+    "AGR",
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "MIN"
+  ],
+  "CIET": [
+    "CAI",
+    "CIT",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "JNTV": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "MET"
+  ],
+  "VHNI": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "AITT": [
+    "AID",
+    "AIM",
+    "CIC",
+    "CIT",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NMRE": [
+    "CSD",
+    "CSE",
+    "CSM"
+  ],
+  "GVRS": [
+    "AID",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "TMLN": [
+    "CAD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "GVIC": [
+    "AI",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "JNTP": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "AITK": [
+    "AID",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VSVT": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CST",
+    "ECE",
+    "ECT",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "SEAT": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SDTN": [
+    "CAD",
+    "CAI",
+    "CCC",
+    "CIA",
+    "CIC",
+    "CIT",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "WSTM": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KISR": [
+    "AGR",
+    "AIM",
+    "CIT",
+    "CIV",
+    "CSE",
+    "ECE",
+    "MEC",
+    "MIN",
+    "PHE",
+    "PHM"
+  ],
+  "JNTASF": [
+    "AIM"
+  ],
+  "GGURPU": [
+    "AGR",
+    "AUT",
+    "CAD",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC",
+    "MIN"
+  ],
+  "VCTN": [
+    "AGR",
+    "CIV",
+    "CS",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "IOT",
+    "MEC"
+  ],
+  "VITAPU": [
+    "BIO",
+    "CBC",
+    "CDA",
+    "CSB",
+    "CSC",
+    "CSE",
+    "CSM",
+    "CSW",
+    "ECE",
+    "ECES",
+    "ECM",
+    "ECV",
+    "EEE",
+    "MAD",
+    "MEC",
+    "MRB"
+  ],
+  "ELRU": [
+    "AID",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ISTS": [
+    "AGR",
+    "AID",
+    "AIM",
+    "CAI",
+    "CSC",
+    "CSE",
+    "DS",
+    "ECE"
+  ],
+  "LOYL": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "CHDL": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SSCC": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ANSN": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "GVPT": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "RACE": [
+    "AID",
+    "CIV",
+    "CSC",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SHEC": [
+    "CAD",
+    "CAI",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "KCIT": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "VGTN": [
+    "AGR",
+    "AID",
+    "CIC",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC",
+    "PHM"
+  ],
+  "GVPE": [
+    "CHE",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "MRB"
+  ],
+  "WISE": [
+    "CSD",
+    "CSE",
+    "ECE",
+    "MEC"
+  ],
+  "MVRS": [
+    "AID",
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "JNTN": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SGIT": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SIMH": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ESWR": [
+    "AUT",
+    "CAD",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "GIET": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF",
+    "MEC"
+  ],
+  "JONY": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "PREC": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ADTPPU": [
+    "AGR",
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "MIN",
+    "PET",
+    "PHD",
+    "PHM"
+  ],
+  "CBIT": [
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KITG": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "PVKKOC": [
+    "CSE",
+    "CSG",
+    "CSM",
+    "ECE"
+  ],
+  "LBCE": [
+    "AID",
+    "ASE",
+    "CIT",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "ANIL": [
+    "BIO",
+    "CHE",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "JNTK": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KUPM": [
+    "AI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "GPRE": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "CENUPU": [
+    "CIC",
+    "CN",
+    "CSBS",
+    "CSD",
+    "CSM",
+    "CSW",
+    "EBM",
+    "ECE",
+    "EII",
+    "MAU",
+    "MEC",
+    "MII",
+    "MMM",
+    "PHM"
+  ],
+  "PPSV": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "VISM": [
+    "AID",
+    "CAI",
+    "CIV",
+    "CS",
+    "CSE",
+    "CSM",
+    "CST",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "PVKK": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SGVP": [
+    "AID",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ARTB": [
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NSRE": [
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SPMUSF": [
+    "AID",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SVCEOC": [
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "PACE": [
+    "AID",
+    "AIM",
+    "CIC",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "EVT",
+    "MEC"
+  ],
+  "GATE": [
+    "CAI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ALIT": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "RVIT": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EVT"
+  ],
+  "LIET": [
+    "CIT",
+    "CSE",
+    "CSM",
+    "CSS",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ACEM": [
+    "AID",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "BVRM": [
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "CHKN": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RVJC": [
+    "AID",
+    "CHE",
+    "CIV",
+    "CSB",
+    "CSD",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "QC"
+  ],
+  "VVGV": [
+    "AID",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "GGIB": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "MEC"
+  ],
+  "HITE": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RGIT": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RUCESF": [
+    "AI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "MEC"
+  ],
+  "CRRE": [
+    "CAD",
+    "CIV",
+    "CSC",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "MLEW": [
+    "AID",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "PSCV": [
+    "AID",
+    "CAI",
+    "CIC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "CSO",
+    "ECE",
+    "EEE"
+  ],
+  "SVEP": [
+    "AID",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "GMRI": [
+    "CAD",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "SWRN": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSEB",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC",
+    "RBT"
+  ],
+  "CVRT": [
+    "AIM",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ACEV": [
+    "AI",
+    "CSE",
+    "ECE",
+    "ECM"
+  ],
+  "VITW": [
+    "AIM",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF"
+  ],
+  "MPLG": [
+    "CAI",
+    "CSD",
+    "CSE",
+    "ECE",
+    "INF"
+  ],
+  "AVEN": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ASTC": [
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "GTNN": [
+    "AID",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "APUCPU": [
+    "CAD",
+    "CCC",
+    "CSC",
+    "CSE",
+    "CSM"
+  ],
+  "BEMA": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "LIMT": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE"
+  ],
+  "DSIT": [
+    "CAI",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "JNTC": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "FDT",
+    "MEC"
+  ],
+  "NBKR": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "JNTSKSF": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "SREC": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "SVCE": [
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "KIEK": [
+    "AID",
+    "CAI",
+    "CSC",
+    "CSD",
+    "CSM"
+  ],
+  "CCVY": [
+    "CSE",
+    "ECE"
+  ],
+  "YGVU": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "MMT"
+  ],
+  "ANURSF": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EIE",
+    "MEC"
+  ],
+  "SRKR": [
+    "AID",
+    "AIM",
+    "CIC",
+    "CIT",
+    "CIV",
+    "CSB",
+    "CSE",
+    "CSG",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "DNRE": [
+    "AID",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "KIEW": [
+    "AID",
+    "CAI",
+    "CSM"
+  ],
+  "CEVP": [
+    "AID",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NEWS": [
+    "AI",
+    "CIV",
+    "CSE",
+    "DS",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RAVW": [
+    "CAI",
+    "CSE",
+    "ECE"
+  ],
+  "IDEL": [
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "KHIT": [
+    "CAD",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "SVUCSS": [
+    "CSE"
+  ],
+  "ANCUSF": [
+    "AIM",
+    "CIV",
+    "CS",
+    "CSE",
+    "DS",
+    "ECE",
+    "EEE",
+    "MEC",
+    "SST"
+  ],
+  "KMMT": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "DHAN": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "EII",
+    "MEC"
+  ],
+  "ADIT": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "SASI": [
+    "AIM",
+    "CIC",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "VEMU": [
+    "CAD",
+    "CAI",
+    "CIT",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VVITPU": [
+    "CAD",
+    "CAI",
+    "CIC",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ASKWOC": [
+    "CAI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "SVIT": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RPRA": [
+    "CAD",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "CRIT": [
+    "AID",
+    "AIM",
+    "CSE",
+    "ECE"
+  ],
+  "BECB": [
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "SVHE": [
+    "CAD",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "AUEWSF": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "NRIT": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EVT",
+    "INF",
+    "QC"
+  ],
+  "AMRN": [
+    "CIV",
+    "CS",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "GITS": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SAVE": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ISTSOC": [
+    "AGR",
+    "AI",
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "CITY": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "ECE"
+  ],
+  "SATS": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "NEWT": [
+    "AI",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "VITB": [
+    "CAD",
+    "CIV",
+    "CSB",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "MRCL": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SNIT": [
+    "AID",
+    "CIV",
+    "CS",
+    "CSE",
+    "ECE",
+    "EEE",
+    "IOT",
+    "MEC"
+  ],
+  "PYDE": [
+    "CAI",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "BWEC": [
+    "AIM",
+    "CSE",
+    "ECE",
+    "INF"
+  ],
+  "SVUC": [
+    "CHE",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SMGG": [
+    "AID",
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "ASVR": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BVTS": [
+    "AIM",
+    "CAD",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF"
+  ],
+  "ASKW": [
+    "CAI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "BESTPU": [
+    "AID",
+    "AIM",
+    "CS",
+    "CSE"
+  ],
+  "LENO": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KIET": [
+    "AID",
+    "CAI",
+    "CSC",
+    "CSD",
+    "CSM"
+  ],
+  "PITW": [
+    "CSE",
+    "ECE"
+  ],
+  "VITK": [
+    "AIM",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSO",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "MAMW": [
+    "CAI",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "PPDV": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "ASET": [
+    "AID",
+    "CAI",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "JNTKSF": [
+    "CHE",
+    "FDE",
+    "PEE"
+  ],
+  "JNTA": [
+    "AIM",
+    "CHE",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "PCEK": [
+    "CAI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NRNG": [
+    "CAD",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KVSR": [
+    "AI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VLIT": [
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "GLIM": [
+    "AID",
+    "AIM",
+    "CIC",
+    "CIV",
+    "CSB",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NRIA": [
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "KITS": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF"
+  ],
+  "DIET": [
+    "AI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "ECM",
+    "EEE"
+  ],
+  "SRTS": [
+    "AIM",
+    "CAD",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "SSSE": [
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BRNK": [
+    "AI",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RKCE": [
+    "AIM",
+    "CAD",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "URCE": [
+    "AID",
+    "AIM",
+    "CAI",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "VJAM": [
+    "AID",
+    "AIM",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "SVPP": [
+    "CAD",
+    "CAI",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SKUASF": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "UNIV": [
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "MEC"
+  ],
+  "PITT": [
+    "AID",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SVCN": [
+    "AID",
+    "CAI",
+    "CSC",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "EVT",
+    "MEC"
+  ],
+  "VSMR": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "ANMB": [
+    "CSE",
+    "ECE"
+  ],
+  "DRAVSF": [
+    "CSE",
+    "CSM"
+  ],
+  "VNIW": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF"
+  ],
+  "SRSR": [
+    "AID",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SRIT": [
+    "CAD",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RIET": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "RSRN": [
+    "AID",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "BABA": [
+    "AIM",
+    "CIV",
+    "CS",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VIVP": [
+    "AID",
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSD",
+    "CSE",
+    "ECE",
+    "ECM",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "NSRT": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "VNRC": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "GVPW": [
+    "CSC",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE"
+  ],
+  "BVSR": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "JNKFSF": [
+    "FDE"
+  ],
+  "PIIT": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "STMW": [
+    "AID",
+    "CSE",
+    "CSM",
+    "ECE"
+  ],
+  "JNTASS": [
+    "CSE",
+    "ECE"
+  ],
+  "KORM": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE"
+  ],
+  "HIND": [
+    "AIM",
+    "CAD",
+    "CSC",
+    "CSE",
+    "ECE"
+  ],
+  "SRMUPU": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BCET": [
+    "CSD",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BRAUSF": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "ACEE": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "TECH": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "BVCR": [
+    "AID",
+    "CSE",
+    "CSM",
+    "ECE",
+    "INF"
+  ],
+  "GKCS": [
+    "CAD",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KRUESF": [
+    "AIM",
+    "CSE",
+    "ECE"
+  ],
+  "ANRG": [
+    "AID",
+    "CSE",
+    "ECE",
+    "INFE"
+  ],
+  "JNTVSF": [
+    "CIV",
+    "MET"
+  ],
+  "AVEV": [
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "SIEN": [
+    "AID",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "CECC": [
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "EVT",
+    "INF",
+    "MEC"
+  ],
+  "PINN": [
+    "CSE",
+    "ECE"
+  ],
+  "AECN": [
+    "AIM",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "PRIK": [
+    "AIM",
+    "CSE",
+    "ECE"
+  ],
+  "MJRT": [
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "NARN": [
+    "CAD",
+    "CAI",
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "CAMS": [
+    "AGR"
+  ],
+  "KLMW": [
+    "AID",
+    "AIM",
+    "CSE",
+    "ECE"
+  ],
+  "SRIN": [
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "KSRM": [
+    "AIM",
+    "CIV",
+    "CSD",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "IITM": [
+    "CAI",
+    "CIV",
+    "CSC",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "MICT": [
+    "AID",
+    "AIM",
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE",
+    "INF",
+    "MEC"
+  ],
+  "CFSB": [
+    "FDT"
+  ],
+  "DLBC": [
+    "CIV",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "YSRA": [
+    "AIM",
+    "CCT",
+    "DTD",
+    "FSP",
+    "GDT",
+    "PLG"
+  ],
+  "AUCESF": [
+    "ENV",
+    "INF",
+    "QC",
+    "VLSI"
+  ],
+  "DJRC": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "MEC"
+  ],
+  "BITS": [
+    "AI",
+    "AID",
+    "CSE",
+    "ECE",
+    "EEE"
+  ],
+  "SVIK": [
+    "CIV",
+    "CSE",
+    "CSM",
+    "ECE",
+    "EEE",
+    "MEC"
+  ],
+  "MSEW": [
+    "AIM",
+    "CSE"
+  ],
+  "CVST": [
+    "BDT"
+  ],
+  "JNTKSS": [
+    "CSM"
+  ],
+  "CABP": [
+    "AGR"
+  ],
+  "NIST": [
+    "CSE"
+  ],
+  "CFSP": [
+    "FDT"
+  ],
+  "VITAPUMT": [
+    "CSE",
+    "SWE"
+  ],
+  "ACPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ADCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AIPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AKNT": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AKRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ANCPPU": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ANCUSS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ANNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ANUPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ARCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ARMN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "ASNT": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AUCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AUCPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AUDI": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "AVNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "BAKR": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "BALA": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "BCOP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "BIPB": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "BLMP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CCPM": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CCPY": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CIPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CITYPU": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CLPT": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CRKN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CRRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "CSNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "DCRM": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "EMNL": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "GGURSPU": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "GKPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "GLBC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "GOKP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "GRAP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "HICP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "IASP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JAGN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JITS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JNKPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JNTKMTSS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JNVPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JNYP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "JPSN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KCPO": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KCPT": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KCPW": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KCRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KGRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KJRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KTPT": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KUCPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "KVSP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "LNCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "LYDP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MAMN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MBUSPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MCPM": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MHRJ": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MIPR": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MLCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MPES": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MPPC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "MRNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NCPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NICP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NKGP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NMRP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NOVP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NRML": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NRNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NSCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "NSPP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "OTRISF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "PBTP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "PCPK": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "PIPR": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "PRMP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "PYDP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "QISP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RAOS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RCPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RESN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RGCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RIPA": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "RIPH": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SAIP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SAPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SCON": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SCPB": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SCPM": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SCPN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SCPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SESP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SFAP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SGIP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SHCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SIMS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SIPP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SIPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SIUPU": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SKCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SKUPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SLVP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SMCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SMPC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPCN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPMS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPPR": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPRC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPSP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SPSW": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SRCN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SRPN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SRPS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SRPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SSCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SSNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SUNP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVAP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVEB": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVPC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVPH": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVPN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVSP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "SVUPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "THRI": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VBCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VCPB": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VCPG": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VCPM": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VDPN": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VEDA": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VEPH": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VICG": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VIKS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VIPV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VIPW": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VISWPU": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VJCP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VKSR": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VNIP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VNKS": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VPCV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VRSP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VSPC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VSPP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VSUESF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VSUPSF": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VSVP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "VVIP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "XAVP": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "YJRC": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ],
+  "YLMV": [
+    "CSE",
+    "ECE",
+    "EEE",
+    "MEC",
+    "CIV",
+    "INF",
+    "CSM",
+    "CSD"
+  ]
+}

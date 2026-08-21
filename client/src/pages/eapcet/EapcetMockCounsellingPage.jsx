@@ -269,6 +269,16 @@ export default function EapcetMockCounsellingPage() {
 
   return (
     <main className={`relative mx-auto overflow-visible w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 ${step === "list" ? "space-y-1.5 pb-4 pt-2" : "space-y-8 pb-44 pt-6"}`}>
+      {/* OFFICIAL SIMULATION DISCLAIMER RIBBON */}
+      <div className="w-full rounded-xl border border-red-500/40 bg-red-950/40 p-2.5 sm:px-4 sm:py-2 text-center shadow-lg backdrop-blur-md">
+        <p className="text-xs sm:text-sm font-bold text-red-300 tracking-wide flex items-center justify-center gap-1.5">
+          <span className="text-red-400">⚠️</span>
+          <span>
+            <strong>NOTE:</strong> This is a <strong>Mock Web Options Simulator</strong> for candidate practice and preference ordering only. This is <u>NOT</u> the official TGCHE website. Submit your final web options on <strong>tgeapcet.nic.in</strong>.
+          </span>
+        </p>
+      </div>
+
       <button onClick={handleBack} className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold text-gray-300 hover:text-white">
         <ArrowLeft size={16} /> Back
       </button>

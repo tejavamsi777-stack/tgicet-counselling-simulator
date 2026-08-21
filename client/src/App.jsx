@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 const IcetHome = lazy(() => import("./pages/icet/IcetHome"));
 const IcetPredictorPage = lazy(() => import("./pages/icet/IcetPredictorPage"));
 const IcetMockCounsellingPage = lazy(() => import("./pages/icet/IcetMockCounsellingPage"));
+const IcetAllotmentsPage = lazy(() => import("./pages/icet/IcetAllotmentsPage"));
 const IcetComparePage = lazy(() => import("./pages/icet/IcetComparePage"));
 const IcetDocumentsPage = lazy(() => import("./pages/icet/IcetDocumentsPage"));
 
@@ -155,6 +156,10 @@ function MainContent() {
                   <Route path="/tg-icet/mock-counselling" element={<ProtectedRoute><IcetMockCounsellingPage /></ProtectedRoute>} />
                   <Route path="/exams/tg-icet/mock-counselling" element={<ProtectedRoute><IcetMockCounsellingPage /></ProtectedRoute>} />
 
+                  <Route path="/icet/allotments" element={<IcetAllotmentsPage />} />
+                  <Route path="/tg-icet/allotments" element={<IcetAllotmentsPage />} />
+                  <Route path="/exams/tg-icet/allotments" element={<IcetAllotmentsPage />} />
+
                   <Route path="/icet/compare" element={<IcetComparePage />} />
                   <Route path="/tg-icet/compare" element={<IcetComparePage />} />
                   <Route path="/exams/tg-icet/compare" element={<IcetComparePage />} />
@@ -193,6 +198,7 @@ function MainContent() {
                   <Route path="/eapcet/allotments" element={<EapcetAllotmentsPage />} />
 
                   <Route path="/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
+                  <Route path="/exams/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
 
                   <Route path="/colleges/:code" element={<CollegeProfilePage />} />
                   <Route path="/tg-eapcet/colleges/:code" element={<CollegeProfilePage />} />

@@ -48,7 +48,7 @@ export default function CollegeProfileSelectorBanner() {
                 College Profiles &amp; Branch Fees
               </h3>
               <span className="rounded-full bg-purple-500/20 border border-purple-500/30 px-2.5 py-0.5 text-[10px] font-bold text-purple-300 shrink-0">
-                178 Institutions
+                {collegesList.length || 255} AP Institutions
               </span>
             </div>
             <p className="text-xs text-purple-200/70 mt-0.5 leading-relaxed truncate sm:whitespace-normal">

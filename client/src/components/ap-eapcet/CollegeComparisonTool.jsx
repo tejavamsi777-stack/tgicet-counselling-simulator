@@ -1,21 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ArrowLeftRight, Award, CheckCircle2, DollarSign, GraduationCap, MapPin, Sparkles, TrendingUp } from 'lucide-react';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 
 import SearchableSelect from '../shared/SearchableSelect';
 
-const BRANCHES = [
-  { code: 'CSE', label: 'Computer Science (CSE)' },
-  { code: 'CSM', label: 'CSE (AI & ML)' },
-  { code: 'CSD', label: 'CSE (Data Science)' },
-  { code: 'INF', label: 'Information Tech (IT)' },
-  { code: 'ECE', label: 'Electronics & Comm (ECE)' },
+const ALL_KNOWN_BRANCHES = [
+  { code: 'CSE', label: 'Computer Science & Engineering (CSE)' },
+  { code: 'CSM', label: 'CSE - Artificial Intelligence & ML (CSM)' },
+  { code: 'CSD', label: 'CSE - Data Science (CSD)' },
+  { code: 'CSC', label: 'CSE - Cyber Security (CSC)' },
+  { code: 'CSB', label: 'CS & Business Systems (CSB)' },
+  { code: 'CAI', label: 'Computer Science & AI (CAI)' },
+  { code: 'AID', label: 'AI & Data Science (AID)' },
+  { code: 'AIM', label: 'Artificial Intelligence & ML (AIM)' },
+  { code: 'INF', label: 'Information Technology (INF)' },
+  { code: 'IT', label: 'Information Technology (IT)' },
+  { code: 'ECE', label: 'Electronics & Communication (ECE)' },
   { code: 'EEE', label: 'Electrical & Electronics (EEE)' },
-  { code: 'MEC', label: 'Mechanical (MEC)' },
-  { code: 'CIV', label: 'Civil (CIV)' },
+  { code: 'EIE', label: 'Electronics & Instrumentation (EIE)' },
+  { code: 'ECM', label: 'Electronics & Computer Engg (ECM)' },
+  { code: 'MEC', label: 'Mechanical Engineering (MEC)' },
+  { code: 'CIV', label: 'Civil Engineering (CIV)' },
+  { code: 'CHE', label: 'Chemical Engineering (CHE)' },
+  { code: 'AGR', label: 'Agricultural Engineering (AGR)' },
+  { code: 'AUT', label: 'Automobile Engineering (AUT)' },
+  { code: 'BIO', label: 'Biotechnology (BIO)' },
+  { code: 'BME', label: 'Biomedical Engineering (BME)' },
+  { code: 'MIN', label: 'Mining Engineering (MIN)' },
+  { code: 'PET', label: 'Petroleum Engineering (PET)' },
+  { code: 'FT', label: 'Food Technology (FT)' },
 ];
 
-export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 'VNRV', initialBranch = 'CSE' }) {
+export default function CollegeComparisonTool({ initialC1 = 'VITAPU', initialC2 = 'GVPE', initialBranch = 'CSE' }) {
   const [collegesList, setCollegesList] = useState([]);
   const [c1, setC1] = useState(initialC1);
   const [c2, setC2] = useState(initialC2);
@@ -31,6 +47,59 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
       })
       .catch(console.error);
   }, []);
+
+  // Selected college objects from catalog
+  const selectedColA = useMemo(
+    () => collegesList.find((c) => c.code === c1) || comparison?.collegeA,
+    [collegesList, c1, comparison]
+  );
+  const selectedColB = useMemo(
+    () => collegesList.find((c) => c.code === c2) || comparison?.collegeB,
+    [collegesList, c2, comparison]
+  );
+
+  // Filter branches offered by BOTH selected institutions
+  const commonBranchList = useMemo(() => {
+    const listA = selectedColA?.branches?.length
+      ? selectedColA.branches
+      : Object.keys(selectedColA?.cutoffs || {});
+    const listB = selectedColB?.branches?.length
+      ? selectedColB.branches
+      : Object.keys(selectedColB?.cutoffs || {});
+
+    if (!listA.length || !listB.length) {
+      return ALL_KNOWN_BRANCHES;
+    }
+
+    const setB = new Set(listB);
+    const overlap = listA.filter((code) => setB.has(code));
+
+    if (overlap.length === 0) {
+      const union = Array.from(new Set([...listA, ...listB]));
+      return union.map((code) => {
+        const known = ALL_KNOWN_BRANCHES.find((b) => b.code === code);
+        return {
+          code,
+          label: known ? known.label : code,
+        };
+      });
+    }
+
+    return overlap.map((code) => {
+      const known = ALL_KNOWN_BRANCHES.find((b) => b.code === code);
+      return {
+        code,
+        label: known ? known.label : code,
+      };
+    });
+  }, [selectedColA, selectedColB]);
+
+  // Keep branch in sync with common branches
+  useEffect(() => {
+    if (commonBranchList.length > 0 && !commonBranchList.some((b) => b.code === branch)) {
+      setBranch(commonBranchList[0].code);
+    }
+  }, [commonBranchList, branch]);
 
   // Fetch comparison data whenever c1, c2, or branch changes
   useEffect(() => {
@@ -56,7 +125,7 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
     sublabel: col.district ? `${col.district} · ₹${col.annualFee?.toLocaleString()}/yr` : undefined,
   }));
 
-  const branchOptions = BRANCHES.map((b) => ({
+  const branchOptions = commonBranchList.map((b) => ({
     value: b.code,
     label: b.label,
   }));
@@ -132,9 +201,10 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
           />
         </div>
 
-        {/* Branch Filter Row */}
         <div className="md:col-span-7 pt-2 border-t border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <span className="text-xs font-semibold text-white/70">Compare Stream / Branch:</span>
+          <span className="text-xs font-semibold text-white/70">
+            Compare Stream / Branch <span className="text-purple-300 font-mono">({commonBranchList.length} mutually offered)</span>:
+          </span>
           <div className="w-full sm:w-72">
             <SearchableSelect
               value={branch}
@@ -184,49 +254,62 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
-                {/* 2025 Final Cutoff Rank */}
+                {/* 2025 OC Cutoff Rank */}
                 <tr className="hover:bg-white/[0.02] bg-purple-950/10">
                   <td className="py-3.5 px-4 sm:px-6 text-white font-semibold">
-                    <span>2025 Final Cutoff ({branch})</span>
+                    <span>2025 OC Cutoff ({branch})</span>
                     <span className="ml-2 rounded-full bg-purple-500/20 border border-purple-500/30 px-2 py-0.5 text-[10px] text-purple-300 font-bold">Latest</span>
                   </td>
                   <td className="py-3.5 px-4 sm:px-6 font-mono font-bold text-purple-300 text-sm">
                     {cutoffA?.oc2025 ? `~${cutoffA.oc2025.toLocaleString()}` : 'N/A'}
-                    {cutoffA?.final2025 && (
-                      <span className="block text-[11px] font-normal text-purple-400/80">Final Round: {cutoffA.final2025.toLocaleString()}</span>
-                    )}
                   </td>
                   <td className="py-3.5 px-4 sm:px-6 font-mono font-bold text-blue-300 text-sm">
                     {cutoffB?.oc2025 ? `~${cutoffB.oc2025.toLocaleString()}` : 'N/A'}
-                    {cutoffB?.final2025 && (
-                      <span className="block text-[11px] font-normal text-blue-400/80">Final Round: {cutoffB.final2025.toLocaleString()}</span>
-                    )}
                   </td>
                 </tr>
 
-                {/* 2024 Cutoff Rank */}
+                {/* 2025 BC Cutoff */}
                 <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2024 OC Cutoff ({branch})</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2025 BC Cutoff ({branch})</td>
                   <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
-                    {cutoffA?.oc2024 ? `~${cutoffA.oc2024.toLocaleString()}` : 'N/A'}
+                    {cutoffA?.bc2025 ? `~${cutoffA.bc2025.toLocaleString()}` : (cutoffA?.bc_a2025 ? `~${cutoffA.bc_a2025.toLocaleString()}` : 'N/A')}
                   </td>
                   <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
-                    {cutoffB?.oc2024 ? `~${cutoffB.oc2024.toLocaleString()}` : 'N/A'}
+                    {cutoffB?.bc2025 ? `~${cutoffB.bc2025.toLocaleString()}` : (cutoffB?.bc_a2025 ? `~${cutoffB.bc_a2025.toLocaleString()}` : 'N/A')}
                   </td>
                 </tr>
 
-                {/* 2023 Cutoff Rank */}
+                {/* 2025 SC Cutoff */}
                 <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2023 OC Cutoff ({branch})</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-mono text-white/80">{cutoffA?.oc2023?.toLocaleString() || 'N/A'}</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-mono text-white/80">{cutoffB?.oc2023?.toLocaleString() || 'N/A'}</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2025 SC Cutoff ({branch})</td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffA?.sc2025 ? `~${cutoffA.sc2025.toLocaleString()}` : (cutoffA?.sc_i2025 ? `~${cutoffA.sc_i2025.toLocaleString()}` : 'N/A')}
+                  </td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffB?.sc2025 ? `~${cutoffB.sc2025.toLocaleString()}` : (cutoffB?.sc_i2025 ? `~${cutoffB.sc_i2025.toLocaleString()}` : 'N/A')}
+                  </td>
                 </tr>
 
-                {/* 2022 Cutoff Rank */}
+                {/* 2025 ST Cutoff */}
                 <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2022 OC Cutoff ({branch})</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-mono text-white/60">{cutoffA?.oc2022?.toLocaleString() || 'N/A'}</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-mono text-white/60">{cutoffB?.oc2022?.toLocaleString() || 'N/A'}</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2025 ST Cutoff ({branch})</td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffA?.st2025 ? `~${cutoffA.st2025.toLocaleString()}` : 'N/A'}
+                  </td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffB?.st2025 ? `~${cutoffB.st2025.toLocaleString()}` : 'N/A'}
+                  </td>
+                </tr>
+
+                {/* 2025 EWS Cutoff */}
+                <tr className="hover:bg-white/[0.02]">
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">2025 EWS Cutoff ({branch})</td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffA?.ews2025 ? `~${cutoffA.ews2025.toLocaleString()}` : 'N/A'}
+                  </td>
+                  <td className="py-3.5 px-4 sm:px-6 font-mono font-medium text-white/90">
+                    {cutoffB?.ews2025 ? `~${cutoffB.ews2025.toLocaleString()}` : 'N/A'}
+                  </td>
                 </tr>
 
                 {/* Highest CTC */}
@@ -253,8 +336,8 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
                 {/* Annual Tuition Fee */}
                 <tr className="hover:bg-white/[0.02]">
                   <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Annual Tuition Fee</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{(collegeA.annualFee / 1000).toFixed(0)},000 / yr</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{(collegeB.annualFee / 1000).toFixed(0)},000 / yr</td>
+                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{collegeA.annualFee ? collegeA.annualFee.toLocaleString() : 'N/A'} / yr</td>
+                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{collegeB.annualFee ? collegeB.annualFee.toLocaleString() : 'N/A'} / yr</td>
                 </tr>
 
                 {/* NAAC & NIRF */}
@@ -262,6 +345,18 @@ export default function CollegeComparisonTool({ initialC1 = 'CBIT', initialC2 = 
                   <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Accreditation & NIRF</td>
                   <td className="py-3.5 px-4 sm:px-6 text-white/80">NAAC {collegeA.naac} • {collegeA.nirfRank}</td>
                   <td className="py-3.5 px-4 sm:px-6 text-white/80">NAAC {collegeB.naac} • {collegeB.nirfRank}</td>
+                </tr>
+
+                {/* Affiliation & Location */}
+                <tr className="hover:bg-white/[0.02]">
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Affiliated University</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeA.affiliation || 'State University'}</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeB.affiliation || 'State University'}</td>
+                </tr>
+                <tr className="hover:bg-white/[0.02]">
+                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Location & Region</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeA.place ? `${collegeA.place}, ` : ''}{collegeA.district} ({collegeA.region} Region)</td>
+                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeB.place ? `${collegeB.place}, ` : ''}{collegeB.district} ({collegeB.region} Region)</td>
                 </tr>
 
                 {/* Autonomy */}

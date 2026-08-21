@@ -131,74 +131,75 @@ export default function SearchableSelect({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 right-0 top-full z-[9999] mt-1.5 max-h-80 overflow-hidden rounded-2xl border border-purple-500/40 bg-[#120826] shadow-[0_25px_60px_rgba(0,0,0,0.98),0_0_20px_rgba(168,85,247,0.2)] text-white flex flex-col"
+            className="absolute left-0 right-0 top-full z-[99999] mt-2 max-h-80 overflow-hidden rounded-2xl border-2 border-purple-500/60 bg-[#0d0718] shadow-[0_30px_90px_rgba(0,0,0,1),0_0_40px_rgba(168,85,247,0.35)] text-white flex flex-col"
+            style={{ backgroundColor: '#0d0718', opacity: 1 }}
           >
             {/* Search Input Box */}
-            <div className="p-2.5 border-b border-white/10 bg-[#0d051c]">
+            <div className="p-3 border-b border-white/10 bg-[#07030e]" style={{ backgroundColor: '#07030e' }}>
               <div className="relative flex items-center">
-                <Search size={14} className="absolute left-3 text-purple-400 pointer-events-none" />
+                <Search size={15} className="absolute left-3 text-purple-400 pointer-events-none" />
                 <input
                   ref={searchInputRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={searchPlaceholder}
-                  className="w-full rounded-xl border border-white/15 bg-white/5 pl-9 pr-8 py-2 text-xs text-white placeholder-white/40 focus:border-purple-500 focus:bg-purple-950/30 focus:outline-none transition"
+                  className="w-full rounded-xl border border-white/20 bg-white/10 pl-9 pr-8 py-2 text-xs font-medium text-white placeholder-gray-400 focus:border-purple-400 focus:bg-purple-950/40 focus:outline-none transition"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-2.5 text-white/40 hover:text-white"
+                    className="absolute right-2.5 text-gray-400 hover:text-white"
                   >
-                    <X size={13} />
+                    <X size={14} />
                   </button>
                 )}
               </div>
-              <div className="flex items-center justify-between px-1.5 pt-1.5 text-[10px] text-white/40">
-                <span>{filteredOptions.length} of {options.length} matches</span>
-                {searchQuery && <span>Press Escape to close</span>}
+              <div className="flex items-center justify-between px-1.5 pt-2 text-[11px] text-gray-400">
+                <span className="font-semibold text-purple-300">{filteredOptions.length} of {options.length} colleges found</span>
+                {searchQuery && <span className="text-gray-400">Press Esc to close</span>}
               </div>
             </div>
 
             {/* Options List */}
-            <div ref={listRef} className="overflow-y-auto max-h-52 p-1.5 space-y-0.5 custom-scrollbar">
+            <div ref={listRef} className="overflow-y-auto max-h-56 p-2 space-y-1 custom-scrollbar bg-[#0d0718]" style={{ backgroundColor: '#0d0718' }}>
               {filteredOptions.length === 0 ? (
-                <div className="p-4 text-center text-xs text-white/50">
-                  No matching options found for &quot;<span className="text-purple-300 font-semibold">{searchQuery}</span>&quot;
+                <div className="p-6 text-center text-xs text-gray-400">
+                  No colleges found matching &quot;<span className="text-purple-300 font-bold">{searchQuery}</span>&quot;
                 </div>
               ) : (
-                filteredOptions.map((opt) => {
+                filteredOptions.map((opt, idx) => {
                   const isSelected = String(opt.value) === String(value);
                   return (
                     <button
-                      key={opt.value}
+                      key={`${opt.value || ''}_${idx}`}
                       type="button"
                       onClick={() => handleSelect(opt.value)}
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs transition-colors cursor-pointer ${
+                      className={`flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-purple-600/30 border border-purple-500/40 text-purple-200 font-semibold"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                          ? "bg-purple-600 text-white font-bold shadow-md shadow-purple-600/40 border border-purple-400"
+                          : "bg-white/[0.03] text-gray-200 hover:bg-purple-600/20 hover:text-white hover:border-purple-500/40 border border-transparent"
                       }`}
                     >
-                      <div className="flex flex-col gap-0.5 truncate pr-2">
-                        <span className="truncate font-medium text-white">
+                      <div className="flex flex-col gap-1 truncate pr-2">
+                        <span className="truncate font-semibold text-white text-xs">
                           {opt.label}
                         </span>
                         {opt.sublabel && (
-                          <span className="text-[11px] text-white/50 truncate">
+                          <span className="text-[11px] text-gray-400 truncate">
                             {opt.sublabel}
                           </span>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-1.5 shrink-0">
+                      <div className="flex items-center gap-2 shrink-0">
                         {opt.count !== undefined && (
-                          <span className="rounded-md bg-white/5 border border-white/10 px-1.5 py-0.5 text-[10px] font-mono text-cyan-300">
+                          <span className="rounded-md bg-white/10 border border-white/10 px-2 py-0.5 text-[10px] font-mono text-cyan-300 font-bold">
                             {opt.count}
                           </span>
                         )}
-                        {isSelected && <Check size={14} className="text-purple-400" />}
+                        {isSelected && <Check size={14} className="text-white" />}
                       </div>
                     </button>
                   );

@@ -12,6 +12,8 @@ import EligibilityMatrix from '../../components/icet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/icet/TopCollegesLeaderboard';
 import CutoffTrendAnalyzer from '../../components/icet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/icet/CommunityAlertsBanner';
+import FaqSection from '../../components/shared/FaqSection';
+import { TG_ICET_FAQS } from '../../data/faqsData';
 import { useIcetData } from '../../hooks/useIcetData';
 
 function SectionDivider() {
@@ -28,32 +30,39 @@ export default function IcetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG ICET Admissions Suite 2025-2026 | MBA & MCA College Predictor, Cutoffs & Web Options"
-        description="Comprehensive Telangana ICET MBA & MCA admissions hub with live counselling updates from tgicet.nic.in, college comparison matrix, cutoff trajectories, and document checklist."
+        title="TG ICET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator"
+        description="Free TG ICET MBA & MCA college predictor, mock web options simulator & authentic candidate seat allotments from tgicet.nic.in with verified closing cutoffs."
         path="/tg-icet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Admissions Suite 2025–2026
+          Telangana Admissions 2026
         </span>
-        <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          TG ICET Counselling Intelligence Platform
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
+          TG ICET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Telangana MBA &amp; MCA Admissions — verified TGICET 2025 First &amp; Final Phase cutoffs, live TGCHE circulars, web options simulator, and HLC certificate checklist.
+          Everything you need for Telangana MBA &amp; MCA Admissions — find eligible colleges by ICET rank, explore official provisional seat allotments across 344 colleges, and simulate web options.
         </p>
       </div>
 
-      {/* 4 Core Action Cards Grid */}
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 5 Core Action Cards Grid */}
+      <div className="mt-8 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
         <FeatureCard
           icon={Target}
           title="College Predictor"
           detail="Find eligible MBA & MCA colleges based on ICET rank, category & gender."
           to="/exams/tg-icet/predictor"
           action="Predict Now"
+        />
+        <FeatureCard
+          icon={Database}
+          title="Seat Allotments"
+          detail="Official candidate-wise MBA & MCA seat allotment lists from tgicet.nic.in."
+          to="/tg-icet/allotments"
+          action="View Allotments"
         />
         <FeatureCard
           icon={ClipboardList}
@@ -65,7 +74,7 @@ export default function IcetHome() {
         <FeatureCard
           icon={ArrowLeftRight}
           title="Compare Colleges"
-          detail="Compare any two MBA/MCA institutions side-by-side across cutoffs, fee structures & placements."
+          detail="Compare any two MBA/MCA institutions side-by-side across cutoffs, fees & placements."
           to="/tg-icet/compare"
           action="Compare"
         />
@@ -141,6 +150,17 @@ export default function IcetHome() {
       ) : (
         <EligibilityMatrix eligibility={data?.eligibility || {}} />
       )}
+
+      <SectionDivider />
+
+      {/* TG ICET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="TG ICET 2026 MBA & MCA Admissions FAQs"
+          subtitle="Frequently asked questions about Telangana ICET web counselling, qualifying marks, and fee reimbursement"
+          faqs={TG_ICET_FAQS}
+        />
+      </div>
 
       {/* Bottom Ad Unit */}
       <div className="mt-12 w-full">

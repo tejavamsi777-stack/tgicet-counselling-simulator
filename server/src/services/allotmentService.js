@@ -42,22 +42,30 @@ export async function getAllotmentDataset({
   page = 1,
   limit = 50
 }) {
-  const cCode = (college || "CBIT").trim().toUpperCase();
+  const isAp = examId === "ap-eapcet";
+  const cCode = (college || (isAp ? "VITB" : "CBIT")).trim().toUpperCase();
   const bCode = (branch || "CSE").trim().toUpperCase();
 
   const parts = year.split("-");
-  const admissionYear = parseInt(parts[0], 10) || 2026;
+  const admissionYear = parseInt(parts[0], 10) || (isAp ? 2025 : 2026);
   const phase = parts[1] || "final";
 
-  const collegeObj = ALL_TSCHE_COLLEGES.find((c) => c.code === cCode) || {
-    code: cCode,
-    name: `${cCode} Engineering College`,
-    shortName: cCode,
-  };
-  const branchObj = ALLOTMENT_BRANCHES.find((b) => b.code === bCode) || {
-    code: bCode,
-    name: bCode,
-  };
+  let collegeObj = ALL_TSCHE_COLLEGES.find((c) => c.code === cCode);
+  let branchObj = ALLOTMENT_BRANCHES.find((b) => b.code === bCode);
+
+  if (!collegeObj) {
+    collegeObj = {
+      code: cCode,
+      name: `${cCode} Engineering College`,
+      shortName: cCode,
+    };
+  }
+  if (!branchObj) {
+    branchObj = {
+      code: bCode,
+      name: bCode,
+    };
+  }
 
   // 1. First, check PostgreSQL database
   try {
@@ -75,12 +83,21 @@ export async function getAllotmentDataset({
     });
 
     if (dbResult && dbResult.totalRecords > 0) {
+      if (dbResult.candidates && dbResult.candidates[0]) {
+        if (dbResult.candidates[0].collegeName) {
+          collegeObj.name = dbResult.candidates[0].collegeName;
+        }
+        if (dbResult.candidates[0].branchName) {
+          branchObj.name = dbResult.candidates[0].branchName;
+        }
+      }
+
       return {
         available: true,
         isOfficialLiveScraped: true,
-        source: "https://tgeapcet.nic.in/college_allotment.aspx",
+        source: isAp ? "https://cets.apsche.ap.gov.in/" : "https://tgeapcet.nic.in/college_allotment.aspx",
         year,
-        historicalExamName: admissionYear < 2024 ? "TS EAMCET" : "TG EAPCET",
+        historicalExamName: isAp ? "AP EAPCET" : (admissionYear < 2024 ? "TS EAMCET" : "TG EAPCET"),
         college: collegeObj,
         branch: branchObj,
         ...dbResult

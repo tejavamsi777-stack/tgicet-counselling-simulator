@@ -8,8 +8,8 @@ import AdSenseUnit from '../../components/ads/AdSenseUnit';
 
 export default function EapcetComparePage() {
   const [searchParams] = useSearchParams();
-  const c1 = searchParams.get('c1') || 'CBIT';
-  const c2 = searchParams.get('c2') || 'VNRV';
+  const c1 = searchParams.get('c1') || 'VITAPU';
+  const c2 = searchParams.get('c2') || 'GVPE';
   const branch = searchParams.get('branch') || 'CSE';
 
   return (

@@ -1,18 +1,67 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Calculator, CheckCircle2, AlertCircle, Info, Sparkles, Building, GraduationCap, DollarSign } from 'lucide-react';
 import { eapcetApi } from '../../lib/eapcetApi';
+import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from './SearchableSelect';
 
 /**
- * Official TS ePASS Fee Reimbursement & Scholarship Eligibility Calculator
+ * Official TS ePASS & AP Jagananna Vidya Deevena (JVD) Fee Reimbursement Calculator
  */
-export function calculateReimbursement({ category, rank, annualFee = 0, incomeUnderThreshold = true }) {
+export function calculateReimbursement({ category, rank, annualFee = 0, incomeUnderThreshold = true, isAp = false }) {
   if (!annualFee) return null;
 
   const cat = String(category || 'OC').toUpperCase();
   const r = Number(rank) || 999999;
   const fee = Number(annualFee) || 0;
 
+  if (isAp) {
+    // ── AP Jagananna Vidya Deevena (JVD) Rules ──────────────────────────
+    if (!incomeUnderThreshold) {
+      return {
+        eligible: false,
+        amount: 0,
+        netFee: fee,
+        floorDeposit: 0,
+        reason: 'Family annual income exceeds AP JVD threshold (≤ ₹2.5 Lakh per annum / Valid AP White Rice Card required).',
+        badge: 'NOT ELIGIBLE',
+      };
+    }
+
+    // SC / ST / BC / EBC / Kapu / Minority / Differently Abled / EWS: 100% Full Tuition Fee Reimbursement per JVD
+    if (cat.includes('SC') || cat.includes('ST') || cat.includes('BC') || cat.includes('EWS') || cat.includes('MIN') || cat.includes('KAPU')) {
+      return {
+        eligible: true,
+        amount: fee,
+        netFee: 0,
+        floorDeposit: 0,
+        reason: '100% Full Tuition Fee Reimbursement granted under Jagananna Vidya Deevena (JVD) Scheme (G.O. Ms. No. 115).',
+        badge: '100% FULL JVD REIMBURSEMENT',
+      };
+    }
+
+    // OC with valid Rice Card / Income ≤ 2.5L
+    if (cat === 'OC') {
+      return {
+        eligible: true,
+        amount: fee,
+        netFee: 0,
+        floorDeposit: 0,
+        reason: '100% Full Fee Reimbursement granted per Jagananna Vidya Deevena with valid AP White Rice Card / Income Certificate.',
+        badge: '100% FULL JVD REIMBURSEMENT',
+      };
+    }
+
+    return {
+      eligible: false,
+      amount: 0,
+      netFee: fee,
+      floorDeposit: 0,
+      reason: 'Candidates without valid AP MeeSeva income certificate or Rice Card pay full tuition fee.',
+      badge: 'FULL FEE PAYABLE',
+    };
+  }
+
+  // ── TG ePASS Rules ──────────────────────────────────────────────────
   if (!incomeUnderThreshold) {
     return {
       eligible: false,
@@ -75,7 +124,9 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
 export default function FeeReimbursementCalculator({
   collegeCodeProp,
   annualFeeProp,
+  exam,
 }) {
+  const isAp = exam === 'ap-eapcet' || (typeof window !== 'undefined' && window.location.pathname.includes('ap-eapcet'));
   const [collegesList, setCollegesList] = useState([]);
   const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
   const [metaLoading, setMetaLoading] = useState(true);
@@ -89,8 +140,8 @@ export default function FeeReimbursementCalculator({
 
   useEffect(() => {
     let isMounted = true;
-    eapcetApi
-      .getAllotmentMeta()
+    const apiCaller = isAp ? apEapcetApi.getAllotmentMeta() : eapcetApi.getAllotmentMeta();
+    apiCaller
       .then((res) => {
         if (!isMounted) return;
         if (res.data) {
@@ -106,7 +157,7 @@ export default function FeeReimbursementCalculator({
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [isAp]);
 
   // Get active college object & offered branches
   const currentCollege = useMemo(() => {
@@ -122,9 +173,14 @@ export default function FeeReimbursementCalculator({
 
   const currentAnnualFee = useMemo(() => {
     if (annualFeeProp) return annualFeeProp;
-    if (currentCollege) return currentCollege.annualFee || currentCollege.fee || 95000;
+    if (currentCollege) {
+      if (selectedBranch && currentCollege.feeByBranch?.[selectedBranch.toUpperCase()]) {
+        return currentCollege.feeByBranch[selectedBranch.toUpperCase()];
+      }
+      return currentCollege.annualFee || currentCollege.fee || (isAp ? 47000 : 95000);
+    }
     return 0;
-  }, [annualFeeProp, currentCollege]);
+  }, [annualFeeProp, currentCollege, selectedBranch, isAp]);
 
   const calcResult = useMemo(() => {
     if (!selectedCollege || !currentAnnualFee) return null;
@@ -133,8 +189,9 @@ export default function FeeReimbursementCalculator({
       rank: Number(rank) || 0,
       annualFee: currentAnnualFee,
       incomeUnderThreshold: incomeValid,
+      isAp,
     });
-  }, [selectedCollege, currentAnnualFee, category, rank, incomeValid]);
+  }, [selectedCollege, currentAnnualFee, category, rank, incomeValid, isAp]);
 
   return (
     <div className="rounded-2xl border border-purple-500/25 bg-gradient-to-br from-purple-950/40 via-black/70 to-purple-900/20 p-5 sm:p-6 backdrop-blur-xl shadow-2xl text-white">
@@ -146,16 +203,18 @@ export default function FeeReimbursementCalculator({
           </div>
           <div>
             <h3 className="text-base font-bold text-white tracking-tight">
-              TS ePASS Fee &amp; Scholarship Calculator
+              {isAp ? 'AP Jagananna Vidya Deevena (JVD) Fee Calculator' : 'TS ePASS Fee & Scholarship Calculator'}
             </h3>
             <p className="text-xs text-white/50">
-              Select your College, Branch &amp; Caste Category to compute official net student fee
+              {isAp
+                ? 'Select your College, Branch & Caste Category to compute official net student fee under AP JVD Scheme'
+                : 'Select your College, Branch & Caste Category to compute official net student fee'}
             </p>
           </div>
         </div>
         <span className="hidden sm:inline-flex items-center gap-1 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
           <Sparkles size={12} />
-          TS ePASS G.O. Ms Rules
+          {isAp ? 'AP JVD G.O. Ms Rules' : 'TS ePASS G.O. Ms Rules'}
         </span>
       </div>
 
@@ -181,7 +240,7 @@ export default function FeeReimbursementCalculator({
               return {
                 value: c.code,
                 label: `${c.code} — ${cleanName || c.name}`,
-                sublabel: `Official Annual Fee: ₹${(c.annualFee || c.fee || 95000).toLocaleString()}`,
+                sublabel: `Official Annual Fee: ₹${(c.annualFee || c.fee || (isAp ? 45000 : 95000)).toLocaleString()}`,
               };
             })}
           />
@@ -241,10 +300,10 @@ export default function FeeReimbursementCalculator({
           </select>
         </div>
 
-        {/* 4. TG EAPCET Rank Input */}
+        {/* 4. Rank Input */}
         <div>
           <label className="text-xs font-bold uppercase tracking-wider text-white/60 mb-1.5 block">
-            TG EAPCET Rank
+            {isAp ? 'AP EAPCET Rank' : 'TG EAPCET Rank'}
           </label>
           <input
             type="number"
@@ -259,7 +318,9 @@ export default function FeeReimbursementCalculator({
       {/* Income Certificate Segmented Toggle */}
       <div className="mb-5 flex flex-wrap items-center justify-between sm:justify-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3">
         <div className="flex flex-wrap items-center gap-3">
-          <p className="text-xs font-bold text-white">MeeSeva Income Certificate Valid?</p>
+          <p className="text-xs font-bold text-white">
+            {isAp ? 'Valid AP Rice Card / Income Certificate?' : 'MeeSeva Income Certificate Valid?'}
+          </p>
           <div className="flex items-center gap-1 bg-black/60 border border-white/15 rounded-xl p-1">
             <button
               type="button"
@@ -288,7 +349,7 @@ export default function FeeReimbursementCalculator({
           </div>
         </div>
         <p className="text-[11px] text-white/50 w-full sm:w-auto sm:ml-auto">
-          Income &lt; ₹1.5 Lakh (Rural) / ₹2.0 Lakh (Urban)
+          {isAp ? 'Income ≤ ₹2.5 Lakh / Valid AP White Rice Card' : 'Income < ₹1.5 Lakh (Rural) / ₹2.0 Lakh (Urban)'}
         </p>
       </div>
 
@@ -296,7 +357,9 @@ export default function FeeReimbursementCalculator({
       {!selectedCollege ? (
         <div className="rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-5 text-center text-xs text-white/50 flex items-center justify-center gap-2">
           <Info size={15} className="text-purple-400" />
-          <span>Select an <strong>Engineering College</strong> above to view its official annual tuition fee and compute TS ePASS Fee Reimbursement.</span>
+          <span>
+            Select an <strong>Engineering College</strong> above to view its official annual tuition fee and compute {isAp ? 'AP JVD' : 'TS ePASS'} Fee Reimbursement.
+          </span>
         </div>
       ) : (
         <>
@@ -307,7 +370,9 @@ export default function FeeReimbursementCalculator({
                 {selectedCollege} {selectedBranch ? `(${selectedBranch})` : ''} Annual Fee
               </p>
               <p className="text-xl font-extrabold text-white mt-0.5">₹{currentAnnualFee.toLocaleString()}</p>
-              <p className="text-[10px] text-cyan-200/60 mt-0.5">Official TSCHE Regulated Tuition Fee</p>
+              <p className="text-[10px] text-cyan-200/60 mt-0.5">
+                {isAp ? 'Official APSCHE Regulated Tuition Fee' : 'Official TSCHE Regulated Tuition Fee'}
+              </p>
             </div>
 
             {/* 2. Govt Reimbursement */}

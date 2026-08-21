@@ -16,7 +16,7 @@ export default function CollegeProfilePage() {
     setError(null);
 
     apEapcetApi
-      .getCollegeByCode(code || 'CBIT')
+      .getCollegeByCode(code || 'VITAPU')
       .then((res) => {
         if (!isMounted) return;
         if (res.success && res.data) {
@@ -120,7 +120,7 @@ export default function CollegeProfilePage() {
               View Seat Allotments
             </Link>
             <Link
-              to={`/ap-eapcet/compare?c1=${college.code}&c2=VNRV`}
+              to={`/ap-eapcet/compare?c1=${college.code}&c2=GVPE`}
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/10 transition-all"
             >
               <Award size={14} className="text-amber-400" />

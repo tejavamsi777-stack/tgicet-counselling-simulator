@@ -1,7 +1,8 @@
 // Maps district codes (as stored in the database) to full district names.
-// Complete 33 district mappings for Telangana State.
+// Includes Telangana (33 districts) and Andhra Pradesh (16 districts).
 
 export const DISTRICT_NAMES = {
+  // ── Telangana ──────────────────────────────────────────────────────────────
   ADB: "Adilabad",
   BDR: "Bhadradri Kothagudem",
   GDL: "Jogulamba Gadwal",
@@ -36,6 +37,24 @@ export const DISTRICT_NAMES = {
   WGL: "Warangal",
   WNP: "Wanaparthy",
   YBG: "Yadadri Bhuvanagiri",
+
+  // ── Andhra Pradesh ─────────────────────────────────────────────────────────
+  ANN: "Annamayya",
+  ATP: "Anantapur",
+  CTR: "Chittoor",
+  EG:  "East Godavari",
+  GTR: "Guntur",
+  KDP: "YSR Kadapa",
+  KNL: "Kurnool",
+  KRI: "Krishna",
+  NLR: "SPSR Nellore",
+  NTR: "NTR",
+  PKS: "Prakasam",
+  PLN: "Palnadu",
+  SKL: "Srikakulam",
+  VSP: "Visakhapatnam",
+  VZM: "Vizianagaram",
+  WG:  "West Godavari",
 };
 
 export function getDistrictName(code) {

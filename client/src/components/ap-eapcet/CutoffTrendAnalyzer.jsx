@@ -107,7 +107,9 @@ export default function CutoffTrendAnalyzer() {
                       )}
                     </td>
                     <td className="py-3.5 px-4 sm:px-6 text-right">
-                      {isTougher ? (
+                      {r22 === 0 ? (
+                        <span className="text-white/30">—</span>
+                      ) : isTougher ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 text-[11px] font-semibold text-rose-300">
                           <TrendingUp size={11} className="rotate-45" />
                           <span>Rising (+{diff} ranks harder)</span>

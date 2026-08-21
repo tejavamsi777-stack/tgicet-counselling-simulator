@@ -12,6 +12,8 @@ import EligibilityMatrix from '../../components/ecet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/ecet/TopCollegesLeaderboard';
 import CutoffTrendAnalyzer from '../../components/ecet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
+import FaqSection from '../../components/shared/FaqSection';
+import { TG_ECET_FAQS } from '../../data/faqsData';
 import { useEcetData } from '../../hooks/useEcetData';
 
 // Section divider component for clean visual flow
@@ -30,21 +32,21 @@ export default function EcetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG ECET Admissions Suite 2025-2026 | Lateral Entry College Predictor, Cutoffs & Web Options"
-        description="Comprehensive Telangana ECET lateral entry engineering admissions hub with live TSCHE counselling updates, engineering college comparison matrix, cutoff trajectories, and document checklist for 2nd year B.Tech admissions."
+        title="TG ECET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator"
+        description="Free TG ECET diploma lateral entry college predictor, mock web options simulator & authentic candidate seat allotments from tgecet.nic.in with verified closing cutoffs."
         path="/tg-ecet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Admissions Suite 2025–2026 (FDH &amp; B.Sc Maths)
+          Telangana Lateral Entry Admissions 2026
         </span>
-        <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          TG ECET Counselling Intelligence Platform
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
+          TG ECET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Telangana Lateral Entry B.Tech Admissions — live TSCHE circulars, verified lateral cutoff trajectory, AI preference simulator, and HLC certificate checklist.
+          Everything you need for Telangana Lateral Entry B.Tech Admissions — predict 2nd-year engineering seats by ECET rank, explore official candidate seat allotments across 293 colleges, and practice web options entry.
         </p>
       </div>
 
@@ -149,6 +151,17 @@ export default function EcetHome() {
       ) : (
         <EligibilityMatrix eligibility={data?.eligibility || {}} />
       )}
+
+      <SectionDivider />
+
+      {/* TG ECET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="TG ECET 2026 Lateral Entry Admissions FAQs"
+          subtitle="Frequently asked questions about Diploma lateral entry B.Tech admissions, cutoffs, and seat reservations"
+          faqs={TG_ECET_FAQS}
+        />
+      </div>
 
       {/* Bottom Ad Unit */}
       <div className="mt-12 w-full">

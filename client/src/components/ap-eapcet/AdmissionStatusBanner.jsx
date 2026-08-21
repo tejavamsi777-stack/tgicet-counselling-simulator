@@ -31,7 +31,9 @@ export default function AdmissionStatusBanner({ phases = [], year = '2026' }) {
 
         {/* Subtext */}
         <p className="text-white/60 text-sm sm:text-base max-w-2xl mb-6 leading-relaxed">
-          All phases concluded for 2026. AP EAPCET 2027 counselling is expected to open in May–June 2027.
+          {isLive
+            ? "AP EAPCET 2026 Final Phase Web Counselling is active. Processing fee payment, online certificate verification, and web options entry are live on the official APSCHE portal."
+            : `All phases concluded for ${year}. AP EAPCET ${parseInt(year) + 1} counselling is expected to open in May–June ${parseInt(year) + 1}.`}
         </p>
 
         {/* CTA buttons */}

@@ -75,7 +75,10 @@ router.get("/icet/counselling-data", icetController.getCounsellingData);
 router.get("/icet/notifications", icetController.getNotifications);
 router.get("/icet/colleges", icetController.getColleges);
 router.get("/icet/colleges/:code", icetController.getCollegeByCode);
+router.get("/icet/colleges/:code/branches", icetController.getCollegeBranches);
 router.get("/icet/compare", icetController.compareColleges);
+router.get("/icet/allotments/meta", icetController.getAllotmentMeta);
+router.get("/icet/allotments", icetController.getAllotmentData);
 router.post("/icet/refresh", requireAdminAuth, icetController.triggerRefresh);
 
 // ---------- Student auth ----------

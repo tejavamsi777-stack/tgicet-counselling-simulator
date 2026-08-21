@@ -339,9 +339,6 @@ export default function ResultsTable({
                 <SortHeader label="College" sortKeyName="name" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="District" sortKeyName="district" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Branch" sortKeyName="course" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
-                {(showYear || yearList.length > 1 || activeYears.length > 0) && (
-                  <SortHeader label="Year" sortKeyName="year" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
-                )}
                 <SortHeader label="Category" sortKeyName="category" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Gender" sortKeyName="gender" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Cutoff Rank" sortKeyName="cutoff" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
@@ -377,9 +374,6 @@ export default function ResultsTable({
                         {c.course}
                       </span>
                     </td>
-                    {(showYear || yearList.length > 1 || activeYears.length > 0) && (
-                      <td className="px-4 py-3.5 text-xs font-mono font-medium text-gray-300">{c.year || year}</td>
-                    )}
                     <td className="px-4 py-3.5 text-xs text-gray-300">{c.category || "-"}</td>
                     <td className="px-4 py-3.5 text-xs text-gray-300">{c.gender || "All"}</td>
                     <td className="px-4 py-3.5 text-xs font-bold text-purple-300 font-mono">

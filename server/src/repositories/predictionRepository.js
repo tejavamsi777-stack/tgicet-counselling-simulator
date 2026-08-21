@@ -1,9 +1,73 @@
 import { pool } from "../config/database.js";
 
+// AP EAPCET exam ID
+const AP_EAPCET_EXAM_ID = 11;
+
+/**
+ * Normalise an AP EAPCET category code submitted from the predictor.
+ * The UI sends simple codes like "OC", "BC-A", "SC-I", "ST", "EWS",
+ * "Muslim Minority", "Christian Minority" plus a separate region ("AU"/"SVU"/"UR").
+ * This function converts them to the DB format, e.g. OC_AU, BC_A_SVU, MUS_UR.
+ */
+function resolveApCategory(category, region = "AU") {
+  const raw = (category || "").toUpperCase().trim();
+  const reg = (region || "AU").toUpperCase().trim();
+
+  const regionSuffix = reg === "NON-LOCAL" || reg === "UR" ? "UR" : reg; // AU | SVU | UR
+
+  // Map friendly names → DB prefix
+  const MAP = {
+    "OC": "OC",
+    "BC-A": "BC_A", "BC_A": "BC_A",
+    "BC-B": "BC_B", "BC_B": "BC_B",
+    "BC-C": "BC_C", "BC_C": "BC_C",
+    "BC-D": "BC_D", "BC_D": "BC_D",
+    "BC-E": "BC_E", "BC_E": "BC_E",
+    "SC-I": "SC_I",  "SC_I": "SC_I",  "SC I": "SC_I",
+    "SC-II": "SC_II", "SC_II": "SC_II", "SC II": "SC_II",
+    "SC-III": "SC_III", "SC_III": "SC_III", "SC III": "SC_III",
+    "ST": "ST",
+    "EWS": "EWS",
+    "MUSLIM MINORITY": "MUS", "MUSLIM": "MUS", "MUS": "MUS",
+    "CHRISTIAN MINORITY": "CHR", "CHRISTIAN": "CHR", "CHR": "CHR",
+  };
+
+  const prefix = MAP[raw];
+  if (prefix) return `${prefix}_${regionSuffix}`;
+
+  // Already a full DB code like OC_AU — return as-is
+  return raw;
+}
+
 export const predictionRepository = {
-  async findMatches({ rank, category, gender, courses = [], districts = [], years = [], year, examId }) {
+  async findMatches({ rank, category, gender, courses = [], districts = [], years = [], year, examId, region }) {
     const yearList = Array.isArray(years) && years.length > 0 ? years : (year ? [Number(year)] : []);
-    const params = [examId, category, gender, rank];
+
+    // For AP EAPCET resolve simple category + region → DB code
+    let resolvedCategory = category;
+    let categoryPrefix = null; // used when matching all regions
+
+    if (Number(examId) === AP_EAPCET_EXAM_ID && category) {
+      const isAllRegion = !region || region === "ALL";
+      if (isAllRegion) {
+        // Get just the prefix (e.g. "OC", "BC_A") to match OC_AU, OC_SVU, OC_UR
+        categoryPrefix = resolveApCategory(category, "AU").replace(/_AU$/, "");
+        resolvedCategory = null; // will use LIKE instead of exact
+      } else {
+        resolvedCategory = resolveApCategory(category, region);
+      }
+    }
+
+    const params = [examId, gender, rank];
+    let catCondition = "";
+
+    if (categoryPrefix) {
+      params.push(`${categoryPrefix}_%`);
+      catCondition = `AND cat.code LIKE $${params.length}`;
+    } else {
+      params.push(resolvedCategory);
+      catCondition = `AND cat.code = $${params.length}`;
+    }
 
     let sql = `
       SELECT
@@ -29,10 +93,10 @@ export const predictionRepository = {
         AND crs.exam_id = $1
         AND cat.exam_id = $1
         AND y.exam_id = $1
-        AND cat.code = $2
-        AND cu.gender = $3
-        AND cu.cutoff_rank >= FLOOR($4 * 0.85)
+        AND cu.gender = $2
+        AND cu.cutoff_rank >= FLOOR($3 * 0.85)
         AND col.is_active = true
+        ${catCondition}
     `;
 
     if (Array.isArray(yearList) && yearList.length > 0 && !yearList.includes("ALL")) {

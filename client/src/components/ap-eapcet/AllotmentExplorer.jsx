@@ -884,9 +884,11 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
   const median = ranks[Math.floor(total * 0.5)] || Math.round((openingRank + closingRank) / 2);
   const q3 = ranks[Math.floor(total * 0.75)] || closingRank;
 
-  const ouCount = candidates.filter((c) => (c.region || '').toUpperCase() === 'OU').length;
-  const nlCount = candidates.filter((c) => ['NL', 'UR', 'CU', 'SW'].includes((c.region || '').toUpperCase())).length;
-  const ouPercent = Math.round((ouCount / total) * 100);
+  const auCount = candidates.filter((c) => (c.region || '').toUpperCase() === 'AU').length;
+  const svuCount = candidates.filter((c) => (c.region || '').toUpperCase() === 'SVU').length;
+  const nlCount = candidates.filter((c) => ['NL', 'UR', 'NON-LOCAL', 'SW'].includes((c.region || '').toUpperCase())).length;
+  const auPercent = Math.round((auCount / total) * 100);
+  const svuPercent = Math.round((svuCount / total) * 100);
   const nlPercent = Math.round((nlCount / total) * 100);
 
   return (
@@ -904,7 +906,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
               <p className="text-[10px] text-white/40">Statistical rank percentiles &amp; domicile quota</p>
             </div>
           </div>
-          <span className="text-[11px] text-white/40 font-mono">OU Region 85%</span>
+          <span className="text-[11px] text-white/40 font-mono">AP Local 85%</span>
         </div>
 
         {/* Quartile Interactive Cards */}
@@ -956,37 +958,59 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 
         {/* Region Bars */}
         <div className="space-y-3 pt-2">
-          {/* OU Region Local */}
-          <div>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className="text-white/80">Osmania Univ (OU) Local (85% Quota)</span>
-              <span className="font-mono text-emerald-400 font-bold">
-                {ouCount} ({ouPercent}%)
-              </span>
+          {/* AU Region Local */}
+          {auCount > 0 && (
+            <div>
+              <div className="flex justify-between text-xs font-semibold mb-1">
+                <span className="text-white/80">Andhra Univ (AU) Local</span>
+                <span className="font-mono text-emerald-400 font-bold">
+                  {auCount} ({auPercent}%)
+                </span>
+              </div>
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/10">
+                <div
+                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-700"
+                  style={{ width: `${auPercent}%` }}
+                />
+              </div>
             </div>
-            <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/10">
-              <div
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-700"
-                style={{ width: `${ouPercent}%` }}
-              />
+          )}
+
+          {/* SVU Region Local */}
+          {svuCount > 0 && (
+            <div>
+              <div className="flex justify-between text-xs font-semibold mb-1">
+                <span className="text-white/80">Sri Venkateswara (SVU) Local</span>
+                <span className="font-mono text-purple-400 font-bold">
+                  {svuCount} ({svuPercent}%)
+                </span>
+              </div>
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/10">
+                <div
+                  className="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full transition-all duration-700"
+                  style={{ width: `${svuPercent}%` }}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Non-Local Unreserved */}
-          <div>
-            <div className="flex justify-between text-xs font-semibold mb-1">
-              <span className="text-white/80">Non-Local / Unreserved (15% Open Quota)</span>
-              <span className="font-mono text-cyan-400 font-bold">
-                {nlCount} ({nlPercent}%)
-              </span>
+          {nlCount > 0 && (
+            <div>
+              <div className="flex justify-between text-xs font-semibold mb-1">
+                <span className="text-white/80">Non-Local / Unreserved (15% Open Quota)</span>
+                <span className="font-mono text-cyan-400 font-bold">
+                  {nlCount} ({nlPercent}%)
+                </span>
+              </div>
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/10">
+                <div
+                  className="h-full bg-gradient-to-r from-cyan-500 to-sky-400 rounded-full transition-all duration-700"
+                  style={{ width: `${nlPercent}%` }}
+                />
+              </div>
             </div>
-            <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/10">
-              <div
-                className="h-full bg-gradient-to-r from-cyan-500 to-sky-400 rounded-full transition-all duration-700"
-                style={{ width: `${nlPercent}%` }}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -1006,7 +1030,7 @@ export default function AllotmentExplorer() {
   const [metaLoading, setMetaLoading] = useState(true);
 
   // Selection
-  const [selectedYear, setSelectedYear] = useState('2026-final');
+  const [selectedYear, setSelectedYear] = useState('2025-final');
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('');
 
@@ -1021,7 +1045,7 @@ export default function AllotmentExplorer() {
   const [genderFilter, setGenderFilter] = useState('ALL');
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [page, setPage] = useState(1);
-  const pageSize = 25;
+  const [pageSize, setPageSize] = useState(25);
 
   const tableRef = useRef(null);
 
@@ -1052,14 +1076,23 @@ export default function AllotmentExplorer() {
     const collegeSpecific = meta.collegeBranches?.[selectedCollege];
     if (collegeSpecific && Array.isArray(collegeSpecific) && collegeSpecific.length > 0) {
       return collegeSpecific.map((b) => {
-        const fullBranch = meta.branches.find((mb) => mb.code === b.code);
+        const branchCode = typeof b === 'string' ? b : (b?.code || '');
+        const fullBranch = meta.branches.find((mb) => mb.code === branchCode);
+        const rawName = (typeof b === 'object' && b?.name) ? b.name : (fullBranch?.name || branchCode);
+        const cleanName = rawName.replace(new RegExp(`\\s*\\(${branchCode}\\)$`, 'i'), '').trim();
         return {
-          code: b.code,
-          name: b.name || fullBranch?.name || b.code,
+          code: branchCode,
+          name: cleanName || branchCode,
         };
       });
     }
-    return meta.branches;
+    return meta.branches.map((b) => {
+      const cleanName = (b.name || b.code).replace(new RegExp(`\\s*\\(${b.code}\\)$`, 'i'), '').trim();
+      return {
+        code: b.code,
+        name: cleanName || b.code,
+      };
+    });
   }, [selectedCollege, meta.collegeBranches, meta.branches]);
 
   // Current selected objects
@@ -1110,8 +1143,8 @@ export default function AllotmentExplorer() {
       name: c.candidateName || c.name || '',
       gender: c.gender || '',
       caste: c.caste || c.category || '',
-      region: c.region || 'OU',
-      seatCategory: c.seatCategory || 'OC_GEN_OU',
+      region: c.region || 'AU',
+      seatCategory: c.seatCategory || 'OC_GEN_AU',
       branchCode: selectedBranch,
     }));
   }, [rawCandidates, selectedBranch]);
@@ -1140,8 +1173,9 @@ export default function AllotmentExplorer() {
     });
   }, [normalizedCandidates, genderFilter, categoryFilter, search]);
 
-  const totalPages = Math.max(1, Math.ceil(filteredCandidates.length / pageSize));
-  const paginated = filteredCandidates.slice((page - 1) * pageSize, page * pageSize);
+  const effectivePageSize = pageSize === 9999 ? Math.max(1, filteredCandidates.length) : pageSize;
+  const totalPages = Math.max(1, Math.ceil(filteredCandidates.length / effectivePageSize));
+  const paginated = pageSize === 9999 ? filteredCandidates : filteredCandidates.slice((page - 1) * pageSize, page * pageSize);
 
   // ── Compute Statistics ───────────────────────────────────────────────────
   const stats = useMemo(() => {
@@ -1195,7 +1229,7 @@ export default function AllotmentExplorer() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `TG_EAPCET_Allotments_${selectedCollege}_${selectedBranch}.csv`);
+    link.setAttribute('download', `AP_EAPCET_Allotments_${selectedCollege}_${selectedBranch}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1289,7 +1323,7 @@ export default function AllotmentExplorer() {
               </label>
               {selectedCollege && (
                 <Link
-                  to={`/colleges/${selectedCollege}`}
+                  to={`/ap-eapcet/colleges/${selectedCollege}`}
                   target="_blank"
                   className="text-xs font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors"
                 >
@@ -1459,11 +1493,32 @@ export default function AllotmentExplorer() {
           <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 backdrop-blur-xl shadow-2xl">
             {/* Table Filter & Search Controls */}
             <div className="p-4 sm:p-5 border-b border-white/10 bg-white/[0.02] flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={18} className="text-emerald-400" />
-                <h3 className="text-sm sm:text-base font-bold text-white">
-                  Candidate Seat Allotments ({filteredCandidates.length})
-                </h3>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={18} className="text-emerald-400" />
+                  <h3 className="text-sm sm:text-base font-bold text-white">
+                    Candidate Seat Allotments ({filteredCandidates.length})
+                  </h3>
+                </div>
+
+                {/* Per Page Selector on right of Candidate Seat Allotments */}
+                <div className="flex items-center gap-2 sm:pl-3 sm:border-l border-white/10">
+                  <select
+                    value={pageSize}
+                    onChange={(e) => {
+                      setPageSize(Number(e.target.value));
+                      setPage(1);
+                    }}
+                    className="rounded-lg border border-white/15 bg-white/10 px-2.5 py-1 text-xs font-semibold text-white focus:border-purple-500 focus:bg-gray-900 focus:outline-none cursor-pointer"
+                  >
+                    <option value={10} className="bg-gray-900 text-white">10</option>
+                    <option value={25} className="bg-gray-900 text-white">25</option>
+                    <option value={50} className="bg-gray-900 text-white">50</option>
+                    <option value={100} className="bg-gray-900 text-white">100</option>
+                    <option value={9999} className="bg-gray-900 text-white">All</option>
+                  </select>
+                  <span className="text-xs text-white/50 whitespace-nowrap">entries per page</span>
+                </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -1608,7 +1663,7 @@ export default function AllotmentExplorer() {
                 <p className="text-xs text-white/40">
                   Showing{' '}
                   <b className="text-white">
-                    {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, filteredCandidates.length)}
+                    {filteredCandidates.length === 0 ? 0 : (pageSize === 9999 ? 1 : (page - 1) * pageSize + 1)}–{pageSize === 9999 ? filteredCandidates.length : Math.min(page * pageSize, filteredCandidates.length)}
                   </b>{' '}
                   of <b className="text-white">{filteredCandidates.length}</b> candidates
                 </p>

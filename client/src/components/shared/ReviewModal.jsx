@@ -46,7 +46,7 @@ const RATING_CONFIG = {
   3: {
     emoji: '😐',
     title: 'It Was Okay',
-    desc: 'What feature would make TG Counselling great for you?',
+    desc: 'What feature would make VuelaLearn great for you?',
     color: 'text-amber-400',
     borderColor: 'border-amber-500/40',
     bgColor: 'bg-amber-500/10',
@@ -70,7 +70,7 @@ const RATING_CONFIG = {
   5: {
     emoji: '🤩',
     title: 'Loved It! Super Helpful',
-    desc: 'Awesome! Tell us what you liked most about TG Counselling.',
+    desc: 'Awesome! Tell us what you liked most about VuelaLearn.',
     color: 'text-purple-300',
     borderColor: 'border-purple-500/50',
     bgColor: 'bg-purple-500/15',

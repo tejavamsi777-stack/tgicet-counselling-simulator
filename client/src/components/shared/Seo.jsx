@@ -32,7 +32,10 @@ export default function Seo({
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    const fullUrl = `${window.location.origin}${path}`;
+    const baseUrl = typeof window !== "undefined" && window.location.origin.includes("localhost")
+      ? window.location.origin
+      : "https://vuelalearn.in";
+    const fullUrl = `${baseUrl}${path}`;
     canonical.setAttribute("href", fullUrl);
 
     // Dynamic Schema.org JSON-LD injection for rich sitelinks & web applications
@@ -59,8 +62,8 @@ export default function Seo({
       },
       "provider": {
         "@type": "Organization",
-        "name": "TG Counselling",
-        "url": "https://tgcounselling.vercel.app"
+        "name": "VuelaLearn",
+        "url": "https://vuelalearn.in"
       }
     };
 

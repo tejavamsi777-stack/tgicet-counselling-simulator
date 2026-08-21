@@ -142,6 +142,72 @@ export const EAPCET_DOCUMENTS = [
 
 export const EAPCET_FALLBACK_DATA = {
   year: 2026,
+  examName: "AP EAPCET 2026 (M.P.C. Stream)",
+  authority: "Commissionerate of Higher Education, Andhra Pradesh / APSCHE",
+  officialWebsite: "https://cap.apcfss.in/",
+  phases: [
+    {
+      id: "phase1",
+      label: "First Phase",
+      badge: "Concluded",
+      status: "concluded",
+      steps: [
+        { action: "Online Payment of Processing Fee cum Registration & Verification", dates: "July 1 – 7, 2026", status: "concluded" },
+        { action: "Online Verification of Uploaded Certificates at Notified HLCs", dates: "July 4 – 10, 2026", status: "concluded" },
+        { action: "Exercising the Web-Options by Registered Eligible Candidates", dates: "July 8 – 12, 2026", status: "concluded" },
+        { action: "Change of Web Options (Editing of saved options)", dates: "July 13, 2026", status: "concluded" },
+        { action: "Release of First Phase Provisional Seat Allotments", dates: "July 17, 2026", status: "concluded" },
+        { action: "Self-Reporting and Physical Reporting at Allotted Colleges", dates: "July 19 – 22, 2026", status: "concluded" },
+      ],
+    },
+    {
+      id: "final",
+      label: "Final Phase",
+      badge: "Active / Published",
+      status: "active",
+      steps: [
+        { action: "Online Payment of Processing Fee cum Registration and online certificate verification", dates: "17.08.2026 to 20.08.2026", status: "active" },
+        { action: "Online Verification of uploaded Certificates at notified Help Line centers", dates: "17.08.2026 to 21.08.2026", status: "active" },
+        { action: "Exercising the Web-Options by the registered and eligible Candidates", dates: "17.08.2026 to 22.08.2026", status: "active" },
+        { action: "Change of Web Options (Editing of saved options)", dates: "23.08.2026", status: "upcoming" },
+        { action: "Release of Final Phase Provisional Seat Allotments (After 6:00 PM)", dates: "26.08.2026", status: "upcoming" },
+        { action: "Self-Reporting and Physical Reporting at Allotted Colleges", dates: "27.08.2026 to 30.08.2026", status: "upcoming" },
+      ],
+    },
+  ],
+  eligibility: {
+    academic: [
+      "Qualified in AP EAPCET-2026 (M.P.C. Stream) with minimum 45% marks in Intermediate (10+2) group subjects (40% for BC/SC/ST/EWS).",
+      "Bridge Course Eligibility: Intermediate Vocational Candidates who completed Bridge Course with Maths and Physical Sciences are only eligible for admissions into engineering courses (Not eligible for B.Pharmacy/Pharma.D).",
+      "Local Area Status: 85% of seats are reserved for Local candidates in Andhra University (AU) and Sri Venkateswara University (SVU) regions; 15% Unreserved (UR).",
+      "Age Limit Criteria: Candidates should have completed 16 years of age as of 31st December 2026. No upper age limit for B.Tech/B.E.",
+      "Minority Quota: Non-EAPCET minority candidates can apply for leftover minority quota seats as per APSCHE guidelines.",
+    ],
+    fees: [
+      { label: "Counselling Processing Fee (OC / BC)", value: "₹1,200 (online at cap.apcfss.in)" },
+      { label: "Counselling Processing Fee (SC / ST)", value: "₹600 (online at cap.apcfss.in)" },
+      { label: "EWS Reservation Quota", value: "10% (G.O. Ms. No. 60)" },
+      { label: "BC Reservation (BC-A, B, C, D, E)", value: "29% Total Quota" },
+      { label: "SC Reservation Quota", value: "15%" },
+      { label: "ST Reservation Quota", value: "6%" },
+      { label: "PH Quota (Physically Handicapped)", value: "3% – 5%" },
+      { label: "CAP Quota (Armed Personnel Children)", value: "2%" },
+      { label: "NCC & Sports Quota", value: "1% & 0.5%" },
+      { label: "Jagananna Vidya Deevena (JVD)", value: "100% Full Tuition Fee Reimbursement (Income ≤ ₹2.5L / Rice Card)" },
+    ],
+  },
+  conditions: [
+    {
+      severity: "high",
+      title: "Bridge Course Eligibility Limitation",
+      body: "Intermediate Vocational Candidates who have completed Bridge Course with Maths and Physical Sciences as subjects are only eligible for admissions into engineering courses. They are NOT eligible for B.Pharmacy and Pharma.D courses.",
+    },
+    {
+      severity: "high",
+      title: "Final Phase Registration & Processing Fee Policy",
+      body: "Candidates who participated in First Phase need not pay the processing fee once again. Candidates who have not participated in first phase are directed to get their certificates verified in this final phase.",
+    },
+  ],
   documents: EAPCET_DOCUMENTS,
 };
 

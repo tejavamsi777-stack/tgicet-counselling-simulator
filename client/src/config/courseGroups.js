@@ -67,6 +67,53 @@ export const EXAM_COURSE_GROUPS = {
     ],
   },
 
+  "ap-eapcet": {
+    selectorGroups: [
+      {
+        group: "ENGINEERING COURSES",
+        branches: [
+          { code: "CSE", name: "COMPUTER SCIENCE & ENGINEERING" },
+          { code: "CSD", name: "CSE (DATA SCIENCE)" },
+          { code: "CSM", name: "CSE (ARTIFICIAL INTELLIGENCE & MACHINE LEARNING)" },
+          { code: "CSC", name: "CSE (CYBER SECURITY)" },
+          { code: "INF", name: "INFORMATION TECHNOLOGY" },
+          { code: "ECE", name: "ELECTRONICS & COMMUNICATION ENGINEERING" },
+          { code: "EEE", name: "ELECTRICAL & ELECTRONICS ENGINEERING" },
+          { code: "CIV", name: "CIVIL ENGINEERING" },
+          { code: "MEC", name: "MECHANICAL ENGINEERING" },
+          { code: "AIM", name: "ARTIFICIAL INTELLIGENCE & MACHINE LEARNING" },
+          { code: "CHE", name: "CHEMICAL ENGINEERING" },
+          { code: "MET", name: "METALLURGICAL ENGINEERING" },
+          { code: "MIN", name: "MINING ENGINEERING" },
+        ],
+      },
+      {
+        group: "PHARMACY & AGRICULTURE COURSES",
+        branches: [
+          { code: "PHM", name: "B.PHARMACY" },
+          { code: "PHR", name: "PHARM-D (DOCTOR OF PHARMACY)" },
+        ],
+      },
+    ],
+    preferenceGroups: [
+      { title: "CSE — COMPUTER SCIENCE & ENGINEERING", courses: ["CSE"] },
+      { title: "CSD — CSE (DATA SCIENCE)", courses: ["CSD"] },
+      { title: "CSM — CSE (ARTIFICIAL INTELLIGENCE & MACHINE LEARNING)", courses: ["CSM"] },
+      { title: "CSC — CSE (CYBER SECURITY)", courses: ["CSC"] },
+      { title: "INF — INFORMATION TECHNOLOGY", courses: ["INF"] },
+      { title: "ECE — ELECTRONICS & COMMUNICATION ENGINEERING", courses: ["ECE"] },
+      { title: "EEE — ELECTRICAL & ELECTRONICS ENGINEERING", courses: ["EEE"] },
+      { title: "CIV — CIVIL ENGINEERING", courses: ["CIV"] },
+      { title: "MEC — MECHANICAL ENGINEERING", courses: ["MEC"] },
+      { title: "AIM — ARTIFICIAL INTELLIGENCE & MACHINE LEARNING", courses: ["AIM"] },
+      { title: "CHE — CHEMICAL ENGINEERING", courses: ["CHE"] },
+      { title: "MET — METALLURGICAL ENGINEERING", courses: ["MET"] },
+      { title: "MIN — MINING ENGINEERING", courses: ["MIN"] },
+      { title: "PHM — B.PHARMACY", courses: ["PHM"] },
+      { title: "PHR — PHARM-D (DOCTOR OF PHARMACY)", courses: ["PHR"] },
+    ],
+  },
+
   "tg-ecet": {
     selectorGroups: [
       {

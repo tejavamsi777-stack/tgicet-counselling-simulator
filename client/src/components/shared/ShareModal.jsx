@@ -196,7 +196,7 @@ export function SharePopoverContent({ onClose, shareData }) {
             <ModernShareIcon size={18} />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white tracking-tight">Share TG Counselling</h4>
+            <h4 className="text-sm font-bold text-white tracking-tight">Share VuelaLearn</h4>
             <p className="text-[11px] text-white/50">Direct share to apps or copy link</p>
           </div>
         </div>

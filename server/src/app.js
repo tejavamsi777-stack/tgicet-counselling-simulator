@@ -15,9 +15,13 @@ const app = express();
 app.set("trust proxy", 1);
 
 const allowedOrigins = [
+  "https://vuelalearn.in",
+  "https://www.vuelalearn.in",
   "https://tgcounselling.vercel.app",
   "https://tgicetcounselling.vercel.app",
   "http://localhost:5173", // keep local dev working
+  "http://localhost:5174",
+  "http://localhost:5175",
 ];
 
 app.use(helmet());

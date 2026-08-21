@@ -11,9 +11,10 @@ import AdmissionConditions from '../../components/ap-eapcet/AdmissionConditions'
 import EligibilityMatrix from '../../components/ap-eapcet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/ap-eapcet/TopCollegesLeaderboard';
 import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
-import CollegeProfileSelectorBanner from '../../components/ap-eapcet/CollegeProfileSelectorBanner';
-import CutoffTrendAnalyzer from '../../components/ap-eapcet/CutoffTrendAnalyzer';
+import OfficialCollegeProfileViewer from '../../components/ap-eapcet/OfficialCollegeProfileViewer';
 import CommunityAlertsBanner from '../../components/ap-eapcet/CommunityAlertsBanner';
+import FaqSection from '../../components/shared/FaqSection';
+import { AP_EAPCET_FAQS } from '../../data/faqsData';
 import { useApEapcetData } from '../../hooks/useApEapcetData';
 
 function SectionDivider() {
@@ -30,21 +31,21 @@ export default function EapcetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="AP EAPCET Admissions Suite 2025-2026 | College Predictor, Cutoffs & Web Options"
-        description="Comprehensive Andhra Pradesh EAPCET engineering admissions hub with live counselling updates, college comparison matrix, cutoff trajectories, and document checklist."
+        title="AP EAPCET College Predictor, Seat Allotments, Cutoffs & Web Options Simulator"
+        description="Free AP EAPCET college predictor, mock web options simulator & authentic candidate seat allotments across 411 colleges with verified APSCHE cutoffs."
         path="/ap-eapcet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Admissions Suite 2025–2026
+          Andhra Pradesh Admissions 2026
         </span>
-        <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          AP EAPCET Counselling Intelligence Platform
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
+          AP EAPCET College Predictor, Seat Allotments, Cutoffs &amp; Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Andhra Pradesh Engineering &amp; Pharmacy Admissions — live APSCHE circulars, verified 3-year cutoff trajectory, AI preference simulator, and HLC certificate checklist.
+          Everything you need for Andhra Pradesh Engineering &amp; Pharmacy Admissions — predict eligible colleges by AP rank, explore official candidate seat allotments across 411 colleges, and practice mock web options entry.
         </p>
       </div>
 
@@ -60,7 +61,7 @@ export default function EapcetHome() {
         <FeatureCard
           icon={Database}
           title="Seat Allotments"
-          detail="Official 2026 college-wise allotment lists — every candidate, every seat category."
+          detail="Official 2025 college-wise allotment lists — every candidate, every seat category."
           to="/ap-eapcet/allotments"
           action="Explore Data"
         />
@@ -108,26 +109,21 @@ export default function EapcetHome() {
 
       <SectionDivider />
 
-      {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
+      {/* AP Jagananna Vidya Deevena (JVD) Fee & Scholarship Calculator */}
       <div className="relative z-30 mb-6">
-        <FeeReimbursementCalculator />
-      </div>
-
-      {/* Dedicated College Profile Selector Banner */}
-      <div className="relative z-20 mb-10">
-        <CollegeProfileSelectorBanner />
+        <FeeReimbursementCalculator exam="ap-eapcet" />
       </div>
 
       {/* Top 5 Engineering Colleges Leaderboard */}
-      <div className="relative z-10">
+      <div className="relative z-20 mb-10">
         <TopCollegesLeaderboard />
       </div>
 
       <SectionDivider />
 
-      {/* 3-Year Cutoff Trajectory & Shifts */}
-      <div>
-        <CutoffTrendAnalyzer />
+      {/* Official College Profiles & Branch Fee Details (Scraped from cap.apcfss.in) */}
+      <div className="relative z-10 mb-8">
+        <OfficialCollegeProfileViewer />
       </div>
 
       <SectionDivider />
@@ -159,6 +155,17 @@ export default function EapcetHome() {
       ) : (
         <EligibilityMatrix eligibility={data?.eligibility || {}} />
       )}
+
+      <SectionDivider />
+
+      {/* AP EAPCET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="AP EAPCET 2026 Admissions & Counselling FAQs"
+          subtitle="Frequently asked questions about AP EAPCET web counselling, JVD fee reimbursement, certificate verification, and local area quotas"
+          faqs={AP_EAPCET_FAQS}
+        />
+      </div>
 
       {/* Bottom Ad Unit */}
       <div className="mt-12 w-full">

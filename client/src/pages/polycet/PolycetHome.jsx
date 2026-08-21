@@ -12,6 +12,8 @@ import EligibilityMatrix from '../../components/polycet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/polycet/TopCollegesLeaderboard';
 import CutoffTrendAnalyzer from '../../components/polycet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
+import FaqSection from '../../components/shared/FaqSection';
+import { TG_POLYCET_FAQS } from '../../data/faqsData';
 import { usePolycetData } from '../../hooks/usePolycetData';
 
 function SectionDivider() {
@@ -28,24 +30,24 @@ export default function PolycetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG POLYCET Admissions Suite 2025-2026 | College Predictor, Cutoffs & Web Options"
-        description="Comprehensive Telangana POLYCET polytechnic admissions hub with live SBTET counselling updates, polytechnic comparison matrix, cutoff trajectories, and document checklist across 114 colleges."
+        title="TG POLYCET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator"
+        description="Free TG POLYCET polytechnic college predictor, mock web options simulator & authentic candidate seat allotments from tgpolycet.nic.in with verified closing cutoffs."
         path="/tg-polycet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Admissions Suite 2025–2026
+          Telangana Polytechnic Admissions 2026
         </span>
         <h1
-          className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white"
+          className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          TG POLYCET Counselling Intelligence Platform
+          TG POLYCET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Telangana Polytechnic Diploma Admissions — live SBTET circulars, verified 4-year cutoff trajectory, AI preference simulator, and HLC certificate checklist across 114 polytechnic colleges.
+          Everything you need for Telangana Polytechnic Diploma Admissions — predict polytechnic seats by SSC/POLYCET rank, explore official candidate seat allotments across 114 colleges, and practice web options entry.
         </p>
       </div>
 
@@ -150,6 +152,17 @@ export default function PolycetHome() {
       ) : (
         <EligibilityMatrix eligibility={data?.eligibility || {}} />
       )}
+
+      <SectionDivider />
+
+      {/* TG POLYCET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="TG POLYCET 2026 Diploma Admissions FAQs"
+          subtitle="Frequently asked questions about 10th-based Polytechnic Diploma counselling, government polytechnic cutoffs, and reservations"
+          faqs={TG_POLYCET_FAQS}
+        />
+      </div>
 
       {/* Bottom Ad Unit */}
       <div className="mt-12 w-full">

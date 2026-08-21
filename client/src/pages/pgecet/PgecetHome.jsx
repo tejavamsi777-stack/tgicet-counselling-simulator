@@ -12,6 +12,8 @@ import CutoffTrendAnalyzer from '../../components/pgecet/CutoffTrendAnalyzer';
 import AdmissionConditions from '../../components/pgecet/AdmissionConditions';
 import EligibilityMatrix from '../../components/pgecet/EligibilityMatrix';
 import CertificateChecklist from '../../components/pgecet/CertificateChecklist';
+import FaqSection from '../../components/shared/FaqSection';
+import { TG_PGECET_FAQS } from '../../data/faqsData';
 
 function SectionDivider() {
   return <div className="my-12 border-t border-white/[0.06]" />;
@@ -50,24 +52,24 @@ export default function PgecetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG PGECET Admissions Suite 2025-2026 | M.Tech / M.E. Predictor, Cutoffs & Allotments"
-        description="Comprehensive Telangana PGECET postgraduate admissions portal with official college seat allotments, M.Tech specialization cutoffs, GATE/PGECET rank predictor, and HLC document checklist across 99 colleges."
+        title="TG PGECET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator"
+        description="Free TG PGECET M.Tech & M.Pharm college predictor, mock web options simulator & authentic candidate seat allotments from pgecet.tsche.ac.in with verified closing cutoffs."
         path="/tg-pgecet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Postgraduate Admissions Suite 2025–2026 (M.E. / M.Tech / M.Arch / M.Pharm)
+          Telangana Postgraduate Admissions 2026
         </span>
         <h1
-          className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white"
+          className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          TG PGECET Counselling Intelligence Platform
+          TG PGECET College Predictor, Seat Allotments, Cutoffs, Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Telangana Postgraduate Engineering &amp; Pharmacy Admissions — verified 2026 college seat allotments, GATE / PGECET college predictor, live TGCHE circulars, and HLC certificate checklist.
+          Everything you need for Telangana Postgraduate Admissions — predict M.Tech &amp; M.Pharm seats by GATE/PGECET rank, explore official candidate seat allotments, and practice web options entry.
         </p>
       </div>
 
@@ -159,6 +161,17 @@ export default function PgecetHome() {
       {/* HLC Certificate Checklist */}
       <div>
         <CertificateChecklist />
+      </div>
+
+      <SectionDivider />
+
+      {/* TG PGECET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="TG PGECET 2026 M.Tech & M.Pharm Admissions FAQs"
+          subtitle="Frequently asked questions about GATE/GPAT priorities, postgraduate cutoffs, and seat allotments"
+          faqs={TG_PGECET_FAQS}
+        />
       </div>
 
       {/* Bottom Ad Unit */}

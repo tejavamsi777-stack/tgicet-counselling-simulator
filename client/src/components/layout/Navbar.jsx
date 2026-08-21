@@ -19,7 +19,6 @@ import {
   Info,
   Star,
 } from "lucide-react";
-import { ABOUT_TEXT } from "./Footer";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
 import { ShareModal, ModernShareIcon } from "../shared/ShareModal";
@@ -32,6 +31,7 @@ const EXAM_MENU_ITEMS = [
   { slug: "tg-icet", name: "TG ICET", subtitle: "MBA & MCA Admissions", path: "/tg-icet", badge: "Live" },
   { slug: "tg-ecet", name: "TG ECET", subtitle: "Diploma Lateral Entry (B.Tech)", path: "/tg-ecet", badge: "Live" },
   { slug: "tg-polycet", name: "TG POLYCET", subtitle: "Polytechnic & Diploma", path: "/tg-polycet", badge: "Live" },
+  { slug: "tg-pgecet", name: "TG PGECET", subtitle: "M.Tech, M.Pharm & Post-Grad", path: "/tg-pgecet", badge: "Live" },
 ];
 
 const PREDICTOR_MENU_ITEMS = [
@@ -40,14 +40,16 @@ const PREDICTOR_MENU_ITEMS = [
   { name: "TG ICET Predictor", subtitle: "MBA & MCA Cutoffs", path: "/tg-icet/predictor" },
   { name: "TG ECET Predictor", subtitle: "Lateral Entry 2nd Year Cutoffs", path: "/tg-ecet/predictor" },
   { name: "TG POLYCET Predictor", subtitle: "Polytechnic Diploma Cutoffs", path: "/tg-polycet/predictor" },
+  { name: "TG PGECET Predictor", subtitle: "Postgraduate M.Tech Cutoffs", path: "/tg-pgecet/predictor" },
 ];
 
 const COUNSELLING_MENU_ITEMS = [
-  { name: "AP EAPCET Exercise Web Options", subtitle: "Branch & College Priority Simulator", path: "/ap-eapcet/mock-counselling" },
-  { name: "TG EAPCET Exercise Web Options", subtitle: "Branch & College Priority Simulator", path: "/tg-eapcet/mock-counselling" },
-  { name: "TG ICET Exercise Web Options", subtitle: "MBA & MCA Priority Ordering Simulator", path: "/tg-icet/mock-counselling" },
-  { name: "TG ECET Exercise Web Options", subtitle: "Diploma Lateral Entry Priority Ordering", path: "/tg-ecet/mock-counselling" },
-  { name: "TG POLYCET Exercise Web Options", subtitle: "Polytechnic Preference Simulator", path: "/tg-polycet/mock-counselling" },
+  { name: "AP EAPCET Web Options", subtitle: "Branch & College Priority Simulator", path: "/ap-eapcet/mock-counselling" },
+  { name: "TG EAPCET Web Options", subtitle: "Branch & College Priority Simulator", path: "/tg-eapcet/mock-counselling" },
+  { name: "TG ICET Web Options", subtitle: "MBA & MCA Priority Simulator", path: "/tg-icet/mock-counselling" },
+  { name: "TG ECET Web Options", subtitle: "Diploma Lateral Entry Simulator", path: "/tg-ecet/mock-counselling" },
+  { name: "TG POLYCET Web Options", subtitle: "Polytechnic Preference Simulator", path: "/tg-polycet/mock-counselling" },
+  { name: "TG PGECET Web Options", subtitle: "Postgraduate Branch Simulator", path: "/tg-pgecet/mock-counselling" },
 ];
 
 export default function Navbar() {
@@ -81,19 +83,22 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-3 z-50 px-3 sm:px-6">
-      {/* Apple Ultra-Transparent Liquid Glass Floating Capsule */}
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full border border-white/25 bg-white/[0.03] px-4 sm:px-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl backdrop-saturate-200 text-white transition-all duration-300">
+      {/* Ultra-Transparent Liquid Glass Floating Capsule */}
+      <div className="relative mx-auto flex h-14 max-w-7xl items-center justify-between rounded-full border border-white/25 bg-white/[0.03] px-4 sm:px-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl backdrop-saturate-200 text-white transition-all duration-300">
         
-        {/* Brand Logo & Name */}
-        <Link to="/" className="flex items-center gap-2.5">
-          <Logo size={28} />
-          <span
-            className="font-brand text-[15px] leading-none tracking-wide text-white translate-y-[7px] inline-flex items-center gap-2"
-          >
-            <span>TG</span>
-            <span>Counselling</span>
-          </span>
-        </Link>
+        {/* Mobile Left Spacer to perfectly center the logo on mobile */}
+        <div className="flex w-9 md:hidden items-center justify-start" aria-hidden="true" />
+
+        {/* Brand Logo - Centered on Mobile, Left-aligned on Desktop */}
+        <div className="flex-1 md:flex-initial flex items-center justify-center md:justify-start">
+          <Link to="/" className="flex items-center group py-1" title="VuelaLearn">
+            <img
+              src="/vuela-logo-white.png"
+              alt="VUELA"
+              className="h-6 sm:h-7 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav
@@ -131,7 +136,7 @@ export default function Navbar() {
                   className="absolute left-0 top-full z-50 mt-2 w-72 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
                 >
                   <div className="mb-2 px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-purple-300">
-                    Telangana Entrance Exams
+                    Telangana & AP Entrance Exams
                   </div>
                   <div className="space-y-1">
                     {EXAM_MENU_ITEMS.map((item) => (
@@ -200,12 +205,12 @@ export default function Navbar() {
                   className="absolute left-0 top-full z-50 mt-2 w-80 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
                 >
                   <div className="mb-2 px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-purple-300">
-                    Predict by Rank & Category
+                    College Predictors by Rank
                   </div>
                   <div className="space-y-1">
                     {PREDICTOR_MENU_ITEMS.map((item) => (
                       <Link
-                        key={item.path}
+                        key={item.name}
                         to={item.path}
                         onClick={() => setActiveDropdown(null)}
                         className="group flex items-start gap-2.5 rounded-2xl px-3 py-2 transition hover:bg-white/10"
@@ -229,7 +234,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* 3. Mock Counselling Dropdown */}
+          {/* 3. Mock Counselling / Web Options Dropdown */}
           <div className="relative">
             <button
               onMouseEnter={() => handleMenuHover("counselling")}
@@ -256,15 +261,15 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.96 }}
                   transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute right-0 top-full z-50 mt-2 w-80 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
+                  className="absolute left-0 top-full z-50 mt-2 w-80 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
                 >
                   <div className="mb-2 px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-purple-300">
-                    Exercise Web Options
+                    Web Options Simulators
                   </div>
                   <div className="space-y-1">
                     {COUNSELLING_MENU_ITEMS.map((item) => (
                       <Link
-                        key={item.path}
+                        key={item.name}
                         to={item.path}
                         onClick={() => setActiveDropdown(null)}
                         className="group flex items-start gap-2.5 rounded-2xl px-3 py-2 transition hover:bg-white/10"
@@ -317,7 +322,7 @@ export default function Navbar() {
                   <div className="mb-2.5 flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm font-semibold text-white">
                       <Info size={16} className="text-purple-300" />
-                      <span>About TG Counselling</span>
+                      <span>About VuelaLearn</span>
                     </div>
                     <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
                       100% Free
@@ -330,28 +335,17 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* User Profile, Share, Rate Us & Mobile Toggle */}
+        {/* User Profile, Rate Us & Mobile Toggle */}
         <div className="flex items-center gap-2">
           {/* Rate Us Button (Desktop & Tablet) */}
           <button
             type="button"
             onClick={() => setReviewOpen(true)}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-300 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            title="Rate & Review TG Counselling"
+            title="Rate & Review VuelaLearn"
           >
             <Star size={13} className="fill-amber-400 text-amber-400" />
             <span>Rate Us</span>
-          </button>
-
-          {/* Share Button (Desktop & Tablet) */}
-          <button
-            type="button"
-            onClick={() => setShareOpen(true)}
-            className="hidden sm:flex group h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 shadow-sm transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/20 hover:text-white active:scale-95 cursor-pointer"
-            title="Share this page"
-            aria-label="Share this page"
-          >
-            <ModernShareIcon size={16} />
           </button>
 
           <div className="hidden md:block">

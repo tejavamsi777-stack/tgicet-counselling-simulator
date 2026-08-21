@@ -26,7 +26,7 @@ function normalizeCourseCode(course, examSlug) {
 }
 
 export const predictionService = {
-  async predict({ rank, category, gender, course, courses, district, districts, year, years, exam: examSlug }) {
+  async predict({ rank, category, gender, course, courses, district, districts, year, years, exam: examSlug, region }) {
     const exam = await examService.resolve(examSlug);
     const rankNum = Number(rank);
 
@@ -66,6 +66,7 @@ export const predictionService = {
       districts: districtList,
       years: yearList,
       examId: exam.id,
+      region,
     });
 
     const withStatus = matches.map((m) => {

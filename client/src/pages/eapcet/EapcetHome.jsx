@@ -14,6 +14,8 @@ import FeeReimbursementCalculator from '../../components/shared/FeeReimbursement
 import CollegeProfileSelectorBanner from '../../components/eapcet/CollegeProfileSelectorBanner';
 import CutoffTrendAnalyzer from '../../components/eapcet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
+import FaqSection from '../../components/shared/FaqSection';
+import { TG_EAPCET_FAQS } from '../../data/faqsData';
 import { useEapcetData } from '../../hooks/useEapcetData';
 
 function SectionDivider() {
@@ -30,21 +32,21 @@ export default function EapcetHome() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG EAPCET Admissions Suite 2025-2026 | College Predictor, Cutoffs & Web Options"
-        description="Comprehensive Telangana EAPCET engineering admissions hub with live counselling updates, college comparison matrix, cutoff trajectories, and document checklist."
+        title="TG EAPCET College Predictor, Seat Allotments, Cutoffs & Web Options Simulator"
+        description="Free TG EAPCET college predictor, mock web options simulator & authentic candidate seat allotments across 200+ Telangana engineering colleges with verified TSCHE cutoffs."
         path="/tg-eapcet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Admissions Suite 2025–2026
+          Telangana Admissions 2026
         </span>
-        <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          TG EAPCET Counselling Intelligence Platform
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
+          TG EAPCET College Predictor, Seat Allotments, Cutoffs &amp; Web Options Simulator
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-3xl">
-          Everything you need for Telangana Engineering &amp; Pharmacy Admissions — live TSCHE circulars, verified 3-year cutoff trajectory, AI preference simulator, and HLC certificate checklist.
+          Everything you need for Telangana Engineering &amp; Pharmacy Admissions — predict eligible engineering colleges by TG rank, explore authentic candidate seat allotments across 200+ colleges, and build conflict-free web options.
         </p>
       </div>
 
@@ -159,6 +161,17 @@ export default function EapcetHome() {
       ) : (
         <EligibilityMatrix eligibility={data?.eligibility || {}} />
       )}
+
+      <SectionDivider />
+
+      {/* TG EAPCET FAQs Section */}
+      <div className="w-full mb-12">
+        <FaqSection
+          title="TG EAPCET 2026 Admissions & Counselling FAQs"
+          subtitle="Frequently asked questions about Telangana engineering counselling, TS ePASS fee reimbursement, cutoffs, and web options"
+          faqs={TG_EAPCET_FAQS}
+        />
+      </div>
 
       {/* Bottom Ad Unit */}
       <div className="mt-12 w-full">

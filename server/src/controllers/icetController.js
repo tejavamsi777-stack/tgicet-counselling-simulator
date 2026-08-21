@@ -1,5 +1,6 @@
 import { getIcetScrapeData, runIcetScrapeRefresh } from "../services/icetScraperService.js";
 import { ICET_INSTITUTIONS, ICET_PROGRAMS } from "../data/icetInstitutions.js";
+import { scrapeOfficialTgIcetAllotment, scrapeOfficialTgIcetColleges } from "../services/tgIcetAllotmentScraper.js";
 
 const ICET_COUNSELLING_DATA = {
   exam: "TG ICET",
@@ -393,6 +394,174 @@ export const icetController = {
     };
 
     res.json({ success: true, data: comparison });
+  },
+
+  // GET /api/icet/colleges/:code/branches
+  async getCollegeBranches(req, res) {
+    const { code } = req.params;
+    const cCode = (code || "").toUpperCase().trim();
+    const college = ICET_INSTITUTIONS.find((c) => c.code === cCode);
+
+    let branches = [];
+    if (college && college.coursesOffered) {
+      branches = college.coursesOffered.map((b) => ({
+        code: b,
+        name: b === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)",
+      }));
+    } else {
+      branches = [
+        { code: "MBA", name: "Master of Business Administration (MBA)" },
+        { code: "MCA", name: "Master of Computer Applications (MCA)" },
+      ];
+    }
+
+    res.json({ success: true, data: { collegeCode: cCode, branches } });
+  },
+
+  // GET /api/icet/allotments/meta
+  async getAllotmentMeta(req, res) {
+    const years = [
+      { id: "2026-final", label: "2026 Final Phase (Official Live Allotment)" },
+    ];
+    const branches = [
+      { code: "MBA", name: "Master of Business Administration (MBA)" },
+      { code: "MCA", name: "Master of Computer Applications (MCA)" },
+    ];
+    const categories = [
+      "ALL",
+      "OC",
+      "BC_A",
+      "BC_B",
+      "BC_C",
+      "BC_D",
+      "BC_E",
+      "SC",
+      "ST",
+      "EWS",
+    ];
+
+    const colleges = ICET_INSTITUTIONS.map((c) => ({
+      code: c.code,
+      name: c.name,
+      place: c.place || c.district,
+      district: c.district,
+      university: c.university,
+      type: c.type,
+      annualFee: c.annualFee || 0,
+      coursesOffered: c.coursesOffered || ["MBA"],
+    }));
+
+    res.json({
+      success: true,
+      data: {
+        years,
+        branches,
+        categories,
+        colleges,
+        totalColleges: colleges.length,
+      },
+    });
+  },
+
+  // GET /api/icet/allotments
+  async getAllotmentData(req, res, next) {
+    try {
+      const {
+        college = "OUCB",
+        branch = "MBA",
+        year = "2026-final",
+        search = "",
+        category = "",
+        gender = "",
+        page = 1,
+        limit = 50,
+      } = req.query;
+
+      const cCode = (college || "OUCB").trim().toUpperCase();
+      const bCode = (branch || "MBA").trim().toUpperCase();
+
+      let liveScraped = null;
+      try {
+        liveScraped = await scrapeOfficialTgIcetAllotment(cCode, bCode);
+      } catch (err) {
+        console.warn("[ICET Live Allotment Scrape Warning]:", err.message);
+      }
+
+      const collegeObj = ICET_INSTITUTIONS.find((c) => c.code === cCode) || {
+        code: cCode,
+        name: `${cCode} Institution`,
+        place: "Hyderabad",
+        district: "Hyderabad",
+        university: "OU",
+        type: "Private Unaided",
+        annualFee: 45000,
+      };
+
+      const branchObj = {
+        code: bCode,
+        name: bCode === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)",
+      };
+
+      let candidates = liveScraped?.candidates || [];
+
+      // Filter in-memory if search/filter query parameters are passed
+      if (search && search.trim() !== "") {
+        const s = search.toLowerCase().trim();
+        candidates = candidates.filter(
+          (c) =>
+            c.name.toLowerCase().includes(s) ||
+            c.hallTicket.toLowerCase().includes(s) ||
+            c.rank.toString().includes(s) ||
+            c.seatCategory.toLowerCase().includes(s)
+        );
+      }
+
+      if (category && category.toUpperCase() !== "ALL") {
+        const cat = category.toUpperCase();
+        candidates = candidates.filter(
+          (c) => c.caste.toUpperCase() === cat || c.seatCategory.toUpperCase().includes(cat)
+        );
+      }
+
+      if (gender && gender.toUpperCase() !== "ALL") {
+        const g = gender.toUpperCase();
+        candidates = candidates.filter((c) => c.gender.toUpperCase() === g || (g === "F" && c.gender === "Female") || (g === "M" && c.gender === "Male"));
+      }
+
+      const totalFiltered = candidates.length;
+      const p = Math.max(1, parseInt(page, 10) || 1);
+      const l = Math.max(1, parseInt(limit, 10) || 50);
+      const startIndex = (p - 1) * l;
+      const paginatedCandidates = candidates.slice(startIndex, startIndex + l);
+
+      const finalData = {
+        collegeCode: cCode,
+        branchCode: bCode,
+        totalSeats: liveScraped?.totalSeats || candidates.length,
+        totalRecords: totalFiltered,
+        openingRank: liveScraped?.openingRank || (candidates[0]?.rank || 0),
+        closingRank: liveScraped?.closingRank || (candidates[candidates.length - 1]?.rank || 0),
+        candidates: paginatedCandidates,
+        availableBranches: liveScraped?.availableBranches || [{ code: "MBA", name: "MBA" }],
+        page: p,
+        totalPages: Math.ceil(totalFiltered / l) || 1,
+        isLiveScraped: !!liveScraped?.candidates?.length,
+        source: "https://tgicet.nic.in/college_allotment.aspx",
+        lastUpdated: liveScraped?.lastUpdated || new Date().toISOString(),
+      };
+
+      res.json({
+        success: true,
+        data: {
+          ...finalData,
+          year,
+          college: collegeObj,
+          branch: branchObj,
+        },
+      });
+    } catch (err) {
+      next(err);
+    }
   },
 
   // POST /api/icet/refresh
