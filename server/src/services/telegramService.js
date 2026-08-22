@@ -18,6 +18,13 @@ const EXAM_TITLE_MAP = {
   "general": "Vuela Learn",
 };
 
+function escapeHtml(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 export const telegramService = {
   async sendReviewNotification({ rating, feedback, examSlug, user, reqIp }) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -29,11 +36,11 @@ export const telegramService = {
     }
 
     const ratingLabel = EMOJI_MAP[rating] || `⭐ ${rating}/5`;
-    const examName = EXAM_TITLE_MAP[examSlug] || examSlug?.toUpperCase() || "TG Counselling";
+    const examName = EXAM_TITLE_MAP[examSlug] || examSlug?.toUpperCase() || "Vuela Learn";
     const studentInfo = user
       ? `${user.name || "Student"} (${user.email || "Registered"})`
       : "Guest Visitor (Anonymous)";
-    const cleanFeedback = feedback && feedback.trim() ? feedback.trim() : "_(No written comment provided)_";
+    const cleanFeedback = feedback && feedback.trim() ? feedback.trim() : "(No written comment provided)";
     const dateFormatted = new Date().toLocaleString("en-IN", {
       timeZone: "Asia/Kolkata",
       day: "numeric",
@@ -44,15 +51,15 @@ export const telegramService = {
       hour12: true,
     });
 
-    const text = `🌟 *New Student Review Submitted!*
+    const text = `🌟 <b>New Student Review Submitted!</b>
 ━━━━━━━━━━━━━━━━━━━━
-⭐ *Rating*: ${ratingLabel}
-🎓 *Exam*: ${examName}
-👤 *Student*: ${studentInfo}
-🕒 *Time*: ${dateFormatted}
+⭐ <b>Rating</b>: ${escapeHtml(ratingLabel)}
+🎓 <b>Exam</b>: ${escapeHtml(examName)}
+👤 <b>Student</b>: ${escapeHtml(studentInfo)}
+🕒 <b>Time</b>: ${escapeHtml(dateFormatted)}
 
-💬 *Feedback*:
-${cleanFeedback}
+💬 <b>Feedback</b>:
+${escapeHtml(cleanFeedback)}
 ━━━━━━━━━━━━━━━━━━━━`;
 
     try {
@@ -61,13 +68,16 @@ ${cleanFeedback}
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id: chatId,
+          chat_id: String(chatId).trim(),
           text: text,
-          parse_mode: "Markdown",
+          parse_mode: "HTML",
         }),
       });
 
       const data = await res.json();
+      if (!data?.ok) {
+        console.error("[TelegramService]: Telegram API error response:", data);
+      }
       return data?.ok === true;
     } catch (err) {
       console.error("[TelegramService]: Failed to send review alert:", err.message);
