@@ -9,11 +9,13 @@ const EMOJI_MAP = {
 };
 
 const EXAM_TITLE_MAP = {
+  "ap-eapcet": "AP EAPCET",
   "tg-eapcet": "TG EAPCET",
   "tg-ecet": "TG ECET",
   "tg-icet": "TG ICET",
   "tg-polycet": "TG POLYCET",
-  "general": "TG Counselling",
+  "tg-pgecet": "TG PGECET",
+  "general": "Vuela Learn",
 };
 
 export const telegramService = {
