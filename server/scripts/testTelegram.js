@@ -1,7 +1,8 @@
-import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
-const BOT_TOKEN = "8419242155:AAG8BjY3b_F7wjAzOfBksXHjgLieQS7UxVw";
-const CHAT_ID = "1653710477";
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8905801787:AAHKJI0tPsxn3uSaixUXqnmxER0PbZLyApY";
+const CHAT_ID = process.env.TELEGRAM_CHAT_ID || "1653710477";
 
 async function testTelegram() {
   const text = `🎉 *TG Counselling Simulator Alert!*
