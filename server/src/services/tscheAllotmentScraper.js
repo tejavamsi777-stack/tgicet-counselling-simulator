@@ -38,7 +38,8 @@ export async function scrapeOfficialTscheAllotment(collegeCode = "CBIT", branchC
         "User-Agent": userAgent,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9"
-      }
+      },
+      signal: AbortSignal.timeout(3000),
     });
     extractCookies(initRes);
 
@@ -50,7 +51,8 @@ export async function scrapeOfficialTscheAllotment(collegeCode = "CBIT", branchC
         "Accept-Language": "en-US,en;q=0.9",
         "Referer": "https://tgeapcet.nic.in/default.aspx",
         "Cookie": cookies.join("; ")
-      }
+      },
+      signal: AbortSignal.timeout(3000),
     });
     extractCookies(getRes);
 
@@ -116,7 +118,8 @@ export async function scrapeOfficialTscheAllotment(collegeCode = "CBIT", branchC
         'Origin': 'https://tgeapcet.nic.in',
         'Cookie': cookies.join("; ")
       },
-      body: formParams1.toString()
+      body: formParams1.toString(),
+      signal: AbortSignal.timeout(3000),
     });
     extractCookies(post1Res);
 
@@ -171,7 +174,8 @@ export async function scrapeOfficialTscheAllotment(collegeCode = "CBIT", branchC
         'Origin': 'https://tgeapcet.nic.in',
         'Cookie': cookies.join("; ")
       },
-      body: formParams2.toString()
+      body: formParams2.toString(),
+      signal: AbortSignal.timeout(3000),
     });
     extractCookies(post2Res);
 

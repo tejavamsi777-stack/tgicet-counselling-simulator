@@ -8,10 +8,45 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ALLOTMENTS_DIR = path.resolve(__dirname, '../data/polycet_allotments');
 
-// In-memory cache for polycet scraped notifications
+// In-memory cache for polycet scraped notifications and allotment JSONs
 let polycetCache = {
   notifications: { data: null, timestamp: 0 },
 };
+
+let polycetSummaryData = null;
+const polycetCollegeMap = new Map();
+
+function getPolycetSummary() {
+  if (!polycetSummaryData) {
+    const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
+    if (fs.existsSync(summaryPath)) {
+      try {
+        polycetSummaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+      } catch (err) {
+        console.warn('Failed to parse polycet allotments_summary.json:', err.message);
+      }
+    }
+  }
+  return polycetSummaryData;
+}
+
+function getPolycetCollegeData(collegeCode) {
+  const code = (collegeCode || '').toUpperCase().trim();
+  if (polycetCollegeMap.has(code)) {
+    return polycetCollegeMap.get(code);
+  }
+  const collegePath = path.join(ALLOTMENTS_DIR, `${code}.json`);
+  if (fs.existsSync(collegePath)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(collegePath, 'utf8'));
+      polycetCollegeMap.set(code, data);
+      return data;
+    } catch (err) {
+      console.warn(`Failed to parse polycet college file ${code}.json:`, err.message);
+    }
+  }
+  return null;
+}
 
 // Static master counselling metadata for TG POLYCET
 const POLYCET_COUNSELLING_DATA = {
@@ -450,11 +485,10 @@ export const polycetController = {
   // GET /api/polycet/allotments/meta
   async getAllotmentMeta(req, res) {
     try {
-      const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
+      const summaryData = getPolycetSummary();
       let collegeBranches = {};
       let colleges = [];
-      if (fs.existsSync(summaryPath)) {
-        const summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+      if (summaryData && summaryData.length > 0) {
         summaryData.forEach((col) => {
           colleges.push({ code: col.code, name: col.name, district: col.district, type: col.type });
           collegeBranches[col.code] = (col.branches || []).map((b) => ({
@@ -481,10 +515,9 @@ export const polycetController = {
   // GET /api/polycet/colleges/:code/branches
   async getCollegeBranches(req, res) {
     const code = (req.params.code || "").toUpperCase();
-    const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
+    const summaryData = getPolycetSummary();
     let branches = [];
-    if (fs.existsSync(summaryPath)) {
-      const summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+    if (summaryData && summaryData.length > 0) {
       const col = summaryData.find((c) => c.code === code);
       if (col) {
         branches = (col.branches || []).map((b) => ({
@@ -500,12 +533,8 @@ export const polycetController = {
   // GET /api/polycet/allotments/summary
   async getAllotmentsSummary(req, res) {
     try {
-      const summaryPath = path.join(ALLOTMENTS_DIR, 'allotments_summary.json');
-      if (fs.existsSync(summaryPath)) {
-        const data = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
-        return res.json({ success: true, data });
-      }
-      res.json({ success: true, data: [] });
+      const data = getPolycetSummary();
+      res.json({ success: true, data: data || [] });
     } catch (e) {
       res.status(500).json({ success: false, error: e.message });
     }
@@ -517,12 +546,11 @@ export const polycetController = {
     const { branch = "" } = req.query;
 
     try {
-      const collegePath = path.join(ALLOTMENTS_DIR, `${collegeCode.toUpperCase()}.json`);
-      if (!fs.existsSync(collegePath)) {
+      const collegeData = getPolycetCollegeData(collegeCode);
+      if (!collegeData) {
         return res.status(404).json({ success: false, error: `Allotments for college ${collegeCode} not found.` });
       }
 
-      const collegeData = JSON.parse(fs.readFileSync(collegePath, 'utf8'));
       if (branch && branch.trim() && branch.trim().toUpperCase() !== 'ALL') {
         const branchUpper = branch.trim().toUpperCase();
         const branchObj = collegeData.branches?.find(b => b.branchCode.toUpperCase() === branchUpper);

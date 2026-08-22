@@ -578,30 +578,40 @@ export const ecetController = {
     const cCode = college.toUpperCase().trim();
     const bCode = branch.toUpperCase().trim();
 
-    // 1. Check if pre-scraped json file exists on disk
-    const collegeFilePath = path.resolve(__dirname, `../data/ecet_allotments/${cCode}.json`);
+    // 1. Check in-memory cached or pre-scraped json file on disk
     let fileResult = null;
-
-    if (fs.existsSync(collegeFilePath)) {
-      try {
-        const collegeFile = JSON.parse(fs.readFileSync(collegeFilePath, "utf8"));
-        const branchData = (collegeFile.branches || []).find((b) => b.code.toUpperCase() === bCode);
-        if (branchData && branchData.candidates?.length > 0) {
-          fileResult = {
-            collegeCode: cCode,
-            branchCode: bCode,
-            totalSeats: branchData.totalAllotted,
-            openingRank: branchData.openingRank,
-            closingRank: branchData.closingRank,
-            candidates: branchData.candidates,
-            totalRecords: branchData.candidates.length,
-            isLiveScraped: true,
-            source: "https://tgecet.nic.in/college_allotment.aspx",
-            lastUpdated: new Date().toISOString(),
-          };
+    let collegeFile = null;
+    
+    if (global.__ecetCollegeMap && global.__ecetCollegeMap.has(cCode)) {
+      collegeFile = global.__ecetCollegeMap.get(cCode);
+    } else {
+      const collegeFilePath = path.resolve(__dirname, `../data/ecet_allotments/${cCode}.json`);
+      if (fs.existsSync(collegeFilePath)) {
+        try {
+          collegeFile = JSON.parse(fs.readFileSync(collegeFilePath, "utf8"));
+          if (!global.__ecetCollegeMap) global.__ecetCollegeMap = new Map();
+          global.__ecetCollegeMap.set(cCode, collegeFile);
+        } catch (err) {
+          console.warn(`[ECET File Read Warning for ${cCode}]:`, err.message);
         }
-      } catch (err) {
-        console.warn(`[ECET File Read Warning for ${cCode}]:`, err.message);
+      }
+    }
+
+    if (collegeFile) {
+      const branchData = (collegeFile.branches || []).find((b) => b.code.toUpperCase() === bCode);
+      if (branchData && branchData.candidates?.length > 0) {
+        fileResult = {
+          collegeCode: cCode,
+          branchCode: bCode,
+          totalSeats: branchData.totalAllotted,
+          openingRank: branchData.openingRank,
+          closingRank: branchData.closingRank,
+          candidates: branchData.candidates,
+          totalRecords: branchData.candidates.length,
+          isLiveScraped: true,
+          source: "https://tgecet.nic.in/college_allotment.aspx",
+          lastUpdated: new Date().toISOString(),
+        };
       }
     }
 
