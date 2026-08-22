@@ -65,6 +65,7 @@ import GoogleOneTap from "./components/shared/GoogleOneTap";
 import LoginModal from "./components/shared/LoginModal";
 import { useAuth } from "./context/AuthContext";
 import { FloatingShareButton } from "./components/shared/ShareModal";
+import AiChatWidget from "./components/chat/AiChatWidget";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { useAdSenseScript } from "./hooks/useAdSenseScript";
 
@@ -282,8 +283,9 @@ function MainContent() {
           </Suspense>
         </div>
 
-        {/* Global Bottom-Left Floating Share Button on Every Page */}
+        {/* Global Bottom-Left Floating Share Button & Bottom-Right AI Counselor Widget */}
         <FloatingShareButton />
+        <AiChatWidget />
 
         <Footer openPanel={openPanel} setOpenPanel={setOpenPanel} />
       </div>

@@ -23,6 +23,7 @@ import { icetController } from "../controllers/icetController.js";
 import polycetRoutes from "./polycetRoutes.js";
 import { checklistController } from "../controllers/checklistController.js";
 import { reviewController } from "../controllers/reviewController.js";
+import { aiChatController } from "../controllers/aiChatController.js";
 
 export const router = Router();
 
@@ -37,6 +38,7 @@ router.get("/categories", referenceController.categories);
 router.get("/years", referenceController.years);
 router.get("/colleges", collegeController.list);
 router.post("/predict", predictionController.predict);
+router.post("/ai/chat", aiChatController.handleChat);
 router.post("/log-activity", optionalAuth, activityController.log);
 
 // ---------- TG EAPCET Public Counselling Data (no auth required) ----------
