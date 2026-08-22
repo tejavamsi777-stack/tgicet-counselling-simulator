@@ -1,8 +1,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8905801787:AAHKJI0tPsxn3uSaixUXqnmxER0PbZLyApY";
-const CHAT_ID = process.env.TELEGRAM_CHAT_ID || "1653710477";
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+if (!BOT_TOKEN || !CHAT_ID) {
+  console.error("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID in environment.");
+  process.exit(1);
+}
 
 async function testTelegram() {
   const text = `🎉 *TG Counselling Simulator Alert!*
