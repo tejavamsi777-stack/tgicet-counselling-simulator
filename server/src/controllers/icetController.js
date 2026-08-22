@@ -1,6 +1,23 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { getIcetScrapeData, runIcetScrapeRefresh } from "../services/icetScraperService.js";
 import { ICET_INSTITUTIONS, ICET_PROGRAMS } from "../data/icetInstitutions.js";
 import { scrapeOfficialTgIcetAllotment, scrapeOfficialTgIcetColleges } from "../services/tgIcetAllotmentScraper.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ICET_ALLOTMENTS_DIR = path.join(__dirname, "../data/icet_allotments");
+
+let icetAllotmentsSummary = null;
+try {
+  const summaryPath = path.join(ICET_ALLOTMENTS_DIR, "allotments_summary.json");
+  if (fs.existsSync(summaryPath)) {
+    icetAllotmentsSummary = JSON.parse(fs.readFileSync(summaryPath, "utf8"));
+  }
+} catch (e) {
+  console.warn("Failed to load icet allotments summary:", e.message);
+}
 
 const ICET_COUNSELLING_DATA = {
   exam: "TG ICET",
@@ -247,102 +264,6 @@ const ICET_COUNSELLING_DATA = {
   ],
 };
 
-const FIRST_NAMES = [
-  "Sai", "Rahul", "Anusha", "Venkatesh", "Priyanka", "Karthik", "Sneha", "Ravi", "Bhavani", "Suresh",
-  "Divya", "Manish", "Keerthi", "Naveen", "Harika", "Ajay", "Tejaswini", "Prashanth", "Lavanya", "Kiran",
-  "Swathi", "Mahesh", "Deepika", "Naresh", "Mounika", "Vijay", "Sandhya", "Rohit", "Pavani", "Ganesh",
-  "Pooja", "Shiva", "Varsha", "Rajesh", "Sravani", "Ramesh", "Kavya", "Vamsi", "Aparna", "Harish",
-  "Madhavi", "Sanjay", "Akhila", "Sunil", "Ramya", "Srikanth", "Anjali", "Praveen", "Meghana", "Vinay"
-];
-
-const LAST_NAMES = [
-  "Reddy", "Rao", "Sharma", "Goud", "Kumar", "Chowdary", "Varma", "Naidu", "Patel", "Yadav",
-  "Gupta", "Murthy", "Babu", "Raju", "Prasad", "Teja", "Krishna", "Mohan", "Chary", "Sekhar"
-];
-
-function generateDynamicIcetAllotments(collegeObj, bCode) {
-  const branchKey = bCode.toLowerCase();
-  const offered = (collegeObj.coursesOffered || ["MBA"]).some(c => c.toUpperCase() === bCode);
-  if (!offered) return { candidates: [], totalSeats: 0, openingRank: 0, closingRank: 0 };
-
-  const intakeCount = collegeObj.intake?.[branchKey] || (bCode === "MCA" ? 60 : 120);
-  if (intakeCount <= 0) return { candidates: [], totalSeats: 0, openingRank: 0, closingRank: 0 };
-
-  const baseClosing = collegeObj.cutoffHistory?.['2023']?.[branchKey]?.oc ||
-                      collegeObj.cutoffHistory?.['2022']?.[branchKey]?.oc ||
-                      (collegeObj.code === 'OUCB' ? 120 : collegeObj.code === 'CBIT' ? 450 : 18000);
-  
-  const baseOpening = Math.max(1, Math.round(baseClosing * (baseClosing < 1000 ? 0.15 : 0.45)));
-
-  const categories = [
-    { cat: "OC", weight: 0.35 },
-    { cat: "BC_A", weight: 0.08 },
-    { cat: "BC_B", weight: 0.12 },
-    { cat: "BC_C", weight: 0.02 },
-    { cat: "BC_D", weight: 0.08 },
-    { cat: "BC_E", weight: 0.05 },
-    { cat: "SC", weight: 0.15 },
-    { cat: "ST", weight: 0.07 },
-    { cat: "EWS", weight: 0.08 },
-  ];
-
-  let seed = 0;
-  for (let i = 0; i < collegeObj.code.length; i++) {
-    seed = (seed * 31 + collegeObj.code.charCodeAt(i)) % 100000;
-  }
-  const pseudoRandom = () => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return seed / 233280;
-  };
-
-  const rankStep = (baseClosing - baseOpening) / Math.max(1, intakeCount - 1);
-  const candidates = [];
-
-  for (let i = 0; i < intakeCount; i++) {
-    const fn = FIRST_NAMES[Math.floor(pseudoRandom() * FIRST_NAMES.length)];
-    const ln = LAST_NAMES[Math.floor(pseudoRandom() * LAST_NAMES.length)];
-    const isFemale = pseudoRandom() > 0.5;
-    const gender = isFemale ? "Female" : "Male";
-
-    const randCat = pseudoRandom();
-    let cumulative = 0;
-    let selectedCat = "OC";
-    for (const c of categories) {
-      cumulative += c.weight;
-      if (randCat <= cumulative) {
-        selectedCat = c.cat;
-        break;
-      }
-    }
-
-    const rankJitter = (pseudoRandom() - 0.5) * rankStep * 0.4;
-    const rank = Math.max(1, Math.round(baseOpening + (i * rankStep) + rankJitter));
-    const seatCat = `${selectedCat}_${isFemale && pseudoRandom() > 0.4 ? "GIRLS" : "GEN"}_${collegeObj.university || "OU"}`;
-    const htSuffix = String(1000 + i).padStart(4, "0");
-    const hallTicket = `2410${(seed % 89 + 10)}${htSuffix}`;
-
-    candidates.push({
-      rank,
-      hallTicket,
-      name: `${fn} ${ln}`,
-      gender,
-      caste: selectedCat.replace("_", "-"),
-      region: collegeObj.university || "OU",
-      seatCategory: seatCat,
-      branchCode: bCode,
-    });
-  }
-
-  candidates.sort((a, b) => a.rank - b.rank);
-
-  return {
-    candidates,
-    totalSeats: candidates.length,
-    openingRank: candidates[0]?.rank || 0,
-    closingRank: candidates[candidates.length - 1]?.rank || 0,
-  };
-}
-
 export const icetController = {
   // GET /api/icet/counselling-data
   async getCounsellingData(req, res, next) {
@@ -492,10 +413,9 @@ export const icetController = {
   // GET /api/icet/allotments/meta
   async getAllotmentMeta(req, res) {
     const years = [
-      { id: "2026-final", name: "2026 Final Phase Allotments", isLatest: true },
+      { id: "2026-final", name: "2026 Final Phase (Official Live)", isLatest: true },
       { id: "2025-final", name: "2025 Final Phase Allotments", isLatest: false },
       { id: "2024-final", name: "2024 Final Phase Allotments", isLatest: false },
-      { id: "2023-final", name: "2023 Final Phase Allotments", isLatest: false },
     ];
 
     const branches = [
@@ -507,17 +427,36 @@ export const icetController = {
       "ALL", "OC", "EWS", "BC_A", "BC_B", "BC_C", "BC_D", "BC_E", "SC", "ST"
     ];
 
-    const colleges = ICET_INSTITUTIONS.map((c) => ({
-      code: c.code,
-      name: c.name,
-      shortName: c.shortName || c.name,
-      place: c.place || "",
-      district: c.district || "",
-      university: c.university || "OU",
-      type: c.type || "Private Unaided",
-      annualFee: c.annualFee || 0,
-      coursesOffered: c.coursesOffered || ["MBA"],
-    }));
+    let colleges = [];
+    if (icetAllotmentsSummary?.colleges?.length > 0) {
+      colleges = icetAllotmentsSummary.colleges.map((c) => {
+        const inst = ICET_INSTITUTIONS.find((i) => i.code === c.code);
+        return {
+          code: c.code,
+          name: c.name,
+          shortName: inst?.shortName || c.code,
+          place: inst?.place || "",
+          district: inst?.district || "",
+          university: inst?.university || "OU",
+          type: inst?.type || "Private Unaided",
+          annualFee: inst?.annualFee || 0,
+          coursesOffered: c.coursesOffered?.length > 0 ? c.coursesOffered : (inst?.coursesOffered || ["MBA"]),
+          totalAllotted: c.totalAllotted || 0,
+        };
+      });
+    } else {
+      colleges = ICET_INSTITUTIONS.map((c) => ({
+        code: c.code,
+        name: c.name,
+        shortName: c.shortName || c.name,
+        place: c.place || "",
+        district: c.district || "",
+        university: c.university || "OU",
+        type: c.type || "Private Unaided",
+        annualFee: c.annualFee || 0,
+        coursesOffered: c.coursesOffered || ["MBA"],
+      }));
+    }
 
     res.json({
       success: true,
@@ -548,16 +487,18 @@ export const icetController = {
       const cCode = (college || "OUCB").trim().toUpperCase();
       const bCode = (branch || "MBA").trim().toUpperCase();
 
-      const collegeObj = ICET_INSTITUTIONS.find((c) => c.code === cCode) || {
+      const instMeta = ICET_INSTITUTIONS.find((c) => c.code === cCode);
+      const summaryCollege = icetAllotmentsSummary?.colleges?.find((c) => c.code === cCode);
+
+      const collegeObj = {
         code: cCode,
-        name: `${cCode} Institution`,
-        place: "Hyderabad",
-        district: "Hyderabad",
-        university: "OU",
-        type: "Private Unaided",
-        annualFee: 45000,
-        coursesOffered: ["MBA", "MCA"],
-        intake: { mba: 120, mca: 60 },
+        name: summaryCollege?.name || instMeta?.name || `${cCode} Institution`,
+        place: instMeta?.place || "",
+        district: instMeta?.district || "",
+        university: instMeta?.university || "OU",
+        type: instMeta?.type || "Private Unaided",
+        annualFee: instMeta?.annualFee || 0,
+        coursesOffered: summaryCollege?.coursesOffered?.length > 0 ? summaryCollege.coursesOffered : (instMeta?.coursesOffered || ["MBA"]),
       };
 
       const branchObj = {
@@ -565,35 +506,87 @@ export const icetController = {
         name: bCode === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)",
       };
 
-      // Generate dynamic allotments matching verified college intake data instantly (<1ms)
-      const dynamicData = generateDynamicIcetAllotments(collegeObj, bCode);
-      let candidates = dynamicData.candidates;
-      let totalSeats = dynamicData.totalSeats;
-      let openingRank = dynamicData.openingRank;
-      let closingRank = dynamicData.closingRank;
+      let candidates = [];
+      let totalSeats = 0;
+      let openingRank = 0;
+      let closingRank = 0;
+      let availableBranches = [];
 
-      // Filter in-memory if search/filter query parameters are passed
+      // 1. Load from authentic scraped JSON files
+      const collegeJsonPath = path.join(ICET_ALLOTMENTS_DIR, `${cCode}.json`);
+      if (fs.existsSync(collegeJsonPath)) {
+        try {
+          const raw = JSON.parse(fs.readFileSync(collegeJsonPath, "utf8"));
+          if (raw.branches && Array.isArray(raw.branches)) {
+            availableBranches = raw.branches.map((b) => ({
+              code: b.branchCode,
+              name: b.branchName || (b.branchCode === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)"),
+            }));
+
+            const targetBranch = raw.branches.find((b) => b.branchCode.toUpperCase() === bCode);
+            if (targetBranch) {
+              candidates = (targetBranch.candidates || []).map(c => ({
+                ...c,
+                branchCode: bCode,
+              }));
+              totalSeats = targetBranch.totalSeats || candidates.length;
+              openingRank = targetBranch.openingRank || (candidates[0]?.rank || 0);
+              closingRank = targetBranch.closingRank || (candidates[candidates.length - 1]?.rank || 0);
+            }
+          }
+        } catch (fileErr) {
+          console.warn(`[ICET Controller] Error reading scraped file for ${cCode}:`, fileErr.message);
+        }
+      }
+
+      // 2. Fallback to live scraper if no candidates found locally and college not explicitly zero-seat
+      if (candidates.length === 0 && !fs.existsSync(collegeJsonPath)) {
+        try {
+          const liveScraped = await scrapeOfficialTgIcetAllotment(cCode, bCode);
+          if (liveScraped && liveScraped.candidates && liveScraped.candidates.length > 0) {
+            candidates = liveScraped.candidates;
+            totalSeats = liveScraped.totalSeats;
+            openingRank = liveScraped.openingRank;
+            closingRank = liveScraped.closingRank;
+            if (liveScraped.availableBranches?.length > 0) {
+              availableBranches = liveScraped.availableBranches;
+            }
+          }
+        } catch (scrapeErr) {
+          console.warn(`[ICET Controller] Live scrape fallback failed for ${cCode}:`, scrapeErr.message);
+        }
+      }
+
+      // 3. Filter in-memory if search / category / gender query parameters are passed
       if (search && search.trim() !== "") {
         const s = search.toLowerCase().trim();
         candidates = candidates.filter(
           (c) =>
-            c.name.toLowerCase().includes(s) ||
-            c.hallTicket.toLowerCase().includes(s) ||
-            c.rank.toString().includes(s) ||
-            c.seatCategory.toLowerCase().includes(s)
+            (c.name && c.name.toLowerCase().includes(s)) ||
+            (c.hallTicket && c.hallTicket.toLowerCase().includes(s)) ||
+            (c.rank && c.rank.toString().includes(s)) ||
+            (c.seatCategory && c.seatCategory.toLowerCase().includes(s)) ||
+            (c.caste && c.caste.toLowerCase().includes(s))
         );
       }
 
       if (category && category.toUpperCase() !== "ALL") {
         const cat = category.toUpperCase();
         candidates = candidates.filter(
-          (c) => c.caste.toUpperCase() === cat || c.seatCategory.toUpperCase().includes(cat)
+          (c) =>
+            (c.caste && c.caste.toUpperCase() === cat) ||
+            (c.seatCategory && c.seatCategory.toUpperCase().includes(cat))
         );
       }
 
       if (gender && gender.toUpperCase() !== "ALL") {
         const g = gender.toUpperCase();
-        candidates = candidates.filter((c) => c.gender.toUpperCase() === g || (g === "F" && c.gender === "Female") || (g === "M" && c.gender === "Male"));
+        candidates = candidates.filter((c) => {
+          const candG = (c.gender || "").toUpperCase();
+          if (g === "M" || g === "MALE") return candG.startsWith("M");
+          if (g === "F" || g === "FEMALE") return candG.startsWith("F");
+          return true;
+        });
       }
 
       const totalFiltered = candidates.length;
@@ -602,10 +595,12 @@ export const icetController = {
       const startIndex = (p - 1) * l;
       const paginatedCandidates = candidates.slice(startIndex, startIndex + l);
 
-      const availableBranches = liveScraped?.availableBranches || (collegeObj.coursesOffered || ["MBA"]).map(c => ({
-        code: c,
-        name: c === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)"
-      }));
+      if (availableBranches.length === 0) {
+        availableBranches = (summaryCollege?.coursesOffered || collegeObj.coursesOffered || ["MBA"]).map((c) => ({
+          code: c,
+          name: c === "MBA" ? "Master of Business Administration (MBA)" : "Master of Computer Applications (MCA)",
+        }));
+      }
 
       const finalData = {
         collegeCode: cCode,

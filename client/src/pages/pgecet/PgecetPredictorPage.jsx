@@ -20,6 +20,7 @@ import { GlassButton } from "../../components/ui/glass-button";
 import { pgecetApi } from "../../lib/pgecetApi";
 import { PGECET_BRANCHES } from "../../data/pgecetInstitutions";
 import SearchableSelect from "../../components/shared/SearchableSelect";
+import { smoothScrollTo } from "../../lib/utils";
 
 const CATEGORIES = ["OC", "EWS", "BC-A", "BC-B", "BC-C", "BC-D", "BC-E", "SC", "ST"];
 const PAGE_SIZE = 20;
@@ -45,9 +46,7 @@ export default function PgecetPredictorPage() {
   // Smooth scroll to results table when predictions are loaded
   useEffect(() => {
     if (hasPredicted && predictions.length > 0 && resultsRef.current) {
-      setTimeout(() => {
-        resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+      smoothScrollTo(resultsRef, 80);
     }
   }, [hasPredicted, predictions]);
 

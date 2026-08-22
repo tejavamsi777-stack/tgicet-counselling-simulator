@@ -1,0 +1,36 @@
+{
+  "code": "AVIHSF",
+  "name": "AVIHSF  -  AVANTHI INST OF ENGG AND TECH-SELF FINANCE (AUTONOMOUS), HAYATHNAGAR",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MCA",
+      "branchName": "MASTER OF COMPUTER APPLICATIONS",
+      "totalSeats": 2,
+      "openingRank": 17520,
+      "closingRank": 39022,
+      "candidates": [
+        {
+          "rank": 17520,
+          "hallTicket": "2636306065",
+          "name": "VARIKUTI RAMYA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 39022,
+          "hallTicket": "2626304256",
+          "name": "KANAKAVALLI PRAVALIKA",
+          "gender": "Female",
+          "caste": "SC_III",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MCA"
+        }
+      ]
+    }
+  ]
+}

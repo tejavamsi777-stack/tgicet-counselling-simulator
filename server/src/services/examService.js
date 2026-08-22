@@ -4,8 +4,11 @@ import { examRepository } from "../repositories/examRepository.js";
 export const examService = {
   list: () => examRepository.list(),
 
-  async resolve(slug) {
-    const exam = await examRepository.findBySlug(slug || DEFAULT_EXAM_SLUG);
+  async resolve(slugOrObj) {
+    const rawSlug = typeof slugOrObj === 'object' && slugOrObj !== null
+      ? (slugOrObj.exam || slugOrObj.slug || DEFAULT_EXAM_SLUG)
+      : (slugOrObj || DEFAULT_EXAM_SLUG);
+    const exam = await examRepository.findBySlug(rawSlug);
     if (!exam) {
       const error = new Error("Unknown exam");
       error.status = 404;

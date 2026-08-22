@@ -1,0 +1,36 @@
+{
+  "code": "VDYNSF",
+  "name": "VDYNSF  -  VIDYA DAYINI COLLEGE OF INFO TECH-SELF FINANCE, KARMANGHAT",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 2,
+      "openingRank": 32435,
+      "closingRank": 42605,
+      "candidates": [
+        {
+          "rank": 32435,
+          "hallTicket": "2616114284",
+          "name": "AKKOJI JAHANAVI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42605,
+          "hallTicket": "2626114270",
+          "name": "MEKALA SANDEEP YADAV",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GEN_OU",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,7 @@ import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { useReviewPrompt } from "../../hooks/useReviewPrompt";
 import ReviewModal from "../../components/shared/ReviewModal";
+import { smoothScrollTo } from "../../lib/utils";
 
 function mapResults(results, gender, year) {
   return results.map((r) => ({
@@ -119,10 +120,7 @@ export default function IcetPredictorPage() {
   }
 
   function scrollToResults() {
-    setTimeout(() => {
-      const target = document.getElementById("results");
-      target?.scrollIntoView({ behavior: "smooth" });
-    }, 150);
+    smoothScrollTo("results", 80);
   }
 
   function handleLoaderComplete() {

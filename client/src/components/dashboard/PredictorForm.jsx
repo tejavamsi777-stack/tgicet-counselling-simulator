@@ -73,7 +73,7 @@ export default function PredictorForm({
               type="number"
               value={rank}
               onChange={(e) => setRank(e.target.value)}
-              placeholder="e.g. 12500"
+              placeholder={examSlug === "tg-ecet" ? "e.g. 150" : examSlug === "tg-polycet" ? "e.g. 2500" : "e.g. 12500"}
               className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
             />
           </div>

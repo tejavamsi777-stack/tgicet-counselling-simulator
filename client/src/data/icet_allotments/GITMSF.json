@@ -1,0 +1,46 @@
+{
+  "code": "GITMSF",
+  "name": "GITMSF  -  GAYATHRI INSTITUTE OF TECHNOLOGY AND MANAGEMENT- SELF-FINANCE , DUNDIGAL",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 3,
+      "openingRank": 19597,
+      "closingRank": 42623,
+      "candidates": [
+        {
+          "rank": 19597,
+          "hallTicket": "2636209090",
+          "name": "B SAI KIRAN",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 39863,
+          "hallTicket": "2636209054",
+          "name": "JALA MANISH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHO_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42623,
+          "hallTicket": "2626101213",
+          "name": "CHINTALA SHIVA PRANEETH GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "BC_D_GEN_UR",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

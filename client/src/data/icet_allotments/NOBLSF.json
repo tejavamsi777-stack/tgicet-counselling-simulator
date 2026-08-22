@@ -1,0 +1,46 @@
+{
+  "code": "NOBLSF",
+  "name": "NOBLSF  -  NOBLE PG COLLEGE-SELF FINANCE, NADERGUL",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 3,
+      "openingRank": 2892,
+      "closingRank": 40862,
+      "candidates": [
+        {
+          "rank": 2892,
+          "hallTicket": "2616301332",
+          "name": "SURNAGANTI VARUN KUMAR",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 37955,
+          "hallTicket": "2616304553",
+          "name": "VANGURI SHIVA KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 40862,
+          "hallTicket": "2616302431",
+          "name": "V SOWJANYA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_A_GIRLS_UR",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

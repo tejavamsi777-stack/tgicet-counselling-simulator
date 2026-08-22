@@ -156,7 +156,7 @@ export default function BranchMultiSelect({
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="absolute left-0 sm:left-auto sm:right-0 top-full z-[100] mt-2 flex flex-col w-full min-w-[290px] sm:min-w-[360px] md:min-w-[420px] max-h-84 overflow-hidden rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
+            className="absolute left-0 sm:left-auto sm:right-0 top-full z-[100] mt-2 flex flex-col w-full min-w-[290px] sm:min-w-[360px] md:min-w-[420px] max-h-72 overflow-hidden rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
           >
             {/* Search and Quick Actions */}
             <div className="p-1.5 border-b border-white/10 space-y-2">

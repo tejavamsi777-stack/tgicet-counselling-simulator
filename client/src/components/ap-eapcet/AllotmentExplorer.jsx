@@ -29,6 +29,7 @@ import { Link } from 'react-router-dom';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1135,7 +1136,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
       setResults(null);
     } finally {
       setFetching(false);
-      setTimeout(() => tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+      smoothScrollTo(tableRef, 80);
     }
   }, [selectedYear, selectedCollege, selectedBranch, onDataLoaded]);
 

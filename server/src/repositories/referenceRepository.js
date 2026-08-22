@@ -37,7 +37,20 @@ export const referenceRepository = {
     return allCourses.rows;
   },
   async getCategories(examId) {
-    const { rows } = await pool.query("SELECT id, code, name FROM categories WHERE exam_id = $1 ORDER BY code", [examId]);
+    const cutoffCats = await pool.query(
+      `SELECT DISTINCT cat.id, cat.code, cat.name
+       FROM categories cat
+       JOIN cutoffs cu ON cu.category_id = cat.id
+       WHERE cu.exam_id = $1
+       ORDER BY cat.code`,
+      [examId]
+    );
+    if (cutoffCats.rows.length > 0) return cutoffCats.rows;
+
+    const { rows } = await pool.query(
+      "SELECT id, code, name FROM categories WHERE exam_id = $1 OR exam_id = 1 ORDER BY code",
+      [examId]
+    );
     return rows;
   },
   async getYears(examId) {

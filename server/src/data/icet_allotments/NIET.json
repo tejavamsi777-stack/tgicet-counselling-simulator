@@ -1,0 +1,56 @@
+{
+  "code": "NIET",
+  "name": "NIET  -  NETAJI INSTITUTE OF ENGG AND TECH, TOOPRANPET",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 4,
+      "openingRank": 20179,
+      "closingRank": 41467,
+      "candidates": [
+        {
+          "rank": 20179,
+          "hallTicket": "2636201297",
+          "name": "BEEMARI RIKITH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHO_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 29132,
+          "hallTicket": "2636309087",
+          "name": "BADDAM GANESH GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_SG_GEN_OU(0)",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 30166,
+          "hallTicket": "2617102054",
+          "name": "PACHANTI NARESH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 41467,
+          "hallTicket": "2626207191",
+          "name": "MANNE LAXMI TEJA",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_B_GEN_UR",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

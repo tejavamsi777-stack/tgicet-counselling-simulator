@@ -23,6 +23,7 @@ export const examRepository = {
 
   async findBySlug(slug) {
     const exams = await getOrFetchExams();
-    return exams.find((e) => e.slug === slug) ?? null;
+    const s = String(slug || '').trim().toLowerCase();
+    return exams.find((e) => e.slug?.toLowerCase() === s || e.short_name?.toLowerCase() === s || e.slug?.replace(/-/g, '_').toLowerCase() === s.replace(/-/g, '_')) ?? null;
   },
 };

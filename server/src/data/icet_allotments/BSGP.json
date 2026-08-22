@@ -1,0 +1,76 @@
+{
+  "code": "BSGP",
+  "name": "BSGP  -  BANDARI SRINIVAS INSTITUTE OF TECHNOLOGY, CHEVELLA",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 6,
+      "openingRank": 10381,
+      "closingRank": 42818,
+      "candidates": [
+        {
+          "rank": 10381,
+          "hallTicket": "2616107032",
+          "name": "DAMIDI GAYATHRI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHO_GIRLS_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 38096,
+          "hallTicket": "2616302310",
+          "name": "KOMATI SRIKANTH",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 38633,
+          "hallTicket": "2636305408",
+          "name": "MIDDE ANUSHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 41871,
+          "hallTicket": "2626104108",
+          "name": "SANKU AMBIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GEN_OU(0)",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42096,
+          "hallTicket": "2636116142",
+          "name": "R SRIDHAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42818,
+          "hallTicket": "2636302756",
+          "name": "MOHAMMED ALAM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

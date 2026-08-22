@@ -1,0 +1,46 @@
+{
+  "code": "JMIT",
+  "name": "JMIT  -  JAYAMUKHI INST OF TECH SCIENCES, NARSAMPET",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 3,
+      "openingRank": 6809,
+      "closingRank": 25323,
+      "candidates": [
+        {
+          "rank": 6809,
+          "hallTicket": "2617602201",
+          "name": "DHARMAPURI SREEJA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 21245,
+          "hallTicket": "2637601327",
+          "name": "GADAM SHIVA KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 25323,
+          "hallTicket": "2637603124",
+          "name": "KATABATHINI PALLAVI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

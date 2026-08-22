@@ -29,6 +29,7 @@ import { POLYCET_INSTITUTIONS, POLYCET_BRANCHES } from '../../data/polycetInstit
 import allotmentsSummary from '../../data/polycet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1070,7 +1071,7 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
       }
     } finally {
       setFetching(false);
-      setTimeout(() => tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+      smoothScrollTo(tableRef, 80);
     }
   }, [onDataLoaded]);
 

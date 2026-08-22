@@ -1,0 +1,36 @@
+{
+  "code": "STFD",
+  "name": "STFD  -  STANFORD PG COLLEGE, BHONGIR",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 2,
+      "openingRank": 8281,
+      "closingRank": 35754,
+      "candidates": [
+        {
+          "rank": 8281,
+          "hallTicket": "2636101129",
+          "name": "DHARAVATH PAVANKUMAR",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 35754,
+          "hallTicket": "2616105102",
+          "name": "SURVY PRASAD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

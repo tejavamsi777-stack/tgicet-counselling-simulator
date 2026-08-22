@@ -1,0 +1,36 @@
+{
+  "code": "GUTNSF",
+  "name": "GUTNSF  -  GOUTHAMI PG COLLEGE-SELF FINANCE, NIZAMABAD",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 2,
+      "openingRank": 2469,
+      "closingRank": 19969,
+      "candidates": [
+        {
+          "rank": 2469,
+          "hallTicket": "2637501028",
+          "name": "MARUGONDA APARNA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19969,
+          "hallTicket": "2637501094",
+          "name": "BINGIVAR RAHUL",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

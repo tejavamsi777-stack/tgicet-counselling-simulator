@@ -1,0 +1,856 @@
+{
+  "code": "LRDS",
+  "name": "LRDS  -  LORDS INSTITUTE OF ENGG AND TECH (AUTONOMOUS), HIMAYATHSAGAR",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 84,
+      "openingRank": 487,
+      "closingRank": 44284,
+      "candidates": [
+        {
+          "rank": 487,
+          "hallTicket": "2626101011",
+          "name": "SHAIK MUSHARAF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 916,
+          "hallTicket": "2626103380",
+          "name": "FAUZIA NISHATH",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 1280,
+          "hallTicket": "2626103344",
+          "name": "SABAH FATIMAH",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 2564,
+          "hallTicket": "2626701095",
+          "name": "SHAIK AAMER OSAMA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 2812,
+          "hallTicket": "2616304597",
+          "name": "SYED HABEEB MOHSIN SADIQ MOHD AL BAHAROON",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 3046,
+          "hallTicket": "2626302608",
+          "name": "TABBUSUM FATIMA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 3528,
+          "hallTicket": "2616104746",
+          "name": "MARYAM BAIG",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 4103,
+          "hallTicket": "2626301522",
+          "name": "MIR WAJAHATH ALI",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 4524,
+          "hallTicket": "2626201192",
+          "name": "IFRA BEGUM",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 4985,
+          "hallTicket": "2626302532",
+          "name": "SYEDA SAQLAIN FATIMA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 6730,
+          "hallTicket": "2636403108",
+          "name": "MOHAMMED AFTAB",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 7250,
+          "hallTicket": "2626302822",
+          "name": "JUVERIA SADAF",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 7387,
+          "hallTicket": "2636102307",
+          "name": "SHEREEN UNNISA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 7631,
+          "hallTicket": "2616102247",
+          "name": "ABDUL IBRAHIM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 8983,
+          "hallTicket": "2616301294",
+          "name": "MADIHA TAHMEEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 9817,
+          "hallTicket": "2626302603",
+          "name": "MOHAMMED JAMALUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 9862,
+          "hallTicket": "2616302096",
+          "name": "MD MUSTAFA SAMEER",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 9936,
+          "hallTicket": "2626402084",
+          "name": "SANIYA TARANNUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 10739,
+          "hallTicket": "2626301473",
+          "name": "HAJERA BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 11708,
+          "hallTicket": "2636403005",
+          "name": "MD AMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 11719,
+          "hallTicket": "2616201051",
+          "name": "MOHAMMED FURQAN ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 11755,
+          "hallTicket": "2626301741",
+          "name": "MD MUJAHID UL ISLAM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 13105,
+          "hallTicket": "2616309168",
+          "name": "MOHAMMAD SAUD AHMED",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 13256,
+          "hallTicket": "2626101290",
+          "name": "BIBI FATIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 13306,
+          "hallTicket": "2626102091",
+          "name": "MARIAM NAAZ",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 13380,
+          "hallTicket": "2626301624",
+          "name": "RABIA MAHMOOD HASSAN",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14049,
+          "hallTicket": "2626403109",
+          "name": "NOOREEN FIRDOUS",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14420,
+          "hallTicket": "2626102891",
+          "name": "SUMAYA FAROOQ",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14574,
+          "hallTicket": "2636501132",
+          "name": "BANOTHU SAIDULU",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14690,
+          "hallTicket": "2616101155",
+          "name": "BOINI VANDHANA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14916,
+          "hallTicket": "2626101357",
+          "name": "SYEDA ZAINAB",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 14952,
+          "hallTicket": "2616102390",
+          "name": "MOHAMMED ARSHAD QURESHI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 15999,
+          "hallTicket": "2616301239",
+          "name": "SHAIK ABDUL SAMAD",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 16438,
+          "hallTicket": "2636103377",
+          "name": "MOHAMMED FARDIN ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 16642,
+          "hallTicket": "2626302175",
+          "name": "MOHAMMED MUJTABA ALI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 16651,
+          "hallTicket": "2626103230",
+          "name": "SALMAN ABDUL MAJEED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 16917,
+          "hallTicket": "2626102429",
+          "name": "SYEDA AGHNA MOHIUDDIN",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 17373,
+          "hallTicket": "2626101577",
+          "name": "NAAZNEEN FATIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 17914,
+          "hallTicket": "2626403104",
+          "name": "MOHAMMED ADNAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 18199,
+          "hallTicket": "2626102342",
+          "name": "ABDUL SAQLAIN SUBHANI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 18355,
+          "hallTicket": "2626201079",
+          "name": "MOHAMMED OSMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 18408,
+          "hallTicket": "2627501010",
+          "name": "MOHAMMED TALHA ALAM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19047,
+          "hallTicket": "2636102850",
+          "name": "SHAIK SANIA AZMATH",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19118,
+          "hallTicket": "2626404089",
+          "name": "MOHAMMED IRFAN KHAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19657,
+          "hallTicket": "2626103622",
+          "name": "MOHAMMED GHOUSE",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19957,
+          "hallTicket": "2626302658",
+          "name": "ALISHA AFREEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 19958,
+          "hallTicket": "2626101589",
+          "name": "KASHIF SOOFI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 20076,
+          "hallTicket": "2626301887",
+          "name": "MOHAMMED MINHAJ MOHIUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 20700,
+          "hallTicket": "2626402007",
+          "name": "MOHAMMED KHAJA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 21835,
+          "hallTicket": "2617301019",
+          "name": "MOHAMMED MUQEED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 22337,
+          "hallTicket": "2626101329",
+          "name": "SYEDA MEHRAJ",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 22509,
+          "hallTicket": "2626103511",
+          "name": "SYED MOIN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 23410,
+          "hallTicket": "2626101513",
+          "name": "HAFSA MARIYAM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 23672,
+          "hallTicket": "2637301018",
+          "name": "MOHD ABDUL OWAIS",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 23716,
+          "hallTicket": "2626103481",
+          "name": "SYED SAFDAR HUSSAIN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 23855,
+          "hallTicket": "2637401072",
+          "name": "MOHAMMED NAYEEM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 24317,
+          "hallTicket": "2637001155",
+          "name": "MOHAMMED NAVEED BABA",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 25281,
+          "hallTicket": "2626302051",
+          "name": "KARIM UR RAHMAN ANSARI",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 25410,
+          "hallTicket": "2626404001",
+          "name": "MOHAMMAD NOMAN UL HAQ",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 26269,
+          "hallTicket": "2626103314",
+          "name": "MOHAMMED SHOAIB ASLAM",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 26928,
+          "hallTicket": "2616201206",
+          "name": "SHAIK AYAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 27297,
+          "hallTicket": "2636404101",
+          "name": "MOHAMMED SUMAIR",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 27494,
+          "hallTicket": "2626101385",
+          "name": "MOHAMMED AFFAN SHARIF",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 27517,
+          "hallTicket": "2626103482",
+          "name": "MOHAMMED GAYAS UDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 27968,
+          "hallTicket": "2626302513",
+          "name": "KHADIJA TUL AMEERA",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 29531,
+          "hallTicket": "2637301019",
+          "name": "SYED FARAZ ALI",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 30585,
+          "hallTicket": "2616404044",
+          "name": "MOLLA MOHAMMED ZUBER",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 31301,
+          "hallTicket": "2637001182",
+          "name": "KHAJA IMAADUDDIN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 31309,
+          "hallTicket": "2626402033",
+          "name": "ZAVERIA NAZMEEN",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 31860,
+          "hallTicket": "2626302345",
+          "name": "SULAIMAN ABDUL MAJEED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 34863,
+          "hallTicket": "2626301810",
+          "name": "MOHD AFFAN AHMED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 35039,
+          "hallTicket": "2626301846",
+          "name": "MOHD ZAIN UL HASSAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 36724,
+          "hallTicket": "2617401007",
+          "name": "SYED DANISHUDDIN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 37377,
+          "hallTicket": "2636102319",
+          "name": "SHAIK RAHMAN",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 37415,
+          "hallTicket": "2626101840",
+          "name": "SHAIK ABDULLAH AOWAIS",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 39768,
+          "hallTicket": "2616102740",
+          "name": "AFREEN BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 39981,
+          "hallTicket": "2626402014",
+          "name": "KHATEEJA MASRATH",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 40319,
+          "hallTicket": "2636403061",
+          "name": "MOHAMMAD ABU BAKAR",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 41207,
+          "hallTicket": "2626402016",
+          "name": "NUSRATH BEGUM",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 41601,
+          "hallTicket": "2616201142",
+          "name": "MOHAMMED TAWHEED",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 43383,
+          "hallTicket": "2627501030",
+          "name": "SADAF AKBAR",
+          "gender": "Female",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 43946,
+          "hallTicket": "2626403103",
+          "name": "JUNAIDA ZAINAB",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 44199,
+          "hallTicket": "2626103428",
+          "name": "SHAIK ARBAAZ",
+          "gender": "Male",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 44284,
+          "hallTicket": "2626102275",
+          "name": "AFIFA FATIMA",
+          "gender": "Female",
+          "caste": "BC_E",
+          "region": "OU",
+          "seatCategory": "MUS_GEN_OU",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

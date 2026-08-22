@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Search, Users, Award, TrendingDown, Download, Building,
   GraduationCap, Sparkles, BarChart3, PieChart, Star, Trophy,
@@ -7,6 +7,7 @@ import { pgecetApi } from '../../lib/pgecetApi';
 import { PGECET_INSTITUTIONS } from '../../data/pgecetInstitutions';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import { smoothScrollTo } from '../../lib/utils';
 
 function getSeatCategoryStyle(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
@@ -380,6 +381,7 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
   const [candidates, setCandidates] = useState([]);
   const [searchFilter, setSearchFilter] = useState('');
   const [loading, setLoading] = useState(false);
+  const tableRef = useRef(null);
 
   const collegeOptions = useMemo(() =>
     PGECET_INSTITUTIONS.map(inst => ({ value: inst.code, label: `${inst.code} — ${inst.name}` })), []);
@@ -399,7 +401,10 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
       .then(res => {
         const list = res.data.candidates || [];
         setCandidates(list);
-        if (list.length > 0) onDataLoaded?.(true);
+        if (list.length > 0) {
+          onDataLoaded?.(true);
+          smoothScrollTo(tableRef, 80);
+        }
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
@@ -478,7 +483,7 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
         <>
           {/* College Banner */}
           {currentInst && (
-            <div className="rounded-3xl border border-purple-500/30 bg-gradient-to-br from-[#160a2c]/90 via-[#100720]/90 to-[#0c0518]/90 p-5 sm:p-6 shadow-xl backdrop-blur-xl">
+            <div ref={tableRef} className="rounded-3xl border border-purple-500/30 bg-gradient-to-br from-[#160a2c]/90 via-[#100720]/90 to-[#0c0518]/90 p-5 sm:p-6 shadow-xl backdrop-blur-xl">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">

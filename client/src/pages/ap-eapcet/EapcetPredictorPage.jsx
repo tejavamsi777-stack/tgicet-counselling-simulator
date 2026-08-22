@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, Loader2, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
@@ -12,6 +12,7 @@ import GenderDropdown from "../../components/shared/GenderDropdown";
 import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
+import { smoothScrollTo } from "../../lib/utils";
 
 import { useReferenceData } from "../../hooks/useReferenceData";
 import { useReviewPrompt } from "../../hooks/useReviewPrompt";
@@ -112,16 +113,18 @@ export default function EapcetPredictorPage() {
           cutoff: row.cutoff_rank || row.cutoff,
         }))
       );
-      // Scroll to results after a short delay to let the DOM update
-      setTimeout(() => {
-        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
     } catch (e) {
       setError(e.message || "Prediction failed.");
     } finally {
       setPredicting(false);
     }
   }
+
+  useEffect(() => {
+    if (!predicting && results.length > 0) {
+      smoothScrollTo(resultsRef, 80);
+    }
+  }, [predicting, results]);
 
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">

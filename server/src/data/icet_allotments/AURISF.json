@@ -1,0 +1,36 @@
+{
+  "code": "AURISF",
+  "name": "AURISF  -  AURORAS PG COLLEGE-MCA-SELF FINANCE (AUTONOMOUS), RAMANTHAPUR",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MCA",
+      "branchName": "MASTER OF COMPUTER APPLICATIONS",
+      "totalSeats": 2,
+      "openingRank": 29474,
+      "closingRank": 36378,
+      "candidates": [
+        {
+          "rank": 29474,
+          "hallTicket": "2617001611",
+          "name": "DUSA SAHITHI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 36378,
+          "hallTicket": "2636206213",
+          "name": "BURI YOGESH",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MCA"
+        }
+      ]
+    }
+  ]
+}

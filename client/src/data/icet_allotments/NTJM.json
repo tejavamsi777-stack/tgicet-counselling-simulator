@@ -1,0 +1,86 @@
+{
+  "code": "NTJM",
+  "name": "NTJM  -  NETAJI SCHOOL OF MANAGEMENT, TOOPRANPET",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 7,
+      "openingRank": 20862,
+      "closingRank": 42975,
+      "candidates": [
+        {
+          "rank": 20862,
+          "hallTicket": "2616304077",
+          "name": "KANDUKULA NAVEEN KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 27411,
+          "hallTicket": "2616201006",
+          "name": "KOSGI UDAY KUMAR GOUD",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 32113,
+          "hallTicket": "2626304316",
+          "name": "AVANAGANTI ARAVIND KUMAR",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 34857,
+          "hallTicket": "2626209135",
+          "name": "LINGAYYOLLA MAHESH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 41785,
+          "hallTicket": "2616107040",
+          "name": "MADA SAI KUMAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42221,
+          "hallTicket": "2617101136",
+          "name": "KANCHI VENKATESHAM",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHM_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42975,
+          "hallTicket": "2626309069",
+          "name": "MARUGONDA NAVEEN",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_PHV_GIRLS_OU",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

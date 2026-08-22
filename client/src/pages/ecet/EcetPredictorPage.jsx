@@ -13,19 +13,21 @@ import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { useReviewPrompt } from "../../hooks/useReviewPrompt";
 import ReviewModal from "../../components/shared/ReviewModal";
+import { smoothScrollTo } from "../../lib/utils";
 
-function mapResults(results, gender, year) {
+function mapResults(results = [], gender, year) {
+  if (!Array.isArray(results)) return [];
   return results.map((r) => ({
     code: r.code,
     name: r.name,
     place: r.place,
-    district: r.district_code,
-    course: r.course_code,
-    courseName: r.course_name,
-    category: r.category_code,
-    gender,
-    year: r.year || year,
-    cutoff: r.cutoff_rank,
+    district: r.district_code || r.district,
+    course: r.course_code || r.course,
+    courseName: r.course_name || r.courseName || r.course,
+    category: r.category_code || r.category,
+    gender: r.gender || gender,
+    year: Number(r.year || year),
+    cutoff: Number(r.cutoff_rank || r.cutoff || 0),
     fee: r.fee,
     university: r.university,
     status: r.status,
@@ -85,11 +87,11 @@ export default function EcetPredictorPage() {
     try {
       const response = await api.post("/predict", { ...criteria, exam: "tg-ecet" });
 
-      const { results } = response;
-      const mapped = mapResults(results, criteria.gender, criteria.year);
+      const rawResults = Array.isArray(response) ? response : (response?.results || []);
+      const mapped = mapResults(rawResults, criteria.gender, criteria.year);
       setLoaderStats({
-        recordsScanned: results.length,
-        collegesChecked: results.length,
+        recordsScanned: rawResults.length,
+        collegesChecked: rawResults.length,
         safeMatches: mapped.filter((m) => m.status === "safe").length,
       });
       setResult(mapped);
@@ -138,10 +140,7 @@ export default function EcetPredictorPage() {
   }
 
   function scrollToResults() {
-    setTimeout(() => {
-      const target = document.getElementById("results");
-      target?.scrollIntoView({ behavior: "smooth" });
-    }, 150);
+    smoothScrollTo("results", 80);
   }
 
   const handleLoaderComplete = useCallback(() => {
@@ -174,7 +173,7 @@ export default function EcetPredictorPage() {
           )}
         </AnimatePresence>
 
-        <main className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 py-8">
+        <main className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 py-8 min-h-[calc(100vh-280px)] pb-36">
           <ReviewModal
             isOpen={isReviewOpen}
             onClose={closeReview}
@@ -211,7 +210,8 @@ export default function EcetPredictorPage() {
               onPredict={handleFormPredict}
               error={error}
               examSlug="tg-ecet"
-              examBadge="TG ECET 2025"
+              examBadge="TG ECET 2026"
+              rankLabel="TG ECET Branch Rank"
             />
 
             {lastCriteria && (
@@ -220,7 +220,7 @@ export default function EcetPredictorPage() {
                   results={sortedResult}
                   activeYears={activeYears}
                   showYear
-                  examTitle="TG ECET 2025"
+                  examTitle="TG ECET 2026"
                 />
                 {/* Passive ad unit placed safely below prediction results */}
                 <AdSenseUnit slotName="predictorResults" minHeight={90} />

@@ -29,6 +29,7 @@ import { ECET_INSTITUTIONS, ECET_BRANCHES } from '../../data/ecetInstitutions';
 import allotmentsSummary from '../../data/ecet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1118,7 +1119,7 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
       setResults(null);
     } finally {
       setFetching(false);
-      setTimeout(() => tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+      smoothScrollTo(tableRef, 80);
     }
   }, [selectedYear, selectedCollege, selectedBranch]);
 

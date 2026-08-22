@@ -1,0 +1,56 @@
+{
+  "code": "SIGNSF",
+  "name": "SIGNSF  -  SD SIGNODIA COLL OF ARTS AND COMM AND PG CENTRE-SELF FINANCE, CHAR KAMAN",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 4,
+      "openingRank": 18075,
+      "closingRank": 42751,
+      "candidates": [
+        {
+          "rank": 18075,
+          "hallTicket": "2636306009",
+          "name": "VANNABIONA NANDITHA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 20216,
+          "hallTicket": "2616102080",
+          "name": "J RAMYA SRI",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 29780,
+          "hallTicket": "2626113144",
+          "name": "T KETAN SINGH",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GIRLS_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 42751,
+          "hallTicket": "2616201574",
+          "name": "SYED FURQAAN",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_UR",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

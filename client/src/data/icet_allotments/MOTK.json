@@ -1,0 +1,36 @@
+{
+  "code": "MOTK",
+  "name": "MOTK  -  MOTHER THERESA INST OF SCI AND TECH (AUTONOMOUS), SATHUPALLY",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 2,
+      "openingRank": 33312,
+      "closingRank": 35059,
+      "candidates": [
+        {
+          "rank": 33312,
+          "hallTicket": "2616901051",
+          "name": "THANNERU AKSHITHA",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_UR",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 35059,
+          "hallTicket": "2636104857",
+          "name": "NADDI MANOJKUMAR",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GEN_UR(0)",
+          "branchCode": "MBA"
+        }
+      ]
+    }
+  ]
+}

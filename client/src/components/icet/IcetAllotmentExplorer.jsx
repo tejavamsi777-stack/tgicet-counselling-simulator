@@ -27,6 +27,7 @@ import {
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import { icetApi } from '../../lib/icetApi';
 import SearchableSelect from '../shared/SearchableSelect';
+import { smoothScrollTo } from '../../lib/utils';
 
 // Seat category color pills
 function getSeatCategoryStyle(cat = '') {
@@ -772,6 +773,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('MBA');
   const [selectedYear, setSelectedYear] = useState('2026-final');
+  const tableRef = useRef(null);
   
   const [allotmentData, setAllotmentData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -821,6 +823,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
           setAllotmentData(payload);
           if (payload?.candidates?.length > 0) {
             onDataLoaded?.(true);
+            smoothScrollTo(tableRef, 80);
           }
         }
       } catch (err) {
@@ -1086,7 +1089,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
       </div>
 
       {/* ─── Metric Stat Cards ──────────────────────────────────── */}
-      <div className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+      <div ref={tableRef} className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
         <StatCard
           icon={Users}
           label="Total Allotted"

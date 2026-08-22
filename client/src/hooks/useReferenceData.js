@@ -1,28 +1,25 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api";
 
-// Canonical category order: OC → EWS → BC_A to BC_E → SC_I to SC_III / SC → ST
-const CATEGORY_ORDER = [
-  "OC", "EWS",
-  "BC_A", "BC-A", "BCA",
-  "BC_B", "BC-B", "BCB",
-  "BC_C", "BC-C", "BCC",
-  "BC_D", "BC-D", "BCD",
-  "BC_E", "BC-E", "BCE",
-  "SC_I", "SC-I", "SC1", "SC_1",
-  "SC_II", "SC-II", "SC2", "SC_2",
-  "SC_III", "SC-III", "SC3", "SC_3",
-  "SC",
-  "ST",
+const TG_CATEGORIES = [
+  { code: "OC", name: "OC" },
+  { code: "EWS", name: "EWS" },
+  { code: "BC_A", name: "BC-A" },
+  { code: "BC_B", name: "BC-B" },
+  { code: "BC_C", name: "BC-C" },
+  { code: "BC_D", name: "BC-D" },
+  { code: "BC_E", name: "BC-E" },
+  { code: "SC", name: "SC" },
+  { code: "ST", name: "ST" },
 ];
 
-function getCategoryRank(code) {
-  const norm = (code ?? "").toString().trim().toUpperCase();
-  const idx = CATEGORY_ORDER.findIndex((c) => c.toUpperCase() === norm);
-  return idx === -1 ? 999 : idx;
-}
+export function sortCategories(categories = [], examSlug = "") {
+  const isAp = examSlug === "ap-eapcet";
+  if (!isAp) {
+    // For all TG exams, return the standard 9 categories
+    return TG_CATEGORIES;
+  }
 
-export function sortCategories(categories = []) {
   return [...categories].sort((a, b) => {
     const codeA = a?.code ?? a ?? "";
     const codeB = b?.code ?? b ?? "";
@@ -75,6 +72,13 @@ const POPULAR_COURSES = {
   ],
   "tg-ecet": [
     "CSE",  // Computer Science & Engineering
+    "CSM",  // CSE (AI & ML)
+    "CSD",  // CSE (Data Science)
+    "AID",  // AI & Data Science
+    "AIM",  // AI & ML
+    "CSC",  // Cyber Security
+    "CIC",  // IoT & Blockchain
+    "CSB",  // Business Systems
     "INF",  // Information Technology
     "IT",
     "ECE",  // Electronics & Communication
@@ -86,6 +90,8 @@ const POPULAR_COURSES = {
     "PHM",  // Pharmacy
     "PHA",
     "CHE",  // Chemical Engineering
+    "EVL",  // VLSI Design
+    "BME",  // Biomedical
     "MIN",  // Mining Engineering
     "MET",  // Metallurgical Engineering
     "AUT",  // Automobile Engineering
@@ -136,7 +142,7 @@ const referenceCache = new Map();
 function readSessionCache(key) {
   if (typeof window === "undefined") return null;
   try {
-    const raw = sessionStorage.getItem(`tg_ref_${key}`);
+    const raw = sessionStorage.getItem(`tg_ref_v4_${key}`);
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -146,7 +152,7 @@ function readSessionCache(key) {
 function writeSessionCache(key, val) {
   if (typeof window === "undefined") return;
   try {
-    sessionStorage.setItem(`tg_ref_${key}`, JSON.stringify(val));
+    sessionStorage.setItem(`tg_ref_v4_${key}`, JSON.stringify(val));
   } catch {
     // ignore quota
   }
@@ -195,7 +201,7 @@ export function useReferenceData(examSlug = "tg-icet") {
         ]);
         const result = {
           courses: sortCourses(courses, examSlug),
-          categories: sortCategories(categories),
+          categories: sortCategories(categories, examSlug),
           districts,
           years,
         };

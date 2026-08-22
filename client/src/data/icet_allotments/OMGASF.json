@@ -1,0 +1,34 @@
+{
+  "code": "OMGASF",
+  "name": "OMGASF  -  OMEGA INSTITUTE OF COMPUTER APPLICATIONS AND BUSINESS MANAGE - SELF FINANCE, EDULABAD",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 1,
+      "openingRank": 43434,
+      "closingRank": 43434,
+      "candidates": [
+        {
+          "rank": 43434,
+          "hallTicket": "2636304453",
+          "name": "THIRUMANI POOJA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GEN_OU(0)",
+          "branchCode": "MBA"
+        }
+      ]
+    },
+    {
+      "branchCode": "MCA",
+      "branchName": "MASTER OF COMPUTER APPLICATIONS",
+      "totalSeats": 0,
+      "openingRank": null,
+      "closingRank": null,
+      "candidates": []
+    }
+  ]
+}

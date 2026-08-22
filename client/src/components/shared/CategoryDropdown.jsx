@@ -5,7 +5,7 @@ import { useReferenceData, sortCategories } from "../../hooks/useReferenceData";
 
 export default function CategoryDropdown({ category, setCategory, examSlug = "tg-icet" }) {
   const { categories: rawCategories } = useReferenceData(examSlug);
-  const categories = sortCategories(rawCategories);
+  const categories = sortCategories(rawCategories, examSlug);
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const listRef = useRef(null);
@@ -93,12 +93,7 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="absolute left-0 right-0 z-[100] mt-2 max-h-80 overflow-y-auto overscroll-contain rounded-2xl border border-white/20 bg-[#1a1030]/95 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
-            style={{
-              touchAction: "pan-y",
-              scrollbarWidth: "thin",
-              scrollbarColor: "rgba(255,255,255,0.3) transparent",
-            }}
+            className="absolute left-0 right-0 z-[100] mt-2 rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
           >
             {categories.length === 0 ? (
               <div className="px-4 py-3 text-center text-xs font-medium text-gray-300">
@@ -108,6 +103,27 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
               categories.map((c) => {
                 const code = c.code || c;
                 const isSelected = category === code;
+                const label =
+                  code === "OC"
+                    ? "OC"
+                    : code === "EWS"
+                    ? "EWS"
+                    : code === "BC_A"
+                    ? "BC-A"
+                    : code === "BC_B"
+                    ? "BC-B"
+                    : code === "BC_C"
+                    ? "BC-C"
+                    : code === "BC_D"
+                    ? "BC-D"
+                    : code === "BC_E"
+                    ? "BC-E"
+                    : code === "SC"
+                    ? "SC"
+                    : code === "ST"
+                    ? "ST"
+                    : c.name || code;
+
                 return (
                   <button
                     key={code}
@@ -117,13 +133,13 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
                       setCategory(code);
                       setOpen(false);
                     }}
-                    className={`flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-sm font-medium transition-all ${
+                    className={`flex w-full items-center justify-between rounded-xl px-3.5 py-2 text-left text-sm font-medium transition-all ${
                       isSelected
                         ? "bg-white/25 text-white font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]"
                         : "text-gray-200 hover:bg-white/20 hover:text-white"
                     }`}
                   >
-                    <span>{c.name || code}</span>
+                    <span>{label}</span>
                     {isSelected && <Check size={15} className="text-purple-300 shrink-0" />}
                   </button>
                 );

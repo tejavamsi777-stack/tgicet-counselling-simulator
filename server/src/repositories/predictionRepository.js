@@ -91,7 +91,6 @@ export const predictionRepository = {
       WHERE cu.exam_id = $1
         AND col.exam_id = $1
         AND crs.exam_id = $1
-        AND cat.exam_id = $1
         AND y.exam_id = $1
         AND cu.gender = $2
         AND cu.cutoff_rank >= FLOOR($3 * 0.85)

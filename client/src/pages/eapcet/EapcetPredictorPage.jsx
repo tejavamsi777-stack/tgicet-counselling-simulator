@@ -18,6 +18,7 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import { useReviewPrompt } from "../../hooks/useReviewPrompt";
 import ReviewModal from "../../components/shared/ReviewModal";
+import { smoothScrollTo } from "../../lib/utils";
 
 export default function EapcetPredictorPage() {
   const { years, categories, courses, districts } = useReferenceData("tg-eapcet");
@@ -78,6 +79,12 @@ export default function EapcetPredictorPage() {
       setPredicting(false);
     }
   }
+
+  useEffect(() => {
+    if (!predicting && results.length > 0) {
+      smoothScrollTo("results", 80);
+    }
+  }, [predicting, results]);
 
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
@@ -229,6 +236,7 @@ export default function EapcetPredictorPage() {
       <AnimatePresence>
         {!predicting && results.length > 0 && (
           <motion.div
+            id="results"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}

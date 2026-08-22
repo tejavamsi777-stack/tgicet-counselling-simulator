@@ -1,0 +1,46 @@
+{
+  "code": "AURUSF",
+  "name": "AURUSF  -  AURORAS P G COLLEGE-MBA-SELF FINANCE, UPPAL",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MCA",
+      "branchName": "MASTER OF COMPUTER APPLICATIONS",
+      "totalSeats": 3,
+      "openingRank": 13001,
+      "closingRank": 29156,
+      "candidates": [
+        {
+          "rank": 13001,
+          "hallTicket": "2617603095",
+          "name": "GOPISHETTI THRIVENI",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 15602,
+          "hallTicket": "2616202012",
+          "name": "KANUKATI LAXMI ARCHANA",
+          "gender": "Female",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 29156,
+          "hallTicket": "2636101792",
+          "name": "MOGALLI VISHALI",
+          "gender": "Female",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "CHR_GEN_UR",
+          "branchCode": "MCA"
+        }
+      ]
+    }
+  ]
+}

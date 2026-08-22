@@ -1,14 +1,17 @@
-import { parseApiResponse } from "./payloadDecoder";
+import { parseApiResponse } from "./payloadDecoder.js";
 
-const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "https://vuelalearn-api.onrender.com/api" : "http://localhost:4000/api");
+const BASE_URL = (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) || 
+  ((typeof import.meta !== "undefined" && import.meta.env?.PROD) ? "https://vuelalearn-api.onrender.com/api" : "http://localhost:4000/api");
 const TOKEN_KEY = "tgicet_user_token";
 const USER_KEY = "tgicet_user_profile";
 
 export function getUserToken() {
+  if (typeof localStorage === "undefined") return null;
   return localStorage.getItem(TOKEN_KEY);
 }
 
 export function setUserToken(token) {
+  if (typeof localStorage === "undefined") return;
   if (token) {
     localStorage.setItem(TOKEN_KEY, token);
   } else {
@@ -17,6 +20,7 @@ export function setUserToken(token) {
 }
 
 export function getStoredUser() {
+  if (typeof localStorage === "undefined") return null;
   try {
     const raw = localStorage.getItem(USER_KEY);
     return raw ? JSON.parse(raw) : null;

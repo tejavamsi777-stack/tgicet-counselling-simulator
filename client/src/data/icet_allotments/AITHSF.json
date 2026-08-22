@@ -1,0 +1,85 @@
+{
+  "code": "AITHSF",
+  "name": "AITHSF  -  ANNAMACHARYA INST OF TECH AND SCIENCE-SELF FINANCE (AUTONOMOUS), HAYATHNAGAR",
+  "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "branches": [
+    {
+      "branchCode": "MBA",
+      "branchName": "MASTER OF BUSINESS ADMINISTRATION",
+      "totalSeats": 2,
+      "openingRank": 30767,
+      "closingRank": 46169,
+      "candidates": [
+        {
+          "rank": 30767,
+          "hallTicket": "2616205120",
+          "name": "NARVA SUDHEER REDDY",
+          "gender": "Male",
+          "caste": "OC",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GEN_OU",
+          "branchCode": "MBA"
+        },
+        {
+          "rank": 46169,
+          "hallTicket": "2626110074",
+          "name": "SURARAPU LIKHITHA",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GIRLS_OU(0)",
+          "branchCode": "MBA"
+        }
+      ]
+    },
+    {
+      "branchCode": "MCA",
+      "branchName": "MASTER OF COMPUTER APPLICATIONS",
+      "totalSeats": 4,
+      "openingRank": 5317,
+      "closingRank": 46070,
+      "candidates": [
+        {
+          "rank": 5317,
+          "hallTicket": "2627602163",
+          "name": "BAJJURI MANOJ KUMAR",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_UR",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 17562,
+          "hallTicket": "2637601009",
+          "name": "KOMMINENI RASHMA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_CAP_GIRLS_UR(0)",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 41701,
+          "hallTicket": "2626406074",
+          "name": "RAMAGIRI SHIVA SAI KRISHNA KUMAR",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MCA"
+        },
+        {
+          "rank": 46070,
+          "hallTicket": "2626304017",
+          "name": "KUMMARI ANJANA SRI",
+          "gender": "Female",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MCA"
+        }
+      ]
+    }
+  ]
+}
