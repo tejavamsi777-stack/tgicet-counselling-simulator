@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Sparkles, ShieldCheck, ArrowRight, Lock, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
-export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
+export default function HlcSyncRibbon({ examTitle = "Vuela Learn" }) {
   const { user, openAuthModal } = useAuth();
   const location = useLocation();
 
@@ -87,7 +87,7 @@ export default function HlcSyncRibbon({ examTitle = "TG Counselling" }) {
                 <span className="text-purple-400 font-bold">•</span>
                 <span className="text-purple-300">Real-time multi-device continuation</span>
                 <span className="text-purple-400 font-bold">•</span>
-                <span>100% Free for all Telangana students</span>
+                <span>100% Free for all AP &amp; TG students</span>
               </span>
             </div>
           </div>

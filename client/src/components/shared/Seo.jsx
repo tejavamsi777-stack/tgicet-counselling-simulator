@@ -34,7 +34,7 @@ export default function Seo({
     }
     const baseUrl = typeof window !== "undefined" && window.location.origin.includes("localhost")
       ? window.location.origin
-      : "https://vuelalearn.in";
+      : "https://vuelalearn.vercel.app";
     const fullUrl = `${baseUrl}${path}`;
     canonical.setAttribute("href", fullUrl);
 
@@ -64,7 +64,7 @@ export default function Seo({
         "@type": "Organization",
         "name": "Vuela Learn",
         "alternateName": "VuelaLearn",
-        "url": "https://vuelalearn.in"
+        "url": "https://vuelalearn.vercel.app"
       }
     };
 

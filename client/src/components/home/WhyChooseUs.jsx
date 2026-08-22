@@ -93,13 +93,13 @@ export default function WhyChooseUs() {
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-3">
             <Award className="text-purple-400" size={20} />
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              About VuelaLearn
+            <h3>
+              About Vuela Learn
             </h3>
           </div>
 
           <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-            <strong>VuelaLearn</strong> (vuelalearn.in) is an independent, student-first open platform engineered specifically for candidates appearing in <strong>Andhra Pradesh (APSCHE)</strong> and <strong>Telangana (TSCHE)</strong> state entrance examinations. 
+            <strong>Vuela Learn</strong> (vuelalearn.vercel.app) is an independent, student-first open platform engineered specifically for candidates appearing in <strong>Andhra Pradesh (APSCHE)</strong> and <strong>Telangana (TGCHE/TSCHE)</strong> state entrance examinations. 
           </p>
 
           <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-6">

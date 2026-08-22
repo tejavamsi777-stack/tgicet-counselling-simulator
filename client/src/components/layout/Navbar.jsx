@@ -786,7 +786,7 @@ function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
         >
           <span className="flex items-center gap-2.5">
             <Star size={15} className="fill-amber-400 text-amber-400" />
-            <span>Rate & Review TG Counselling</span>
+            <span>Rate & Review Vuela Learn</span>
           </span>
           <span className="rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-extrabold text-amber-200">
             Feedback
@@ -805,7 +805,7 @@ function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
           className="flex w-full items-center gap-2.5 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold text-white/90 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
         >
           <ModernShareIcon size={16} />
-          <span>Share TG Counselling Portal</span>
+          <span>Share Vuela Learn Portal</span>
         </button>
       </div>
 

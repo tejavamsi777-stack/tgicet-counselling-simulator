@@ -168,7 +168,7 @@ export default function LoginModal({
                   ? (
                     <>
                       Sign in to continue to{" "}
-                      <span className="font-semibold text-purple-300">TG Counselling</span>
+                      <span className="font-semibold text-purple-300">Vuela Learn</span>
                     </>
                   )
                   : "Sign up to save your predictions and college preferences"}

@@ -43,7 +43,7 @@ export default function ResultsTable({
   activeYears = [],
   selectedYear,
   onYearChange,
-  examTitle = "TG Counselling",
+  examTitle = "Vuela Learn",
 }) {
   // Extract available years from results
   const yearList = useMemo(() => {

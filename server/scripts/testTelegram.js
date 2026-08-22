@@ -10,7 +10,7 @@ if (!BOT_TOKEN || !CHAT_ID) {
 }
 
 async function testTelegram() {
-  const text = `🎉 *TG Counselling Simulator Alert!*
+  const text = `🎉 *Vuela Learn Simulator Alert!*
   
 Bot connected successfully! Review alerts will be sent directly here.`;
 

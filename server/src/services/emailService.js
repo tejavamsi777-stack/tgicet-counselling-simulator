@@ -5,7 +5,7 @@ export const emailService = {
     const html = `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px;">
         <h2 style="color: #312e81; margin-top: 0;">Reset your password</h2>
-        <p style="color: #334155; line-height: 1.5;">We received a request to reset the password for your TG Counselling account.</p>
+        <p style="color: #334155; line-height: 1.5;">We received a request to reset the password for your Vuela Learn account.</p>
         <div style="margin: 28px 0;">
           <a href="${resetUrl}"
              style="display: inline-block; padding: 12px 24px; background: linear-gradient(to right, #312e81, #7c3aed, #0e7490); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
@@ -22,7 +22,7 @@ export const emailService = {
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey && resendApiKey.startsWith("re_")) {
       try {
-        const fromEmail = process.env.RESEND_FROM_EMAIL || "TG Counselling <onboarding@resend.dev>";
+        const fromEmail = process.env.RESEND_FROM_EMAIL || "Vuela Learn <onboarding@resend.dev>";
         const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
@@ -32,7 +32,7 @@ export const emailService = {
           body: JSON.stringify({
             from: fromEmail,
             to: [to],
-            subject: "Reset your TG Counselling password",
+            subject: "Reset your Vuela Learn password",
             html,
           }),
         });
@@ -61,9 +61,9 @@ export const emailService = {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            sender: { name: "TG Counselling", email: senderEmail },
+            sender: { name: "Vuela Learn", email: senderEmail },
             to: [{ email: to }],
-            subject: "Reset your TG Counselling password",
+            subject: "Reset your Vuela Learn password",
             htmlContent: html,
           }),
         });
@@ -99,9 +99,9 @@ export const emailService = {
         });
 
         await transporter.sendMail({
-          from: `"TG Counselling" <${gmailUser.trim()}>`,
+          from: `"Vuela Learn" <${gmailUser.trim()}>`,
           to,
-          subject: "Reset your TG Counselling password",
+          subject: "Reset your Vuela Learn password",
           html,
         });
 

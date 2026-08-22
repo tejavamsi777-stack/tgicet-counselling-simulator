@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import LoginModal from "../shared/LoginModal";
 import { ShareModal } from "../shared/ShareModal";
 
-export default function ExportButtons({ results = [], examTitle = "TG Counselling" }) {
+export default function ExportButtons({ results = [], examTitle = "Vuela Learn" }) {
   const { user } = useAuth();
   const [loginOpen, setLoginOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
@@ -71,7 +71,7 @@ export default function ExportButtons({ results = [], examTitle = "TG Counsellin
         isOpen={shareOpen}
         onClose={() => setShareOpen(false)}
         shareData={{
-          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
           title: `${examTitle} Predictions Report`,
           text: shareText,
         }}

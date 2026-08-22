@@ -5,7 +5,7 @@ import { ShareModal } from './ShareModal';
 export default function MobileQuickActionsBar({
   onFilterClick,
   onExportClick,
-  shareTitle = 'TG Counselling Simulator',
+  shareTitle = 'Vuela Learn Simulator',
   shareUrl,
 }) {
   const [shareOpen, setShareOpen] = useState(false);

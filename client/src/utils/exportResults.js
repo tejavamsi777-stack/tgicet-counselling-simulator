@@ -25,7 +25,7 @@ export function exportToExcel(results, filename = "college-predictions.xlsx") {
   XLSX.writeFile(workbook, filename);
 }
 
-export function exportToPDF(results, filename = "college-predictions.pdf", title = "TG Counselling College Predictor Results") {
+export function exportToPDF(results, filename = "college-predictions.pdf", title = "Vuela Learn College Predictor Results") {
   const doc = new jsPDF({ orientation: "landscape" });
   const rows = toRows(results);
 
@@ -40,12 +40,12 @@ export function exportToPDF(results, filename = "college-predictions.pdf", title
       doc.setFont("helvetica", "bold");
       try {
         // Render angled watermark text
-        doc.text("TG COUNSELLING PORTAL 2026 • OFFICIAL REPORT", 140, 110, {
+        doc.text("VUELA LEARN PORTAL • OFFICIAL REPORT", 140, 110, {
           align: "center",
           angle: 30,
         });
       } catch (e) {
-        doc.text("TG COUNSELLING PORTAL 2026", 140, 110, { align: "center" });
+        doc.text("VUELA LEARN PORTAL", 140, 110, { align: "center" });
       }
 
       // 2. Top Header Branding Bar
@@ -62,7 +62,7 @@ export function exportToPDF(results, filename = "college-predictions.pdf", title
       // 3. Footer Page Numbers
       doc.setFontSize(8);
       doc.setTextColor(150, 150, 150);
-      doc.text(`Page ${i} of ${totalPages} — TG Admissions & Counselling Portal (https://tgcounselling.vercel.app)`, 14, 200);
+      doc.text(`Page ${i} of ${totalPages} — Vuela Learn Admissions & Counselling Portal (https://vuelalearn.vercel.app)`, 14, 200);
     }
   };
 

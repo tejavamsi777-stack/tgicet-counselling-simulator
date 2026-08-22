@@ -69,8 +69,8 @@ export function ModernShareIcon({ className = "", size = 20 }) {
 }
 
 export const DEFAULT_SHARE_TEXT =
-  "🏛️ TG Counselling — Official Telangana Admission Guidance Platform\n\n" +
-  "Find official 2026 seat allotments, verified college rank predictors, and mock web options simulators for TG EAPCET, TG ICET, TG ECET & TG POLYCET — 100% Free!\n\n" +
+  "🏛️ Vuela Learn — Authentic AP & TG Admission Guidance Platform\n\n" +
+  "Find official seat allotments, verified college rank predictors, and mock web options simulators for AP EAPCET, TG EAPCET, TG ICET, TG ECET & TG POLYCET — 100% Free!\n\n" +
   "👥 Please share with your classmates & leave us a quick review to help fellow students! ⭐";
 
 export function SharePopoverContent({ onClose, shareData }) {
@@ -81,12 +81,12 @@ export function SharePopoverContent({ onClose, shareData }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setActiveUrl(shareData?.url || window.location.href);
-      setActiveTitle(shareData?.title || document.title || "TG Counselling Portal");
+      setActiveTitle(shareData?.title || document.title || "Vuela Learn Portal");
     }
   }, [shareData]);
 
-  const url = activeUrl || (typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app");
-  const title = activeTitle || "TG Counselling Portal";
+  const url = activeUrl || (typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app");
+  const title = activeTitle || "Vuela Learn Portal";
   const text = shareData?.text || DEFAULT_SHARE_TEXT;
 
   const encodedUrl = encodeURIComponent(url);
@@ -196,7 +196,7 @@ export function SharePopoverContent({ onClose, shareData }) {
             <ModernShareIcon size={18} />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white tracking-tight">Share VuelaLearn</h4>
+            <h4 className="text-sm font-bold text-white tracking-tight">Share Vuela Learn</h4>
             <p className="text-[11px] text-white/50">Direct share to apps or copy link</p>
           </div>
         </div>
@@ -319,8 +319,8 @@ export function FloatingShareButton() {
         isOpen={open}
         onClose={() => setOpen(false)}
         shareData={{
-          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
-          title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
+          title: typeof document !== "undefined" ? document.title : "Vuela Learn Portal",
           text: DEFAULT_SHARE_TEXT,
         }}
       />
@@ -370,8 +370,8 @@ export function ShareButton({ className = "", variant = "icon", label = "Share",
         isOpen={open}
         onClose={() => setOpen(false)}
         shareData={shareData || {
-          url: typeof window !== "undefined" ? window.location.href : "https://tgcounselling.vercel.app",
-          title: typeof document !== "undefined" ? document.title : "TG Counselling Portal",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
+          title: typeof document !== "undefined" ? document.title : "Vuela Learn Portal",
           text: DEFAULT_SHARE_TEXT,
         }}
       />

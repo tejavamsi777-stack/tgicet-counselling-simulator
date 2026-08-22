@@ -70,7 +70,7 @@ function PrivacyContent() {
   return (
     <div className="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
       <p>
-        At <strong className="text-white">VuelaLearn</strong> (vuelalearn.in), protecting student privacy is our top priority. Here is how we handle your data:
+        At <strong className="text-white">Vuela Learn</strong> (vuelalearn.vercel.app), protecting student privacy is our top priority. Here is how we handle your data:
       </p>
 
       <div className="space-y-2 text-xs">
@@ -317,7 +317,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
                   {openPanel === "privacy" && <Shield size={18} className="text-purple-300" />}
                   {openPanel === "contact" && <HelpCircle size={18} className="text-purple-300" />}
                   <span>
-                    {openPanel === "about" && "About VuelaLearn"}
+                    {openPanel === "about" && "About Vuela Learn"}
                     {openPanel === "privacy" && "Privacy & Cookie Policy"}
                     {openPanel === "contact" && "Contact & Support"}
                   </span>
@@ -346,7 +346,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
           <div className="hidden md:block w-48" /> {/* Balanced left spacer */}
           
           <div className="text-center text-gray-400">
-            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.in</strong> — All rights reserved. Data sourced from official counselling portals.
+            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.vercel.app</strong> — All rights reserved. Data sourced from official counselling portals.
           </div>
           
           <div className="flex items-center gap-3 w-auto md:w-48 justify-center md:justify-end">
@@ -356,7 +356,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
             <button
               type="button"
               onClick={() => setShareOpen(true)}
-              title="Share VuelaLearn"
+              title="Share Vuela Learn"
               className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 hover:text-white transition cursor-pointer"
             >
               <ModernShareIcon size={14} />
@@ -383,9 +383,9 @@ export default function Footer({ openPanel, setOpenPanel }) {
         isOpen={shareOpen}
         onClose={() => setShareOpen(false)}
         shareData={{
-          url: "https://vuelalearn.in",
-          title: "VuelaLearn — AP & TG Counselling Simulator & College Predictor",
-          text: "Check out VuelaLearn for 100% free AP & TG College Predictors, authentic Seat Allotments, and Web Options Simulators!",
+          url: "https://vuelalearn.vercel.app",
+          title: "Vuela Learn — AP & TG Counselling Simulator & College Predictor",
+          text: "Check out Vuela Learn for 100% free AP & TG College Predictors, authentic Seat Allotments, and Web Options Simulators!",
         }}
       />
     </footer>
