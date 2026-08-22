@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, X, Send, CheckCircle2, MessageCircle, Share2, Sparkles } from 'lucide-react';
+import { Star, X, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 import { reviewApi } from '../../lib/api';
 import { GlassButton } from '../ui/glass-button';
 
-const POSITIVE_CHIPS = [
+const ALL_CHIPS = [
   "🎯 Accurate Cutoffs",
   "⚡ Super Fast & Smooth",
   "✨ Clean & Easy UI",
@@ -14,93 +14,46 @@ const POSITIVE_CHIPS = [
   "🎉 100% Free & Authentic",
 ];
 
-const CRITICAL_CHIPS = [
-  "⚠️ Add More Colleges",
-  "📉 Update Cutoffs / Fees",
-  "🐛 Found a Bug",
-  "📱 Mobile Layout Issue",
-  "❓ Missing Course Option",
-];
-
 const RATING_CONFIG = {
   0: {
     emoji: '✨',
     title: 'How is your experience?',
     desc: 'Tap the stars below to share your rating.',
     color: 'text-purple-300',
-    borderColor: 'border-purple-500/30',
-    bgColor: 'bg-purple-500/10',
-    animation: {
-      scale: [1, 1.15, 1],
-      transition: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' },
-    },
   },
   1: {
     emoji: '😡',
     title: 'Needs Improvement',
-    desc: 'Sorry about that! What went wrong or what can we fix?',
+    desc: 'Sorry about that! What can we fix for you?',
     color: 'text-rose-400',
-    borderColor: 'border-rose-500/40',
-    bgColor: 'bg-rose-500/10',
-    animation: {
-      x: [-5, 5, -4, 4, 0],
-      transition: { duration: 0.4 },
-    },
   },
   2: {
     emoji: '🙁',
     title: 'Could Be Better',
     desc: 'What can we improve to make your experience better?',
     color: 'text-orange-400',
-    borderColor: 'border-orange-500/40',
-    bgColor: 'bg-orange-500/10',
-    animation: {
-      rotate: [-8, 4, 0],
-      y: [0, 4, 0],
-      transition: { duration: 0.35 },
-    },
   },
   3: {
     emoji: '😐',
     title: 'It Was Okay',
     desc: 'What feature would make Vuela Learn great for you?',
     color: 'text-amber-400',
-    borderColor: 'border-amber-500/40',
-    bgColor: 'bg-amber-500/10',
-    animation: {
-      y: [-4, 3, 0],
-      transition: { duration: 0.3 },
-    },
   },
   4: {
     emoji: '😊',
     title: 'Great Experience!',
-    desc: 'Glad you liked it! Any suggestions for the upcoming rounds?',
+    desc: 'Glad you liked it! Tell us your thoughts.',
     color: 'text-emerald-400',
-    borderColor: 'border-emerald-500/40',
-    bgColor: 'bg-emerald-500/10',
-    animation: {
-      scale: [1, 1.22, 1],
-      transition: { duration: 0.35 },
-    },
   },
   5: {
     emoji: '🤩',
     title: 'Loved It! Super Helpful',
     desc: 'Awesome! Tell us what you liked most about Vuela Learn.',
     color: 'text-purple-300',
-    borderColor: 'border-purple-500/50',
-    bgColor: 'bg-purple-500/15',
-    animation: {
-      scale: [0.85, 1.3, 1],
-      rotate: [-10, 10, -5, 0],
-      transition: { duration: 0.45, type: 'spring', stiffness: 350, damping: 15 },
-    },
   },
 };
 
 export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
-  // Initially no stars selected
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedChips, setSelectedChips] = useState([]);
@@ -111,12 +64,6 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
   const activeRating = hoverRating || rating;
   const config = RATING_CONFIG[activeRating] || RATING_CONFIG[0];
 
-  const chipsToDisplay = activeRating >= 4
-    ? POSITIVE_CHIPS
-    : activeRating > 0
-    ? CRITICAL_CHIPS
-    : POSITIVE_CHIPS.slice(0, 4);
-
   const toggleChip = (chip) => {
     setSelectedChips((prev) =>
       prev.includes(chip) ? prev.filter((c) => c !== chip) : [...prev, chip]
@@ -125,7 +72,6 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
 
   const handleDismiss = () => {
     try {
-      // Snooze for 24h on dismiss so user isn't annoyed repeatedly today
       localStorage.setItem('vuela_review_snooze', String(Date.now() + 24 * 60 * 60 * 1000));
     } catch {}
     onClose();
@@ -183,19 +129,18 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.2 }}
             onClick={handleDismiss}
-            style={{ transform: 'translateZ(0)', willChange: 'opacity' }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm"
           />
 
           {/* Floating Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-[#140c26]/95 p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-3xl text-white"
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: 'spring', damping: 28, stiffness: 350 }}
+            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-[#120a22]/95 p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl text-white"
           >
             {/* Top Close Button */}
             <button
@@ -208,19 +153,10 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
             </button>
 
             {isSubmitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="py-4 text-center space-y-4"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.2, 1] }}
-                  transition={{ duration: 0.4 }}
-                  className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
-                >
+              <div className="py-4 text-center space-y-4">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400">
                   <CheckCircle2 size={36} />
-                </motion.div>
+                </div>
 
                 <div>
                   <h3 className="text-xl font-bold text-white">
@@ -229,7 +165,7 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                   <p className="mt-1 text-xs text-white/70 max-w-xs mx-auto">
                     {rating >= 4
                       ? 'Your support helps thousands of AP & TG students find the right college. Share Vuela Learn with your classmates!'
-                      : 'We appreciate your honest suggestions and will work hard to make Vuela Learn even better.'}
+                      : 'We appreciate your suggestions and will work hard to make Vuela Learn even better.'}
                   </p>
                 </div>
 
@@ -255,37 +191,29 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                 >
                   Done
                 </button>
-              </motion.div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Dynamic Animated Emoji Reaction */}
-                <div className="flex flex-col items-center justify-center text-center pt-1">
-                  <div className="relative mb-2">
-                    <motion.div
-                      key={activeRating}
-                      animate={config.animation}
-                      className="text-5xl select-none cursor-pointer filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)]"
-                    >
+                {/* Fixed-Height Emoji Area (Prevents height shifts) */}
+                <div className="flex flex-col items-center justify-center text-center">
+                  <div className="h-14 w-14 flex items-center justify-center mb-1 select-none">
+                    <span className="text-5xl transition-transform duration-200 transform hover:scale-110">
                       {config.emoji}
-                    </motion.div>
+                    </span>
                   </div>
 
-                  <motion.h3
-                    key={`title-${activeRating}`}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`text-lg font-bold tracking-tight ${config.color}`}
-                  >
-                    {config.title}
-                  </motion.h3>
-
-                  <p className="mt-0.5 text-xs text-white/60 max-w-xs">
-                    {config.desc}
-                  </p>
+                  <div className="min-h-[44px] flex flex-col items-center justify-center">
+                    <h3 className={`text-base sm:text-lg font-bold tracking-tight transition-colors duration-150 ${config.color}`}>
+                      {config.title}
+                    </h3>
+                    <p className="text-[11px] text-white/60 max-w-xs mt-0.5 line-clamp-1">
+                      {config.desc}
+                    </p>
+                  </div>
                 </div>
 
-                {/* 5-Star Selector (Empty until selected) */}
-                <div className="flex items-center justify-center gap-2.5 py-1">
+                {/* Stable 5-Star Selector */}
+                <div className="flex items-center justify-center gap-2 py-0.5 select-none">
                   {[1, 2, 3, 4, 5].map((star) => {
                     const isFilled = (hoverRating || rating) >= star;
                     return (
@@ -293,17 +221,21 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                         key={star}
                         type="button"
                         onClick={() => setRating(star)}
-                        onMouseEnter={() => setHoverRating(star)}
-                        onMouseLeave={() => setHoverRating(0)}
-                        className="group relative p-1.5 focus:outline-none transition-transform hover:scale-125 active:scale-95 cursor-pointer"
+                        onPointerEnter={(e) => {
+                          if (e.pointerType === 'mouse') setHoverRating(star);
+                        }}
+                        onPointerLeave={(e) => {
+                          if (e.pointerType === 'mouse') setHoverRating(0);
+                        }}
+                        className="p-1 focus:outline-none transition-transform active:scale-90 cursor-pointer"
                         aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
                       >
                         <Star
                           size={28}
-                          className={`transition-all duration-200 ${
+                          className={`transition-colors duration-150 ${
                             isFilled
-                              ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.7)]'
-                              : 'text-white/30 hover:text-white/60'
+                              ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]'
+                              : 'text-white/25 hover:text-white/50'
                           }`}
                         />
                       </button>
@@ -311,22 +243,22 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                   })}
                 </div>
 
-                {/* One-Tap Feedback Chips / Tags */}
+                {/* Stable One-Tap Tags */}
                 <div>
                   <label className="text-[11px] font-semibold text-white/50 block mb-1.5">
                     Quick feedback tags:
                   </label>
-                  <div className="flex flex-wrap gap-1.5">
-                    {chipsToDisplay.map((chip) => {
+                  <div className="flex flex-wrap gap-1.5 min-h-[58px]">
+                    {ALL_CHIPS.map((chip) => {
                       const isSelected = selectedChips.includes(chip);
                       return (
                         <button
                           key={chip}
                           type="button"
                           onClick={() => toggleChip(chip)}
-                          className={`text-[11px] px-2.5 py-1 rounded-full border transition-all cursor-pointer font-medium ${
+                          className={`text-[11px] px-2.5 py-1 rounded-full border transition-all cursor-pointer font-medium select-none ${
                             isSelected
-                              ? 'bg-purple-600 border-purple-400 text-white shadow-md shadow-purple-900/50'
+                              ? 'bg-purple-600 border-purple-400 text-white shadow-sm shadow-purple-900/50'
                               : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
                           }`}
                         >
@@ -344,7 +276,7 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                     rows={2}
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder="Add any specific comments or requests (optional)..."
+                    placeholder="Add specific comments or requests (optional)..."
                     className="w-full resize-none rounded-xl border border-white/15 bg-white/[0.05] p-3 text-xs text-white placeholder-white/40 focus:border-purple-400/60 focus:bg-white/[0.08] focus:outline-none transition backdrop-blur-md"
                   />
                 </div>
