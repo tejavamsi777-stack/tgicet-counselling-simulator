@@ -812,6 +812,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
           college: selectedCollege,
           branch: selectedBranch,
           year: selectedYear,
+          limit: 1000,
         });
 
         if (!isCancelled && res) {
