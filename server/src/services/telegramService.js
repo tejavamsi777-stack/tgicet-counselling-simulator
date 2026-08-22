@@ -1,5 +1,4 @@
-import fetch from "node-fetch";
-
+// Native Node 18+ global fetch is used
 const EMOJI_MAP = {
   1: "😡 1/5 (Disappointing)",
   2: "🙁 2/5 (Could Be Better)",
