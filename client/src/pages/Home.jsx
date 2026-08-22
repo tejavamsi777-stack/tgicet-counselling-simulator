@@ -21,8 +21,8 @@ export default function Home() {
   return (
     <main className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col items-center justify-center px-3 py-6 sm:px-6 sm:py-10">
       <Seo
-        title="VuelaLearn — AP & TG Counselling Simulator, College Predictor & Cutoffs"
-        description="Free AP & TG college predictor, mock web options simulator & authentic seat allotments for AP EAPCET, TG EAPCET, TG ICET, TG ECET & POLYCET."
+        title="Vuela Learn — AP & TG Counselling Simulator, College Predictor & Cutoffs"
+        description="Free AP & TG college predictor, mock web options simulator & authentic seat allotments for AP EAPCET, TG EAPCET, TG ICET, TG ECET & POLYCET by Vuela Learn."
       />
 
       {/* Hero */}

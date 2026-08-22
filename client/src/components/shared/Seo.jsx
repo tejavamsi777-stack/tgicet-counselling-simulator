@@ -62,7 +62,8 @@ export default function Seo({
       },
       "provider": {
         "@type": "Organization",
-        "name": "VuelaLearn",
+        "name": "Vuela Learn",
+        "alternateName": "VuelaLearn",
         "url": "https://vuelalearn.in"
       }
     };
