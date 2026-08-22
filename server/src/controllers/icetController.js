@@ -484,21 +484,35 @@ export const icetController = {
         limit = 1000,
       } = req.query;
 
-      const cCode = (college || "OUCB").trim().toUpperCase();
+      const rawCCode = (college || "OUCB").trim().toUpperCase();
       const bCode = (branch || "MBA").trim().toUpperCase();
 
-      const instMeta = ICET_INSTITUTIONS.find((c) => c.code === cCode);
-      const summaryCollege = icetAllotmentsSummary?.colleges?.find((c) => c.code === cCode);
+      const CODE_ALIASES = {
+        ACPN: "ADPN",
+        AIMSSF: "AIMS",
+        AURRSF: "AURR",
+        SSUDSF: "SSUD",
+        GIOMSF: "GIOM",
+        PVRRSF: "PVRR",
+        VAGESF: "VAGE",
+        VISASF: "VISA"
+      };
+
+      const cCode = CODE_ALIASES[rawCCode] || rawCCode;
+
+      const instMeta = ICET_INSTITUTIONS.find((c) => c.code === cCode || c.code === rawCCode);
+      const summaryCollege = icetAllotmentsSummary?.colleges?.find((c) => c.code === cCode || c.code === rawCCode);
 
       const collegeObj = {
-        code: cCode,
-        name: summaryCollege?.name || instMeta?.name || `${cCode} Institution`,
+        code: rawCCode,
+        effectiveCode: cCode,
+        name: summaryCollege?.name || instMeta?.name || `${rawCCode} Institution`,
         place: instMeta?.place || "",
         district: instMeta?.district || "",
         university: instMeta?.university || "OU",
         type: instMeta?.type || "Private Unaided",
         annualFee: instMeta?.annualFee || 0,
-        coursesOffered: summaryCollege?.coursesOffered?.length > 0 ? summaryCollege.coursesOffered : (instMeta?.coursesOffered || ["MBA"]),
+        coursesOffered: summaryCollege?.coursesOffered?.length > 0 ? summaryCollege.coursesOffered : (instMeta?.coursesOffered || ["MBA", "MCA"]),
       };
 
       const branchObj = {
@@ -513,7 +527,10 @@ export const icetController = {
       let availableBranches = [];
 
       // 1. Load from authentic scraped JSON files
-      const collegeJsonPath = path.join(ICET_ALLOTMENTS_DIR, `${cCode}.json`);
+      let collegeJsonPath = path.join(ICET_ALLOTMENTS_DIR, `${cCode}.json`);
+      if (!fs.existsSync(collegeJsonPath)) {
+        collegeJsonPath = path.join(ICET_ALLOTMENTS_DIR, `${rawCCode}.json`);
+      }
       if (fs.existsSync(collegeJsonPath)) {
         try {
           const raw = JSON.parse(fs.readFileSync(collegeJsonPath, "utf8"));
