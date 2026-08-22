@@ -25,8 +25,9 @@ export const reviewController = {
       );
 
       // 2. Send Telegram Notification (awaited so delivery completes)
+      let telegramSent = false;
       try {
-        await telegramService.sendReviewNotification({
+        telegramSent = await telegramService.sendReviewNotification({
           rating: numRating,
           feedback,
           examSlug,
@@ -40,6 +41,7 @@ export const reviewController = {
       res.status(201).json({
         success: true,
         message: "Thank you for your feedback!",
+        telegramSent,
         review: rows[0],
       });
     } catch (err) {
