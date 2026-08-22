@@ -754,11 +754,11 @@ function RankDistributionHistogram({ candidates = [] }) {
 const CATEGORY_FILTERS = [
   'ALL',
   'OC',
-  'BC_A',
-  'BC_B',
-  'BC_C',
-  'BC_D',
-  'BC_E',
+  'BC-A',
+  'BC-B',
+  'BC-C',
+  'BC-D',
+  'BC-E',
   'SC',
   'ST',
   'EWS'
@@ -777,7 +777,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [genderFilter, setGenderFilter] = useState('ALL');
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 50;
+  const pageSize = 100;
 
   // 1. Fetch metadata & colleges on mount
   useEffect(() => {
@@ -856,32 +856,44 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
     if (!allotmentData?.candidates) return [];
     let list = [...allotmentData.candidates];
 
+    // 1. Search Query
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (c) =>
-          c.name?.toLowerCase().includes(q) ||
-          c.hallTicket?.toLowerCase().includes(q) ||
-          c.rank?.toString().includes(q) ||
-          c.seatCategory?.toLowerCase().includes(q)
-      );
+      list = list.filter((c) => {
+        const name = String(c.name || '').toLowerCase();
+        const ht = String(c.hallTicket || '').toLowerCase();
+        const rank = String(c.rank || '').toLowerCase();
+        const seat = String(c.seatCategory || '').toLowerCase();
+        const caste = String(c.caste || '').toLowerCase();
+        const reg = String(c.region || '').toLowerCase();
+        return name.includes(q) || ht.includes(q) || rank.includes(q) || seat.includes(q) || caste.includes(q) || reg.includes(q);
+      });
     }
 
-    if (categoryFilter !== 'ALL') {
-      list = list.filter(
-        (c) =>
-          c.caste?.toUpperCase() === categoryFilter ||
-          c.seatCategory?.toUpperCase().includes(categoryFilter)
-      );
+    // 2. Category Filter (normalized comparison)
+    if (categoryFilter && categoryFilter !== 'ALL') {
+      const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
+      list = list.filter((c) => {
+        const casteNorm = String(c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+        const seatNorm = String(c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+        return casteNorm === targetCat || seatNorm.includes(targetCat);
+      });
     }
 
-    if (genderFilter !== 'ALL') {
-      list = list.filter(
-        (c) =>
-          c.gender?.toUpperCase() === genderFilter ||
-          (genderFilter === 'F' && c.gender === 'Female') ||
-          (genderFilter === 'M' && c.gender === 'Male')
-      );
+    // 3. Gender Filter
+    if (genderFilter && genderFilter !== 'ALL') {
+      const targetGender = genderFilter.toUpperCase();
+      list = list.filter((c) => {
+        const g = String(c.gender || '').toUpperCase().trim();
+        const seat = String(c.seatCategory || '').toUpperCase().trim();
+        if (targetGender === 'FEMALE' || targetGender === 'F') {
+          return g.startsWith('F') || seat.includes('GIRL') || seat.includes('FEMALE');
+        }
+        if (targetGender === 'MALE' || targetGender === 'M') {
+          return (g.startsWith('M') || g === 'BOY' || g === 'BOYS') && !seat.includes('GIRL');
+        }
+        return true;
+      });
     }
 
     return list;
@@ -892,7 +904,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const paginatedCandidates = useMemo(() => {
     const start = (currentPage - 1) * pageSize;
     return filteredCandidates.slice(start, start + pageSize);
-  }, [filteredCandidates, currentPage]);
+  }, [filteredCandidates, currentPage, pageSize]);
 
   // Metrics computation
   const stats = useMemo(() => {
