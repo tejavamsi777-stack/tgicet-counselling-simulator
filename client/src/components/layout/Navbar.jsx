@@ -53,11 +53,23 @@ const COUNSELLING_MENU_ITEMS = [
 ];
 
 export default function Navbar() {
+  const location = useLocation();
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hovered, setHovered] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+
+  const currentExamSlug = useMemo(() => {
+    const p = (location.pathname || '').toLowerCase();
+    if (p.includes('ap-eapcet')) return 'ap-eapcet';
+    if (p.includes('tg-eapcet') || p.includes('/eapcet')) return 'tg-eapcet';
+    if (p.includes('tg-icet') || p.includes('/icet')) return 'tg-icet';
+    if (p.includes('tg-ecet') || p.includes('/ecet')) return 'tg-ecet';
+    if (p.includes('tg-polycet') || p.includes('/polycet')) return 'tg-polycet';
+    if (p.includes('tg-pgecet') || p.includes('/pgecet')) return 'tg-pgecet';
+    return 'general';
+  }, [location.pathname]);
   const navRef = useRef(null);
 
   // Close dropdown on outside click
@@ -384,7 +396,7 @@ export default function Navbar() {
       <ReviewModal
         isOpen={reviewOpen}
         onClose={() => setReviewOpen(false)}
-        examSlug="general"
+        examSlug={currentExamSlug}
       />
 
       <ShareModal

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { X, Mail, Shield, Info, HelpCircle, Star, ChevronRight, ArrowUp, Share2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ReviewModal from "../shared/ReviewModal";
@@ -132,9 +132,21 @@ function ContactContent() {
 }
 
 export default function Footer({ openPanel, setOpenPanel }) {
+  const location = useLocation();
   const [reviewOpen, setReviewOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const panelRef = useRef(null);
+
+  const currentExamSlug = useMemo(() => {
+    const p = (location.pathname || '').toLowerCase();
+    if (p.includes('ap-eapcet')) return 'ap-eapcet';
+    if (p.includes('tg-eapcet') || p.includes('/eapcet')) return 'tg-eapcet';
+    if (p.includes('tg-icet') || p.includes('/icet')) return 'tg-icet';
+    if (p.includes('tg-ecet') || p.includes('/ecet')) return 'tg-ecet';
+    if (p.includes('tg-polycet') || p.includes('/polycet')) return 'tg-polycet';
+    if (p.includes('tg-pgecet') || p.includes('/pgecet')) return 'tg-pgecet';
+    return 'general';
+  }, [location.pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -364,7 +376,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
       <ReviewModal
         isOpen={reviewOpen}
         onClose={() => setReviewOpen(false)}
-        examSlug="general"
+        examSlug={currentExamSlug}
       />
 
       <ShareModal
