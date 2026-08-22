@@ -24,6 +24,7 @@ import {
   Info,
   ArrowRight
 } from 'lucide-react';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 import { icetApi } from '../../lib/icetApi';
 import SearchableSelect from '../shared/SearchableSelect';
 
@@ -1199,11 +1200,12 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
             </div>
           </div>
         ) : loading ? (
-          <div className="rounded-3xl border border-white/10 bg-black/60 p-16 text-center text-gray-400 backdrop-blur-xl">
-            <div className="flex flex-col items-center justify-center gap-3">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
-              <span className="text-xs font-medium">Analyzing seat allocation metrics...</span>
-            </div>
+          <div className="p-2">
+            <UniqueDataLoader
+              examName="TG ICET"
+              title="Analyzing Seat Allocation Metrics..."
+              subtitle="Processing demographic spreads, closing cutoffs, and quota analytics..."
+            />
           </div>
         ) : (
           <div className="space-y-6">
@@ -1372,11 +1374,12 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
                 </tr>
               ) : loading ? (
                 <tr>
-                  <td colSpan={8} className="py-16 text-center text-gray-400">
-                    <div className="flex flex-col items-center justify-center gap-3">
-                      <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
-                      <span className="text-xs font-medium">Fetching authentic seat allotment list from tgicet.nic.in...</span>
-                    </div>
+                  <td colSpan={8} className="p-4 sm:p-8">
+                    <UniqueDataLoader
+                      examName="TG ICET"
+                      title="Fetching Official TG ICET Allotments..."
+                      subtitle="Connecting to tgicet.nic.in admission database to parse verified candidate seat allocations..."
+                    />
                   </td>
                 </tr>
               ) : paginatedCandidates.length === 0 ? (

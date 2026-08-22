@@ -28,6 +28,7 @@ import {
 import { Link } from 'react-router-dom';
 import { eapcetApi } from '../../lib/eapcetApi';
 import SearchableSelect from '../shared/SearchableSelect';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1393,6 +1394,15 @@ export default function AllotmentExplorer({ onDataLoaded }) {
         <div className="rounded-2xl border border-rose-500/30 bg-rose-950/20 px-5 py-4 text-sm text-rose-300">
           ⚠️ {error}
         </div>
+      )}
+
+      {/* ── Unique Data Loading Indicator (Only when fetching) ─────────────── */}
+      {fetching && (
+        <UniqueDataLoader
+          examName="TG EAPCET"
+          title="Loading Engineering Seat Allotment Data..."
+          subtitle="Fetching verified candidate rank records, category reservation spread, and closing ranks..."
+        />
       )}
 
       {/* ── Results Container (When Queried) ────────────────────────── */}

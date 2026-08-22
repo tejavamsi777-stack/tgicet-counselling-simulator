@@ -28,6 +28,7 @@ import { polycetApi } from '../../lib/polycetApi';
 import { POLYCET_INSTITUTIONS, POLYCET_BRANCHES } from '../../data/polycetInstitutions';
 import allotmentsSummary from '../../data/polycet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1347,6 +1348,15 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
           </button>
         </div>
       </div>
+
+      {/* ── Unique Data Loading Indicator (Only when fetching) ─────────────── */}
+      {fetching && (
+        <UniqueDataLoader
+          examName="TG POLYCET"
+          title="Loading Polytechnic Allotments..."
+          subtitle="Fetching verified diploma seat allocations, candidate ranks, and category distribution..."
+        />
+      )}
 
       {/* ── Results Container (When Queried) ────────────────────────── */}
       {hasQueried && !fetching && collegeData && currentInst && (

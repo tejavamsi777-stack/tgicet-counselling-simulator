@@ -6,6 +6,7 @@ import {
 import { pgecetApi } from '../../lib/pgecetApi';
 import { PGECET_INSTITUTIONS } from '../../data/pgecetInstitutions';
 import SearchableSelect from '../shared/SearchableSelect';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 
 function getSeatCategoryStyle(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
@@ -458,8 +459,14 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
         </div>
       </div>
 
-      {/* Empty State */}
-      {!selectedCollege ? (
+      {/* Loading State */}
+      {loading ? (
+        <UniqueDataLoader
+          examName="TG PGECET"
+          title="Loading Postgraduate Allotments..."
+          subtitle="Fetching verified M.Tech/M.E. candidate seat allocations, GATE scores, and category cutoffs..."
+        />
+      ) : !selectedCollege ? (
         <div className="rounded-3xl border border-white/10 bg-[#0e071c]/70 p-12 text-center shadow-xl backdrop-blur-xl">
           <Building size={40} className="mx-auto text-purple-400/60 mb-3" />
           <h3 className="text-lg font-bold text-white">No Postgraduate College Selected</h3>

@@ -28,6 +28,7 @@ import {
 import { Link } from 'react-router-dom';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from '../shared/SearchableSelect';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1427,6 +1428,15 @@ export default function AllotmentExplorer({ onDataLoaded }) {
         <div className="rounded-2xl border border-rose-500/30 bg-rose-950/20 px-5 py-4 text-sm text-rose-300">
           ⚠️ {error}
         </div>
+      )}
+
+      {/* ── Unique Data Loading Indicator (Only when fetching) ─────────────── */}
+      {fetching && (
+        <UniqueDataLoader
+          examName="AP EAPCET"
+          title="Loading AP EAPCET Seat Allotment Data..."
+          subtitle="Fetching verified Andhra Pradesh engineering candidate allotments, closing cutoffs, and seat categories..."
+        />
       )}
 
       {/* ── Results Container (When Queried) ────────────────────────── */}

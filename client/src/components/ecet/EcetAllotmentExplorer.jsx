@@ -28,6 +28,7 @@ import { ecetApi } from '../../lib/ecetApi';
 import { ECET_INSTITUTIONS, ECET_BRANCHES } from '../../data/ecetInstitutions';
 import allotmentsSummary from '../../data/ecet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
+import UniqueDataLoader from '../shared/UniqueDataLoader';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1382,6 +1383,15 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
           </button>
         </div>
       </div>
+
+      {/* ── Unique Data Loading Indicator (Only when fetching) ─────────────── */}
+      {fetching && (
+        <UniqueDataLoader
+          examName="TG ECET"
+          title="Loading Lateral Entry Allotments..."
+          subtitle="Fetching verified diploma-to-engineering candidate seat records and closing ranks..."
+        />
+      )}
 
       {/* ── Results Container (When Queried) ────────────────────────── */}
       {hasQueried && !fetching && results && currentInst && (
