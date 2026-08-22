@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
@@ -6,8 +7,9 @@ import { useReviewPrompt } from '../../hooks/useReviewPrompt';
 import ReviewModal from '../../components/shared/ReviewModal';
 
 export default function PgecetAllotmentsPage() {
+  const [hasLoadedData, setHasLoadedData] = useState(false);
   const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    true,
+    hasLoadedData,
     'tg-pgecet'
   );
 
@@ -42,7 +44,7 @@ export default function PgecetAllotmentsPage() {
       </div>
 
       {/* Main Explorer Component */}
-      <PgecetAllotmentExplorer />
+      <PgecetAllotmentExplorer onDataLoaded={setHasLoadedData} />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

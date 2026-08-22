@@ -998,7 +998,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 }
 
 // ─── Main Component ─────────────────────────────────────────────────────────
-export default function PolycetAllotmentExplorer() {
+export default function PolycetAllotmentExplorer({ onDataLoaded }) {
   const [colleges] = useState(POLYCET_INSTITUTIONS);
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCollege, setSelectedCollege] = useState('');
@@ -1048,15 +1048,20 @@ export default function PolycetAllotmentExplorer() {
       const res = await polycetApi.getCollegeAllotments(collegeCode);
       if (res.data?.success && res.data.data) {
         setCollegeData(res.data.data);
+        onDataLoaded?.(true);
       } else {
         // Fallback to client bundled JSON
         const fallback = await import(`../../data/polycet_allotments/${collegeCode}.json`);
-        setCollegeData(fallback.default || fallback);
+        const d = fallback.default || fallback;
+        setCollegeData(d);
+        if (d?.branches?.length > 0) onDataLoaded?.(true);
       }
     } catch (e) {
       try {
         const fallback = await import(`../../data/polycet_allotments/${collegeCode}.json`);
-        setCollegeData(fallback.default || fallback);
+        const d = fallback.default || fallback;
+        setCollegeData(d);
+        if (d?.branches?.length > 0) onDataLoaded?.(true);
       } catch (err2) {
         console.error('Failed to load allotments for', collegeCode, err2);
         setError(`Failed to load allotment records for ${collegeCode}.`);
@@ -1066,7 +1071,7 @@ export default function PolycetAllotmentExplorer() {
       setFetching(false);
       setTimeout(() => tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
     }
-  }, []);
+  }, [onDataLoaded]);
 
   // Handle Query Trigger
   const handleQuery = () => {

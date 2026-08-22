@@ -373,7 +373,7 @@ function PgecetSection({ candidates, searchFilter, loading }) {
 /* ════════════════════════════════════════════════
    Main Explorer
 ════════════════════════════════════════════════ */
-export default function PgecetAllotmentExplorer() {
+export default function PgecetAllotmentExplorer({ onDataLoaded }) {
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('');
   const [candidates, setCandidates] = useState([]);
@@ -395,10 +395,14 @@ export default function PgecetAllotmentExplorer() {
     if (!selectedCollege) return;
     setLoading(true);
     pgecetApi.getCollegeAllotments(selectedCollege, selectedBranch)
-      .then(res => { setCandidates(res.data.candidates || []); })
+      .then(res => {
+        const list = res.data.candidates || [];
+        setCandidates(list);
+        if (list.length > 0) onDataLoaded?.(true);
+      })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
-  }, [selectedCollege, selectedBranch]);
+  }, [selectedCollege, selectedBranch, onDataLoaded]);
 
   const handleExportCsv = () => {
     if (candidates.length === 0) return;

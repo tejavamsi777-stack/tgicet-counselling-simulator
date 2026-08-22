@@ -1,9 +1,26 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, X, Send, CheckCircle2 } from 'lucide-react';
+import { Star, X, Send, CheckCircle2, MessageCircle, Share2, Sparkles } from 'lucide-react';
 import { reviewApi } from '../../lib/api';
 import { GlassButton } from '../ui/glass-button';
+
+const POSITIVE_CHIPS = [
+  "🎯 Accurate Cutoffs",
+  "⚡ Super Fast & Smooth",
+  "✨ Clean & Easy UI",
+  "📋 Loved Web Options",
+  "💡 Helpful Insights",
+  "🎉 100% Free & Authentic",
+];
+
+const CRITICAL_CHIPS = [
+  "⚠️ Add More Colleges",
+  "📉 Update Cutoffs / Fees",
+  "🐛 Found a Bug",
+  "📱 Mobile Layout Issue",
+  "❓ Missing Course Option",
+];
 
 const RATING_CONFIG = {
   0: {
@@ -46,7 +63,7 @@ const RATING_CONFIG = {
   3: {
     emoji: '😐',
     title: 'It Was Okay',
-    desc: 'What feature would make VuelaLearn great for you?',
+    desc: 'What feature would make Vuela Learn great for you?',
     color: 'text-amber-400',
     borderColor: 'border-amber-500/40',
     bgColor: 'bg-amber-500/10',
@@ -70,7 +87,7 @@ const RATING_CONFIG = {
   5: {
     emoji: '🤩',
     title: 'Loved It! Super Helpful',
-    desc: 'Awesome! Tell us what you liked most about VuelaLearn.',
+    desc: 'Awesome! Tell us what you liked most about Vuela Learn.',
     color: 'text-purple-300',
     borderColor: 'border-purple-500/50',
     bgColor: 'bg-purple-500/15',
@@ -86,6 +103,7 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
   // Initially no stars selected
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [selectedChips, setSelectedChips] = useState([]);
   const [feedback, setFeedback] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -93,7 +111,23 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
   const activeRating = hoverRating || rating;
   const config = RATING_CONFIG[activeRating] || RATING_CONFIG[0];
 
+  const chipsToDisplay = activeRating >= 4
+    ? POSITIVE_CHIPS
+    : activeRating > 0
+    ? CRITICAL_CHIPS
+    : POSITIVE_CHIPS.slice(0, 4);
+
+  const toggleChip = (chip) => {
+    setSelectedChips((prev) =>
+      prev.includes(chip) ? prev.filter((c) => c !== chip) : [...prev, chip]
+    );
+  };
+
   const handleDismiss = () => {
+    try {
+      // Snooze for 24h on dismiss so user isn't annoyed repeatedly today
+      localStorage.setItem('vuela_review_snooze', String(Date.now() + 24 * 60 * 60 * 1000));
+    } catch {}
     onClose();
   };
 
@@ -103,23 +137,29 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
 
     setIsSubmitting(true);
     try {
+      const combinedFeedback = [
+        selectedChips.join(', '),
+        feedback.trim(),
+      ]
+        .filter(Boolean)
+        .join(' — ');
+
       await reviewApi.submit({
         rating,
-        feedback: feedback.trim(),
+        feedback: combinedFeedback,
         examSlug,
         source: 'predictor_popup',
       });
 
       try {
+        localStorage.setItem('vuela_has_reviewed', 'true');
         localStorage.setItem('tg_has_reviewed', 'true');
       } catch {}
 
       setIsSubmitted(true);
-      setTimeout(() => {
-        onClose();
-      }, 2200);
     } catch {
       try {
+        localStorage.setItem('vuela_has_reviewed', 'true');
         localStorage.setItem('tg_has_reviewed', 'true');
       } catch {}
       onClose();
@@ -130,28 +170,32 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
 
   if (typeof document === 'undefined') return null;
 
+  const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+    'Hey! Check out Vuela Learn — 100% free AP & TG College Predictors, authentic Seat Allotments, and Web Options Simulators! Try it here: https://vuelalearn.vercel.app'
+  )}`;
+
   return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 pointer-events-auto">
-          {/* Hardware-Accelerated Smooth Frosted Backdrop (Zero GPU Glitch) */}
+          {/* Frosted Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             onClick={handleDismiss}
-            style={{ transform: "translateZ(0)", willChange: "opacity" }}
-            className="fixed inset-0 bg-black/65 backdrop-blur-sm"
+            style={{ transform: 'translateZ(0)', willChange: 'opacity' }}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm"
           />
 
-          {/* Frosted Glass Floating Card */}
+          {/* Floating Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-[#140c26]/90 p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-3xl text-white"
+            className="relative z-10 w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-[#140c26]/95 p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.25)] backdrop-blur-3xl text-white"
           >
             {/* Top Close Button */}
             <button
@@ -165,32 +209,62 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
 
             {isSubmitted ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="py-8 text-center"
+                className="py-4 text-center space-y-4"
               >
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: [0, 1.2, 1] }}
                   transition={{ duration: 0.4 }}
-                  className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
+                  className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
                 >
                   <CheckCircle2 size={36} />
                 </motion.div>
-                <h3 className="text-xl font-bold text-white">Thank You!</h3>
-                <p className="mt-1 text-sm text-white/70">
-                  Your feedback helps thousands of Telangana students make smarter counselling decisions.
-                </p>
+
+                <div>
+                  <h3 className="text-xl font-bold text-white">
+                    {rating >= 4 ? '🎉 Thank You for the Love!' : 'Thank You for Your Feedback!'}
+                  </h3>
+                  <p className="mt-1 text-xs text-white/70 max-w-xs mx-auto">
+                    {rating >= 4
+                      ? 'Your support helps thousands of AP & TG students find the right college. Share Vuela Learn with your classmates!'
+                      : 'We appreciate your honest suggestions and will work hard to make Vuela Learn even better.'}
+                  </p>
+                </div>
+
+                {/* WhatsApp Share Button on 4 & 5 Stars */}
+                {rating >= 4 && (
+                  <div className="pt-2">
+                    <a
+                      href={whatsappShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-black font-extrabold text-xs py-3 px-4 shadow-lg shadow-emerald-950/40 transition active:scale-95 cursor-pointer"
+                    >
+                      <MessageCircle size={16} className="fill-black" />
+                      <span>Share Vuela Learn on WhatsApp</span>
+                    </a>
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-2.5 text-xs font-bold text-white/80 hover:bg-white/10 transition cursor-pointer"
+                >
+                  Done
+                </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Dynamic Animated Emoji Reaction */}
                 <div className="flex flex-col items-center justify-center text-center pt-1">
                   <div className="relative mb-2">
                     <motion.div
                       key={activeRating}
                       animate={config.animation}
-                      className="text-6xl select-none cursor-pointer filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)]"
+                      className="text-5xl select-none cursor-pointer filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)]"
                     >
                       {config.emoji}
                     </motion.div>
@@ -225,7 +299,7 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                         aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
                       >
                         <Star
-                          size={30}
+                          size={28}
                           className={`transition-all duration-200 ${
                             isFilled
                               ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.7)]'
@@ -237,27 +311,50 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                   })}
                 </div>
 
+                {/* One-Tap Feedback Chips / Tags */}
+                <div>
+                  <label className="text-[11px] font-semibold text-white/50 block mb-1.5">
+                    Quick feedback tags:
+                  </label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {chipsToDisplay.map((chip) => {
+                      const isSelected = selectedChips.includes(chip);
+                      return (
+                        <button
+                          key={chip}
+                          type="button"
+                          onClick={() => toggleChip(chip)}
+                          className={`text-[11px] px-2.5 py-1 rounded-full border transition-all cursor-pointer font-medium ${
+                            isSelected
+                              ? 'bg-purple-600 border-purple-400 text-white shadow-md shadow-purple-900/50'
+                              : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
+                          }`}
+                        >
+                          {chip}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 {/* Optional Feedback Input Box */}
                 <div>
-                  <label htmlFor="review-feedback" className="sr-only">
-                    Feedback comment
-                  </label>
                   <textarea
                     id="review-feedback"
-                    rows={3}
+                    rows={2}
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder="Tell us what you liked or how we can improve (optional)..."
-                    className="w-full resize-none rounded-2xl border border-white/15 bg-white/[0.05] p-3.5 text-xs text-white placeholder-white/40 focus:border-purple-400/60 focus:bg-white/[0.08] focus:outline-none transition backdrop-blur-md"
+                    placeholder="Add any specific comments or requests (optional)..."
+                    className="w-full resize-none rounded-xl border border-white/15 bg-white/[0.05] p-3 text-xs text-white placeholder-white/40 focus:border-purple-400/60 focus:bg-white/[0.08] focus:outline-none transition backdrop-blur-md"
                   />
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center justify-between gap-3 pt-2">
+                <div className="flex items-center justify-between gap-3 pt-1">
                   <button
                     type="button"
                     onClick={handleDismiss}
-                    className="rounded-full px-4 py-2 text-xs font-semibold text-white/50 hover:bg-white/10 hover:text-white transition cursor-pointer"
+                    className="rounded-full px-3 py-1.5 text-xs font-semibold text-white/50 hover:bg-white/10 hover:text-white transition cursor-pointer"
                   >
                     Maybe Later
                   </button>
@@ -266,7 +363,7 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                     type="submit"
                     size="sm"
                     disabled={rating === 0 || isSubmitting}
-                    className={rating === 0 ? "opacity-50 cursor-not-allowed" : "active:scale-95"}
+                    className={rating === 0 ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}
                     contentClassName="flex items-center gap-2 px-5 py-2 text-xs font-bold"
                   >
                     {isSubmitting ? (

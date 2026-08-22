@@ -999,7 +999,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
   );
 }
 
-export default function EcetAllotmentExplorer() {
+export default function EcetAllotmentExplorer({ onDataLoaded }) {
   const [colleges, setColleges] = useState(ECET_INSTITUTIONS);
   const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
   const [selectedYear, setSelectedYear] = useState('');
@@ -1105,6 +1105,9 @@ export default function EcetAllotmentExplorer() {
 
       if (res.success && res.data) {
         setResults(res.data);
+        if (res.data?.candidates?.length > 0) {
+          onDataLoaded?.(true);
+        }
       } else {
         setError('Unable to load allotment records for this selection.');
         setResults(null);

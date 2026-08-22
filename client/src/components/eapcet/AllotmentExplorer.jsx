@@ -1000,7 +1000,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 }
 
 // ─── Main Component ─────────────────────────────────────────────────────────
-export default function AllotmentExplorer() {
+export default function AllotmentExplorer({ onDataLoaded }) {
   // Meta (years, colleges, branches, collegeBranches map)
   const [meta, setMeta] = useState({ years: [], colleges: [], branches: [], collegeBranches: {} });
   const [metaLoading, setMetaLoading] = useState(true);
@@ -1091,7 +1091,11 @@ export default function AllotmentExplorer() {
         limit: 500, // fetch all for this combo to enable instant search and analytics
         page: 1,
       });
-      setResults(res.data || null);
+      const data = res.data || null;
+      setResults(data);
+      if (data?.candidates?.length > 0) {
+        onDataLoaded?.(true);
+      }
     } catch (e) {
       setError('Failed to load allotment data. Please try again.');
       setResults(null);

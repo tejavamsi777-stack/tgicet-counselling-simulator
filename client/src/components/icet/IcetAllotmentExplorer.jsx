@@ -764,7 +764,7 @@ const CATEGORY_FILTERS = [
   'EWS'
 ];
 
-export default function IcetAllotmentExplorer() {
+export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const [activeTab, setActiveTab] = useState('table'); // 'table' | 'analytics' | 'matrix'
   const [loading, setLoading] = useState(false);
   const [collegesList, setCollegesList] = useState([]);
@@ -817,6 +817,9 @@ export default function IcetAllotmentExplorer() {
         if (!isCancelled && res) {
           const payload = res?.data?.data || res?.data;
           setAllotmentData(payload);
+          if (payload?.candidates?.length > 0) {
+            onDataLoaded?.(true);
+          }
         }
       } catch (err) {
         console.warn('Error fetching ICET allotment:', err);
@@ -830,7 +833,7 @@ export default function IcetAllotmentExplorer() {
     return () => {
       isCancelled = true;
     };
-  }, [selectedCollege, selectedBranch, selectedYear]);
+  }, [selectedCollege, selectedBranch, selectedYear, onDataLoaded]);
 
   // Handle college change
   const handleCollegeChange = (code) => {
