@@ -3,9 +3,7 @@ import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { WaveLoader } from "../ui/wave-loader";
 
-const DURATION = 3000;
-
-export default function PredictionLoader({ onComplete, examSlug = "tg-icet" }) {
+export default function PredictionLoader({ onComplete, examSlug = "tg-icet", minimumDurationMs = 350 }) {
   const [mounted, setMounted] = useState(false);
   const onCompleteRef = useRef(onComplete);
 
@@ -21,7 +19,7 @@ export default function PredictionLoader({ onComplete, examSlug = "tg-icet" }) {
 
     const timer = setTimeout(() => {
       onCompleteRef.current?.();
-    }, DURATION);
+    }, minimumDurationMs);
 
     return () => {
       document.body.style.overflow = originalOverflow;

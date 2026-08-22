@@ -92,19 +92,16 @@ export default function IcetPredictorPage() {
     setIsLoading(true);
 
     try {
-      const [response] = await Promise.all([
-        api.post("/predict", {
-          rank: Number(rank),
-          category,
-          gender,
-          courses: selectedCourses,
-          districts: selectedDistricts,
-          years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
-          year,
-          exam: "tg-icet",
-        }),
-        new Promise((resolve) => setTimeout(resolve, 2500)),
-      ]);
+      const response = await api.post("/predict", {
+        rank: Number(rank),
+        category,
+        gender,
+        courses: selectedCourses,
+        districts: selectedDistricts,
+        years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
+        year,
+        exam: "tg-icet",
+      });
 
       const { results } = response;
       const mapped = mapResults(results, gender, year);
@@ -192,7 +189,7 @@ export default function IcetPredictorPage() {
                 onComplete={handleLoaderComplete}
                 collegeCount={loaderStats?.collegesChecked || 0}
                 safeMatchesCount={loaderStats?.safeMatches || 0}
-                minimumDurationMs={3000}
+                minimumDurationMs={350}
               />
             )}
           </AnimatePresence>

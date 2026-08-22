@@ -51,18 +51,15 @@ export default function EapcetPredictorPage() {
     setError("");
     setPredicting(true);
     try {
-      const [response] = await Promise.all([
-        api.post("/predict", {
-          exam: "tg-eapcet",
-          rank,
-          category,
-          gender,
-          courses: selectedCourses,
-          districts: selectedDistricts,
-          years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
-        }),
-        new Promise((resolve) => setTimeout(resolve, 800)),
-      ]);
+      const response = await api.post("/predict", {
+        exam: "tg-eapcet",
+        rank,
+        category,
+        gender,
+        courses: selectedCourses,
+        districts: selectedDistricts,
+        years: selectedYears.length > 0 ? selectedYears : (year ? [Number(year)] : undefined),
+      });
       const rawResults = Array.isArray(response) ? response : (response.results || []);
       setResults(
         rawResults.map((row) => ({

@@ -607,11 +607,8 @@ export const ecetController = {
 
     let liveScraped = fileResult;
     if (!liveScraped) {
-      try {
-        liveScraped = await scrapeOfficialTgEcetAllotment(cCode, bCode);
-      } catch (err) {
-        console.warn("[ECET Live Allotment Scrape Warning]:", err.message);
-      }
+      // Return clean fast response if not in pre-scraped json file
+      liveScraped = null;
     }
 
     const collegeObj = ECET_INSTITUTIONS_DIRECTORY.find((c) => c.code === cCode) || {

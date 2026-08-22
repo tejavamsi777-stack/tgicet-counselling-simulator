@@ -83,10 +83,7 @@ export default function EcetPredictorPage() {
     }
 
     try {
-      const [response] = await Promise.all([
-        api.post("/predict", { ...criteria, exam: "tg-ecet" }),
-        showLoader ? new Promise((resolve) => setTimeout(resolve, 2500)) : Promise.resolve(),
-      ]);
+      const response = await api.post("/predict", { ...criteria, exam: "tg-ecet" });
 
       const { results } = response;
       const mapped = mapResults(results, criteria.gender, criteria.year);
@@ -172,7 +169,7 @@ export default function EcetPredictorPage() {
               onComplete={handleLoaderComplete}
               collegeCount={loaderStats?.collegesChecked || 0}
               safeMatchesCount={loaderStats?.safeMatches || 0}
-              minimumDurationMs={3000}
+              minimumDurationMs={350}
             />
           )}
         </AnimatePresence>

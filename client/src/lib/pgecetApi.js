@@ -1,6 +1,14 @@
 import { PGECET_INSTITUTIONS, PGECET_BRANCHES } from '../data/pgecetInstitutions';
 import allotmentsSummary from '../data/pgecet_allotments/allotments_summary.json';
-import allAllotments from '../data/pgecet_allotments/allotments.json';
+
+let cachedAllotments = null;
+async function getAllotmentRecords() {
+  if (!cachedAllotments) {
+    const mod = await import('../data/pgecet_allotments/allotments.json');
+    cachedAllotments = mod.default || mod;
+  }
+  return cachedAllotments;
+}
 
 function getCanonicalBranch(rawName) {
   if (!rawName) return "";
@@ -39,7 +47,8 @@ export const pgecetApi = {
   getInstitutions: () => Promise.resolve({ data: PGECET_INSTITUTIONS }),
   getBranches: () => Promise.resolve({ data: PGECET_BRANCHES }),
   getAllotmentsSummary: () => Promise.resolve({ data: allotmentsSummary }),
-  getCollegeAllotments: (collegeCode, branchName = '') => {
+  getCollegeAllotments: async (collegeCode, branchName = '') => {
+    const allAllotments = await getAllotmentRecords();
     const records = allAllotments.filter((rec) => {
       const matchCode = rec.college_code.toUpperCase() === collegeCode.toUpperCase();
       if (!matchCode) return false;
@@ -48,7 +57,7 @@ export const pgecetApi = {
       }
       return true;
     });
-    return Promise.resolve({ data: { candidates: records, total: records.length } });
+    return { data: { candidates: records, total: records.length } };
   },
   predict: (rankOrScore, isGate = false, category = 'OC', gender = 'M', branch = '') => {
     const numericVal = Number(rankOrScore);

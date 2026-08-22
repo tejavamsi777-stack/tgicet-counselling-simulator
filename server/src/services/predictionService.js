@@ -25,6 +25,10 @@ function normalizeCourseCode(course, examSlug) {
   return c;
 }
 
+const PREDICTION_CACHE = new Map();
+const PREDICTION_CACHE_MAX = 5000;
+const PREDICTION_TTL_MS = 15 * 60 * 1000; // 15 minutes
+
 export const predictionService = {
   async predict({ rank, category, gender, course, courses, district, districts, year, years, exam: examSlug, region }) {
     const exam = await examService.resolve(examSlug);
@@ -58,6 +62,13 @@ export const predictionService = {
       districtList = [district.trim().toUpperCase()].filter(Boolean);
     }
 
+    // Generate cache key
+    const cacheKey = `${exam.id}:${rankNum}:${category || ""}:${gender || ""}:${region || ""}:${yearList.sort().join(",")}:${courseList.sort().join(",")}:${districtList.sort().join(",")}`;
+    const cached = PREDICTION_CACHE.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < PREDICTION_TTL_MS) {
+      return cached.data;
+    }
+
     const matches = await predictionRepository.findMatches({
       rank: rankNum,
       category,
@@ -78,6 +89,12 @@ export const predictionService = {
       if (a.statusPriority !== b.statusPriority) return a.statusPriority - b.statusPriority;
       return a.cutoff_rank - b.cutoff_rank;
     });
+
+    if (PREDICTION_CACHE.size >= PREDICTION_CACHE_MAX) {
+      const firstKey = PREDICTION_CACHE.keys().next().value;
+      PREDICTION_CACHE.delete(firstKey);
+    }
+    PREDICTION_CACHE.set(cacheKey, { timestamp: Date.now(), data: withStatus });
 
     return withStatus;
   },
