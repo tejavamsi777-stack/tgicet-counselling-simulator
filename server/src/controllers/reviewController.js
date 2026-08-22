@@ -24,16 +24,18 @@ export const reviewController = {
         [userId, numRating, feedback ? feedback.trim() : null, examSlug, source, ipAddress, userAgent]
       );
 
-      // 2. Fire and forget Telegram Notification
-      telegramService.sendReviewNotification({
-        rating: numRating,
-        feedback,
-        examSlug,
-        user: req.user,
-        reqIp: ipAddress,
-      }).catch((err) => {
-        console.error("[ReviewController]: Telegram notification background error:", err);
-      });
+      // 2. Send Telegram Notification (awaited so delivery completes)
+      try {
+        await telegramService.sendReviewNotification({
+          rating: numRating,
+          feedback,
+          examSlug,
+          user: req.user,
+          reqIp: ipAddress,
+        });
+      } catch (tgErr) {
+        console.error("[ReviewController]: Telegram notification error:", tgErr.message);
+      }
 
       res.status(201).json({
         success: true,
