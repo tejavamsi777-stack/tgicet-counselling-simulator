@@ -40,9 +40,12 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Client-App", "Accept", "Origin", "X-Requested-With"],
     credentials: true,
   })
 );
+app.options("*", cors());
 app.use(express.json());
 
 // Global rate limit — applies to all routes

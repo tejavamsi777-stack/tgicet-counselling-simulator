@@ -5,14 +5,56 @@ import { Star, X, Send, CheckCircle2, MessageCircle } from 'lucide-react';
 import { reviewApi } from '../../lib/api';
 import { GlassButton } from '../ui/glass-button';
 
-const ALL_CHIPS = [
-  "🎯 Accurate Cutoffs",
-  "⚡ Super Fast & Smooth",
-  "✨ Clean & Easy UI",
-  "📋 Loved Web Options",
-  "💡 Helpful Insights",
-  "🎉 100% Free & Authentic",
-];
+const RATING_CHIPS = {
+  0: [
+    "🎯 Accurate Cutoffs",
+    "⚡ Super Fast & Smooth",
+    "✨ Clean & Easy UI",
+    "📋 Loved Web Options",
+    "💡 Helpful Insights",
+    "🎉 100% Free & Authentic",
+  ],
+  1: [
+    "⚠️ Data / Cutoff Inaccurate",
+    "🐌 Very Slow Loading",
+    "📱 Mobile Layout Glitch",
+    "🔍 Missing College / Branch",
+    "😕 Confusing Navigation",
+    "❌ Need Better Support",
+  ],
+  2: [
+    "📉 Need More Past Years",
+    "🔄 Filter Not Working Well",
+    "📱 Needs Better Mobile UI",
+    "⚡ Needs Faster Speed",
+    "📋 Web Options Confusing",
+    "💡 Add More College Info",
+  ],
+  3: [
+    "👍 Decent Features",
+    "📊 Add More Visual Charts",
+    "📈 Better Rank Prediction",
+    "⚡ Improve Loading Speed",
+    "🔍 Better Search Filters",
+    "📱 Good on Mobile",
+  ],
+  4: [
+    "🎯 Accurate Cutoffs",
+    "⚡ Super Fast & Smooth",
+    "✨ Clean & Easy UI",
+    "📋 Great Web Options Tool",
+    "💡 Very Helpful Insights",
+    "🎓 Saved Me Time",
+  ],
+  5: [
+    "🤩 Best Counselling Tool!",
+    "🎯 100% Accurate Cutoffs",
+    "⚡ Lightning Fast UI",
+    "🏆 Essential for All Students",
+    "📋 Loved Web Options Simulator",
+    "🎉 100% Free & Authentic",
+  ],
+};
 
 const RATING_CONFIG = {
   0: {
@@ -242,13 +284,13 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                   })}
                 </div>
 
-                {/* Stable One-Tap Tags */}
+                {/* Dynamic One-Tap Tags */}
                 <div>
                   <label className="text-[11px] font-semibold text-white/50 block mb-1.5">
                     Quick feedback tags:
                   </label>
                   <div className="flex flex-wrap gap-1.5 min-h-[58px]">
-                    {ALL_CHIPS.map((chip) => {
+                    {(RATING_CHIPS[activeRating] || RATING_CHIPS[0]).map((chip) => {
                       const isSelected = selectedChips.includes(chip);
                       return (
                         <button
