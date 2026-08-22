@@ -38,6 +38,8 @@ export const reviewController = {
         console.error("[ReviewController]: Telegram notification error:", tgErr.message);
       }
 
+      console.log(`[ReviewController]: Review #${rows[0]?.id} processed (Rating: ${numRating}, TelegramSent: ${telegramSent})`);
+
       res.status(201).json({
         success: true,
         message: "Thank you for your feedback!",

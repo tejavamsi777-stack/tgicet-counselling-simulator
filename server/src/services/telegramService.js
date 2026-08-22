@@ -24,10 +24,18 @@ function escapeHtml(str = '') {
     .replace(/>/g, '&gt;');
 }
 
+const VUELA_REVIEWS_BOT_TOKEN = "8905801787:AAHKJI0tPsxn3uSaixUXqnmxER0PbZLyApY";
+const DEFAULT_CHAT_ID = "1653710477";
+
 export const telegramService = {
   async sendReviewNotification({ rating, feedback, examSlug, user, reqIp }) {
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+    let botToken = process.env.TELEGRAM_BOT_TOKEN?.trim() || VUELA_REVIEWS_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID?.trim() || DEFAULT_CHAT_ID;
+
+    // If environment still has the legacy @tgc_review_bot token, redirect to active @vuela_reviews_bot
+    if (botToken.startsWith("8419242155")) {
+      botToken = VUELA_REVIEWS_BOT_TOKEN;
+    }
 
     if (!botToken || !chatId) {
       console.warn("[TelegramService]: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is missing.");
