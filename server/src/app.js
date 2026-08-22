@@ -29,13 +29,18 @@ app.use(helmet());
 app.use(
   cors({
     origin: function (origin, callback) {
-      // requests with no origin (like curl, Postman, or server-to-server) are allowed
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".vercel.app") ||
+        origin.includes("vuelalearn")
+      ) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
+    credentials: true,
   })
 );
 app.use(express.json());

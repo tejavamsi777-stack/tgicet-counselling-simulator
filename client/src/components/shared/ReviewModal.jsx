@@ -90,12 +90,13 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
         .filter(Boolean)
         .join(' — ');
 
-      await reviewApi.submit({
+      const res = await reviewApi.submit({
         rating,
         feedback: combinedFeedback,
         examSlug,
-        source: 'predictor_popup',
+        source: 'user_modal',
       });
+      console.log('[ReviewModal]: Review submitted successfully:', res);
 
       try {
         localStorage.setItem('vuela_has_reviewed', 'true');
@@ -103,12 +104,10 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
       } catch {}
 
       setIsSubmitted(true);
-    } catch {
-      try {
-        localStorage.setItem('vuela_has_reviewed', 'true');
-        localStorage.setItem('tg_has_reviewed', 'true');
-      } catch {}
-      onClose();
+    } catch (err) {
+      console.error('[ReviewModal]: Failed to submit review:', err);
+      // Still show thank you so user experience is positive
+      setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
