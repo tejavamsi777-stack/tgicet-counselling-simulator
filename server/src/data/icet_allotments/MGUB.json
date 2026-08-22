@@ -2,6 +2,7 @@
   "code": "MGUB",
   "name": "MGUB  -  MAHATMA GANDHI UNIV COL OF COMMERCE & BUSINESS  MGMT, NALGONDA",
   "source": "https://tgicet.nic.in/college_allotment.aspx",
+  "lastUpdated": "2026-08-22T15:10:00.159Z",
   "branches": [
     {
       "branchCode": "MBA",
@@ -649,6 +650,155 @@
           "region": "OU",
           "seatCategory": "ST_GIRLS_OU",
           "branchCode": "MBA"
+        }
+      ]
+    },
+    {
+      "branchCode": "MBT",
+      "branchName": "MBA - TRAVEL AND TOURISM MANAGEMENT/ TOURISM AND TRAVEL MANAGEMENT",
+      "totalSeats": 14,
+      "openingRank": 13152,
+      "closingRank": 45318,
+      "candidates": [
+        {
+          "rank": 13152,
+          "hallTicket": "2626601001",
+          "name": "MANGADUDLA PRAVALIKA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 16321,
+          "hallTicket": "2626305411",
+          "name": "GUNDLAPALLY PRANEETH PREETHAM",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 18219,
+          "hallTicket": "2626701062",
+          "name": "KOPPULA JAIHIND",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 19006,
+          "hallTicket": "2616501001",
+          "name": "PANTHANGI AKHIL",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 19787,
+          "hallTicket": "2636303079",
+          "name": "JINUKULA BALU MAHENDRA",
+          "gender": "Male",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 21761,
+          "hallTicket": "2636114188",
+          "name": "BODDU MEGHANA",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 23444,
+          "hallTicket": "2626501178",
+          "name": "KOMMU SAI PRANAY",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_PHH_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 29058,
+          "hallTicket": "2636501121",
+          "name": "MUPPIDI INDU",
+          "gender": "Female",
+          "caste": "BC_D",
+          "region": "OU",
+          "seatCategory": "OC_GIRLS_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 31768,
+          "hallTicket": "2616501136",
+          "name": "DARLA RATHNAMADHURI",
+          "gender": "Female",
+          "caste": "BC_C",
+          "region": "OU",
+          "seatCategory": "OC_NCC_GIRLS_OU(0)",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 34170,
+          "hallTicket": "2616601045",
+          "name": "BOPPURI AJAY",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 36021,
+          "hallTicket": "2617002146",
+          "name": "KATKURI SHASHIKANTH",
+          "gender": "Male",
+          "caste": "BC_A",
+          "region": "OU",
+          "seatCategory": "BC_A_GEN_UR",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 39555,
+          "hallTicket": "2626304125",
+          "name": "KANDUKURI SAIKIRAN",
+          "gender": "Male",
+          "caste": "SC_II",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 39948,
+          "hallTicket": "2636305222",
+          "name": "POTHULA VINAY KUMAR",
+          "gender": "Male",
+          "caste": "BC_B",
+          "region": "OU",
+          "seatCategory": "OC_GEN_OU",
+          "branchCode": "MBT"
+        },
+        {
+          "rank": 45318,
+          "hallTicket": "2626304327",
+          "name": "VANKUDOTH PAVAN",
+          "gender": "Male",
+          "caste": "ST",
+          "region": "OU",
+          "seatCategory": "ST_GEN_UR",
+          "branchCode": "MBT"
         }
       ]
     }

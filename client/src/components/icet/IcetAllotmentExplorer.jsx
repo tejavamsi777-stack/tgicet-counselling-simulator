@@ -28,6 +28,7 @@ import UniqueDataLoader from '../shared/UniqueDataLoader';
 import { icetApi } from '../../lib/icetApi';
 import SearchableSelect from '../shared/SearchableSelect';
 import { smoothScrollTo } from '../../lib/utils';
+import localSummary from '../../data/icet_allotments/allotments_summary.json';
 
 // Seat category color pills
 function getSeatCategoryStyle(cat = '') {
@@ -769,7 +770,7 @@ const CATEGORY_FILTERS = [
 export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const [activeTab, setActiveTab] = useState('table'); // 'table' | 'analytics' | 'matrix'
   const [loading, setLoading] = useState(false);
-  const [collegesList, setCollegesList] = useState([]);
+  const [collegesList, setCollegesList] = useState(() => localSummary?.colleges || []);
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('MBA');
   const [selectedYear, setSelectedYear] = useState('2026-final');
@@ -855,6 +856,16 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
     return collegesList.find((c) => c.code === selectedCollege) || allotmentData?.college;
   }, [collegesList, selectedCollege, allotmentData]);
 
+  const availableCourses = useMemo(() => {
+    if (allotmentData?.availableBranches?.length > 0) {
+      return allotmentData.availableBranches.map((b) => b.code);
+    }
+    if (currentCollege?.coursesOffered?.length > 0) {
+      return currentCollege.coursesOffered;
+    }
+    return ['MBA', 'MCA'];
+  }, [allotmentData, currentCollege]);
+
   // Candidates filtering
   const filteredCandidates = useMemo(() => {
     if (!allotmentData?.candidates) return [];
@@ -880,6 +891,21 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
       list = list.filter((c) => {
         const casteNorm = String(c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
         const seatNorm = String(c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+        if (targetCat === 'OC') {
+          return casteNorm === 'OC';
+        }
+        if (targetCat.startsWith('BC')) {
+          return casteNorm.startsWith(targetCat);
+        }
+        if (targetCat === 'SC') {
+          return casteNorm.startsWith('SC');
+        }
+        if (targetCat === 'ST') {
+          return casteNorm.startsWith('ST');
+        }
+        if (targetCat === 'EWS') {
+          return casteNorm === 'EWS' || seatNorm.includes('EWS');
+        }
         return casteNorm === targetCat || seatNorm.includes(targetCat);
       });
     }
@@ -1015,10 +1041,22 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
           
           {/* College Selector (span 6) */}
           <div className="md:col-span-2 lg:col-span-6 space-y-1.5 relative z-40">
-            <label className="text-xs font-bold uppercase tracking-wider text-purple-300 flex items-center gap-1.5">
-              <Building size={14} />
-              <span>Select MBA / MCA College ({collegesList.length || 344} Institutions)</span>
-            </label>
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold uppercase tracking-wider text-purple-300 flex items-center gap-1.5">
+                <Building size={14} />
+                <span>Select MBA / MCA College ({collegesList.length || 344} Institutions)</span>
+              </label>
+              {loading && (
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-[10px] font-bold text-purple-300">
+                  <span>Loading</span>
+                  <span className="inline-flex gap-0.5 items-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce" />
+                  </span>
+                </div>
+              )}
+            </div>
             <SearchableSelect
               options={collegeOptions}
               value={selectedCollege}
@@ -1026,6 +1064,16 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
               placeholder="Search by college name, code, or city..."
               className="w-full"
             />
+            {loading && (
+              <div className="flex items-center gap-2 pt-1 text-xs text-purple-300 font-medium">
+                <span className="inline-flex gap-1 items-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.3s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.15s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce" />
+                </span>
+                <span>Loading student allotment records...</span>
+              </div>
+            )}
           </div>
 
           {/* Branch / Program Selector (span 3) */}
@@ -1035,7 +1083,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
               <span>Program / Course</span>
             </label>
             <div className="flex rounded-xl bg-white/5 p-1 border border-white/10">
-              {['MBA', 'MCA'].map((b) => (
+              {availableCourses.map((b) => (
                 <button
                   key={b}
                   type="button"

@@ -588,12 +588,17 @@ export const icetController = {
       }
 
       if (category && category.toUpperCase() !== "ALL") {
-        const cat = category.toUpperCase();
-        candidates = candidates.filter(
-          (c) =>
-            (c.caste && c.caste.toUpperCase() === cat) ||
-            (c.seatCategory && c.seatCategory.toUpperCase().includes(cat))
-        );
+        const cat = category.toUpperCase().replace(/[-_\s]/g, "");
+        candidates = candidates.filter((c) => {
+          const casteNorm = String(c.caste || "").toUpperCase().replace(/[-_\s]/g, "");
+          const seatNorm = String(c.seatCategory || "").toUpperCase().replace(/[-_\s]/g, "");
+          if (cat === "OC") return casteNorm === "OC";
+          if (cat.startsWith("BC")) return casteNorm.startsWith(cat);
+          if (cat === "SC") return casteNorm.startsWith("SC");
+          if (cat === "ST") return casteNorm.startsWith("ST");
+          if (cat === "EWS") return casteNorm === "EWS" || seatNorm.includes("EWS");
+          return casteNorm === cat || seatNorm.includes(cat);
+        });
       }
 
       if (gender && gender.toUpperCase() !== "ALL") {
