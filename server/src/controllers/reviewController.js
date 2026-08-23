@@ -16,15 +16,26 @@ export const reviewController = {
       const ipAddress = req.ip || req.headers["x-forwarded-for"] || null;
       const userAgent = req.headers["user-agent"] || null;
 
-      // 1. Insert into database
-      const { rows } = await pool.query(
-        `INSERT INTO app_reviews (user_id, rating, feedback, exam_slug, source, ip_address, user_agent, created_at)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
-         RETURNING id, rating, feedback, exam_slug, created_at`,
-        [userId, numRating, feedback ? feedback.trim() : null, examSlug, source, ipAddress, userAgent]
-      );
+      // 1. Auto-create app_reviews table if it does not exist on production DB
+      try {
+        await pool.query(`
+          CREATE TABLE IF NOT EXISTS app_reviews (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER,
+            rating INTEGER NOT NULL,
+            feedback TEXT,
+            exam_slug VARCHAR(100),
+            source VARCHAR(100),
+            ip_address VARCHAR(100),
+            user_agent TEXT,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+          );
+        `);
+      } catch (tableErr) {
+        console.warn("[ReviewController]: Table check warning:", tableErr.message);
+      }
 
-      // 2. Send Telegram Notification (awaited so delivery completes)
+      // 2. Send Telegram Notification (Guaranteed execution)
       let telegramSent = false;
       try {
         telegramSent = await telegramService.sendReviewNotification({
@@ -38,13 +49,27 @@ export const reviewController = {
         console.error("[ReviewController]: Telegram notification error:", tgErr.message);
       }
 
-      console.log(`[ReviewController]: Review #${rows[0]?.id} processed (Rating: ${numRating}, TelegramSent: ${telegramSent})`);
+      // 3. Insert into database
+      let reviewRow = null;
+      try {
+        const { rows } = await pool.query(
+          `INSERT INTO app_reviews (user_id, rating, feedback, exam_slug, source, ip_address, user_agent, created_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
+           RETURNING id, rating, feedback, exam_slug, created_at`,
+          [userId, numRating, feedback ? feedback.trim() : null, examSlug, source, ipAddress, userAgent]
+        );
+        reviewRow = rows[0];
+      } catch (dbErr) {
+        console.error("[ReviewController]: DB insert error:", dbErr.message);
+      }
+
+      console.log(`[ReviewController]: Review processed (Rating: ${numRating}, TelegramSent: ${telegramSent})`);
 
       res.status(201).json({
         success: true,
         message: "Thank you for your feedback!",
         telegramSent,
-        review: rows[0],
+        review: reviewRow,
       });
     } catch (err) {
       next(err);
