@@ -4,6 +4,8 @@ import { X, Mail, Shield, Info, HelpCircle, Star, ChevronRight, ArrowUp, Share2 
 import { AnimatePresence, motion } from "framer-motion";
 import ReviewModal from "../shared/ReviewModal";
 import { ShareModal, ModernShareIcon } from "../shared/ShareModal";
+import { TrustpilotStar } from "../shared/TrustpilotBadge";
+import { TRUSTPILOT_CONFIG } from "../../config/trustpilot";
 
 export const ABOUT_TEXT =
   "VuelaLearn is a 100% FREE educational guidance platform built to empower students navigating Andhra Pradesh (APSCHE) and Telangana (TSCHE) admissions (AP EAPCET, TG EAPCET, TG ICET, TG ECET, TG POLYCET, and TG PGECET). We provide data-driven Rank Predictors, authentic college seat allotment data across 500+ institutions, interactive Web Options simulators, TS ePASS & AP JVD fee reimbursement calculators, and HLC certificate checklists — 100% free with zero paywalls or spam.";
@@ -97,7 +99,7 @@ function PrivacyContent() {
       </div>
 
       <p className="text-[11px] text-gray-400">
-        If you have any questions regarding privacy, please contact us at <a href="mailto:contact@vuelalearn.in" className="text-purple-300 underline">contact@vuelalearn.in</a>.
+        If you have any questions regarding privacy, please contact us at <a href="mailto:vuelalearn@gmail.com" className="text-purple-300 underline">vuelalearn@gmail.com</a>.
       </p>
     </div>
   );
@@ -118,10 +120,10 @@ function ContactContent() {
           For general queries, data corrections, and feedback:
         </p>
         <a
-          href="mailto:contact@vuelalearn.in"
+          href="mailto:vuelalearn@gmail.com"
           className="inline-block text-xs font-semibold text-purple-300 hover:text-white transition underline"
         >
-          contact@vuelalearn.in
+          vuelalearn@gmail.com
         </a>
       </div>
       <p className="text-[11px] text-gray-400">
@@ -286,13 +288,14 @@ export default function Footer({ openPanel, setOpenPanel }) {
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setReviewOpen(true)}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5 text-left text-amber-400 cursor-pointer font-medium"
+                <a
+                  href={TRUSTPILOT_CONFIG.reviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#00b67a] transition-colors flex items-center gap-1.5 text-left text-emerald-400 cursor-pointer font-medium"
                 >
-                  <Star size={12} className="fill-amber-400" /> Review Us ↗
-                </button>
+                  <TrustpilotStar size={13} className="text-[#00b67a]" /> Trustpilot Reviews ↗
+                </a>
               </li>
             </ul>
           </div>
@@ -350,8 +353,8 @@ export default function Footer({ openPanel, setOpenPanel }) {
           </div>
           
           <div className="flex items-center gap-3 w-auto md:w-48 justify-center md:justify-end">
-            <a href="mailto:contact@vuelalearn.in" className="hover:text-purple-300 transition text-gray-400">
-              contact@vuelalearn.in
+            <a href="mailto:vuelalearn@gmail.com" className="hover:text-purple-300 transition text-gray-400">
+              vuelalearn@gmail.com
             </a>
             <button
               type="button"

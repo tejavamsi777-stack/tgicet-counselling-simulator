@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, X, Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import { Star, X, Send, CheckCircle2, MessageCircle, ExternalLink } from 'lucide-react';
 import { reviewApi } from '../../lib/api';
 import { GlassButton } from '../ui/glass-button';
+import { TRUSTPILOT_CONFIG } from '../../config/trustpilot';
+import { TrustpilotStar } from './TrustpilotBadge';
 
 const RATING_CHIPS = {
   0: [
@@ -210,20 +212,33 @@ export default function ReviewModal({ isOpen, onClose, examSlug = 'general' }) {
                   </p>
                 </div>
 
-                {/* WhatsApp Share Button on 4 & 5 Stars */}
-                {rating >= 4 && (
-                  <div className="pt-2">
+                {/* Trustpilot + WhatsApp Buttons on Review Submission */}
+                <div className="pt-2 space-y-2">
+                  <a
+                    href={TRUSTPILOT_CONFIG.reviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#00b67a] hover:bg-[#009e6a] text-white font-extrabold text-xs py-3 px-4 shadow-lg shadow-emerald-950/40 transition active:scale-95 cursor-pointer"
+                  >
+                    <div className="flex h-4 w-4 items-center justify-center rounded-xs bg-white">
+                      <TrustpilotStar size={10} className="text-[#00b67a]" />
+                    </div>
+                    <span>Rate Vuela Learn on Trustpilot ↗</span>
+                    <ExternalLink size={13} />
+                  </a>
+
+                  {rating >= 4 && (
                     <a
                       href={whatsappShareUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-black font-extrabold text-xs py-3 px-4 shadow-lg shadow-emerald-950/40 transition active:scale-95 cursor-pointer"
+                      className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-black font-extrabold text-xs py-2.5 px-4 shadow-md transition active:scale-95 cursor-pointer"
                     >
-                      <MessageCircle size={16} className="fill-black" />
+                      <MessageCircle size={15} className="fill-black" />
                       <span>Share Vuela Learn on WhatsApp</span>
                     </a>
-                  </div>
-                )}
+                  )}
+                </div>
 
                 <button
                   type="button"
