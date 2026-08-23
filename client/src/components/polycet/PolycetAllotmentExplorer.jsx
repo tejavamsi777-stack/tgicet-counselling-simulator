@@ -1020,28 +1020,35 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
 
   useEffect(() => {
     let mounted = true;
-    polycetApi.getCollegeSummary()
-      .then((res) => {
-        if (mounted && res?.data?.colleges?.length > 0) {
-          const remote = res.data.colleges;
-          const merged = remote.map((rc) => {
-            const local = POLYCET_INSTITUTIONS.find((l) => l.code === rc.code);
-            return {
-              ...(local || {}),
-              code: rc.code,
-              name: rc.name || local?.name || rc.code,
-              district: local?.district || "Telangana",
-              annualFee: local?.annualFee || 3800,
-              courses: local?.courses || [],
-            };
-          });
-          setColleges(merged);
-        }
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (mounted) setMetaLoading(false);
-      });
+    const fetchSummary = polycetApi?.getCollegeSummary || polycetApi?.getAllotmentsSummary || polycetApi?.getAllotmentMeta;
+    if (typeof fetchSummary === 'function') {
+      fetchSummary()
+        .then((res) => {
+          if (mounted && res?.data?.colleges?.length > 0) {
+            const remote = res.data.colleges;
+            const merged = remote.map((rc) => {
+              const local = POLYCET_INSTITUTIONS.find((l) => l.code === rc.code);
+              return {
+                ...(local || {}),
+                code: rc.code,
+                name: rc.name || local?.name || rc.code,
+                district: local?.district || "Telangana",
+                annualFee: local?.annualFee || 3800,
+                courses: local?.courses || [],
+              };
+            });
+            setColleges(merged);
+          }
+        })
+        .catch((err) => {
+          console.warn('[POLYCET Allotments]: Using bundled local institution metadata.', err);
+        })
+        .finally(() => {
+          if (mounted) setMetaLoading(false);
+        });
+    } else {
+      if (mounted) setMetaLoading(false);
+    }
     return () => { mounted = false; };
   }, []);
 

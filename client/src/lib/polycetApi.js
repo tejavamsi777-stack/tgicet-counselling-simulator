@@ -14,6 +14,7 @@ export const polycetApi = {
   getCollegeBranches: (code) => api.get(`/polycet/colleges/${code}/branches`),
   getAllotmentMeta: () => api.get('/polycet/allotments/meta'),
   getAllotmentsSummary: () => api.get('/polycet/allotments/summary'),
+  getCollegeSummary: () => api.get('/polycet/allotments/summary'),
   getCollegeAllotments: (collegeCode, branch = '') => {
     const query = branch ? `?branch=${branch}` : '';
     return api.get(`/polycet/allotments/${collegeCode}${query}`);
