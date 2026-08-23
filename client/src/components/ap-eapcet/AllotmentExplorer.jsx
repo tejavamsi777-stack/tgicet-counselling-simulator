@@ -29,6 +29,7 @@ import { Link } from 'react-router-dom';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
@@ -1297,10 +1298,16 @@ export default function AllotmentExplorer({ onDataLoaded }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
           {/* Year */}
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2 flex items-center gap-1.5">
-              <Calendar size={14} className="text-purple-400" />
-              Admission Year &amp; Phase
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-white/60 flex items-center gap-1.5">
+                <Calendar size={14} className="text-purple-400" />
+                {metaLoading ? (
+                  <ThreeDotsLoader label="Admission Year & Phase" dotClassName="bg-purple-400" />
+                ) : (
+                  "Admission Year & Phase"
+                )}
+              </label>
+            </div>
             <select
               value={selectedYear}
               onChange={(e) => {
@@ -1311,7 +1318,9 @@ export default function AllotmentExplorer({ onDataLoaded }) {
               disabled={metaLoading}
               className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm font-medium text-white focus:border-purple-500 focus:bg-purple-950/20 focus:outline-none cursor-pointer"
             >
-              <option value="" disabled>-- Select Admission Year &amp; Phase --</option>
+              <option value="" disabled>
+                {metaLoading ? "-- Loading Admission Years & Phases... --" : "-- Select Admission Year & Phase --"}
+              </option>
               {meta.years.map((y) => (
                 <option key={y.id} value={y.id} className="bg-gray-900 text-white">
                   {y.label}
@@ -1325,7 +1334,11 @@ export default function AllotmentExplorer({ onDataLoaded }) {
             <div className="flex items-center justify-between mb-2">
               <label className="text-xs font-bold uppercase tracking-wider text-white/60 flex items-center gap-1.5">
                 <Building size={14} className="text-cyan-400" />
-                Engineering College ({meta.colleges.length})
+                {metaLoading ? (
+                  <ThreeDotsLoader label="Engineering College" dotClassName="bg-cyan-400" />
+                ) : (
+                  `Engineering College (${meta.colleges.length})`
+                )}
               </label>
               {selectedCollege && (
                 <Link
@@ -1346,6 +1359,8 @@ export default function AllotmentExplorer({ onDataLoaded }) {
                 setResults(null);
               }}
               disabled={metaLoading || !selectedYear}
+              loading={metaLoading}
+              loadingLabel="Loading engineering colleges..."
               placeholder="-- Search / Select Engineering College --"
               searchPlaceholder="Search by college code, name, district..."
               options={meta.colleges.map((c) => {

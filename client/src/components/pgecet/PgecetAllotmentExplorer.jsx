@@ -7,6 +7,7 @@ import { pgecetApi } from '../../lib/pgecetApi';
 import { PGECET_INSTITUTIONS } from '../../data/pgecetInstitutions';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 
 function getSeatCategoryStyle(cat = '') {
@@ -451,8 +452,16 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
         </div>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="relative z-50">
-            <label className="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-2">Select PG College</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-2">
+              {loading ? (
+                <ThreeDotsLoader label="Select PG College" dotClassName="bg-purple-400" />
+              ) : (
+                "Select PG College"
+              )}
+            </label>
             <SearchableSelect options={collegeOptions} value={selectedCollege}
+              loading={loading}
+              loadingLabel="Loading PG colleges & allotments..."
               onChange={val => { setSelectedCollege(val); setSelectedBranch(''); }}
               placeholder="Search by code or college name..." />
           </div>

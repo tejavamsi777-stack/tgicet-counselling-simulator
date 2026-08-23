@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Search, ChevronDown, Check, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThreeDotsLoader } from "../ui/three-dots-loader";
 
 export default function SearchableSelect({
   value,
@@ -9,6 +10,8 @@ export default function SearchableSelect({
   placeholder = "-- Select an option --",
   searchPlaceholder = "Type to search...",
   disabled = false,
+  loading = false,
+  loadingLabel = "Loading data...",
   className = "",
   badgeColor = "purple"
 }) {
@@ -86,10 +89,10 @@ export default function SearchableSelect({
       {/* Trigger Button */}
       <button
         type="button"
-        disabled={disabled}
+        disabled={disabled || loading}
         onClick={() => setIsOpen((prev) => !prev)}
         className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-left text-sm transition-all duration-200 cursor-pointer ${
-          disabled
+          disabled || loading
             ? "border-white/5 bg-white/[0.02] text-white/30 cursor-not-allowed"
             : isOpen
             ? "border-purple-500 bg-purple-950/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
@@ -97,7 +100,9 @@ export default function SearchableSelect({
         }`}
       >
         <span className="truncate flex-1 font-medium block">
-          {selectedOption ? (
+          {loading ? (
+            <ThreeDotsLoader label={loadingLabel} dotClassName="bg-purple-400" />
+          ) : selectedOption ? (
             <span className="text-white truncate block">
               {selectedOption.label}
             </span>

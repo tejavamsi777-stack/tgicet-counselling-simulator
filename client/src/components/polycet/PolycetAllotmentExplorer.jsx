@@ -29,6 +29,7 @@ import { POLYCET_INSTITUTIONS, POLYCET_BRANCHES } from '../../data/polycetInstit
 import allotmentsSummary from '../../data/polycet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
@@ -1001,7 +1002,8 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 
 // ─── Main Component ─────────────────────────────────────────────────────────
 export default function PolycetAllotmentExplorer({ onDataLoaded }) {
-  const [colleges] = useState(POLYCET_INSTITUTIONS);
+  const [colleges, setColleges] = useState(POLYCET_INSTITUTIONS);
+  const [metaLoading, setMetaLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('');
@@ -1015,6 +1017,33 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
   const [page, setPage] = useState(1);
   const pageSize = 25;
   const tableRef = useRef(null);
+
+  useEffect(() => {
+    let mounted = true;
+    polycetApi.getCollegeSummary()
+      .then((res) => {
+        if (mounted && res?.data?.colleges?.length > 0) {
+          const remote = res.data.colleges;
+          const merged = remote.map((rc) => {
+            const local = POLYCET_INSTITUTIONS.find((l) => l.code === rc.code);
+            return {
+              ...(local || {}),
+              code: rc.code,
+              name: rc.name || local?.name || rc.code,
+              district: local?.district || "Telangana",
+              annualFee: local?.annualFee || 3800,
+              courses: local?.courses || [],
+            };
+          });
+          setColleges(merged);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (mounted) setMetaLoading(false);
+      });
+    return () => { mounted = false; };
+  }, []);
 
   // Available branches for current selected college
   const currentInst = colleges.find((c) => c.code === selectedCollege) || null;
@@ -1260,7 +1289,11 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2 flex items-center gap-1.5">
               <Building size={14} className="text-cyan-400" />
-              Polytechnic College ({colleges.length})
+              {metaLoading ? (
+                <ThreeDotsLoader label="Polytechnic College" dotClassName="bg-cyan-400" />
+              ) : (
+                `Polytechnic College (${colleges.length})`
+              )}
             </label>
             <SearchableSelect
               value={selectedCollege}
@@ -1270,7 +1303,9 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
                 setHasQueried(false);
                 setCollegeData(null);
               }}
-              disabled={!selectedYear}
+              disabled={metaLoading || !selectedYear}
+              loading={metaLoading}
+              loadingLabel="Loading polytechnic colleges..."
               placeholder="-- Search / Select Polytechnic College --"
               searchPlaceholder="Search by polytechnic code, name, district..."
               options={colleges.map((c) => {

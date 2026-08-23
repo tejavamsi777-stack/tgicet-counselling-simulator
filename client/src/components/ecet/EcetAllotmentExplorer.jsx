@@ -29,6 +29,7 @@ import { ECET_INSTITUTIONS, ECET_BRANCHES } from '../../data/ecetInstitutions';
 import allotmentsSummary from '../../data/ecet_allotments/allotments_summary.json';
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
+import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
@@ -1003,6 +1004,7 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 
 export default function EcetAllotmentExplorer({ onDataLoaded }) {
   const [colleges, setColleges] = useState(ECET_INSTITUTIONS);
+  const [metaLoading, setMetaLoading] = useState(true);
   const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedCollege, setSelectedCollege] = useState('');
@@ -1041,7 +1043,10 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
           }
         }
       })
-      .catch((err) => console.warn("Failed to load official colleges list:", err));
+      .catch((err) => console.warn("Failed to load official colleges list:", err))
+      .finally(() => {
+        if (mounted) setMetaLoading(false);
+      });
     return () => { mounted = false; };
   }, []);
 
@@ -1294,7 +1299,11 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
           <div>
             <label className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2 flex items-center gap-1.5">
               <Building size={14} className="text-cyan-400" />
-              Engineering College ({colleges.length})
+              {metaLoading ? (
+                <ThreeDotsLoader label="Engineering College" dotClassName="bg-cyan-400" />
+              ) : (
+                `Engineering College (${colleges.length})`
+              )}
             </label>
             <SearchableSelect
               value={selectedCollege}
@@ -1305,6 +1314,8 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
                 setHasQueried(false);
                 setResults(null);
               }}
+              loading={metaLoading}
+              loadingLabel="Loading ECET colleges..."
               placeholder="-- Search / Select Engineering College --"
               searchPlaceholder="Search by college code, name, district..."
               options={colleges.map((c) => {

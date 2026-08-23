@@ -27,6 +27,7 @@ import {
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import { icetApi } from '../../lib/icetApi';
 import SearchableSelect from '../shared/SearchableSelect';
+import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 import localSummary from '../../data/icet_allotments/allotments_summary.json';
 
@@ -770,6 +771,7 @@ const CATEGORY_FILTERS = [
 export default function IcetAllotmentExplorer({ onDataLoaded }) {
   const [activeTab, setActiveTab] = useState('table'); // 'table' | 'analytics' | 'matrix'
   const [loading, setLoading] = useState(false);
+  const [metaLoading, setMetaLoading] = useState(true);
   const [collegesList, setCollegesList] = useState(() => localSummary?.colleges || []);
   const [selectedCollege, setSelectedCollege] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('MBA');
@@ -794,6 +796,8 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
         }
       } catch (err) {
         console.warn('Failed to load ICET meta:', err);
+      } finally {
+        setMetaLoading(false);
       }
     }
     loadMeta();
@@ -1044,23 +1048,22 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold uppercase tracking-wider text-purple-300 flex items-center gap-1.5">
                 <Building size={14} />
-                <span>Select MBA / MCA College ({collegesList.length || 344} Institutions)</span>
+                {metaLoading ? (
+                  <ThreeDotsLoader label="Select MBA / MCA College" dotClassName="bg-purple-400" />
+                ) : (
+                  <span>Select MBA / MCA College ({collegesList.length || 344} Institutions)</span>
+                )}
               </label>
               {loading && (
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-[10px] font-bold text-purple-300">
-                  <span>Loading</span>
-                  <span className="inline-flex gap-0.5 items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.3s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:-0.15s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce" />
-                  </span>
-                </div>
+                <ThreeDotsLoader label="Loading allotments" dotClassName="bg-purple-400" />
               )}
             </div>
             <SearchableSelect
               options={collegeOptions}
               value={selectedCollege}
               onChange={handleCollegeChange}
+              loading={metaLoading}
+              loadingLabel="Loading MBA / MCA colleges..."
               placeholder="Search by college name, code, or city..."
               className="w-full"
             />
