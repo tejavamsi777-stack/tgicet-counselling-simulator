@@ -9,6 +9,7 @@ export default function SearchableSelect({
   options = [],
   placeholder = "-- Select an option --",
   searchPlaceholder = "Type to search...",
+  itemLabel = "items",
   disabled = false,
   loading = false,
   loadingLabel = "Loading data...",
@@ -162,7 +163,7 @@ export default function SearchableSelect({
                 )}
               </div>
               <div className="flex items-center justify-between px-1.5 pt-2 text-[11px] text-gray-400">
-                <span className="font-semibold text-purple-300">{filteredOptions.length} of {options.length} colleges found</span>
+                <span className="font-semibold text-purple-300">{filteredOptions.length} of {options.length} {itemLabel} found</span>
                 {searchQuery && <span className="text-gray-400">Press Esc to close</span>}
               </div>
             </div>
@@ -171,7 +172,7 @@ export default function SearchableSelect({
             <div ref={listRef} className="overflow-y-auto max-h-56 p-2 space-y-1 custom-scrollbar bg-[#0d0718]" style={{ backgroundColor: '#0d0718' }}>
               {filteredOptions.length === 0 ? (
                 <div className="p-6 text-center text-xs text-gray-400">
-                  No colleges found matching &quot;<span className="text-purple-300 font-bold">{searchQuery}</span>&quot;
+                  No {itemLabel} found matching &quot;<span className="text-purple-300 font-bold">{searchQuery}</span>&quot;
                 </div>
               ) : (
                 filteredOptions.map((opt, idx) => {

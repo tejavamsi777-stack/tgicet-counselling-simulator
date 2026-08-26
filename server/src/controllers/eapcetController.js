@@ -1045,14 +1045,76 @@ export const eapcetController = {
         });
       }
 
-      // TG EAPCET static fallback
+      // TG EAPCET static fallback & 2025 dynamic dataset merge
+      let colleges = [...ALL_TSCHE_COLLEGES];
+      let collegeBranches = { ...OFFICIAL_COLLEGE_BRANCHES };
+
+      // 1. Check DB for TG EAPCET allotment records
+      try {
+        const colRes = await pool.query(
+          `SELECT DISTINCT college_code AS code, college_name AS name 
+           FROM eapcet_allotment_records 
+           WHERE exam_id = 'tg-eapcet' 
+           ORDER BY college_code`
+        );
+        if (colRes.rows.length > 0) {
+          colRes.rows.forEach((c) => {
+            if (!colleges.some((local) => local.code === c.code)) {
+              colleges.push(c);
+            }
+          });
+
+          const mapRes = await pool.query(
+            `SELECT DISTINCT college_code, branch_code 
+             FROM eapcet_allotment_records 
+             WHERE exam_id = 'tg-eapcet'
+             ORDER BY college_code, branch_code`
+          );
+          mapRes.rows.forEach((r) => {
+            if (!collegeBranches[r.college_code]) {
+              collegeBranches[r.college_code] = [];
+            }
+            if (!collegeBranches[r.college_code].includes(r.branch_code)) {
+              collegeBranches[r.college_code].push(r.branch_code);
+            }
+          });
+        }
+      } catch (dbErr) {
+        console.warn("[EAPCET Controller] DB Meta query failed:", dbErr.message);
+      }
+
+      // 2. Merge local 2025 dataset JSON if present
+      try {
+        const jsonPath = path.resolve(__dirname, "../data/tg_eapcet_2025_final_allotments.json");
+        if (fs.existsSync(jsonPath)) {
+          const raw = fs.readFileSync(jsonPath, "utf-8");
+          const root = JSON.parse(raw);
+          if (root.colleges && Array.isArray(root.colleges)) {
+            root.colleges.forEach((c) => {
+              if (!colleges.some((local) => local.code === c.code)) {
+                colleges.push({ code: c.code, name: c.name });
+              }
+            });
+          }
+          if (root.collegeBranchesMap) {
+            Object.keys(root.collegeBranchesMap).forEach((code) => {
+              if (!collegeBranches[code]) {
+                collegeBranches[code] = root.collegeBranchesMap[code];
+              }
+            });
+          }
+        }
+      } catch (jsonErr) {
+        console.warn("[EAPCET Controller] JSON Meta fallback warning:", jsonErr.message);
+      }
+
       return res.json({
         success: true,
         data: {
           years: ALLOTMENT_YEARS,
-          colleges: ALL_TSCHE_COLLEGES,
+          colleges,
           branches: ALLOTMENT_BRANCHES,
-          collegeBranches: OFFICIAL_COLLEGE_BRANCHES,
+          collegeBranches,
         },
       });
     } catch (err) {

@@ -18,6 +18,7 @@ import {
   ArrowRight,
   Info,
   Star,
+  Database,
 } from "lucide-react";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
@@ -32,6 +33,15 @@ const EXAM_MENU_ITEMS = [
   { slug: "tg-ecet", name: "TG ECET", subtitle: "Diploma Lateral Entry (B.Tech)", path: "/tg-ecet", badge: "Live" },
   { slug: "tg-polycet", name: "TG POLYCET", subtitle: "Polytechnic & Diploma", path: "/tg-polycet", badge: "Live" },
   { slug: "tg-pgecet", name: "TG PGECET", subtitle: "M.Tech, M.Pharm & Post-Grad", path: "/tg-pgecet", badge: "Live" },
+];
+
+const ALLOTMENT_MENU_ITEMS = [
+  { name: "TG EAPCET Allotments", subtitle: "Engineering & Pharmacy Allotment Data", path: "/tg-eapcet/allotments" },
+  { name: "AP EAPCET Allotments", subtitle: "Engineering & Pharmacy Allotment Data", path: "/ap-eapcet/allotments" },
+  { name: "TG ICET Allotments", subtitle: "MBA & MCA Seat Allotment Data", path: "/tg-icet/allotments" },
+  { name: "TG ECET Allotments", subtitle: "Diploma Lateral Entry Allotments", path: "/tg-ecet/allotments" },
+  { name: "TG POLYCET Allotments", subtitle: "Polytechnic Seat Allotment Data", path: "/tg-polycet/allotments" },
+  { name: "TG PGECET Allotments", subtitle: "Postgraduate M.Tech Allotments", path: "/tg-pgecet/allotments" },
 ];
 
 const PREDICTOR_MENU_ITEMS = [
@@ -232,6 +242,65 @@ export default function Navbar() {
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-white group-hover:text-purple-300 transition">
+                            {item.name}
+                          </div>
+                          <div className="text-[11px] text-gray-400">
+                            {item.subtitle}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* 3. Seat Allotments Dropdown */}
+          <div className="relative">
+            <button
+              onMouseEnter={() => handleMenuHover("allotments")}
+              onClick={() => setActiveDropdown(activeDropdown === "allotments" ? null : "allotments")}
+              className="relative flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-colors hover:text-white"
+            >
+              {hovered === "allotments" && (
+                <motion.div
+                  layoutId="nav-hover-pill"
+                  className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] backdrop-blur-md"
+                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-1">
+                Seat Allotment
+                <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === "allotments" ? "rotate-180 text-cyan-300" : "text-gray-400"}`} />
+              </span>
+            </button>
+
+            <AnimatePresence>
+              {activeDropdown === "allotments" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute left-0 top-full z-50 mt-2 w-80 rounded-3xl border border-white/20 bg-[#120d1f]/95 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
+                >
+                  <div className="mb-2 px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-cyan-300">
+                    Exam-Wise Seat Allotment Data
+                  </div>
+                  <div className="space-y-1">
+                    {ALLOTMENT_MENU_ITEMS.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        onClick={() => setActiveDropdown(null)}
+                        className="group flex items-start gap-2.5 rounded-2xl px-3 py-2 transition hover:bg-white/10"
+                      >
+                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-cyan-300">
+                          <Database size={13} />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-white group-hover:text-cyan-300 transition">
                             {item.name}
                           </div>
                           <div className="text-[11px] text-gray-400">
@@ -704,6 +773,42 @@ function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
                   className="block rounded-lg py-1.5 text-xs text-gray-300 hover:text-white"
                 >
                   <span className="font-semibold text-white">{item.name}</span>
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Accordion: Seat Allotment */}
+      <div className="border-b border-white/10">
+        <button
+          onClick={() => toggleSection("allotments")}
+          className="flex w-full items-center justify-between px-6 py-3 text-left font-medium text-white hover:bg-white/10"
+        >
+          <span className="flex items-center gap-2.5">
+            <Database size={16} className="text-cyan-300" />
+            Seat Allotment
+          </span>
+          <ChevronDown size={14} className={`text-gray-400 transition-transform ${expandedSection === "allotments" ? "rotate-180" : ""}`} />
+        </button>
+        <AnimatePresence>
+          {expandedSection === "allotments" && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.15 }}
+              className="space-y-1 bg-white/5 px-6 py-2.5"
+            >
+              {ALLOTMENT_MENU_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={onClose}
+                  className="block rounded-lg py-1.5 text-xs text-gray-300 hover:text-white"
+                >
+                  <span className="font-semibold text-white">{item.name}</span> — {item.subtitle}
                 </Link>
               ))}
             </motion.div>

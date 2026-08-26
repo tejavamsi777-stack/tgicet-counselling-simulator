@@ -202,8 +202,13 @@ let schedulerTimer = null;
 export function initLiveScraperScheduler() {
   if (schedulerTimer) return;
   console.log("[Live Sync] Initializing continuous 3-minute official portal sync worker...");
-  // Initial run after 5 seconds
-  setTimeout(runAllPortalScrapes, 5000);
-  // Recurring every 3 minutes
-  schedulerTimer = setInterval(runAllPortalScrapes, 3 * 60 * 1000);
+  const safeRun = async () => {
+    try {
+      await runAllPortalScrapes();
+    } catch (err) {
+      console.warn("[Live Sync Warning]:", err.message);
+    }
+  };
+  setTimeout(safeRun, 5000);
+  schedulerTimer = setInterval(safeRun, 3 * 60 * 1000);
 }

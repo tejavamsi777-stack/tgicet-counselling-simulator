@@ -1003,6 +1003,20 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
 }
 
 // ─── Main Component ─────────────────────────────────────────────────────────
+// ─── Category Filter Pills ──────────────────────────────────────────────────
+const CATEGORY_FILTERS = [
+  'ALL',
+  'OC',
+  'BC-A',
+  'BC-B',
+  'BC-C',
+  'BC-D',
+  'BC-E',
+  'SC',
+  'ST',
+  'EWS'
+];
+
 export default function AllotmentExplorer({ onDataLoaded }) {
   // Meta (years, colleges, branches, collegeBranches map)
   const [meta, setMeta] = useState({ years: [], colleges: [], branches: [], collegeBranches: {} });
@@ -1024,7 +1038,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
   const [genderFilter, setGenderFilter] = useState('ALL');
   const [categoryFilter, setCategoryFilter] = useState('ALL');
   const [page, setPage] = useState(1);
-  const pageSize = 25;
+  const [pageSize, setPageSize] = useState(25);
 
   const tableRef = useRef(null);
 
@@ -1052,17 +1066,38 @@ export default function AllotmentExplorer({ onDataLoaded }) {
   // Available branches offered specifically by the selected college
   const availableBranches = useMemo(() => {
     if (!selectedCollege) return [];
+    let list = [];
     const collegeSpecific = meta.collegeBranches?.[selectedCollege];
     if (collegeSpecific && Array.isArray(collegeSpecific) && collegeSpecific.length > 0) {
-      return collegeSpecific.map((b) => {
-        const fullBranch = meta.branches.find((mb) => mb.code === b.code);
+      list = collegeSpecific.map((b) => {
+        const bCode = typeof b === 'string' ? b : (b.code || b);
+        const bName = typeof b === 'object' && b.name ? b.name : null;
+        const fullBranch = meta.branches.find((mb) => mb.code === bCode);
         return {
-          code: b.code,
-          name: b.name || fullBranch?.name || b.code,
+          code: bCode,
+          name: bName || fullBranch?.name || bCode,
         };
       });
+    } else {
+      list = meta.branches;
     }
-    return meta.branches;
+
+    // Deduplicate and clean names so branch code is not repeated inside parentheses
+    const seen = new Set();
+    const unique = [];
+    for (const item of list) {
+      const code = (item.code || '').trim().toUpperCase();
+      if (code && !seen.has(code)) {
+        seen.add(code);
+        let cleanName = (item.name || code).trim();
+        cleanName = cleanName.replace(new RegExp(`\\s*\\(${code}\\)\\s*$`, 'i'), '').trim();
+        unique.push({
+          code,
+          name: cleanName
+        });
+      }
+    }
+    return unique;
   }, [selectedCollege, meta.collegeBranches, meta.branches]);
 
   // Current selected objects
@@ -1131,8 +1166,13 @@ export default function AllotmentExplorer({ onDataLoaded }) {
         if (genderFilter === 'Male' && !g.startsWith('M')) return false;
         if (genderFilter === 'Female' && !g.startsWith('F')) return false;
       }
-      if (categoryFilter !== 'ALL' && !c.seatCategory.toUpperCase().includes(categoryFilter.toUpperCase())) {
-        return false;
+      if (categoryFilter !== 'ALL') {
+        const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
+        const candCaste = (c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+        const candSeat = (c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+        if (!candCaste.includes(targetCat) && !candSeat.includes(targetCat)) {
+          return false;
+        }
       }
       if (search.trim()) {
         const q = search.toLowerCase();
@@ -1140,6 +1180,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
           c.name.toLowerCase().includes(q) ||
           c.hallTicket.toLowerCase().includes(q) ||
           String(c.rank).includes(q) ||
+          c.caste.toLowerCase().includes(q) ||
           c.seatCategory.toLowerCase().includes(q)
         );
       }
@@ -1327,6 +1368,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
               disabled={metaLoading || !selectedYear}
               loading={metaLoading}
               loadingLabel="Loading engineering colleges..."
+              itemLabel="colleges"
               placeholder="-- Search / Select Engineering College --"
               searchPlaceholder="Search by college code, name, district..."
               options={meta.colleges.map((c) => {
@@ -1354,6 +1396,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
                 setResults(null);
               }}
               disabled={metaLoading || !selectedCollege}
+              itemLabel="branches"
               placeholder={
                 !selectedCollege
                   ? '-- Select College first to see available branches --'
@@ -1488,70 +1531,118 @@ export default function AllotmentExplorer({ onDataLoaded }) {
           {/* ── Candidate Seat Allotment Table (Placed directly under KPI Data) ─── */}
           <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 backdrop-blur-xl shadow-2xl">
             {/* Table Filter & Search Controls */}
-            <div className="p-4 sm:p-5 border-b border-white/10 bg-white/[0.02] flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={18} className="text-emerald-400" />
-                <h3 className="text-sm sm:text-base font-bold text-white">
-                  Candidate Seat Allotments ({filteredCandidates.length})
-                </h3>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                {/* Quick Search */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search candidate, rank, HT..."
-                    value={search}
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                      setPage(1);
-                    }}
-                    className="w-56 sm:w-64 rounded-xl border border-white/10 bg-white/5 pl-8 pr-7 py-1.5 text-xs text-white placeholder-white/30 focus:border-purple-500 focus:outline-none"
-                  />
-                  <Search size={13} className="absolute left-2.5 top-2.5 text-white/30" />
-                  {search && (
-                    <button
-                      type="button"
-                      onClick={() => setSearch('')}
-                      className="absolute right-2.5 top-2.5 text-white/40 hover:text-white"
-                    >
-                      <X size={12} />
-                    </button>
-                  )}
+            <div className="p-4 sm:p-5 border-b border-white/10 bg-white/[0.02] space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={18} className="text-emerald-400" />
+                  <h3 className="text-sm sm:text-base font-bold text-white">
+                    Candidate Seat Allotments ({filteredCandidates.length})
+                  </h3>
                 </div>
 
-                {/* Gender Filters */}
-                <div className="flex items-center gap-1">
-                  {['ALL', 'Male', 'Female'].map((g) => (
-                    <button
-                      key={g}
-                      type="button"
-                      onClick={() => {
-                        setGenderFilter(g);
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Quick Search */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search candidate, rank, HT..."
+                      value={search}
+                      onChange={(e) => {
+                        setSearch(e.target.value);
                         setPage(1);
                       }}
-                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                        genderFilter === g
-                          ? 'bg-purple-500 text-white'
-                          : 'bg-white/5 border border-white/10 text-white/60 hover:text-white'
-                      }`}
-                    >
-                      {g}
-                    </button>
-                  ))}
-                </div>
+                      className="w-48 sm:w-56 rounded-xl border border-white/10 bg-white/5 pl-8 pr-7 py-1.5 text-xs text-white placeholder-white/30 focus:border-purple-500 focus:outline-none"
+                    />
+                    <Search size={13} className="absolute left-2.5 top-2.5 text-white/30" />
+                    {search && (
+                      <button
+                        type="button"
+                        onClick={() => setSearch('')}
+                        className="absolute right-2.5 top-2.5 text-white/40 hover:text-white"
+                      >
+                        <X size={12} />
+                      </button>
+                    )}
+                  </div>
 
-                {/* Export CSV */}
-                <button
-                  type="button"
-                  onClick={handleExportCsv}
-                  disabled={filteredCandidates.length === 0}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 hover:bg-white/20 px-3 py-1.5 text-xs font-bold text-white transition cursor-pointer disabled:opacity-40"
-                >
-                  <Download size={13} />
-                  <span>Export CSV</span>
-                </button>
+                  {/* Gender Filters */}
+                  <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
+                    {['ALL', 'Male', 'Female'].map((g) => (
+                      <button
+                        key={g}
+                        type="button"
+                        onClick={() => {
+                          setGenderFilter(g);
+                          setPage(1);
+                        }}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                          genderFilter === g
+                            ? 'bg-purple-600 text-white shadow'
+                            : 'text-white/60 hover:text-white'
+                        }`}
+                      >
+                        {g}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Page Size Selector */}
+                  <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
+                    <span className="text-[10px] font-bold uppercase text-white/40 px-1.5">Per Page:</span>
+                    {[25, 50, 75, 100].map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => {
+                          setPageSize(size);
+                          setPage(1);
+                        }}
+                        className={`px-2 py-0.5 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                          pageSize === size
+                            ? 'bg-purple-600 text-white shadow'
+                            : 'text-white/60 hover:text-white'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Export CSV */}
+                  <button
+                    type="button"
+                    onClick={handleExportCsv}
+                    disabled={filteredCandidates.length === 0}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 hover:bg-white/20 px-3 py-1.5 text-xs font-bold text-white transition cursor-pointer disabled:opacity-40"
+                  >
+                    <Download size={13} />
+                    <span>Export CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Category / Caste Pills Filter Bar */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pt-2 pb-1 no-scrollbar border-t border-white/5">
+                <span className="text-[11px] font-bold text-white/40 uppercase tracking-wider mr-1 flex items-center gap-1 shrink-0">
+                  <Filter size={12} /> Caste / Quota:
+                </span>
+                {CATEGORY_FILTERS.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => {
+                      setCategoryFilter(cat);
+                      setPage(1);
+                    }}
+                    className={`rounded-full px-3 py-1 text-xs font-bold transition whitespace-nowrap cursor-pointer shrink-0 ${
+                      categoryFilter === cat
+                        ? 'bg-purple-500 text-white shadow-md shadow-purple-500/30 ring-1 ring-purple-400/50'
+                        : 'bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
               </div>
             </div>
 
