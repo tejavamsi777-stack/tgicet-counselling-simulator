@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ArrowLeft, Loader2, ChevronDown } from "lucide-react";
+import { ArrowLeft, Loader2, ChevronDown, Sparkles, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
 import ResultsTable from "../../components/results/ResultsTable";
@@ -12,32 +12,33 @@ import GenderDropdown from "../../components/shared/GenderDropdown";
 import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
-import { smoothScrollTo } from "../../lib/utils";
-
-import { useReferenceData } from "../../hooks/useReferenceData";
 import TopPicksCard from "../../components/results/TopPicksCard";
+import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
+import { smoothScrollTo } from "../../lib/utils";
+import { useReferenceData } from "../../hooks/useReferenceData";
 
 // AP EAPCET clean category list (matches Eduvale / APSCHE format)
 const AP_CATEGORIES = [
-  { code: "OC",               label: "OC" },
-  { code: "BC-A",             label: "BC-A" },
-  { code: "BC-B",             label: "BC-B" },
-  { code: "BC-C",             label: "BC-C" },
-  { code: "BC-D",             label: "BC-D" },
-  { code: "BC-E",             label: "BC-E" },
-  { code: "SC-I",             label: "SC-I" },
-  { code: "SC-II",            label: "SC-II" },
-  { code: "SC-III",           label: "SC-III" },
-  { code: "ST",               label: "ST" },
-  { code: "EWS",              label: "EWS" },
-  { code: "Muslim Minority",  label: "Muslim Minority" },
+  { code: "OC",                 label: "OC" },
+  { code: "BC-A",               label: "BC-A" },
+  { code: "BC-B",               label: "BC-B" },
+  { code: "BC-C",               label: "BC-C" },
+  { code: "BC-D",               label: "BC-D" },
+  { code: "BC-E",               label: "BC-E" },
+  { code: "SC",                 label: "SC (All Groups)" },
+  { code: "SC-I",               label: "SC-I" },
+  { code: "SC-II",              label: "SC-II" },
+  { code: "SC-III",             label: "SC-III" },
+  { code: "ST",                 label: "ST" },
+  { code: "EWS",                label: "EWS" },
+  { code: "Muslim Minority",    label: "Muslim Minority" },
   { code: "Christian Minority", label: "Christian Minority" },
 ];
 
 const AP_REGIONS = [
-  { code: "ALL", label: "All Regions" },
-  { code: "AU",  label: "AU Region (Andhra)" },
-  { code: "SVU", label: "SVU Region (Rayalaseema)" },
+  { code: "ALL", label: "All Regions (AU + SVU + Non-Local)" },
+  { code: "AU",  label: "AU Region (Andhra University area)" },
+  { code: "SVU", label: "SVU Region (Sri Venkateswara area)" },
   { code: "UR",  label: "Non-Local / UR" },
 ];
 
@@ -69,33 +70,35 @@ function NativeSelect({ value, onChange, options, placeholder, icon: Icon }) {
 export default function EapcetPredictorPage() {
   const { courses, districts } = useReferenceData("ap-eapcet");
   const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("");
-  const [region, setRegion] = useState("");
+  const [category, setCategory] = useState("OC");
+  const [region, setRegion] = useState("ALL");
   const [gender, setGender] = useState("Male");
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [predicting, setPredicting] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [showSmartOptionsModal, setShowSmartOptionsModal] = useState(false);
   const resultsRef = useRef(null);
 
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid AP EAPCET rank.");
     if (!category) return setError("Please select a category.");
-    if (!selectedCourses || selectedCourses.length === 0) return setError("Please select at least one branch.");
     setError("");
     setPredicting(true);
+    setHasSearched(true);
     try {
       const response = await api.post("/predict", {
         exam: "ap-eapcet",
-        rank,
+        rank: Number(rank),
         category,
-        region: region || undefined,
+        region: region || "ALL",
         gender,
-        courses: selectedCourses,
-        districts: selectedDistricts,
+        courses: selectedCourses.length > 0 ? selectedCourses : undefined,
+        districts: selectedDistricts.length > 0 ? selectedDistricts : undefined,
       });
-      const rawResults = Array.isArray(response) ? response : (response.results || []);
+      const rawResults = Array.isArray(response) ? response : (response?.results || []);
       setResults(
         rawResults.map((row) => ({
           ...row,
@@ -103,12 +106,12 @@ export default function EapcetPredictorPage() {
           course: row.course_code || row.course,
           category: category || row.category_code || row.category,
           gender: row.gender || gender,
-          year: Number(row.year),
-          cutoff: row.cutoff_rank || row.cutoff,
+          year: Number(row.year || 2025),
+          cutoff: Number(row.cutoff_rank || row.cutoff || 0),
         }))
       );
     } catch (e) {
-      setError(e.message || "Prediction failed.");
+      setError(e.message || "Prediction failed. Please try again.");
     } finally {
       setPredicting(false);
     }
@@ -144,110 +147,115 @@ export default function EapcetPredictorPage() {
             >
               Predict Your College
             </h1>
+            <div>
+              <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
+                AP EAPCET 2025
+              </span>
+            </div>
             <p className="text-xs sm:text-sm text-gray-300">
-              Enter your rank, select desired branches and districts to explore eligible colleges based on previous year cutoffs.
+              Enter your rank, select category, region, and optional branches/districts to explore eligible engineering colleges based on official cutoffs.
             </p>
           </div>
 
           {/* Responsive Inputs Grid */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {/* 1. Rank */}
-                <div className="relative z-[60]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    AP EAPCET Rank
-                  </label>
-                  <input
-                    value={rank}
-                    onChange={(e) => setRank(e.target.value)}
-                    type="number"
-                    className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
-                    placeholder="e.g. 25000"
-                  />
-                </div>
+            {/* 1. Rank */}
+            <div className="relative z-[60]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                AP EAPCET Rank
+              </label>
+              <input
+                value={rank}
+                onChange={(e) => setRank(e.target.value)}
+                type="number"
+                className="h-11 w-full rounded-2xl border border-white/20 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-2xl transition-all placeholder:text-gray-400 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
+                placeholder="e.g. 25000"
+              />
+            </div>
 
-                {/* 2. Category */}
-                <div className="relative z-[50]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    Category
-                  </label>
-                  <NativeSelect
-                    value={category}
-                    onChange={setCategory}
-                    options={AP_CATEGORIES}
-                    placeholder="Select category"
-                  />
-                </div>
+            {/* 2. Category */}
+            <div className="relative z-[50]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                Category
+              </label>
+              <NativeSelect
+                value={category}
+                onChange={setCategory}
+                options={AP_CATEGORIES}
+                placeholder="Select category"
+              />
+            </div>
 
-                {/* 3. Region */}
-                <div className="relative z-[45]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    Region
-                  </label>
-                  <NativeSelect
-                    value={region}
-                    onChange={setRegion}
-                    options={AP_REGIONS}
-                  />
-                </div>
+            {/* 3. Region */}
+            <div className="relative z-[45]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                Region
+              </label>
+              <NativeSelect
+                value={region}
+                onChange={setRegion}
+                options={AP_REGIONS}
+              />
+            </div>
 
-                {/* 4. Gender */}
-                <div className="relative z-[40]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    Gender
-                  </label>
-                  <GenderDropdown gender={gender} setGender={setGender} />
-                </div>
+            {/* 4. Gender */}
+            <div className="relative z-[40]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                Gender
+              </label>
+              <GenderDropdown gender={gender} setGender={setGender} />
+            </div>
 
-                {/* 5. Branch (Multi-select) */}
-                <div className="relative z-[30]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    Branch (One or More)
-                  </label>
-                  <BranchMultiSelect
-                    selectedCourses={selectedCourses}
-                    setSelectedCourses={setSelectedCourses}
-                    courses={courses}
-                    examSlug="ap-eapcet"
-                  />
-                </div>
+            {/* 5. Branch (Multi-select) */}
+            <div className="relative z-[30]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                Branch (Optional / All by default)
+              </label>
+              <BranchMultiSelect
+                selectedCourses={selectedCourses}
+                setSelectedCourses={setSelectedCourses}
+                courses={courses}
+                examSlug="ap-eapcet"
+              />
+            </div>
 
-                {/* 6. District (Multi-select) */}
-                <div className="relative z-[20]">
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    District (One or More)
-                  </label>
-                  <DistrictMultiSelect
-                    selectedDistricts={selectedDistricts}
-                    setSelectedDistricts={setSelectedDistricts}
-                    districts={districts}
-                    examSlug="ap-eapcet"
-                  />
-                </div>
-              </div>
+            {/* 6. District (Multi-select) */}
+            <div className="relative z-[20]">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                District (Optional / All by default)
+              </label>
+              <DistrictMultiSelect
+                selectedDistricts={selectedDistricts}
+                setSelectedDistricts={setSelectedDistricts}
+                districts={districts}
+                examSlug="ap-eapcet"
+              />
+            </div>
+          </div>
 
-              {error && (
-                <p className="mt-4 text-xs sm:text-sm font-semibold text-rose-400">{error}</p>
+          {error && (
+            <p className="mt-4 text-xs sm:text-sm font-semibold text-rose-400">{error}</p>
+          )}
+
+          {/* Predict Button */}
+          <div className="relative z-[1] mt-7 flex justify-center">
+            <GlassButton
+              disabled={predicting}
+              onClick={predict}
+              size="default"
+              className="w-full sm:w-auto min-w-[180px]"
+              contentClassName="flex items-center justify-center gap-2 font-semibold"
+            >
+              {predicting ? (
+                <>
+                  <Loader2 size={16} className="animate-spin text-white" />
+                  <span>Predicting…</span>
+                </>
+              ) : (
+                <span>Predict Colleges</span>
               )}
-
-              {/* Predict Button */}
-              <div className="relative z-[1] mt-7 flex justify-center">
-                <GlassButton
-                  disabled={predicting}
-                  onClick={predict}
-                  size="default"
-                  className="w-full sm:w-auto min-w-[180px]"
-                  contentClassName="flex items-center justify-center gap-2 font-semibold"
-                >
-                  {predicting ? (
-                    <>
-                      <Loader2 size={16} className="animate-spin text-white" />
-                      <span>Predicting…</span>
-                    </>
-                  ) : (
-                    <span>Predict Colleges</span>
-                  )}
-                </GlassButton>
-              </div>
+            </GlassButton>
+          </div>
         </GlowCard>
       </section>
 
@@ -267,14 +275,68 @@ export default function EapcetPredictorPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 space-y-8"
+            className="mt-8 space-y-6"
           >
-            <ResultsTable results={results} showYear examTitle="AP EAPCET 2025" />
+            {/* Top 5 Personalized Recommendations Card */}
+            <TopPicksCard
+              results={results}
+              studentRank={Number(rank)}
+              onCreateWebOptions={() => setShowSmartOptionsModal(true)}
+            />
+
+            {/* Full Results Table with Chance Confidence Bar and Create Web Options button */}
+            <ResultsTable
+              results={results}
+              showYear
+              examTitle="AP EAPCET 2025"
+              studentRank={Number(rank)}
+              onCreateWebOptions={() => setShowSmartOptionsModal(true)}
+            />
+
             {/* Passive ad unit placed safely below prediction results */}
             <AdSenseUnit slotName="predictorResults" minHeight={90} />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Empty State when search returns 0 results */}
+      {!predicting && hasSearched && results.length === 0 && !error && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl"
+        >
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <AlertCircle size={24} />
+          </div>
+          <h3 className="text-lg font-bold text-white mb-2">No Matching Colleges Found</h3>
+          <p className="text-xs sm:text-sm text-gray-300 max-w-md mx-auto mb-4">
+            No cutoffs found within the selected branch or district filters for rank <strong className="text-white">#{rank}</strong> ({category} category).
+          </p>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-xs text-gray-400">
+            <span>💡 Tip:</span>
+            <button
+              onClick={() => { setSelectedCourses([]); setSelectedDistricts([]); setRegion("ALL"); }}
+              className="font-semibold text-purple-300 hover:text-purple-200 underline cursor-pointer"
+            >
+              Reset branch &amp; district filters to search all colleges
+            </button>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Smart Web Options Generator Modal */}
+      <SmartWebOptionsModal
+        isOpen={showSmartOptionsModal}
+        onClose={() => setShowSmartOptionsModal(false)}
+        rank={rank}
+        category={category}
+        gender={gender}
+        selectedCourses={selectedCourses}
+        selectedDistricts={selectedDistricts}
+        results={results}
+        examSlug="ap-eapcet"
+      />
     </main>
   );
 }

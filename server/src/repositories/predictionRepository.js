@@ -23,6 +23,7 @@ function resolveApCategory(category, region = "AU") {
     "BC-C": "BC_C", "BC_C": "BC_C",
     "BC-D": "BC_D", "BC_D": "BC_D",
     "BC-E": "BC_E", "BC_E": "BC_E",
+    "SC": "SC",
     "SC-I": "SC_I",  "SC_I": "SC_I",  "SC I": "SC_I",
     "SC-II": "SC_II", "SC_II": "SC_II", "SC II": "SC_II",
     "SC-III": "SC_III", "SC_III": "SC_III", "SC III": "SC_III",
@@ -46,10 +47,16 @@ export const predictionRepository = {
     // For AP EAPCET resolve simple category + region → DB code
     let resolvedCategory = category;
     let categoryPrefix = null; // used when matching all regions
+    let isScGeneric = false;
 
     if (Number(examId) === AP_EAPCET_EXAM_ID && category) {
+      const cleanCat = String(category).trim().toUpperCase();
       const isAllRegion = !region || region === "ALL";
-      if (isAllRegion) {
+
+      if (cleanCat === "SC") {
+        isScGeneric = true;
+        categoryPrefix = "SC";
+      } else if (isAllRegion) {
         // Get just the prefix (e.g. "OC", "BC_A") to match OC_AU, OC_SVU, OC_UR
         categoryPrefix = resolveApCategory(category, "AU").replace(/_AU$/, "");
         resolvedCategory = null; // will use LIKE instead of exact
@@ -61,12 +68,22 @@ export const predictionRepository = {
     const params = [examId, gender, rank];
     let catCondition = "";
 
-    if (categoryPrefix) {
+    if (isScGeneric) {
+      const reg = (region && region !== "ALL") ? (region === "NON-LOCAL" || region === "UR" ? "UR" : region.toUpperCase()) : null;
+      if (reg) {
+        params.push(`SC_%_${reg}`);
+        catCondition = `AND cat.code LIKE $${params.length}`;
+      } else {
+        params.push(`SC_%`);
+        catCondition = `AND cat.code LIKE $${params.length}`;
+      }
+    } else if (categoryPrefix) {
       params.push(`${categoryPrefix}_%`);
       catCondition = `AND cat.code LIKE $${params.length}`;
     } else {
+      // If specific minority code doesn't exist for region, fallback gracefully to statewide
       params.push(resolvedCategory);
-      catCondition = `AND cat.code = $${params.length}`;
+      catCondition = `AND (cat.code = $${params.length} OR cat.code = '${resolvedCategory?.replace(/_SVU$/, '_UR')}')`;
     }
 
     let sql = `

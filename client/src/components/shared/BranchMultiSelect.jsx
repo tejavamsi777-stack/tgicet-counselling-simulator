@@ -68,10 +68,10 @@ export default function BranchMultiSelect({
   }
 
   const shortcut = useMemo(() => {
-    if (examSlug === "tg-eapcet" || examSlug === "tg-ecet") {
+    if (examSlug === "tg-eapcet" || examSlug === "tg-ecet" || examSlug === "ap-eapcet") {
       return {
         label: "CSE & Allied",
-        codes: ["CSE", "CSM", "CSD", "CSC", "CSIT", "INF", "IT", "CSO", "CSB", "CSI", "AIM", "AID", "AI"],
+        codes: ["CSE", "CSM", "CSD", "CSC", "CSIT", "INF", "IT", "CSO", "CSB", "CSI", "AIM", "AID", "AI", "CAI", "CAD", "CIC", "CIT", "CSBS"],
       };
     }
     if (examSlug === "tg-polycet") {
