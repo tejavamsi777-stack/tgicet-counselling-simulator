@@ -2,40 +2,18 @@ import { useState } from "react";
 import { FileSpreadsheet, FileText, Share2 } from "lucide-react";
 import Button from "../ui/Button";
 import { exportToExcel, exportToPDF } from "../../utils/exportResults";
-import { useAuth } from "../../context/AuthContext";
-import LoginModal from "../shared/LoginModal";
 import { ShareModal } from "../shared/ShareModal";
 
 export default function ExportButtons({ results = [], examTitle = "Vuela Learn" }) {
-  const { user } = useAuth();
-  const [loginOpen, setLoginOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
-  const [pendingExport, setPendingExport] = useState(null); // "excel" | "pdf" | null
 
   if (!results.length) return null;
 
   const fileBase = examTitle.toLowerCase().replace(/[^a-z0-9]/g, "-");
 
-  function runExport(type) {
+  function handleExportClick(type) {
     if (type === "excel") exportToExcel(results, `${fileBase}-predictions.xlsx`);
     if (type === "pdf") exportToPDF(results, `${fileBase}-predictions.pdf`, `${examTitle} - Predictions Report`);
-  }
-
-  function handleExportClick(type) {
-    if (user) {
-      runExport(type);
-      return;
-    }
-    // Not logged in — ask to log in first
-    setPendingExport(type);
-    setLoginOpen(true);
-  }
-
-  function handleAuthenticated() {
-    if (pendingExport) {
-      runExport(pendingExport);
-      setPendingExport(null);
-    }
   }
 
   const topSafe = results.filter((r) => r.status === "safe").slice(0, 4);
@@ -75,15 +53,6 @@ export default function ExportButtons({ results = [], examTitle = "Vuela Learn" 
           title: `${examTitle} Predictions Report`,
           text: shareText,
         }}
-      />
-
-      <LoginModal
-        open={loginOpen}
-        onClose={() => {
-          setLoginOpen(false);
-          setPendingExport(null);
-        }}
-        onAuthenticated={handleAuthenticated}
       />
     </div>
   );

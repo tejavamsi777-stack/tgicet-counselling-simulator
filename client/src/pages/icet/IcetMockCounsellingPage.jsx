@@ -7,8 +7,6 @@ import { getFinalOptionList } from "../../utils/sortByPreference";
 import { saveOptions, loadOptions } from "../../utils/mockCounsellingStorage";
 import { exportPreferencesToPDF } from "../../utils/exportPreferences";
 import { getDuplicatePreferenceNumbers } from "../../utils/preferenceValidation";
-import { useAuth } from "../../context/AuthContext";
-import LoginModal from "../../components/shared/LoginModal";
 import CandidateDetailsForm from "../../components/counselling/CandidateDetailsForm";
 import DistrictSelector from "../../components/counselling/DistrictSelector";
 import PreferenceList from "../../components/counselling/PreferenceList";
@@ -61,10 +59,6 @@ export default function IcetMockCounsellingPage() {
   const [showInsertPanel, setShowInsertPanel] = useState(false);
   const [insertCollege, setInsertCollege] = useState("");
   const [insertPosition, setInsertPosition] = useState("");
-
-  const { user } = useAuth();
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [pendingPrint, setPendingPrint] = useState(false);
 
   const saveShake = useAnimation();
   const printShake = useAnimation();
@@ -177,13 +171,7 @@ export default function IcetMockCounsellingPage() {
   }
 
   function handleViewAndPrint() {
-    if (user) { performPrint(); return; }
-    setPendingPrint(true);
-    setLoginOpen(true);
-  }
-
-  function handleAuthenticated() {
-    if (pendingPrint) { performPrint(); setPendingPrint(false); }
+    performPrint();
   }
 
   function handleInsertBetween() {
@@ -325,8 +313,6 @@ export default function IcetMockCounsellingPage() {
       {step !== "list" && (
         <AdSenseUnit slotName="mockCounselling" minHeight={90} />
       )}
-
-      <LoginModal open={loginOpen} onClose={() => { setLoginOpen(false); setPendingPrint(false); }} onAuthenticated={handleAuthenticated} />
     </main>
   );
 }

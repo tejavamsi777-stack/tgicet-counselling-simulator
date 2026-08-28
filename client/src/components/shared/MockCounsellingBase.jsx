@@ -7,8 +7,6 @@ import { getFinalOptionList } from "../../utils/sortByPreference";
 import { saveOptions, loadOptions, saveActiveSession, loadActiveSession } from "../../utils/mockCounsellingStorage";
 import { exportPreferencesToPDF } from "../../utils/exportPreferences";
 import { getDuplicatePreferenceNumbers } from "../../utils/preferenceValidation";
-import { useAuth } from "../../context/AuthContext";
-import LoginModal from "../shared/LoginModal";
 
 import CandidateDetailsForm from "../counselling/CandidateDetailsForm";
 import DistrictSelector from "../counselling/DistrictSelector";
@@ -80,10 +78,6 @@ export default function MockCounsellingBase({
   const [showInsertPanel, setShowInsertPanel] = useState(false);
   const [insertCollege, setInsertCollege] = useState("");
   const [insertPosition, setInsertPosition] = useState("");
-
-  const { user } = useAuth();
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [pendingPrint, setPendingPrint] = useState(false);
 
   const saveShake = useAnimation();
   const printShake = useAnimation();
@@ -251,13 +245,7 @@ export default function MockCounsellingBase({
   }
 
   function handleViewAndPrint() {
-    if (user) { performPrint(); return; }
-    setPendingPrint(true);
-    setLoginOpen(true);
-  }
-
-  function handleAuthenticated() {
-    if (pendingPrint) { performPrint(); setPendingPrint(false); }
+    performPrint();
   }
 
   function handleInsertBetween() {
@@ -563,12 +551,6 @@ export default function MockCounsellingBase({
           {stepContent}
         </motion.div>
       </AnimatePresence>
-
-      <LoginModal
-        open={loginOpen}
-        onClose={() => { setLoginOpen(false); setPendingPrint(false); }}
-        onAuthenticated={handleAuthenticated}
-      />
     </main>
   );
 }
