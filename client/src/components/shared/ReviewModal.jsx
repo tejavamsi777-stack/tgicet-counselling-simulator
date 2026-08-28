@@ -126,10 +126,10 @@ export default function ReviewModal({ isOpen, onClose }) {
                   <button
                     type="button"
                     onClick={() => handleDismiss('review')}
-                    className="w-full rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] py-2.5 text-xs font-medium text-white/50 hover:text-white/80 transition cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 py-2.5 text-xs font-medium text-white/80 hover:text-white transition cursor-pointer flex items-center justify-center gap-1.5 backdrop-blur-md"
                   >
                     <span>Done</span>
-                    <span className="text-[10px] text-white/40">(Closing automatically...)</span>
+                    <span className="text-[11px] text-white/60">(Closing automatically...)</span>
                   </button>
                 </div>
               </div>
@@ -150,12 +150,12 @@ export default function ReviewModal({ isOpen, onClose }) {
                 />
 
                 {/* Action buttons below the ticket */}
-                <div className="flex flex-col gap-2 w-full" style={{ maxWidth: ticketWidth }}>
+                <div className="flex flex-col gap-2.5 w-full" style={{ maxWidth: ticketWidth }}>
                   <button
                     type="button"
                     onClick={handleRate}
                     disabled={submitting}
-                    className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#1e3a8a] to-[#172554] hover:from-[#1d4ed8] hover:to-[#1e3a8a] text-white font-bold text-sm py-3.5 shadow-lg shadow-blue-950/60 border border-blue-400/20 transition active:scale-[0.98] cursor-pointer disabled:opacity-50"
+                    className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#1e3a8a] to-[#172554] hover:from-[#1d4ed8] hover:to-[#1e3a8a] text-white font-bold text-sm py-3.5 shadow-lg shadow-blue-950/60 border border-blue-400/30 transition active:scale-[0.98] cursor-pointer disabled:opacity-50"
                   >
                     <div className="h-4 w-4 rounded-[4px] bg-white flex items-center justify-center">
                       <TrustpilotStar size={10} className="text-[#00b67a]" />
@@ -165,7 +165,7 @@ export default function ReviewModal({ isOpen, onClose }) {
                   <button
                     type="button"
                     onClick={() => handleDismiss('later')}
-                    className="w-full rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] py-3 text-xs font-medium text-white/50 hover:text-white/80 transition cursor-pointer"
+                    className="w-full rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 py-3 text-sm font-semibold text-gray-200 hover:text-white transition active:scale-[0.98] cursor-pointer backdrop-blur-md shadow-sm"
                   >
                     💔 Maybe Later
                   </button>
