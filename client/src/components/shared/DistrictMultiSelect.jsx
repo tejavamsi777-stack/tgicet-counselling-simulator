@@ -11,7 +11,7 @@ export default function DistrictMultiSelect({
   examSlug = "tg-eapcet",
 }) {
   const { districts: refDistricts } = useReferenceData(examSlug);
-  const districts = propDistricts || refDistricts || [];
+  const districts = (propDistricts && propDistricts.length > 0) ? propDistricts : (refDistricts || []);
 
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");

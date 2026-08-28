@@ -332,13 +332,28 @@ export default function ResultsTable({
               />
             </div>
             {onCreateWebOptions && (
-              <GlassButton
-                onClick={onCreateWebOptions}
-                size="sm"
-                contentClassName="flex items-center gap-1.5 font-semibold text-xs whitespace-nowrap"
-              >
-                <span>Create Web Options</span>
-              </GlassButton>
+              <div className="relative inline-flex items-center">
+                {/* Floating Animated "Must Try" Badge */}
+                <motion.span
+                  animate={{ y: [0, -3, 0], scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="pointer-events-none absolute -top-2.5 -right-1 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white shadow-md shadow-black/60 border border-white/50 ring-1 ring-amber-300/60"
+                >
+                  <Flame size={10} className="text-yellow-200 fill-yellow-200" />
+                  <span>Must Try</span>
+                </motion.span>
+
+                <GlassButton
+                  onClick={onCreateWebOptions}
+                  variant="red"
+                  size="md"
+                  className="w-full sm:w-auto shrink-0"
+                  contentClassName="flex items-center justify-center gap-2 font-bold text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 whitespace-nowrap"
+                >
+                  <Sparkles size={15} className="text-white" />
+                  <span>Create Web Options</span>
+                </GlassButton>
+              </div>
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2.5">

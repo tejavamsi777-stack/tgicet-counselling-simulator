@@ -93,6 +93,32 @@ input[type="radio"] {
   opacity: 1;
 }
 
+/* Red Liquid Glass Button Styles (Clean, No Glow) */
+.glass-button-red {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.6) 0%, rgba(185, 28, 28, 0.4) 50%, rgba(153, 27, 27, 0.5) 100%);
+  border: 1px solid rgba(254, 202, 202, 0.4);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.3),
+    0 4px 14px 0 rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #ffffff;
+}
+
+.glass-button-red:hover {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.7) 0%, rgba(220, 38, 38, 0.5) 50%, rgba(185, 28, 28, 0.6) 100%);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+    0 6px 18px 0 rgba(0, 0, 0, 0.45);
+}
+
+.glass-button-shadow-red {
+  display: none;
+}
+
 @keyframes pulse-slow {
   0%, 100% { opacity: 0.4; transform: scale(1); }
   50% { opacity: 0.8; transform: scale(1.08); }

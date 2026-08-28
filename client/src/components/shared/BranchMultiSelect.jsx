@@ -10,10 +10,10 @@ export default function BranchMultiSelect({
   examSlug = "tg-eapcet",
 }) {
   const { courses: refCourses } = useReferenceData(examSlug);
-  const courses = useMemo(
-    () => sortCourses(propCourses || refCourses || [], examSlug),
-    [propCourses, refCourses, examSlug]
-  );
+  const courses = useMemo(() => {
+    const list = (propCourses && propCourses.length > 0) ? propCourses : (refCourses || []);
+    return sortCourses(list, examSlug);
+  }, [propCourses, refCourses, examSlug]);
 
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");

@@ -98,6 +98,9 @@ const POPULAR_COURSES = {
     "CER",  // Ceramic Technology
     "FPT",  // Food Processing Technology
   ],
+  "ap-eapcet": [
+    "CSE", "CSM", "CSD", "CSC", "CAI", "CAD", "CIC", "CIT", "CSBS", "INF", "IT", "AIM", "AID", "AI", "ECE", "EEE", "MEC", "ME", "CIV", "CE", "CHE", "AGR", "BIO", "AUT", "ASE", "MIN", "MET"
+  ],
   "tg-polycet": [
     "CME",  // Computer Engineering
     "CS",
@@ -117,6 +120,56 @@ const POPULAR_COURSES = {
     "CCP",  // Commercial & Computer Practice
   ],
 };
+
+const AP_EAPCET_FALLBACK_COURSES = [
+  { code: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING" },
+  { code: "CSM", name: "CSE (AI & MACHINE LEARNING)" },
+  { code: "CSD", name: "CSE (DATA SCIENCE)" },
+  { code: "CSC", name: "CSE (CYBER SECURITY)" },
+  { code: "CAI", name: "CSE (ARTIFICIAL INTELLIGENCE)" },
+  { code: "CAD", name: "CSE (AI & DATA SCIENCE)" },
+  { code: "CIC", name: "CSE (IOT & CYBER SECURITY WITH BLOCKCHAIN)" },
+  { code: "CIT", name: "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY" },
+  { code: "CSBS", name: "COMPUTER SCIENCE AND BUSINESS SYSTEMS" },
+  { code: "INF", name: "INFORMATION TECHNOLOGY" },
+  { code: "AI", name: "ARTIFICIAL INTELLIGENCE" },
+  { code: "AID", name: "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE" },
+  { code: "AIM", name: "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING" },
+  { code: "ECE", name: "ELECTRONICS AND COMMUNICATION ENGINEERING" },
+  { code: "EEE", name: "ELECTRICAL AND ELECTRONICS ENGINEERING" },
+  { code: "MEC", name: "MECHANICAL ENGINEERING" },
+  { code: "CIV", name: "CIVIL ENGINEERING" },
+  { code: "CHE", name: "CHEMICAL ENGINEERING" },
+  { code: "AGR", name: "AGRICULTURAL ENGINEERING" },
+  { code: "BIO", name: "BIO-TECHNOLOGY" },
+  { code: "AUT", name: "AUTOMOBILE ENGINEERING" },
+  { code: "ASE", name: "AEROSPACE ENGINEERING" },
+  { code: "MIN", name: "MINING ENGINEERING" },
+  { code: "MET", name: "METALLURGICAL ENGINEERING" },
+  { code: "FDT", name: "FOOD TECHNOLOGY" },
+  { code: "PHE", name: "PHARMACEUTICAL ENGINEERING" },
+  { code: "RBT", name: "ROBOTICS" },
+  { code: "SWE", name: "SOFTWARE ENGINEERING" },
+];
+
+const AP_EAPCET_FALLBACK_DISTRICTS = [
+  { code: "ANN", name: "Annamayya" },
+  { code: "ATP", name: "Anantapur" },
+  { code: "CTR", name: "Chittoor" },
+  { code: "EG", name: "East Godavari" },
+  { code: "GTR", name: "Guntur" },
+  { code: "KDP", name: "YSR Kadapa" },
+  { code: "KNL", name: "Kurnool" },
+  { code: "KRI", name: "Krishna" },
+  { code: "NLR", name: "SPSR Nellore" },
+  { code: "NTR", name: "NTR" },
+  { code: "PKS", name: "Prakasam" },
+  { code: "PLN", name: "Palnadu" },
+  { code: "SKL", name: "Srikakulam" },
+  { code: "VSP", name: "Visakhapatnam" },
+  { code: "VZM", name: "Vizianagaram" },
+  { code: "WG", name: "West Godavari" },
+];
 
 function getCourseRank(code, examSlug) {
   const norm = (code ?? "").toString().trim().toUpperCase();
@@ -142,7 +195,7 @@ const referenceCache = new Map();
 function readSessionCache(key) {
   if (typeof window === "undefined") return null;
   try {
-    const raw = sessionStorage.getItem(`tg_ref_v4_${key}`);
+    const raw = sessionStorage.getItem(`tg_ref_v5_${key}`);
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -152,10 +205,31 @@ function readSessionCache(key) {
 function writeSessionCache(key, val) {
   if (typeof window === "undefined") return;
   try {
-    sessionStorage.setItem(`tg_ref_v4_${key}`, JSON.stringify(val));
+    sessionStorage.setItem(`tg_ref_v5_${key}`, JSON.stringify(val));
   } catch {
     // ignore quota
   }
+}
+
+function isValidCache(c) {
+  return Boolean(c && Array.isArray(c.courses) && c.courses.length > 0);
+}
+
+function getInitialFallback(examSlug) {
+  if (examSlug === "ap-eapcet") {
+    return {
+      courses: sortCourses(AP_EAPCET_FALLBACK_COURSES, "ap-eapcet"),
+      categories: [],
+      districts: AP_EAPCET_FALLBACK_DISTRICTS,
+      years: [{ year: 2025 }],
+    };
+  }
+  return {
+    courses: [],
+    categories: [],
+    districts: [],
+    years: [],
+  };
 }
 
 /**
@@ -163,26 +237,22 @@ function writeSessionCache(key, val) {
  */
 export function useReferenceData(examSlug = "tg-icet") {
   const cacheKey = examSlug || "default";
-  const cached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+  const rawCached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+  const cached = isValidCache(rawCached) ? rawCached : null;
 
   const [data, setData] = useState(() => {
     if (cached) {
       referenceCache.set(cacheKey, cached);
       return cached;
     }
-    return {
-      courses: [],
-      categories: [],
-      districts: [],
-      years: [],
-    };
+    return getInitialFallback(examSlug);
   });
   const [loading, setLoading] = useState(() => !cached);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const memCached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
-    if (memCached) {
+    if (isValidCache(memCached)) {
       setData(memCached);
       setLoading(false);
       return;
@@ -193,17 +263,26 @@ export function useReferenceData(examSlug = "tg-icet") {
     async function load() {
       try {
         const query = examSlug ? `?exam=${examSlug}` : "";
-        const [courses, categories, districts, years] = await Promise.all([
-          api.get(`/courses${query}`),
-          api.get(`/categories${query}`),
-          api.get(`/districts${query}`),
-          api.get(`/years${query}`),
+        const [coursesRes, categoriesRes, districtsRes, yearsRes] = await Promise.all([
+          api.get(`/courses${query}`).catch(() => []),
+          api.get(`/categories${query}`).catch(() => []),
+          api.get(`/districts${query}`).catch(() => []),
+          api.get(`/years${query}`).catch(() => []),
         ]);
+
+        const safeCourses = Array.isArray(coursesRes) && coursesRes.length > 0 
+          ? coursesRes 
+          : (examSlug === "ap-eapcet" ? AP_EAPCET_FALLBACK_COURSES : []);
+
+        const safeDistricts = Array.isArray(districtsRes) && districtsRes.length > 0
+          ? districtsRes
+          : (examSlug === "ap-eapcet" ? AP_EAPCET_FALLBACK_DISTRICTS : []);
+
         const result = {
-          courses: sortCourses(courses, examSlug),
-          categories: sortCategories(categories, examSlug),
-          districts,
-          years,
+          courses: sortCourses(safeCourses, examSlug),
+          categories: sortCategories(categoriesRes || [], examSlug),
+          districts: safeDistricts,
+          years: yearsRes || [],
         };
         referenceCache.set(cacheKey, result);
         writeSessionCache(cacheKey, result);

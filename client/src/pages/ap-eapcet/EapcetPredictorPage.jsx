@@ -12,7 +12,6 @@ import GenderDropdown from "../../components/shared/GenderDropdown";
 import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
-import TopPicksCard from "../../components/results/TopPicksCard";
 import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
 import { smoothScrollTo } from "../../lib/utils";
 import { useReferenceData } from "../../hooks/useReferenceData";
@@ -277,13 +276,6 @@ export default function EapcetPredictorPage() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 space-y-6"
           >
-            {/* Top 5 Personalized Recommendations Card */}
-            <TopPicksCard
-              results={results}
-              studentRank={Number(rank)}
-              onCreateWebOptions={() => setShowSmartOptionsModal(true)}
-            />
-
             {/* Full Results Table with Chance Confidence Bar and Create Web Options button */}
             <ResultsTable
               results={results}

@@ -7,6 +7,7 @@ const glassButtonVariants = (size = "default") => {
     sm: "text-xs font-semibold",
     md: "text-sm font-semibold",
     lg: "text-sm sm:text-base font-semibold",
+    xl: "text-base font-bold",
     icon: "h-10 w-10 flex items-center justify-center",
   };
   return cn(
@@ -21,6 +22,7 @@ const glassButtonTextVariants = (size = "default") => {
     sm: "px-3.5 py-1.5 text-xs",
     md: "px-5 py-2.5 text-sm",
     lg: "px-6 py-2.5 text-sm sm:text-base",
+    xl: "px-7 py-3 text-base",
     icon: "flex h-10 w-10 items-center justify-center",
   };
   return cn(
@@ -30,7 +32,8 @@ const glassButtonTextVariants = (size = "default") => {
 };
 
 const GlassButton = React.forwardRef(
-  ({ className, children, size = "default", contentClassName, ...props }, ref) => {
+  ({ className, children, size = "default", variant = "default", contentClassName, ...props }, ref) => {
+    const isRed = variant === "red";
     return (
       <div
         className={cn(
@@ -39,7 +42,10 @@ const GlassButton = React.forwardRef(
         )}
       >
         <button
-          className={cn("glass-button", glassButtonVariants(size))}
+          className={cn(
+            isRed ? "glass-button-red" : "glass-button",
+            glassButtonVariants(size)
+          )}
           ref={ref}
           {...props}
         >
@@ -52,7 +58,7 @@ const GlassButton = React.forwardRef(
             {children}
           </span>
         </button>
-        <div className="glass-button-shadow rounded-full"></div>
+        <div className={isRed ? "glass-button-shadow-red rounded-full" : "glass-button-shadow rounded-full"}></div>
       </div>
     );
   }

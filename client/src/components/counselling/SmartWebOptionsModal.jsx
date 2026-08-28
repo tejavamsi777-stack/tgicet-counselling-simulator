@@ -1,30 +1,20 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence, Reorder } from "framer-motion";
+import { motion, AnimatePresence, Reorder, useDragControls } from "framer-motion";
 import {
-  Sparkles,
   X,
   ArrowRight,
-  Sliders,
   CheckCircle2,
-  AlertTriangle,
   Flame,
   Star,
   Download,
   ExternalLink,
   ChevronUp,
   ChevronDown,
-  BookOpen,
-  Building2,
-  MapPin,
-  FileCheck,
   Loader2,
   Plus,
   Trash2,
-  Search,
-  GripVertical,
-  RotateCcw,
-  Check
+  GripVertical
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { saveOptions } from "../../utils/mockCounsellingStorage";
@@ -65,6 +55,237 @@ const DREAM_COLLEGES = {
     { code: "BIMS", name: "Badruka College PG Centre", place: "Kachiguda, Hyderabad", district: "HYD" },
   ]
 };
+
+function OptionRow({
+  item,
+  index,
+  totalCount,
+  category,
+  onMoveUp,
+  onMoveDown,
+  onDelete,
+}) {
+  const dragControls = useDragControls();
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHolding, setIsHolding] = useState(false);
+  const holdTimerRef = useRef(null);
+  const startPosRef = useRef({ x: 0, y: 0 });
+
+  function handlePointerDown(e) {
+    // If clicking an interactive button/link, don't trigger drag hold
+    if (e.target.closest("button, a, input, select")) return;
+
+    startPosRef.current = { x: e.clientX, y: e.clientY };
+
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+
+    setIsHolding(true);
+
+    holdTimerRef.current = setTimeout(() => {
+      // Trigger haptic vibration on mobile touch screens
+      if (typeof window !== "undefined" && window.navigator?.vibrate) {
+        try {
+          window.navigator.vibrate(35);
+        } catch {
+          // ignore if vibration not permitted
+        }
+      }
+      setIsDragging(true);
+      setIsHolding(false);
+      dragControls.start(e);
+    }, 220); // 220ms press-and-hold threshold
+  }
+
+  function handlePointerMove(e) {
+    // If pointer moves more than 7px before timer fires, cancel hold (user is scrolling)
+    if (holdTimerRef.current && !isDragging) {
+      const dx = Math.abs(e.clientX - startPosRef.current.x);
+      const dy = Math.abs(e.clientY - startPosRef.current.y);
+      if (dx > 7 || dy > 7) {
+        clearTimeout(holdTimerRef.current);
+        holdTimerRef.current = null;
+        setIsHolding(false);
+      }
+    }
+  }
+
+  function handlePointerUpOrCancel() {
+    if (holdTimerRef.current) {
+      clearTimeout(holdTimerRef.current);
+      holdTimerRef.current = null;
+    }
+    setIsHolding(false);
+    setIsDragging(false);
+  }
+
+  return (
+    <Reorder.Item
+      value={item}
+      dragListener={false}
+      dragControls={dragControls}
+      onDragStart={() => {
+        setIsDragging(true);
+        setIsHolding(false);
+      }}
+      onDragEnd={() => {
+        setIsDragging(false);
+        setIsHolding(false);
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUpOrCancel}
+      onPointerCancel={handlePointerUpOrCancel}
+      className={`group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 rounded-xl border p-3 sm:px-4 sm:py-2.5 text-xs select-none backdrop-blur-md touch-pan-y transition-all duration-150 ${
+        isDragging
+          ? "scale-[1.02] bg-[#241748] border-purple-400 shadow-2xl shadow-purple-950/90 z-50 ring-2 ring-purple-500/50 cursor-grabbing"
+          : isHolding
+          ? "scale-[1.01] bg-[#1e133a] border-purple-500/60 shadow-lg"
+          : "bg-white/[0.08] hover:bg-white/[0.14] border-white/20 hover:border-white/40 shadow-sm"
+      }`}
+    >
+      {/* Top / Left Section: Drag handle, preference number, college info */}
+      <div className="flex items-start sm:items-center gap-2.5 flex-1 min-w-0">
+        {/* Drag Handle & Preference Number */}
+        <div className="flex items-center gap-1.5 shrink-0 pt-0.5 sm:pt-0">
+          <div
+            className="cursor-grab active:cursor-grabbing text-white/50 hover:text-white p-1.5 rounded transition touch-none select-none"
+            title="Press & hold card, or drag this handle"
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              if (typeof window !== "undefined" && window.navigator?.vibrate) {
+                try {
+                  window.navigator.vibrate(35);
+                } catch {
+                  // ignore
+                }
+              }
+              setIsDragging(true);
+              dragControls.start(e);
+            }}
+          >
+            <GripVertical size={16} />
+          </div>
+          <span className="flex h-6 w-7 sm:h-7 sm:w-8 items-center justify-center rounded-lg bg-white/15 border border-white/30 text-white font-mono font-bold text-xs shadow-inner">
+            #{item.prefNumber}
+          </span>
+        </div>
+
+        {/* College Name & District */}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <p className="font-semibold text-white text-xs sm:text-sm line-clamp-1 sm:truncate">
+              {item.collegeName}
+            </p>
+            <span className="font-mono text-[10px] font-bold text-white/90 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 shrink-0">
+              {item.collegeCode}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 text-[11px] text-gray-300 mt-0.5">
+            {item.place && <span className="truncate max-w-[140px] sm:max-w-none">{item.place}</span>}
+            {item.place && item.district && <span>•</span>}
+            {item.district && <span>{getDistrictName(item.district) || item.district}</span>}
+          </div>
+        </div>
+
+        {/* Mobile-Only Action Controls (Top Right) */}
+        <div className="flex sm:hidden items-center gap-1 shrink-0 ml-auto">
+          <button
+            type="button"
+            onClick={() => onMoveUp(index)}
+            disabled={index === 0}
+            className="p-1.5 text-white/70 hover:text-white disabled:opacity-20 cursor-pointer"
+            title="Move Up"
+          >
+            <ChevronUp size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={() => onMoveDown(index)}
+            disabled={index === totalCount - 1}
+            className="p-1.5 text-white/70 hover:text-white disabled:opacity-20 cursor-pointer"
+            title="Move Down"
+          >
+            <ChevronDown size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={() => onDelete(item.prefNumber)}
+            className="p-1.5 text-rose-400 hover:text-rose-300 cursor-pointer"
+            title="Delete"
+          >
+            <Trash2 size={16} />
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom / Right Section: Branch, Cutoff, Status Tier, Desktop Actions */}
+      <div className="flex items-center justify-between sm:justify-end gap-2.5 sm:gap-3.5 pt-2 sm:pt-0 border-t border-white/10 sm:border-t-0 shrink-0">
+        {/* Branch Badge */}
+        <span className="rounded-md bg-white/15 border border-white/25 px-2 sm:px-2.5 py-0.5 sm:py-1 font-semibold text-[11px] text-white">
+          {item.course}
+        </span>
+
+        {/* Cutoff Rank */}
+        <div className="text-right min-w-[75px] sm:min-w-[85px]">
+          <span className="text-[10px] text-gray-300 block font-normal leading-none mb-0.5">
+            {category} Cutoff{item.cutoffYear ? ` '${String(item.cutoffYear).slice(-2)}` : ""}
+          </span>
+          <span className="font-mono font-bold text-xs sm:text-sm text-white">
+            {item.cutoff === null
+              ? <span className="text-gray-400 font-normal">N/A</span>
+              : typeof item.cutoff === "number"
+                ? item.cutoff.toLocaleString()
+                : item.cutoff}
+          </span>
+        </div>
+
+        {/* Strategy Tier Badge */}
+        <span className={`inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${
+          item.tier === "dream"
+            ? "bg-orange-500/20 text-orange-400 border-orange-500/40"
+            : item.tier === "target"
+            ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/40"
+            : "bg-emerald-500/20 text-emerald-400 border-emerald-500/40"
+        }`}>
+          {item.tier === "dream" ? "Dream College" : item.tier === "target" ? "Target Match" : "Safe College"}
+        </span>
+
+        {/* Desktop Controls (Arrows + Delete) */}
+        <div className="hidden sm:flex items-center gap-1 shrink-0">
+          <div className="flex flex-col">
+            <button
+              type="button"
+              onClick={() => onMoveUp(index)}
+              disabled={index === 0}
+              className="text-white/50 hover:text-white p-0.5 disabled:opacity-20 cursor-pointer"
+              title="Move Up"
+            >
+              <ChevronUp size={13} />
+            </button>
+            <button
+              type="button"
+              onClick={() => onMoveDown(index)}
+              disabled={index === totalCount - 1}
+              className="text-white/50 hover:text-white p-0.5 disabled:opacity-20 cursor-pointer"
+              title="Move Down"
+            >
+              <ChevronDown size={13} />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => onDelete(item.prefNumber)}
+            className="rounded p-1.5 text-rose-400/70 hover:bg-rose-500/20 hover:text-rose-300 transition cursor-pointer"
+            title="Delete option"
+          >
+            <Trash2 size={14} />
+          </button>
+        </div>
+      </div>
+    </Reorder.Item>
+  );
+}
 
 export default function SmartWebOptionsModal({
   isOpen,
@@ -694,11 +915,20 @@ export default function SmartWebOptionsModal({
       preferencesMap[`${item.collegeCode}_${item.course}`] = item.prefNumber;
     });
 
+    const DEFAULT_DISTRICTS_BY_EXAM = {
+      "tg-eapcet": ["HYD", "MDL", "RRD"],
+      "tg-icet": ["HYD", "MDL", "RRD"],
+      "tg-ecet": ["HYD", "MDL", "RRD"],
+      "tg-polycet": ["HYD", "MDL", "RRD"],
+      "ap-eapcet": ["VSP", "GTR", "KRI", "EG", "CTR", "ATP"],
+    };
+    const defaultDists = DEFAULT_DISTRICTS_BY_EXAM[examSlug] || [];
+
     const criteria = {
       rank: String(rank),
       category: category || "OC",
       gender: gender || "Male",
-      selectedDistricts: selectedDists.length > 0 ? selectedDists : (selectedDistricts.length > 0 ? selectedDistricts : ["HYD", "MDL", "RRD"]),
+      selectedDistricts: selectedDists.length > 0 ? selectedDists : (selectedDistricts.length > 0 ? selectedDistricts : defaultDists),
     };
 
     // Map examSlug to the correct storage namespace and simulator route
@@ -740,12 +970,20 @@ export default function SmartWebOptionsModal({
       };
     });
 
+    const EXAM_LABELS = {
+      "tg-eapcet": "TG EAPCET 2025",
+      "ap-eapcet": "AP EAPCET 2025",
+      "tg-icet": "TG ICET 2025",
+      "tg-ecet": "TG ECET 2025",
+      "tg-polycet": "TG POLYCET 2025",
+    };
+
     const criteria = {
       rank: String(rank),
       category: category || "OC",
       gender: gender || "Male",
       selectedDistricts: selectedDistricts || [],
-      examName: examSlug === "tg-eapcet" ? "TG EAPCET 2025" : (examSlug === "ap-eapcet" ? "AP EAPCET 2025" : "TG ICET 2025"),
+      examName: EXAM_LABELS[examSlug] || "Counselling 2025",
     };
 
     exportPreferencesToPDF(collegesFormatted, criteria);
@@ -755,7 +993,7 @@ export default function SmartWebOptionsModal({
   if (typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[99999999] flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-auto">
+    <div className="fixed inset-0 z-[99999999] flex items-center justify-center p-2 sm:p-4 md:p-6 pointer-events-auto overscroll-contain">
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -771,7 +1009,8 @@ export default function SmartWebOptionsModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 15 }}
         transition={{ type: "spring", damping: 28, stiffness: 280 }}
-        className="relative z-20 flex flex-col h-[94vh] sm:h-[88vh] max-h-[840px] w-full max-w-6xl rounded-2xl border border-purple-500/30 bg-[#120d22] shadow-2xl overflow-hidden"
+        data-lenis-prevent="true"
+        className="relative z-20 flex flex-col h-[92dvh] sm:h-[88vh] max-h-[840px] w-full max-w-6xl rounded-2xl border border-purple-500/30 bg-[#120d22] shadow-2xl overflow-hidden"
       >
         {/* Modal Header */}
         <div className="shrink-0 flex items-center justify-between border-b border-white/10 bg-gradient-to-r from-purple-900/50 via-purple-800/30 to-[#120d22] px-4 sm:px-6 py-3 sm:py-3.5">
@@ -793,7 +1032,10 @@ export default function SmartWebOptionsModal({
         </div>
 
         {/* Modal Body (Independently scrollable) */}
-        <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4">
+        <div
+          data-lenis-prevent="true"
+          className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-3 sm:p-6 space-y-4 touch-pan-y"
+        >
           {step === "configure" ? (
             <>
               {/* Strategy Explanation Banner */}
@@ -804,7 +1046,13 @@ export default function SmartWebOptionsModal({
                     <p className="text-xs font-bold text-orange-200">1. Dream Colleges</p>
                     <p className="text-[11px] text-orange-200/80 leading-snug mt-0.5">
                       {examSlug === "tg-icet"
-                        ? "Premier Tier-1 B-schools (OUCE, JNTH, CBIT, VNR) at top options."
+                        ? "Premier Tier-1 B-schools (OUCE, JNTH, CBIT, Badruka) at top options."
+                        : examSlug === "ap-eapcet"
+                        ? "Premier Tier-1 AP colleges (AUCE, JNTK, JNTA, GVP, VRSE, SVUE) at top options."
+                        : examSlug === "tg-ecet"
+                        ? "Premier Tier-1 engineering colleges (OUCE, JNTH, CBIT, VNR, Vasavi) at top options."
+                        : examSlug === "tg-polycet"
+                        ? "Premier Tier-1 polytechnic institutes (MASB, JNTH) at top options."
                         : "Premier Tier-1 colleges (CBIT, VNR, Vasavi, OUCE, JNTH) at top options."}
                     </p>
                   </div>
@@ -960,7 +1208,7 @@ export default function SmartWebOptionsModal({
             </>
           ) : (
             /* ── Preview Generated Web Options List (Interactive Drag & Drop) ─ */
-            <div className="space-y-3 flex flex-col h-full">
+            <div className="space-y-3 pb-6">
               {/* Summary Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-white/10 pb-3">
                 <div>
@@ -971,7 +1219,7 @@ export default function SmartWebOptionsModal({
                     </span>
                   </h3>
                   <p className="text-[11px] text-gray-300">
-                    💡 <span className="text-white font-semibold">Drag &amp; drop rows</span> or use arrows to shuffle preference ordering.
+                    💡 <span className="text-white font-semibold">Press &amp; hold any college</span> (or drag handle) to rearrange options, or tap arrows.
                   </p>
                 </div>
 
@@ -1076,151 +1324,25 @@ export default function SmartWebOptionsModal({
               </AnimatePresence>
 
               {/* Mobile-Friendly Interactive List (White Table Theme) */}
-              <div className="flex-1 overflow-y-auto pr-1 pb-8 space-y-2">
-                <Reorder.Group
-                  axis="y"
-                  values={generatedList}
-                  onReorder={handleReorder}
-                  className="space-y-2"
-                >
-                  {generatedList.map((item, index) => (
-                    <Reorder.Item
-                      key={item.id || `${item.collegeCode}_${item.course}`}
-                      value={item}
-                      className="group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 rounded-xl border border-white/20 bg-white/[0.08] hover:bg-white/[0.14] hover:border-white/40 p-3 sm:px-4 sm:py-2.5 text-xs transition-all shadow-sm select-none backdrop-blur-md"
-                    >
-                      {/* Top / Left Section: Drag handle, preference number, college info */}
-                      <div className="flex items-start sm:items-center gap-2.5 flex-1 min-w-0">
-                        {/* Drag Handle & Preference Number */}
-                        <div className="flex items-center gap-1.5 shrink-0 pt-0.5 sm:pt-0">
-                          <div
-                            className="cursor-grab active:cursor-grabbing text-white/50 hover:text-white p-1 rounded transition"
-                            title="Drag to shuffle order"
-                          >
-                            <GripVertical size={16} />
-                          </div>
-                          <span className="flex h-6 w-7 sm:h-7 sm:w-8 items-center justify-center rounded-lg bg-white/15 border border-white/30 text-white font-mono font-bold text-xs shadow-inner">
-                            #{item.prefNumber}
-                          </span>
-                        </div>
-
-                        {/* College Name & District */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                            <p className="font-semibold text-white text-xs sm:text-sm line-clamp-1 sm:truncate">
-                              {item.collegeName}
-                            </p>
-                            <span className="font-mono text-[10px] font-bold text-white/90 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 shrink-0">
-                              {item.collegeCode}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-[11px] text-gray-300 mt-0.5">
-                            {item.place && <span className="truncate max-w-[140px] sm:max-w-none">{item.place}</span>}
-                            {item.place && item.district && <span>•</span>}
-                            {item.district && <span>{getDistrictName(item.district) || item.district}</span>}
-                          </div>
-                        </div>
-
-                        {/* Mobile-Only Action Controls (Top Right) */}
-                        <div className="flex sm:hidden items-center gap-1 shrink-0 ml-auto">
-                          <button
-                            type="button"
-                            onClick={() => handleMoveOption(index, "up")}
-                            disabled={index === 0}
-                            className="p-1 text-white/60 hover:text-white disabled:opacity-20 cursor-pointer"
-                            title="Move Up"
-                          >
-                            <ChevronUp size={15} />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleMoveOption(index, "down")}
-                            disabled={index === generatedList.length - 1}
-                            className="p-1 text-white/60 hover:text-white disabled:opacity-20 cursor-pointer"
-                            title="Move Down"
-                          >
-                            <ChevronDown size={15} />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteOption(item.prefNumber)}
-                            className="p-1 text-rose-400/80 hover:text-rose-300 cursor-pointer"
-                            title="Delete"
-                          >
-                            <Trash2 size={15} />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Bottom / Right Section: Branch, Cutoff, Status Tier, Desktop Actions */}
-                      <div className="flex items-center justify-between sm:justify-end gap-2.5 sm:gap-3.5 pt-2 sm:pt-0 border-t border-white/10 sm:border-t-0 shrink-0">
-                        {/* Branch Badge */}
-                        <span className="rounded-md bg-white/15 border border-white/25 px-2 sm:px-2.5 py-0.5 sm:py-1 font-semibold text-[11px] text-white">
-                          {item.course}
-                        </span>
-
-                        {/* Cutoff Rank */}
-                        <div className="text-right min-w-[75px] sm:min-w-[85px]">
-                          <span className="text-[10px] text-gray-300 block font-normal leading-none mb-0.5">
-                            {category} Cutoff{item.cutoffYear ? ` '${String(item.cutoffYear).slice(-2)}` : ""}
-                          </span>
-                          <span className="font-mono font-bold text-xs sm:text-sm text-white">
-                            {item.cutoff === null
-                              ? <span className="text-gray-400 font-normal">N/A</span>
-                              : typeof item.cutoff === "number"
-                                ? item.cutoff.toLocaleString()
-                                : item.cutoff}
-                          </span>
-                        </div>
-
-                        {/* Strategy Tier Badge */}
-                        <span className={`inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${
-                          item.tier === "dream"
-                            ? "bg-orange-500/20 text-orange-400 border-orange-500/40"
-                            : item.tier === "target"
-                            ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/40"
-                            : "bg-emerald-500/20 text-emerald-400 border-emerald-500/40"
-                        }`}>
-                          {item.tier === "dream" ? "Dream College" : item.tier === "target" ? "Target Match" : "Safe College"}
-                        </span>
-
-                        {/* Desktop Controls (Arrows + Delete) */}
-                        <div className="hidden sm:flex items-center gap-1 shrink-0">
-                          <div className="flex flex-col">
-                            <button
-                              type="button"
-                              onClick={() => handleMoveOption(index, "up")}
-                              disabled={index === 0}
-                              className="text-white/50 hover:text-white p-0.5 disabled:opacity-20 cursor-pointer"
-                              title="Move Up"
-                            >
-                              <ChevronUp size={13} />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleMoveOption(index, "down")}
-                              disabled={index === generatedList.length - 1}
-                              className="text-white/50 hover:text-white p-0.5 disabled:opacity-20 cursor-pointer"
-                              title="Move Down"
-                            >
-                              <ChevronDown size={13} />
-                            </button>
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteOption(item.prefNumber)}
-                            className="rounded p-1.5 text-rose-400/70 hover:bg-rose-500/20 hover:text-rose-300 transition cursor-pointer"
-                            title="Delete option"
-                          >
-                            <Trash2 size={14} />
-                          </button>
-                        </div>
-                      </div>
-                    </Reorder.Item>
-                  ))}
-                </Reorder.Group>
-              </div>
+              <Reorder.Group
+                axis="y"
+                values={generatedList}
+                onReorder={handleReorder}
+                className="space-y-2 touch-pan-y"
+              >
+                {generatedList.map((item, index) => (
+                  <OptionRow
+                    key={item.id || `${item.collegeCode}_${item.course}`}
+                    item={item}
+                    index={index}
+                    totalCount={generatedList.length}
+                    category={category}
+                    onMoveUp={(idx) => handleMoveOption(idx, "up")}
+                    onMoveDown={(idx) => handleMoveOption(idx, "down")}
+                    onDelete={(prefNum) => handleDeleteOption(prefNum)}
+                  />
+                ))}
+              </Reorder.Group>
             </div>
           )}
         </div>
