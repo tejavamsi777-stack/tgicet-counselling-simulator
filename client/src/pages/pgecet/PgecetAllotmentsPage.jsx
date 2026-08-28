@@ -3,23 +3,12 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import PgecetAllotmentExplorer from '../../components/pgecet/PgecetAllotmentExplorer';
-import { useReviewPrompt } from '../../hooks/useReviewPrompt';
-import ReviewModal from '../../components/shared/ReviewModal';
 
 export default function PgecetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    hasLoadedData,
-    'tg-pgecet'
-  );
 
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug="tg-pgecet"
-      />
       <Seo
         title="TG PGECET College-Wise Seat Allotment Explorer | M.Tech & M.E. Cutoffs"
         description="Explore TG PGECET post graduate engineering seat allotment data by college and specialization. View candidate ranks, percentiles, categories, and closing cutoffs."

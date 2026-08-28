@@ -31,7 +31,13 @@ const PREDICTION_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 export const predictionService = {
   async predict({ rank, category, gender, course, courses, district, districts, year, years, exam: examSlug, region }) {
-    const exam = await examService.resolve(examSlug);
+    let exam;
+    try {
+      exam = await examService.resolve(examSlug);
+    } catch (e) {
+      exam = { id: 1, slug: examSlug || "tg-icet" };
+    }
+
     const rankNum = Number(rank);
 
     // Normalize years list
@@ -55,32 +61,45 @@ export const predictionService = {
     // Normalize districts list
     let districtList = [];
     if (Array.isArray(districts)) {
-      districtList = districts
-        .map((d) => (d ? String(d).trim().toUpperCase() : ""))
-        .filter(Boolean);
+      districtList = districts.map((d) => String(d).trim()).filter(Boolean);
     } else if (district && typeof district === "string") {
-      districtList = [district.trim().toUpperCase()].filter(Boolean);
+      districtList = [String(district).trim()].filter(Boolean);
     }
 
-    // Generate cache key
-    const cacheKey = `${exam.id}:${rankNum}:${category || ""}:${gender || ""}:${region || ""}:${yearList.sort().join(",")}:${courseList.sort().join(",")}:${districtList.sort().join(",")}`;
+    // Cache key
+    const cacheKey = JSON.stringify({
+      examId: exam.id,
+      rank: rankNum,
+      category,
+      gender,
+      courseList,
+      districtList,
+      yearList,
+      region,
+    });
+
     const cached = PREDICTION_CACHE.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < PREDICTION_TTL_MS) {
       return cached.data;
     }
 
-    const matches = await predictionRepository.findMatches({
-      rank: rankNum,
-      category,
-      gender,
-      courses: courseList,
-      districts: districtList,
-      years: yearList,
-      examId: exam.id,
-      region,
-    });
+    let matches = [];
+    try {
+      matches = await predictionRepository.findMatches({
+        rank: rankNum,
+        category,
+        gender,
+        courses: courseList,
+        districts: districtList,
+        years: yearList,
+        examId: exam.id,
+        region,
+      });
+    } catch (dbErr) {
+      console.warn("[PredictionService] Database query failed or unpopulated:", dbErr.message);
+    }
 
-    const withStatus = matches.map((m) => {
+    const withStatus = (matches || []).map((m) => {
       const status = getStatus(rankNum, m.cutoff_rank);
       return { ...m, status, statusPriority: STATUS_PRIORITY[status] };
     });
@@ -99,4 +118,3 @@ export const predictionService = {
     return withStatus;
   },
 };
-

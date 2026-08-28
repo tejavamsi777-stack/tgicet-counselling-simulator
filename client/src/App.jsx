@@ -5,6 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import BreadcrumbNav from "./components/layout/BreadcrumbNav";
+import ReviewModal from "./components/shared/ReviewModal";
+import { useReviewPrompt } from "./hooks/useReviewPrompt";
 
 // Eagerly load core home page for instant first paint
 import Home from "./pages/Home";
@@ -31,6 +34,11 @@ const ApEapcetMockCounsellingPage = lazy(() => import("./pages/ap-eapcet/EapcetM
 const ApEapcetDocumentsPage = lazy(() => import("./pages/ap-eapcet/EapcetDocumentsPage"));
 const ApEapcetComparePage = lazy(() => import("./pages/ap-eapcet/EapcetComparePage"));
 const ApEapcetAllotmentsPage = lazy(() => import("./pages/ap-eapcet/EapcetAllotmentsPage"));
+
+
+
+const KcetAllotmentsPage = lazy(() => import("./pages/kcet/KcetAllotmentsPage"));
+const StatePortalPage = lazy(() => import("./pages/StatePortalPage"));
 const ApCollegeProfilePage = lazy(() => import("./pages/ap-eapcet/CollegeProfilePage"));
 
 const EcetHome = lazy(() => import("./pages/ecet/EcetHome"));
@@ -113,6 +121,7 @@ function MainContent() {
 
       <div className="relative z-10 flex min-h-screen flex-col justify-between">
         <Navbar />
+        <BreadcrumbNav />
 
         <div className="relative z-20 flex-1">
           <Suspense fallback={<PageLoadingSkeleton />}>
@@ -127,6 +136,11 @@ function MainContent() {
                 <Routes location={location}>
                   <Route path="/" element={<Home />} />
 
+                  {/* Dedicated State Portals */}
+                  <Route path="/andhra-pradesh" element={<StatePortalPage stateSlugOverride="andhra-pradesh" />} />
+                  <Route path="/karnataka" element={<StatePortalPage stateSlugOverride="karnataka" />} />
+                  <Route path="/telangana" element={<StatePortalPage stateSlugOverride="telangana" />} />
+
                   {/* Exam Homepages */}
                   <Route path="/icet" element={<IcetHome />} />
                   <Route path="/tg-icet" element={<IcetHome />} />
@@ -134,6 +148,8 @@ function MainContent() {
 
                   <Route path="/ap-eapcet" element={<ApEapcetHome />} />
                   <Route path="/exams/ap-eapcet" element={<ApEapcetHome />} />
+
+
 
                   <Route path="/eapcet" element={<EapcetHome />} />
                   <Route path="/tg-eapcet" element={<EapcetHome />} />
@@ -199,6 +215,9 @@ function MainContent() {
 
                   <Route path="/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
                   <Route path="/exams/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
+                  <Route path="/kcet" element={<KcetAllotmentsPage />} />
+                  <Route path="/exams/kcet" element={<KcetAllotmentsPage />} />
+                  <Route path="/kcet/allotments" element={<KcetAllotmentsPage />} />
 
                   <Route path="/colleges/:code" element={<CollegeProfilePage />} />
                   <Route path="/tg-eapcet/colleges/:code" element={<CollegeProfilePage />} />
@@ -291,6 +310,11 @@ function MainContent() {
   );
 }
 
+function GlobalReviewModal() {
+  const { isOpen, closePrompt } = useReviewPrompt();
+  return <ReviewModal isOpen={isOpen} onClose={closePrompt} />;
+}
+
 function App() {
   useSmoothScroll();
 
@@ -299,6 +323,7 @@ function App() {
       <ScrollToTop />
       <GoogleOneTap />
       <GlobalAuthModal />
+      <GlobalReviewModal />
       <Suspense fallback={<PageLoadingSkeleton />}>
         <Routes>
           <Route path="/admin/*" element={<AdminApp />} />

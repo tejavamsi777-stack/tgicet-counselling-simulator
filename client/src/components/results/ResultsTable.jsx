@@ -11,10 +11,13 @@ import {
   AlertTriangle,
   Flame,
   Calendar,
+  Sparkles,
 } from "lucide-react";
 import { GlowCard } from "../ui/spotlight-card";
+import { GlassButton } from "../ui/glass-button";
 import StatusBadge from "./StatusBadge";
 import ExportButtons from "./ExportButtons";
+import ConfidenceBar from "./ConfidenceBar";
 import { getDistrictName } from "../../utils/districtNames";
 
 const PAGE_SIZE = 20;
@@ -44,6 +47,8 @@ export default function ResultsTable({
   selectedYear,
   onYearChange,
   examTitle = "Vuela Learn",
+  studentRank = 0,
+  onCreateWebOptions,
 }) {
   // Extract available years from results
   const yearList = useMemo(() => {
@@ -310,22 +315,35 @@ export default function ResultsTable({
 
         {/* Filter and Export Bar */}
         <div className="flex flex-col gap-3 border-b border-white/10 p-4 sm:flex-row sm:items-center sm:justify-between bg-white/[0.02]">
-          <div className="relative w-full sm:max-w-xs">
-            <SearchIcon
-              size={15}
-              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-            />
-            <input
-              placeholder="Search college, district, branch..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setPage(1);
-              }}
-              className="h-9 w-full rounded-xl border border-white/15 bg-white/5 pl-9 pr-4 text-xs text-white placeholder-gray-400 outline-none transition focus:border-white/40 focus:bg-white/10"
-            />
+          <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto flex-1 sm:max-w-xl">
+            <div className="relative w-full sm:w-64 md:w-72">
+              <SearchIcon
+                size={15}
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+              />
+              <input
+                placeholder="Search college, district, branch..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+                className="h-9 w-full rounded-xl border border-white/15 bg-white/5 pl-9 pr-4 text-xs text-white placeholder-gray-400 outline-none transition focus:border-white/40 focus:bg-white/10"
+              />
+            </div>
+            {onCreateWebOptions && (
+              <GlassButton
+                onClick={onCreateWebOptions}
+                size="sm"
+                contentClassName="flex items-center gap-1.5 font-semibold text-xs whitespace-nowrap"
+              >
+                <span>Create Web Options</span>
+              </GlassButton>
+            )}
           </div>
-          <ExportButtons results={finalFiltered} examTitle={examTitle} />
+          <div className="flex flex-wrap items-center gap-2.5">
+            <ExportButtons results={finalFiltered} examTitle={examTitle} />
+          </div>
         </div>
 
         {/* Single Responsive Table */}
@@ -344,6 +362,9 @@ export default function ResultsTable({
                 <SortHeader label="Cutoff Rank" sortKeyName="cutoff" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="University" sortKeyName="university" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Status" sortKeyName="statusPriority" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
+                <th className="px-4 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-gray-300 min-w-[90px]">
+                  Chance
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -382,6 +403,9 @@ export default function ResultsTable({
                     <td className="px-4 py-3.5 text-xs text-gray-300">{c.university || "-"}</td>
                     <td className="px-4 py-3.5 text-xs">
                       <StatusBadge status={c.status} />
+                    </td>
+                    <td className="px-4 py-3.5">
+                      <ConfidenceBar studentRank={studentRank} cutoff={c.cutoff} />
                     </td>
                   </tr>
                 ))

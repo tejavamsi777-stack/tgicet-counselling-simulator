@@ -1,4 +1,8 @@
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const BASE_URL =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
+  ((typeof import.meta !== "undefined" && import.meta.env?.PROD)
+    ? "https://vuelalearn-api.onrender.com/api"
+    : "http://localhost:4000/api");
 const TOKEN_KEY = "tgicet_admin_token";
 
 export function getAdminToken() {

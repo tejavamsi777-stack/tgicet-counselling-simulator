@@ -23,6 +23,7 @@ import {
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
 import { ShareModal, ModernShareIcon } from "../shared/ShareModal";
+import { ABOUT_TEXT } from "./Footer";
 import { useAuth } from "../../context/AuthContext";
 import ReviewModal from "../shared/ReviewModal";
 

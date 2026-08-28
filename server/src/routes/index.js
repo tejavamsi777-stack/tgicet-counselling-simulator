@@ -59,6 +59,10 @@ router.get("/ap-eapcet/compare", eapcetController.compareInstitutions);
 router.get("/ap-eapcet/allotments/meta", eapcetController.getAllotmentMeta);
 router.get("/ap-eapcet/allotments", eapcetController.getAllotmentData);
 
+// ---------- KCET Data ----------
+router.get("/kcet/allotments/meta", eapcetController.getAllotmentMeta);
+router.get("/kcet/allotments", eapcetController.getAllotmentData);
+
 // ---------- TG ECET Data ----------
 router.get("/ecet/counselling-data", ecetController.getCounsellingData);
 router.get("/ecet/notifications", ecetController.getNotifications);
@@ -80,6 +84,8 @@ router.get("/icet/compare", icetController.compareColleges);
 router.get("/icet/allotments/meta", icetController.getAllotmentMeta);
 router.get("/icet/allotments", icetController.getAllotmentData);
 router.post("/icet/refresh", requireAdminAuth, icetController.triggerRefresh);
+
+
 
 // ---------- Student auth ----------
 router.post("/auth/register", authController.register);

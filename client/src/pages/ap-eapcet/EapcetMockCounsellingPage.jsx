@@ -15,8 +15,6 @@ import {
 import { AP_COLLEGES_METADATA } from "../../data/apCollegesMetadata";
 import OFFICIAL_AP_COLLEGE_BRANCHES from "../../data/officialApCollegeBranches.json";
 import Seo from "../../components/shared/Seo";
-import ReviewModal from "../../components/shared/ReviewModal";
-import { useReviewPrompt } from "../../hooks/useReviewPrompt";
 
 // Standard AP Districts list matching official APSCHE portal
 const AP_DISTRICTS = [
@@ -250,12 +248,6 @@ export default function ApEapcetMockCounsellingPage() {
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("success");
   const [isFrozen, setIsFrozen] = useState(false);
-
-  // Review Prompt Hook — triggers smart 18s review modal after candidate hits "get Colleges"
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    appliedFilters.hasSearched,
-    "ap-eapcet"
-  );
 
   // Generate all real AP college + course options synchronously from AP_COLLEGES_METADATA & OFFICIAL_AP_COLLEGE_BRANCHES
   const allCourseOptions = useMemo(() => {
@@ -1065,13 +1057,6 @@ export default function ApEapcetMockCounsellingPage() {
         </div>
       </div>
     </div>
-
-    {/* Review Modal Trigger */}
-    <ReviewModal
-      isOpen={isReviewOpen}
-      onClose={closeReview}
-      examSlug="ap-eapcet"
-    />
   </div>
   );
 }

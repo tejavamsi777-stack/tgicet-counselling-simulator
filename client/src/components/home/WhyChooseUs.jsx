@@ -91,37 +91,42 @@ export default function WhyChooseUs() {
         <div className="absolute top-0 right-0 -mt-8 -mr-8 h-48 w-48 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
         
         <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-3">
-            <Award className="text-purple-400" size={20} />
-            <h3>
-              About Vuela Learn
-            </h3>
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div className="flex items-center gap-2">
+              <Award className="text-purple-400" size={20} />
+              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                About Vuela Learn — 100% Free Admissions &amp; Counselling Platform
+              </h3>
+            </div>
+            <span className="rounded-full bg-emerald-500/20 border border-emerald-500/30 px-3 py-0.5 text-xs font-extrabold text-emerald-300">
+              ✨ 100% Free For All Students
+            </span>
           </div>
 
-          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-            <strong>Vuela Learn</strong> (vuelalearn.vercel.app) is an independent, student-first open platform engineered specifically for candidates appearing in <strong>Andhra Pradesh (APSCHE)</strong> and <strong>Telangana (TGCHE/TSCHE)</strong> state entrance examinations. 
+          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3">
+            <strong>Vuela Learn</strong> (vuelalearn.vercel.app) is India&apos;s leading <strong className="text-emerald-400">100% free</strong> state entrance counselling simulator and college admission predictor. Built specifically for candidates navigating <strong>TG EAPCET Counselling (TS EAMCET)</strong>, <strong>TG ICET Counselling</strong>, <strong>AP EAPCET Counselling</strong>, <strong>TG ECET</strong>, <strong>TG POLYCET</strong>, <strong>TG PGECET</strong>, and <strong>KCET</strong>, our mission is to make complex state admissions transparent, predictable, and stress-free.
           </p>
 
-          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-6">
-            Whether you are predicting college chances in <strong>AP EAPCET</strong> or <strong>TG EAPCET</strong>, comparing MBA colleges in <strong>TG ICET</strong>, planning lateral entry engineering through <strong>TG ECET</strong>, finding polytechnic diploma streams in <strong>TG POLYCET</strong>, or checking postgraduate allocations in <strong>TG PGECET</strong> — our mission is to deliver complete clarity, official fee accountability, and unbiased guidance so every student achieves the best possible college seat their merit deserves.
+          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+            Our exclusive <strong className="text-purple-300">Smart Web Option Generator for TG EAPCET &amp; TG ICET</strong> helps thousands of students construct the perfect college priority list in seconds. By evaluating closing rank probabilities across OC, BC, SC, ST, and EWS quotas alongside OU and Non-Local seat reservations, we ensure you never make costly ordering mistakes during web counselling.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10 text-center">
             <div>
               <p className="text-xl sm:text-3xl font-extrabold text-white">500+</p>
-              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">Institutions Profiled</p>
+              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">AP &amp; TG Colleges</p>
             </div>
             <div>
               <p className="text-xl sm:text-3xl font-extrabold text-purple-300">200,000+</p>
               <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">Allotment Records</p>
             </div>
             <div>
-              <p className="text-xl sm:text-3xl font-extrabold text-cyan-300">6 Exams</p>
-              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">Supported Portals</p>
+              <p className="text-xl sm:text-3xl font-extrabold text-cyan-300">Smart AI</p>
+              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">Web Option Generator</p>
             </div>
             <div>
               <p className="text-xl sm:text-3xl font-extrabold text-emerald-400">100% Free</p>
-              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">Zero Ads/Spam</p>
+              <p className="text-[11px] text-white/50 uppercase tracking-wider font-semibold mt-0.5">No Fees &bull; Zero Spam</p>
             </div>
           </div>
         </div>

@@ -27,6 +27,8 @@ import {
 import { polycetApi } from '../../lib/polycetApi';
 import { POLYCET_INSTITUTIONS, POLYCET_BRANCHES } from '../../data/polycetInstitutions';
 import allotmentsSummary from '../../data/polycet_allotments/allotments_summary.json';
+
+const polycetAllotmentLoaders = import.meta.glob(['../../data/polycet_allotments/*.json', '!../../data/polycet_allotments/allotments_summary.json']);
 import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
@@ -1081,6 +1083,16 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
     setPage(1);
     setHasQueried(true);
 
+    const loadLocalJson = async () => {
+      const path = `../../data/polycet_allotments/${collegeCode}.json`;
+      const loader = polycetAllotmentLoaders[path];
+      if (loader) {
+        const mod = await loader();
+        return mod.default || mod;
+      }
+      return null;
+    };
+
     try {
       // Try API first
       const res = await polycetApi.getCollegeAllotments(collegeCode);
@@ -1089,17 +1101,25 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
         onDataLoaded?.(true);
       } else {
         // Fallback to client bundled JSON
-        const fallback = await import(`../../data/polycet_allotments/${collegeCode}.json`);
-        const d = fallback.default || fallback;
-        setCollegeData(d);
-        if (d?.branches?.length > 0) onDataLoaded?.(true);
+        const d = await loadLocalJson();
+        if (d) {
+          setCollegeData(d);
+          if (d?.branches?.length > 0) onDataLoaded?.(true);
+        } else {
+          setError(`No allotment records found for ${collegeCode}.`);
+          setCollegeData(null);
+        }
       }
-    } catch (e) {
+    } catch {
       try {
-        const fallback = await import(`../../data/polycet_allotments/${collegeCode}.json`);
-        const d = fallback.default || fallback;
-        setCollegeData(d);
-        if (d?.branches?.length > 0) onDataLoaded?.(true);
+        const d = await loadLocalJson();
+        if (d) {
+          setCollegeData(d);
+          if (d?.branches?.length > 0) onDataLoaded?.(true);
+        } else {
+          setError(`Failed to load allotment records for ${collegeCode}.`);
+          setCollegeData(null);
+        }
       } catch (err2) {
         console.error('Failed to load allotments for', collegeCode, err2);
         setError(`Failed to load allotment records for ${collegeCode}.`);

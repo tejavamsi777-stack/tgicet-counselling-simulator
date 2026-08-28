@@ -951,6 +951,49 @@ export const eapcetController = {
   // GET /api/eapcet/allotments/meta — dropdown options for allotments explorer
   async getAllotmentMeta(req, res, next) {
     try {
+      const isKcet = req.path.includes("kcet") || req.baseUrl.includes("kcet") || req.originalUrl.includes("kcet");
+      if (isKcet) {
+        const years = [
+          { id: "2025-final", label: "2025" },
+          { id: "2024", label: "2024" }
+        ];
+        const colRes = await pool.query(
+          `SELECT DISTINCT college_code AS code, college_name AS name 
+           FROM eapcet_allotment_records 
+           WHERE exam_id = 'kcet' 
+           ORDER BY college_code`
+        );
+        const courseRes = await pool.query(
+          `SELECT DISTINCT branch_code AS code, branch_name AS name 
+           FROM eapcet_allotment_records 
+           WHERE exam_id = 'kcet' 
+           ORDER BY branch_code`
+        );
+        const mapRes = await pool.query(
+          `SELECT DISTINCT college_code, branch_code 
+           FROM eapcet_allotment_records 
+           WHERE exam_id = 'kcet' 
+           ORDER BY college_code, branch_code`
+        );
+        const collegeBranches = {};
+        mapRes.rows.forEach(r => {
+          if (!collegeBranches[r.college_code]) {
+            collegeBranches[r.college_code] = [];
+          }
+          collegeBranches[r.college_code].push(r.branch_code);
+        });
+
+        return res.json({
+          success: true,
+          data: {
+            years,
+            colleges: colRes.rows,
+            branches: courseRes.rows.map(r => ({ code: r.code, name: `${r.name} (${r.code})` })),
+            collegeBranches
+          }
+        });
+      }
+
       const isAp = req.path.includes("ap-eapcet") || req.baseUrl.includes("ap-eapcet") || req.originalUrl.includes("ap-eapcet");
       if (isAp) {
         const EXAM_ID = 11;
@@ -1161,13 +1204,14 @@ export const eapcetController = {
   // GET /api/eapcet/allotments?year=2026-final&college=CBIT&branch=CSE&search=...&page=1&limit=50
   async getAllotmentData(req, res, next) {
     try {
-      const isAp = req.path.includes("ap-eapcet");
-      const examId = isAp ? "ap-eapcet" : "tg-eapcet";
+      const isKcet = req.path.includes("kcet") || req.baseUrl.includes("kcet") || req.originalUrl.includes("kcet");
+      const isAp = req.path.includes("ap-eapcet") || req.baseUrl.includes("ap-eapcet") || req.originalUrl.includes("ap-eapcet");
+      const examId = isKcet ? "kcet" : (isAp ? "ap-eapcet" : "tg-eapcet");
 
       const {
-        year = isAp ? "2025-final" : "2026-final",
-        college = "CBIT",
-        branch = "CSE",
+        year = isKcet ? "2025-final" : (isAp ? "2025-final" : "2026-final"),
+        college = isKcet ? "E001" : (isAp ? "VITB" : "CBIT"),
+        branch = isKcet ? "CS" : "CSE",
         search = "",
         category = "",
         gender = "",

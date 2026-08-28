@@ -1,8 +1,6 @@
 import * as cheerio from "cheerio";
 import { pool } from "../config/database.js";
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 const TGICET_OFFICIAL_URLS = [
   "https://tgicet.nic.in/",
   "https://tgicet.nic.in/default.aspx"

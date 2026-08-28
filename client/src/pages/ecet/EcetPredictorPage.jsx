@@ -11,8 +11,6 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
-import { useReviewPrompt } from "../../hooks/useReviewPrompt";
-import ReviewModal from "../../components/shared/ReviewModal";
 import { smoothScrollTo } from "../../lib/utils";
 
 function mapResults(results = [], gender, year) {
@@ -49,11 +47,6 @@ export default function EcetPredictorPage() {
   const [result, setResult] = useState([]);
   const [activeYears, setActiveYears] = useState([]);
   const [year, setYear] = useState(null);
-
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    result.length > 0,
-    "tg-ecet"
-  );
 
   useEffect(() => {
     let cancelled = false;
@@ -174,11 +167,6 @@ export default function EcetPredictorPage() {
         </AnimatePresence>
 
         <main className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 py-8 min-h-[calc(100vh-280px)] pb-36">
-          <ReviewModal
-            isOpen={isReviewOpen}
-            onClose={closeReview}
-            examSlug="tg-ecet"
-          />
           <button
             onClick={() => navigate("/")}
             className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"

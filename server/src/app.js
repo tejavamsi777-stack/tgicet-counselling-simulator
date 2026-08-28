@@ -20,10 +20,16 @@ const allowedOrigins = [
   "https://vuelalearn.vercel.app",
   "https://tgcounselling.vercel.app",
   "https://tgicetcounselling.vercel.app",
-  "http://localhost:5173", // keep local dev working
+  "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",
 ];
+
+if (process.env.CLIENT_URL) {
+  allowedOrigins.push(process.env.CLIENT_URL.replace(/\/$/, ""));
+}
+
+const vercelPreviewPattern = /^https:\/\/(vuelalearn|tgcounselling|tgicetcounselling)(-[a-z0-9_-]+)?\.vercel\.app$/i;
 
 app.use(helmet());
 app.use(
@@ -32,8 +38,7 @@ app.use(
       if (
         !origin ||
         allowedOrigins.includes(origin) ||
-        origin.endsWith(".vercel.app") ||
-        origin.includes("vuelalearn")
+        vercelPreviewPattern.test(origin)
       ) {
         callback(null, true);
       } else {

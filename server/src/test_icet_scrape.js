@@ -1,5 +1,4 @@
 import * as cheerio from 'cheerio';
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
 class CookieJar {

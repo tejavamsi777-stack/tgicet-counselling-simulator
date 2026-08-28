@@ -1,7 +1,5 @@
 import * as cheerio from "cheerio";
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 // Cache scraped results in memory to avoid repetitive government portal hits
 const SCRAPE_CACHE = new Map();
 let ALL_COLLEGES_CACHE = null;

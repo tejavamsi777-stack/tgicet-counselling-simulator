@@ -6,11 +6,8 @@ import { AuthProvider } from "./context/AuthContext";
 import "./index.css";
 import posthog from "posthog-js"; // 1. Added the missing import
 
-// 2. Initialize PostHog using your secure environment variables
-// Only initialise PostHog when the key is present (guards against a crash
-// on iOS Safari / WebKit when VITE_POSTHOG_KEY is not set in the Vercel
-// environment — calling posthog.init(undefined, …) throws on strict engines).
-if (import.meta.env.VITE_POSTHOG_KEY) {
+// 2. Initialize PostHog only in production (prevents ERR_BLOCKED_BY_CLIENT in local dev/ad-blockers)
+if (!import.meta.env.DEV && import.meta.env.VITE_POSTHOG_KEY) {
   posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
     api_host: import.meta.env.VITE_POSTHOG_HOST,
     person_profiles: "identified_only",
@@ -18,12 +15,12 @@ if (import.meta.env.VITE_POSTHOG_KEY) {
   });
 }
 
-// 3. Render once with AuthProvider and Analytics wrapping the App
+// 3. Render once with AuthProvider wrapping the App
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <App />
-      <Analytics />
+      {!import.meta.env.DEV && <Analytics />}
     </AuthProvider>
   </React.StrictMode>
 );

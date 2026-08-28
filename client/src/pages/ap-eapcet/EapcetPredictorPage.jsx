@@ -15,8 +15,7 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import { smoothScrollTo } from "../../lib/utils";
 
 import { useReferenceData } from "../../hooks/useReferenceData";
-import { useReviewPrompt } from "../../hooks/useReviewPrompt";
-import ReviewModal from "../../components/shared/ReviewModal";
+import TopPicksCard from "../../components/results/TopPicksCard";
 
 // AP EAPCET clean category list (matches Eduvale / APSCHE format)
 const AP_CATEGORIES = [
@@ -80,11 +79,6 @@ export default function EapcetPredictorPage() {
   const [predicting, setPredicting] = useState(false);
   const resultsRef = useRef(null);
 
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    results.length > 0,
-    "ap-eapcet"
-  );
-
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid AP EAPCET rank.");
     if (!category) return setError("Please select a category.");
@@ -128,11 +122,6 @@ export default function EapcetPredictorPage() {
 
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug="ap-eapcet"
-      />
       <Seo
         title="AP EAPCET College Predictor 2025"
         description="Predict AP EAPCET college options by rank, category, gender, branches, and districts."

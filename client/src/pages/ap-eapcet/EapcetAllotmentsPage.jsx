@@ -3,23 +3,12 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import AllotmentExplorer from '../../components/ap-eapcet/AllotmentExplorer';
-import { useReviewPrompt } from '../../hooks/useReviewPrompt';
-import ReviewModal from '../../components/shared/ReviewModal';
 
 export default function EapcetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    hasLoadedData,
-    'ap-eapcet'
-  );
 
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug="ap-eapcet"
-      />
       <Seo
         title="AP EAPCET College-Wise Seat Allotment Explorer | Candidate Records"
         description="Explore AP EAPCET college and branch seat allotments. View candidate ranks, category distribution, closing cutoffs, and comprehensive admission analytics."

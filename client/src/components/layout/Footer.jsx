@@ -8,61 +8,80 @@ import { TrustpilotStar } from "../shared/TrustpilotBadge";
 import { TRUSTPILOT_CONFIG } from "../../config/trustpilot";
 
 export const ABOUT_TEXT =
-  "VuelaLearn is a 100% FREE educational guidance platform built to empower students navigating Andhra Pradesh (APSCHE) and Telangana (TSCHE) admissions (AP EAPCET, TG EAPCET, TG ICET, TG ECET, TG POLYCET, and TG PGECET). We provide data-driven Rank Predictors, authentic college seat allotment data across 500+ institutions, interactive Web Options simulators, TS ePASS & AP JVD fee reimbursement calculators, and HLC certificate checklists — 100% free with zero paywalls or spam.";
+  "VuelaLearn is a 100% FREE educational admissions and counselling platform designed to help students master Andhra Pradesh (APSCHE), Telangana (TGCHE/TSCHE), and Karnataka (KEA) state counselling. Features include our AI-powered Smart Web Option Generator for TG EAPCET & TG ICET, accurate Rank Predictors, official seat allotment data for 500+ colleges, mock web option simulators, TS ePASS & AP JVD scholarship calculators, and HLC certificate guides — 100% free with zero paywalls, subscriptions, or spam.";
 
 function AboutPanelContent() {
   return (
-    <div className="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
+    <div className="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[65vh] overflow-y-auto pr-1">
+      {/* Badges */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-emerald-300">
-          ✨ 100% Free Platform
+          ✨ 100% Free Website
         </span>
         <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/20 border border-purple-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-purple-300">
-          🏛️ 500+ AP &amp; TG Institutions
+          🎯 Smart Web Option Generator
         </span>
         <span className="inline-flex items-center gap-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-cyan-300">
-          ⚡ Zero Subscriptions
+          🏛️ 500+ AP &amp; TG Colleges
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/40 px-2.5 py-0.5 text-[11px] font-extrabold text-amber-300">
+          ⚡ Zero Subscriptions or Ads
         </span>
       </div>
 
       <p>
-        <strong className="text-white">VuelaLearn</strong> is a <span className="text-emerald-400 font-bold">100% free</span> independent educational platform created to help students across Andhra Pradesh and Telangana make informed, confident, and data-backed admission decisions.
+        <strong className="text-white">VuelaLearn</strong> (vuelalearn.vercel.app) is India&apos;s leading <span className="text-emerald-400 font-bold">100% free</span> state entrance counselling simulator and admission guidance platform. We empower over 100,000+ students and parents across Telangana, Andhra Pradesh, and Karnataka to navigate competitive admissions with precision, confidence, and transparent data.
       </p>
 
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 space-y-2 text-xs">
+      {/* Flagship Feature: Smart Web Option Generator */}
+      <div className="rounded-2xl border border-purple-500/30 bg-purple-950/30 p-3.5 space-y-2">
+        <div className="font-bold text-white flex items-center gap-2 text-sm text-purple-200">
+          <span>🚀 Flagship: Smart Web Option Generator for TG EAPCET &amp; TG ICET</span>
+        </div>
+        <p className="text-xs text-gray-300">
+          Struggling to prepare your web options list? Our automated <strong className="text-white">Smart Web Option Generator</strong> for <strong className="text-white">TG EAPCET</strong> (Engineering / B.Tech) and <strong className="text-white">TG ICET</strong> (MBA &amp; MCA) instantly generates an optimized, risk-balanced choice order based on your rank, reservation category, preferred branches, and districts — categorized into <em>Dream</em>, <em>Target</em>, and <em>Safe</em> colleges.
+        </p>
+      </div>
+
+      {/* Comprehensive Counselling Portals */}
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-3.5 space-y-2.5 text-xs">
         <div className="font-bold text-white flex items-center gap-1.5 border-b border-white/10 pb-1.5">
-          <span>What We Offer (100% Free for Every Student):</span>
+          <span>Complete State Counselling Ecosystem (100% Free):</span>
         </div>
         <ul className="space-y-2 text-gray-300">
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">College Predictor:</strong> Data-driven cutoff estimation based on rank, caste category (OC, BC, SC, ST, EWS), and regional quota reservation (AU, SVU, OU).</span>
+            <span><strong className="text-white">TG EAPCET Counselling (TS EAMCET):</strong> Predict B.Tech colleges by rank and category (OC, BC-A/B/C/D/E, SC, ST, EWS), search candidate allotments, simulate web options, and check OU/Non-Local cutoffs.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">Seat Allotment Explorer:</strong> Authentic candidate-level allotment records across AP EAPCET, TG EAPCET, TG ICET, TG ECET, TG POLYCET, and TG PGECET.</span>
+            <span><strong className="text-white">TG ICET Counselling:</strong> Comprehensive Telangana MBA &amp; MCA college predictor, fee structures, verified closing ranks, and phase-wise allotment records.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">Exercise Web Options:</strong> Realistic practice simulator to build, test, and reorder priority choice lists with risk flags (Safe, Target, Reach).</span>
+            <span><strong className="text-white">AP EAPCET Counselling (AP EAMCET):</strong> Andhra Pradesh engineering &amp; pharmacy admissions with AU/SVU regional quotas, Jagananna Vidya Deevena (JVD) scholarship calculators, and candidate records.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">College Profiles &amp; Fees:</strong> Accredited branch lists, verified government approved fee structures, and placement records for 500+ institutions.</span>
+            <span><strong className="text-white">TG ECET Counselling:</strong> Lateral entry engineering admissions predictor &amp; seat allotment database for diploma holders (FDH).</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">Fee Reimbursement Calculators:</strong> Compute net student tuition fee under Telangana TS ePASS and Andhra Pradesh Jagananna Vidya Deevena (JVD).</span>
+            <span><strong className="text-white">TG POLYCET Counselling:</strong> Government &amp; private polytechnic college predictor for SSC / 10th pass diploma aspirants.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">HLC Certificate Guides:</strong> Complete document verification checklists with MeeSeva validity rules.</span>
+            <span><strong className="text-white">TG PGECET &amp; KCET Counselling:</strong> M.Tech, M.Pharm, and Karnataka CET candidate-wise seat allotments and cutoff trends.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-purple-400 font-bold shrink-0">•</span>
+            <span><strong className="text-white">Govt Scholarship &amp; Fee Calculators:</strong> Compute exact net tuition fees under Telangana TS ePASS (G.O. Ms. 244 &amp; 33) and AP JVD (G.O. Ms. 115).</span>
           </li>
         </ul>
       </div>
 
       <p className="text-xs text-gray-400">
-        Disclaimer: VuelaLearn is an independent educational tool. We are not officially affiliated with APSCHE, TSCHE, or any government authority. Cutoffs and allotment data are compiled from official public counseling reports for analytical and mock simulation purposes only.
+        <em>Disclaimer:</em> VuelaLearn is an independent open-access student platform. We are not officially affiliated with APSCHE, TSCHE/TGCHE, or government counselling authorities. All allotment data and cutoff statistics are curated from official public archives for mock simulation, educational, and analytical purposes.
       </p>
     </div>
   );

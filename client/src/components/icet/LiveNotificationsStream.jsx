@@ -2,6 +2,7 @@ import { Bell, ArrowUpRight, ChevronRight, RefreshCw } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useIcetData } from '../../hooks/useIcetData';
+import { icetApi } from '../../lib/icetApi';
 
 export default function LiveNotificationsStream() {
   const { data, loading } = useIcetData();
@@ -10,18 +11,18 @@ export default function LiveNotificationsStream() {
   const [lastSynced, setLastSynced] = useState('Just now');
   const [syncSuccess, setSyncSuccess] = useState(false);
 
-  useEffect(() => {
-    const fetchNotifs = () => {
-      fetch('/api/icet/notifications')
-        .then((res) => res.json())
-        .then((json) => {
-          if (json?.data && Array.isArray(json.data) && json.data.length > 0) {
-            setLiveList(json.data);
-          }
-        })
-        .catch(() => {});
-    };
+  const fetchNotifs = async () => {
+    try {
+      const res = await icetApi.getNotifications();
+      if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+        setLiveList(res.data);
+      }
+    } catch {
+      // ignore network errors gracefully
+    }
+  };
 
+  useEffect(() => {
     const interval = setInterval(fetchNotifs, 60000);
     return () => clearInterval(interval);
   }, []);
@@ -31,11 +32,7 @@ export default function LiveNotificationsStream() {
     setSyncSuccess(false);
 
     try {
-      const res = await fetch('/api/icet/refresh', { method: 'POST' });
-      const json = await res.json();
-      if (json?.data && Array.isArray(json.data) && json.data.length > 0) {
-        setLiveList(json.data);
-      }
+      await fetchNotifs();
       setLastSynced(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
       setSyncSuccess(true);
       setTimeout(() => setSyncSuccess(false), 3000);

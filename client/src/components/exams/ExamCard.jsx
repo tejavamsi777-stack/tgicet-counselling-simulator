@@ -9,19 +9,9 @@ export default function ExamCard({ exam }) {
   const { user, openAuthModal } = useAuth();
   const navigate = useNavigate();
 
-  function handleClick(e) {
-    if (!user) {
-      e.preventDefault();
-      openAuthModal("login", () => {
-        navigate(`/exams/${exam.slug}`);
-      });
-    }
-  }
-
   return (
     <Link
       to={`/exams/${exam.slug}`}
-      onClick={handleClick}
       className="group relative block h-full w-full outline-none"
     >
       <GlowCard

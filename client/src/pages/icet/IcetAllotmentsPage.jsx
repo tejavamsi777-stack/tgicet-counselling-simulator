@@ -3,23 +3,12 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import IcetAllotmentExplorer from '../../components/icet/IcetAllotmentExplorer';
-import { useReviewPrompt } from '../../hooks/useReviewPrompt';
-import ReviewModal from '../../components/shared/ReviewModal';
 
 export default function IcetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    hasLoadedData,
-    'tg-icet'
-  );
 
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug="tg-icet"
-      />
       <Seo
         title="TG ICET Seat Allotment List 2026 | MBA & MCA College-Wise Candidates"
         description="Explore TG ICET MBA & MCA college and branch seat allotments from tgicet.nic.in. View candidate ranks, category distribution, closing cutoffs, and live admission analytics across 344 colleges."

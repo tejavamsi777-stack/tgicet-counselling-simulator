@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { api } from "../../lib/api";
 import ResultsTable from "../../components/results/ResultsTable";
+import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
@@ -16,8 +17,6 @@ import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
-import { useReviewPrompt } from "../../hooks/useReviewPrompt";
-import ReviewModal from "../../components/shared/ReviewModal";
 import { smoothScrollTo } from "../../lib/utils";
 
 export default function EapcetPredictorPage() {
@@ -32,6 +31,7 @@ export default function EapcetPredictorPage() {
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
   const [predicting, setPredicting] = useState(false);
+  const [showSmartOptionsModal, setShowSmartOptionsModal] = useState(false);
 
   useEffect(() => {
     if (years && years.length > 0) {
@@ -39,11 +39,6 @@ export default function EapcetPredictorPage() {
       setSelectedYears(years.map((y) => Number(y.year)));
     }
   }, [years]);
-
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    results.length > 0,
-    "tg-eapcet"
-  );
 
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid TG EAPCET rank.");
@@ -88,11 +83,6 @@ export default function EapcetPredictorPage() {
 
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug="tg-eapcet"
-      />
       <Seo
         title="TG EAPCET College Predictor 2025"
         description="Predict TG EAPCET college options by rank, category, gender, branches, and districts."
@@ -241,14 +231,37 @@ export default function EapcetPredictorPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 space-y-8"
+            className="mt-8 space-y-6"
           >
-            <ResultsTable results={results} activeYears={years} showYear examTitle="TG EAPCET 2025" />
+            {/* Full Results Table with Chance Confidence Bar and Create Web Options action */}
+            <ResultsTable
+              results={results}
+              activeYears={years}
+              showYear
+              examTitle="TG EAPCET 2025"
+              studentRank={rank}
+              onCreateWebOptions={() => setShowSmartOptionsModal(true)}
+            />
+
             {/* Passive ad unit placed safely below prediction results */}
             <AdSenseUnit slotName="predictorResults" minHeight={90} />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Smart Web Options Modal */}
+      <SmartWebOptionsModal
+        isOpen={showSmartOptionsModal}
+        onClose={() => setShowSmartOptionsModal(false)}
+        rank={rank}
+        category={category}
+        gender={gender}
+        selectedCourses={selectedCourses}
+        selectedDistricts={selectedDistricts}
+        selectedYears={selectedYears}
+        results={results}
+        examSlug="tg-eapcet"
+      />
     </main>
   );
 }

@@ -36,16 +36,12 @@ import { smoothScrollTo } from '../../lib/utils';
 function getSeatCategoryStyle(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
   if (c.startsWith('OC-GIRL')) return 'bg-pink-500/20 border-pink-400/40 text-pink-300 shadow-sm shadow-pink-500/20';
-  if (c.startsWith('OC')) return 'bg-sky-500/20 border-sky-400/40 text-sky-300 shadow-sm shadow-sky-500/20';
+  if (c.startsWith('GM') || c.startsWith('OC')) return 'bg-sky-500/20 border-sky-400/40 text-sky-300 shadow-sm shadow-sky-500/20';
+  if (c.startsWith('1G') || c.startsWith('1K') || c.startsWith('1R')) return 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300 shadow-sm shadow-emerald-500/20';
+  if (c.startsWith('2A') || c.startsWith('2B') || c.startsWith('BC-A') || c.startsWith('BC-B')) return 'bg-amber-500/20 border-amber-400/40 text-amber-300 shadow-sm shadow-amber-500/20';
+  if (c.startsWith('3A') || c.startsWith('3B') || c.startsWith('BC-C') || c.startsWith('BC-D')) return 'bg-indigo-500/20 border-indigo-400/40 text-indigo-300 shadow-sm shadow-indigo-500/20';
   if (c.startsWith('EWS')) return 'bg-teal-500/20 border-teal-400/40 text-teal-300 shadow-sm shadow-teal-500/20';
-  if (c.startsWith('BC-A')) return 'bg-orange-500/20 border-orange-400/40 text-orange-300 shadow-sm shadow-orange-500/20';
-  if (c.startsWith('BC-B')) return 'bg-amber-500/20 border-amber-400/40 text-amber-300 shadow-sm shadow-amber-500/20';
-  if (c.startsWith('BC-C')) return 'bg-lime-500/20 border-lime-400/40 text-lime-300 shadow-sm shadow-lime-500/20';
-  if (c.startsWith('BC-D')) return 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300 shadow-sm shadow-emerald-500/20';
-  if (c.startsWith('BC-E')) return 'bg-indigo-500/20 border-indigo-400/40 text-indigo-300 shadow-sm shadow-indigo-500/20';
   if (c.startsWith('ST')) return 'bg-rose-500/20 border-rose-400/40 text-rose-300 shadow-sm shadow-rose-500/20';
-  if (c.includes('SC-3') || c.includes('SC-III') || c.includes('SC3')) return 'bg-pink-500/20 border-pink-400/40 text-pink-300 shadow-sm shadow-pink-500/20';
-  if (c.includes('SC-2') || c.includes('SC-II') || c.includes('SC2')) return 'bg-fuchsia-500/20 border-fuchsia-400/40 text-fuchsia-300 shadow-sm shadow-fuchsia-500/20';
   if (c.startsWith('SC')) return 'bg-purple-500/20 border-purple-400/40 text-purple-300 shadow-sm shadow-purple-500/20';
   return 'bg-violet-500/20 border-violet-400/40 text-violet-300 shadow-sm shadow-violet-500/20';
 }
@@ -1017,15 +1013,23 @@ const CATEGORY_FILTERS = [
   'EWS'
 ];
 
-export default function AllotmentExplorer({ onDataLoaded }) {
+export default function AllotmentExplorer({
+  onDataLoaded,
+  apiObj = eapcetApi,
+  defaultCollege = '',
+  defaultBranch = '',
+  examTitle = 'TG EAPCET',
+  examSlug = 'tg-eapcet',
+  categoryFilters = null,
+}) {
   // Meta (years, colleges, branches, collegeBranches map)
   const [meta, setMeta] = useState({ years: [], colleges: [], branches: [], collegeBranches: {} });
   const [metaLoading, setMetaLoading] = useState(true);
 
   // Selection
   const [selectedYear, setSelectedYear] = useState('2026-final');
-  const [selectedCollege, setSelectedCollege] = useState('');
-  const [selectedBranch, setSelectedBranch] = useState('');
+  const [selectedCollege, setSelectedCollege] = useState(defaultCollege);
+  const [selectedBranch, setSelectedBranch] = useState(defaultBranch);
 
   // Results
   const [results, setResults] = useState(null);
@@ -1044,10 +1048,10 @@ export default function AllotmentExplorer({ onDataLoaded }) {
 
   // ── Load meta once ───────────────────────────────────────────────────────
   useEffect(() => {
-    eapcetApi
+    apiObj
       .getAllotmentMeta()
       .then((res) => {
-        const d = res.data || {};
+        const d = res.data || res || {};
         const availableYears = d.years || [];
         setMeta({
           years: availableYears,
@@ -1061,7 +1065,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
       })
       .catch(() => {})
       .finally(() => setMetaLoading(false));
-  }, []);
+  }, [apiObj]);
 
   // Available branches offered specifically by the selected college
   const availableBranches = useMemo(() => {
@@ -1122,7 +1126,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
     setSearch('');
     setPage(1);
     try {
-      const res = await eapcetApi.getAllotments({
+      const res = await apiObj.getAllotments({
         year: selectedYear,
         college: selectedCollege,
         branch: selectedBranch,
@@ -1626,7 +1630,7 @@ export default function AllotmentExplorer({ onDataLoaded }) {
                 <span className="text-[11px] font-bold text-white/40 uppercase tracking-wider mr-1 flex items-center gap-1 shrink-0">
                   <Filter size={12} /> Caste / Quota:
                 </span>
-                {CATEGORY_FILTERS.map((cat) => (
+                {(categoryFilters || CATEGORY_FILTERS).map((cat) => (
                   <button
                     key={cat}
                     type="button"

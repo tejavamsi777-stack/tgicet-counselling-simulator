@@ -16,8 +16,6 @@ import PreferenceList from "../counselling/PreferenceList";
 import EmberField from "../effects/EmberField";
 import ScrambleText from "../effects/ScrambleText";
 import MagneticButton from "../effects/MagneticButton";
-import { useReviewPrompt } from "../../hooks/useReviewPrompt";
-import ReviewModal from "../shared/ReviewModal";
 
 const stepVariants = {
   enter: { opacity: 0, y: 24 },
@@ -101,11 +99,6 @@ export default function MockCounsellingBase({
   const [allColleges, setAllColleges] = useState([]);
   const [collegesLoading, setCollegesLoading] = useState(false);
   const [collegesError, setCollegesError] = useState("");
-
-  const { isOpen: isReviewOpen, closePrompt: closeReview } = useReviewPrompt(
-    step === "list",
-    examSlug
-  );
 
   useEffect(() => {
     let cancelled = false;
@@ -575,12 +568,6 @@ export default function MockCounsellingBase({
         open={loginOpen}
         onClose={() => { setLoginOpen(false); setPendingPrint(false); }}
         onAuthenticated={handleAuthenticated}
-      />
-
-      <ReviewModal
-        isOpen={isReviewOpen}
-        onClose={closeReview}
-        examSlug={examSlug}
       />
     </main>
   );

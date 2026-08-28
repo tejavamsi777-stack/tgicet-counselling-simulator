@@ -2,7 +2,7 @@ import { api } from './api';
 import localSummary from '../data/icet_allotments/allotments_summary.json';
 
 // Glob import all local JSON files so Vite bundles them as code-split JSON chunks for instant zero-latency loading
-const localAllotments = import.meta.glob('../data/icet_allotments/*.json');
+const localAllotments = import.meta.glob(['../data/icet_allotments/*.json', '!../data/icet_allotments/allotments_summary.json']);
 
 export const icetApi = {
   getCounsellingData: () => api.get('/icet/counselling-data'),
