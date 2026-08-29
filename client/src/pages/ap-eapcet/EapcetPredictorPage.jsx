@@ -15,6 +15,7 @@ import PredictionLoader from "../../components/dashboard/PredictionLoader";
 import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
 import { smoothScrollTo } from "../../lib/utils";
 import { useReferenceData } from "../../hooks/useReferenceData";
+import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
 // AP EAPCET clean category list (matches Eduvale / APSCHE format)
 const AP_CATEGORIES = [
@@ -38,7 +39,7 @@ const AP_REGIONS = [
   { code: "ALL", label: "All Regions (AU + SVU + Non-Local)" },
   { code: "AU",  label: "AU Region (Andhra University area)" },
   { code: "SVU", label: "SVU Region (Sri Venkateswara area)" },
-  { code: "UR",  label: "Non-Local / UR" },
+  { code: "NL",  label: "Non-Local (15% Unreserved Quota)" },
 ];
 
 // Lightweight native select styled to match the glass design
@@ -67,7 +68,7 @@ function NativeSelect({ value, onChange, options, placeholder, icon: Icon }) {
 }
 
 export default function EapcetPredictorPage() {
-  const { courses, districts } = useReferenceData("ap-eapcet");
+  const { courses, districts, loading } = useReferenceData("ap-eapcet");
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("OC");
   const [region, setRegion] = useState("ALL");
