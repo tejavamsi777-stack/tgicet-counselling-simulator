@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, ChevronDown, Check } from "lucide-react";
+import ThreeDotsLoader from "../ui/three-dots-loader";
 
 export default function YearDropdown({
   year,
@@ -54,6 +55,9 @@ export default function YearDropdown({
   }
 
   const triggerLabel = useMemo(() => {
+    if (yearList.length === 0) {
+      return <ThreeDotsLoader label="Loading Years" dotClassName="bg-purple-400" />;
+    }
     if (!isMulti) {
       return !year ? <span className="text-gray-400">Select Year</span> : year;
     }
@@ -123,8 +127,13 @@ export default function YearDropdown({
               </div>
             )}
 
-            <div className="space-y-0.5 p-0.5">
-              {yearList.map((yNum) => {
+            {yearList.length === 0 ? (
+              <div className="p-4 flex items-center justify-center">
+                <ThreeDotsLoader label="Loading years" dotClassName="bg-purple-400" />
+              </div>
+            ) : (
+              <div className="space-y-0.5 p-0.5">
+                {yearList.map((yNum) => {
                 const isSelected = isMulti
                   ? selectedYears.includes(yNum)
                   : String(year) === String(yNum);
@@ -159,8 +168,8 @@ export default function YearDropdown({
                     )}
                   </button>
                 );
-              })}
-            </div>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

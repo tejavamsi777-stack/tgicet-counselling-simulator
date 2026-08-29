@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, ChevronDown, Check, Search, X } from "lucide-react";
 import { getDistrictName } from "../../utils/districtNames";
 import { useReferenceData } from "../../hooks/useReferenceData";
+import ThreeDotsLoader from "../ui/three-dots-loader";
 
 export default function DistrictMultiSelect({
   selectedDistricts = [],
@@ -10,7 +11,7 @@ export default function DistrictMultiSelect({
   districts: propDistricts,
   examSlug = "tg-eapcet",
 }) {
-  const { districts: refDistricts } = useReferenceData(examSlug);
+  const { districts: refDistricts, loading } = useReferenceData(examSlug);
   const districts = (propDistricts && propDistricts.length > 0) ? propDistricts : (refDistricts || []);
 
   const [open, setOpen] = useState(false);
@@ -88,6 +89,9 @@ export default function DistrictMultiSelect({
 
   // Trigger label determination
   const triggerLabel = useMemo(() => {
+    if (loading && districts.length === 0) {
+      return <ThreeDotsLoader label="Loading districts" dotClassName="bg-cyan-400" />;
+    }
     if (isNoneSelected || isAllSelected) {
       return <span className="text-gray-300">All Districts</span>;
     }
@@ -99,7 +103,7 @@ export default function DistrictMultiSelect({
       return selectedDistricts.map((c) => getDistrictName(c) || c).join(", ");
     }
     return `${selectedDistricts.length} Districts Selected`;
-  }, [selectedDistricts, isNoneSelected, isAllSelected]);
+  }, [selectedDistricts, isNoneSelected, isAllSelected, loading, districts]);
 
   return (
     <div className={`relative ${open ? "z-50" : "z-10"}`} ref={containerRef}>
@@ -198,9 +202,15 @@ export default function DistrictMultiSelect({
               }}
             >
               {filteredDistricts.length === 0 ? (
-                <div className="p-4 text-center text-xs text-gray-400">
-                  No districts found matching &ldquo;{search}&rdquo;
-                </div>
+                loading ? (
+                  <div className="p-6 flex items-center justify-center">
+                    <ThreeDotsLoader label="Loading districts" dotClassName="bg-cyan-400" />
+                  </div>
+                ) : (
+                  <div className="p-4 text-center text-xs text-gray-400">
+                    No districts found matching &ldquo;{search}&rdquo;
+                  </div>
+                )
               ) : (
                 filteredDistricts.map((d) => {
                   const code = (d.code || d).toString().trim().toUpperCase();

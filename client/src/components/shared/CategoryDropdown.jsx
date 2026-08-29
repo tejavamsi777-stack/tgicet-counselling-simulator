@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, ChevronDown, Check } from "lucide-react";
 import { useReferenceData, sortCategories } from "../../hooks/useReferenceData";
+import ThreeDotsLoader from "../ui/three-dots-loader";
 
 export default function CategoryDropdown({ category, setCategory, examSlug = "tg-icet" }) {
-  const { categories: rawCategories } = useReferenceData(examSlug);
+  const { categories: rawCategories, loading } = useReferenceData(examSlug);
   const categories = sortCategories(rawCategories, examSlug);
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
@@ -69,7 +70,15 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
         className="flex h-11 w-full items-center justify-between rounded-2xl border border-white/20 bg-white/10 pl-10 pr-3.5 text-sm font-medium text-white outline-none backdrop-blur-2xl transition-all hover:border-white/40 hover:bg-white/15 focus:border-white/50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]"
       >
         <span className="truncate">
-          {category === "" ? <span className="text-gray-400">Select</span> : displayName}
+          {category === "" ? (
+            loading && categories.length === 0 ? (
+              <ThreeDotsLoader label="Select Category" dotClassName="bg-amber-400" />
+            ) : (
+              <span className="text-gray-400">Select</span>
+            )
+          ) : (
+            displayName
+          )}
         </span>
         <ChevronDown
           size={16}
@@ -96,8 +105,8 @@ export default function CategoryDropdown({ category, setCategory, examSlug = "tg
             className="absolute left-0 right-0 z-[100] mt-2 rounded-2xl border border-white/20 bg-[#140e24]/98 p-1.5 shadow-[0_24px_60px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-3xl focus:outline-none"
           >
             {categories.length === 0 ? (
-              <div className="px-4 py-3 text-center text-xs font-medium text-gray-300">
-                Loading categories…
+              <div className="px-4 py-3 text-center text-xs font-medium text-gray-300 flex items-center justify-center">
+                <ThreeDotsLoader label="Loading categories" dotClassName="bg-amber-400" />
               </div>
             ) : (
               categories.map((c) => {

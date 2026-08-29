@@ -1,6 +1,36 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api";
 
+const referenceCache = new Map();
+
+function readSessionCache(key) {
+  try {
+    const item = sessionStorage.getItem(`ref_data_${key}`);
+    return item ? JSON.parse(item) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeSessionCache(key, data) {
+  try {
+    sessionStorage.setItem(`ref_data_${key}`, JSON.stringify(data));
+  } catch {
+    // ignore
+  }
+}
+
+function isValidCache(cached) {
+  return (
+    cached &&
+    typeof cached === "object" &&
+    Array.isArray(cached.courses) &&
+    cached.courses.length > 0 &&
+    Array.isArray(cached.districts) &&
+    cached.districts.length > 0
+  );
+}
+
 const TG_CATEGORIES = [
   { code: "OC", name: "OC" },
   { code: "EWS", name: "EWS" },
@@ -211,9 +241,93 @@ function writeSessionCache(key, val) {
   }
 }
 
-function isValidCache(c) {
-  return Boolean(c && Array.isArray(c.courses) && c.courses.length > 0);
-}
+const TG_ICET_FALLBACK_COURSES = [
+  { code: "MBA", name: "MASTER OF BUSINESS ADMINISTRATION" },
+  { code: "MCA", name: "MASTER OF COMPUTER APPLICATIONS" },
+  { code: "MBT", name: "MBA (TOURISM MANAGEMENT)" },
+  { code: "MTM", name: "MBA (TECHNOLOGY MANAGEMENT)" },
+  { code: "MTH", name: "MBA (TOURISM & HOSPITALITY)" },
+];
+
+const TG_EAPCET_FALLBACK_COURSES = [
+  { code: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING" },
+  { code: "CSM", name: "CSE (ARTIFICIAL INTELLIGENCE & MACHINE LEARNING)" },
+  { code: "CSD", name: "CSE (DATA SCIENCE)" },
+  { code: "CSC", name: "CSE (CYBER SECURITY)" },
+  { code: "CSIT", name: "COMPUTER SCIENCE & INFORMATION TECHNOLOGY" },
+  { code: "INF", name: "INFORMATION TECHNOLOGY" },
+  { code: "CSO", name: "CSE (IOT)" },
+  { code: "CSB", name: "CSE (BUSINESS SYSTEMS)" },
+  { code: "CSI", name: "CSE (IOT & CYBER SECURITY)" },
+  { code: "AIM", name: "ARTIFICIAL INTELLIGENCE & MACHINE LEARNING" },
+  { code: "AID", name: "ARTIFICIAL INTELLIGENCE & DATA SCIENCE" },
+  { code: "AI", name: "ARTIFICIAL INTELLIGENCE" },
+  { code: "ECE", name: "ELECTRONICS & COMMUNICATION ENGINEERING" },
+  { code: "EEE", name: "ELECTRICAL & ELECTRONICS ENGINEERING" },
+  { code: "MEC", name: "MECHANICAL ENGINEERING" },
+  { code: "CIV", name: "CIVIL ENGINEERING" },
+  { code: "CHE", name: "CHEMICAL ENGINEERING" },
+  { code: "BME", name: "BIOMEDICAL ENGINEERING" },
+  { code: "AGR", name: "AGRICULTURAL ENGINEERING" },
+  { code: "MIN", name: "MINING ENGINEERING" },
+  { code: "MET", name: "METALLURGICAL ENGINEERING" },
+  { code: "AUT", name: "AUTOMOBILE ENGINEERING" },
+  { code: "AER", name: "AERONAUTICAL ENGINEERING" },
+  { code: "BIO", name: "BIOTECHNOLOGY" },
+];
+
+const TG_ECET_FALLBACK_COURSES = [
+  { code: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING" },
+  { code: "CSM", name: "CSE (AI & ML)" },
+  { code: "CSD", name: "CSE (DATA SCIENCE)" },
+  { code: "AID", name: "AI & DATA SCIENCE" },
+  { code: "AIM", name: "AI & ML" },
+  { code: "CSC", name: "CYBER SECURITY" },
+  { code: "INF", name: "INFORMATION TECHNOLOGY" },
+  { code: "ECE", name: "ELECTRONICS & COMMUNICATION ENGINEERING" },
+  { code: "EEE", name: "ELECTRICAL & ELECTRONICS ENGINEERING" },
+  { code: "MEC", name: "MECHANICAL ENGINEERING" },
+  { code: "CIV", name: "CIVIL ENGINEERING" },
+  { code: "PHM", name: "PHARMACY" },
+  { code: "CHE", name: "CHEMICAL ENGINEERING" },
+  { code: "MIN", name: "MINING ENGINEERING" },
+];
+
+const TG_POLYCET_FALLBACK_COURSES = [
+  { code: "CME", name: "COMPUTER ENGINEERING" },
+  { code: "ECE", name: "ELECTRONICS & COMMUNICATION ENGINEERING" },
+  { code: "EEE", name: "ELECTRICAL & ELECTRONICS ENGINEERING" },
+  { code: "MEC", name: "MECHANICAL ENGINEERING" },
+  { code: "CIV", name: "CIVIL ENGINEERING" },
+  { code: "AUT", name: "AUTOMOBILE ENGINEERING" },
+  { code: "MIN", name: "MINING ENGINEERING" },
+  { code: "CHE", name: "CHEMICAL ENGINEERING" },
+  { code: "MET", name: "METALLURGICAL ENGINEERING" },
+];
+
+const TG_FALLBACK_DISTRICTS = [
+  { code: "HYD", name: "Hyderabad" },
+  { code: "MDL", name: "Medchal-Malkajgiri" },
+  { code: "RRD", name: "Ranga Reddy" },
+  { code: "KMR", name: "Karimnagar" },
+  { code: "WGL", name: "Warangal Urban" },
+  { code: "NGD", name: "Nalgonda" },
+  { code: "KMM", name: "Khammam" },
+  { code: "NZB", name: "Nizamabad" },
+  { code: "MBN", name: "Mahabubnagar" },
+  { code: "SRD", name: "Sangareddy" },
+  { code: "YGD", name: "Yadadri Bhuvanagiri" },
+  { code: "MDK", name: "Medak" },
+  { code: "PED", name: "Peddapalli" },
+  { code: "JTL", name: "Jagtial" },
+  { code: "BPL", name: "Bhupalpally" },
+  { code: "KGM", name: "Bhadradri Kothagudem" },
+  { code: "MNCL", name: "Mancherial" },
+  { code: "SUR", name: "Suryapet" },
+  { code: "VKB", name: "Vikarabad" },
+  { code: "WNP", name: "Wanaparthy" },
+  { code: "JGN", name: "Jangaon" },
+];
 
 function getInitialFallback(examSlug) {
   if (examSlug === "ap-eapcet") {
@@ -224,11 +338,36 @@ function getInitialFallback(examSlug) {
       years: [{ year: 2025 }],
     };
   }
+  if (examSlug === "tg-icet") {
+    return {
+      courses: sortCourses(TG_ICET_FALLBACK_COURSES, "tg-icet"),
+      categories: TG_CATEGORIES,
+      districts: TG_FALLBACK_DISTRICTS,
+      years: [{ year: 2025 }],
+    };
+  }
+  if (examSlug === "tg-ecet") {
+    return {
+      courses: sortCourses(TG_ECET_FALLBACK_COURSES, "tg-ecet"),
+      categories: TG_CATEGORIES,
+      districts: TG_FALLBACK_DISTRICTS,
+      years: [{ year: 2025 }],
+    };
+  }
+  if (examSlug === "tg-polycet") {
+    return {
+      courses: sortCourses(TG_POLYCET_FALLBACK_COURSES, "tg-polycet"),
+      categories: TG_CATEGORIES,
+      districts: TG_FALLBACK_DISTRICTS,
+      years: [{ year: 2025 }],
+    };
+  }
+  // Default to TG EAPCET
   return {
-    courses: [],
-    categories: [],
-    districts: [],
-    years: [],
+    courses: sortCourses(TG_EAPCET_FALLBACK_COURSES, "tg-eapcet"),
+    categories: TG_CATEGORIES,
+    districts: TG_FALLBACK_DISTRICTS,
+    years: [{ year: 2025 }],
   };
 }
 

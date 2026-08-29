@@ -15,12 +15,13 @@ import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
+import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import { smoothScrollTo } from "../../lib/utils";
 
 export default function IcetPredictorPage() {
-  const { years, categories, courses, districts } = useReferenceData("tg-icet");
+  const { years, categories, courses, districts, loading } = useReferenceData("tg-icet");
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");
@@ -135,7 +136,11 @@ export default function IcetPredictorPage() {
               <div className="grid grid-cols-2 gap-3 sm:contents">
                 <div className="relative z-[50]">
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                    Category
+                    {loading && categories.length === 0 ? (
+                      <ThreeDotsLoader label="Category" dotClassName="bg-amber-400" />
+                    ) : (
+                      "Category"
+                    )}
                   </label>
                   <CategoryDropdown category={category} setCategory={setCategory} examSlug="tg-icet" />
                 </div>
@@ -151,7 +156,11 @@ export default function IcetPredictorPage() {
               {/* 3. Course (Multi-select) */}
               <div className="relative z-[30]">
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                  Course (One or More)
+                  {loading && courses.length === 0 ? (
+                    <ThreeDotsLoader label="Course (One or More)" dotClassName="bg-purple-400" />
+                  ) : (
+                    "Course (One or More)"
+                  )}
                 </label>
                 <BranchMultiSelect
                   selectedCourses={selectedCourses}
@@ -164,7 +173,11 @@ export default function IcetPredictorPage() {
               {/* 4. District (Multi-select) */}
               <div className="relative z-[20]">
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                  District (One or More)
+                  {loading && districts.length === 0 ? (
+                    <ThreeDotsLoader label="District (One or More)" dotClassName="bg-cyan-400" />
+                  ) : (
+                    "District (One or More)"
+                  )}
                 </label>
                 <DistrictMultiSelect
                   selectedDistricts={selectedDistricts}
@@ -177,7 +190,11 @@ export default function IcetPredictorPage() {
               {/* 5. Cutoff Year (Multi-select) */}
               <div className="relative z-[10]">
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                  Cutoff Year (One or More)
+                  {loading && years.length === 0 ? (
+                    <ThreeDotsLoader label="Cutoff Year (One or More)" dotClassName="bg-purple-400" />
+                  ) : (
+                    "Cutoff Year (One or More)"
+                  )}
                 </label>
                 <YearDropdown
                   year={year}

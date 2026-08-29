@@ -15,12 +15,13 @@ import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import YearDropdown from "../../components/shared/YearDropdown";
 import PredictionLoader from "../../components/dashboard/PredictionLoader";
+import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import { smoothScrollTo } from "../../lib/utils";
 
 export default function EapcetPredictorPage() {
-  const { years, categories, courses, districts } = useReferenceData("tg-eapcet");
+  const { years, categories, courses, districts, loading } = useReferenceData("tg-eapcet");
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("Male");

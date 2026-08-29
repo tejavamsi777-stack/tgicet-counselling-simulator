@@ -9,23 +9,8 @@ import FaqSection from "../components/shared/FaqSection";
 import { HOME_FAQS } from "../data/faqsData";
 import { exams } from "../config/exams";
 
-// Detailed State Master Information & Summaries
+// Detailed State Master Information & Summaries (Telangana first, Andhra Pradesh second)
 const STATE_CARDS_DATA = [
-  {
-    id: "andhra-pradesh",
-    name: "Andhra Pradesh",
-    code: "AP",
-    path: "/andhra-pradesh",
-    examCount: 1,
-    examsList: ["AP EAPCET"],
-    description: "APSCHE Engineering, Agriculture & Pharmacy Entrance (AP EAPCET). Access rank-based college cutoff predictors and official candidate seat allotment explorers across AP colleges.",
-    gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
-    borderColor: "border-blue-500/30 hover:border-blue-400/60",
-    badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-    titleHoverColor: "group-hover:text-blue-400",
-    buttonStyle: "bg-gradient-to-r from-[#1e3a8a] to-[#172554] border-blue-400/30 text-white group-hover:from-[#1d4ed8] group-hover:to-[#1e3a8a] shadow-lg shadow-blue-950/50",
-    mapImg: "/maps/andhra-pradesh.png"
-  },
   {
     id: "telangana",
     name: "Telangana",
@@ -39,7 +24,24 @@ const STATE_CARDS_DATA = [
     badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
     titleHoverColor: "group-hover:text-emerald-400",
     buttonStyle: "bg-gradient-to-r from-[#365314] to-[#4d7c0f] border-lime-500/30 text-white group-hover:from-[#4d7c0f] group-hover:to-[#65a30d] shadow-lg shadow-lime-950/50",
-    mapImg: "/maps/telangana.png"
+    mapImg: "/maps/telangana.png",
+    mapClass: "h-24 sm:h-28 w-auto max-w-[100px] sm:max-w-[115px] drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]",
+  },
+  {
+    id: "andhra-pradesh",
+    name: "Andhra Pradesh",
+    code: "AP",
+    path: "/andhra-pradesh",
+    examCount: 1,
+    examsList: ["AP EAPCET"],
+    description: "APSCHE Engineering, Agriculture & Pharmacy Entrance (AP EAPCET). Access rank-based college cutoff predictors and official candidate seat allotment explorers across AP colleges.",
+    gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
+    borderColor: "border-blue-500/30 hover:border-blue-400/60",
+    badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    titleHoverColor: "group-hover:text-blue-400",
+    buttonStyle: "bg-gradient-to-r from-[#1e3a8a] to-[#172554] border-blue-400/30 text-white group-hover:from-[#1d4ed8] group-hover:to-[#1e3a8a] shadow-lg shadow-blue-950/50",
+    mapImg: "/maps/andhra-pradesh.png",
+    mapClass: "h-28 sm:h-32 w-auto max-w-[125px] sm:max-w-[145px] drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]",
   },
 ];
 
@@ -236,17 +238,17 @@ export default function Home() {
                   </span>
                 </div>
 
-                {/* State outline map floating on the right side */}
-                <div className="relative flex items-center justify-between gap-3">
-                  <p className="text-xs sm:text-sm leading-relaxed text-gray-300 mb-4 min-h-[60px] flex-1 z-10">
+                {/* State outline map centered beside description */}
+                <div className="relative flex items-center justify-between gap-3 mb-4 min-h-[75px]">
+                  <p className="text-xs sm:text-sm leading-relaxed text-gray-300 flex-1 z-10">
                     {stateCard.description}
                   </p>
 
-                  <div className="shrink-0 pl-1 z-10">
+                  <div className="shrink-0 flex items-center justify-center pl-2 self-center z-10">
                     <img
                       src={stateCard.mapImg}
                       alt={`${stateCard.name} Map Outline`}
-                      className="h-24 sm:h-28 w-auto max-w-[90px] sm:max-w-[110px] object-contain opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+                      className={`object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 ${stateCard.mapClass}`}
                     />
                   </div>
                 </div>

@@ -10,24 +10,24 @@ const STATE_CONFIGS = {
   "andhra-pradesh": {
     name: "Andhra Pradesh",
     code: "AP",
-    greeting: "నమస్కారం!",
+    greeting: "నమస్కారం ఆంధ్రప్రదేశ్!",
     authority: "APSCHE (Andhra Pradesh State Council of Higher Education)",
     title: "Andhra Pradesh Entrance Examinations",
     seoDescription: "Explore Andhra Pradesh AP EAPCET entrance examinations for engineering and pharmacy admissions.",
     description: "Select an entrance examination below to access rank-based college cutoff predictors, seat allotment explorers, and counselling tools.",
     badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-    mapImg: "/maps/andhra-pradesh.png"
+    mapImg: "/maps/andhra-pradesh.png",
   },
   "telangana": {
     name: "Telangana",
     code: "TG",
-    greeting: "నమస్తే!",
+    greeting: "నమస్తే తెలంగాణ!",
     authority: "TSCHE (Telangana State Council of Higher Education)",
     title: "Telangana Entrance Examinations",
     seoDescription: "Explore Telangana entrance examinations for TG EAPCET, TG ICET, TG ECET, TG POLYCET & TG PGECET.",
     description: "Select an entrance examination below to access college predictors, seat allotment explorers & mock web options choice simulators.",
     badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    mapImg: "/maps/telangana.png"
+    mapImg: "/maps/telangana.png",
   }
 };
 
@@ -80,7 +80,11 @@ export default function StatePortalPage({ stateSlugOverride }) {
             <img
               src={config.mapImg}
               alt={`${config.name} State Map Outline`}
-              className="h-34 sm:h-42 md:h-46 w-auto max-w-[200px] sm:max-w-[240px] object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-transform duration-500 hover:scale-105"
+              className={`w-auto object-contain opacity-90 transition-transform duration-500 hover:scale-105 ${
+                stateSlug.includes("andhra")
+                  ? "h-36 sm:h-44 md:h-48 max-w-[240px] sm:max-w-[280px] drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]"
+                  : "h-32 sm:h-40 md:h-44 max-w-[190px] sm:max-w-[220px] drop-shadow-[0_0_12px_rgba(52,211,153,0.35)]"
+              }`}
             />
           </div>
         </div>

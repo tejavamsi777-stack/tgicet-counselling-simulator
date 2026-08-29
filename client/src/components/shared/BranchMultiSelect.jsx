@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronDown, Check, Search, X, Sparkles } from "lucide-react";
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
+import ThreeDotsLoader from "../ui/three-dots-loader";
 
 export default function BranchMultiSelect({
   selectedCourses = [],
@@ -9,7 +10,7 @@ export default function BranchMultiSelect({
   courses: propCourses,
   examSlug = "tg-eapcet",
 }) {
-  const { courses: refCourses } = useReferenceData(examSlug);
+  const { courses: refCourses, loading } = useReferenceData(examSlug);
   const courses = useMemo(() => {
     const list = (propCourses && propCourses.length > 0) ? propCourses : (refCourses || []);
     return sortCourses(list, examSlug);
@@ -104,6 +105,9 @@ export default function BranchMultiSelect({
   // Trigger label determination
   const triggerLabel = useMemo(() => {
     if (isNoneSelected) {
+      if (loading && courses.length === 0) {
+        return <ThreeDotsLoader label="Loading courses" dotClassName="bg-purple-400" />;
+      }
       return <span className="text-gray-400">Select</span>;
     }
     if (isAllSelected) {
@@ -118,7 +122,7 @@ export default function BranchMultiSelect({
       return selectedCourses.join(", ");
     }
     return `${selectedCourses.length} Branches Selected`;
-  }, [selectedCourses, courses, isNoneSelected, isAllSelected]);
+  }, [selectedCourses, courses, isNoneSelected, isAllSelected, loading]);
 
   return (
     <div className={`relative ${open ? "z-50" : "z-10"}`} ref={containerRef}>
@@ -223,9 +227,15 @@ export default function BranchMultiSelect({
               }}
             >
               {filteredCourses.length === 0 ? (
-                <div className="p-4 text-center text-xs text-gray-400">
-                  No courses found matching &ldquo;{search}&rdquo;
-                </div>
+                loading ? (
+                  <div className="p-6 flex items-center justify-center">
+                    <ThreeDotsLoader label="Loading branches & courses" dotClassName="bg-purple-400" />
+                  </div>
+                ) : (
+                  <div className="p-4 text-center text-xs text-gray-400">
+                    No courses found matching &ldquo;{search}&rdquo;
+                  </div>
+                )
               ) : (
                 filteredCourses.map((c) => {
                   const code = (c.code || c).toString().trim().toUpperCase();
