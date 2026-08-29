@@ -1,25 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api";
 
-const referenceCache = new Map();
-
-function readSessionCache(key) {
-  try {
-    const item = sessionStorage.getItem(`ref_data_${key}`);
-    return item ? JSON.parse(item) : null;
-  } catch {
-    return null;
-  }
-}
-
-function writeSessionCache(key, data) {
-  try {
-    sessionStorage.setItem(`ref_data_${key}`, JSON.stringify(data));
-  } catch {
-    // ignore
-  }
-}
-
 function isValidCache(cached) {
   return (
     cached &&
@@ -221,6 +202,8 @@ export function sortCourses(courses = [], examSlug = "tg-eapcet") {
 
 // In-memory + sessionStorage cache across all dropdown instances and page navigations
 const referenceCache = new Map();
+// Track which slugs are currently being fetched (to avoid duplicate requests)
+const fetchInProgress = new Set();
 
 function readSessionCache(key) {
   if (typeof window === "undefined") return null;
@@ -372,21 +355,88 @@ function getInitialFallback(examSlug) {
 }
 
 /**
+ * Core fetch logic — shared between the hook and prefetchAllExams.
+ * Populates referenceCache and sessionStorage, then optionally notifies listeners.
+ */
+async function fetchExamData(examSlug, onDone) {
+  const cacheKey = examSlug || "default";
+  if (fetchInProgress.has(cacheKey)) return; // already fetching
+  const existing = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+  if (isValidCache(existing)) {
+    referenceCache.set(cacheKey, existing);
+    onDone && onDone(existing);
+    return;
+  }
+
+  fetchInProgress.add(cacheKey);
+  try {
+    const query = examSlug ? `?exam=${examSlug}` : "";
+    const [coursesRes, categoriesRes, districtsRes, yearsRes] = await Promise.all([
+      api.get(`/courses${query}`).catch(() => []),
+      api.get(`/categories${query}`).catch(() => []),
+      api.get(`/districts${query}`).catch(() => []),
+      api.get(`/years${query}`).catch(() => []),
+    ]);
+
+    const fallback = getInitialFallback(examSlug);
+    const safeCourses =
+      Array.isArray(coursesRes) && coursesRes.length > 0 ? coursesRes : fallback.courses;
+    const safeDistricts =
+      Array.isArray(districtsRes) && districtsRes.length > 0 ? districtsRes : fallback.districts;
+
+    const result = {
+      courses: sortCourses(safeCourses, examSlug),
+      categories: sortCategories(
+        Array.isArray(categoriesRes) && categoriesRes.length > 0 ? categoriesRes : (fallback.categories || []),
+        examSlug
+      ),
+      districts: safeDistricts,
+      years: Array.isArray(yearsRes) && yearsRes.length > 0 ? yearsRes : fallback.years,
+    };
+    referenceCache.set(cacheKey, result);
+    writeSessionCache(cacheKey, result);
+    onDone && onDone(result);
+  } catch {
+    // silently fail — fallback data is already in cache
+  } finally {
+    fetchInProgress.delete(cacheKey);
+  }
+}
+
+/**
+ * Fire-and-forget: fetch all exam slugs in parallel at app startup.
+ * Call this once from main.jsx before ReactDOM.render so data is warm
+ * by the time any predictor page mounts.
+ */
+export function prefetchAllExams() {
+  const slugs = ["tg-eapcet", "tg-icet", "tg-ecet", "tg-polycet", "ap-eapcet"];
+  slugs.forEach((slug) => fetchExamData(slug));
+}
+
+/**
  * Fetches courses/categories/districts/years once and caches them.
  */
 export function useReferenceData(examSlug = "tg-icet") {
   const cacheKey = examSlug || "default";
-  const rawCached = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
-  const cached = isValidCache(rawCached) ? rawCached : null;
 
-  const [data, setData] = useState(() => {
-    if (cached) {
-      referenceCache.set(cacheKey, cached);
-      return cached;
+  const getInitialState = () => {
+    const raw = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+    if (isValidCache(raw)) {
+      referenceCache.set(cacheKey, raw);
+      return { data: raw, loading: false };
     }
-    return getInitialFallback(examSlug);
+    return { data: getInitialFallback(examSlug), loading: true };
+  };
+
+  const initial = getInitialState();
+  const [data, setData] = useState(initial.data);
+  // loading = true while fresh data has not yet arrived from server
+  const [loading, setLoading] = useState(() => {
+    const raw = referenceCache.get(cacheKey) || readSessionCache(cacheKey);
+    // If we have valid server data already, no need to show loader
+    if (isValidCache(raw)) return false;
+    return true;
   });
-  const [loading, setLoading] = useState(() => !cached);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -398,45 +448,16 @@ export function useReferenceData(examSlug = "tg-icet") {
     }
 
     let cancelled = false;
+    setLoading(true);
 
-    async function load() {
-      try {
-        const query = examSlug ? `?exam=${examSlug}` : "";
-        const [coursesRes, categoriesRes, districtsRes, yearsRes] = await Promise.all([
-          api.get(`/courses${query}`).catch(() => []),
-          api.get(`/categories${query}`).catch(() => []),
-          api.get(`/districts${query}`).catch(() => []),
-          api.get(`/years${query}`).catch(() => []),
-        ]);
-
-        const safeCourses = Array.isArray(coursesRes) && coursesRes.length > 0 
-          ? coursesRes 
-          : (examSlug === "ap-eapcet" ? AP_EAPCET_FALLBACK_COURSES : []);
-
-        const safeDistricts = Array.isArray(districtsRes) && districtsRes.length > 0
-          ? districtsRes
-          : (examSlug === "ap-eapcet" ? AP_EAPCET_FALLBACK_DISTRICTS : []);
-
-        const result = {
-          courses: sortCourses(safeCourses, examSlug),
-          categories: sortCategories(categoriesRes || [], examSlug),
-          districts: safeDistricts,
-          years: yearsRes || [],
-        };
-        referenceCache.set(cacheKey, result);
-        writeSessionCache(cacheKey, result);
-        if (!cancelled) {
-          setData(result);
-          setError(null);
-        }
-      } catch (err) {
-        if (!cancelled) setError(err);
-      } finally {
-        if (!cancelled) setLoading(false);
+    fetchExamData(examSlug, (result) => {
+      if (!cancelled) {
+        setData(result);
+        setLoading(false);
+        setError(null);
       }
-    }
+    });
 
-    load();
     return () => {
       cancelled = true;
     };

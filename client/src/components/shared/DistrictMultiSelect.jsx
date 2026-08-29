@@ -89,7 +89,7 @@ export default function DistrictMultiSelect({
 
   // Trigger label determination
   const triggerLabel = useMemo(() => {
-    if (loading && districts.length === 0) {
+    if (loading && isNoneSelected) {
       return <ThreeDotsLoader label="Loading districts" dotClassName="bg-cyan-400" />;
     }
     if (isNoneSelected || isAllSelected) {

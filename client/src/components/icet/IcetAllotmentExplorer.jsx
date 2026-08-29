@@ -910,7 +910,7 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
         if (targetCat === 'EWS') {
           return casteNorm === 'EWS' || seatNorm.includes('EWS');
         }
-        return casteNorm === targetCat || seatNorm.includes(targetCat);
+        return casteNorm === targetCat || seatNorm === targetCat || seatNorm.startsWith(targetCat + '_') || seatNorm.startsWith(targetCat + 'G');
       });
     }
 

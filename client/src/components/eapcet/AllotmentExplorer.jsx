@@ -1027,7 +1027,7 @@ export default function AllotmentExplorer({
   const [metaLoading, setMetaLoading] = useState(true);
 
   // Selection
-  const [selectedYear, setSelectedYear] = useState('2026-final');
+  const [selectedYear, setSelectedYear] = useState('');
   const [selectedCollege, setSelectedCollege] = useState(defaultCollege);
   const [selectedBranch, setSelectedBranch] = useState(defaultBranch);
 
@@ -1059,9 +1059,7 @@ export default function AllotmentExplorer({
           branches: d.branches || [],
           collegeBranches: d.collegeBranches || {},
         });
-        if (availableYears.length > 0 && (!selectedYear || !availableYears.some(y => y.id === selectedYear))) {
-          setSelectedYear(availableYears[0].id);
-        }
+        // Do not auto-select a year — user must choose manually
       })
       .catch(() => {})
       .finally(() => setMetaLoading(false));
@@ -1174,7 +1172,10 @@ export default function AllotmentExplorer({
         const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
         const candCaste = (c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
         const candSeat = (c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
-        if (!candCaste.includes(targetCat) && !candSeat.includes(targetCat)) {
+        // Strict exact match — candSeat may be "OC_GEN_OU" style, so also check startsWith
+        const casteMatch = candCaste === targetCat;
+        const seatMatch = candSeat === targetCat || candSeat.startsWith(targetCat + '_') || candSeat.startsWith(targetCat + 'G');
+        if (!casteMatch && !seatMatch) {
           return false;
         }
       }

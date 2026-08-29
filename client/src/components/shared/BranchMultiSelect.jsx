@@ -105,7 +105,7 @@ export default function BranchMultiSelect({
   // Trigger label determination
   const triggerLabel = useMemo(() => {
     if (isNoneSelected) {
-      if (loading && courses.length === 0) {
+      if (loading) {
         return <ThreeDotsLoader label="Loading courses" dotClassName="bg-purple-400" />;
       }
       return <span className="text-gray-400">Select</span>;

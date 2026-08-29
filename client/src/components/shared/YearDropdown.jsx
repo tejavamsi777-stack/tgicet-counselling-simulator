@@ -168,9 +168,10 @@ export default function YearDropdown({
                     )}
                   </button>
                 );
-              </div>
-            )}
-          </motion.div>
+              })}
+            </div>
+          )}
+        </motion.div>
         )}
       </AnimatePresence>
     </div>

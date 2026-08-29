@@ -209,7 +209,11 @@ export default function EapcetPredictorPage() {
             {/* 5. Branch (Multi-select) */}
             <div className="relative z-[30]">
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                Branch (Optional / All by default)
+                {loading && courses.length === 0 ? (
+                  <ThreeDotsLoader label="Branch (Optional / All by default)" dotClassName="bg-purple-400" />
+                ) : (
+                  "Branch (Optional / All by default)"
+                )}
               </label>
               <BranchMultiSelect
                 selectedCourses={selectedCourses}
@@ -222,7 +226,11 @@ export default function EapcetPredictorPage() {
             {/* 6. District (Multi-select) */}
             <div className="relative z-[20]">
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-300">
-                District (Optional / All by default)
+                {loading && districts.length === 0 ? (
+                  <ThreeDotsLoader label="District (Optional / All by default)" dotClassName="bg-cyan-400" />
+                ) : (
+                  "District (Optional / All by default)"
+                )}
               </label>
               <DistrictMultiSelect
                 selectedDistricts={selectedDistricts}

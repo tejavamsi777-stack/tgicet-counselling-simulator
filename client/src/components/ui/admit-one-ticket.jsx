@@ -476,8 +476,12 @@ var ShaderMountReact = forwardRef(function ShaderMountReactImpl({
 
   useEffect(() => {
     if (divRef.current && !shaderRef.current) {
-      shaderRef.current = new ShaderMount(divRef.current, fragmentShader, uniformsProp, speed, frame, minPixelRatio, maxPixelCount);
-      setInitialized(true);
+      try {
+        shaderRef.current = new ShaderMount(divRef.current, fragmentShader, uniformsProp, speed, frame, minPixelRatio, maxPixelCount);
+        setInitialized(true);
+      } catch (err) {
+        console.warn("WebGL shader disabled or unsupported:", err?.message);
+      }
     }
     return () => { shaderRef.current?.dispose(); shaderRef.current = null; };
   }, [fragmentShader]);

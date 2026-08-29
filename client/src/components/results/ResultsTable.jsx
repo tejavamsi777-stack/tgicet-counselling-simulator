@@ -20,7 +20,31 @@ import ExportButtons from "./ExportButtons";
 import ConfidenceBar from "./ConfidenceBar";
 import { getDistrictName } from "../../utils/districtNames";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE_OPTIONS = [25, 50, 75, 100];
+const DEFAULT_PAGE_SIZE = 25;
+
+// Expand university abbreviations to full names
+const UNIVERSITY_NAMES = {
+  JNTUH: "JNTU Hyderabad",
+  JNTUK: "JNTU Kakinada",
+  JNTUA: "JNTU Anantapur",
+  OU: "Osmania University",
+  KU: "Kakatiya University",
+  SVU: "SV University",
+  AU: "Andhra University",
+  SKU: "SK University",
+  ANU: "Acharya Nagarjuna Univ.",
+  PLMU: "Palamuru University",
+  TU: "Telangana University",
+  MGU: "Mahatma Gandhi Univ.",
+  MSU: "Mahatma Gandhi Univ.",
+  RBVRR: "RBVRR Women's College",
+};
+
+function getUniversityName(code) {
+  if (!code || code === "-") return "-";
+  return UNIVERSITY_NAMES[code.toString().trim().toUpperCase()] || code;
+}
 
 function SortHeader({ label, sortKeyName, sortKey, sortDir, onToggleSort, className }) {
   const active = sortKey === sortKeyName;
@@ -71,11 +95,20 @@ export default function ResultsTable({
   const [sortKey, setSortKey] = useState("statusPriority");
   const [sortDir, setSortDir] = useState("asc");
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
 
   const currentYearTab =
     activeYearTab && yearList.some((y) => String(y) === String(activeYearTab))
       ? activeYearTab
       : (yearList[0] ? String(yearList[0]) : "");
+
+  // Show University column only when at least one result has real affiliation data
+  const hasUniversityData = useMemo(() =>
+    results.some((r) => {
+      const u = (r.university || "").toString().trim();
+      return u && u !== "-";
+    }),
+  [results]);
 
   // 1. Filter by Year first
   const yearFiltered = useMemo(() => {
@@ -141,8 +174,9 @@ export default function ResultsTable({
     return rows;
   }, [statusFiltered, search, sortKey, sortDir]);
 
-  const totalPages = Math.max(1, Math.ceil(finalFiltered.length / PAGE_SIZE));
-  const pageRows = finalFiltered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const effectivePageSize = pageSize === 0 ? finalFiltered.length || 1 : pageSize;
+  const totalPages = Math.max(1, Math.ceil(finalFiltered.length / effectivePageSize));
+  const pageRows = finalFiltered.slice((page - 1) * effectivePageSize, page * effectivePageSize);
 
   function toggleSort(key) {
     if (sortKey === key) {
@@ -247,8 +281,8 @@ export default function ResultsTable({
               })}
             </div>
 
-            {/* Interactive Clickable Status Filter Buttons */}
-            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            {/* Interactive Clickable Status Filter Buttons — hidden on mobile */}
+            <div className="hidden sm:flex flex-wrap items-center gap-1.5 text-xs">
               <button
                 type="button"
                 onClick={() => {
@@ -357,6 +391,37 @@ export default function ResultsTable({
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2.5">
+            {/* Per-page selector — placed at top of table */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-gray-400 whitespace-nowrap">Show:</span>
+              <div className="flex items-center gap-1">
+                {PAGE_SIZE_OPTIONS.map((opt) => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => { setPageSize(opt); setPage(1); }}
+                    className={`h-7 min-w-[36px] rounded-lg border px-2 text-xs font-semibold transition-all ${
+                      pageSize === opt
+                        ? "border-purple-400/60 bg-purple-600/40 text-white"
+                        : "border-white/10 bg-white/5 text-gray-300 hover:bg-white/15 hover:text-white"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => { setPageSize(0); setPage(1); }}
+                  className={`h-7 rounded-lg border px-2 text-xs font-semibold transition-all ${
+                    pageSize === 0
+                      ? "border-purple-400/60 bg-purple-600/40 text-white"
+                      : "border-white/10 bg-white/5 text-gray-300 hover:bg-white/15 hover:text-white"
+                  }`}
+                >
+                  All
+                </button>
+              </div>
+            </div>
             <ExportButtons results={finalFiltered} examTitle={examTitle} />
           </div>
         </div>
@@ -375,7 +440,9 @@ export default function ResultsTable({
                 <SortHeader label="Category" sortKeyName="category" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Gender" sortKeyName="gender" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <SortHeader label="Cutoff Rank" sortKeyName="cutoff" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
-                <SortHeader label="University" sortKeyName="university" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
+                {hasUniversityData && (
+                  <SortHeader label="University" sortKeyName="university" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
+                )}
                 <SortHeader label="Status" sortKeyName="statusPriority" sortKey={sortKey} sortDir={sortDir} onToggleSort={toggleSort} />
                 <th className="px-4 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-gray-300 min-w-[90px]">
                   Chance
@@ -396,7 +463,7 @@ export default function ResultsTable({
                     className="transition-colors hover:bg-white/5"
                   >
                     <td className="px-4 py-3.5 text-xs text-gray-400 font-mono">
-                      {(page - 1) * PAGE_SIZE + i + 1}
+                      {(page - 1) * effectivePageSize + i + 1}
                     </td>
                     <td className="px-4 py-3.5 text-sm font-semibold text-white">
                       {c.name}
@@ -415,7 +482,9 @@ export default function ResultsTable({
                     <td className="px-4 py-3.5 text-xs font-bold text-purple-300 font-mono">
                       {Number(c.cutoff || 0).toLocaleString()}
                     </td>
-                    <td className="px-4 py-3.5 text-xs text-gray-300">{c.university || "-"}</td>
+                    {hasUniversityData && (
+                      <td className="px-4 py-3.5 text-xs text-gray-300">{getUniversityName(c.university)}</td>
+                    )}
                     <td className="px-4 py-3.5 text-xs">
                       <StatusBadge status={c.status} />
                     </td>
@@ -430,33 +499,35 @@ export default function ResultsTable({
         </div>
 
         {/* Pagination */}
-        {finalFiltered.length > PAGE_SIZE && (
-          <div className="flex items-center justify-between border-t border-white/10 p-4 bg-white/[0.02]">
-            <p className="text-xs text-gray-400">
-              Showing {(page - 1) * PAGE_SIZE + 1}-{Math.min(page * PAGE_SIZE, finalFiltered.length)} of{" "}
-              {finalFiltered.length}
-            </p>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-300 transition-colors hover:bg-white/10 disabled:opacity-40"
-              >
-                <ChevronLeft size={15} />
-              </button>
-              <span className="text-xs font-medium text-gray-300">
-                Page {page} of {totalPages}
-              </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 text-gray-300 transition-colors hover:bg-white/10 disabled:opacity-40"
-              >
-                <ChevronRight size={15} />
-              </button>
-            </div>
+        <div className="flex items-center justify-between border-t border-white/10 p-4 bg-white/[0.02]">
+          {/* Left: showing count */}
+          <p className="text-xs text-gray-400">
+            {pageSize === 0
+              ? `Showing all ${finalFiltered.length} colleges`
+              : `Showing ${Math.min((page - 1) * effectivePageSize + 1, finalFiltered.length)}–${Math.min(page * effectivePageSize, finalFiltered.length)} of ${finalFiltered.length}`}
+          </p>
+
+          {/* Right: prev / page / next */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1 || pageSize === 0}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-300 transition-colors hover:bg-white/10 disabled:opacity-40"
+            >
+              <ChevronLeft size={15} />
+            </button>
+            <span className="text-xs font-medium text-gray-300">
+              {pageSize === 0 ? "All" : `Page ${page} of ${totalPages}`}
+            </span>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages || pageSize === 0}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 text-gray-300 transition-colors hover:bg-white/10 disabled:opacity-40"
+            >
+              <ChevronRight size={15} />
+            </button>
           </div>
-        )}
+        </div>
       </GlowCard>
     </motion.div>
   );

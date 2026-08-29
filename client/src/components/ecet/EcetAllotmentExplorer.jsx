@@ -1151,8 +1151,13 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
         if (genderFilter === 'Male' && !g.startsWith('M')) return false;
         if (genderFilter === 'Female' && !g.startsWith('F')) return false;
       }
-      if (categoryFilter !== 'ALL' && !c.seatCategory.toUpperCase().includes(categoryFilter.toUpperCase())) {
-        return false;
+      if (categoryFilter !== 'ALL') {
+        const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
+        const candCaste = (c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+        const candSeat = (c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+        const casteMatch = candCaste === targetCat;
+        const seatMatch = candSeat === targetCat || candSeat.startsWith(targetCat + '_') || candSeat.startsWith(targetCat + 'G');
+        if (!casteMatch && !seatMatch) return false;
       }
       if (search.trim()) {
         const q = search.toLowerCase();

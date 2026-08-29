@@ -1236,7 +1236,7 @@ export default function SmartWebOptionsModal({
                     onClick={() => setStep("configure")}
                     className="text-xs font-semibold text-white/80 hover:text-white underline cursor-pointer"
                   >
-                    Reconfigure
+                    Edit
                   </button>
                 </div>
               </div>
