@@ -600,6 +600,10 @@ export function ticketClipPath(width, height, geometry = TICKET_GEOMETRY) {
 }
 
 function splitName(name, max = 3) {
+  if (!name) return [];
+  if (name.includes("\n")) {
+    return name.split("\n").map((l) => l.trim().toUpperCase()).filter(Boolean);
+  }
   const clean = name.trim().replace(/\s+/g, " ").toUpperCase();
   if (!clean) return [];
   const lines = [];

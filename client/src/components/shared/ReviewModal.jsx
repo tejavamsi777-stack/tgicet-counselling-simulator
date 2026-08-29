@@ -100,7 +100,7 @@ export default function ReviewModal({ isOpen, onClose }) {
                 <AdmitOneTicket
                   tilt={false}
                   width={ticketWidth}
-                  name="Thank You For Supporting Us"
+                  name={"Thank\nYou ❤️\nFor Supporting Us"}
                   presenter="Vuela Learn · Student Community"
                   event="Review Recorded 🙌"
                   venue="Trustpilot"
