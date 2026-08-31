@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, Sparkles, ThumbsUp, ThumbsDown } from "lucide-react";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { api } from "../../lib/api";
@@ -24,6 +24,7 @@ const stepVariants = {
 
 export default function EcetMockCounsellingPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const heroRef = useRef(null);
 
   const EXAM_SLUG = "tg-ecet";
@@ -80,6 +81,30 @@ export default function EcetMockCounsellingPage() {
     fetchColleges();
     return () => { cancelled = true; };
   }, []);
+
+  // Auto-load options if navigated from Smart Web Options Generator on Predictor page
+  useEffect(() => {
+    if (location.state?.autoLoad || location.search.includes("from=smart_options")) {
+      const saved = loadOptions(STORAGE_NS);
+      if (saved) {
+        const c = {
+          rank: saved.criteria?.rank ?? "",
+          category: saved.criteria?.category ?? "OC",
+          gender: saved.criteria?.gender ?? "Male",
+          selectedDistricts: saved.criteria?.selectedDistricts ?? [],
+        };
+        setRank(c.rank);
+        setCategory(c.category);
+        setGender(c.gender);
+        setSelectedDistricts(c.selectedDistricts);
+        setSubmitted(c);
+        setPreferences(saved.preferences || {});
+        setStep("list");
+        setStatusMessage(`✨ Loaded ${Object.keys(saved.preferences || {}).length} smart web options generated for rank ${c.rank}`);
+        setStatusType("success");
+      }
+    }
+  }, [location]);
 
   const availableDistricts = useMemo(
     () => [...new Set(allColleges.map((c) => c.district))].sort(),
