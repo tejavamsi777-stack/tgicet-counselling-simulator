@@ -50,9 +50,9 @@ export default function StatePortalPage({ stateSlugOverride }) {
 
       {/* Header Banner with Real State Outline Map (Behind text on mobile, on the right on desktop) */}
       <div className="relative mb-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12131e]/90 p-6 sm:p-8 backdrop-blur-md shadow-xl">
-        {/* Large Background Map centered behind text on Mobile (Shifted down below top badge) */}
+        {/* Large Background Map centered behind text on Mobile (Sized and aligned to fit without clipping) */}
         <div className={`pointer-events-none absolute inset-0 z-0 md:hidden flex items-center justify-center opacity-65 sm:opacity-75 overflow-hidden ${
-          stateSlug.includes("andhra") ? "translate-y-8 sm:translate-y-10" : "translate-y-7 sm:translate-y-9"
+          stateSlug.includes("andhra") ? "translate-y-3 sm:translate-y-4" : "translate-y-2 sm:translate-y-3"
         }`}>
           <img
             src={config.mapImg}
@@ -60,8 +60,8 @@ export default function StatePortalPage({ stateSlugOverride }) {
             aria-hidden="true"
             className={`w-auto object-contain brightness-110 ${
               stateSlug.includes("andhra")
-                ? "h-64 sm:h-72 max-w-[290px] drop-shadow-[0_0_30px_rgba(56,189,248,0.75)]"
-                : "h-60 sm:h-68 max-w-[250px] drop-shadow-[0_0_30px_rgba(52,211,153,0.75)]"
+                ? "h-52 sm:h-60 max-w-[260px] drop-shadow-[0_0_25px_rgba(56,189,248,0.75)]"
+                : "h-48 sm:h-56 max-w-[210px] drop-shadow-[0_0_25px_rgba(52,211,153,0.75)]"
             }`}
           />
         </div>
