@@ -36,11 +36,12 @@ export default function GoogleOneTap() {
           auto_select: false,
           cancel_on_tap_outside: true,
           itp_support: true,
+          use_fedcm_for_prompt: true,
         });
 
         window.google.accounts.id.prompt((notification) => {
-          if (notification.isNotDisplayed()) {
-            console.log("One Tap not displayed reason:", notification.getNotDisplayedReason());
+          if (notification.isNotDisplayed() && import.meta.env.DEV) {
+            // Silently handled in local development (unauthorized origin localhost)
           }
         });
 

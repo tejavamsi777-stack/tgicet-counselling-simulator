@@ -48,9 +48,25 @@ export default function StatePortalPage({ stateSlugOverride }) {
         path={`/${stateSlug}`}
       />
 
-      {/* Header Banner with Real State Outline Map to the Right */}
+      {/* Header Banner with Real State Outline Map (Behind text on mobile, on the right on desktop) */}
       <div className="relative mb-8 overflow-hidden rounded-2xl border border-white/10 bg-[#12131e]/90 p-6 sm:p-8 backdrop-blur-md shadow-xl">
-        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-16">
+        {/* Large Background Map centered behind text on Mobile (Shifted down below top badge) */}
+        <div className={`pointer-events-none absolute inset-0 z-0 md:hidden flex items-center justify-center opacity-65 sm:opacity-75 overflow-hidden ${
+          stateSlug.includes("andhra") ? "translate-y-8 sm:translate-y-10" : "translate-y-7 sm:translate-y-9"
+        }`}>
+          <img
+            src={config.mapImg}
+            alt=""
+            aria-hidden="true"
+            className={`w-auto object-contain brightness-110 ${
+              stateSlug.includes("andhra")
+                ? "h-64 sm:h-72 max-w-[290px] drop-shadow-[0_0_30px_rgba(56,189,248,0.75)]"
+                : "h-60 sm:h-68 max-w-[250px] drop-shadow-[0_0_30px_rgba(52,211,153,0.75)]"
+            }`}
+          />
+        </div>
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-16">
           <div className="max-w-2xl z-10">
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <div className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-bold ${config.badgeColor}`}>
@@ -75,15 +91,15 @@ export default function StatePortalPage({ stateSlugOverride }) {
             </p>
           </div>
 
-          {/* Real State Outline Map on the Right (Shifted Slightly Right) */}
-          <div className="shrink-0 flex items-center justify-center z-10 md:ml-12">
+          {/* Real State Outline Map on the Right (Desktop only) */}
+          <div className="hidden md:flex shrink-0 items-center justify-center z-10 md:ml-12">
             <img
               src={config.mapImg}
               alt={`${config.name} State Map Outline`}
-              className={`w-auto object-contain opacity-90 transition-transform duration-500 hover:scale-105 ${
+              className={`w-auto object-contain opacity-100 brightness-110 transition-transform duration-500 hover:scale-105 ${
                 stateSlug.includes("andhra")
-                  ? "h-36 sm:h-44 md:h-48 max-w-[240px] sm:max-w-[280px] drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]"
-                  : "h-32 sm:h-40 md:h-44 max-w-[190px] sm:max-w-[220px] drop-shadow-[0_0_12px_rgba(52,211,153,0.35)]"
+                  ? "h-36 sm:h-44 md:h-48 max-w-[240px] sm:max-w-[280px] drop-shadow-[0_0_18px_rgba(56,189,248,0.55)]"
+                  : "h-32 sm:h-40 md:h-44 max-w-[190px] sm:max-w-[220px] drop-shadow-[0_0_18px_rgba(52,211,153,0.55)]"
               }`}
             />
           </div>
