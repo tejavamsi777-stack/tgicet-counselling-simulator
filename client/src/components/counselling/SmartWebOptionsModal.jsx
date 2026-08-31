@@ -173,15 +173,15 @@ function OptionRow({
         {/* College Name & District */}
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            <p className="font-semibold text-white text-xs sm:text-sm line-clamp-1 sm:truncate">
+            <p className="font-semibold text-white text-xs sm:text-sm leading-snug break-words">
               {item.collegeName}
             </p>
             <span className="font-mono text-[10px] font-bold text-white/90 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 shrink-0">
               {item.collegeCode}
             </span>
           </div>
-          <div className="flex items-center gap-1.5 text-[11px] text-gray-300 mt-0.5">
-            {item.place && <span className="truncate max-w-[140px] sm:max-w-none">{item.place}</span>}
+          <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-gray-300 mt-0.5">
+            {item.place && <span className="break-words">{item.place}</span>}
             {item.place && item.district && <span>•</span>}
             {item.district && <span>{getDistrictName(item.district) || item.district}</span>}
           </div>
@@ -404,6 +404,8 @@ export default function SmartWebOptionsModal({
 
     try {
       const rankNum = Number(rank) || 25000;
+      const targetLowerBound = rankNum * 0.80;
+      const targetUpperBound = rankNum * 1.20;
 
       // 1a. Fetch ALL data from rank=1 for Dream college cutoffs (exact category/gender)
       //     No course filter so we get cutoffs for any branch at Dream colleges too
@@ -538,10 +540,16 @@ export default function SmartWebOptionsModal({
       // Sort by cutoff ascending (lowest rank number = tightest = hardest to get into)
       allCandidates.sort((a, b) => a.cutoff - b.cutoff);
 
-      // Pick top 7 unique colleges (each college only once, with its tightest-cutoff course)
+      // Pick top unique colleges that are strictly tighter than the user's rank (up to 7)
+      // If college cutoff >= rankNum, the user qualifies for it, so it naturally becomes Target / Safe.
       for (const candidate of allCandidates) {
         if (finalOptions.length >= 7) break;
         if (usedDreamCodes.has(candidate.cCode)) continue;
+
+        // If cutoff enters the competitive target window (>= 0.80 * rank), stop dream phase so it flows into Target Matches
+        if (rankNum > 0 && candidate.cutoff >= (rankNum * 0.80)) {
+          break;
+        }
 
         const key = `${candidate.cCode}_${candidate.courseCode}`;
         const details = collegeDetailsMap.get(candidate.cCode) || {
@@ -569,15 +577,15 @@ export default function SmartWebOptionsModal({
         });
       }
 
-      // ── Process Results Table data from predictor ──────────────────────
+      // ── Process Results Table data with FRESH Category Cutoffs from DB ──
       const normalizedResults = results.map((r) => {
         const cCode = (r.code || r.college_code || "").toString().trim().toUpperCase();
         const bCode = (r.course || r.course_code || "").toString().trim().toUpperCase();
-        const cutoffVal = Number(r.cutoff || r.cutoff_rank || 0);
-        // Use the status from the results table directly (it was set by the predictor API)
-        // Fallback to recalculating only if status is missing
-        const status = r.status ||
-          (cutoffVal > rankNum ? "safe" : (cutoffVal >= rankNum * 0.85 ? "moderate" : "risky"));
+        const key = `${cCode}_${bCode}`;
+        // Authoritative cutoff for the active category fetched from DB
+        const cutoffVal = cutoffMap.get(key) || Number(r.cutoff || r.cutoff_rank || 0);
+        const status =
+          cutoffVal > targetUpperBound ? "safe" : (cutoffVal >= targetLowerBound ? "moderate" : "risky");
         return {
           code: cCode,
           name: r.name || r.college_name || cCode,
@@ -590,16 +598,14 @@ export default function SmartWebOptionsModal({
         };
       }).filter((r) => r.code && r.course && r.cutoff > 0);
 
-      // Safe colleges: cutoff STRICTLY GREATER THAN student rank (student can definitely get in)
-      // Uses results table status="safe" OR our recalculated threshold
-      const resultsSafeColleges = normalizedResults.filter(
-        (r) => r.status === "safe" || r.cutoff > rankNum
+      // Target/Moderate: competitive colleges in the range around student's rank [0.80 * rank .. 1.20 * rank]
+      const resultsTargetColleges = normalizedResults.filter(
+        (r) => r.cutoff >= targetLowerBound && r.cutoff <= targetUpperBound
       );
 
-      // Target/Moderate: cutoff is BELOW student rank but within reach (stretch colleges)
-      // Strictly < rankNum to avoid overlapping with safe
-      const resultsTargetColleges = normalizedResults.filter(
-        (r) => r.status === "moderate" || (r.cutoff >= rankNum * 0.80 && r.cutoff < rankNum)
+      // Safe colleges: cutoff comfortably greater than student rank (> 1.20 * rank)
+      const resultsSafeColleges = normalizedResults.filter(
+        (r) => r.cutoff > targetUpperBound
       );
 
       // ── Phase 2: Target / Reach Choices ─────────────────────────────────
@@ -608,12 +614,14 @@ export default function SmartWebOptionsModal({
         const fromResults = resultsTargetColleges.filter(
           (r) => r.course === bCode && !usedKeys.has(`${r.code}_${r.course}`) && !usedDreamCodes.has(r.code)
         );
-        fromResults.sort((a, b) => Math.abs(a.cutoff - rankNum) - Math.abs(b.cutoff - rankNum));
+        // Sort by cutoff ascending (tightest/highest rank first)
+        fromResults.sort((a, b) => a.cutoff - b.cutoff);
 
         for (const r of fromResults) {
           const key = `${r.code}_${r.course}`;
           if (!usedKeys.has(key)) {
             usedKeys.add(key);
+            const actualCutoff = cutoffMap.get(key) || r.cutoff;
             finalOptions.push({
               id: key,
               collegeCode: r.code,
@@ -624,9 +632,9 @@ export default function SmartWebOptionsModal({
               tier: "target",
               tierLabel: "Target Match",
               tierColor: "text-yellow-400 bg-yellow-500/15 border-yellow-500/35",
-              cutoff: r.cutoff,
+              cutoff: actualCutoff,
               cutoffYear: r.year || latestYear,
-              gap: Math.abs(r.cutoff - rankNum),
+              gap: Math.abs(actualCutoff - rankNum),
               status: "moderate",
             });
           }
@@ -640,8 +648,8 @@ export default function SmartWebOptionsModal({
           const courseCode = key.slice(lastUnderscore + 1);
 
           if (courseCode === bCode && !usedKeys.has(key) && !usedDreamCodes.has(cCode)) {
-            // Target = college cutoff is below student rank (stretch/risky) but within reach
-            if (cutoffRank >= rankNum * 0.80 && cutoffRank < rankNum) {
+            // Target = competitive range around student's rank [0.80 * rank .. 1.20 * rank]
+            if (cutoffRank >= targetLowerBound && cutoffRank <= targetUpperBound) {
               const details = collegeDetailsMap.get(cCode) || { code: cCode, name: cCode, place: "", district: "" };
               branchColleges.push({
                 id: key,
@@ -662,7 +670,8 @@ export default function SmartWebOptionsModal({
           }
         }
 
-        branchColleges.sort((a, b) => a.gap - b.gap);
+        // Sort by cutoff ascending (tightest/highest rank first)
+        branchColleges.sort((a, b) => a.cutoff - b.cutoff);
         for (const opt of branchColleges) {
           const key = `${opt.collegeCode}_${opt.course}`;
           if (!usedKeys.has(key)) {
@@ -686,6 +695,7 @@ export default function SmartWebOptionsModal({
           const key = `${r.code}_${r.course}`;
           if (!usedKeys.has(key)) {
             usedKeys.add(key);
+            const actualCutoff = cutoffMap.get(key) || r.cutoff;
             finalOptions.push({
               id: key,
               collegeCode: r.code,
@@ -696,7 +706,7 @@ export default function SmartWebOptionsModal({
               tier: "safe",
               tierLabel: "Safe College",
               tierColor: "text-emerald-400 bg-emerald-500/15 border-emerald-500/35",
-              cutoff: r.cutoff,
+              cutoff: actualCutoff,
               cutoffYear: r.year || latestYear,
               status: "safe",
             });
@@ -712,8 +722,8 @@ export default function SmartWebOptionsModal({
             const courseCode = key.slice(lastUnderscore + 1);
 
             if (courseCode === bCode && !usedKeys.has(key) && !usedDreamCodes.has(cCode)) {
-              // Safe = college cutoff is strictly greater than student rank (student can get in)
-              if (cutoffRank > rankNum) {
+              // Safe = cutoff comfortably exceeds student rank (> 1.20 * rank)
+              if (cutoffRank > targetUpperBound) {
                 const details = collegeDetailsMap.get(cCode) || { code: cCode, name: cCode, place: "", district: "" };
                 safeColleges.push({
                   id: key,
