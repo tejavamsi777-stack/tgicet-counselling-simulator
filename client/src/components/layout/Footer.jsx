@@ -30,7 +30,7 @@ function AboutPanelContent() {
       </div>
 
       <p>
-        <strong className="text-white">VuelaLearn</strong> (vuelalearn.vercel.app) is India&apos;s leading <span className="text-emerald-400 font-bold">100% free</span> state entrance counselling simulator and admission guidance platform. We empower over 100,000+ students and parents across Telangana, Andhra Pradesh, and Karnataka to navigate competitive admissions with precision, confidence, and transparent data.
+        <strong className="text-white">VuelaLearn</strong> (vuelalearn.in) is India&apos;s leading <span className="text-emerald-400 font-bold">100% free</span> state entrance counselling simulator and admission guidance platform. We empower students and parents across Telangana, Andhra Pradesh, and Karnataka to navigate competitive admissions with precision, confidence, and transparent data.
       </p>
 
       {/* Flagship Feature: Smart Web Option Generator */}

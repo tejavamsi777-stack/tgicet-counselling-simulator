@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
       <div className="text-center mb-6 sm:mb-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 mb-2">
           <Sparkles size={14} />
-          <span>Why Over 100,000+ Students &amp; Parents Trust Us</span>
+          <span>Why Top Students &amp; Aspirants Choose Us</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
           Why Choose Our Counselling Platform?
