@@ -39,29 +39,9 @@ export default function AdSenseUnit({
     }
   }, [isEnabled, isConfigured]);
 
-  // If ads are globally disabled, render nothing
-  if (!isEnabled) {
+  // If ads are globally disabled or slot is unconfigured, render nothing (Google Auto Ads handles placements automatically)
+  if (!isEnabled || !isConfigured) {
     return null;
-  }
-
-  // Development / Unconfigured Placeholder Mode
-  if (!isConfigured) {
-    return (
-      <aside
-        aria-label="Advertisement placeholder"
-        className={`relative mx-auto my-6 w-full max-w-5xl overflow-hidden rounded-2xl border border-dashed border-white/15 bg-white/[0.02] p-4 text-center backdrop-blur-sm transition-all ${className}`}
-        style={{ minHeight: `${minHeight}px` }}
-      >
-        <div className="flex min-h-[70px] flex-col items-center justify-center gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-gray-400">
-            {label}
-          </span>
-          <span className="text-xs text-gray-500">
-            {slotName ? `Slot: ${slotName}` : "Google AdSense Responsive Unit"}
-          </span>
-        </div>
-      </aside>
-    );
   }
 
   // Production Ad Unit
