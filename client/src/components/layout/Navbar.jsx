@@ -375,46 +375,21 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* 4. About Menu Dropdown */}
-          <div className="relative">
-            <button
-              onMouseEnter={() => handleMenuHover("about")}
-              onClick={() => setActiveDropdown(activeDropdown === "about" ? null : "about")}
-              className="relative flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-colors hover:text-white"
-            >
-              {hovered === "about" && (
-                <motion.div
-                  layoutId="nav-hover-pill"
-                  className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] backdrop-blur-md"
-                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                />
-              )}
-              <span className="relative z-10">About</span>
-            </button>
-
-            <AnimatePresence>
-              {activeDropdown === "about" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
-                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute right-0 top-full z-50 mt-2 w-88 rounded-3xl border border-white/20 bg-[#120d1f]/98 p-5 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
-                >
-                  <div className="mb-2.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
-                      <Info size={16} className="text-purple-300" />
-                      <span>About VuelaLearn</span>
-                    </div>
-                    <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
-                      100% Free
-                    </span>
-                  </div>
-                  <p className="text-xs leading-relaxed text-gray-300">{ABOUT_TEXT}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* 4. About Link */}
+          <Link
+            to="/about"
+            onMouseEnter={() => setHovered("about")}
+            className="relative flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-colors hover:text-white"
+          >
+            {hovered === "about" && (
+              <motion.div
+                layoutId="nav-hover-pill"
+                className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] backdrop-blur-md"
+                transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              />
+            )}
+            <span className="relative z-10">About</span>
+          </Link>
         </nav>
 
         {/* User Profile, Rate Us & Mobile Toggle */}
@@ -853,31 +828,19 @@ function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
         </AnimatePresence>
       </div>
 
-      {/* Accordion 4: About */}
+      {/* Item 4: About Us */}
       <div className="border-b border-white/10">
-        <button
-          onClick={() => toggleSection("about")}
+        <Link
+          to="/about"
+          onClick={onClose}
           className="flex w-full items-center justify-between px-6 py-3 text-left font-medium text-white hover:bg-white/10"
         >
           <span className="flex items-center gap-2.5">
-            <Info size={16} className="text-gray-400" />
-            About
+            <Info size={16} className="text-purple-400" />
+            About Us
           </span>
-          <ChevronDown size={14} className={`text-gray-400 transition-transform ${expandedSection === "about" ? "rotate-180" : ""}`} />
-        </button>
-        <AnimatePresence>
-          {expandedSection === "about" && (
-            <motion.p
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.15 }}
-              className="overflow-hidden bg-white/5 px-6 py-3 text-xs leading-relaxed text-gray-300"
-            >
-              {ABOUT_TEXT}
-            </motion.p>
-          )}
-        </AnimatePresence>
+          <ChevronRight size={14} className="text-gray-400" />
+        </Link>
       </div>
 
       {/* Rate & Review Button */}
