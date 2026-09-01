@@ -12,14 +12,27 @@ export default function ContactPage() {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
+    const subject = `[${formData.exam}] Support Inquiry - ${formData.name}`;
+    const body = `Hi Vuela Learn Team,\n\nName: ${formData.name}\nEmail: ${formData.email}\nExam: ${formData.exam}\n\nMessage:\n${formData.message}\n\n---\nSent via Vuela Learn Admissions Portal (https://vuelalearn.in)`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=vuelalearn@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const standardMailto = `mailto:vuelalearn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
     setLoading(true);
+
+    // 1. Try opening Gmail compose in new tab directly
+    const opened = window.open(gmailUrl, "_blank");
+    
+    // 2. If browser blocked popup or on mobile native email, fallback to mailto
+    if (!opened || opened.closed || typeof opened.closed === "undefined") {
+      window.location.href = standardMailto;
+    }
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }, 400);
   }
-
-  const mailtoUrl = `mailto:vuelalearn@gmail.com?subject=${encodeURIComponent(`[${formData.exam}] Support Inquiry from ${formData.name || "Student"}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nExam: ${formData.exam}\n\nMessage:\n${formData.message}`)}`;
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 sm:px-6 py-10 sm:py-16 text-gray-300">
@@ -101,11 +114,13 @@ export default function ContactPage() {
                 
                 <div className="pt-3 flex flex-wrap gap-2 justify-center">
                   <a
-                    href={mailtoUrl}
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=vuelalearn@gmail.com&su=${encodeURIComponent(`[${formData.exam}] Support Inquiry - ${formData.name}`)}&body=${encodeURIComponent(`Hi Vuela Learn Team,\n\nName: ${formData.name}\nEmail: ${formData.email}\nExam: ${formData.exam}\n\nMessage:\n${formData.message}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-500/20 hover:bg-purple-500/30 px-4 py-2 text-xs font-semibold text-purple-200 transition-colors"
                   >
                     <Mail size={13} />
-                    <span>Open in Email App</span>
+                    <span>Open in Gmail</span>
                   </a>
                   <button
                     type="button"

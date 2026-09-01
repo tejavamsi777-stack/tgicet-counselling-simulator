@@ -19,6 +19,10 @@ import {
   Info,
   Star,
   Database,
+  Shield,
+  Scale,
+  HelpCircle,
+  ChevronRight,
 } from "lucide-react";
 import Logo from "./Logo";
 import ProfileMenu from "./ProfileMenu";
@@ -375,21 +379,99 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* 4. About Link */}
-          <Link
-            to="/about"
-            onMouseEnter={() => setHovered("about")}
-            className="relative flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-colors hover:text-white"
-          >
-            {hovered === "about" && (
-              <motion.div
-                layoutId="nav-hover-pill"
-                className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] backdrop-blur-md"
-                transition={{ type: "spring", stiffness: 350, damping: 28 }}
+          {/* 4. About & Policies Dropdown */}
+          <div className="relative">
+            <button
+              onMouseEnter={() => handleMenuHover("about")}
+              onClick={() => setActiveDropdown(activeDropdown === "about" ? null : "about")}
+              className="relative flex items-center gap-1.5 rounded-full px-4 py-1.5 transition-colors hover:text-white cursor-pointer"
+            >
+              {hovered === "about" && (
+                <motion.div
+                  layoutId="nav-hover-pill"
+                  className="absolute inset-0 rounded-full border border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] backdrop-blur-md"
+                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                />
+              )}
+              <span className="relative z-10">About &amp; Policies</span>
+              <ChevronDown
+                size={12}
+                className={`relative z-10 text-white/60 transition-transform duration-200 ${
+                  activeDropdown === "about" ? "rotate-180 text-white" : ""
+                }`}
               />
-            )}
-            <span className="relative z-10">About</span>
-          </Link>
+            </button>
+
+            <AnimatePresence>
+              {activeDropdown === "about" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute right-0 top-full z-50 mt-2 w-72 rounded-3xl border border-white/20 bg-[#120d1f]/98 p-3 text-left shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl text-white"
+                >
+                  <div className="space-y-1">
+                    <Link
+                      to="/about"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-center gap-3 rounded-2xl p-2.5 transition-colors hover:bg-white/10 group"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                        <Info size={15} />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white group-hover:text-purple-300 transition-colors">About Vuela Learn</div>
+                        <div className="text-[10px] text-gray-400">Our mission &amp; data authenticity</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      to="/privacy-policy"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-center gap-3 rounded-2xl p-2.5 transition-colors hover:bg-white/10 group"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        <Shield size={15} />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white group-hover:text-cyan-300 transition-colors">Privacy &amp; Cookie Policy</div>
+                        <div className="text-[10px] text-gray-400">Data protection &amp; AdSense rules</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      to="/terms"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-center gap-3 rounded-2xl p-2.5 transition-colors hover:bg-white/10 group"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        <Scale size={15} />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white group-hover:text-amber-300 transition-colors">Terms of Service</div>
+                        <div className="text-[10px] text-gray-400">Simulation disclaimer &amp; rules</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      to="/contact"
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-center gap-3 rounded-2xl p-2.5 transition-colors hover:bg-white/10 group"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <HelpCircle size={15} />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white group-hover:text-emerald-300 transition-colors">Contact Support</div>
+                        <div className="text-[10px] text-gray-400">Direct student help desk &amp; email</div>
+                      </div>
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* User Profile, Rate Us & Mobile Toggle */}
@@ -828,19 +910,58 @@ function MobileMenuList({ onClose, onOpenReview, onOpenShare }) {
         </AnimatePresence>
       </div>
 
-      {/* Item 4: About Us */}
+      {/* Accordion 4: About & Policies */}
       <div className="border-b border-white/10">
-        <Link
-          to="/about"
-          onClick={onClose}
+        <button
+          onClick={() => toggleSection("policies")}
           className="flex w-full items-center justify-between px-6 py-3 text-left font-medium text-white hover:bg-white/10"
         >
           <span className="flex items-center gap-2.5">
-            <Info size={16} className="text-purple-400" />
-            About Us
+            <Shield size={16} className="text-purple-400" />
+            About &amp; Policies
           </span>
-          <ChevronRight size={14} className="text-gray-400" />
-        </Link>
+          <ChevronDown size={14} className={`text-gray-400 transition-transform ${expandedSection === "policies" ? "rotate-180" : ""}`} />
+        </button>
+        <AnimatePresence>
+          {expandedSection === "policies" && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.15 }}
+              className="space-y-1 bg-white/5 px-6 py-2.5 text-xs"
+            >
+              <Link to="/about" onClick={onClose} className="flex items-center justify-between py-2 text-gray-300 hover:text-white">
+                <span className="flex items-center gap-2">
+                  <Info size={14} className="text-purple-400" />
+                  <span>About Vuela Learn</span>
+                </span>
+                <ChevronRight size={13} className="text-gray-500" />
+              </Link>
+              <Link to="/privacy-policy" onClick={onClose} className="flex items-center justify-between py-2 text-gray-300 hover:text-white">
+                <span className="flex items-center gap-2">
+                  <Shield size={14} className="text-cyan-400" />
+                  <span>Privacy &amp; Cookie Policy</span>
+                </span>
+                <ChevronRight size={13} className="text-gray-500" />
+              </Link>
+              <Link to="/terms" onClick={onClose} className="flex items-center justify-between py-2 text-gray-300 hover:text-white">
+                <span className="flex items-center gap-2">
+                  <Scale size={14} className="text-amber-400" />
+                  <span>Terms of Service</span>
+                </span>
+                <ChevronRight size={13} className="text-gray-500" />
+              </Link>
+              <Link to="/contact" onClick={onClose} className="flex items-center justify-between py-2 text-gray-300 hover:text-white">
+                <span className="flex items-center gap-2">
+                  <HelpCircle size={14} className="text-emerald-400" />
+                  <span>Contact Support</span>
+                </span>
+                <ChevronRight size={13} className="text-gray-500" />
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Rate & Review Button */}
