@@ -1,5 +1,12 @@
 import * as cheerio from "cheerio";
+import { Agent, fetch as undiciFetch } from "undici";
 import { pool } from "../config/database.js";
+
+const customAgent = new Agent({
+  connect: {
+    rejectUnauthorized: false,
+  },
+});
 
 const PORTALS = {
   eapcet: {
@@ -31,11 +38,12 @@ const PORTALS = {
 // In-memory hot cache fallback
 const inMemoryCache = new Map();
 
-async function fetchHtml(url, timeoutMs = 8000) {
+async function fetchHtml(url, timeoutMs = 12000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const resp = await fetch(url, {
+    const resp = await undiciFetch(url, {
+      dispatcher: customAgent,
       signal: controller.signal,
       headers: {
         "User-Agent":
@@ -83,6 +91,7 @@ export async function scrapePortalNotifications(exam = "eapcet") {
         if (exam === "eapcet") finalHref = "/eapcet/allotments";
         else if (exam === "ecet") finalHref = "/tg-ecet/allotments";
         else if (exam === "polycet") finalHref = "/tg-polycet/allotments";
+        else if (exam === "icet") finalHref = "/tg-icet/allotments";
         else finalHref = "/allotments";
       }
 
@@ -96,6 +105,10 @@ export async function scrapePortalNotifications(exam = "eapcet") {
         title.toUpperCase().includes("ADMISSION") ||
         title.toUpperCase().includes("PRESS") ||
         title.toUpperCase().includes("COUNSELLING") ||
+        title.toUpperCase().includes("GUIDELINE") ||
+        title.toUpperCase().includes("USER GUIDE") ||
+        title.toUpperCase().includes("PRIORITY") ||
+        title.toUpperCase().includes("LASTRANK") ||
         isAllotment ||
         isPdf;
 
@@ -209,6 +222,6 @@ export function initLiveScraperScheduler() {
       console.warn("[Live Sync Warning]:", err.message);
     }
   };
-  setTimeout(safeRun, 5000);
+  setTimeout(safeRun, 1500);
   schedulerTimer = setInterval(safeRun, 3 * 60 * 1000);
 }

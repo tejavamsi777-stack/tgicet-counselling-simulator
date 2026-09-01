@@ -21,9 +21,12 @@ export default function EcetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG ECET Document Checklist | Certificate Verification Guide"
-        description="Official document requirements for TG ECET Help Line Centre (HLC) certificate verification. Interactive checklist with category filters for lateral entry admissions."
+        title="TG ECET 2027 Certificate Verification Documents | Diploma HLC Checklist"
+        description="Complete document checklist for TG ECET 2027 diploma certificate verification at Help Line Centres (HLC). Provisional certificate rules and TS ePASS guidelines."
+        keywords="tg ecet certificate verification documents 2027, ts ecet hlc checklist, diploma marks memo required ecet verification, tg ecet documents list"
         path="/tg-ecet/documents"
+        toolType="guide"
+        examName="TG ECET"
       />
 
       {/* Back link */}

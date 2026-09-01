@@ -10,9 +10,12 @@ export default function EcetAllotmentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG ECET College-Wise Seat Allotment Explorer | Lateral Entry Candidate Records"
-        description="Explore TG ECET lateral entry college and branch seat allotments. View candidate ranks, category distribution, closing cutoffs, and comprehensive admission analytics."
+        title="TG ECET Seat Allotments 2027 | Lateral Entry Candidate Records & Cutoffs"
+        description="Official TG ECET college-wise provisional seat allotment records from tgecet.nic.in. Search candidate ranks, diploma branch seats, and closing cutoffs across 200+ engineering colleges."
+        keywords="tg ecet seat allotments 2027, ts ecet college wise candidate allotment list, tgecet.nic.in candidate wise allotment records, tg ecet lateral entry allotments"
         path="/tg-ecet/allotments"
+        toolType="explorer"
+        examName="TG ECET"
       />
 
       {/* Page Header */}

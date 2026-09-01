@@ -12,6 +12,7 @@ import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { smoothScrollTo } from "../../lib/utils";
+import Seo from "../../components/shared/Seo";
 
 function mapResults(results, gender, year) {
   return results.map((r) => ({
@@ -166,12 +167,20 @@ export default function PolycetPredictorPage() {
         </AnimatePresence>
 
         <main className="mx-auto max-w-7xl px-4 pt-8 pb-56 sm:px-6 lg:px-8">
+          <Seo
+            title="TG POLYCET 2027 College Predictor | Polytechnic Diploma Colleges by Rank"
+            description="Find eligible polytechnic diploma colleges based on your TG POLYCET 2027 SSC/10th rank, category, and preferred branch (CME, ECE, Mechanical, Civil)."
+            keywords="tg polycet college predictor 2027, ts polycet diploma college predictor by rank, masab tank polytechnic cutoff rank, top polytechnic colleges in telangana by rank"
+            path="/exams/tg-polycet/predictor"
+            toolType="predictor"
+            examName="TG POLYCET"
+          />
           <button
-            onClick={() => navigate("/")}
-            className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+            onClick={() => navigate("/tg-polycet")}
+            className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
-            Back to Home
+            Back to TG POLYCET
           </button>
 
           <Hero title="TG POLYCET College Predictor" subtitle="Predict Polytechnic & Diploma admissions using verified TG POLYCET cutoff data." />

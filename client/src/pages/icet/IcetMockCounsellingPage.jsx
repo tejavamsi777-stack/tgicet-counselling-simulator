@@ -14,6 +14,7 @@ import ScrambleText from "../../components/effects/ScrambleText";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
+import Seo from "../../components/shared/Seo";
 
 const ICET_COURSE_GROUPS = [
   {
@@ -297,6 +298,15 @@ export default function IcetMockCounsellingPage() {
 
   return (
     <main className={`relative mx-auto overflow-visible ${step === "list" ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2" : "max-w-6xl space-y-8 px-6 pb-44 pt-6"}`}>
+      <Seo
+        title="TG ICET 2027 Web Options Simulator | Mock Option Entry Practice Portal"
+        description="Practice TG ICET 2027 web options entry with zero risk. Official portal replica with real college codes, MBA & MCA branch priority reordering, and PDF download."
+        keywords="tg icet web options simulator 2027, ts icet mock counselling option entry, tgicet nic in web options practice portal, tg icet web options entry portal 2027"
+        path="/exams/tg-icet/mock-counselling"
+        toolType="simulator"
+        examName="TG ICET"
+      />
+
       {/* OFFICIAL SIMULATION DISCLAIMER RIBBON */}
       <div className="w-full rounded-xl border border-red-500/40 bg-red-950/40 p-2.5 sm:px-4 sm:py-2 text-center shadow-lg backdrop-blur-md">
         <p className="text-xs sm:text-sm font-bold text-red-300 tracking-wide flex items-center justify-center gap-1.5">
@@ -315,13 +325,13 @@ export default function IcetMockCounsellingPage() {
         <GlowCard customSize={true} glowColor="purple" className="p-8 sm:p-12 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
             <Sparkles size={12} />
-            <span>TG ICET Practice Web Options</span>
+            <span>TG ICET 2027 Practice Web Options</span>
           </span>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
-            <ScrambleText text="ICET Mock Counselling" duration={800} /> Simulator
+            <ScrambleText text="TG ICET 2027 Mock Counselling" duration={800} /> Simulator
           </h1>
           <p className="mt-3 text-base text-gray-300">
-            TG ICET (MBA / MCA) — Select your district(s), then build your preference list.
+            TG ICET 2027 (MBA / MCA) — Select your district(s), then build your preference list.
           </p>
         </GlowCard>
       </div>

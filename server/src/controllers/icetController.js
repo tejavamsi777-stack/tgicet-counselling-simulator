@@ -272,14 +272,13 @@ export const icetController = {
   // GET /api/icet/notifications
   async getNotifications(req, res, next) {
     try {
-      const scraped = await getIcetScrapeData();
+      const force = req.query.force === "true" || req.query.refresh === "true";
+      const scraped = await getIcetScrapeData(force);
       res.json({
         success: true,
-        data: {
-          notifications: scraped.notifications,
-          lastScraped: scraped.lastScraped,
-          source: scraped.sourceUrl,
-        },
+        data: scraped.notifications || [],
+        lastScraped: scraped.lastScraped,
+        source: scraped.sourceUrl,
       });
     } catch (err) {
       next(err);

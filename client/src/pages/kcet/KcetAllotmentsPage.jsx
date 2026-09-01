@@ -11,9 +11,12 @@ export default function KcetAllotmentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="KCET College-Wise Seat Allotment Explorer | KEA Candidate Records"
-        description="Explore KCET (Karnataka CET) college and branch seat allotments. View candidate ranks, KEA categories (GM, 2AG, 3BG, SCG, STG), closing cutoffs, and seat analytics."
+        title="KCET Seat Allotments 2027 | Karnataka Engineering Candidate Cutoffs & Records"
+        description="Official KCET (Karnataka CET) college-wise seat allotment records from kea.kar.nic.in. Search RVCE, BMSCE, MSRIT candidate ranks, KEA categories, and closing cutoffs."
+        keywords="kcet seat allotments 2027, kea kar nic in candidate allotment list, rvc bmsce msrit cutoffs kcet, kcet 2027 closing ranks"
         path="/kcet/allotments"
+        toolType="explorer"
+        examName="KCET"
       />
 
       {/* Page Header */}

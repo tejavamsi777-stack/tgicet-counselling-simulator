@@ -21,9 +21,12 @@ export default function PolycetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG POLYCET 2026 Document Checklist | HLC Certificate Verification Guide"
-        description="Official document requirements for TG POLYCET Help Line Centre (HLC) certificate verification. Interactive checklist with category filters for OC, BC, SC, ST, and EWS candidates."
+        title="TG POLYCET 2027 Certificate Verification Documents | 10th Diploma HLC Checklist"
+        description="Complete document checklist for TG POLYCET 2027 certificate verification at Help Line Centres (HLC). 10th hall ticket, study certificates & MeeSeva guidelines."
+        keywords="tg polycet certificate verification documents 2027, ts polycet hlc checklist, 10th hall ticket caste income certificate polycet, polycet required documents"
         path="/tg-polycet/documents"
+        toolType="guide"
+        examName="TG POLYCET"
       />
 
       {/* Back link */}

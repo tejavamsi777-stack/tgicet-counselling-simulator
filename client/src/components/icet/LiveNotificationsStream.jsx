@@ -11,11 +11,12 @@ export default function LiveNotificationsStream() {
   const [lastSynced, setLastSynced] = useState('Just now');
   const [syncSuccess, setSyncSuccess] = useState(false);
 
-  const fetchNotifs = async () => {
+  const fetchNotifs = async (force = false) => {
     try {
-      const res = await icetApi.getNotifications();
-      if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
-        setLiveList(res.data);
+      const res = await icetApi.getNotifications(force ? { force: true } : {});
+      const list = Array.isArray(res?.data) ? res.data : (res?.data?.notifications || []);
+      if (list && list.length > 0) {
+        setLiveList(list);
       }
     } catch {
       // ignore network errors gracefully
@@ -23,7 +24,8 @@ export default function LiveNotificationsStream() {
   };
 
   useEffect(() => {
-    const interval = setInterval(fetchNotifs, 60000);
+    fetchNotifs(false);
+    const interval = setInterval(() => fetchNotifs(false), 60000);
     return () => clearInterval(interval);
   }, []);
 
@@ -32,7 +34,7 @@ export default function LiveNotificationsStream() {
     setSyncSuccess(false);
 
     try {
-      await fetchNotifs();
+      await fetchNotifs(true);
       setLastSynced(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
       setSyncSuccess(true);
       setTimeout(() => setSyncSuccess(false), 3000);
@@ -59,7 +61,7 @@ export default function LiveNotificationsStream() {
               <Bell size={13} />
             </div>
             <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              TG ICET 2026 Notifications &amp; Circulars
+              TG ICET Notifications &amp; Circulars
             </h2>
           </div>
           <p className="text-[11px] text-white/50 mt-0.5">

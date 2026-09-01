@@ -19,6 +19,8 @@ const IcetMockCounsellingPage = lazy(() => import("./pages/icet/IcetMockCounsell
 const IcetAllotmentsPage = lazy(() => import("./pages/icet/IcetAllotmentsPage"));
 const IcetComparePage = lazy(() => import("./pages/icet/IcetComparePage"));
 const IcetDocumentsPage = lazy(() => import("./pages/icet/IcetDocumentsPage"));
+const IcetMarksVsRankPage = lazy(() => import("./pages/icet/IcetMarksVsRankPage"));
+const CreateWebOptionsPage = lazy(() => import("./pages/counselling/CreateWebOptionsPage"));
 
 const EapcetHome = lazy(() => import("./pages/eapcet/EapcetHome"));
 const EapcetPredictorPage = lazy(() => import("./pages/eapcet/EapcetPredictorPage"));
@@ -26,6 +28,7 @@ const EapcetMockCounsellingPage = lazy(() => import("./pages/eapcet/EapcetMockCo
 const EapcetDocumentsPage = lazy(() => import("./pages/eapcet/EapcetDocumentsPage"));
 const EapcetComparePage = lazy(() => import("./pages/eapcet/EapcetComparePage"));
 const EapcetAllotmentsPage = lazy(() => import("./pages/eapcet/EapcetAllotmentsPage"));
+const EapcetMarksVsRankPage = lazy(() => import("./pages/eapcet/EapcetMarksVsRankPage"));
 const CollegeProfilePage = lazy(() => import("./pages/eapcet/CollegeProfilePage"));
 
 const ApEapcetHome = lazy(() => import("./pages/ap-eapcet/EapcetHome"));
@@ -184,6 +187,14 @@ function MainContent() {
                   <Route path="/tg-icet/documents" element={<IcetDocumentsPage />} />
                   <Route path="/exams/tg-icet/documents" element={<IcetDocumentsPage />} />
 
+                  <Route path="/icet/marks-vs-rank" element={<IcetMarksVsRankPage />} />
+                  <Route path="/tg-icet/marks-vs-rank" element={<IcetMarksVsRankPage />} />
+                  <Route path="/exams/tg-icet/marks-vs-rank" element={<IcetMarksVsRankPage />} />
+
+                  <Route path="/icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
+                  <Route path="/tg-icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
+                  <Route path="/exams/tg-icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
+
                   {/* EAPCET Dedicated Pages */}
                   <Route path="/eapcet/predictor" element={<EapcetPredictorPage />} />
                   <Route path="/tg-eapcet/predictor" element={<EapcetPredictorPage />} />
@@ -191,6 +202,13 @@ function MainContent() {
 
                   <Route path="/ap-eapcet/predictor" element={<ApEapcetPredictorPage />} />
                   <Route path="/exams/ap-eapcet/predictor" element={<ApEapcetPredictorPage />} />
+
+                  <Route path="/eapcet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-eapcet" />} />
+                  <Route path="/tg-eapcet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-eapcet" />} />
+                  <Route path="/exams/tg-eapcet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-eapcet" />} />
+
+                  <Route path="/ap-eapcet/create-web-options" element={<CreateWebOptionsPage examOverride="ap-eapcet" />} />
+                  <Route path="/exams/ap-eapcet/create-web-options" element={<CreateWebOptionsPage examOverride="ap-eapcet" />} />
 
                   <Route path="/eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
                   <Route path="/tg-eapcet/mock-counselling" element={<EapcetMockCounsellingPage />} />
@@ -213,6 +231,9 @@ function MainContent() {
                   <Route path="/tg-eapcet/allotments" element={<EapcetAllotmentsPage />} />
                   <Route path="/eapcet/allotments" element={<EapcetAllotmentsPage />} />
 
+                  <Route path="/tg-eapcet/marks-vs-rank" element={<EapcetMarksVsRankPage />} />
+                  <Route path="/exams/tg-eapcet/marks-vs-rank" element={<EapcetMarksVsRankPage />} />
+
                   <Route path="/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
                   <Route path="/exams/ap-eapcet/allotments" element={<ApEapcetAllotmentsPage />} />
                   <Route path="/kcet" element={<KcetAllotmentsPage />} />
@@ -229,6 +250,9 @@ function MainContent() {
                   <Route path="/tg-ecet/predictor" element={<ProtectedRoute><EcetPredictorPage /></ProtectedRoute>} />
                   <Route path="/exams/tg-ecet/predictor" element={<ProtectedRoute><EcetPredictorPage /></ProtectedRoute>} />
 
+                  <Route path="/tg-ecet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-ecet" />} />
+                  <Route path="/exams/tg-ecet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-ecet" />} />
+
                   <Route path="/ecet/mock-counselling" element={<ProtectedRoute><EcetMockCounsellingPage /></ProtectedRoute>} />
                   <Route path="/tg-ecet/mock-counselling" element={<ProtectedRoute><EcetMockCounsellingPage /></ProtectedRoute>} />
                   <Route path="/exams/tg-ecet/mock-counselling" element={<ProtectedRoute><EcetMockCounsellingPage /></ProtectedRoute>} />
@@ -237,18 +261,21 @@ function MainContent() {
                   <Route path="/tg-ecet/compare" element={<EcetComparePage />} />
                   <Route path="/exams/tg-ecet/compare" element={<EcetComparePage />} />
 
-                  <Route path="/ecet/documents" element={<EcetDocumentsPage />} />
-                  <Route path="/tg-ecet/documents" element={<EcetDocumentsPage />} />
-                  <Route path="/exams/tg-ecet/documents" element={<EcetDocumentsPage />} />
-
                   <Route path="/ecet/allotments" element={<EcetAllotmentsPage />} />
                   <Route path="/tg-ecet/allotments" element={<EcetAllotmentsPage />} />
                   <Route path="/exams/tg-ecet/allotments" element={<EcetAllotmentsPage />} />
+
+                  <Route path="/ecet/documents" element={<EcetDocumentsPage />} />
+                  <Route path="/tg-ecet/documents" element={<EcetDocumentsPage />} />
+                  <Route path="/exams/tg-ecet/documents" element={<EcetDocumentsPage />} />
 
                   {/* POLYCET Dedicated Pages */}
                   <Route path="/polycet/predictor" element={<ProtectedRoute><PolycetPredictorPage /></ProtectedRoute>} />
                   <Route path="/tg-polycet/predictor" element={<ProtectedRoute><PolycetPredictorPage /></ProtectedRoute>} />
                   <Route path="/exams/tg-polycet/predictor" element={<ProtectedRoute><PolycetPredictorPage /></ProtectedRoute>} />
+
+                  <Route path="/tg-polycet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-polycet" />} />
+                  <Route path="/exams/tg-polycet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-polycet" />} />
 
                   <Route path="/polycet/mock-counselling" element={<ProtectedRoute><PolycetMockCounsellingPage /></ProtectedRoute>} />
                   <Route path="/tg-polycet/mock-counselling" element={<ProtectedRoute><PolycetMockCounsellingPage /></ProtectedRoute>} />

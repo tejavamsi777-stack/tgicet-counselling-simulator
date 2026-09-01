@@ -456,11 +456,11 @@ export default function SmartWebOptionsModal({
 
         if (cutoffRank > 0) {
           const existing = yearTracker.get(key);
-          // Prefer later year; within same year prefer the lower closing rank
+          // Prefer later year; within same year prefer the higher closing cutoff rank
           if (
             !existing ||
             rowYear > existing.year ||
-            (rowYear === existing.year && cutoffRank < existing.cutoff)
+            (rowYear === existing.year && cutoffRank > existing.cutoff)
           ) {
             yearTracker.set(key, { year: rowYear, cutoff: cutoffRank });
           }

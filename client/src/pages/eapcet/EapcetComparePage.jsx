@@ -15,9 +15,12 @@ export default function EapcetComparePage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title={`${c1} vs ${c2} Comparison | TG EAPCET Engineering`}
-        description={`Side-by-side comparison between ${c1} and ${c2} covering cutoffs, placement CTCs, NIRF ratings, and tuition fees.`}
+        title={c1 && c2 && c1 !== 'CBIT' ? `${c1} vs ${c2} Comparison | TG EAPCET 2027 Engineering` : `Compare Engineering Colleges | TG EAPCET 2027 College Comparison Matrix`}
+        description={`Side-by-side comparison of Telangana engineering colleges covering cutoffs, placement packages, NIRF ratings, and tuition fee structures.`}
+        keywords="compare engineering colleges in hyderabad, cbit vs vnr vjiet compare, tg eapcet college comparison tool, top engineering colleges in telangana compare, tg eapcet 2027 college compare"
         path="/tg-eapcet/compare"
+        toolType="comparison"
+        examName="TG EAPCET"
       />
 
       {/* Back button */}
@@ -32,13 +35,13 @@ export default function EapcetComparePage() {
       {/* Header */}
       <div className="mb-8">
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Institution Comparison Engine
+          TG EAPCET 2027 • College Comparison Engine
         </span>
         <h1 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-          Compare Engineering Colleges
+          Compare Engineering Colleges 2027
         </h1>
         <p className="mt-2 text-sm sm:text-base text-gray-300 max-w-2xl">
-          Evaluate any two Telangana engineering colleges side-by-side across 3-year cutoff benchmarks, highest/average packages, and government fee tiers.
+          Evaluate any two Telangana engineering colleges side-by-side across cutoff benchmarks, highest/average packages, and government fee tiers.
         </p>
       </div>
 

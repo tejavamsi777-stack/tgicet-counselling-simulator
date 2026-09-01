@@ -7,9 +7,12 @@ export default function PgecetComparePage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="Compare TG PGECET M.Tech Colleges 2026 | Cutoffs & Specializations"
-        description="Compare any two postgraduate engineering institutions side-by-side. View cutoffs, M.Tech branches, university affiliations, and seat matrix across 99 colleges in Telangana."
+        title="Compare M.Tech & M.Pharm Colleges | TG PGECET 2027 College Comparison"
+        description="Side-by-side comparison of Telangana PG colleges on specialization cutoffs, AICTE stipends, tuition fees, and research placements."
+        keywords="compare m.tech colleges in telangana, ou vs jntuh m.tech fee cutoffs, tg pgecet college comparison tool, tg pgecet 2027 college compare"
         path="/tg-pgecet/compare"
+        toolType="comparison"
+        examName="TG PGECET"
       />
 
       <div className="mb-8">

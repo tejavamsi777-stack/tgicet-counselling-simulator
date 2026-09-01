@@ -7,9 +7,12 @@ export default function PolycetComparePage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="Compare TG POLYCET Polytechnic Colleges 2026 | Fees, Intakes & Facilities"
-        description="Compare any two polytechnic colleges side-by-side. View authentic government fees, seat intakes, hostel availability, and SBTET affiliation across 114 polytechnics in Telangana."
+        title="Compare Polytechnic Colleges | TG POLYCET 2027 College Comparison Matrix"
+        description="Compare any two polytechnic colleges across fees (₹3.8k Govt vs ₹15.5k Private), seat intakes, hostels, and diploma branch offerings."
+        keywords="compare polytechnic colleges in hyderabad, govt polytechnic vs private fees hostels, tg polycet college comparison tool, tg polycet 2027 college compare"
         path="/tg-polycet/compare"
+        toolType="comparison"
+        examName="TG POLYCET"
       />
 
       <div className="mb-8">

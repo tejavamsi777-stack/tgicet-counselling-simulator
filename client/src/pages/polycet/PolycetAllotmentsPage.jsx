@@ -10,9 +10,12 @@ export default function PolycetAllotmentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG POLYCET College-Wise Seat Allotment Explorer | Candidate Records"
-        description="Explore TG POLYCET polytechnic seat allotment data by college and diploma branch. View candidate ranks, category distribution, closing cutoffs, and comprehensive admission analytics."
+        title="TG POLYCET Seat Allotments 2027 | Polytechnic Candidate Records & Cutoffs"
+        description="Official TG POLYCET college-wise provisional seat allotment records from tgpolycet.nic.in. Search 20,939+ candidate records and closing cutoffs across 114 polytechnic institutions."
+        keywords="tg polycet seat allotments 2027, ts polycet college wise candidate allotment list, tgpolycet.nic.in 20939 candidate records, polytechnic allotment cutoffs"
         path="/tg-polycet/allotments"
+        toolType="explorer"
+        examName="TG POLYCET"
       />
 
       {/* Page Header */}

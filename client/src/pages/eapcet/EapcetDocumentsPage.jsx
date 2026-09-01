@@ -21,9 +21,12 @@ export default function EapcetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG EAPCET Document Checklist | Certificate Verification Guide"
-        description="Official document requirements for TG EAPCET Help Line Centre (HLC) certificate verification. Interactive checklist with category filters."
+        title="TG EAPCET 2027 Certificate Verification Documents | HLC Checklist & Rules"
+        description="Mandatory certificates checklist for TG EAPCET 2027 Help Line Centre (HLC) verification. Full TS ePASS fee reimbursement criteria and MeeSeva certificate validity rules."
+        keywords="tg eapcet certificate verification documents list 2027, ts eamcet hlc documents required, tg eapcet income certificate cutoff date, fee reimbursement eligibility tg eapcet"
         path="/tg-eapcet/documents"
+        toolType="guide"
+        examName="TG EAPCET"
       />
 
       {/* Back link */}
@@ -38,10 +41,10 @@ export default function EapcetDocumentsPage() {
       {/* Page header */}
       <div className="mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-          Certificate Verification Checklist
+          TG EAPCET 2027 Certificate Verification Checklist
         </h1>
         <p className="mt-2 text-white/50 text-sm sm:text-base max-w-2xl">
-          Official document requirements for TG EAPCET Help Line Centre (HLC) certificate verification
+          Official document requirements for TG EAPCET 2027 Help Line Centre (HLC) certificate verification
         </p>
       </div>
 

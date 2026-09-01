@@ -126,9 +126,12 @@ export default function EapcetPredictorPage() {
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
       <Seo
-        title="AP EAPCET College Predictor 2025"
-        description="Predict AP EAPCET college options by rank, category, gender, branches, and districts."
+        title="AP EAPCET 2027 College Predictor | Predict AP B.Tech Colleges by Rank"
+        description="Find eligible Andhra Pradesh engineering & pharmacy colleges by AP EAPCET 2027 rank, category (OC, BC, SC, ST, EWS), and branch preference with real closing cutoffs."
+        keywords="ap eapcet college predictor 2027, ap eamcet engineering predictor by rank, auce jntuk cse cutoff rank eapcet, top engineering colleges in ap by rank, ap eapcet 2027 cutoffs"
         path="/exams/ap-eapcet/predictor"
+        toolType="predictor"
+        examName="AP EAPCET"
       />
 
       <Link

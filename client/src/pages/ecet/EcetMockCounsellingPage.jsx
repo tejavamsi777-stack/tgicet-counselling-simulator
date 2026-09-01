@@ -14,6 +14,7 @@ import ScrambleText from "../../components/effects/ScrambleText";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
+import Seo from "../../components/shared/Seo";
 import { EXAM_COURSE_GROUPS } from "../../config/courseGroups";
 
 const stepVariants = {
@@ -282,6 +283,14 @@ export default function EcetMockCounsellingPage() {
 
   return (
     <main className={`relative mx-auto overflow-visible ${step === "list" ? "max-w-[1375px] space-y-1.5 px-0 pb-4 pt-2" : "max-w-6xl space-y-8 px-6 pb-44 pt-6"}`}>
+      <Seo
+        title="TG ECET 2027 Web Options Simulator | Mock Option Entry Practice Portal"
+        description="Practice TG ECET 2027 lateral entry web options entry with zero risk. Official portal replica with real college codes, branch priority reordering, and PDF export."
+        keywords="tg ecet web options simulator 2027, ts ecet mock counselling portal, tgecet.nic.in web options demo practice, tg ecet lateral entry web options"
+        path="/exams/tg-ecet/mock-counselling"
+        toolType="simulator"
+        examName="TG ECET"
+      />
       {/* OFFICIAL SIMULATION DISCLAIMER RIBBON */}
       <div className="w-full rounded-xl border border-red-500/40 bg-red-950/40 p-2.5 sm:px-4 sm:py-2 text-center shadow-lg backdrop-blur-md">
         <p className="text-xs sm:text-sm font-bold text-red-300 tracking-wide flex items-center justify-center gap-1.5">

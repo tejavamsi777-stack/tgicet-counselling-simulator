@@ -8,9 +8,12 @@ export default function PgecetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG PGECET 2026 Document Checklist | HLC Certificate Verification Guide"
-        description="Official document requirements for TG PGECET Help Line Centre (HLC) certificate verification. Interactive checklist for GATE, GPAT, and PGECET candidates."
+        title="TG PGECET 2027 Certificate Verification Documents | PG HLC Checklist"
+        description="Complete document checklist for TG PGECET 2027 certificate verification at Help Line Centres (HLC). GATE/GPAT scorecards, B.Tech provisional certificate rules."
+        keywords="tg pgecet certificate verification documents 2027, ts pgecet hlc checklist, gate scorecard b.tech pc verification, pgecet documents required"
         path="/tg-pgecet/documents"
+        toolType="guide"
+        examName="TG PGECET"
       />
 
       <Link

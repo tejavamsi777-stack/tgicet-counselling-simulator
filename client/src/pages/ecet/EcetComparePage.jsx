@@ -15,9 +15,12 @@ export default function EcetComparePage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title={`${c1} vs ${c2} Comparison | TG ECET Engineering Lateral Entry`}
-        description={`Side-by-side comparison between ${c1} and ${c2} covering lateral entry cutoffs, placement CTCs, and tuition fees.`}
+        title={c1 && c2 && c1 !== 'CBIT' ? `${c1} vs ${c2} Comparison | TG ECET 2027 Engineering` : `Compare Lateral Entry Colleges | TG ECET 2027 College Comparison Matrix`}
+        description={`Side-by-side comparison of Telangana lateral entry colleges on cutoffs, lateral entry seat capacity, tuition fees, and placements.`}
+        keywords="compare lateral entry engineering colleges, tg ecet college comparison tool, ecet lateral entry intake comparison, tg ecet 2027 college compare"
         path="/tg-ecet/compare"
+        toolType="comparison"
+        examName="TG ECET"
       />
 
       {/* Back button */}

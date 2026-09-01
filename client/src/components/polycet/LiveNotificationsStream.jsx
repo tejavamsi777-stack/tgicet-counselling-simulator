@@ -151,7 +151,7 @@ export default function LiveNotificationsStream() {
               <Bell size={13} />
             </div>
             <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              TG POLYCET 2026 Notifications &amp; Circulars
+              TG POLYCET Notifications &amp; Circulars
             </h2>
           </div>
           <p className="text-[11px] text-white/50 mt-0.5">

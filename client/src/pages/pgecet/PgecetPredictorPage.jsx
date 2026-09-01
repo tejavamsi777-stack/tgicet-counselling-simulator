@@ -167,9 +167,12 @@ export default function PgecetPredictorPage() {
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 md:px-10 sm:py-12 pb-72 md:pb-96 space-y-12">
       <Seo
-        title="TG PGECET / GATE College Predictor 2026 | PG Admission Tool"
-        description="Predict your M.Tech, M.E., and M.Arch admission chances in Osmania University, JNTUH, and top PG colleges based on your TG PGECET rank or GATE score."
+        title="TG PGECET 2027 College Predictor | Predict M.Tech & M.Pharm Colleges by Rank"
+        description="Predict eligible M.Tech, M.Pharm & M.Arch colleges based on your TG PGECET / GATE / GPAT 2027 rank and specialization across Osmania & JNTU."
+        keywords="tg pgecet college predictor 2027, ts pgecet m.tech college predictor by rank, gate pgecet cutoff ranks ou jntuh, tg pgecet 2027 cutoffs"
         path="/tg-pgecet/predictor"
+        toolType="predictor"
+        examName="TG PGECET"
       />
 
       {/* Hero Header */}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../../lib/api";
 import ResultsTable from "../../components/results/ResultsTable";
 import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
@@ -22,8 +22,9 @@ import { smoothScrollTo } from "../../lib/utils";
 
 export default function IcetPredictorPage() {
   const { years, categories, courses, districts, loading } = useReferenceData("tg-icet");
-  const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("");
+  const [searchParams] = useSearchParams();
+  const [rank, setRank] = useState(searchParams.get("rank") || "");
+  const [category, setCategory] = useState(searchParams.get("category") || "");
   const [gender, setGender] = useState("Male");
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [selectedDistricts, setSelectedDistricts] = useState([]);
@@ -85,9 +86,12 @@ export default function IcetPredictorPage() {
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
       <Seo
-        title="TG ICET College Predictor 2025"
-        description="Predict TG ICET college options by rank, category, gender, courses, and districts. Find MBA & MCA colleges in Telangana."
+        title="TG ICET 2027 College Predictor | Predict MBA & MCA Colleges by Rank"
+        description="Predict eligible MBA & MCA colleges in Telangana based on your TG ICET 2027 rank, reservation category, gender, and course preferences with verified closing cutoffs from OU, JNTUH, and CBIT."
+        keywords="tg icet college predictor 2027, ts icet mba college predictor, tg icet mca college predictor by rank, top mba colleges in telangana icet rank, tg icet 2027 closing ranks"
         path="/exams/tg-icet/predictor"
+        toolType="predictor"
+        examName="TG ICET"
       />
 
       <Link
@@ -104,11 +108,11 @@ export default function IcetPredictorPage() {
               className="text-2xl sm:text-3xl font-bold tracking-tight text-white"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Predict Your College
+              TG ICET College Predictor 2027
             </h1>
             <div>
               <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
-                TG ICET 2025
+                TG ICET 2027
               </span>
             </div>
             <p className="text-xs sm:text-sm text-gray-300">

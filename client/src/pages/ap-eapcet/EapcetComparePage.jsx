@@ -15,9 +15,12 @@ export default function EapcetComparePage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title={`${c1} vs ${c2} Comparison | AP EAPCET Engineering`}
-        description={`Side-by-side comparison between ${c1} and ${c2} covering cutoffs, placement CTCs, NIRF ratings, and tuition fees.`}
+        title={c1 && c2 && c1 !== 'VITAPU' ? `${c1} vs ${c2} Comparison | AP EAPCET 2027 Engineering` : `Compare Engineering Colleges | AP EAPCET 2027 College Comparison Matrix`}
+        description={`Side-by-side comparison of Andhra Pradesh engineering colleges on cutoffs, placement packages, NIRF ratings, and tuition fee structures.`}
+        keywords="compare ap engineering colleges, auce vs gvpx vs vrsec compare, ap eapcet college comparison fees cutoffs, top engineering colleges in ap compare"
         path="/ap-eapcet/compare"
+        toolType="comparison"
+        examName="AP EAPCET"
       />
 
       {/* Back button */}

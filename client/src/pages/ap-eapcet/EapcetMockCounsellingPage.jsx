@@ -491,9 +491,12 @@ export default function ApEapcetMockCounsellingPage() {
     return (
       <main className="mx-auto w-full max-w-2xl px-4 py-12 sm:px-6">
         <Seo
-          title="AP EAPCET 2026 Exercise Web Options | Official Portal Simulator"
-          description="Practice web options entry exactly as on the official APSCHE portal (cap.apcfss.in) with scraped colleges, verified course codes, and live preference builder."
-          path="/ap-eapcet/mock-counselling"
+          title="AP EAPCET 2027 Web Options Simulator | Mock Option Entry Practice Portal"
+          description="Practice AP EAPCET 2027 web options entry with zero risk. Official portal replica with real college codes, branch priority reordering, and PDF download."
+          keywords="ap eapcet web options simulator 2027, ap eamcet mock counselling portal, eapcet-sche.aptonline.in web options demo, ap eapcet 2027 web options entry"
+          path="/exams/ap-eapcet/mock-counselling"
+          toolType="simulator"
+          examName="AP EAPCET"
         />
 
         <div className="rounded-2xl border border-white/15 bg-gradient-to-br from-purple-950/40 via-black/80 to-purple-900/30 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">

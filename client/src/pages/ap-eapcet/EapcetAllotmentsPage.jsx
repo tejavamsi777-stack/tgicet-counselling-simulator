@@ -10,9 +10,12 @@ export default function EapcetAllotmentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="AP EAPCET College-Wise Seat Allotment Explorer | Candidate Records"
-        description="Explore AP EAPCET college and branch seat allotments. View candidate ranks, category distribution, closing cutoffs, and comprehensive admission analytics."
+        title="AP EAPCET Seat Allotments 2027 | College-Wise Candidate Records & Cutoffs"
+        description="Official AP EAPCET college-wise provisional seat allotment records. Search all candidates, closing cutoffs, and seat categories across 411 Andhra Pradesh colleges."
+        keywords="ap eapcet seat allotments 2027, ap eamcet college wise candidate allotment list, ap eapcet cutoffs 411 colleges, eapcet-sche.aptonline.in allotment records"
         path="/ap-eapcet/allotments"
+        toolType="explorer"
+        examName="AP EAPCET"
       />
 
       {/* Page Header */}

@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardList, Target, FileCheck, ArrowLeftRight, Database, Building2, ExternalLink, ChevronRight } from 'lucide-react';
+import { ArrowRight, ClipboardList, Target, FileCheck, ArrowLeftRight, Database, Building2, ExternalLink, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GlowCard } from '../../components/ui/spotlight-card';
 import { GlassButton } from '../../components/ui/glass-button';
@@ -17,6 +17,65 @@ import FaqSection from '../../components/shared/FaqSection';
 import { AP_EAPCET_FAQS } from '../../data/faqsData';
 import { useApEapcetData } from '../../hooks/useApEapcetData';
 
+import ExamToolsSection from '../../components/shared/ExamToolsSection';
+
+const AP_EAPCET_TOOLS = [
+  {
+    icon: Target,
+    title: "College Predictor",
+    detail: "Find eligible engineering colleges based on rank, category & gender.",
+    to: "/exams/ap-eapcet/predictor",
+    action: "Predict Now",
+    tag: "Predictors",
+    keywords: ["college predictor", "andhra pradesh", "engineering", "b.tech", "closing rank", "au", "jntuk", "jntua"],
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "Compare Colleges",
+    detail: "Compare any two engineering colleges across cutoffs, fees & placement CTCs.",
+    to: "/ap-eapcet/compare",
+    action: "Compare",
+    tag: "Comparison",
+    keywords: ["compare", "matrix", "auce vs gvpx", "institutions", "fees", "placements", "packages"],
+  },
+  {
+    icon: FileCheck,
+    title: "HLC Checklist",
+    detail: "Interactive document checklist with MeeSeva validity rules & account sync.",
+    to: "/ap-eapcet/documents",
+    action: "Check Docs",
+    tag: "Documents",
+    keywords: ["documents", "hlc", "verification", "certificates", "income certificate", "caste", "meeseva"],
+  },
+  {
+    icon: Sparkles,
+    title: "Create Web Options",
+    detail: "Generate optimal Dream, Target & Safe preference lists based on cutoff analytics.",
+    to: "/exams/ap-eapcet/create-web-options",
+    action: "Create Options",
+    tag: "Web Options",
+    keywords: ["create web options", "smart list", "dream", "target", "safe", "generator", "preferences"],
+  },
+  {
+    icon: ClipboardList,
+    title: "Exercise Web Options",
+    detail: "Build and reorder your branch-wise college preference list with zero conflicts.",
+    to: "/exams/ap-eapcet/mock-counselling",
+    action: "Exercise Options",
+    tag: "Web Options",
+    keywords: ["exercise web options", "mock counselling", "simulator", "priority", "reorder", "pdf download"],
+  },
+  {
+    icon: Database,
+    title: "Seat Allotments",
+    detail: "Official college-wise allotment lists — every candidate, every seat category.",
+    to: "/ap-eapcet/allotments",
+    action: "Explore Data",
+    tag: "Allotments",
+    keywords: ["allotments", "candidate wise", "closing ranks", "seat matrix", "eapcet-sche.aptonline.in"],
+  },
+];
+
 function SectionDivider() {
   return <div className="my-12 border-t border-white/[0.06]" />;
 }
@@ -32,14 +91,14 @@ export default function EapcetHome() {
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
         title="AP EAPCET College Predictor, Seat Allotments, Cutoffs & Web Options Simulator"
-        description="Free AP EAPCET college predictor, mock web options simulator & authentic candidate seat allotments across 411 colleges with verified APSCHE cutoffs."
+        description="Free AP EAPCET engineering college predictor, mock web options simulator & authentic candidate seat allotments across 411 Andhra Pradesh colleges with verified APSCHE cutoffs."
         path="/ap-eapcet"
       />
 
       {/* Hero Header */}
       <div>
         <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300">
-          Andhra Pradesh Admissions 2026
+          Andhra Pradesh Admissions
         </span>
         <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
           AP EAPCET College Predictor, Seat Allotments, Cutoffs &amp; Web Options Simulator
@@ -49,44 +108,8 @@ export default function EapcetHome() {
         </p>
       </div>
 
-      {/* 5 Core Action Cards Grid */}
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        <FeatureCard
-          icon={Target}
-          title="College Predictor"
-          detail="Find eligible engineering colleges based on rank, category & gender."
-          to="/exams/ap-eapcet/predictor"
-          action="Predict Now"
-        />
-        <FeatureCard
-          icon={Database}
-          title="Seat Allotments"
-          detail="Official 2025 college-wise allotment lists — every candidate, every seat category."
-          to="/ap-eapcet/allotments"
-          action="Explore Data"
-        />
-        <FeatureCard
-          icon={ClipboardList}
-          title="Exercise Web Options"
-          detail="Build and reorder your branch-wise college preference list with zero conflicts."
-          to="/exams/ap-eapcet/mock-counselling"
-          action="Exercise Options"
-        />
-        <FeatureCard
-          icon={ArrowLeftRight}
-          title="Compare Colleges"
-          detail="Compare any two engineering colleges across cutoffs, fees & placement CTCs."
-          to="/ap-eapcet/compare"
-          action="Compare"
-        />
-        <FeatureCard
-          icon={FileCheck}
-          title="HLC Checklist"
-          detail="Interactive document checklist with MeeSeva validity rules & account sync."
-          to="/ap-eapcet/documents"
-          action="Check Docs"
-        />
-      </div>
+      {/* 6 Core Action Cards Grid with Search Tab */}
+      <ExamToolsSection tools={AP_EAPCET_TOOLS} title="AP EAPCET Admissions Suite" />
 
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
@@ -172,34 +195,5 @@ export default function EapcetHome() {
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />
       </div>
     </main>
-  );
-}
-
-function FeatureCard({ icon: Icon, title, detail, to, action }) {
-  return (
-    <Link to={to} className="group relative block h-full w-full outline-none">
-      <GlowCard customSize={true} tilt={false} glowColor="purple" className="flex h-full flex-col justify-between p-5">
-        <div>
-          <div className="glass-button-wrap relative mb-3.5 inline-flex">
-            <div className="glass-button flex h-10 w-10 items-center justify-center rounded-xl border border-white/30 bg-gradient-to-br from-white/20 via-white/10 to-white/5 text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">
-              <Icon size={18} className="text-purple-300" />
-            </div>
-            <div className="glass-button-shadow rounded-xl"></div>
-          </div>
-          <h2 className="text-base font-bold tracking-tight text-white">{title}</h2>
-          <p className="mt-1.5 text-xs font-medium leading-relaxed text-gray-300/90">{detail}</p>
-        </div>
-        <div className="mt-5">
-          <GlassButton
-            size="sm"
-            className="w-full text-xs"
-            contentClassName="flex items-center justify-center gap-1.5"
-          >
-            <span>{action}</span>
-            <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
-          </GlassButton>
-        </div>
-      </GlowCard>
-    </Link>
   );
 }

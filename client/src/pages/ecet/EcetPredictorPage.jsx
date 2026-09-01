@@ -12,6 +12,7 @@ import ResultsTable from "../../components/results/ResultsTable";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { smoothScrollTo } from "../../lib/utils";
+import Seo from "../../components/shared/Seo";
 
 function mapResults(results = [], gender, year) {
   if (!Array.isArray(results)) return [];
@@ -167,12 +168,20 @@ export default function EcetPredictorPage() {
         </AnimatePresence>
 
         <main className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 py-8 min-h-[calc(100vh-280px)] pb-36">
+          <Seo
+            title="TG ECET 2027 College Predictor | Diploma Lateral Entry B.Tech Colleges by Rank"
+            description="Find eligible B.Tech colleges based on your TG ECET 2027 diploma rank, engineering branch (FDH/B.Tech), and category with verified closing cutoffs."
+            keywords="tg ecet college predictor 2027, ts ecet lateral entry predictor by rank, ecet diploma rank b.tech cutoff colleges, fdh b.tech lateral entry cutoffs"
+            path="/exams/tg-ecet/predictor"
+            toolType="predictor"
+            examName="TG ECET"
+          />
           <button
-            onClick={() => navigate("/")}
-            className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+            onClick={() => navigate("/tg-ecet")}
+            className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
             <ArrowLeft size={16} />
-            Back to Home
+            Back to TG ECET
           </button>
 
           <Hero title="TG ECET College Predictor" subtitle="Predict B.E. / B.Tech / B.Pharmacy lateral-entry admissions using verified TG ECET cutoff data." />

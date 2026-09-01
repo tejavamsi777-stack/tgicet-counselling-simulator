@@ -14,6 +14,7 @@ import ScrambleText from "../../components/effects/ScrambleText";
 import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
+import Seo from "../../components/shared/Seo";
 import { EXAM_COURSE_GROUPS } from "../../config/courseGroups";
 
 const stepVariants = {
@@ -282,6 +283,15 @@ export default function EapcetMockCounsellingPage() {
 
   return (
     <main className={`relative mx-auto overflow-visible w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 ${step === "list" ? "space-y-1.5 pb-4 pt-2" : "space-y-8 pb-44 pt-6"}`}>
+      <Seo
+        title="TG EAPCET 2027 Web Options Simulator | Mock Option Entry Practice Portal"
+        description="Practice official TG EAPCET 2027 web options entry with zero risk. Exact official UI replica with district filtering, branch priority sorting, and PDF download."
+        keywords="tg eapcet web options simulator 2027, ts eamcet mock counselling portal, tgeapcet nic in web options demo practice, eapcet web options entry step by step"
+        path="/exams/tg-eapcet/mock-counselling"
+        toolType="simulator"
+        examName="TG EAPCET"
+      />
+
       {/* OFFICIAL SIMULATION DISCLAIMER RIBBON */}
       <div className="w-full rounded-xl border border-red-500/40 bg-red-950/40 p-2.5 sm:px-4 sm:py-2 text-center shadow-lg backdrop-blur-md">
         <p className="text-xs sm:text-sm font-bold text-red-300 tracking-wide flex items-center justify-center gap-1.5">
@@ -300,13 +310,13 @@ export default function EapcetMockCounsellingPage() {
         <GlowCard customSize={true} glowColor="purple" className="p-8 sm:p-12 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
             <Sparkles size={12} />
-            <span>TG EAPCET Practice Web Options</span>
+            <span>TG EAPCET 2027 Practice Web Options</span>
           </span>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
-            <ScrambleText text="EAPCET Mock Counselling" duration={800} /> Simulator
+            <ScrambleText text="TG EAPCET 2027 Mock Counselling" duration={800} /> Simulator
           </h1>
           <p className="mt-3 text-base text-gray-300">
-            TG EAPCET (Engineering / Pharmacy) — Select your district(s), then build your preference list.
+            TG EAPCET 2027 (Engineering / Pharmacy) — Select your district(s), then build your preference list.
           </p>
         </GlowCard>
       </div>

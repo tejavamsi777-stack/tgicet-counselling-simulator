@@ -21,9 +21,12 @@ export default function IcetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG ICET Document Checklist | Certificate Verification Guide"
-        description="Official document requirements for TG ICET Help Line Centre (HLC) certificate verification. Interactive checklist with category filters."
+        title="TG ICET 2027 Certificate Verification Documents | HLC Checklist & Rules"
+        description="Complete document checklist for TG ICET 2027 certificate verification at Help Line Centres (HLC). MeeSeva validity rules, income certificate requirements & TS ePASS guidelines."
+        keywords="tg icet certificate verification documents 2027, ts icet hlc checklist, ts epass fee reimbursement documents icet, tg icet required documents list"
         path="/tg-icet/documents"
+        toolType="guide"
+        examName="TG ICET"
       />
 
       {/* Back link */}
@@ -38,10 +41,10 @@ export default function IcetDocumentsPage() {
       {/* Page header */}
       <div className="mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-          Certificate Verification Checklist
+          TG ICET 2027 Certificate Verification Checklist
         </h1>
         <p className="mt-2 text-white/50 text-sm sm:text-base max-w-2xl">
-          Official document requirements for TG ICET Help Line Centre (HLC) certificate verification
+          Official document requirements for TG ICET 2027 Help Line Centre (HLC) certificate verification
         </p>
       </div>
 

@@ -10,9 +10,12 @@ export default function PgecetAllotmentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="TG PGECET College-Wise Seat Allotment Explorer | M.Tech & M.E. Cutoffs"
-        description="Explore TG PGECET post graduate engineering seat allotment data by college and specialization. View candidate ranks, percentiles, categories, and closing cutoffs."
+        title="TG PGECET Seat Allotments 2027 | M.Tech & M.Pharm Candidate Records"
+        description="Official TG PGECET college-wise provisional seat allotment records. Search every candidate rank, specialization, and closing cutoffs across Telangana PG colleges."
+        keywords="tg pgecet seat allotments 2027, ts pgecet college wise candidate allotment list, tg pgecet m.tech allotments, pgecet closing ranks"
         path="/tg-pgecet/allotments"
+        toolType="explorer"
+        examName="TG PGECET"
       />
 
       {/* Page Header */}

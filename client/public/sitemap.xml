@@ -14,12 +14,17 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/ap-eapcet/mock-counselling</loc>
+    <loc>https://vuelalearn.vercel.app/exams/ap-eapcet/predictor</loc>
     <changefreq>daily</changefreq>
-    <priority>0.98</priority>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/ap-eapcet/predictor</loc>
+    <loc>https://vuelalearn.vercel.app/exams/ap-eapcet/create-web-options</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/ap-eapcet/mock-counselling</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -43,22 +48,32 @@
   <url>
     <loc>https://vuelalearn.vercel.app/tg-eapcet</loc>
     <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-eapcet/marks-vs-rank</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-eapcet/predictor</loc>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/tg-eapcet/predictor</loc>
+    <loc>https://vuelalearn.vercel.app/exams/tg-eapcet/create-web-options</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-eapcet/mock-counselling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-eapcet/allotments</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://vuelalearn.vercel.app/tg-eapcet/mock-counselling</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-eapcet/compare</loc>
@@ -75,22 +90,32 @@
   <url>
     <loc>https://vuelalearn.vercel.app/tg-icet</loc>
     <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-icet/marks-vs-rank</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-icet/predictor</loc>
+    <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/tg-icet/predictor</loc>
+    <loc>https://vuelalearn.vercel.app/exams/tg-icet/create-web-options</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-icet/mock-counselling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-icet/allotments</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://vuelalearn.vercel.app/tg-icet/mock-counselling</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-icet/compare</loc>
@@ -110,19 +135,24 @@
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/tg-ecet/predictor</loc>
+    <loc>https://vuelalearn.vercel.app/exams/tg-ecet/predictor</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-ecet/create-web-options</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-ecet/mock-counselling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-ecet/allotments</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://vuelalearn.vercel.app/tg-ecet/mock-counselling</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-ecet/compare</loc>
@@ -142,19 +172,24 @@
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/tg-polycet/predictor</loc>
+    <loc>https://vuelalearn.vercel.app/exams/tg-polycet/predictor</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-polycet/create-web-options</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/exams/tg-polycet/mock-counselling</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-polycet/allotments</loc>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://vuelalearn.vercel.app/tg-polycet/mock-counselling</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://vuelalearn.vercel.app/tg-polycet/compare</loc>
@@ -179,7 +214,24 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://vuelalearn.vercel.app/tg-pgecet/mock-counselling</loc>
+    <loc>https://vuelalearn.vercel.app/tg-pgecet/allotments</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/tg-pgecet/compare</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://vuelalearn.vercel.app/tg-pgecet/documents</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- KCET Karnataka Tools -->
+  <url>
+    <loc>https://vuelalearn.vercel.app/kcet/allotments</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>

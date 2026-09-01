@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../../lib/api";
 import ResultsTable from "../../components/results/ResultsTable";
 import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
@@ -22,8 +22,9 @@ import { smoothScrollTo } from "../../lib/utils";
 
 export default function EapcetPredictorPage() {
   const { years, categories, courses, districts, loading } = useReferenceData("tg-eapcet");
-  const [rank, setRank] = useState("");
-  const [category, setCategory] = useState("");
+  const [searchParams] = useSearchParams();
+  const [rank, setRank] = useState(searchParams.get("rank") || "");
+  const [category, setCategory] = useState(searchParams.get("category") || "");
   const [gender, setGender] = useState("Male");
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [selectedDistricts, setSelectedDistricts] = useState([]);
@@ -40,6 +41,7 @@ export default function EapcetPredictorPage() {
       setSelectedYears(years.map((y) => Number(y.year)));
     }
   }, [years]);
+
 
   async function predict() {
     if (!rank || Number(rank) <= 0) return setError("Enter a valid TG EAPCET rank.");
@@ -85,9 +87,12 @@ export default function EapcetPredictorPage() {
   return (
     <main className="relative z-30 mx-auto w-full max-w-[1600px] px-4 sm:px-6 md:px-10 lg:px-14 pt-8 pb-56">
       <Seo
-        title="TG EAPCET College Predictor 2025"
-        description="Predict TG EAPCET college options by rank, category, gender, branches, and districts."
+        title="TG EAPCET 2027 College Predictor | Predict B.Tech & Pharmacy Colleges by Rank"
+        description="Predict eligible engineering & pharmacy colleges by TG EAPCET 2027 rank, branch preference (CSE, IT, ECE, AI/ML), reservation category, and gender with real closing cutoffs."
+        keywords="tg eapcet college predictor 2027, ts eamcet engineering college predictor by rank, cbit vnr cse cutoff rank eapcet, top engineering colleges in telangana for my rank, tg eapcet 2027 cutoffs"
         path="/exams/tg-eapcet/predictor"
+        toolType="predictor"
+        examName="TG EAPCET"
       />
 
       <Link
@@ -104,7 +109,7 @@ export default function EapcetPredictorPage() {
               className="text-2xl sm:text-3xl font-bold tracking-tight text-white"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Predict Your College
+              TG EAPCET College Predictor 2027
             </h1>
             <div>
               <span className="inline-flex rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wider text-purple-300 backdrop-blur-sm">
