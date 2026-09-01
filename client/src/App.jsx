@@ -71,6 +71,11 @@ const ForgotPasswordPage = lazy(() => import("./pages/ForgotPasswordPage"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPasswordPage"));
 const AdminApp = lazy(() => import("./admin/AdminApp"));
 
+const PrivacyPolicyPage = lazy(() => import("./pages/legal/PrivacyPolicyPage"));
+const AboutPage = lazy(() => import("./pages/legal/AboutPage"));
+const ContactPage = lazy(() => import("./pages/legal/ContactPage"));
+const TermsPage = lazy(() => import("./pages/legal/TermsPage"));
+
 import ProtectedRoute from "./components/shared/ProtectedRoute";
 import GoogleOneTap from "./components/shared/GoogleOneTap";
 import LoginModal from "./components/shared/LoginModal";
@@ -317,6 +322,15 @@ function MainContent() {
                   <Route path="/pgecet/documents" element={<PgecetDocumentsPage />} />
                   <Route path="/tg-pgecet/documents" element={<PgecetDocumentsPage />} />
                   <Route path="/exams/tg-pgecet/documents" element={<PgecetDocumentsPage />} />
+
+                  {/* Legal & Policy Pages for AdSense Compliance */}
+                  <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/about-us" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/contact-us" element={<ContactPage />} />
+                  <Route path="/terms" element={<TermsPage />} />
+                  <Route path="/terms-and-conditions" element={<TermsPage />} />
 
                   {/* Fallbacks for other dynamic exam slugs */}
                   <Route path="/exams/:examSlug" element={<ExamLandingPage />} />

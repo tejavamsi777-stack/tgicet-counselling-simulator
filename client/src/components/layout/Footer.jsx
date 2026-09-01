@@ -271,31 +271,36 @@ export default function Footer({ openPanel, setOpenPanel }) {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button
-                  type="button"
-                  onClick={() => setOpenPanel(openPanel === "about" ? null : "about")}
-                  className={`hover:text-white transition-colors flex items-center gap-1.5 text-left cursor-pointer ${openPanel === "about" ? "text-white font-semibold" : ""}`}
+                <Link
+                  to="/about"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 text-left text-gray-400"
                 >
                   <ChevronRight size={12} className="text-pink-400" /> About Us
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setOpenPanel(openPanel === "privacy" ? null : "privacy")}
-                  className={`hover:text-white transition-colors flex items-center gap-1.5 text-left cursor-pointer ${openPanel === "privacy" ? "text-white font-semibold" : ""}`}
+                <Link
+                  to="/privacy-policy"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 text-left text-gray-400"
                 >
                   <ChevronRight size={12} className="text-pink-400" /> Privacy Policy
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setOpenPanel(openPanel === "contact" ? null : "contact")}
-                  className={`hover:text-white transition-colors flex items-center gap-1.5 text-left cursor-pointer ${openPanel === "contact" ? "text-white font-semibold" : ""}`}
+                <Link
+                  to="/terms"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 text-left text-gray-400"
                 >
-                  <ChevronRight size={12} className="text-pink-400" /> Contact Us
-                </button>
+                  <ChevronRight size={12} className="text-pink-400" /> Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="hover:text-white transition-colors flex items-center gap-1.5 text-left text-gray-400"
+                >
+                  <ChevronRight size={12} className="text-pink-400" /> Contact Support
+                </Link>
               </li>
               <li>
                 <button

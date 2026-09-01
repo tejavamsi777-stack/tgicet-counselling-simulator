@@ -54,6 +54,10 @@ const ROUTES = [
   { path: '/kcet/allotments', title: 'KCET Engineering Seat Allotments & Closing Ranks | Vuela Learn', desc: 'Search verified KCET candidate allotments and engineering closing ranks.' },
   { path: '/colleges', title: 'Engineering & Management Colleges Directory (AP & TG) | Vuela Learn', desc: 'Comprehensive directory of engineering and MBA/MCA colleges across AP and Telangana.' },
   { path: '/compare', title: 'College Comparison Tool — Side-by-Side Analytics | Vuela Learn', desc: 'Compare any two colleges across cutoffs, placements, accreditation, and fees.' },
+  { path: '/about', title: 'About Us — Vuela Learn Admissions Navigator', desc: 'Learn about Vuela Learn, India 100% free educational counselling simulation platform.' },
+  { path: '/privacy-policy', title: 'Privacy Policy — Vuela Learn', desc: 'Official Privacy Policy and data protection standards for Vuela Learn.' },
+  { path: '/terms', title: 'Terms of Service & Disclaimer — Vuela Learn', desc: 'Official Terms of Service, User Agreement, and Disclaimer for Vuela Learn.' },
+  { path: '/contact', title: 'Contact Us & Student Support — Vuela Learn', desc: 'Get in touch with the Vuela Learn support team for feedback, data inquiries, or assistance.' },
 ];
 
 function generateStaticRoutes() {
