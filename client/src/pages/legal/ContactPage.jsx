@@ -1,16 +1,25 @@
 import Seo from "../../components/shared/Seo";
-import { Mail, HelpCircle, MessageSquare, Clock, MapPin, Send } from "lucide-react";
+import { Mail, HelpCircle, MessageSquare, Clock, MapPin, Send, CheckCircle2, RefreshCw, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", exam: "TG EAPCET", message: "" });
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(true);
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 600);
   }
+
+  const mailtoUrl = `mailto:vuelalearn@gmail.com?subject=${encodeURIComponent(`[${formData.exam}] Support Inquiry from ${formData.name || "Student"}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nExam: ${formData.exam}\n\nMessage:\n${formData.message}`)}`;
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 sm:px-6 py-10 sm:py-16 text-gray-300">
@@ -45,7 +54,10 @@ export default function ContactPage() {
               Our support team monitors inquiries daily and typically responds within 24 business hours.
             </p>
             <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-xs font-mono text-purple-300 break-all">
-              <a href="mailto:vuelalearn@gmail.com" className="hover:underline">vuelalearn@gmail.com</a>
+              <a href="mailto:vuelalearn@gmail.com" className="hover:underline flex items-center justify-between">
+                <span>vuelalearn@gmail.com</span>
+                <ExternalLink size={12} className="text-purple-400 shrink-0 ml-1" />
+              </a>
             </div>
           </div>
 
@@ -78,15 +90,40 @@ export default function ContactPage() {
             </p>
 
             {submitted ? (
-              <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center space-y-2">
-                <div className="h-10 w-10 mx-auto rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold">✓</div>
-                <h3 className="font-bold text-white text-base">Message Sent Successfully!</h3>
-                <p className="text-xs text-gray-300">Thank you for reaching out. Our team will review your query and reply to {formData.email} shortly.</p>
+              <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 sm:p-8 text-center space-y-4">
+                <div className="h-12 w-12 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                  <CheckCircle2 size={24} />
+                </div>
+                <h3 className="font-bold text-white text-lg">Thank you, {formData.name}!</h3>
+                <p className="text-xs text-gray-300 max-w-md mx-auto leading-relaxed">
+                  Your message regarding <strong className="text-purple-300">{formData.exam}</strong> has been logged. Our student support team will review and reply to <strong className="text-white">{formData.email}</strong> shortly.
+                </p>
+                
+                <div className="pt-3 flex flex-wrap gap-2 justify-center">
+                  <a
+                    href={mailtoUrl}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-500/20 hover:bg-purple-500/30 px-4 py-2 text-xs font-semibold text-purple-200 transition-colors"
+                  >
+                    <Mail size={13} />
+                    <span>Open in Email App</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: "", email: "", exam: "TG EAPCET", message: "" });
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-4 py-2 text-xs font-semibold text-gray-300 transition-colors cursor-pointer"
+                  >
+                    <RefreshCw size={13} />
+                    <span>Send Another Message</span>
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                 <div>
-                  <label className="block text-gray-300 font-medium mb-1.5">Full Name</label>
+                  <label className="block text-gray-300 font-medium mb-1.5">Full Name *</label>
                   <input
                     type="text"
                     required
@@ -98,7 +135,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 font-medium mb-1.5">Email Address</label>
+                  <label className="block text-gray-300 font-medium mb-1.5">Email Address *</label>
                   <input
                     type="email"
                     required
@@ -127,7 +164,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 font-medium mb-1.5">Your Message / Feedback</label>
+                  <label className="block text-gray-300 font-medium mb-1.5">Your Message / Feedback *</label>
                   <textarea
                     required
                     rows={4}
@@ -140,10 +177,20 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-500 px-5 py-3 font-semibold text-white transition-colors cursor-pointer shadow-lg shadow-purple-600/25"
+                  disabled={loading}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 px-5 py-3 font-semibold text-white transition-colors cursor-pointer shadow-lg shadow-purple-600/25"
                 >
-                  <Send size={14} />
-                  <span>Send Message</span>
+                  {loading ? (
+                    <>
+                      <div className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={14} />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
