@@ -49,7 +49,7 @@ export default function ExportButtons({ results = [], examTitle = "Vuela Learn" 
         isOpen={shareOpen}
         onClose={() => setShareOpen(false)}
         shareData={{
-          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.in",
           title: `${examTitle} Predictions Report`,
           text: shareText,
         }}

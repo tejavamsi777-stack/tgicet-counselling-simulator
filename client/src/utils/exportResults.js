@@ -62,7 +62,7 @@ export function exportToPDF(results, filename = "college-predictions.pdf", title
       // 3. Footer Page Numbers
       doc.setFontSize(8);
       doc.setTextColor(150, 150, 150);
-      doc.text(`Page ${i} of ${totalPages} — Vuela Learn Admissions & Counselling Portal (https://vuelalearn.vercel.app)`, 14, 200);
+      doc.text(`Page ${i} of ${totalPages} — Vuela Learn Admissions & Counselling Portal (https://vuelalearn.in)`, 14, 200);
     }
   };
 

@@ -85,7 +85,7 @@ export function SharePopoverContent({ onClose, shareData }) {
     }
   }, [shareData]);
 
-  const url = activeUrl || (typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app");
+  const url = activeUrl || (typeof window !== "undefined" ? window.location.href : "https://vuelalearn.in");
   const title = activeTitle || "Vuela Learn Portal";
   const text = shareData?.text || DEFAULT_SHARE_TEXT;
 

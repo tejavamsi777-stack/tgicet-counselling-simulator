@@ -54,7 +54,7 @@ export default function Seo({
     }
     const baseUrl = typeof window !== "undefined" && window.location.origin.includes("localhost")
       ? window.location.origin
-      : "https://vuelalearn.vercel.app";
+      : "https://vuelalearn.in";
     const fullUrl = `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
     canonical.setAttribute("href", fullUrl);
     setMeta('meta[property="og:url"]', ["property", "og:url"], fullUrl);

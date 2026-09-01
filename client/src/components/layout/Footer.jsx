@@ -368,7 +368,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
           <div className="hidden md:block w-48" /> {/* Balanced left spacer */}
           
           <div className="text-center text-gray-400">
-            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.vercel.app</strong> — All rights reserved. Data sourced from official counselling portals.
+            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.in</strong> — All rights reserved. Data sourced from official counselling portals.
           </div>
           
           <div className="flex items-center gap-3 w-auto md:w-48 justify-center md:justify-end">
@@ -405,7 +405,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
         isOpen={shareOpen}
         onClose={() => setShareOpen(false)}
         shareData={{
-          url: "https://vuelalearn.vercel.app",
+          url: "https://vuelalearn.in",
           title: "Vuela Learn — AP & TG Counselling Simulator & College Predictor",
           text: "Check out Vuela Learn for 100% free AP & TG College Predictors, authentic Seat Allotments, and Web Options Simulators!",
         }}

@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import http from 'node:http';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,87 +56,10 @@ const ROUTES = [
   { path: '/compare', title: 'College Comparison Tool — Side-by-Side Analytics | Vuela Learn', desc: 'Compare any two colleges across cutoffs, placements, accreditation, and fees.' },
 ];
 
-async function tryPuppeteerPrerender() {
-  let puppeteer;
-  try {
-    puppeteer = await import('puppeteer');
-  } catch {
-    return false;
-  }
-
-  const port = 4173;
-  let server;
-  let browser;
-
-  try {
-    server = http.createServer((req, res) => {
-      let reqPath = req.url.split('?')[0];
-      let filePath = path.join(distDir, reqPath);
-      if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-        filePath = path.join(filePath, 'index.html');
-      }
-      if (!fs.existsSync(filePath)) {
-        filePath = path.join(distDir, 'index.html');
-      }
-      try {
-        const content = fs.readFileSync(filePath);
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(content);
-      } catch (err) {
-        res.writeHead(500);
-        res.end(err.message);
-      }
-    });
-
-    await new Promise((resolve) => server.listen(port, resolve));
-
-    browser = await puppeteer.default.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
-    });
-
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-
-    let count = 0;
-    for (const route of ROUTES) {
-      const url = `http://localhost:${port}${route.path}`;
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
-      await page.waitForFunction(
-        () => {
-          const root = document.getElementById('root');
-          return root && root.innerText && root.innerText.length > 100;
-        },
-        { timeout: 4000 }
-      ).catch(() => {});
-      await new Promise((r) => setTimeout(r, 200));
-
-      const html = await page.content();
-      const targetFile = route.path === '/'
-        ? path.join(distDir, 'index.html')
-        : path.join(distDir, route.path.replace(/^\//, ''), 'index.html');
-
-      fs.mkdirSync(path.dirname(targetFile), { recursive: true });
-      fs.writeFileSync(targetFile, html, 'utf-8');
-      count++;
-    }
-
-    await browser.close();
-    server.close();
-    console.log(`🎉 Headless browser pre-rendered ${count} pages with full DOM!`);
-    return true;
-  } catch (err) {
-    console.warn('Puppeteer launch unavailable in this environment, falling back to static HTML route generator:', err.message);
-    if (browser) await browser.close().catch(() => {});
-    if (server) server.close();
-    return false;
-  }
-}
-
-function fallbackStaticGenerator() {
+function generateStaticRoutes() {
   const baseHtmlPath = path.join(distDir, 'index.html');
   if (!fs.existsSync(baseHtmlPath)) {
-    console.error('dist/index.html not found!');
+    console.error('dist/index.html not found! Run vite build first.');
     return;
   }
 
@@ -170,14 +92,4 @@ function fallbackStaticGenerator() {
   console.log(`🎉 Static route generator created ${count} dedicated HTML files with full SEO metadata!`);
 }
 
-async function run() {
-  const ok = await tryPuppeteerPrerender();
-  if (!ok) {
-    fallbackStaticGenerator();
-  }
-}
-
-run().catch((err) => {
-  console.error('Prerender error:', err);
-  process.exit(0); // Never break deployment build
-});
+generateStaticRoutes();
