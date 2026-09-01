@@ -11,7 +11,7 @@
 
 export const ADSENSE_CONFIG = {
   // Google AdSense Publisher ID (format: ca-pub-XXXXXXXXXXXXXXXX)
-  publisherId: import.meta.env.VITE_GOOGLE_ADSENSE_PUBLISHER_ID || "ca-pub-XXXXXXXXXXXXXXXX",
+  publisherId: import.meta.env.VITE_GOOGLE_ADSENSE_PUBLISHER_ID || "ca-pub-7149922159983439",
 
   // Master switch to enable or disable ads across the website
   enabled: import.meta.env.VITE_ENABLE_ADS !== "false",
