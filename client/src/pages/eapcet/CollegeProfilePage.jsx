@@ -723,9 +723,9 @@ export default function CollegeProfilePage() {
           </div>
         </section>
 
-        {/* STICKY SECTION NAVIGATION BAR — CURVED CAPSULE EDGES WITH LIQUID GLASS SLIDING PILL */}
-        <nav className="sticky top-[64px] sm:top-[80px] z-40 py-1 bg-transparent backdrop-blur-md pointer-events-auto">
-          <div className="grid grid-cols-9 gap-0.5 rounded-full border border-white/20 bg-black/90 p-1 text-center font-bold max-w-full overflow-hidden shadow-2xl">
+        {/* STICKY SECTION NAVIGATION BAR — LARGE, CRISP & SMOOTH SWIPEABLE CAPSULE PILLS */}
+        <nav className="sticky top-[60px] sm:top-[78px] z-40 py-1.5 bg-transparent backdrop-blur-md pointer-events-auto">
+          <div className="flex sm:grid sm:grid-cols-9 gap-1 sm:gap-0.5 rounded-full border border-white/25 bg-black/95 p-1.5 sm:p-1 max-w-full overflow-x-auto sm:overflow-hidden scrollbar-none shadow-2xl items-center">
             {[
               { id: 'sec-overview', label: 'Overview', shortLabel: 'Overview' },
               { id: 'sec-chances', label: 'Admission Chances', shortLabel: 'Chances' },
@@ -733,7 +733,7 @@ export default function CollegeProfilePage() {
               { id: 'sec-cutoffs', label: 'Cutoffs Intelligence', shortLabel: 'Cutoffs' },
               { id: 'sec-fees', label: 'Fees & ePASS', shortLabel: 'Fees' },
               { id: 'sec-scores', label: 'College Rating', shortLabel: 'Rating' },
-              { id: 'sec-placements', label: 'Placements', shortLabel: 'Pack' },
+              { id: 'sec-placements', label: 'Placements', shortLabel: 'Placements' },
               { id: 'sec-admission', label: 'Admission Guide', shortLabel: 'Guide' },
               { id: 'sec-faqs', label: 'FAQs & Compare', shortLabel: 'FAQs' }
             ].map((tab) => {
@@ -741,21 +741,22 @@ export default function CollegeProfilePage() {
               return (
                 <button
                   key={tab.id}
+                  ref={(el) => (tabRefs.current[tab.id] = el)}
                   onClick={() => scrollToSection(tab.id)}
-                  className={`relative py-1.5 px-0.5 rounded-lg text-[8px] xs:text-[9px] sm:text-xs font-bold transition-colors duration-200 cursor-pointer flex items-center justify-center text-center leading-tight truncate min-w-0 ${
-                    isActive ? 'text-white font-black' : 'text-gray-400 hover:text-white'
+                  className={`relative px-3.5 py-1.5 sm:px-1 sm:py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center justify-center text-center leading-tight whitespace-nowrap sm:whitespace-normal shrink-0 sm:shrink min-w-0 ${
+                    isActive ? 'text-white font-black' : 'text-gray-300 hover:text-white'
                   }`}
                   title={tab.label}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="stickyNavLiquidGlassPill"
-                      className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-600/40 via-white/25 to-indigo-600/40 border border-white/40 shadow-lg shadow-purple-950/50 backdrop-blur-md"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/50 via-white/30 to-indigo-600/50 border border-white/50 shadow-lg shadow-purple-950/60 backdrop-blur-md"
                       transition={{ type: "spring", stiffness: 450, damping: 32 }}
                     />
                   )}
                   <span className="relative z-10 hidden md:inline truncate">{tab.label}</span>
-                  <span className="relative z-10 inline md:hidden truncate">{tab.shortLabel}</span>
+                  <span className="relative z-10 inline md:hidden">{tab.shortLabel}</span>
                 </button>
               );
             })}

@@ -45,7 +45,14 @@ export default function CollegesDirectoryPage() {
   const [displayCount, setDisplayCount] = useState(50);
 
   const filteredColleges = useMemo(() => {
-    let list = [...(EAPCET_INSTITUTIONS || [])].sort((a, b) => (a.rank || 999) - (b.rank || 999));
+    let list = [...(EAPCET_INSTITUTIONS || [])].sort((a, b) => {
+      const ratingA = getCollegeEduvaleRating(a);
+      const ratingB = getCollegeEduvaleRating(b);
+      if (ratingB !== ratingA) {
+        return ratingB - ratingA; // Highest Eduvale Rating first
+      }
+      return (a.rank || 999) - (b.rank || 999);
+    });
 
     if (selectedFilter === 'TOP_20') {
       list = list.filter((c) => (c.rank || 999) <= 20);
