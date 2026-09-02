@@ -118,7 +118,13 @@ export default function EapcetHome() {
       </div>
 
       {/* 7 Core Action Cards Grid with Search Tab */}
-      <ExamToolsSection tools={EAPCET_TOOLS} title="TG EAPCET 2027 Admissions Suite" />
+      <ExamToolsSection
+        tools={EAPCET_TOOLS}
+        title="TG EAPCET 2027 Admissions Suite"
+        showExploreColleges={true}
+        exploreUrl="/tg-eapcet/colleges"
+        exploreLabel="Explore EAPCET Colleges"
+      />
 
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
