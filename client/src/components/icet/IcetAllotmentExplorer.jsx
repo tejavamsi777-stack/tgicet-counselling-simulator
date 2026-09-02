@@ -30,6 +30,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 import localSummary from '../../data/icet_allotments/allotments_summary.json';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 // Seat category color pills
 function getSeatCategoryStyle(cat = '') {
@@ -875,17 +876,11 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
     if (!allotmentData?.candidates) return [];
     let list = [...allotmentData.candidates];
 
-    // 1. Search Query
+    // 1. Strict Prefix & Word-Boundary Search Query
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
       list = list.filter((c) => {
-        const name = String(c.name || '').toLowerCase();
-        const ht = String(c.hallTicket || '').toLowerCase();
-        const rank = String(c.rank || '').toLowerCase();
-        const seat = String(c.seatCategory || '').toLowerCase();
-        const caste = String(c.caste || '').toLowerCase();
-        const reg = String(c.region || '').toLowerCase();
-        return name.includes(q) || ht.includes(q) || rank.includes(q) || seat.includes(q) || caste.includes(q) || reg.includes(q);
+        const fields = [c.name, c.hallTicket, String(c.rank), c.seatCategory, c.caste, c.region].filter(Boolean);
+        return strictMultiFieldMatch(fields, searchQuery);
       });
     }
 
@@ -1039,6 +1034,18 @@ export default function IcetAllotmentExplorer({ onDataLoaded }) {
 
   return (
     <div className="space-y-6">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-cyan-500/20 bg-cyan-950/20 px-4 py-2.5 text-[11px] text-cyan-300/80">
+        <Database size={13} className="text-cyan-400 shrink-0" />
+        <span className="font-semibold text-cyan-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">TSCHE (TG ICET MBA &amp; MCA) official candidate allotment gazettes</strong> published at{' '}
+          <a href="https://tgicet.nic.in" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300 transition-colors">
+            tgicet.nic.in
+          </a>. Allotment data covers First Phase, Final Phase, and Special Phase rounds.
+        </span>
+      </div>
+
       {/* ─── Control Bar ────────────────────────────────────────── */}
       <div className="relative z-30 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-black/80 to-purple-950/20 p-4 sm:p-6 backdrop-blur-2xl shadow-xl">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-12 items-end">

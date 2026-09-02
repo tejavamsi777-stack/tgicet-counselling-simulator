@@ -38,6 +38,7 @@ const EXAM_MENU_ITEMS = [
   { slug: "tg-ecet", name: "TG ECET", subtitle: "Diploma Lateral Entry (B.Tech)", path: "/tg-ecet", badge: "Live" },
   { slug: "tg-polycet", name: "TG POLYCET", subtitle: "Polytechnic & Diploma", path: "/tg-polycet", badge: "Live" },
   { slug: "tg-pgecet", name: "TG PGECET", subtitle: "M.Tech, M.Pharm & Post-Grad", path: "/tg-pgecet", badge: "Live" },
+  { slug: "kcet", name: "KCET", subtitle: "Karnataka CET Engineering", path: "/kcet", badge: "Live" },
 ];
 
 const ALLOTMENT_MENU_ITEMS = [
@@ -47,6 +48,7 @@ const ALLOTMENT_MENU_ITEMS = [
   { name: "TG ECET Allotments", subtitle: "Diploma Lateral Entry Allotments", path: "/tg-ecet/allotments" },
   { name: "TG POLYCET Allotments", subtitle: "Polytechnic Seat Allotment Data", path: "/tg-polycet/allotments" },
   { name: "TG PGECET Allotments", subtitle: "Postgraduate M.Tech Allotments", path: "/tg-pgecet/allotments" },
+  { name: "KCET Allotments", subtitle: "Karnataka CET Seat Allotment Data", path: "/kcet/allotments" },
 ];
 
 const PREDICTOR_MENU_ITEMS = [

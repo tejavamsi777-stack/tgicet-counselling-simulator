@@ -1,32 +1,29 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Search, X, ArrowRight } from "lucide-react";
+import { Search, X, ArrowRight, Building2 } from "lucide-react";
 import { GlowCard } from "../ui/spotlight-card";
 import { GlassButton } from "../ui/glass-button";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 export default function ExamToolsSection({ tools = [] }) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter tools by search query
+  // Filter tools by strict prefix & word-boundary search query
   const filteredTools = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
-    if (!q) return tools;
+    if (!searchQuery.trim()) return tools;
 
     return tools.filter((tool) => {
-      const titleMatch = tool.title?.toLowerCase().includes(q);
-      const detailMatch = tool.detail?.toLowerCase().includes(q);
-      const actionMatch = tool.action?.toLowerCase().includes(q);
-      const keywordsMatch = Array.isArray(tool.keywords) && tool.keywords.some((k) => k.toLowerCase().includes(q));
-
-      return titleMatch || detailMatch || actionMatch || keywordsMatch;
+      const keywords = Array.isArray(tool.keywords) ? tool.keywords : [];
+      const fields = [tool.title, tool.detail, tool.action, tool.tag, ...keywords].filter(Boolean);
+      return strictMultiFieldMatch(fields, searchQuery);
     });
   }, [tools, searchQuery]);
 
   return (
     <section className="mt-8 mb-8">
-      {/* Sleek Search Bar */}
-      <div className="mb-6">
-        <div className="relative w-full max-w-md sm:max-w-lg">
+      {/* Sleek Search Bar & Quick Action Button to the Right */}
+      <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-2.5 sm:gap-3">
+        <div className="relative w-full max-w-md sm:max-w-md">
           <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 z-10 text-purple-300 flex items-center justify-center">
             <Search size={18} className="text-purple-300 drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
           </div>
@@ -48,6 +45,16 @@ export default function ExamToolsSection({ tools = [] }) {
             </button>
           )}
         </div>
+
+        {/* Explore EAPCET Colleges Button to the right of Search Tools */}
+        <Link
+          to="/tg-eapcet/colleges"
+          className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-white/20 bg-white/10 hover:bg-white hover:text-gray-900 active:scale-95 transition-all font-bold px-5 py-3 text-xs sm:text-sm text-white backdrop-blur-2xl shadow-sm whitespace-nowrap cursor-pointer shrink-0 group"
+        >
+          <Building2 size={16} className="text-purple-300 group-hover:text-gray-900 transition-colors shrink-0" />
+          <span>Explore EAPCET Colleges</span>
+          <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-0.5" />
+        </Link>
       </div>
 
       {/* Spacious, Uniform Tools Grid */}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Search, Users, Award, TrendingDown, Download, Building,
-  GraduationCap, Sparkles, BarChart3, PieChart, Star, Trophy,
+  GraduationCap, Sparkles, BarChart3, PieChart, Star, Trophy, Database,
 } from 'lucide-react';
 import { pgecetApi } from '../../lib/pgecetApi';
 import { PGECET_INSTITUTIONS } from '../../data/pgecetInstitutions';
@@ -9,6 +9,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 function getSeatCategoryStyle(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
@@ -158,12 +159,8 @@ function GateSection({ candidates, searchFilter, loading }) {
   const filtered = useMemo(() => {
     const g = candidates.filter(c => c.admitted_by === 'GATE/GPAT' || c.gate_score);
     if (!searchFilter.trim()) return g;
-    const t = searchFilter.toLowerCase();
     return g.filter(c =>
-      c.name.toLowerCase().includes(t) ||
-      String(c.gate_score || '').includes(t) ||
-      c.category.toLowerCase().includes(t) ||
-      c.branch_name.toLowerCase().includes(t)
+      strictMultiFieldMatch([c.name, String(c.gate_score || ''), c.category, c.branch_name], searchFilter)
     );
   }, [candidates, searchFilter]);
 
@@ -266,13 +263,8 @@ function PgecetSection({ candidates, searchFilter, loading }) {
   const filtered = useMemo(() => {
     const pg = candidates.filter(c => !(c.admitted_by === 'GATE/GPAT' || c.gate_score));
     if (!searchFilter.trim()) return pg;
-    const t = searchFilter.toLowerCase();
     return pg.filter(c =>
-      c.name.toLowerCase().includes(t) ||
-      String(c.rank || '').includes(t) ||
-      String(c.percentile || '').includes(t) ||
-      c.category.toLowerCase().includes(t) ||
-      c.branch_name.toLowerCase().includes(t)
+      strictMultiFieldMatch([c.name, String(c.rank || ''), String(c.percentile || ''), c.category, c.branch_name], searchFilter)
     );
   }, [candidates, searchFilter]);
 
@@ -438,6 +430,18 @@ export default function PgecetAllotmentExplorer({ onDataLoaded }) {
 
   return (
     <div className="space-y-8">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-indigo-500/20 bg-indigo-950/20 px-4 py-2.5 text-[11px] text-indigo-300/80">
+        <Database size={13} className="text-indigo-400 shrink-0" />
+        <span className="font-semibold text-indigo-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">TSCHE (TG PGECET M.Tech / M.Pharm) official candidate allotment records</strong> published at{' '}
+          <a href="https://tgpgecet.nic.in" target="_blank" rel="noopener noreferrer" className="text-indigo-400 underline underline-offset-2 hover:text-indigo-300 transition-colors">
+            tgpgecet.nic.in
+          </a>. Allotments cover GATE/GPAT and TG PGECET round-wise merit allotments.
+        </span>
+      </div>
+
       {/* Selectors */}
       <div className="relative z-50 rounded-3xl border border-white/10 bg-[#120826] p-5 sm:p-7 shadow-2xl">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-5">

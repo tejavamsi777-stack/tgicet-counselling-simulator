@@ -19,6 +19,7 @@ import StatusBadge from "./StatusBadge";
 import ExportButtons from "./ExportButtons";
 import ConfidenceBar from "./ConfidenceBar";
 import { getDistrictName } from "../../utils/districtNames";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 const PAGE_SIZE_OPTIONS = [25, 50, 75, 100];
 const DEFAULT_PAGE_SIZE = 25;
@@ -150,17 +151,24 @@ export default function ResultsTable({
     return courseFiltered.filter((r) => r.status === statusFilter);
   }, [courseFiltered, statusFilter]);
 
-  // 5. Apply search query and sorting
+  // 5. Apply strict prefix & word-boundary search query and sorting
   const finalFiltered = useMemo(() => {
-    const term = search.trim().toLowerCase();
+    const term = search.trim();
     let rows = term
-      ? statusFiltered.filter(
-          (c) =>
-            c.name.toLowerCase().includes(term) ||
-            (c.district && getDistrictName(c.district).toLowerCase().includes(term)) ||
-            (c.course && c.course.toLowerCase().includes(term)) ||
-            (c.place && c.place.toLowerCase().includes(term))
-        )
+      ? statusFiltered.filter((c) => {
+          const fields = [
+            c.name,
+            c.code,
+            c.college_code,
+            c.college_name,
+            c.course,
+            c.courseName,
+            c.place,
+            c.district ? getDistrictName(c.district) : null,
+            c.district
+          ].filter(Boolean);
+          return strictMultiFieldMatch(fields, term);
+        })
       : statusFiltered;
 
     rows = [...rows].sort((a, b) => {

@@ -4,14 +4,13 @@ import { GlowCard } from '../../components/ui/spotlight-card';
 import { GlassButton } from '../../components/ui/glass-button';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
-import AdmissionStatusBanner from '../../components/eapcet/AdmissionStatusBanner';
+import TopEngineeringCollegesExplorer from '../../components/eapcet/TopEngineeringCollegesExplorer';
 import LiveNotificationsStream from '../../components/eapcet/LiveNotificationsStream';
 import PhaseScheduleTable from '../../components/eapcet/PhaseScheduleTable';
 import AdmissionConditions from '../../components/eapcet/AdmissionConditions';
 import EligibilityMatrix from '../../components/eapcet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/eapcet/TopCollegesLeaderboard';
 import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
-import CollegeProfileSelectorBanner from '../../components/eapcet/CollegeProfileSelectorBanner';
 import CutoffTrendAnalyzer from '../../components/eapcet/CutoffTrendAnalyzer';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
 import FaqSection from '../../components/shared/FaqSection';
@@ -128,12 +127,10 @@ export default function EapcetHome() {
 
       <SectionDivider />
 
-      {/* Admission Status Banner */}
-      {loading ? (
-        <ShimmerBlock height="h-52" />
-      ) : (
-        <AdmissionStatusBanner phases={data?.phases || []} year={data?.year || '2027'} />
-      )}
+      {/* Top Engineering Colleges Directory & Profiles Explorer */}
+      <div className="relative z-30">
+        <TopEngineeringCollegesExplorer />
+      </div>
 
       {/* Real-time Scraped Official Circulars */}
       <div className="mt-8">
@@ -145,11 +142,6 @@ export default function EapcetHome() {
       {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
       <div className="relative z-30 mb-6">
         <FeeReimbursementCalculator />
-      </div>
-
-      {/* Dedicated College Profile Selector Banner */}
-      <div className="relative z-20 mb-10">
-        <CollegeProfileSelectorBanner />
       </div>
 
       {/* Top 5 Engineering Colleges Leaderboard */}

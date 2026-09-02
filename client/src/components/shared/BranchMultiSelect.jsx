@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronDown, Check, Search, X, Sparkles } from "lucide-react";
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import ThreeDotsLoader from "../ui/three-dots-loader";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 export default function BranchMultiSelect({
   selectedCourses = [],
@@ -43,12 +44,7 @@ export default function BranchMultiSelect({
 
   const filteredCourses = useMemo(() => {
     if (!search.trim()) return courses;
-    const term = search.trim().toLowerCase();
-    return courses.filter(
-      (c) =>
-        (c.code && c.code.toLowerCase().includes(term)) ||
-        (c.name && c.name.toLowerCase().includes(term))
-    );
+    return courses.filter((c) => strictMultiFieldMatch([c.code, c.name], search));
   }, [courses, search]);
 
   function toggleCourse(code) {

@@ -1,8 +1,37 @@
 import { GraduationCap, Banknote } from 'lucide-react';
 
+const FALLBACK_ELIGIBILITY = {
+  academic: [
+    "Qualified in TG EAPCET-2026 with minimum 45% marks in Intermediate group subjects (40% for reserved categories).",
+    "Must be an Indian National satisfying local/unreserved status per G.O. Ms. No. 15 dated 27-02-2025.",
+    "Seat matrix: 85% reserved for Local (O.U. Area) candidates; 15% Unreserved (open to O.U. locals, 10-year state residents, government employee children/spouses).",
+    "Minimum age: 16 years as of 31-12-2026 for Engineering (17 for Pharm-D); Maximum 25 years (OC) or 29 years (others) as of 01-07-2026 for scholarship eligibility.",
+    "Minority Exemption: Muslim/Christian minority candidates without a TG EAPCET rank may apply for leftover minority college seats with required Inter % (not eligible for Fee Reimbursement).",
+  ],
+  fees: [
+    { label: "Exam Fee — Engg (E) / Agri (AP) [OC / BC]", value: "₹900 (online)" },
+    { label: "Exam Fee — Engg (E) / Agri (AP) [SC / ST / PH]", value: "₹500 (online)" },
+    { label: "Exam Fee — Both Streams (E & AP) [OC / BC]", value: "₹1,800 (online)" },
+    { label: "Exam Fee — Both Streams (E & AP) [SC / ST / PH]", value: "₹1,000 (online)" },
+    { label: "Counselling Processing Fee (OC / BC / EWS)", value: "₹1,200 (online)" },
+    { label: "Counselling Processing Fee (SC / ST)", value: "₹600 (online)" },
+    { label: "EWS Reservation", value: "10% (G.O. Ms. No. 244)" },
+    { label: "ST Reservation", value: "10% (G.O. Ms. No. 33)" },
+    { label: "PH Reservation", value: "5% (G.O. Ms. No. 2)" },
+    { label: "CAP (Armed Personnel Children)", value: "2%" },
+    { label: "SC Grouping", value: "Applies per G.O. Ms. No. 10" },
+    { label: "Minimum Tuition Floor (SC/ST)", value: "₹5,000 (refundable on final reporting; forfeited if not reported)" },
+    { label: "Minimum Tuition Floor (Others)", value: "₹10,000 (refundable on final reporting; forfeited if not reported)" },
+  ],
+};
+
 export default function EligibilityMatrix({ eligibility = {} }) {
-  const academic = eligibility.academic || [];
-  const fees     = eligibility.fees     || [];
+  const activeEligibility = (eligibility && eligibility.academic && eligibility.academic.length > 0)
+    ? eligibility
+    : FALLBACK_ELIGIBILITY;
+
+  const academic = activeEligibility.academic || FALLBACK_ELIGIBILITY.academic;
+  const fees     = activeEligibility.fees     || FALLBACK_ELIGIBILITY.fees;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

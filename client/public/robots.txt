@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+# Explicit AI Crawlers & Search Agents
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://vuelalearn.in/sitemap.xml

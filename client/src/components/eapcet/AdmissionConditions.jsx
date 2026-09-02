@@ -1,14 +1,37 @@
-export default function AdmissionConditions({ conditions = [] }) {
-  const high   = conditions.filter(c => c.severity === 'high');
-  const medium = conditions.filter(c => c.severity === 'medium');
-  const low    = conditions.filter(c => c.severity === 'low');
+const FALLBACK_CONDITIONS = [
+  {
+    title: "16+ Years Minimum Age & Qualifying Exam Rules",
+    body: "Candidates must be Indian Nationals & belong to Telangana / Andhra Pradesh. Must have completed 16 years of age as of December 31st of the admission year. Minimum 45% marks in Intermediate (MPC/BiPC) for General / 40% for Reserved categories.",
+    severity: "high"
+  },
+  {
+    title: "Local Area Jurisdiction (85% Local Reservation)",
+    body: "85% of Convenor Quota seats in each college are reserved for Local Candidates (Osmania University / JNTUH local area based on 7 consecutive years of study in Telangana). Remaining 15% seats are open for Unreserved / Non-local candidates.",
+    severity: "high"
+  },
+  {
+    title: "TS ePASS Fee Reimbursement Income Limits",
+    body: "Full tuition fee reimbursement for SC/ST students & rank holders under 10,000 in TG EAPCET. Partial reimbursement (₹35,000/yr) for BC, EWS & OC students with parental annual income below ₹2,000,000 (Urban) or ₹1,500,000 (Rural).",
+    severity: "medium"
+  },
+  {
+    title: "Document Verification at Help Line Centres (HLC)",
+    body: "Mandatory physical certificate verification at designated HLCs for Special Category (PH, CAP, NCC, Sports) & offline verification candidates before option freezing.",
+    severity: "low"
+  }
+];
 
-  if (!conditions.length) return null;
+export default function AdmissionConditions({ conditions = [] }) {
+  const activeConditions = (conditions && conditions.length > 0) ? conditions : FALLBACK_CONDITIONS;
+
+  const high   = activeConditions.filter(c => c.severity === 'high');
+  const medium = activeConditions.filter(c => c.severity === 'medium');
+  const low    = activeConditions.filter(c => c.severity === 'low');
 
   return (
     <div>
       <h3 className="text-lg font-bold text-amber-300 mb-4 flex items-center gap-2">
-        ⚠️ Admission Conditions &amp; Binding Rules
+        <span>⚠️ Admission Conditions &amp; Binding Rules</span>
       </h3>
 
       {/* High severity */}

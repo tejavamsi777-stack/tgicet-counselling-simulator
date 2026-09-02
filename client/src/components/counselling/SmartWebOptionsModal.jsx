@@ -22,6 +22,7 @@ import { exportPreferencesToPDF } from "../../utils/exportPreferences";
 import { getDistrictName } from "../../utils/districtNames";
 import { EXAM_COURSE_GROUPS } from "../../config/courseGroups";
 import { api } from "../../lib/api";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 // Recognized Premier Dream Institutes by Exam
 const DREAM_COLLEGES = {
@@ -901,18 +902,13 @@ export default function SmartWebOptionsModal({
     setShowAddBar(false);
   }
 
-  // Filtered colleges for manual add dropdown
+  // Filtered colleges for manual add dropdown with strict prefix & word-boundary search
   const filteredCollegesToAdd = useMemo(() => {
-    const q = collegeSearchQuery.trim().toLowerCase();
+    const q = collegeSearchQuery.trim();
     const list = availableCollegeList.length > 0 ? availableCollegeList : Array.from(masterCollegeMap.values());
     if (!q) return list.slice(0, 40);
     return list
-      .filter((c) =>
-        (c.code && c.code.toLowerCase().includes(q)) ||
-        (c.name && c.name.toLowerCase().includes(q)) ||
-        (c.place && c.place.toLowerCase().includes(q)) ||
-        (c.district && c.district.toLowerCase().includes(q))
-      )
+      .filter((c) => strictMultiFieldMatch([c.code, c.name, c.place, c.district], q))
       .slice(0, 40);
   }, [availableCollegeList, masterCollegeMap, collegeSearchQuery]);
 

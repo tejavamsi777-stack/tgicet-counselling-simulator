@@ -33,6 +33,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1176,13 +1177,8 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
         if (!casteMatch && !seatMatch) return false;
       }
       if (search.trim()) {
-        const q = search.toLowerCase();
-        return (
-          c.name.toLowerCase().includes(q) ||
-          c.hallTicket.toLowerCase().includes(q) ||
-          String(c.rank).includes(q) ||
-          c.seatCategory.toLowerCase().includes(q)
-        );
+        const fields = [c.name, c.hallTicket, String(c.rank), c.seatCategory].filter(Boolean);
+        return strictMultiFieldMatch(fields, search);
       }
       return true;
     });
@@ -1254,6 +1250,18 @@ export default function PolycetAllotmentExplorer({ onDataLoaded }) {
 
   return (
     <div className="space-y-8">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-pink-500/20 bg-pink-950/20 px-4 py-2.5 text-[11px] text-pink-300/80">
+        <Database size={13} className="text-pink-400 shrink-0" />
+        <span className="font-semibold text-pink-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">SBTET / TSCHE (TG POLYCET) official candidate allotment records</strong> published at{' '}
+          <a href="https://polycetts.nic.in" target="_blank" rel="noopener noreferrer" className="text-pink-400 underline underline-offset-2 hover:text-pink-300 transition-colors">
+            polycetts.nic.in
+          </a>. Allotments cover First Phase and Final Phase polytechnic diploma rounds.
+        </span>
+      </div>
+
       {/* ── Stepper Rail ────────────────────────────────────────────── */}
       <div className="flex items-center gap-0 overflow-x-auto pb-1 scrollbar-none">
         {['Phase & Year', 'Polytechnic College', 'Diploma Branch', 'Results'].map((label, i) => {

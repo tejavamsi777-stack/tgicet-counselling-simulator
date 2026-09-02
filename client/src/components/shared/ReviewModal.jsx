@@ -167,7 +167,7 @@ export default function ReviewModal({ isOpen, onClose }) {
                     onClick={() => handleDismiss('later')}
                     className="w-full rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 py-3 text-sm font-semibold text-gray-200 hover:text-white transition active:scale-[0.98] cursor-pointer backdrop-blur-md shadow-sm"
                   >
-                    💔 Maybe Later
+                    💔 Not Now
                   </button>
                 </div>
               </div>

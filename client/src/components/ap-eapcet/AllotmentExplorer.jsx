@@ -31,6 +31,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1168,13 +1169,8 @@ export default function AllotmentExplorer({ onDataLoaded }) {
         return false;
       }
       if (search.trim()) {
-        const q = search.toLowerCase();
-        return (
-          c.name.toLowerCase().includes(q) ||
-          c.hallTicket.toLowerCase().includes(q) ||
-          String(c.rank).includes(q) ||
-          c.seatCategory.toLowerCase().includes(q)
-        );
+        const fields = [c.name, c.hallTicket, String(c.rank), c.seatCategory].filter(Boolean);
+        return strictMultiFieldMatch(fields, search);
       }
       return true;
     });
@@ -1255,6 +1251,22 @@ export default function AllotmentExplorer({ onDataLoaded }) {
 
   return (
     <div className="space-y-8">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-blue-500/20 bg-blue-950/20 px-4 py-2.5 text-[11px] text-blue-300/80">
+        <Database size={13} className="text-blue-400 shrink-0" />
+        <span className="font-semibold text-blue-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">APSCHE (AP EAPCET) official candidate allotment archives</strong> published via{' '}
+          <a href="https://sche.ap.gov.in" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-2 hover:text-blue-300 transition-colors">
+            sche.ap.gov.in
+          </a>{' '}
+          &amp;{' '}
+          <a href="https://eapcet-sche.aptonline.in" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-2 hover:text-blue-300 transition-colors">
+            aptonline.in
+          </a>. Allotments cover Phase 1, Phase 2, and Final Phase rounds (2023–2025).
+        </span>
+      </div>
+
       {/* ── Stepper Rail ────────────────────────────────────────────────── */}
       <div className="flex items-center gap-0 overflow-x-auto pb-1 scrollbar-none">
         {['Phase & Year', 'Engineering College', 'Branch / Stream', 'Results'].map((label, i) => {

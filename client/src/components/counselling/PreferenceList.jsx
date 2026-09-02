@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { COLLEGE_TYPE_COLORS } from "../../utils/collegeTypeColors";
 import { getDistrictName } from "../../utils/districtNames";
 import CollegeInfoModal from "./CollegeInfoModal";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 /**
  * Derive college type from live DB flags.
@@ -138,13 +139,8 @@ export default function PreferenceList({ colleges, preferences, setPreferences, 
   const [scaledHeight, setScaledHeight] = useState("auto");
 
   const filteredColleges = useMemo(() => {
-    const term = search.trim().toLowerCase();
-    if (!term) return colleges;
-    return colleges.filter(
-      (c) =>
-        c.name.toLowerCase().startsWith(term) ||
-        c.code.toLowerCase().startsWith(term)
-    );
+    if (!search.trim()) return colleges;
+    return colleges.filter((c) => strictMultiFieldMatch([c.code, c.name, c.place, c.district], search));
   }, [colleges, search]);
 
   const activeCourseGroups = useMemo(() => {

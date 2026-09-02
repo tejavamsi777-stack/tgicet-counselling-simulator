@@ -21,6 +21,7 @@ import { pgecetApi } from "../../lib/pgecetApi";
 import { PGECET_BRANCHES } from "../../data/pgecetInstitutions";
 import SearchableSelect from "../../components/shared/SearchableSelect";
 import { smoothScrollTo } from "../../lib/utils";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 const CATEGORIES = ["OC", "EWS", "BC-A", "BC-B", "BC-C", "BC-D", "BC-E", "SC", "ST"];
 const PAGE_SIZE = 20;
@@ -98,15 +99,12 @@ export default function PgecetPredictorPage() {
       });
     }
 
-    // 2. Search Query
+    // 2. Strict Prefix & Word-Boundary Search Query
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.college_name.toLowerCase().includes(q) ||
-          p.college_code.toLowerCase().includes(q) ||
-          p.branch_name.toLowerCase().includes(q)
-      );
+      list = list.filter((p) => {
+        const fields = [p.college_code, p.college_name, p.branch_name].filter(Boolean);
+        return strictMultiFieldMatch(fields, searchQuery);
+      });
     }
 
     return list;

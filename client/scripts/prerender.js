@@ -166,6 +166,54 @@ function generateSmartRouteContent(routePath, defaultTitle, defaultDesc) {
             <p class="text-sm text-gray-400">Accurate college and branch predictions for ${examName} calibrated against authentic convenor closing cutoffs.</p>
           </div>
 
+          <!-- Interactive Predictor Input Guidance Interface -->
+          <div class="rounded-2xl border border-white/10 bg-black/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+            <div class="border-b border-white/10 pb-4">
+              <h2 class="text-xl font-bold text-white">Predict Your Admission Chances</h2>
+              <p class="text-xs text-gray-400 mt-1">Enter your rank and reservation criteria to predict eligible ${examShort} engineering and professional colleges.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Rank Input -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-2">1. Enter Your Rank</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Enter ${examShort} Rank...</span>
+                </div>
+              </div>
+
+              <!-- Caste Category Selection -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">2. Select Category</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Select Caste (OC, BC, SC, ST, EWS)</span>
+                </div>
+              </div>
+
+              <!-- Gender & Region Selection -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-emerald-300 mb-2">3. Gender &amp; Region</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Gender &amp; Local Region</span>
+                </div>
+              </div>
+
+              <!-- Branch Filter -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">4. Branch Filter</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>All Branches / Streams</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <div class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-lg shadow-purple-950/50">
+                <span>🎯 Predict Eligible Colleges &amp; Cutoffs</span>
+              </div>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
               <div class="text-lg font-bold text-white">🎯 Rank Matching</div>
@@ -194,7 +242,8 @@ function generateSmartRouteContent(routePath, defaultTitle, defaultDesc) {
     const faqs = [
       { q: `What is the 3-Tier Web Options Strategy?`, a: `Our algorithm automatically divides your choices into Reach (Ambitious top colleges - 30%), Target (Realistic colleges matching your rank - 40%), and Safe (Guaranteed backup institutions - 30%) to eliminate the risk of missing a seat.` },
       { q: `How many web options can I add?`, a: `TSCHE and APSCHE permit unlimited web options. We recommend adding at least 40 to 80 choices in strict order of institutional preference.` },
-      { q: `Can I export the generated list?`, a: `Yes, you can export and copy the priority codes directly for the official web counselling portal.` }
+      { q: `Can I export the generated list?`, a: `Yes, you can export and copy the priority codes directly for the official web counselling portal.` },
+      { q: `How does category reservation affect web option sequencing?`, a: `The state convenor algorithm evaluates candidate choices against category-specific closing ranks (OC, BC-A/B/C/D/E, SC, ST, EWS). Always prioritize high-reputation colleges at the top regardless of category quota.` }
     ];
     const { html: faqHtml, jsonLd: faqJson } = renderFaqs(faqs);
     const softwareSchema = {
@@ -218,6 +267,54 @@ function generateSmartRouteContent(routePath, defaultTitle, defaultDesc) {
             </div>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${title}</h1>
             <p class="text-sm text-gray-400">Eliminate seat loss risk during ${examName} counselling with AI-assisted priority sequencing.</p>
+          </div>
+
+          <!-- Interactive Input Form Interface -->
+          <div class="rounded-2xl border border-white/10 bg-black/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+            <div class="border-b border-white/10 pb-4">
+              <h2 class="text-xl font-bold text-white">Generate Your 3-Tier Web Options List</h2>
+              <p class="text-xs text-gray-400 mt-1">Enter your rank and select your category to sequence your choices safely before locking options.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Rank Input -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-2">1. Enter Your Rank</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Enter ${examShort} Rank...</span>
+                </div>
+              </div>
+
+              <!-- Caste Category Selection -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">2. Select Category</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Select Caste (OC, BC, SC, ST, EWS)</span>
+                </div>
+              </div>
+
+              <!-- Region Selection -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-emerald-300 mb-2">3. Select Region</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Select Region (OU / AU / SVU)</span>
+                </div>
+              </div>
+
+              <!-- Branch Preferences -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">4. Branch Preferences</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs text-gray-400">
+                  <span>Select Preferred Branches</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <div class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-lg shadow-purple-950/50">
+                <span>⚡ Generate Safe Web Options List</span>
+              </div>
+            </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -415,26 +512,140 @@ function generateSmartRouteContent(routePath, defaultTitle, defaultDesc) {
 
   // 9. College Directory (/colleges)
   if (p === '/colleges') {
-    const title = '500+ Verified Colleges Directory — TSCHE & APSCHE Institutions';
+    const title = '500+ Verified Colleges Directory — TSCHE, APSCHE & KEA Institutions';
     const faqs = [
-      { q: 'How many colleges are listed in the directory?', a: 'Over 500 engineering, management, pharmacy, and polytechnic colleges across Telangana and Andhra Pradesh with verified course intakes and codes.' }
+      { q: 'How many colleges are listed in the directory?', a: 'Over 500 engineering, management, pharmacy, and polytechnic institutions across Telangana, Andhra Pradesh, and Karnataka with official counselling codes, university affiliations, and government-regulated fee structures.' },
+      { q: 'Where are tuition fees and NAAC accreditation sourced from?', a: 'Tuition fees are compiled directly from official TAFRC (Telangana) and APHERMC (Andhra Pradesh) government gazette notifications. NAAC grades and NBA statuses are verified through official NIRF and institutional submissions.' },
+      { q: 'Can I view candidate allotment cutoffs for each college?', a: 'Yes. Every college listed in the directory links directly to our official candidate allotment explorers where you can inspect opening and closing ranks by caste category, gender, and local area.' }
     ];
     const { html: faqHtml, jsonLd: faqJson } = renderFaqs(faqs);
     return {
       title: `${title} | Vuela Learn`,
-      desc: 'Browse 500+ universities and colleges across Telangana and Andhra Pradesh with campus details, courses, and cutoffs.',
+      desc: 'Browse 500+ universities and colleges across Telangana, Andhra Pradesh, and Karnataka with verified counselling codes, courses, tuition fees, and cutoffs.',
       body: `
-        <main class="mx-auto max-w-5xl px-4 sm:px-6 py-10 sm:py-16 text-gray-300 space-y-10">
+        <main class="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-16 text-gray-300 space-y-10">
           <div class="border-b border-white/10 pb-6 space-y-2">
+            <div class="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300">
+              <span>🏛️ Verified Institutions Database</span>
+            </div>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${title}</h1>
-            <p class="text-sm text-gray-400">Explore comprehensive college profiles, counseling codes, district locations, and courses.</p>
+            <p class="text-sm text-gray-400">Search and filter accredited colleges by state, affiliation, district, and annual fee structures.</p>
           </div>
-          <section class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 space-y-3">
-            <h2 class="text-lg font-bold text-white">Comprehensive State College Database</h2>
-            <p class="text-xs text-gray-300 leading-relaxed">
-              Filter colleges by University affiliation (OU, JNTUH, AU, JNTUK, SVU, KU), district (Hyderabad, Ranga Reddy, Medchal, Visakhapatnam, etc.), and college type (Autonomous, University Campus, Private).
-            </p>
-          </section>
+
+          <!-- Filter Controls Interface -->
+          <div class="rounded-2xl border border-white/10 bg-black/60 p-5 space-y-4 shadow-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-purple-300 mb-1.5">Filter by State</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-gray-300">All States (Telangana, Andhra Pradesh, Karnataka)</div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-1.5">Filter by University Affiliation</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-gray-300">All Universities (OU, JNTUH, AU, JNTUK, VTU)</div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-emerald-300 mb-1.5">Filter by District</label>
+                <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-gray-300">All Districts</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verified Institutions Directory Table -->
+          <div class="rounded-2xl border border-white/10 bg-[#0d111d] overflow-hidden shadow-2xl">
+            <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+              <h2 class="text-base font-bold text-white">Premier Engineering &amp; Management Institutions (500+ Listed)</h2>
+              <span class="text-xs text-gray-400">Official Government Regulated Intakes</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-gray-300">
+                <thead class="bg-white/5 text-gray-400 text-[11px] uppercase tracking-wider border-b border-white/10">
+                  <tr>
+                    <th class="px-4 py-3">Code</th>
+                    <th class="px-4 py-3">College Name</th>
+                    <th class="px-4 py-3">Location &amp; State</th>
+                    <th class="px-4 py-3">Affiliation / Status</th>
+                    <th class="px-4 py-3">Annual Regulated Fee</th>
+                    <th class="px-4 py-3">Allotments</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5">
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">CBIT</td>
+                    <td class="px-4 py-3 font-semibold text-white">Chaitanya Bharathi Institute of Technology</td>
+                    <td class="px-4 py-3">Gandipet, Hyderabad · TG</td>
+                    <td class="px-4 py-3">OU Affiliated · NAAC A++ Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹1,40,000/yr</td>
+                    <td class="px-4 py-3"><a href="/tg-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">VNRV</td>
+                    <td class="px-4 py-3 font-semibold text-white">VNR Vignana Jyothi Institute of Engg &amp; Tech</td>
+                    <td class="px-4 py-3">Bachupally, Hyderabad · TG</td>
+                    <td class="px-4 py-3">JNTUH Affiliated · NAAC A++ Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹1,35,000/yr</td>
+                    <td class="px-4 py-3"><a href="/tg-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">OUCE</td>
+                    <td class="px-4 py-3 font-semibold text-white">University College of Engineering, Osmania University</td>
+                    <td class="px-4 py-3">Hyderabad · TG</td>
+                    <td class="px-4 py-3">Osmania University Campus · Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹35,000/yr</td>
+                    <td class="px-4 py-3"><a href="/tg-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">JNTH</td>
+                    <td class="px-4 py-3 font-semibold text-white">JNTUH University College of Engineering</td>
+                    <td class="px-4 py-3">Kukatpally, Hyderabad · TG</td>
+                    <td class="px-4 py-3">JNTU University Campus</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹35,000/yr</td>
+                    <td class="px-4 py-3"><a href="/tg-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">VASV</td>
+                    <td class="px-4 py-3 font-semibold text-white">Vasavi College of Engineering</td>
+                    <td class="px-4 py-3">Ibrahimbagh, Hyderabad · TG</td>
+                    <td class="px-4 py-3">OU Affiliated · NAAC A++ Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹1,40,000/yr</td>
+                    <td class="px-4 py-3"><a href="/tg-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">AUCE</td>
+                    <td class="px-4 py-3 font-semibold text-white">Andhra University College of Engineering</td>
+                    <td class="px-4 py-3">Visakhapatnam · AP</td>
+                    <td class="px-4 py-3">Andhra University Campus</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹38,000/yr</td>
+                    <td class="px-4 py-3"><a href="/ap-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">GVPV</td>
+                    <td class="px-4 py-3 font-semibold text-white">Gayatri Vidya Parishad College of Engineering</td>
+                    <td class="px-4 py-3">Madhurawada, Visakhapatnam · AP</td>
+                    <td class="px-4 py-3">JNTUK Affiliated · NAAC A Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">₹69,000/yr</td>
+                    <td class="px-4 py-3"><a href="/ap-eapcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">RVCE</td>
+                    <td class="px-4 py-3 font-semibold text-white">R.V. College of Engineering</td>
+                    <td class="px-4 py-3">Mysuru Road, Bengaluru · KA</td>
+                    <td class="px-4 py-3">VTU Affiliated · Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">KEA Regulated / SNQ</td>
+                    <td class="px-4 py-3"><a href="/kcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                  <tr class="hover:bg-white/[0.02]">
+                    <td class="px-4 py-3 font-mono font-bold text-cyan-400">BMSCE</td>
+                    <td class="px-4 py-3 font-semibold text-white">B.M.S. College of Engineering</td>
+                    <td class="px-4 py-3">Basavanagudi, Bengaluru · KA</td>
+                    <td class="px-4 py-3">VTU Affiliated · NAAC A++ Autonomous</td>
+                    <td class="px-4 py-3 font-mono text-emerald-400">KEA Regulated / SNQ</td>
+                    <td class="px-4 py-3"><a href="/kcet/allotments" class="text-purple-400 hover:text-purple-300 font-semibold underline">View Cutoffs →</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           ${faqHtml}
         </main>
       `,

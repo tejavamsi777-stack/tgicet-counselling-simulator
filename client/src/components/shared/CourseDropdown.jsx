@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronDown, Check, Search, X } from "lucide-react";
 import { useReferenceData } from "../../hooks/useReferenceData";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet" }) {
   const { courses } = useReferenceData(examSlug);
@@ -32,12 +33,7 @@ export default function CourseDropdown({ course, setCourse, examSlug = "tg-icet"
 
   const filteredCourses = useMemo(() => {
     if (!search.trim()) return courses;
-    const term = search.trim().toLowerCase();
-    return courses.filter(
-      (c) =>
-        (c.code && c.code.toLowerCase().includes(term)) ||
-        (c.name && c.name.toLowerCase().includes(term))
-    );
+    return courses.filter((c) => strictMultiFieldMatch([c.code, c.name], search));
   }, [courses, search]);
 
   const selectedCourseObj = courses.find((c) => c.code === course);

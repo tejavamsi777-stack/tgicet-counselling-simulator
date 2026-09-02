@@ -15,6 +15,7 @@ import {
 import { AP_COLLEGES_METADATA } from "../../data/apCollegesMetadata";
 import OFFICIAL_AP_COLLEGE_BRANCHES from "../../data/officialApCollegeBranches.json";
 import Seo from "../../components/shared/Seo";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 // Standard AP Districts list matching official APSCHE portal
 const AP_DISTRICTS = [
@@ -361,16 +362,10 @@ export default function ApEapcetMockCounsellingPage() {
         }
       }
 
-      // 5. Search query filter inside panel
+      // 5. Search query filter inside panel with strict prefix & word-boundary search
       if (availableSearch.trim()) {
-        const q = availableSearch.toLowerCase();
-        return (
-          opt.displayText.toLowerCase().includes(q) ||
-          opt.collegeCode.toLowerCase().includes(q) ||
-          opt.collegeName.toLowerCase().includes(q) ||
-          opt.courseCode.toLowerCase().includes(q) ||
-          opt.courseName.toLowerCase().includes(q)
-        );
+        const fields = [opt.collegeCode, opt.collegeName, opt.courseCode, opt.courseName, opt.displayText].filter(Boolean);
+        return strictMultiFieldMatch(fields, availableSearch);
       }
 
       return true;
@@ -380,12 +375,10 @@ export default function ApEapcetMockCounsellingPage() {
   // Filter selected preferences by search inside Right Panel
   const displayedSelectedList = useMemo(() => {
     if (!selectedSearch.trim()) return selectedPreferences;
-    const q = selectedSearch.toLowerCase();
-    return selectedPreferences.filter((p) =>
-      p.displayText.toLowerCase().includes(q) ||
-      p.collegeCode.toLowerCase().includes(q) ||
-      p.courseCode.toLowerCase().includes(q)
-    );
+    return selectedPreferences.filter((p) => {
+      const fields = [p.collegeCode, p.courseCode, p.displayText].filter(Boolean);
+      return strictMultiFieldMatch(fields, selectedSearch);
+    });
   }, [selectedPreferences, selectedSearch]);
 
   // Add course to preferences (Green `→` button)

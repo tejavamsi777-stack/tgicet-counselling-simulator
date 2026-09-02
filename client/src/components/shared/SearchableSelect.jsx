@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { Search, ChevronDown, Check, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThreeDotsLoader } from "../ui/three-dots-loader";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 export default function SearchableSelect({
   value,
@@ -26,15 +27,12 @@ export default function SearchableSelect({
     return options.find((opt) => String(opt.value) === String(value)) || null;
   }, [options, value]);
 
-  // Filter options based on search query
+  // Filter options based on strict prefix & word-boundary search
   const filteredOptions = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    if (!q) return options;
+    if (!searchQuery.trim()) return options;
     return options.filter((opt) => {
-      const valMatch = String(opt.value || "").toLowerCase().includes(q);
-      const labelMatch = String(opt.label || "").toLowerCase().includes(q);
-      const subMatch = opt.sublabel ? String(opt.sublabel).toLowerCase().includes(q) : false;
-      return valMatch || labelMatch || subMatch;
+      const fields = [opt.value, opt.label, opt.sublabel].filter(Boolean);
+      return strictMultiFieldMatch(fields, searchQuery);
     });
   }, [options, searchQuery]);
 

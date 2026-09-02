@@ -31,6 +31,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1160,13 +1161,8 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
         if (!casteMatch && !seatMatch) return false;
       }
       if (search.trim()) {
-        const q = search.toLowerCase();
-        return (
-          c.name.toLowerCase().includes(q) ||
-          c.hallTicket.toLowerCase().includes(q) ||
-          String(c.rank).includes(q) ||
-          c.seatCategory.toLowerCase().includes(q)
-        );
+        const fields = [c.name, c.hallTicket, String(c.rank), c.seatCategory].filter(Boolean);
+        return strictMultiFieldMatch(fields, search);
       }
       return true;
     });
@@ -1237,6 +1233,18 @@ export default function EcetAllotmentExplorer({ onDataLoaded }) {
 
   return (
     <div className="space-y-8">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-950/20 px-4 py-2.5 text-[11px] text-amber-300/80">
+        <Database size={13} className="text-amber-400 shrink-0" />
+        <span className="font-semibold text-amber-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">TSCHE (TG ECET Lateral Entry) official candidate allotment records</strong> published at{' '}
+          <a href="https://tgecet.nic.in" target="_blank" rel="noopener noreferrer" className="text-amber-400 underline underline-offset-2 hover:text-amber-300 transition-colors">
+            tgecet.nic.in
+          </a>. Allotments cover First Phase and Final Phase lateral entry rounds.
+        </span>
+      </div>
+
       {/* ── Stepper Rail ────────────────────────────────────────────── */}
       <div className="flex items-center gap-0 overflow-x-auto pb-1 scrollbar-none">
         {['Phase & Year', 'Engineering College', 'Lateral Entry Branch', 'Results'].map((label, i) => {

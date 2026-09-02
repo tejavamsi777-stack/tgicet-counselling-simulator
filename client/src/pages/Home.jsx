@@ -8,8 +8,9 @@ import WhyChooseUs from "../components/home/WhyChooseUs";
 import FaqSection from "../components/shared/FaqSection";
 import { HOME_FAQS } from "../data/faqsData";
 import { exams } from "../config/exams";
+import { strictMultiFieldMatch } from "../utils/searchMatch";
 
-// Detailed State Master Information & Summaries (Telangana first, Andhra Pradesh second)
+// Detailed State Master Information & Summaries (Telangana, Andhra Pradesh, Karnataka)
 const STATE_CARDS_DATA = [
   {
     id: "telangana",
@@ -18,14 +19,14 @@ const STATE_CARDS_DATA = [
     path: "/telangana",
     examCount: 5,
     examsList: ["TG EAPCET", "TG ICET", "TG ECET", "TG POLYCET", "TG PGECET"],
-    description: "TSCHE Entrance Admissions for Telangana. Complete B.Tech, MBA/MCA, Diploma Lateral Entry & M.Tech college predictors, seat allotment explorers & web options simulators.",
+    description: "TSCHE Engineering, MBA/MCA, Lateral Entry & PG admissions predictors and allotment archives.",
     gradient: "from-emerald-600/20 via-teal-600/10 to-transparent",
     borderColor: "border-emerald-500/30 hover:border-emerald-400/60",
     badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
     titleHoverColor: "group-hover:text-emerald-400",
     buttonStyle: "bg-gradient-to-r from-[#365314] to-[#4d7c0f] border-lime-500/30 text-white group-hover:from-[#4d7c0f] group-hover:to-[#65a30d] shadow-lg shadow-lime-950/50",
     mapImg: "/maps/telangana.png",
-    mapClass: "h-24 sm:h-28 w-auto max-w-[100px] sm:max-w-[115px] drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]",
+    mapClass: "h-20 w-auto opacity-75 group-hover:opacity-100 drop-shadow-[0_0_10px_rgba(52,211,153,0.3)]",
   },
   {
     id: "andhra-pradesh",
@@ -34,14 +35,30 @@ const STATE_CARDS_DATA = [
     path: "/andhra-pradesh",
     examCount: 1,
     examsList: ["AP EAPCET"],
-    description: "APSCHE Engineering, Agriculture & Pharmacy Entrance (AP EAPCET). Access rank-based college cutoff predictors and official candidate seat allotment explorers across AP colleges.",
+    description: "APSCHE Engineering, Agriculture & Pharmacy predictors, cutoffs and seat allotment explorers.",
     gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
     borderColor: "border-blue-500/30 hover:border-blue-400/60",
     badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
     titleHoverColor: "group-hover:text-blue-400",
     buttonStyle: "bg-gradient-to-r from-[#1e3a8a] to-[#172554] border-blue-400/30 text-white group-hover:from-[#1d4ed8] group-hover:to-[#1e3a8a] shadow-lg shadow-blue-950/50",
     mapImg: "/maps/andhra-pradesh.png",
-    mapClass: "h-28 sm:h-32 w-auto max-w-[125px] sm:max-w-[145px] drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]",
+    mapClass: "h-20 w-auto opacity-75 group-hover:opacity-100 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]",
+  },
+  {
+    id: "karnataka",
+    name: "Karnataka",
+    code: "KA",
+    path: "/karnataka",
+    examCount: 1,
+    examsList: ["KCET"],
+    description: "KEA Engineering admissions candidate-wise seat allotments and closing cutoffs across 200+ colleges.",
+    gradient: "from-orange-600/20 via-amber-600/10 to-transparent",
+    borderColor: "border-orange-500/30 hover:border-orange-400/60",
+    badgeColor: "bg-orange-500/20 text-orange-300 border-orange-500/30",
+    titleHoverColor: "group-hover:text-orange-400",
+    buttonStyle: "bg-gradient-to-r from-[#7c2d12] to-[#9a3412] border-orange-400/30 text-white group-hover:from-[#c2410c] group-hover:to-[#9a3412] shadow-lg shadow-orange-950/50",
+    mapImg: "/maps/karnataka.png",
+    mapClass: "h-20 w-auto opacity-75 group-hover:opacity-100 drop-shadow-[0_0_10px_rgba(251,146,60,0.3)]",
   },
 ];
 
@@ -49,20 +66,15 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  // Filter available exams based on search query
+  // Filter available exams based on strict prefix & word-boundary search query
   const filteredExams = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    if (!q) return [];
+    if (!searchQuery.trim()) return [];
     return exams
       .filter((exam) => exam.status === "available")
       .filter((exam) => {
-        return (
-          exam.shortName.toLowerCase().includes(q) ||
-          exam.name.toLowerCase().includes(q) ||
-          exam.state.toLowerCase().includes(q) ||
-          exam.description.toLowerCase().includes(q) ||
-          (exam.programs && exam.programs.some((p) => p.toLowerCase().includes(q)))
-        );
+        const programs = Array.isArray(exam.programs) ? exam.programs : [];
+        const fields = [exam.shortName, exam.name, exam.state, exam.slug, exam.description, ...programs].filter(Boolean);
+        return strictMultiFieldMatch(fields, searchQuery);
       });
   }, [searchQuery]);
 
@@ -212,7 +224,7 @@ export default function Home() {
 
       {/* ── State Cards Grid (With State-Matching Button Accents) ────────── */}
       <div className="w-full mb-10">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {STATE_CARDS_DATA.map((stateCard) => (
             <Link
               key={stateCard.id}

@@ -4,6 +4,7 @@ import { MapPin, ChevronDown, Check, Search, X } from "lucide-react";
 import { getDistrictName } from "../../utils/districtNames";
 import { useReferenceData } from "../../hooks/useReferenceData";
 import ThreeDotsLoader from "../ui/three-dots-loader";
+import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
 export default function DistrictMultiSelect({
   selectedDistricts = [],
@@ -57,12 +58,7 @@ export default function DistrictMultiSelect({
 
   const filteredDistricts = useMemo(() => {
     if (!search.trim()) return sortedDistricts;
-    const term = search.trim().toLowerCase();
-    return sortedDistricts.filter((d) => {
-      const code = d.code.toLowerCase();
-      const name = d.name.toLowerCase();
-      return code.includes(term) || name.includes(term);
-    });
+    return sortedDistricts.filter((d) => strictMultiFieldMatch([d.code, d.name], search));
   }, [sortedDistricts, search]);
 
 

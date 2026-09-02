@@ -18,6 +18,17 @@ const STATE_CONFIGS = {
     badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
     mapImg: "/maps/andhra-pradesh.png",
   },
+  "karnataka": {
+    name: "Karnataka",
+    code: "KA",
+    greeting: "ನಮಸ್ಕಾರ ಕರ್ನಾಟಕ!",
+    authority: "KEA (Karnataka Examinations Authority)",
+    title: "Karnataka Entrance Examinations",
+    seoDescription: "Explore Karnataka KCET entrance examinations for engineering admissions.",
+    description: "Select an entrance examination below to access candidate-wise seat allotment records and closing rank cutoffs.",
+    badgeColor: "bg-orange-500/20 text-orange-300 border-orange-500/30",
+    mapImg: "/maps/karnataka.png",
+  },
   "telangana": {
     name: "Telangana",
     code: "TG",
@@ -61,6 +72,8 @@ export default function StatePortalPage({ stateSlugOverride }) {
             className={`w-auto object-contain brightness-110 ${
               stateSlug.includes("andhra")
                 ? "h-52 sm:h-60 max-w-[260px] drop-shadow-[0_0_25px_rgba(56,189,248,0.75)]"
+                : stateSlug.includes("karnataka")
+                ? "h-48 sm:h-56 max-w-[210px] drop-shadow-[0_0_25px_rgba(251,146,60,0.75)]"
                 : "h-48 sm:h-56 max-w-[210px] drop-shadow-[0_0_25px_rgba(52,211,153,0.75)]"
             }`}
           />
@@ -99,6 +112,8 @@ export default function StatePortalPage({ stateSlugOverride }) {
               className={`w-auto object-contain opacity-100 brightness-110 transition-transform duration-500 hover:scale-105 ${
                 stateSlug.includes("andhra")
                   ? "h-36 sm:h-44 md:h-48 max-w-[240px] sm:max-w-[280px] drop-shadow-[0_0_18px_rgba(56,189,248,0.55)]"
+                  : stateSlug.includes("karnataka")
+                  ? "h-32 sm:h-40 md:h-44 max-w-[190px] sm:max-w-[220px] drop-shadow-[0_0_18px_rgba(251,146,60,0.55)]"
                   : "h-32 sm:h-40 md:h-44 max-w-[190px] sm:max-w-[220px] drop-shadow-[0_0_18px_rgba(52,211,153,0.55)]"
               }`}
             />
@@ -109,7 +124,7 @@ export default function StatePortalPage({ stateSlugOverride }) {
       {/* Entrance Exams Section */}
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-6 pb-2 border-b border-white/10 text-white">
-          <Database size={18} className="text-emerald-400" />
+          <Database size={18} className={stateSlug.includes("karnataka") ? "text-orange-400" : stateSlug.includes("andhra") ? "text-blue-400" : "text-emerald-400"} />
           <h2 className="text-xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
             Select Entrance Examination ({stateExams.length})
           </h2>

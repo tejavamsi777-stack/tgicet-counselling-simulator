@@ -172,3 +172,21 @@ html {
   width: max-content;
   animation: marquee 28s linear infinite;
 }
+
+@theme inline {
+  --animate-star-btn: star-btn calc(var(--duration, 3) * 1s) linear infinite;
+}
+
+@keyframes star-btn {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-star-btn {
+  animation: star-btn calc(var(--duration, 3) * 1s) linear infinite;
+}
+

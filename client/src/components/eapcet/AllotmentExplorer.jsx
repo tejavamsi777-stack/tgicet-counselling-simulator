@@ -31,6 +31,7 @@ import SearchableSelect from '../shared/SearchableSelect';
 import UniqueDataLoader from '../shared/UniqueDataLoader';
 import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
+import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
@@ -1180,14 +1181,8 @@ export default function AllotmentExplorer({
         }
       }
       if (search.trim()) {
-        const q = search.toLowerCase();
-        return (
-          c.name.toLowerCase().includes(q) ||
-          c.hallTicket.toLowerCase().includes(q) ||
-          String(c.rank).includes(q) ||
-          c.caste.toLowerCase().includes(q) ||
-          c.seatCategory.toLowerCase().includes(q)
-        );
+        const fields = [c.name, c.hallTicket, String(c.rank), c.caste, c.seatCategory].filter(Boolean);
+        return strictMultiFieldMatch(fields, search);
       }
       return true;
     });
@@ -1267,6 +1262,18 @@ export default function AllotmentExplorer({
 
   return (
     <div className="space-y-8">
+      {/* ── Official Data Source Citation ───────────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-950/20 px-4 py-2.5 text-[11px] text-emerald-300/80">
+        <Database size={13} className="text-emerald-400 shrink-0" />
+        <span className="font-semibold text-emerald-300">Official Source:</span>
+        <span className="text-white/60">
+          Data sourced directly from <strong className="text-white/80">{examSlug === 'kcet' ? 'KEA (Karnataka Examination Authority)' : 'TSCHE'} ({examTitle}) official candidate allotment records</strong> published at{' '}
+          <a href={examSlug === 'kcet' ? 'https://cetonline.karnataka.gov.in/kea/' : 'https://tgeapcet.nic.in'} target="_blank" rel="noopener noreferrer" className="text-emerald-400 underline underline-offset-2 hover:text-emerald-300 transition-colors">
+            {examSlug === 'kcet' ? 'kea.kar.nic.in' : 'tgeapcet.nic.in'}
+          </a>. Allotment data covers official seat allotment rounds (2023–2025).
+        </span>
+      </div>
+
       {/* ── Stepper Rail ────────────────────────────────────────────────── */}
       <div className="flex items-center gap-0 overflow-x-auto pb-1 scrollbar-none">
         {['Phase & Year', 'Engineering College', 'Branch / Stream', 'Results'].map((label, i) => {

@@ -30,6 +30,7 @@ const EapcetComparePage = lazy(() => import("./pages/eapcet/EapcetComparePage"))
 const EapcetAllotmentsPage = lazy(() => import("./pages/eapcet/EapcetAllotmentsPage"));
 const EapcetMarksVsRankPage = lazy(() => import("./pages/eapcet/EapcetMarksVsRankPage"));
 const CollegeProfilePage = lazy(() => import("./pages/eapcet/CollegeProfilePage"));
+const CollegesDirectoryPage = lazy(() => import("./pages/eapcet/CollegesDirectoryPage"));
 
 const ApEapcetHome = lazy(() => import("./pages/ap-eapcet/EapcetHome"));
 const ApEapcetPredictorPage = lazy(() => import("./pages/ap-eapcet/EapcetPredictorPage"));
@@ -246,6 +247,7 @@ function MainContent() {
                   <Route path="/kcet/allotments" element={<KcetAllotmentsPage />} />
 
                   <Route path="/colleges/:code" element={<CollegeProfilePage />} />
+                  <Route path="/tg-eapcet/colleges" element={<CollegesDirectoryPage />} />
                   <Route path="/tg-eapcet/colleges/:code" element={<CollegeProfilePage />} />
 
                   <Route path="/ap-eapcet/colleges/:code" element={<ApCollegeProfilePage />} />

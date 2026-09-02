@@ -17,7 +17,7 @@ import { smoothScrollTo } from "../../lib/utils";
 import { useReferenceData } from "../../hooks/useReferenceData";
 import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
-// AP EAPCET clean category list (matches Eduvale / APSCHE format)
+// AP EAPCET clean category list (matches InstitutionalScore / APSCHE format)
 const AP_CATEGORIES = [
   { code: "OC",                 label: "OC" },
   { code: "BC-A",               label: "BC-A" },
