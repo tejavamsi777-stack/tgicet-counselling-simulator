@@ -5,7 +5,12 @@ import { GlowCard } from "../ui/spotlight-card";
 import { GlassButton } from "../ui/glass-button";
 import { strictMultiFieldMatch } from "../../utils/searchMatch";
 
-export default function ExamToolsSection({ tools = [] }) {
+export default function ExamToolsSection({
+  tools = [],
+  showExploreColleges = false,
+  exploreUrl = "/tg-eapcet/colleges",
+  exploreLabel = "Explore EAPCET Colleges",
+}) {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter tools by strict prefix & word-boundary search query
@@ -46,15 +51,17 @@ export default function ExamToolsSection({ tools = [] }) {
           )}
         </div>
 
-        {/* Explore EAPCET Colleges Button to the right of Search Tools */}
-        <Link
-          to="/tg-eapcet/colleges"
-          className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-white/20 bg-white/10 hover:bg-white hover:text-gray-900 active:scale-95 transition-all font-bold px-5 py-3 text-xs sm:text-sm text-white backdrop-blur-2xl shadow-sm whitespace-nowrap cursor-pointer shrink-0 group"
-        >
-          <Building2 size={16} className="text-purple-300 group-hover:text-gray-900 transition-colors shrink-0" />
-          <span>Explore EAPCET Colleges</span>
-          <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-0.5" />
-        </Link>
+        {/* Optional Explore Colleges Button -- rendered ONLY when showExploreColleges is true */}
+        {showExploreColleges && (
+          <Link
+            to={exploreUrl}
+            className="inline-flex items-center justify-center gap-2.5 rounded-2xl border border-white/20 bg-white/10 hover:bg-white hover:text-gray-900 active:scale-95 transition-all font-bold px-5 py-3 text-xs sm:text-sm text-white backdrop-blur-2xl shadow-sm whitespace-nowrap cursor-pointer shrink-0 group"
+          >
+            <Building2 size={16} className="text-purple-300 group-hover:text-gray-900 transition-colors shrink-0" />
+            <span>{exploreLabel}</span>
+            <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        )}
       </div>
 
       {/* Spacious, Uniform Tools Grid */}
