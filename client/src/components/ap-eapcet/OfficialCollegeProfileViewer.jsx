@@ -1,11 +1,20 @@
+import { AP_COLLEGES_METADATA } from '../../data/apCollegesMetadata';
 import { useState, useEffect, useMemo } from 'react';
 import { Building2, ExternalLink, Award, MapPin, DollarSign, GraduationCap, Users, Calendar, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from '../shared/SearchableSelect';
 
+
+const FALLBACK_AP_PROFILE_LIST = Object.values(AP_COLLEGES_METADATA || {}).map((c) => ({
+  code: c.code,
+  name: c.name,
+  place: c.place || c.district || 'Andhra Pradesh',
+  annualFee: c.annualFee || c.fee || 47000,
+}));
+
 export default function OfficialCollegeProfileViewer({ initialCode = '' }) {
-  const [collegesList, setCollegesList] = useState([]);
+  const [collegesList, setCollegesList] = useState(FALLBACK_AP_PROFILE_LIST);
   const [selectedCode, setSelectedCode] = useState(initialCode);
   const [collegeData, setCollegeData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,11 +42,17 @@ export default function OfficialCollegeProfileViewer({ initialCode = '' }) {
       return;
     }
     setLoading(true);
+    const localCol = AP_COLLEGES_METADATA[selectedCode.toUpperCase()];
+    if (localCol) {
+      setCollegeData(localCol);
+    }
     apEapcetApi.getCollegeByCode(selectedCode)
       .then((res) => {
         if (res.data) setCollegeData(res.data);
       })
-      .catch(console.error)
+      .catch((err) => {
+        console.warn('OfficialCollegeProfileViewer AP using fallback dataset:', err);
+      })
       .finally(() => setLoading(false));
   }, [selectedCode]);
 
@@ -245,7 +260,7 @@ export default function OfficialCollegeProfileViewer({ initialCode = '' }) {
                       <th className="py-3 px-4 font-bold text-cyan-300">2025 BC Cutoff</th>
                       <th className="py-3 px-4 font-bold text-amber-300">2025 SC Cutoff</th>
                       <th className="py-3 px-4 font-bold text-rose-300">2025 ST Cutoff</th>
-                      <th className="py-3 px-4 font-bold text-emerald-300">JVD Reimbursement</th>
+                      <th className="py-3 px-4 font-bold text-emerald-300">RTF Reimbursement</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/[0.04] font-mono">

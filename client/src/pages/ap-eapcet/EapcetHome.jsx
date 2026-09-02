@@ -132,7 +132,7 @@ export default function EapcetHome() {
 
       <SectionDivider />
 
-      {/* AP Jagananna Vidya Deevena (JVD) Fee & Scholarship Calculator */}
+      {/* AP Post Matric Scholarships (RTF) Fee & Scholarship Calculator */}
       <div className="relative z-30 mb-6">
         <FeeReimbursementCalculator exam="ap-eapcet" />
       </div>
@@ -185,7 +185,7 @@ export default function EapcetHome() {
       <div className="w-full mb-12">
         <FaqSection
           title="AP EAPCET 2026 Admissions & Counselling FAQs"
-          subtitle="Frequently asked questions about AP EAPCET web counselling, JVD fee reimbursement, certificate verification, and local area quotas"
+          subtitle="Frequently asked questions about AP EAPCET web counselling, Post Matric Scholarships (RTF) fee reimbursement, certificate verification, and local area quotas"
           faqs={AP_EAPCET_FAQS}
         />
       </div>

@@ -21,8 +21,8 @@ export default function EapcetDocumentsPage() {
   return (
     <main className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 md:px-10 lg:px-14 sm:py-12">
       <Seo
-        title="AP EAPCET 2027 Certificate Verification Documents | HLC Checklist & JVD Rules"
-        description="Mandatory certificates checklist for AP EAPCET 2027 Help Line Centre (HLC) verification. Jagananna Vidya Deevena (JVD) fee reimbursement eligibility and MeeSeva rules."
+        title="AP EAPCET 2027 Certificate Verification Documents | HLC Checklist & Post Matric Scholarships (RTF) Rules"
+        description="Mandatory certificates checklist for AP EAPCET 2027 Help Line Centre (HLC) verification. Post Matric Scholarships (RTF) fee reimbursement eligibility and MeeSeva rules."
         keywords="ap eapcet certificate verification documents 2027, ap eamcet hlc checklist, jagananna vidya deevena documents required, ap eapcet required certificates"
         path="/ap-eapcet/documents"
         toolType="guide"

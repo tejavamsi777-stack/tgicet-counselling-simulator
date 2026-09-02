@@ -1,3 +1,4 @@
+import { AP_COLLEGES_METADATA } from '../../data/apCollegesMetadata';
 import { useState, useEffect, useMemo } from 'react';
 import { Calculator, CheckCircle2, AlertCircle, Info, Sparkles, Building, GraduationCap, Award, HelpCircle } from 'lucide-react';
 import { eapcetApi } from '../../lib/eapcetApi';
@@ -6,7 +7,7 @@ import SearchableSelect from './SearchableSelect';
 import { TELANGANA_ENGINEERING_COLLEGES } from '../../data/telanganaCollegesData';
 
 /**
- * Official TS ePASS & AP Jagananna Vidya Deevena (JVD) Fee Reimbursement Calculator
+ * Official TS ePASS & AP Post Matric Scholarships (RTF) Fee Reimbursement Calculator
  */
 export function calculateReimbursement({ category, rank, annualFee = 0, incomeUnderThreshold = true, isAp = false }) {
   if (!annualFee) return null;
@@ -16,14 +17,14 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
   const fee = Number(annualFee) || 0;
 
   if (isAp) {
-    // ── AP Jagananna Vidya Deevena (JVD) Rules ──────────────────────────
+    // ── AP Post Matric Scholarships (RTF) Rules ──────────────────────────
     if (!incomeUnderThreshold) {
       return {
         eligible: false,
         amount: 0,
         netFee: fee,
         floorDeposit: 0,
-        reason: 'Family annual income exceeds AP JVD threshold (≤ ₹2.5 Lakh per annum / Valid AP White Rice Card required). Student pays full tuition fee.',
+        reason: 'Family annual income exceeds AP RTF threshold (≤ ₹2.5 Lakh per annum / Valid AP White Rice Card required). Student pays full tuition fee.',
         badge: 'NOT ELIGIBLE',
       };
     }
@@ -35,8 +36,8 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
         amount: fee,
         netFee: 0,
         floorDeposit: 0,
-        reason: '100% Full Tuition Fee Reimbursement granted under Jagananna Vidya Deevena (JVD) Scheme (G.O. Ms. No. 115).',
-        badge: '100% FULL JVD REIMBURSEMENT',
+        reason: '100% Full Tuition Fee Reimbursement granted under Post Matric Scholarships (RTF) Scheme (G.O. Ms. No. 115).',
+        badge: '100% FULL RTF REIMBURSEMENT',
       };
     }
 
@@ -47,8 +48,8 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
         amount: fee,
         netFee: 0,
         floorDeposit: 0,
-        reason: '100% Full Fee Reimbursement granted per Jagananna Vidya Deevena with valid AP White Rice Card / Income Certificate.',
-        badge: '100% FULL JVD REIMBURSEMENT',
+        reason: '100% Full Fee Reimbursement granted per Post Matric Scholarships (RTF) with valid AP White Rice Card / Income Certificate.',
+        badge: '100% FULL RTF REIMBURSEMENT',
       };
     }
 
@@ -122,6 +123,13 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
   };
 }
 
+
+const FALLBACK_APSCHE_COLLEGES = Object.values(AP_COLLEGES_METADATA || {}).map((c) => ({
+  code: c.code,
+  name: c.name,
+  annualFee: c.annualFee || c.fee || 47000,
+  place: c.place || c.district || 'Andhra Pradesh',
+}));
 const FALLBACK_TSCHE_COLLEGES = [
   { code: 'CBIT', name: 'Chaitanya Bharathi Institute of Technology', annualFee: 140000, place: 'Gandipet, Hyderabad' },
   { code: 'VNRV', name: 'VNR Vignana Jyothi Institute of Engineering and Technology', annualFee: 135000, place: 'Bachupally, Hyderabad' },
@@ -146,7 +154,7 @@ export default function FeeReimbursementCalculator({
   theme = 'dark',
 }) {
   const isAp = exam === 'ap-eapcet' || (typeof window !== 'undefined' && window.location.pathname.includes('ap-eapcet'));
-  const [collegesList, setCollegesList] = useState(FALLBACK_TSCHE_COLLEGES);
+  const [collegesList, setCollegesList] = useState(isAp ? FALLBACK_APSCHE_COLLEGES : FALLBACK_TSCHE_COLLEGES);
   const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
   const [metaLoading, setMetaLoading] = useState(true);
 
@@ -168,6 +176,10 @@ export default function FeeReimbursementCalculator({
 
   useEffect(() => {
     let isMounted = true;
+    // Set immediate authentic state from local dataset according to state exam
+    const fallbackList = isAp ? FALLBACK_APSCHE_COLLEGES : FALLBACK_TSCHE_COLLEGES;
+    setCollegesList(fallbackList);
+
     const apiCaller = isAp ? apEapcetApi.getAllotmentMeta() : eapcetApi.getAllotmentMeta();
     apiCaller
       .then((res) => {
@@ -179,7 +191,7 @@ export default function FeeReimbursementCalculator({
         }
       })
       .catch((err) => {
-        console.warn('Using fallback college list for Fee Reimbursement Calculator:', err);
+        console.warn('Using fallback dataset for Fee Reimbursement Calculator:', err);
       })
       .finally(() => {
         if (isMounted) setMetaLoading(false);
@@ -205,7 +217,19 @@ export default function FeeReimbursementCalculator({
       return branchDetailsProp;
     }
 
-    // 2. Local master dataset matching college code
+    // 2. AP local master dataset matching college code
+    if (isAp) {
+      const apCol = AP_COLLEGES_METADATA[selectedCollege.toUpperCase()];
+      if (apCol && apCol.feeByBranch) {
+        return Object.keys(apCol.feeByBranch).map((bCode) => ({
+          code: bCode,
+          name: bCode,
+          fee: apCol.feeByBranch[bCode] || apCol.annualFee || 47000,
+        }));
+      }
+    }
+
+    // 3. TG local master dataset matching college code
     const localTgCol = TELANGANA_ENGINEERING_COLLEGES.find((c) => c.code.toUpperCase() === selectedCollege.toUpperCase());
     if (localTgCol) {
       if (localTgCol.branch_details && localTgCol.branch_details.length > 0) {
@@ -261,7 +285,7 @@ export default function FeeReimbursementCalculator({
           </div>
           <div>
             <h3 className={`text-xs sm:text-sm font-bold tracking-tight ${isLight ? 'text-slate-900' : 'text-white'}`}>
-              {isAp ? 'AP Jagananna Vidya Deevena (JVD) Calculator' : 'TS ePASS Fee & Scholarship Calculator'}
+              {isAp ? 'AP Post Matric Scholarships (RTF) Calculator' : 'TS ePASS Fee & Scholarship Calculator'}
             </h3>
             <p className={`text-[10px] ${isLight ? 'text-slate-500' : 'text-gray-400'}`}>
               Compute official net student fee &amp; scholarship reimbursement eligibility.

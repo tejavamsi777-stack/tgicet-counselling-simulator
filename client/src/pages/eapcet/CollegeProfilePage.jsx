@@ -12,7 +12,7 @@ import {
   Building2, MapPin, Award, BookOpen, ExternalLink, ArrowLeft, Share2, Layers,
   DollarSign, CheckCircle2, TrendingUp, Sparkles, Globe, Mail, Phone, ShieldCheck,
   ChevronRight, BarChart3, Users, Search, Flame, Target, HelpCircle, ChevronDown, Star,
-  Bookmark, Scale, ArrowUpRight, Check, Compass
+  Bookmark, Scale, ArrowUpRight, ArrowRight, Check, Compass
 } from 'lucide-react';
 
 // Helper function to resolve cutoff value with multiple key aliases
@@ -236,41 +236,55 @@ export default function CollegeProfilePage() {
     'sec-faqs'
   ];
 
-  // Smooth IntersectionObserver section detector (zero aggressive flickering on scroll)
+  // Rock-solid section scroll detector — accurately tracks every section (including Guide) in chronological order
   useEffect(() => {
-    const observers = [];
-    const visibleMap = {};
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 180;
+      let currentSection = sectionIds[0];
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          visibleMap[id] = entry.isIntersecting ? entry.intersectionRatio : 0;
-          
-          // Find section with highest visibility ratio
-          let maxId = activeSection;
-          let maxRatio = 0;
-          Object.keys(visibleMap).forEach((sId) => {
-            if (visibleMap[sId] > maxRatio) {
-              maxRatio = visibleMap[sId];
-              maxId = sId;
-            }
-          });
-
-          if (maxRatio > 0 && maxId !== activeSection) {
-            setActiveSection(maxId);
+      for (let i = 0; i < sectionIds.length; i++) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top - 60) {
+            currentSection = id;
           }
-        },
-        { threshold: [0.1, 0.3, 0.5, 0.7], rootMargin: '-15% 0px -55% 0px' }
-      );
+        }
+      }
 
-      observer.observe(el);
-      observers.push(observer);
-    });
+      // If near bottom of page, activate last section (FAQs)
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 80) {
+        currentSection = 'sec-faqs';
+      }
 
-    return () => observers.forEach((obs) => obs.disconnect());
+      setActiveSection((prev) => (prev !== currentSection ? currentSection : prev));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth, RAF-aligned horizontal navbar centering — zero jitter, never skips a tab
+  useEffect(() => {
+    if (!activeSection) return;
+    const tabEl = tabRefs.current[activeSection];
+    const navContainer = navContainerRef.current;
+
+    if (tabEl && navContainer) {
+      requestAnimationFrame(() => {
+        const containerWidth = navContainer.clientWidth;
+        const tabLeft = tabEl.offsetLeft;
+        const tabWidth = tabEl.clientWidth;
+        const scrollGoal = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+
+        navContainer.scrollTo({
+          left: Math.max(0, scrollGoal),
+          behavior: 'smooth'
+        });
+      });
+    }
   }, [activeSection]);
 
   // IntersectionObserver to trigger Quality Score animation when scrolled into view
@@ -723,43 +737,50 @@ export default function CollegeProfilePage() {
           </div>
         </section>
 
-        {/* STICKY SECTION NAVIGATION BAR — LARGE, CRISP & SMOOTH SWIPEABLE CAPSULE PILLS */}
-        <nav className="sticky top-[60px] sm:top-[78px] z-40 py-1.5 bg-transparent backdrop-blur-md pointer-events-auto">
-          <div className="flex sm:grid sm:grid-cols-9 gap-1 sm:gap-0.5 rounded-full border border-white/25 bg-black/95 p-1.5 sm:p-1 max-w-full overflow-x-auto sm:overflow-hidden scrollbar-none shadow-2xl items-center">
-            {[
-              { id: 'sec-overview', label: 'Overview', shortLabel: 'Overview' },
-              { id: 'sec-chances', label: 'Admission Chances', shortLabel: 'Chances' },
-              { id: 'sec-branches', label: 'Courses & Seats', shortLabel: 'Courses' },
-              { id: 'sec-cutoffs', label: 'Cutoffs Intelligence', shortLabel: 'Cutoffs' },
-              { id: 'sec-fees', label: 'Fees & ePASS', shortLabel: 'Fees' },
-              { id: 'sec-scores', label: 'College Rating', shortLabel: 'Rating' },
-              { id: 'sec-placements', label: 'Placements', shortLabel: 'Placements' },
-              { id: 'sec-admission', label: 'Admission Guide', shortLabel: 'Guide' },
-              { id: 'sec-faqs', label: 'FAQs & Compare', shortLabel: 'FAQs' }
-            ].map((tab) => {
-              const isActive = activeSection === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  ref={(el) => (tabRefs.current[tab.id] = el)}
-                  onClick={() => scrollToSection(tab.id)}
-                  className={`relative px-3.5 py-1.5 sm:px-1 sm:py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center justify-center text-center leading-tight whitespace-nowrap sm:whitespace-normal shrink-0 sm:shrink min-w-0 ${
-                    isActive ? 'text-white font-black' : 'text-gray-300 hover:text-white'
-                  }`}
-                  title={tab.label}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="stickyNavLiquidGlassPill"
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/50 via-white/30 to-indigo-600/50 border border-white/50 shadow-lg shadow-purple-950/60 backdrop-blur-md"
-                      transition={{ type: "spring", stiffness: 450, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative z-10 hidden md:inline truncate">{tab.label}</span>
-                  <span className="relative z-10 inline md:hidden">{tab.shortLabel}</span>
-                </button>
-              );
-            })}
+        {/* STICKY SECTION NAVIGATION BAR — OPTION A: SWIPEABLE CAPSULE PILLS WITH LEFT/RIGHT GLASS EDGE FADING */}
+        <nav className="sticky top-[58px] sm:top-[78px] z-40 py-1.5 bg-transparent backdrop-blur-md pointer-events-auto">
+          <div className="relative max-w-full">
+            {/* Subtle Glass Fade Indicators on Left/Right Edges for Mobile Swiping */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-5 bg-gradient-to-r from-black/90 via-black/50 to-transparent z-20 rounded-l-full sm:hidden" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-5 bg-gradient-to-l from-black/90 via-black/50 to-transparent z-20 rounded-r-full sm:hidden" />
+
+            {/* Scrollable Single Row Capsule on Mobile / Full 9-Column Grid on Desktop */}
+            <div ref={navContainerRef} style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }} className="flex sm:grid sm:grid-cols-9 gap-1.5 sm:gap-0.5 rounded-full border border-white/25 bg-black/95 px-3 py-1.5 sm:p-1 max-w-full overflow-x-auto sm:overflow-hidden scrollbar-none shadow-2xl items-center">
+              {[
+                { id: 'sec-overview', label: 'Overview', shortLabel: 'Overview' },
+                { id: 'sec-chances', label: 'Admission Chances', shortLabel: 'Chances' },
+                { id: 'sec-branches', label: 'Courses & Seats', shortLabel: 'Courses' },
+                { id: 'sec-cutoffs', label: 'Cutoffs Intelligence', shortLabel: 'Cutoffs' },
+                { id: 'sec-fees', label: 'Fees & ePASS', shortLabel: 'Fees' },
+                { id: 'sec-scores', label: 'College Rating', shortLabel: 'Rating' },
+                { id: 'sec-placements', label: 'Placements', shortLabel: 'Placements' },
+                { id: 'sec-admission', label: 'Admission Guide', shortLabel: 'Guide' },
+                { id: 'sec-faqs', label: 'FAQs & Compare', shortLabel: 'FAQs' }
+              ].map((tab) => {
+                const isActive = activeSection === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    ref={(el) => (tabRefs.current[tab.id] = el)}
+                    onClick={() => scrollToSection(tab.id)}
+                    className={`relative px-3.5 py-1.5 sm:px-1 sm:py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex items-center justify-center text-center leading-tight whitespace-nowrap sm:whitespace-normal shrink-0 sm:shrink min-w-0 ${
+                      isActive ? 'text-white font-black' : 'text-gray-300 hover:text-white'
+                    }`}
+                    title={tab.label}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="stickyNavLiquidGlassPill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/50 via-white/30 to-indigo-600/50 border border-white/50 shadow-lg shadow-purple-950/60 backdrop-blur-md"
+                        transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative z-10 hidden md:inline truncate">{tab.label}</span>
+                    <span className="relative z-10 inline md:hidden">{tab.shortLabel}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </nav>
 
@@ -1458,19 +1479,28 @@ export default function CollegeProfilePage() {
               </div>
             </div>
 
-            {/* Column 2: Mandatory Documents Checklist */}
+            {/* Column 2: Important Documents & HLC Checklist */}
             <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-4">
-              <div>
-                <h3 className="text-xs font-extrabold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <ShieldCheck size={14} className="text-emerald-400" />
-                  <span>Mandatory Certificate Checklist</span>
-                </h3>
-                <p className="text-[11px] text-gray-400 mt-0.5">Required during HLC document verification &amp; physical reporting</p>
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <h3 className="text-xs font-extrabold text-white uppercase tracking-wider flex items-center gap-1.5">
+                    <ShieldCheck size={14} className="text-emerald-400" />
+                    <span>Important Documents</span>
+                  </h3>
+                  <p className="text-[11px] text-gray-400 mt-0.5">Required during HLC document verification &amp; physical reporting</p>
+                </div>
+                <Link
+                  to="/tg-eapcet/documents"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-300 hover:text-white bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 px-2.5 py-1 rounded-lg backdrop-blur-md transition-all shrink-0 cursor-pointer"
+                >
+                  <span>HLC Checklist</span>
+                  <ArrowRight size={12} />
+                </Link>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                 {[
-                  { name: 'TG EAPCET / ECET Rank Card', desc: 'Official download from tgeapcet.nic.in' },
+                  { name: 'TG EAPCET Rank Card', desc: 'Official download from tgeapcet.nic.in' },
                   { name: 'TG EAPCET Hall Ticket', desc: 'Exam admit card copy' },
                   { name: 'SSC (Class 10) Marks Memo', desc: 'Proof of DOB & qualifying marks' },
                   { name: 'Intermediate (12th) Memo', desc: 'Academic qualification proof' },
@@ -1543,7 +1573,7 @@ export default function CollegeProfilePage() {
                 {peerCodes.map((pCode) => (
                   <Link
                     key={pCode}
-                    to={`/${examSlug}/allotments?compare=${activeCollege.code},${pCode}`}
+                    to={`/${examSlug}/compare?c1=${activeCollege.code}&c2=${pCode}`}
                     className={`${predictBtnStyle} px-3 py-1 text-xs font-mono`}
                   >
                     <span>{activeCollege.code} vs {pCode}</span>

@@ -16,7 +16,7 @@ const FEATURES = [
   {
     icon: Calculator,
     title: "Govt Scholarship & Fee Calculators",
-    desc: "Includes Telangana TS ePASS (G.O. Ms. 244 & 33) and Andhra Pradesh Jagananna Vidya Deevena (JVD G.O. Ms. 115) to compute your exact net tuition fee.",
+    desc: "Includes Telangana TS ePASS (G.O. Ms. 244 & 33) and Andhra Pradesh Post Matric Scholarships (RTF G.O. Ms. 115) to compute your exact net tuition fee.",
     badge: "Instant Calculation",
   },
   {

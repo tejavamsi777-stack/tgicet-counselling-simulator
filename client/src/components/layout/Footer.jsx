@@ -8,7 +8,7 @@ import { TrustpilotStar } from "../shared/TrustpilotBadge";
 import { TRUSTPILOT_CONFIG } from "../../config/trustpilot";
 
 export const ABOUT_TEXT =
-  "VuelaLearn is a 100% FREE educational admissions and counselling platform designed to help students master Andhra Pradesh (APSCHE), Telangana (TGCHE/TSCHE), and Karnataka (KEA) state counselling. Features include our AI-powered Smart Web Option Generator for TG EAPCET & TG ICET, accurate Rank Predictors, official seat allotment data for 500+ colleges, mock web option simulators, TS ePASS & AP JVD scholarship calculators, and HLC certificate guides — 100% free with zero paywalls, subscriptions, or spam.";
+  "VuelaLearn is a 100% FREE educational admissions and counselling platform designed to help students master Andhra Pradesh (APSCHE), Telangana (TGCHE/TSCHE), and Karnataka (KEA) state counselling. Features include our AI-powered Smart Web Option Generator for TG EAPCET & TG ICET, accurate Rank Predictors, official seat allotment data for 500+ colleges, mock web option simulators, TS ePASS & AP Post Matric Scholarships (RTF) calculators, and HLC certificate guides — 100% free with zero paywalls, subscriptions, or spam.";
 
 function AboutPanelContent() {
   return (
@@ -59,7 +59,7 @@ function AboutPanelContent() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">AP EAPCET Counselling (AP EAMCET):</strong> Andhra Pradesh engineering &amp; pharmacy admissions with AU/SVU regional quotas, Jagananna Vidya Deevena (JVD) scholarship calculators, and candidate records.</span>
+            <span><strong className="text-white">AP EAPCET Counselling (AP EAMCET):</strong> Andhra Pradesh engineering &amp; pharmacy admissions with AU/SVU regional quotas, Post Matric Scholarships (RTF) scholarship calculators, and candidate records.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
@@ -75,7 +75,7 @@ function AboutPanelContent() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-purple-400 font-bold shrink-0">•</span>
-            <span><strong className="text-white">Govt Scholarship &amp; Fee Calculators:</strong> Compute exact net tuition fees under Telangana TS ePASS (G.O. Ms. 244 &amp; 33) and AP JVD (G.O. Ms. 115).</span>
+            <span><strong className="text-white">Govt Scholarship &amp; Fee Calculators:</strong> Compute exact net tuition fees under Telangana TS ePASS (G.O. Ms. 244 &amp; 33) and AP RTF (G.O. Ms. 115).</span>
           </li>
         </ul>
       </div>

@@ -23,7 +23,7 @@ export const HOME_FAQS = [
   },
   {
     q: "How are College Tuition Fees and Government Reimbursement calculated?",
-    a: "College fee figures are sourced from official government notifications issued by TAFRC (Telangana) and APHERMC (Andhra Pradesh). The platform automatically factors in state welfare schemes:\n• Telangana (TS ePASS): Full tuition fee reimbursement for SC/ST students and candidates securing TG EAPCET Rank ≤ 10,000; standard ₹35,000/year assistance for eligible BC/EWS candidates.\n• Andhra Pradesh (Jagananna Vidya Deevena): 100% full tuition reimbursement for eligible SC, ST, BC, EBC, Kapu, Minority, and EWS candidates possessing a valid White Rice Card or income certificate."
+    a: "College fee figures are sourced from official government notifications issued by TAFRC (Telangana) and APHERMC (Andhra Pradesh). The platform automatically factors in state welfare schemes:\n• Telangana (TS ePASS): Full tuition fee reimbursement for SC/ST students and candidates securing TG EAPCET Rank ≤ 10,000; standard ₹35,000/year assistance for eligible BC/EWS candidates.\n• Andhra Pradesh (Post Matric Scholarships - RTF): 100% full tuition reimbursement for eligible SC, ST, BC, EBC, Kapu, Minority, and EWS candidates possessing a valid White Rice Card or income certificate."
   },
   {
     q: "Where is the institutional placement, ranking, and college metadata sourced from?",
@@ -49,8 +49,8 @@ export const AP_EAPCET_FAQS = [
     a: "The official web counselling portal for Andhra Pradesh Engineering & Pharmacy admissions is https://sche.ap.gov.in / https://eapcet-sche.aptonline.in (conducted by the Andhra Pradesh State Council of Higher Education - APSCHE)."
   },
   {
-    q: "How does Fee Reimbursement under Jagananna Vidya Deevena (JVD) work for AP EAPCET?",
-    a: "Under the JVD scheme (G.O. Ms. No. 115), 100% of the government-approved college tuition fee is reimbursed directly for eligible students (SC, ST, BC, EBC, Kapu, Minority, EWS, Differently Abled) whose family annual income is ≤ ₹2.5 Lakh or who hold a valid AP White Rice Card."
+    q: "How does Fee Reimbursement under Post Matric Scholarships (RTF) work for AP EAPCET?",
+    a: "Under the Post Matric Scholarships (RTF) scheme (G.O. Ms. No. 115), 100% of the government-approved college tuition fee is reimbursed directly for eligible students (SC, ST, BC, EBC, Kapu, Minority, EWS, Differently Abled) whose family annual income is ≤ ₹2.5 Lakh or who hold a valid AP White Rice Card."
   },
   {
     q: "Are Intermediate Vocational candidates eligible for B.Tech through AP EAPCET?",

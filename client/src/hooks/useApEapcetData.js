@@ -193,7 +193,7 @@ export const EAPCET_FALLBACK_DATA = {
       { label: "PH Quota (Physically Handicapped)", value: "3% – 5%" },
       { label: "CAP Quota (Armed Personnel Children)", value: "2%" },
       { label: "NCC & Sports Quota", value: "1% & 0.5%" },
-      { label: "Jagananna Vidya Deevena (JVD)", value: "100% Full Tuition Fee Reimbursement (Income ≤ ₹2.5L / Rice Card)" },
+      { label: "Post Matric Scholarships (RTF)", value: "100% Full Tuition Fee Reimbursement (Income ≤ ₹2.5L / Rice Card)" },
     ],
   },
   conditions: [

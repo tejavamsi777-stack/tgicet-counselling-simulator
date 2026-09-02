@@ -74,7 +74,7 @@ export const ECET_FALLBACK_DATA = {
     {
       id: 'fee_reimbursement',
       severity: 'medium',
-      title: 'Full Fee Reimbursement (JVD / ePASS Guidelines)',
+      title: 'Full Fee Reimbursement (RTF / ePASS Guidelines)',
       body: 'Parental annual income must be ≤ ₹2 Lakhs (Rural) or ≤ ₹1.5 Lakhs (Urban) for 100% tuition fee reimbursement as prescribed by Government rules.',
     },
   ],
