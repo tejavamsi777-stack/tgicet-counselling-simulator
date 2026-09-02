@@ -476,73 +476,166 @@ const ROUTES = [
 
       return {
         body: `
-          <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
-            <div class="text-center space-y-4 max-w-4xl mx-auto">
-              <div class="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold text-purple-300">
-                <span>⚡ 100% Free Educational Platform — AP &amp; Telangana Admissions</span>
+          <main class="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col items-center justify-center px-3 py-6 sm:px-6 sm:py-10">
+            <!-- Hero -->
+            <div class="mb-6 w-full text-center sm:mb-8">
+              <div class="mx-auto mb-3 flex max-w-fit items-center justify-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-sm border border-white/10">
+                <span class="text-xs font-semibold uppercase tracking-wider text-purple-300 sm:text-sm">
+                  State-Wise Admissions Portals
+                </span>
+                <span class="text-purple-300 text-xs">→</span>
               </div>
-              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-                State Admissions Counselling Simulator &amp; <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Smart College Predictor</span>
+
+              <h1 class="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl" id="exam-selection-heading">
+                Select your State to get started
               </h1>
-              <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Construct high-priority web options lists, predict eligible B.Tech, MBA, MCA, and Polytechnic colleges, and search authentic closing ranks across Telangana and Andhra Pradesh.
+              <p class="mx-auto mt-3 max-w-2xl text-sm font-medium text-gray-200 sm:text-base sm:font-normal sm:text-gray-300">
+                Click on any state card below to open its dedicated counselling portal and entrance exams.
               </p>
-            </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center rounded-3xl border border-white/10 bg-white/[0.02] p-6">
-              <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-white">500+</div>
-                <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Verified Colleges</div>
-              </div>
-              <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">200,000+</div>
-                <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Allotment Records</div>
-              </div>
-              <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">Smart AI</div>
-                <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Web Options Generator</div>
-              </div>
-              <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">100% Free</div>
-                <div class="text-xs text-gray-400 uppercase font-semibold mt-1">Zero Spam &bull; No Fees</div>
+              <!-- Search Bar Section -->
+              <div class="mx-auto mt-6 max-w-2xl w-full">
+                <div class="relative flex items-center w-full rounded-2xl border border-purple-500/30 bg-[#12131e]/90 p-1.5 shadow-xl shadow-purple-950/20 backdrop-blur-md">
+                  <div class="pl-3 text-purple-400">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  </div>
+                  <input type="text" readonly placeholder="Search entrance exams (e.g. TG EAPCET, AP EAPCET, TG ICET, POLYCET)..." class="w-full bg-transparent px-3 py-2.5 text-sm font-medium text-white placeholder-gray-400 focus:outline-none cursor-pointer" />
+                </div>
               </div>
             </div>
 
-            <section class="space-y-6">
-              <h2 class="text-2xl sm:text-3xl font-bold text-white text-center">Select Your Entrance Examination</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <a href="/tg-eapcet" class="rounded-3xl border border-purple-500/20 bg-[#120d1f]/90 p-6 hover:border-purple-500/50 transition block">
-                  <span class="text-xs font-bold text-purple-400 uppercase">Telangana &bull; Engineering &amp; Pharmacy</span>
-                  <h3 class="text-xl font-bold text-white mt-1">TG EAPCET 2027</h3>
-                  <p class="text-xs text-gray-400 mt-2">B.Tech college predictor, Marks vs Rank normalizer, official seat allotments &amp; mock web options choice filling.</p>
+            <!-- State Cards Grid -->
+            <div class="w-full mb-10">
+              <div class="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+                <!-- Telangana Card -->
+                <a href="/telangana" class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-b from-emerald-600/20 via-teal-600/10 to-transparent border-emerald-500/30 bg-[#10111a] p-5 sm:p-6 transition-all duration-300 shadow-lg">
+                  <div>
+                    <div class="flex items-start justify-between gap-2 mb-3">
+                      <div class="flex items-center gap-2">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 border border-white/15 text-white">
+                          📍
+                        </div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Telangana</h2>
+                      </div>
+                      <span class="rounded-full border px-2.5 py-0.5 text-xs font-bold font-mono bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                        5 Exams
+                      </span>
+                    </div>
+
+                    <div class="relative flex items-center justify-between gap-3 mb-4 min-h-[75px]">
+                      <p class="text-xs sm:text-sm leading-relaxed text-gray-300 flex-1 z-10">
+                        TSCHE Entrance Admissions for Telangana. Complete B.Tech, MBA/MCA, Diploma Lateral Entry &amp; M.Tech college predictors, seat allotment explorers &amp; web options simulators.
+                      </p>
+                      <div class="shrink-0 flex items-center justify-center pl-2 self-center z-10">
+                        <img src="/maps/telangana.png" alt="Telangana Map Outline" class="h-24 sm:h-28 w-auto max-w-[100px] sm:max-w-[115px] drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] opacity-90 object-contain" />
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 mb-5 z-10 relative">
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">TG EAPCET</span>
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">TG ICET</span>
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">TG ECET</span>
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">TG POLYCET</span>
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">TG PGECET</span>
+                    </div>
+                  </div>
+
+                  <div class="w-full inline-flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#365314] to-[#4d7c0f] border-lime-500/30 text-white shadow-lg">
+                    <span>Explore Telangana Admissions</span>
+                    <span>→</span>
+                  </div>
                 </a>
-                <a href="/tg-icet" class="rounded-3xl border border-cyan-500/20 bg-[#0d1624]/90 p-6 hover:border-cyan-500/50 transition block">
-                  <span class="text-xs font-bold text-cyan-400 uppercase">Telangana &bull; MBA &amp; MCA</span>
-                  <h3 class="text-xl font-bold text-white mt-1">TG ICET 2027</h3>
-                  <p class="text-xs text-gray-400 mt-2">Calibrated Marks vs Rank calculator, top B-school closing cutoffs, university quota analyzers &amp; priority generator.</p>
-                </a>
-                <a href="/ap-eapcet" class="rounded-3xl border border-emerald-500/20 bg-[#0c1a14]/90 p-6 hover:border-emerald-500/50 transition block">
-                  <span class="text-xs font-bold text-emerald-400 uppercase">Andhra Pradesh &bull; B.Tech &amp; Agri</span>
-                  <h3 class="text-xl font-bold text-white mt-1">AP EAPCET 2027</h3>
-                  <p class="text-xs text-gray-400 mt-2">APSCHE college predictor, branch preference sequencer, JVD fee reimbursement rules &amp; closing cutoffs.</p>
-                </a>
-                <a href="/tg-ecet" class="rounded-3xl border border-amber-500/20 bg-[#1f160c]/90 p-6 hover:border-amber-500/50 transition block">
-                  <span class="text-xs font-bold text-amber-400 uppercase">Diploma Lateral Entry</span>
-                  <h3 class="text-xl font-bold text-white mt-1">TG ECET 2027</h3>
-                  <p class="text-xs text-gray-400 mt-2">Predict 2nd-year B.Tech lateral entry engineering seats for diploma holders across top Telangana colleges.</p>
-                </a>
-                <a href="/tg-polycet" class="rounded-3xl border border-pink-500/20 bg-[#1f0d1a]/90 p-6 hover:border-pink-500/50 transition block">
-                  <span class="text-xs font-bold text-pink-400 uppercase">10th / SSC Polytechnic</span>
-                  <h3 class="text-xl font-bold text-white mt-1">TG POLYCET 2027</h3>
-                  <p class="text-xs text-gray-400 mt-2">Predict government and private polytechnic diploma institutions, explore course intakes and allotment cutoffs.</p>
-                </a>
-                <a href="/tg-pgecet" class="rounded-3xl border border-indigo-500/20 bg-[#100d24]/90 p-6 hover:border-indigo-500/50 transition block">
-                  <span class="text-xs font-bold text-indigo-400 uppercase">Postgraduate M.Tech &amp; M.Pharm</span>
-                  <h3 class="text-xl font-bold text-white mt-1">TG PGECET &amp; GATE</h3>
-                  <p class="text-xs text-gray-400 mt-2">Search candidate seat allotments and closing rank trends across Osmania, JNTUH, and university departments.</p>
+
+                <!-- Andhra Pradesh Card -->
+                <a href="/andhra-pradesh" class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-b from-blue-600/20 via-indigo-600/10 to-transparent border-blue-500/30 bg-[#10111a] p-5 sm:p-6 transition-all duration-300 shadow-lg">
+                  <div>
+                    <div class="flex items-start justify-between gap-2 mb-3">
+                      <div class="flex items-center gap-2">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 border border-white/15 text-white">
+                          📍
+                        </div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Andhra Pradesh</h2>
+                      </div>
+                      <span class="rounded-full border px-2.5 py-0.5 text-xs font-bold font-mono bg-blue-500/20 text-blue-300 border-blue-500/30">
+                        1 Exam
+                      </span>
+                    </div>
+
+                    <div class="relative flex items-center justify-between gap-3 mb-4 min-h-[75px]">
+                      <p class="text-xs sm:text-sm leading-relaxed text-gray-300 flex-1 z-10">
+                        APSCHE Engineering, Agriculture &amp; Pharmacy Entrance (AP EAPCET). Access rank-based college cutoff predictors and official candidate seat allotment explorers across AP colleges.
+                      </p>
+                      <div class="shrink-0 flex items-center justify-center pl-2 self-center z-10">
+                        <img src="/maps/andhra-pradesh.png" alt="Andhra Pradesh Map Outline" class="h-28 sm:h-32 w-auto max-w-[125px] sm:max-w-[145px] drop-shadow-[0_0_10px_rgba(56,189,248,0.4)] opacity-90 object-contain" />
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 mb-5 z-10 relative">
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">AP EAPCET</span>
+                    </div>
+                  </div>
+
+                  <div class="w-full inline-flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#1e3a8a] to-[#172554] border-blue-400/30 text-white shadow-lg">
+                    <span>Explore Andhra Pradesh Admissions</span>
+                    <span>→</span>
+                  </div>
                 </a>
               </div>
-            </section>
+            </div>
+
+            <div class="my-6 w-full border-t border-white/[0.08]"></div>
+
+            <!-- Why Choose Us -->
+            <div class="w-full mb-8">
+              <section class="w-full">
+                <div class="text-center mb-6 sm:mb-8">
+                  <div class="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 mb-2">
+                    <span>✨ Why Top Students &amp; Aspirants Choose Us</span>
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                    Why Choose Our Counselling Platform?
+                  </h2>
+                  <p class="mt-2 text-xs sm:text-sm text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    State admissions counselling is complex with cascading reservation quotas and rigid deadlines. We eliminate guesswork with authoritative datasets and automated simulators.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5 mb-8">
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">Official Records</div>
+                    <h3 class="text-base font-bold text-white">100% Authentic Government Data</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Ingested directly from official TSCHE and APSCHE candidate seat allotment archives, gazettes, and official fee notifications covering 500+ institutions.</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">Accurate Predictions</div>
+                    <h3 class="text-base font-bold text-white">Precision Quota &amp; Category AI</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Calculates realistic closing ranks considering your caste (OC, BC-A/B/C/D/E, SC, ST, EWS), gender reservation, and regional local status (OU, AU, SVU).</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">Instant Calculation</div>
+                    <h3 class="text-base font-bold text-white">Govt Scholarship &amp; Fee Calculators</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Includes Telangana TS ePASS (G.O. Ms. 244 &amp; 33) and Andhra Pradesh Jagananna Vidya Deevena (JVD G.O. Ms. 115) to compute your exact net tuition fee.</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">Side-by-Side</div>
+                    <h3 class="text-base font-bold text-white">Multi-College Comparison Matrix</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Compare institutions side-by-side on approved annual fees, NAAC grades, highest/average placement packages, recruiter networks, and latest cutoff ranks.</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">Smart Simulation</div>
+                    <h3 class="text-base font-bold text-white">Mock Web Options Priority Builder</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Simulates the official web counselling portal to help you draft, reorder, and risk-evaluate your college-branch choice list before locking options.</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-2">
+                    <div class="text-xs font-bold text-purple-300 uppercase tracking-wider">100% Free &amp; Safe</div>
+                    <h3 class="text-base font-bold text-white">Privacy First — Zero Spam</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">No mandatory login walls, no selling student phone numbers to private college agents, and no spam calls. 100% free open educational access.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="my-6 w-full border-t border-white/[0.08]"></div>
 
             ${faqHtml}
           </main>
