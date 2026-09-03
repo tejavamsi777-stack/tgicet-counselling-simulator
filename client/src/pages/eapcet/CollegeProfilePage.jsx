@@ -8,6 +8,7 @@ import { TELANGANA_ENGINEERING_COLLEGES } from '../../data/telanganaCollegesData
 import { EAPCET_INSTITUTIONS } from '../../data/eapcetInstitutions';
 import { AP_COLLEGES_METADATA } from '../../data/apCollegesMetadata';
 import { ALL_TSCHE_COLLEGES } from '../../data/allTscheInstitutions';
+import OFFICIAL_EAPCET_CLOSING_RANKS from '../../data/officialEapcetClosingRanks.json';
 import {
   Building2, MapPin, Award, BookOpen, ExternalLink, ArrowLeft, Share2, Layers,
   DollarSign, CheckCircle2, TrendingUp, Sparkles, Globe, Mail, Phone, ShieldCheck,
@@ -436,15 +437,25 @@ export default function CollegeProfilePage() {
 
   // Sorted and filtered branches list for Cutoffs
   const sortedBranches = useMemo(() => {
-    const rawBranches = getBranchKeys(activeCollege?.branches).length > 0
-      ? getBranchKeys(activeCollege?.branches)
-      : getBranchKeys(activeCollege?.cutoffs).length > 0
-      ? getBranchKeys(activeCollege?.cutoffs)
-      : ['CSE', 'ECE', 'EEE', 'CIV', 'MEC'];
+    // Check if college has cutoffs or if we can populate from official allotment records
+    const officialCutoffsForCollege = OFFICIAL_EAPCET_CLOSING_RANKS[upperCode] || {};
+    const collegeCutoffs =
+      activeCollege?.cutoffs && Object.keys(activeCollege.cutoffs).length > 0
+        ? activeCollege.cutoffs
+        : officialCutoffsForCollege;
+
+    const rawBranches =
+      getBranchKeys(collegeCutoffs).length > 0
+        ? getBranchKeys(collegeCutoffs)
+        : getBranchKeys(activeCollege?.branches).length > 0
+        ? getBranchKeys(activeCollege?.branches)
+        : ['CSE', 'ECE', 'EEE', 'CIV', 'MEC'];
 
     const list = rawBranches.map((br) => {
       const bCode = typeof br === 'string' ? br : br?.code || br?.name || 'CSE';
-      const cutoff = activeCollege?.cutoffs?.[bCode] || (typeof activeCollege?.branches?.[bCode] === 'object' ? activeCollege?.branches?.[bCode] : {});
+      const cutoff =
+        collegeCutoffs?.[bCode] ||
+        (typeof activeCollege?.branches?.[bCode] === 'object' ? activeCollege?.branches?.[bCode] : {});
       const ocBoys = getCutoffVal(cutoff, KEY_ALIASES.oc_boys) ?? 999999;
       return {
         code: bCode,
@@ -457,7 +468,7 @@ export default function CollegeProfilePage() {
     // Sort most competitive first (lowest OC rank first)
     list.sort((a, b) => a.ocBoysRank - b.ocBoysRank);
     return list;
-  }, [activeCollege]);
+  }, [activeCollege, upperCode]);
 
   const mostCompetitive = useMemo(() => sortedBranches.filter(b => b.ocBoysRank < 900000).slice(0, 3), [sortedBranches]);
   const easierToGetIn = useMemo(() => {
@@ -471,6 +482,19 @@ export default function CollegeProfilePage() {
     return sortedBranches.filter(b => b.code.toLowerCase().includes(q) || b.name.toLowerCase().includes(q));
   }, [sortedBranches, branchSearch]);
 
+  // Check if this college actually has published closing rank data
+  const hasAnyCutoffValues = useMemo(() => {
+    return sortedBranches.some(b => {
+      const c = b.cutoff || {};
+      return (
+        c.oc_boys || c.oc_girls || c.ews_boys || c.ews_girls ||
+        c.bca_boys || c.bcb_boys || c.bcc_boys || c.bcd_boys || c.bce_boys ||
+        c.sc_boys || c.sc_girls || c.sci_boys || c.scii_boys || c.sciii_boys ||
+        c.st_boys || c.st_girls || c.oc2025
+      );
+    });
+  }, [sortedBranches]);
+
   const isAp = activeCollege.region === 'AU' || activeCollege.region === 'SVU';
   const examSlug = isAp ? 'ap-eapcet' : 'tg-eapcet';
   const examTitle = isAp ? 'AP EAPCET' : 'TG EAPCET';
@@ -478,7 +502,61 @@ export default function CollegeProfilePage() {
   const annualFee = activeCollege.annualFee || activeCollege.fee || 95000;
   const naacGrade = activeCollege.naac || activeCollege.naac_grade || 'A+';
   const estd = activeCollege.established || activeCollege.established_year || 1995;
-  const aff = activeCollege.affiliation || activeCollege.affiliated_to || 'JNTUH';
+  const rawAff =
+    TELANGANA_ENGINEERING_COLLEGES.find((c) => c.code.toUpperCase() === upperCode)?.affiliated_to ||
+    activeCollege.affiliated_to ||
+    activeCollege.affiliation ||
+    'JNTUH';
+
+  const rawType =
+    TELANGANA_ENGINEERING_COLLEGES.find((c) => c.code.toUpperCase() === upperCode)?.type ||
+    activeCollege.type ||
+    'Autonomous';
+
+  // Government & University Campuses accurate status
+  const isStateUnivCampus = [
+    'JNTH', 'JNTHMT', 'OUCE', 'OUCESF', 'OUCT', 'OUCTSF', 'KUWL', 'KUWLSF', 'KUEWSF',
+    'PUCE', 'SUCE', 'TUCE', 'ESUT', 'ESUTSF', 'JNKR', 'JNTM', 'JNTS', 'JNTSSF', 'JNTR',
+    'JNWN', 'JNMB', 'JNPL', 'CASR', 'CDTK', 'PLMU'
+  ].includes(upperCode) || rawType.toLowerCase().includes('university');
+
+  const isStateGovt = [
+    'KSGI', 'CFSR'
+  ].includes(upperCode) || rawType.toLowerCase() === 'government';
+
+  // Format type badge text and style
+  let typeBadgeLabel = rawType;
+  let typeBadgeStyle = "bg-blue-500/20 text-blue-300 border-blue-500/30";
+
+  if (isStateUnivCampus) {
+    typeBadgeLabel = "🏛️ University Campus";
+    typeBadgeStyle = "bg-emerald-500/25 text-emerald-300 border-emerald-500/40 font-bold";
+  } else if (isStateGovt) {
+    typeBadgeLabel = "🏛️ Government";
+    typeBadgeStyle = "bg-emerald-500/25 text-emerald-300 border-emerald-500/40 font-bold";
+  } else if (rawType.toLowerCase().includes('autonomous')) {
+    typeBadgeLabel = "Autonomous";
+    typeBadgeStyle = "bg-purple-500/20 text-purple-300 border-purple-500/30";
+  }
+
+  // Format affiliation display text
+  let affiliationDisplay = `Affiliated to ${rawAff}`;
+  if (['JNTH', 'JNTHMT', 'JNKR', 'JNTM', 'JNTS', 'JNTSSF', 'JNTR', 'JNWN', 'JNMB', 'JNPL'].includes(upperCode)) {
+    affiliationDisplay = "Constituent College of JNTUH";
+  } else if (['OUCE', 'OUCESF', 'OUCT', 'OUCTSF'].includes(upperCode)) {
+    affiliationDisplay = "Constituent College of Osmania University";
+  } else if (['KUWL', 'KUWLSF', 'KUEWSF'].includes(upperCode)) {
+    affiliationDisplay = "Constituent College of Kakatiya University";
+  } else if (isStateUnivCampus && (upperCode === 'PUCE' || upperCode === 'PLMU')) {
+    affiliationDisplay = "Constituent College of Palamuru University";
+  } else if (isStateUnivCampus && upperCode === 'TUCE') {
+    affiliationDisplay = "Constituent College of Telangana University";
+  } else if (isStateUnivCampus && upperCode === 'SUCE') {
+    affiliationDisplay = "Constituent College of Satavahana University";
+  } else if (isStateUnivCampus && upperCode === 'ESUT') {
+    affiliationDisplay = "Constituent College of Earth Sciences University";
+  }
+
   // Extract authentic scraped Eduvale parameters and compute exact Eduvale overall rating
   const eduvaleData = useMemo(() => {
     const params = activeCollege?.quality_scores?.parameters || [];
@@ -650,8 +728,8 @@ export default function CollegeProfilePage() {
                   <Star size={11} className="fill-amber-400 text-amber-400" />
                   NAAC Grade {naacGrade}
                 </span>
-                <span className="rounded-md bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-0.5">
-                  {activeCollege.type || 'Autonomous'}
+                <span className={`rounded-md px-2 py-0.5 border ${typeBadgeStyle}`}>
+                  {typeBadgeLabel}
                 </span>
                 <span className="rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5">
                   Estd {estd}
@@ -671,7 +749,7 @@ export default function CollegeProfilePage() {
                     </span>
                     <span className="flex items-center gap-1 text-gray-400">
                       <Building2 size={13} className="text-blue-400 shrink-0" />
-                      Affiliated to {aff}
+                      {affiliationDisplay}
                     </span>
                   </p>
                 </div>
@@ -695,7 +773,7 @@ export default function CollegeProfilePage() {
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-gray-300 leading-relaxed">
                 <p className="font-semibold text-gray-200 mb-0.5">Why students consider {activeCollege.code}:</p>
                 <p className="text-gray-300">
-                  {activeCollege.code} is a premier {activeCollege.type || 'Autonomous'} engineering institution offering {branchDetailsList.length} engineering programmes with a sanctioned Convenor quota intake of {totalSeats.toLocaleString()} seats. It features a top campus placement CTC of {activeCollege.placements?.highestPackage || '₹45.0 LPA'} and median salary of {activeCollege.placements?.averagePackage || '₹7.8 LPA'}.
+                  {activeCollege.code} is a premier {typeBadgeLabel.replace(/🏛️\s*/, '')} engineering institution offering {branchDetailsList.length} engineering programmes with a sanctioned Convenor quota intake of {totalSeats.toLocaleString()} seats. It features a top campus placement CTC of {activeCollege.placements?.highestPackage || '₹45.0 LPA'} and median salary of {activeCollege.placements?.averagePackage || '₹7.8 LPA'}.
                 </p>
               </div>
             </div>
@@ -1050,7 +1128,29 @@ export default function CollegeProfilePage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5 font-mono">
-                {filteredBranches.length > 0 ? (
+                {!hasAnyCutoffValues ? (
+                  <tr>
+                    <td colSpan={7} className="px-4 py-8 text-center font-sans">
+                      <div className="max-w-md mx-auto space-y-2">
+                        <p className="text-sm font-semibold text-gray-300">
+                          Official Convenor Cutoff Ranks Pending for {activeCollege.code}
+                        </p>
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          Convenor closing ranks for this institution will appear once published in the upcoming counselling rounds. In the meantime, you can explore detailed candidate allotments.
+                        </p>
+                        <div className="pt-2">
+                          <Link
+                            to={`/${examSlug}/allotments?college=${activeCollege.code}`}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors"
+                          >
+                            <span>Search candidate allotments for {activeCollege.code}</span>
+                            <ArrowRight size={13} />
+                          </Link>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ) : filteredBranches.length > 0 ? (
                   filteredBranches.map((br) => {
                     const c = br.cutoff || {};
                     const ocB = getCutoffVal(c, KEY_ALIASES.oc_boys);

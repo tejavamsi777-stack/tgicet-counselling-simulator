@@ -13,6 +13,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/ads.txt", "destination": "/ads.txt" },
     { "source": "/googleec4a8053e053fe91.html", "destination": "/googleec4a8053e053fe91.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
