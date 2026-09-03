@@ -157,6 +157,8 @@ export const icetApi = {
     return api.get(`/icet/allotments${query ? `?${query}` : ''}`);
   },
 
-  compare: (c1, c2, program = 'MBA') =>
-    api.get(`/icet/compare?c1=${c1}&c2=${c2}&program=${program}`),
+  compare: (c1, c2, program = 'MBA', c3 = '') => {
+    const c3Param = c3 ? `&c3=${c3}` : '';
+    return api.get(`/icet/compare?c1=${c1}&c2=${c2}${c3Param}&program=${program}`);
+  },
 };

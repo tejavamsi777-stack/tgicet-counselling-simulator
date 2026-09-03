@@ -9,7 +9,10 @@ export const apEapcetApi = {
   },
   getCollegeByCode: (code) => api.get(`/ap-eapcet/colleges/${code}`),
   getCollegeBranches: (code) => api.get(`/ap-eapcet/colleges/${code}/branches`),
-  compare: (c1, c2, branch = 'CSE') => api.get(`/ap-eapcet/compare?c1=${c1}&c2=${c2}&branch=${branch}`),
+  compare: (c1, c2, branch = 'CSE', c3 = '') => {
+    const c3Param = c3 ? `&c3=${c3}` : '';
+    return api.get(`/ap-eapcet/compare?c1=${c1}&c2=${c2}${c3Param}&branch=${branch}`);
+  },
   getAllotmentMeta: () => api.get('/ap-eapcet/allotments/meta'),
   getAllotments: (params = {}) => {
     const q = new URLSearchParams(params).toString();

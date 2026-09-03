@@ -91,7 +91,7 @@ function PrivacyContent() {
   return (
     <div className="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed max-h-[60vh] overflow-y-auto pr-1">
       <p>
-        At <strong className="text-white">Vuela Learn</strong> (vuelalearn.vercel.app), protecting student privacy is our top priority. Here is how we handle your data:
+        At <strong className="text-white">Vuela Learn</strong> (vuelalearn.in), protecting student privacy is our top priority. Here is how we handle your data:
       </p>
 
       <div className="space-y-2 text-xs">
@@ -257,7 +257,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
             <ul className="space-y-2 text-xs">
               <li><Link to="/ap-eapcet" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> AP Engg Colleges</Link></li>
               <li><Link to="/tg-eapcet" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> TG Engg Colleges</Link></li>
-              <li><Link to="/colleges" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> College Directory</Link></li>
+              <li><Link to="/tg-eapcet/colleges" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> College Directory</Link></li>
               <li><Link to="/compare" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> College Comparison</Link></li>
               <li><Link to="/tg-eapcet/documents" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> Reservation Policy</Link></li>
               <li><Link to="/tg-eapcet/documents" className="hover:text-white transition-colors flex items-center gap-1.5"><ChevronRight size={12} className="text-emerald-400" /> Document Checklist</Link></li>

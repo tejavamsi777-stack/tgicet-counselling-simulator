@@ -1536,8 +1536,8 @@ export const ALL_TSCHE_COLLEGES = [
     "shortName": "V N R VIGNANA JYOTHI INSTITUTE OF ENGG AND TECH",
     "district": "Medchal-Malkajgiri",
     "region": "OU",
-    "type": "Private Affiliated",
-    "annualFee": 70000
+    "type": "Private Autonomous",
+    "annualFee": 159600
   },
   {
     "code": "VJIT",

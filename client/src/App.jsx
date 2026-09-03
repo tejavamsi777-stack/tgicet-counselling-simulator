@@ -31,6 +31,7 @@ const EapcetAllotmentsPage = lazy(() => import("./pages/eapcet/EapcetAllotmentsP
 const EapcetMarksVsRankPage = lazy(() => import("./pages/eapcet/EapcetMarksVsRankPage"));
 const CollegeProfilePage = lazy(() => import("./pages/eapcet/CollegeProfilePage"));
 const CollegesDirectoryPage = lazy(() => import("./pages/eapcet/CollegesDirectoryPage"));
+const RankingMethodologyPage = lazy(() => import("./pages/eapcet/RankingMethodologyPage"));
 
 const ApEapcetHome = lazy(() => import("./pages/ap-eapcet/EapcetHome"));
 const ApEapcetPredictorPage = lazy(() => import("./pages/ap-eapcet/EapcetPredictorPage"));
@@ -227,6 +228,7 @@ function MainContent() {
                   <Route path="/ap-eapcet/documents" element={<ApEapcetDocumentsPage />} />
                   <Route path="/exams/ap-eapcet/documents" element={<ApEapcetDocumentsPage />} />
 
+                  <Route path="/compare" element={<EapcetComparePage />} />
                   <Route path="/eapcet/compare" element={<EapcetComparePage />} />
                   <Route path="/tg-eapcet/compare" element={<EapcetComparePage />} />
                   <Route path="/exams/tg-eapcet/compare" element={<EapcetComparePage />} />
@@ -246,9 +248,12 @@ function MainContent() {
                   <Route path="/exams/kcet" element={<KcetAllotmentsPage />} />
                   <Route path="/kcet/allotments" element={<KcetAllotmentsPage />} />
 
+                  <Route path="/colleges" element={<CollegesDirectoryPage />} />
                   <Route path="/colleges/:code" element={<CollegeProfilePage />} />
                   <Route path="/tg-eapcet/colleges" element={<CollegesDirectoryPage />} />
                   <Route path="/tg-eapcet/colleges/:code" element={<CollegeProfilePage />} />
+                  <Route path="/tg-eapcet/ranking-methodology" element={<RankingMethodologyPage />} />
+                  <Route path="/ranking-methodology" element={<RankingMethodologyPage />} />
 
                   <Route path="/ap-eapcet/colleges/:code" element={<ApCollegeProfilePage />} />
 

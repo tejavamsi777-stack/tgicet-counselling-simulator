@@ -104,15 +104,46 @@ const DETAILED_COLLEGES_MAP = {
     established: 1995,
     naac: "A++",
     nirfRank: "Rank 101-150",
-    annualFee: 135000,
+    annualFee: 159600,
     hostelAvailable: true,
     placements: {
-      highestPackage: "₹54.0 LPA",
-      highestPackageNum: 54.0,
-      averagePackage: "₹9.2 LPA",
-      averagePackageNum: 9.2,
+      highestPackage: "₹65.0 LPA",
+      highestPackageNum: 65.0,
+      averagePackage: "₹8.5 LPA",
+      averagePackageNum: 8.5,
       placementRate: "93%",
-      topRecruiters: ["Amazon", "Google", "Goldman Sachs", "Cisco", "Deloitte", "Oracle", "TCS"]
+      topRecruiters: ["Atlassian", "Google", "Microsoft", "Amazon", "ServiceNow", "Goldman Sachs", "Oracle", "JPMorgan Chase", "TCS Digital"]
+    },
+    cutoffs: {
+      CSE: { oc2025: 1250, final2025: 1380, oc2024: 1300, oc2023: 1450, oc2022: 1600, bc2025: 2900, sc2025: 7600, st2025: 9200, ews2025: 1380 },
+      CSM: { oc2025: 1750, final2025: 1950, oc2024: 1850, oc2023: 2100, oc2022: 2350, bc2025: 4100, sc2025: 10200, st2025: 12400, ews2025: 1950 },
+      CSD: { oc2025: 2150, final2025: 2450, oc2024: 2300, oc2023: 2600, oc2022: 2950, bc2025: 4900, sc2025: 12200, st2025: 14800, ews2025: 2450 },
+      INF: { oc2025: 2450, final2025: 2850, oc2024: 2650, oc2023: 3000, oc2022: 3400, bc2025: 5700, sc2025: 14000, st2025: 16800, ews2025: 2850 },
+      ECE: { oc2025: 3900, final2025: 4400, oc2024: 4200, oc2023: 4650, oc2022: 5200, bc2025: 8600, sc2025: 19000, st2025: 23000, ews2025: 4400 },
+      EEE: { oc2025: 8100, final2025: 9200, oc2024: 8700, oc2023: 9600, oc2022: 10600, bc2025: 16200, sc2025: 32000, st2025: 38000, ews2025: 9200 },
+      MEC: { oc2025: 14800, final2025: 16800, oc2024: 15800, oc2023: 17500, oc2022: 19400, bc2025: 28500, sc2025: 49000, st2025: 57000, ews2025: 16800 },
+      CIV: { oc2025: 19800, final2025: 22000, oc2024: 21000, oc2023: 23200, oc2022: 25800, bc2025: 37000, sc2025: 58000, st2025: 66000, ews2025: 22500 }
+    }
+  },
+  VJEC: {
+    code: "VJEC",
+    name: "Vallurupalli Nageswara Rao Vignana Jyothi Institute of Engineering and Technology",
+    shortName: "VNR VJIET",
+    district: "Medchal-Malkajgiri",
+    location: "Bachupally, Hyderabad",
+    type: "Private Autonomous",
+    established: 1995,
+    naac: "A++",
+    nirfRank: "Rank 101-150",
+    annualFee: 159600,
+    hostelAvailable: true,
+    placements: {
+      highestPackage: "₹65.0 LPA",
+      highestPackageNum: 65.0,
+      averagePackage: "₹8.5 LPA",
+      averagePackageNum: 8.5,
+      placementRate: "93%",
+      topRecruiters: ["Atlassian", "Google", "Microsoft", "Amazon", "ServiceNow", "Goldman Sachs", "Oracle", "JPMorgan Chase", "TCS Digital"]
     },
     cutoffs: {
       CSE: { oc2025: 1250, final2025: 1380, oc2024: 1300, oc2023: 1450, oc2022: 1600, bc2025: 2900, sc2025: 7600, st2025: 9200, ews2025: 1380 },

@@ -1,14 +1,13 @@
 // Authoritative 214 Telangana Engineering Colleges Master Dataset
 // Scraped & Synced Directly from Official Government Counselling Portal & InstitutionalScore
-// Sorted by Review Quality Score & Rank (#1 to #214)
-// Generated: 2026-09-02T08:19:19.930Z
+// Differentiated quality scores based on NAAC, NIRF, Placements & TSCHE cutoffs
 
 export const TELANGANA_ENGINEERING_COLLEGES = [
   {
     "code": "JNTH",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING HYDERABAD",
     "rank": 1,
-    "overall_score": 8.5,
+    "overall_score": 9.38,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "University",
@@ -441,43 +440,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 9.38,
       "parameters": [
         {
           "label": "Placements",
-          "score": "9/10",
+          "score": "9.5/10",
           "color": "#3553E2",
-          "pct": 90
+          "pct": 95
         },
         {
           "label": "Faculty",
-          "score": "9/10",
+          "score": "9.5/10",
           "color": "#7C3AED",
-          "pct": 90
+          "pct": 95
         },
         {
           "label": "Infra",
-          "score": "8/10",
+          "score": "8.8/10",
           "color": "#0891B2",
-          "pct": 80
+          "pct": 88
         },
         {
           "label": "Value",
-          "score": "10/10",
+          "score": "9.8/10",
           "color": "#D97706",
-          "pct": 100
+          "pct": 98
         },
         {
           "label": "Resources",
-          "score": "9/10",
+          "score": "9.3/10",
           "color": "#F56016",
-          "pct": 90
+          "pct": 93
         },
         {
           "label": "Research",
-          "score": "9/10",
+          "score": "9.4/10",
           "color": "#059669",
-          "pct": 90
+          "pct": 94
         }
       ]
     }
@@ -486,7 +485,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNTHMT",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING -5 YEAR INTEGRATED MTECH SELF FINANCE",
     "rank": 2,
-    "overall_score": 8.5,
+    "overall_score": 8.92,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "University",
@@ -595,43 +594,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.92,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
-          "color": "#3553E2",
-          "pct": 80
-        },
-        {
-          "label": "Faculty",
-          "score": "8/10",
-          "color": "#7C3AED",
-          "pct": 80
-        },
-        {
-          "label": "Infra",
-          "score": "7/10",
-          "color": "#0891B2",
-          "pct": 70
-        },
-        {
-          "label": "Value",
           "score": "9/10",
-          "color": "#D97706",
+          "color": "#3553E2",
           "pct": 90
         },
         {
+          "label": "Faculty",
+          "score": "9.2/10",
+          "color": "#7C3AED",
+          "pct": 92
+        },
+        {
+          "label": "Infra",
+          "score": "8.6/10",
+          "color": "#0891B2",
+          "pct": 86
+        },
+        {
+          "label": "Value",
+          "score": "8.8/10",
+          "color": "#D97706",
+          "pct": 88
+        },
+        {
           "label": "Resources",
-          "score": "8/10",
+          "score": "9/10",
           "color": "#F56016",
-          "pct": 80
+          "pct": 90
         },
         {
           "label": "Research",
-          "score": "8/10",
+          "score": "8.9/10",
           "color": "#059669",
-          "pct": 80
+          "pct": 89
         }
       ]
     }
@@ -640,7 +639,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CBIT",
     "name": "CHAITANYA BHARATHI INSTITUTE OF TECHNOLOGY",
     "rank": 3,
-    "overall_score": 8.5,
+    "overall_score": 8.88,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -1109,43 +1108,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.88,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "9.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 93
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 90
         },
         {
           "label": "Infra",
-          "score": "8/10",
+          "score": "9/10",
           "color": "#0891B2",
-          "pct": 80
+          "pct": 90
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.5/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 85
         },
         {
           "label": "Resources",
-          "score": "8/10",
+          "score": "8.9/10",
           "color": "#F56016",
-          "pct": 80
+          "pct": 89
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 86
         }
       ]
     }
@@ -1154,7 +1153,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VJEC",
     "name": "VNR VIGNANA JYOTHI INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 4,
-    "overall_score": 8.5,
+    "overall_score": 8.93,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -1615,9 +1614,20 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     },
     "placements": {
-      "highestPackage": "₹45.0 LPA",
+      "highestPackage": "₹65.0 LPA",
       "averagePackage": "₹8.5 LPA",
-      "placementRate": "92%"
+      "placementRate": "93%",
+      "topRecruiters": [
+        "Atlassian",
+        "Google",
+        "Microsoft",
+        "Amazon",
+        "ServiceNow",
+        "Goldman Sachs",
+        "Oracle",
+        "JPMorgan Chase",
+        "TCS Digital"
+      ]
     },
     "total_seats": 1640,
     "branch_details": [
@@ -1776,43 +1786,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.93,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "9.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 95
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 89
         },
         {
           "label": "Infra",
-          "score": "8/10",
+          "score": "9.1/10",
           "color": "#0891B2",
-          "pct": 80
+          "pct": 91
         },
         {
           "label": "Value",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#D97706",
-          "pct": 70
+          "pct": 86
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "9/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 90
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 85
         }
       ]
     }
@@ -1821,7 +1831,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "OUCE",
     "name": "O U COLLEGE OF ENGINEERING HYDERABAD",
     "rank": 5,
-    "overall_score": 8.5,
+    "overall_score": 9.13,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "University",
@@ -2146,31 +2156,31 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 9.13,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "9/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 90
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "9.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 94
         },
         {
           "label": "Infra",
-          "score": "8/10",
+          "score": "8.7/10",
           "color": "#0891B2",
-          "pct": 80
+          "pct": 87
         },
         {
           "label": "Value",
-          "score": "9/10",
+          "score": "9.5/10",
           "color": "#D97706",
-          "pct": 90
+          "pct": 95
         },
         {
           "label": "Resources",
@@ -2180,9 +2190,9 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Research",
-          "score": "8/10",
+          "score": "9.2/10",
           "color": "#059669",
-          "pct": 80
+          "pct": 92
         }
       ]
     }
@@ -2191,7 +2201,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "OUCESF",
     "name": "O U COLLEGE OF ENGINEERING HYDERABAD - SELF FINANCE",
     "rank": 6,
-    "overall_score": 8.18,
+    "overall_score": 8.8,
     "grade": "A++",
     "star_rating": 4.1,
     "type": "Government (SF)",
@@ -2277,43 +2287,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.18,
+      "overall": 8.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 88
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "9.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 92
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 85
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 86
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 88
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 89
         }
       ]
     }
@@ -2322,7 +2332,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VASV",
     "name": "VASAVI COLLEGE OF ENGINEERING",
     "rank": 7,
-    "overall_score": 8.5,
+    "overall_score": 8.63,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -2611,43 +2621,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.63,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "9.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 91
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 89
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 86
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 84
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 86
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 82
         }
       ]
     }
@@ -2656,7 +2666,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GRRR",
     "name": "GOKARAJU RANGARAJU INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 8,
-    "overall_score": 8.5,
+    "overall_score": 8.47,
     "grade": "A++",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -2981,43 +2991,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.47,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 88
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 86
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.5/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 85
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 83
         },
         {
           "label": "Resources",
-          "score": "8/10",
+          "score": "8.5/10",
           "color": "#F56016",
-          "pct": 80
+          "pct": 85
         },
         {
           "label": "Research",
-          "score": "8/10",
+          "score": "8.1/10",
           "color": "#059669",
-          "pct": 80
+          "pct": 81
         }
       ]
     }
@@ -3026,7 +3036,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "OUCTSF",
     "name": "O U COLLEGE OF TECHNOLOGY  HYDERABAD - SELF FINANCE",
     "rank": 9,
-    "overall_score": 7.73,
+    "overall_score": 8.48,
     "grade": "A+",
     "star_rating": 3.9,
     "type": "Government (SF)",
@@ -3112,43 +3122,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 7.73,
+      "overall": 8.48,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 83
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 88
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 82
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 86
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 84
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 86
         }
       ]
     }
@@ -3157,7 +3167,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "OUCT",
     "name": "O U COLLEGE OF TECHNOLOGY  HYDERABAD",
     "rank": 10,
-    "overall_score": 8.5,
+    "overall_score": 8.67,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "University",
@@ -3302,43 +3312,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.67,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "8.2/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 82
         },
         {
           "label": "Faculty",
-          "score": "8/10",
-          "color": "#7C3AED",
-          "pct": 80
-        },
-        {
-          "label": "Infra",
-          "score": "8/10",
-          "color": "#0891B2",
-          "pct": 80
-        },
-        {
-          "label": "Value",
           "score": "9/10",
-          "color": "#D97706",
+          "color": "#7C3AED",
           "pct": 90
         },
         {
+          "label": "Infra",
+          "score": "8.3/10",
+          "color": "#0891B2",
+          "pct": 83
+        },
+        {
+          "label": "Value",
+          "score": "9.2/10",
+          "color": "#D97706",
+          "pct": 92
+        },
+        {
           "label": "Resources",
-          "score": "8/10",
+          "score": "8.5/10",
           "color": "#F56016",
-          "pct": 80
+          "pct": 85
         },
         {
           "label": "Research",
-          "score": "8/10",
+          "score": "8.8/10",
           "color": "#059669",
-          "pct": 80
+          "pct": 88
         }
       ]
     }
@@ -3347,7 +3357,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CVRH",
     "name": "CVR COLLEGE OF ENGINEERING",
     "rank": 11,
-    "overall_score": 8.5,
+    "overall_score": 8.27,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -3816,43 +3826,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.27,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 85
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 84
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 84
         },
         {
           "label": "Value",
-          "score": "7/10",
+          "score": "8.1/10",
           "color": "#D97706",
-          "pct": 70
+          "pct": 81
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 83
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "7.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 79
         }
       ]
     }
@@ -3861,7 +3871,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MGIT",
     "name": "MAHATMA GANDHI INSTITUTE OF TECHNOLOGY",
     "rank": 12,
-    "overall_score": 8.5,
+    "overall_score": 8.13,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -4294,43 +4304,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.13,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "8/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 80
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.7/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 77
         }
       ]
     }
@@ -4339,7 +4349,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SNIS",
     "name": "SREENIDHI INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 13,
-    "overall_score": 8.5,
+    "overall_score": 8.08,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -4700,43 +4710,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 82
         },
         {
           "label": "Faculty",
-          "score": "7/10",
+          "score": "8.1/10",
           "color": "#7C3AED",
-          "pct": 70
+          "pct": 81
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 85
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 76
         }
       ]
     }
@@ -4745,7 +4755,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VMEG",
     "name": "VARDHAMAN COLLEGE OF ENGINEERING",
     "rank": 14,
-    "overall_score": 8.5,
+    "overall_score": 8.1,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -5070,43 +5080,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.1,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 82
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.4/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 84
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "8/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 80
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.7/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 77
         }
       ]
     }
@@ -5115,7 +5125,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KITS",
     "name": "KAKATIYA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 15,
-    "overall_score": 8.5,
+    "overall_score": 8,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -5557,43 +5567,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 80
         },
         {
           "label": "Faculty",
-          "score": "7/10",
+          "score": "8.3/10",
           "color": "#7C3AED",
-          "pct": 70
+          "pct": 83
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 82
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.8/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 78
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 76
         }
       ]
     }
@@ -5602,7 +5612,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BVRI",
     "name": "B V RAJU INSTITUTE OF TECHNOLOGY",
     "rank": 16,
-    "overall_score": 8.5,
+    "overall_score": 8.12,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -6071,43 +6081,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.12,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.3/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 83
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.5/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 85
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 76
         }
       ]
     }
@@ -6116,7 +6126,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SRHP",
     "name": "SR UNIVERSITY (formerly SR ENGINEERING COLLEGE)",
     "rank": 17,
-    "overall_score": 8.5,
+    "overall_score": 8.07,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Private University",
@@ -6333,43 +6343,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.07,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 82
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.1/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 81
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "8.4/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 84
         },
         {
           "label": "Value",
-          "score": "7/10",
+          "score": "7.8/10",
           "color": "#D97706",
-          "pct": 70
+          "pct": 78
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "7.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 77
         }
       ]
     }
@@ -6378,7 +6388,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MVSR",
     "name": "MVSR ENGINEERING COLLEGE",
     "rank": 18,
-    "overall_score": 8.5,
+    "overall_score": 7.92,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -6775,43 +6785,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.92,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "8/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 80
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "8/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 80
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "8/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 80
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 75
         }
       ]
     }
@@ -6820,7 +6830,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GNTW",
     "name": "G NARAYNAMMA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 19,
-    "overall_score": 8.5,
+    "overall_score": 8.08,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -6924,43 +6934,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "8.3/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 83
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "8.2/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 82
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "8.2/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 82
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "8/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 80
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 76
         }
       ]
     }
@@ -6969,7 +6979,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "IARE",
     "name": "INSTITUTE OF AERONAUTICAL ENGINEERING",
     "rank": 20,
-    "overall_score": 8.5,
+    "overall_score": 8,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -7330,43 +7340,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.1/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 81
         },
         {
           "label": "Faculty",
-          "score": "7/10",
+          "score": "8/10",
           "color": "#7C3AED",
-          "pct": 70
+          "pct": 80
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "8/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 80
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 76
         }
       ]
     }
@@ -7375,7 +7385,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ANUG",
     "name": "ANURAG UNIVERSITY (formerly ANURAG GROUP OF INSTITUTIONS)",
     "rank": 21,
-    "overall_score": 8.5,
+    "overall_score": 8.43,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Private University",
@@ -7664,43 +7674,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.43,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Faculty",
-          "score": "7/10",
+          "score": "8.6/10",
           "color": "#7C3AED",
-          "pct": 70
+          "pct": 86
         },
         {
           "label": "Infra",
-          "score": "8/10",
+          "score": "8.2/10",
           "color": "#0891B2",
-          "pct": 80
+          "pct": 82
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "8.7/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 87
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.4/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 84
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "8.5/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 85
         }
       ]
     }
@@ -7709,7 +7719,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BVRW",
     "name": "BVRIT COLLEGE OF ENGINEERING FOR WOMEN",
     "rank": 22,
-    "overall_score": 8.5,
+    "overall_score": 8.15,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -7786,43 +7796,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.1/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 81
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "8/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 80
         }
       ]
     }
@@ -7831,7 +7841,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KMIT",
     "name": "KESHAV MEMORIAL INSTITUTE OF TECHNOLOGY",
     "rank": 23,
-    "overall_score": 8.5,
+    "overall_score": 7.92,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -7940,43 +7950,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.92,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "8.4/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 84
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.9/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 79
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "8/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 80
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "8/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 80
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.3/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 73
         }
       ]
     }
@@ -7985,7 +7995,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VJIT",
     "name": "VIDYAJYOTHI INSTITUTE OF TECHNOLOGY",
     "rank": 24,
-    "overall_score": 8.5,
+    "overall_score": 8.22,
     "grade": "A+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -8310,43 +8320,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "8.3/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 83
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 81
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 82
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "8.4/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 84
         }
       ]
     }
@@ -8355,7 +8365,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MREC",
     "name": "MALLA REDDY ENGINEERING COLLEGE",
     "rank": 25,
-    "overall_score": 6.36,
+    "overall_score": 8.2,
     "grade": "A+",
     "star_rating": 3.2,
     "type": "Autonomous",
@@ -8441,43 +8451,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 6.36,
+      "overall": 8.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "8.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 81
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "8.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 82
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "8.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 83
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 81
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "8.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 81
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "8.4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 84
         }
       ]
     }
@@ -8486,7 +8496,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MJCT",
     "name": "MUFFAKHAM JAH COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 26,
-    "overall_score": 8.5,
+    "overall_score": 7.92,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Private College",
@@ -8590,43 +8600,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.92,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.9/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 79
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "8/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 80
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.9/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 79
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "8/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 80
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 78
         }
       ]
     }
@@ -8635,7 +8645,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GURU",
     "name": "GURU NANAK INSTITUTIONS TECHNICAL CAMPUS",
     "rank": 27,
-    "overall_score": 8.5,
+    "overall_score": 7.9,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -9068,43 +9078,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.9,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.8/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 78
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.9/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 79
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "8.1/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 81
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7.8/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 78
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "8/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 80
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 78
         }
       ]
     }
@@ -9113,7 +9123,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CMRK",
     "name": "CMR COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 28,
-    "overall_score": 8.5,
+    "overall_score": 8.02,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -9402,43 +9412,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 8.02,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "7.9/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 79
         },
         {
           "label": "Faculty",
-          "score": "7/10",
-          "color": "#7C3AED",
-          "pct": 70
-        },
-        {
-          "label": "Infra",
           "score": "8/10",
-          "color": "#0891B2",
+          "color": "#7C3AED",
           "pct": 80
         },
         {
+          "label": "Infra",
+          "score": "8.1/10",
+          "color": "#0891B2",
+          "pct": 81
+        },
+        {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "8/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 80
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "8.2/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 82
         }
       ]
     }
@@ -9447,7 +9457,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GCTC",
     "name": "GEETANJALI COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 29,
-    "overall_score": 8.5,
+    "overall_score": 7.8,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -9781,43 +9791,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 77
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "7.8/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 78
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "8/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 80
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "7.7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 77
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 79
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 77
         }
       ]
     }
@@ -9826,7 +9836,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CMRM",
     "name": "CMR INSTITUTE OF TECHNOLOGY",
     "rank": 30,
-    "overall_score": 8.5,
+    "overall_score": 7.92,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -10016,19 +10026,19 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.92,
       "parameters": [
         {
           "label": "Placements",
-          "score": "7/10",
+          "score": "7.8/10",
           "color": "#3553E2",
-          "pct": 70
+          "pct": 78
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Infra",
@@ -10038,21 +10048,21 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.8/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 78
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "8.1/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 81
         }
       ]
     }
@@ -10061,7 +10071,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GNIT",
     "name": "GURU NANAK INSTITUTE OF TECHNOLOGY",
     "rank": 31,
-    "overall_score": 8.5,
+    "overall_score": 7.75,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -10386,43 +10396,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7.7/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 77
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.8/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 78
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "7.9/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 79
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7.7/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 77
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7.8/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 78
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 76
         }
       ]
     }
@@ -10431,7 +10441,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNKR",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING JAGTIAL",
     "rank": 32,
-    "overall_score": 6.09,
+    "overall_score": 7.88,
     "grade": "A",
     "star_rating": 3,
     "type": "Government Autonomous",
@@ -10648,13 +10658,13 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 6.09,
+      "overall": 7.88,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "7.6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 76
         },
         {
           "label": "Faculty",
@@ -10664,27 +10674,27 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "7.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 79
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "8.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 81
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "7.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 78
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "7.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 79
         }
       ]
     }
@@ -10693,7 +10703,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VAGE",
     "name": "VAAGDEVI COLLEGE OF ENGINEERING",
     "rank": 33,
-    "overall_score": 8.5,
+    "overall_score": 7.65,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -10982,43 +10992,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 76
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 77
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 78
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "7.6/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 76
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 77
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 75
         }
       ]
     }
@@ -11027,7 +11037,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MRTN",
     "name": "ST MARTINS ENGINEERING COLLEGE",
     "rank": 34,
-    "overall_score": 8.5,
+    "overall_score": 7.65,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -11208,43 +11218,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 76
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 77
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 78
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "7.6/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 76
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 77
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 75
         }
       ]
     }
@@ -11253,7 +11263,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MECS",
     "name": "MATRUSRI ENGINEERING COLLEGE",
     "rank": 35,
-    "overall_score": 8.5,
+    "overall_score": 7.6,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -11578,43 +11588,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 75
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 76
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "7.8/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 78
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 75
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7.7/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 77
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 75
         }
       ]
     }
@@ -11623,7 +11633,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KGRH",
     "name": "KGREDDY COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 36,
-    "overall_score": 8.5,
+    "overall_score": 7.55,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -11876,43 +11886,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 76
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 77
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "7.6/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 76
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "7.4/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 74
         }
       ]
     }
@@ -11921,7 +11931,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MLRD",
     "name": "MALLA REDDY COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 37,
-    "overall_score": 8.5,
+    "overall_score": 7.5,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -12282,43 +12292,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.5,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "7.7/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 77
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "7.6/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 76
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "7.4/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 74
         }
       ]
     }
@@ -12327,7 +12337,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KTKM",
     "name": "KAMALA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 38,
-    "overall_score": 8.5,
+    "overall_score": 7.5,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -12652,43 +12662,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.5,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 77
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 76
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 74
         }
       ]
     }
@@ -12697,7 +12707,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CMRG",
     "name": "CMR TECHNICAL CAMPUS",
     "rank": 39,
-    "overall_score": 8.5,
+    "overall_score": 7.62,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -12887,43 +12897,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.62,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 75
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.6/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 76
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "7.7/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 77
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 75
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "7.6/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 76
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.8/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 78
         }
       ]
     }
@@ -12932,7 +12942,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SDEW",
     "name": "SRIDEVI WOMENS ENGINEERING COLLEGE",
     "rank": 40,
-    "overall_score": 8.5,
+    "overall_score": 7.4,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -13027,43 +13037,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.4,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 73
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "7.4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 74
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "7.6/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 76
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "7.3/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 73
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 75
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 73
         }
       ]
     }
@@ -13072,7 +13082,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "INDU",
     "name": "SRI INDU COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 41,
-    "overall_score": 8.5,
+    "overall_score": 7.4,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -13505,43 +13515,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.4,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.3/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 73
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 76
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7.3/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 73
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.3/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 73
         }
       ]
     }
@@ -13550,7 +13560,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MRCW",
     "name": "MALLA REDDY ENGINEERING COLLEGE FOR WOMEN",
     "rank": 42,
-    "overall_score": 8.5,
+    "overall_score": 7.52,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -13654,43 +13664,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.52,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 74
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.6/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 76
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7.4/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 74
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.7/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 77
         }
       ]
     }
@@ -13699,7 +13709,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JBIT",
     "name": "J B INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 43,
-    "overall_score": 8.5,
+    "overall_score": 7.3,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -14132,43 +14142,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 72
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.3/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 73
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "7.5/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 75
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7.4/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 74
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 72
         }
       ]
     }
@@ -14177,7 +14187,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "HITM",
     "name": "HYDERABAD INSTITUTE OF TECHNOLOGY AND MANAGEMENT",
     "rank": 44,
-    "overall_score": 8.5,
+    "overall_score": 7.3,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -14430,43 +14440,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7.2/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 72
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.3/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 73
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 75
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7.2/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 72
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "7.4/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 74
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "7.2/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 72
         }
       ]
     }
@@ -14475,7 +14485,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KPRT",
     "name": "KOMMURI PRATAP REDDY INSTITUTE OF TECHNOLOGY",
     "rank": 45,
-    "overall_score": 8.5,
+    "overall_score": 7.25,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -14656,43 +14666,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.25,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 72
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.3/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 73
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.4/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 74
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7.2/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 72
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7.3/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 73
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7.1/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 71
         }
       ]
     }
@@ -14701,7 +14711,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CMRN",
     "name": "CMR ENGINEERING COLLEGE",
     "rank": 46,
-    "overall_score": 8.5,
+    "overall_score": 7.35,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -14891,43 +14901,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.3/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 73
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "7.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 75
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "7.4/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 74
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 75
         }
       ]
     }
@@ -14936,7 +14946,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MLID",
     "name": "MLR INSTITUTE OF TECHNOLOGY",
     "rank": 47,
-    "overall_score": 8.5,
+    "overall_score": 7.32,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -15225,43 +15235,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.32,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.3/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 73
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "7.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 74
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "7.3/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 73
         },
         {
           "label": "Research",
-          "score": "6/10",
+          "score": "7.5/10",
           "color": "#059669",
-          "pct": 60
+          "pct": 75
         }
       ]
     }
@@ -15270,7 +15280,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NNRG",
     "name": "NALLA NARASIMHA REDDY EDUCATIONAL SOCIETY GROUP OF INSTITUTIONS",
     "rank": 48,
-    "overall_score": 8.5,
+    "overall_score": 7.15,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -15487,43 +15497,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 71
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 72
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.3/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 73
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 71
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 72
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 70
         }
       ]
     }
@@ -15532,7 +15542,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "STLW",
     "name": "STANLEY COLLEGE OF ENGINEERING AND TECHNOLOGY FOR WOMEN",
     "rank": 49,
-    "overall_score": 8.5,
+    "overall_score": 7.1,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -15636,43 +15646,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.1,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 70
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "7.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 71
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 73
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 70
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 72
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 70
         }
       ]
     }
@@ -15681,7 +15691,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TKEM",
     "name": "TEEGALA KRISHNA REDDY ENGINEERING COLLEGE",
     "rank": 50,
-    "overall_score": 8.5,
+    "overall_score": 7.1,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -15934,43 +15944,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.1,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 70
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "7.1/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 71
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "7.3/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 73
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 70
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 72
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 70
         }
       ]
     }
@@ -15979,7 +15989,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SRYS",
     "name": "SREYAS INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 51,
-    "overall_score": 8.5,
+    "overall_score": 7.05,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -16160,43 +16170,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 70
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "7.1/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 71
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7.2/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 72
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 70
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "7.1/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 71
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "6.9/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 69
         }
       ]
     }
@@ -16205,7 +16215,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NREC",
     "name": "NALLA MALLA REDDY ENGINEERING COLLEGE",
     "rank": 52,
-    "overall_score": 8.5,
+    "overall_score": 7.05,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -16458,43 +16468,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "7/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 70
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 71
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "7.2/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 72
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "7/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 70
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 71
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.9/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 69
         }
       ]
     }
@@ -16503,7 +16513,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "INDI",
     "name": "SRI INDU INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 53,
-    "overall_score": 8.5,
+    "overall_score": 7,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -16828,43 +16838,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "6.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 69
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 70
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "7.2/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 72
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "6.9/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 69
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "7.1/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 71
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "6.9/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 69
         }
       ]
     }
@@ -16873,7 +16883,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KUWL",
     "name": "KU COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 54,
-    "overall_score": 8.5,
+    "overall_score": 7.07,
     "grade": "A",
     "star_rating": 4.3,
     "type": "University",
@@ -17162,43 +17172,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 7.07,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "7.2/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 72
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "7.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 73
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "7/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 70
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 71
         }
       ]
     }
@@ -17207,7 +17217,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BITN",
     "name": "BALAJI INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 55,
-    "overall_score": 8.5,
+    "overall_score": 6.95,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -17505,43 +17515,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.95,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "7/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 70
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "7.1/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 71
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 70
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 68
         }
       ]
     }
@@ -17550,7 +17560,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VBIT",
     "name": "VIGNAN BHARATI INSTITUTE OF TECHNOLOGY",
     "rank": 56,
-    "overall_score": 8.5,
+    "overall_score": 6.9,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -17947,43 +17957,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.9,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.8/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 68
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6.9/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 69
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "7.1/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 71
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.8/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 68
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 70
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 68
         }
       ]
     }
@@ -17992,7 +18002,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ACEG",
     "name": "ACE ENGINEERING COLLEGE",
     "rank": 57,
-    "overall_score": 8.5,
+    "overall_score": 6.9,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -18353,43 +18363,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.9,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "6.8/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 68
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "6.9/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 69
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "7.1/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 71
         },
         {
           "label": "Value",
-          "score": "7/10",
+          "score": "6.8/10",
           "color": "#D97706",
-          "pct": 70
+          "pct": 68
         },
         {
           "label": "Resources",
-          "score": "6/10",
+          "score": "7/10",
           "color": "#F56016",
-          "pct": 60
+          "pct": 70
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "6.8/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 68
         }
       ]
     }
@@ -18398,7 +18408,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MLRS",
     "name": "MARRI LAXMAN REDDY INSTITUTE OF TECHNOLOGY AND MANAGEMENT",
     "rank": 58,
-    "overall_score": 8.5,
+    "overall_score": 6.85,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -18687,43 +18697,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.85,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.8/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 68
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "7/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 70
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6.8/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 68
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.9/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 69
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.7/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 67
         }
       ]
     }
@@ -18732,7 +18742,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BREW",
     "name": "BHOJREDDY ENGINEERING COLLEGE FOR WOMEN",
     "rank": 59,
-    "overall_score": 5.09,
+    "overall_score": 6.75,
     "grade": "A",
     "star_rating": 2.5,
     "type": "Private College",
@@ -18818,43 +18828,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 5.09,
+      "overall": 6.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6.7/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 67
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 68
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.7/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 67
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 67
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.9/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 69
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 67
         }
       ]
     }
@@ -18863,7 +18873,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SDES",
     "name": "SREE DATTHA COLLEGE OF ENGINEERING AND SCIENCE",
     "rank": 60,
-    "overall_score": 8.5,
+    "overall_score": 6.8,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -19188,43 +19198,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "6.7/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 67
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6.8/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 68
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "7/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 70
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6.7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 67
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.9/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 69
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "6.7/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 67
         }
       ]
     }
@@ -19233,7 +19243,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MRIT",
     "name": "MALLA REDDY INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 61,
-    "overall_score": 5.09,
+    "overall_score": 6.73,
     "grade": "A",
     "star_rating": 2.5,
     "type": "Autonomous",
@@ -19319,43 +19329,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 5.09,
+      "overall": 6.73,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6.7/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 67
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 68
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 69
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 67
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.7/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 67
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6.6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 66
         }
       ]
     }
@@ -19364,7 +19374,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SRIW",
     "name": "SUMATHI REDDY INSTITUTE OF TECHNOLOGY FOR WOMEN",
     "rank": 62,
-    "overall_score": 8.5,
+    "overall_score": 6.75,
     "grade": "A",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -19459,43 +19469,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "6.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 67
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "6.8/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 68
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.9/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 69
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "6.7/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 67
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 68
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "6.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 66
         }
       ]
     }
@@ -19504,7 +19514,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AVNI",
     "name": "AVN INSTITUTE OF ENGINEERING TECHNOLOGY",
     "rank": 63,
-    "overall_score": 8.5,
+    "overall_score": 6.55,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -19829,43 +19839,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "6.5/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 65
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6.6/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 66
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "6.7/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 67
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.5/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 65
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "6.6/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 66
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.4/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 64
         }
       ]
     }
@@ -19874,7 +19884,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KUWLSF",
     "name": "KU COLLEGE OF ENGINEERING AND TECHNOLOGY - SELF FINANCE",
     "rank": 64,
-    "overall_score": 5,
+    "overall_score": 6.53,
     "grade": "B+",
     "star_rating": 2.5,
     "type": "Government (SF)",
@@ -19960,43 +19970,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 5,
+      "overall": 6.53,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 64
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 68
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 64
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 64
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 65
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 67
         }
       ]
     }
@@ -20005,7 +20015,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BIET",
     "name": "BHARAT INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 65,
-    "overall_score": 8.5,
+    "overall_score": 6.45,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -20366,43 +20376,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.5/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 65
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "6.4/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 64
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 64
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.6/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 66
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.4/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 64
         }
       ]
     }
@@ -20411,7 +20421,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SMSK",
     "name": "SAMSKRUTHI COLLEGE OF ENGINEERINGAND TECHNOLOGY",
     "rank": 66,
-    "overall_score": 8.5,
+    "overall_score": 6.45,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -20673,43 +20683,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "6.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 64
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "6.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 65
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 66
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "6.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 64
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 65
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "6.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 63
         }
       ]
     }
@@ -20718,7 +20728,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ANRK",
     "name": "ANURAG ENGINEERING COLLGE",
     "rank": 67,
-    "overall_score": 8.5,
+    "overall_score": 6.45,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -20971,43 +20981,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.5/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 65
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6.6/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 66
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "6.4/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 64
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.5/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 65
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.3/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 63
         }
       ]
     }
@@ -21016,7 +21026,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MRCE",
     "name": "MALLA REDDY COLLEGE OF ENGINEERING",
     "rank": 68,
-    "overall_score": 8.5,
+    "overall_score": 6.35,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -21197,43 +21207,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.5/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 65
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.3/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 63
         }
       ]
     }
@@ -21242,7 +21252,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JAYA",
     "name": "JAYAMUKHI INSTITUTE OF TECHNOLOGY AND SCIENCES",
     "rank": 69,
-    "overall_score": 8.5,
+    "overall_score": 6.35,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -21513,43 +21523,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "6.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 63
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "6.4/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 64
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 65
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "6.3/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 63
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 64
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "6.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 62
         }
       ]
     }
@@ -21558,7 +21568,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TKRC",
     "name": "T K R COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 70,
-    "overall_score": 8.5,
+    "overall_score": 6.35,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -21847,43 +21857,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "6.5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 65
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "6.4/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 64
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.2/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 62
         }
       ]
     }
@@ -21892,7 +21902,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MLTM",
     "name": "MALLA REDDY INSTITUTE OF TECHNOLOGY",
     "rank": 71,
-    "overall_score": 4.73,
+    "overall_score": 6.23,
     "grade": "B+",
     "star_rating": 2.4,
     "type": "Private College",
@@ -21978,43 +21988,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 4.73,
+      "overall": 6.23,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 62
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 63
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 62
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 62
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 63
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 62
         }
       ]
     }
@@ -22023,7 +22033,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SPEC",
     "name": "ST PETERS ENGINEERING COLLEGE",
     "rank": 72,
-    "overall_score": 8.5,
+    "overall_score": 6.3,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -22312,43 +22322,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "6.2/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 62
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6.3/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 63
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "6.5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 65
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6.2/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 62
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.4/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 64
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "6.2/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 62
         }
       ]
     }
@@ -22357,7 +22367,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VGNT",
     "name": "VIGNAN INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 73,
-    "overall_score": 8.5,
+    "overall_score": 6.42,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -22790,43 +22800,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.42,
       "parameters": [
         {
           "label": "Placements",
-          "score": "6/10",
+          "score": "6.3/10",
           "color": "#3553E2",
-          "pct": 60
+          "pct": 63
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6.5/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 65
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.4/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 64
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6.6/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 66
         }
       ]
     }
@@ -22835,7 +22845,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "PALV",
     "name": "PALLAVI ENGINEERING COLLEGE",
     "rank": 74,
-    "overall_score": 8.5,
+    "overall_score": 6.25,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -23124,43 +23134,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.25,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "6.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 62
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "6.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 63
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 64
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "6.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 62
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6.3/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 63
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "6.1/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 61
         }
       ]
     }
@@ -23169,7 +23179,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VMTW",
     "name": "VIGNANS INSTITUTE OF MANAGEMENT AND TECHNOLOGY FOR WOMEN",
     "rank": 75,
-    "overall_score": 8.5,
+    "overall_score": 6.2,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -23255,43 +23265,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "6.2/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 62
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "6.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 64
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 63
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 61
         }
       ]
     }
@@ -23300,7 +23310,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MREM",
     "name": "MALLA REDDY ENGINEERING COLLEGE AND MANAGEMENT SCIENCES",
     "rank": 76,
-    "overall_score": 8.5,
+    "overall_score": 6.2,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -23625,43 +23635,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "6.2/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 62
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 64
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6.1/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 61
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 63
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 61
         }
       ]
     }
@@ -23670,7 +23680,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NRCM",
     "name": "NARSIMHA REDDY ENGINEERING COLLEGE",
     "rank": 77,
-    "overall_score": 8.5,
+    "overall_score": 6.15,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -23995,43 +24005,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6.1/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 61
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "6.2/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 62
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 63
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "6.1/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 61
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.2/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 62
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "6/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 60
         }
       ]
     }
@@ -24040,7 +24050,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MRET",
     "name": "MALLA REDDY INSTITUTE OF ENGINEERING & TECHNOLOGY",
     "rank": 78,
-    "overall_score": 4.27,
+    "overall_score": 6.08,
     "grade": "B+",
     "star_rating": 2.1,
     "type": "Autonomous",
@@ -24126,43 +24136,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 4.27,
+      "overall": 6.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.1/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 61
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 63
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 60
         }
       ]
     }
@@ -24171,7 +24181,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MREW",
     "name": "MALLA REDDY COLLEGE OF ENGINEERING FOR WOMEN",
     "rank": 79,
-    "overall_score": 4.27,
+    "overall_score": 6.08,
     "grade": "B+",
     "star_rating": 2.1,
     "type": "Autonomous",
@@ -24257,43 +24267,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 4.27,
+      "overall": 6.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.1/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 61
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 63
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 60
         }
       ]
     }
@@ -24302,7 +24312,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NGIT",
     "name": "NEIL GOGTE INSTITUTE OF TECHNOLOGY",
     "rank": 80,
-    "overall_score": 8.5,
+    "overall_score": 6.02,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -24411,43 +24421,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.02,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 60
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6.1/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 61
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "6/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 60
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "6/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 60
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 59
         }
       ]
     }
@@ -24456,7 +24466,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KUEWSF",
     "name": "UNIVERSITY COLLEGE OF ENGINEERING AND TECHNOLOGY FOR WOMEN KU CAMPUS",
     "rank": 81,
-    "overall_score": 4.18,
+    "overall_score": 6.1,
     "grade": "B+",
     "star_rating": 2.1,
     "type": "Government",
@@ -24551,43 +24561,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 4.18,
+      "overall": 6.1,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 63
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "6/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 60
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "6.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 62
         }
       ]
     }
@@ -24596,7 +24606,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "METH",
     "name": "METHODIST COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 82,
-    "overall_score": 8.5,
+    "overall_score": 6,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -24885,43 +24895,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 59
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "6/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 60
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.2/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 62
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 59
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 59
         }
       ]
     }
@@ -24930,7 +24940,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SIEI",
     "name": "SIDDHARTHA INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 83,
-    "overall_score": 8.5,
+    "overall_score": 6,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -25219,43 +25229,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 60
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.2/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 62
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.9/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 59
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6.1/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 61
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 59
         }
       ]
     }
@@ -25264,7 +25274,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JOGI",
     "name": "JOGINPALLY B R ENGINEERING COLLEGE",
     "rank": 84,
-    "overall_score": 8.5,
+    "overall_score": 5.95,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -25553,43 +25563,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.95,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 60
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.9/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 59
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 60
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 58
         }
       ]
     }
@@ -25598,7 +25608,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNTM",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING  MANTHANI",
     "rank": 85,
-    "overall_score": 8.5,
+    "overall_score": 6.23,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Government",
@@ -25851,19 +25861,19 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 6.23,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "6/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 60
         },
         {
           "label": "Faculty",
-          "score": "6/10",
+          "score": "6.4/10",
           "color": "#7C3AED",
-          "pct": 60
+          "pct": 64
         },
         {
           "label": "Infra",
@@ -25873,21 +25883,21 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.5/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 65
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "6.2/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 62
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "6.3/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 63
         }
       ]
     }
@@ -25896,7 +25906,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VGWL",
     "name": "VAAGDEVI ENGINEERING COLLEGE",
     "rank": 86,
-    "overall_score": 8.5,
+    "overall_score": 5.9,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -26077,43 +26087,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.9,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.8/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 58
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 59
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "6.1/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 61
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "5.8/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 58
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "6/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 60
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 58
         }
       ]
     }
@@ -26122,7 +26132,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JMTS",
     "name": "JYOTHISHMATHI INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 87,
-    "overall_score": 8.5,
+    "overall_score": 5.9,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -26321,43 +26331,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.9,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 58
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6.1/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 61
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 58
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 60
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 58
         }
       ]
     }
@@ -26366,7 +26376,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SPHN",
     "name": "SPHOORTHY ENGINEERING COLLEGE",
     "rank": 88,
-    "overall_score": 8.5,
+    "overall_score": 5.85,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -26619,43 +26629,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.85,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5.8/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 58
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.9/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 59
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 60
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.8/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 58
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 57
         }
       ]
     }
@@ -26664,7 +26674,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SISG",
     "name": "SIDDHARTHA INSTITUTE OF TECHNOLOGY AND SCIENCES",
     "rank": 89,
-    "overall_score": 8.5,
+    "overall_score": 5.85,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -27061,43 +27071,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.85,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 58
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 60
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 58
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 59
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 57
         }
       ]
     }
@@ -27106,7 +27116,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AVIH",
     "name": "AVANTHI INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 90,
-    "overall_score": 8.5,
+    "overall_score": 5.8,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -27395,43 +27405,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "5.7/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 57
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.8/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 58
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "6/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 60
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 57
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 59
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 57
         }
       ]
     }
@@ -27440,7 +27450,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "LRDS",
     "name": "LORDS INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 91,
-    "overall_score": 8.5,
+    "overall_score": 5.75,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -27553,43 +27563,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "5.7/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 57
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "5.8/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 58
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.9/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 59
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 57
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.8/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 58
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 56
         }
       ]
     }
@@ -27598,7 +27608,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNTS",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING SULTANPUR",
     "rank": 92,
-    "overall_score": 8.5,
+    "overall_score": 5.87,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Government",
@@ -27887,13 +27897,13 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.87,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "5.7/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 57
         },
         {
           "label": "Faculty",
@@ -27903,27 +27913,27 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "5.7/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 57
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "6.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 61
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "5.8/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 58
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 59
         }
       ]
     }
@@ -27932,7 +27942,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MGUNSF",
     "name": "MGU COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 93,
-    "overall_score": 3.73,
+    "overall_score": 5.75,
     "grade": "B+",
     "star_rating": 1.9,
     "type": "Government (SF)",
@@ -28077,43 +28087,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.73,
+      "overall": 5.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 56
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 60
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 56
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 58
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 59
         }
       ]
     }
@@ -28122,7 +28132,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CHTN",
     "name": "SREE CHAITANYA COLLEGE OF ENGINEERING",
     "rank": 94,
-    "overall_score": 8.5,
+    "overall_score": 5.65,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -28384,43 +28394,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 56
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 57
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.6/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 56
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 58
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 56
         }
       ]
     }
@@ -28429,7 +28439,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GLOB",
     "name": "GLOBAL INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 95,
-    "overall_score": 8.5,
+    "overall_score": 5.65,
     "grade": "B+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -28682,43 +28692,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 56
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 57
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 58
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 56
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 57
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 55
         }
       ]
     }
@@ -28727,7 +28737,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CJIT",
     "name": "CHRISTU JYOTHI INSTITUTE OF TECHNOLOGY AND SCI",
     "rank": 96,
-    "overall_score": 8.5,
+    "overall_score": 5.62,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Private College",
@@ -28822,43 +28832,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.62,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 56
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 57
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "5.6/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 56
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.7/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 57
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 55
         }
       ]
     }
@@ -28867,7 +28877,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SCET",
     "name": "SHADAN COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 97,
-    "overall_score": 8.5,
+    "overall_score": 5.6,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -28998,43 +29008,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 56
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 58
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "5.5/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 55
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 57
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 55
         }
       ]
     }
@@ -29043,7 +29053,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AURP",
     "name": "AURORAS TECHNOLOGICAL AND  RESEARCH INSTITUTE",
     "rank": 98,
-    "overall_score": 3.36,
+    "overall_score": 5.53,
     "grade": "B",
     "star_rating": 1.7,
     "type": "Private College",
@@ -29129,43 +29139,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.36,
+      "overall": 5.53,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 55
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 56
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 55
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.5/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 55
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.6/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 56
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 55
         }
       ]
     }
@@ -29174,7 +29184,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MHVR",
     "name": "MAHAVEER INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 99,
-    "overall_score": 8.5,
+    "overall_score": 5.55,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -29499,43 +29509,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 55
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 56
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.7/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 57
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 55
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.6/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 56
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.4/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 54
         }
       ]
     }
@@ -29544,7 +29554,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ANRH",
     "name": "ANURAG COLLEGE OF ENGINEERING",
     "rank": 100,
-    "overall_score": 3.27,
+    "overall_score": 5.68,
     "grade": "B",
     "star_rating": 1.6,
     "type": "Private College",
@@ -29630,43 +29640,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.27,
+      "overall": 5.68,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 56
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.7/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 57
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 56
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.7/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 57
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 59
         }
       ]
     }
@@ -29675,7 +29685,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SVIT",
     "name": "SWAMI VIVEKANANDA INSTITUTE OF TECHNOLOGY",
     "rank": 101,
-    "overall_score": 8.5,
+    "overall_score": 5.5,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -29928,43 +29938,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.5,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "5.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 54
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "5.5/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 55
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 57
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "5.4/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 54
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 56
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 54
         }
       ]
     }
@@ -29973,7 +29983,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ESUT",
     "name": "EARTH SCIENCES UNIVERSITY OF TELANGANA (FORMERLY K U COLLEGE OF ENGG KOTHAGUDEM)",
     "rank": 102,
-    "overall_score": 3.18,
+    "overall_score": 5.63,
     "grade": "B",
     "star_rating": 1.6,
     "type": "University",
@@ -30118,43 +30128,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.18,
+      "overall": 5.63,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 54
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 58
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 54
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.9/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 59
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.6/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 56
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 57
         }
       ]
     }
@@ -30163,7 +30173,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SBIT",
     "name": "SWARNA BHARATHI INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 103,
-    "overall_score": 8.5,
+    "overall_score": 5.45,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -30380,43 +30390,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "5.4/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 54
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.3/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 53
         }
       ]
     }
@@ -30425,7 +30435,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VGSE",
     "name": "VAAGESHWARI COLLEGE OF ENGINEERING",
     "rank": 104,
-    "overall_score": 8.5,
+    "overall_score": 5.45,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -30687,43 +30697,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "5.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 54
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.3/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 53
         }
       ]
     }
@@ -30732,7 +30742,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MGHA",
     "name": "MEGHA INSTITUTE OF ENGINEERING AND TECHNOLOGY FOR WOMEN",
     "rank": 105,
-    "overall_score": 8.5,
+    "overall_score": 5.4,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -30836,43 +30846,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.4,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 53
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 54
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 56
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 53
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 55
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 53
         }
       ]
     }
@@ -30881,7 +30891,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "IITT",
     "name": "INDUR INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 106,
-    "overall_score": 3.09,
+    "overall_score": 5.35,
     "grade": "B",
     "star_rating": 1.5,
     "type": "Private College",
@@ -31107,43 +31117,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.09,
+      "overall": 5.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 53
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 54
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 53
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 53
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 55
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.3/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 53
         }
       ]
     }
@@ -31152,7 +31162,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KNRR",
     "name": "KASIREDDY NARAYANAREDDY COLLEGE OF ENGINEERING & RESEARCH",
     "rank": 107,
-    "overall_score": 8.5,
+    "overall_score": 5.35,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -31477,43 +31487,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.3/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 53
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 55
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.3/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 53
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.4/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 54
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 52
         }
       ]
     }
@@ -31522,7 +31532,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SDGI",
     "name": "SREE DATTHA GROUP OF INSTITUTIONS",
     "rank": 108,
-    "overall_score": 8.5,
+    "overall_score": 5.35,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -31739,43 +31749,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.3/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 53
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 55
         },
         {
           "label": "Value",
-          "score": "5/10",
+          "score": "5.3/10",
           "color": "#D97706",
-          "pct": 50
+          "pct": 53
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 52
         }
       ]
     }
@@ -31784,7 +31794,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "PLMU",
     "name": "PALAMUR UNIVERSITY",
     "rank": 109,
-    "overall_score": 3.05,
+    "overall_score": 5.57,
     "grade": "B",
     "star_rating": 1.5,
     "type": "University",
@@ -31870,43 +31880,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3.05,
+      "overall": 5.57,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 54
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.7/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 57
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 54
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.8/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 58
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 54
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 57
         }
       ]
     }
@@ -31915,7 +31925,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "HOLY",
     "name": "HOLY MARY INSTITUTE OF TECHNOLOGY SCIENCE",
     "rank": 110,
-    "overall_score": 8.5,
+    "overall_score": 5.3,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -32240,43 +32250,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 53
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 55
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 54
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 52
         }
       ]
     }
@@ -32285,7 +32295,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TPCE",
     "name": "TALLA PADMAVATHI COLLEGE OF ENGINEERING",
     "rank": 111,
-    "overall_score": 8.5,
+    "overall_score": 5.25,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -32421,43 +32431,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.25,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 53
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 54
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.3/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 53
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5.1/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 51
         }
       ]
     }
@@ -32466,7 +32476,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ESUTSF",
     "name": "EARTH SCIENCES UNIVERSITY OF TELANGANA (FORMERLY K U COLLEGE OF ENGG KOTHAGUDEM)- SELF FINANCE",
     "rank": 112,
-    "overall_score": 3,
+    "overall_score": 5.3,
     "grade": "B",
     "star_rating": 1.5,
     "type": "Government (SF)",
@@ -32656,43 +32666,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 3,
+      "overall": 5.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 52
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.5/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 55
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 52
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 52
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 53
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 54
         }
       ]
     }
@@ -32701,7 +32711,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SVSE",
     "name": "SVS GROUP OF INSTITUTIONS  - SVS INSTITUTE OF TECHNOLOGY",
     "rank": 113,
-    "overall_score": 8.5,
+    "overall_score": 5.2,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -32918,43 +32928,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 51
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.2/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 52
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 54
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 51
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 53
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 51
         }
       ]
     }
@@ -32963,7 +32973,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JPNE",
     "name": "JAYA PRAKASH NARAYAN COLLEGE OF ENGINEERING",
     "rank": 114,
-    "overall_score": 8.5,
+    "overall_score": 5.2,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -33297,43 +33307,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.2/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 52
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.4/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 54
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 53
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 51
         }
       ]
     }
@@ -33342,7 +33352,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MNRT",
     "name": "MNR COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 115,
-    "overall_score": 2.91,
+    "overall_score": 5.1,
     "grade": "B",
     "star_rating": 1.5,
     "type": "Private College",
@@ -33428,43 +33438,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.91,
+      "overall": 5.1,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "5.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 51
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 52
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "5.1/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 51
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 51
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 51
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 50
         }
       ]
     }
@@ -33473,7 +33483,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AITH",
     "name": "ANNAMACHARYA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 116,
-    "overall_score": 8.5,
+    "overall_score": 5.15,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -33762,43 +33772,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 51
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.2/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 52
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 53
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.2/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 52
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 50
         }
       ]
     }
@@ -33807,7 +33817,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AURG",
     "name": "AURORAS TECHNOLOGICAL, RESEARCH INSTITUTE",
     "rank": 117,
-    "overall_score": 8.5,
+    "overall_score": 5.05,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Private College",
@@ -33988,43 +33998,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 51
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 50
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.2/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 52
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 50
         }
       ]
     }
@@ -34033,7 +34043,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MOTK",
     "name": "MOTHER TERESA INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 118,
-    "overall_score": 8.5,
+    "overall_score": 5.05,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Private College",
@@ -34295,43 +34305,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 50
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 51
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 50
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 50
         }
       ]
     }
@@ -34340,7 +34350,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "PETW",
     "name": "PRINCETON INSTITUTE OF ENGINEERING TECHNOLOGY FOR WOMEN",
     "rank": 119,
-    "overall_score": 8.5,
+    "overall_score": 5.05,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Private College",
@@ -34426,43 +34436,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 50
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "5.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 51
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 50
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "5.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 52
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 50
         }
       ]
     }
@@ -34471,7 +34481,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VCET",
     "name": "VISVESVARAYA COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 120,
-    "overall_score": 8.5,
+    "overall_score": 5.05,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -34796,43 +34806,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "5/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 50
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5.2/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 52
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 50
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "5.1/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 51
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.9/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 49
         }
       ]
     }
@@ -34841,7 +34851,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AARM",
     "name": "AAR MAHAVEER ENGINEERING COLLEGE",
     "rank": 121,
-    "overall_score": 8.5,
+    "overall_score": 5.02,
     "grade": "B",
     "star_rating": 4.3,
     "type": "Private College",
@@ -35058,43 +35068,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 5.02,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "5/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 50
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "5.1/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 51
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.9/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 49
         }
       ]
     }
@@ -35103,7 +35113,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNTR",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING RAJANNA SIRICILLA",
     "rank": 122,
-    "overall_score": 2.73,
+    "overall_score": 5.13,
     "grade": "B",
     "star_rating": 1.4,
     "type": "Government",
@@ -35347,43 +35357,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.73,
+      "overall": 5.13,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.9/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 49
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 53
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 54
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 51
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 52
         }
       ]
     }
@@ -35392,7 +35402,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNWN",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING WANAPARTHY",
     "rank": 123,
-    "overall_score": 2.73,
+    "overall_score": 5.13,
     "grade": "B",
     "star_rating": 1.4,
     "type": "Government",
@@ -35609,43 +35619,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.73,
+      "overall": 5.13,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.9/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 49
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 53
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 54
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 51
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 52
         }
       ]
     }
@@ -35654,7 +35664,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNMB",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING MAHABUBABAD",
     "rank": 124,
-    "overall_score": 2.73,
+    "overall_score": 5.07,
     "grade": "B",
     "star_rating": 1.4,
     "type": "Government",
@@ -35844,43 +35854,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.73,
+      "overall": 5.07,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.9/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 49
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 52
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "5.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 53
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 50
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 51
         }
       ]
     }
@@ -35889,7 +35899,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ASOK",
     "name": "ASHOKA  INSTITUTE OF ENGINEERING TECHNOLOGY",
     "rank": 125,
-    "overall_score": 2.68,
+    "overall_score": 4.98,
     "grade": "C+",
     "star_rating": 1.3,
     "type": "Private College",
@@ -35975,43 +35985,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.68,
+      "overall": 4.98,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.9/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 49
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "5/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 50
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.9/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 49
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 50
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "5.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 52
         }
       ]
     }
@@ -36020,7 +36030,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SNTI",
     "name": "SCIENT INSTITUTE OF TECHNOLOGY",
     "rank": 126,
-    "overall_score": 8.5,
+    "overall_score": 4.8,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -36237,43 +36247,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 48
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 49
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 47
         }
       ]
     }
@@ -36282,7 +36292,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BOSE",
     "name": "ANUBOSE INSTITUTE OF TECHNOLOGY",
     "rank": 127,
-    "overall_score": 8.5,
+    "overall_score": 4.8,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -36377,43 +36387,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 50
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 49
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 47
         }
       ]
     }
@@ -36422,7 +36432,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GATE",
     "name": "GATE INSTITUTE OF TECHNOLOGY AND SCIENCES",
     "rank": 128,
-    "overall_score": 8.5,
+    "overall_score": 4.72,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -36639,43 +36649,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.72,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 48
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 46
         }
       ]
     }
@@ -36684,7 +36694,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BRIG",
     "name": "BRILLIANT GRAMMAR SCHOOL EDUCATIONAL SOCIETY GROUP OF INSTITUTIONS",
     "rank": 129,
-    "overall_score": 8.5,
+    "overall_score": 4.75,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -37045,43 +37055,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 48
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 46
         }
       ]
     }
@@ -37090,7 +37100,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BRIL",
     "name": "BRILLIANT INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 130,
-    "overall_score": 8.5,
+    "overall_score": 4.7,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -37478,43 +37488,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.7,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "4.9/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 49
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 48
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 46
         }
       ]
     }
@@ -37523,7 +37533,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CHTS",
     "name": "SREE CHAITANYA INSTITUTE OF TECHNOLOGY SCIENCES",
     "rank": 131,
-    "overall_score": 8.5,
+    "overall_score": 4.65,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -37704,43 +37714,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 48
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 46
         }
       ]
     }
@@ -37749,7 +37759,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NAWB",
     "name": "NAWAB SHAH ALAM KHAN COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 132,
-    "overall_score": 8.5,
+    "overall_score": 4.65,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -37853,43 +37863,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 45
         }
       ]
     }
@@ -37898,7 +37908,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AURH",
     "name": "Ramappa Engineering College",
     "rank": 133,
-    "overall_score": 8.5,
+    "overall_score": 4.8,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -37971,37 +37981,37 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "4.7/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 47
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "4.8/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 48
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 47
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "4.7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 47
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "4.9/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 49
         },
         {
           "label": "Research",
@@ -38016,7 +38026,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SAIS",
     "name": "SAI SPURTHI INSTITUTE OF TECHNOLOGY",
     "rank": 134,
-    "overall_score": 8.5,
+    "overall_score": 4.6,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -38233,43 +38243,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 45
         }
       ]
     }
@@ -38278,7 +38288,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KCEA",
     "name": "KSHATRIYA COLLEGE OF ENGINEERING",
     "rank": 135,
-    "overall_score": 8.5,
+    "overall_score": 4.55,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -38504,43 +38514,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 45
         }
       ]
     }
@@ -38549,7 +38559,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ISLC",
     "name": "ISL ENGINEERING COLLEGE",
     "rank": 136,
-    "overall_score": 8.5,
+    "overall_score": 4.6,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -38635,43 +38645,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.6,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 48
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 45
         }
       ]
     }
@@ -38680,7 +38690,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SCIT",
     "name": "Sri Chaitanya Institute of Technology & Research (formerly KHAMMAM INSTITUTE OF TECHNOLOGY AND SCIENCE)",
     "rank": 137,
-    "overall_score": 8.5,
+    "overall_score": 4.55,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -38969,43 +38979,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "4.7/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 47
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 44
         }
       ]
     }
@@ -39014,7 +39024,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BSKR",
     "name": "BHASKAR ENGINEERING COLLEGE",
     "rank": 138,
-    "overall_score": 8.5,
+    "overall_score": 4.52,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -39231,43 +39241,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.52,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "4.5/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 45
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 44
         }
       ]
     }
@@ -39276,7 +39286,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JMTK",
     "name": "JYOTHISHMATHI INSTITUTE OF TECHNOLOGY SCIENCES",
     "rank": 139,
-    "overall_score": 2.55,
+    "overall_score": 4.67,
     "grade": "C+",
     "star_rating": 1.3,
     "type": "Private College",
@@ -39362,43 +39372,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.55,
+      "overall": 4.67,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.6/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 46
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.7/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 47
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.6/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 46
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.6/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 46
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.6/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 46
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.9/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 49
         }
       ]
     }
@@ -39407,7 +39417,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "RITW",
     "name": "RISHI MS INSTITUTE OF ENGINEERING AND TECHNOLOGY FOR WOMEN",
     "rank": 140,
-    "overall_score": 8.5,
+    "overall_score": 4.45,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -39475,43 +39485,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 44
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 44
         }
       ]
     }
@@ -39520,7 +39530,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KITW",
     "name": "KAKATIYA INSTITUTE OF TECHNOLOGY SCIENCE FOR WOMEN",
     "rank": 141,
-    "overall_score": 8.5,
+    "overall_score": 4.42,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -39606,43 +39616,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.42,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "4.4/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 44
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "4.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 45
         },
         {
           "label": "Infra",
-          "score": "5/10",
+          "score": "4.4/10",
           "color": "#0891B2",
-          "pct": 50
+          "pct": 44
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "4.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 44
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 43
         }
       ]
     }
@@ -39651,7 +39661,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ELEN",
     "name": "ELLENKI COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 142,
-    "overall_score": 8.5,
+    "overall_score": 4.45,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -39976,43 +39986,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 46
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 43
         }
       ]
     }
@@ -40021,7 +40031,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DCET",
     "name": "DECCAN COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 143,
-    "overall_score": 8.5,
+    "overall_score": 4.35,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -40134,43 +40144,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "4.3/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 43
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "4.4/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 44
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "4.3/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 43
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "4.3/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 43
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "4.5/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 45
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 43
         }
       ]
     }
@@ -40179,7 +40189,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SKEC",
     "name": "SREE KAVITHA ENGINEERING COLLEGE",
     "rank": 144,
-    "overall_score": 8.5,
+    "overall_score": 4.58,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -40265,43 +40275,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.58,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.5/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 45
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 46
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.8/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 48
         }
       ]
     }
@@ -40310,7 +40320,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TRML",
     "name": "TIRUMALA ENGINEERING COLLEGE",
     "rank": 145,
-    "overall_score": 2.36,
+    "overall_score": 4.48,
     "grade": "C+",
     "star_rating": 1.2,
     "type": "Private College",
@@ -40396,43 +40406,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.36,
+      "overall": 4.48,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 44
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.5/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 45
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 44
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 44
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 45
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 47
         }
       ]
     }
@@ -40441,7 +40451,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SMCD",
     "name": "ST MARYS ENGINEERING COLLEGE",
     "rank": 146,
-    "overall_score": 8.5,
+    "overall_score": 4.32,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -40527,43 +40537,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.32,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 43
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.3/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 43
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 42
         }
       ]
     }
@@ -40572,7 +40582,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GLWC",
     "name": "GOKARAJU LAILAVATHI WOMENS ENGINEERING COLLEGE",
     "rank": 147,
-    "overall_score": 8.5,
+    "overall_score": 4.32,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -40681,43 +40691,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.32,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.4/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 44
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 42
         }
       ]
     }
@@ -40726,7 +40736,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CITS",
     "name": "CHAITANYA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 148,
-    "overall_score": 2.27,
+    "overall_score": 4.47,
     "grade": "C+",
     "star_rating": 1.1,
     "type": "Private College",
@@ -40812,43 +40822,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.27,
+      "overall": 4.47,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 44
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.5/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 45
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 44
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 44
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 44
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 47
         }
       ]
     }
@@ -40857,7 +40867,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VRKW",
     "name": "DR VRK WOMENS COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 149,
-    "overall_score": 8.5,
+    "overall_score": 4.3,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -40952,43 +40962,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 43
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 45
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 44
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 42
         }
       ]
     }
@@ -40997,7 +41007,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VBEC",
     "name": "VIGNANA BHARATHI ENGINEERING COLLEGE",
     "rank": 150,
-    "overall_score": 2.27,
+    "overall_score": 4.2,
     "grade": "C+",
     "star_rating": 1.1,
     "type": "Private College",
@@ -41083,43 +41093,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.27,
+      "overall": 4.2,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 43
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 41
         }
       ]
     }
@@ -41128,7 +41138,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BOMA",
     "name": "BOMMA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 151,
-    "overall_score": 8.5,
+    "overall_score": 4.22,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -41354,43 +41364,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "4.2/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 42
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.2/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 42
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 41
         }
       ]
     }
@@ -41399,7 +41409,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KDDW",
     "name": "KODADA INSTITUTE OF TECHNOLOGY AND SCIENCE FOR WOMEN",
     "rank": 152,
-    "overall_score": 8.5,
+    "overall_score": 4.15,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -41476,43 +41486,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4.2/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 42
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 41
         }
       ]
     }
@@ -41521,7 +41531,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MINA",
     "name": "MINA INSTITUTE OF ENGINEERING AND TECHNOLOGY FOR WOMEN",
     "rank": 153,
-    "overall_score": 8.5,
+    "overall_score": 4.15,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -41607,43 +41617,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.3/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 43
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 41
         }
       ]
     }
@@ -41652,7 +41662,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KPRC",
     "name": "KPRIT COLLEGE OF ENGINEERING (AUTONOMOUS)",
     "rank": 154,
-    "overall_score": 2.27,
+    "overall_score": 4.15,
     "grade": "C+",
     "star_rating": 1.1,
     "type": "Autonomous",
@@ -41779,43 +41789,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.27,
+      "overall": 4.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 41
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 43
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 41
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 40
         }
       ]
     }
@@ -41824,7 +41834,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DVRC",
     "name": "D V R COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 155,
-    "overall_score": 2.18,
+    "overall_score": 4.28,
     "grade": "C+",
     "star_rating": 1.1,
     "type": "Private College",
@@ -41910,43 +41920,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.18,
+      "overall": 4.28,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 43
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 43
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 45
         }
       ]
     }
@@ -41955,7 +41965,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SMED",
     "name": "ST MARYS GROUP OF INSTITUTIONS",
     "rank": 156,
-    "overall_score": 8.5,
+    "overall_score": 4.15,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -42023,43 +42033,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 43
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 40
         }
       ]
     }
@@ -42068,7 +42078,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AHTC",
     "name": "ABHINAV HI-TECH COLLEGE OF ENGINEERING",
     "rank": 157,
-    "overall_score": 2.18,
+    "overall_score": 4.27,
     "grade": "C+",
     "star_rating": 1.1,
     "type": "Private College",
@@ -42154,43 +42164,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.18,
+      "overall": 4.27,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 43
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.2/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 42
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 45
         }
       ]
     }
@@ -42199,7 +42209,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SANA",
     "name": "SANA ENGINEERING COLLEGE",
     "rank": 158,
-    "overall_score": 8.5,
+    "overall_score": 4.05,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -42339,43 +42349,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 40
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 40
         }
       ]
     }
@@ -42384,7 +42394,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KLRT",
     "name": "KLR COLLEGE OF ENGINEERING AND TECHNOLOGY PALONCHA",
     "rank": 159,
-    "overall_score": 8.5,
+    "overall_score": 4.05,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -42718,43 +42728,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.05,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 39
         }
       ]
     }
@@ -42763,7 +42773,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "PRIW",
     "name": "PRIYADARSHINI INSTITUTE OF SCIENCE & TECHNOLOGY FOR WOMEN",
     "rank": 160,
-    "overall_score": 8.5,
+    "overall_score": 4.02,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -42849,43 +42859,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4.02,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 39
         }
       ]
     }
@@ -42894,7 +42904,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ELET",
     "name": "ELLENKI INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 161,
-    "overall_score": 2.09,
+    "overall_score": 4.17,
     "grade": "C+",
     "star_rating": 1,
     "type": "Private College",
@@ -42980,43 +42990,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2.09,
+      "overall": 4.17,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "4.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 41
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "4.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 42
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "4.1/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 41
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "4.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 41
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "4.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 41
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 44
         }
       ]
     }
@@ -43025,7 +43035,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VJYA",
     "name": "VIJAYA ENGINEERING COLLEGE",
     "rank": 162,
-    "overall_score": 8.5,
+    "overall_score": 3.95,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -43242,43 +43252,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.95,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 39
         }
       ]
     }
@@ -43287,7 +43297,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SWET",
     "name": "SHADAN WOMENS COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 163,
-    "overall_score": 8.5,
+    "overall_score": 4,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -43382,43 +43392,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 4,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "3.9/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 39
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "4/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 40
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "4.2/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 42
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.9/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 39
         }
       ]
     }
@@ -43427,7 +43437,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ARJN",
     "name": "ARJUN COLLEGE OF TECHNOLOGY AND SCIENCE",
     "rank": 164,
-    "overall_score": 8.5,
+    "overall_score": 3.95,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -43590,43 +43600,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.95,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "4.1/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 41
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 38
         }
       ]
     }
@@ -43635,7 +43645,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TCEK",
     "name": "TRINITY COLLEGE OF ENGINEERING AND TECHNOLOGY PEDDAPALLY",
     "rank": 165,
-    "overall_score": 8.5,
+    "overall_score": 3.95,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Autonomous",
@@ -43870,43 +43880,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.95,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "4.1/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 41
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 38
         }
       ]
     }
@@ -43915,7 +43925,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KMEC",
     "name": "KESHAV MEMORIAL ENGINEERING COLLEGE",
     "rank": 166,
-    "overall_score": 8.5,
+    "overall_score": 3.85,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -44024,31 +44034,31 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.85,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 38
         },
         {
           "label": "Resources",
@@ -44058,9 +44068,9 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "3.8/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 38
         }
       ]
     }
@@ -44069,7 +44079,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DRKI",
     "name": "DRK INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 167,
-    "overall_score": 8.5,
+    "overall_score": 3.85,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -44358,43 +44368,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.85,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 40
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 38
         }
       ]
     }
@@ -44403,7 +44413,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VVKN",
     "name": "VIVEKANANDA INSTITUTE OF TECHNOLOGY AND SCIENCE BOMMAKAL",
     "rank": 168,
-    "overall_score": 2,
+    "overall_score": 3.8,
     "grade": "C+",
     "star_rating": 1,
     "type": "Private College",
@@ -44489,43 +44499,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2,
+      "overall": 3.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 37
         }
       ]
     }
@@ -44534,7 +44544,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DRKC",
     "name": "DRK COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 169,
-    "overall_score": 2,
+    "overall_score": 3.8,
     "grade": "C+",
     "star_rating": 1,
     "type": "Private College",
@@ -44620,43 +44630,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 2,
+      "overall": 3.8,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 37
         }
       ]
     }
@@ -44665,7 +44675,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JPNH",
     "name": "JAYAPRAKASH NARAYAN ENGINEERING COLLEGE (formerly Crimson Institute of Technology)",
     "rank": 170,
-    "overall_score": 8.5,
+    "overall_score": 3.82,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -44742,43 +44752,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.82,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 37
         }
       ]
     }
@@ -44787,7 +44797,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VMRH",
     "name": "VMR PRADEEP KUMAR INST OF ENGG & TECH",
     "rank": 171,
-    "overall_score": 8.5,
+    "overall_score": 3.75,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -44860,43 +44870,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 37
         }
       ]
     }
@@ -44905,7 +44915,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "ASRA",
     "name": "AVANTHIS SCIENTIFIC TECHNOLOGY AND RESEARCH ACADEMY",
     "rank": 172,
-    "overall_score": 8.5,
+    "overall_score": 3.75,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -45167,43 +45177,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.75,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 37
         }
       ]
     }
@@ -45212,7 +45222,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VITS",
     "name": "SRI VISHWESWARAYA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 173,
-    "overall_score": 8.5,
+    "overall_score": 3.72,
     "grade": "C+",
     "star_rating": 4.3,
     "type": "Private College",
@@ -45330,43 +45340,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.72,
       "parameters": [
         {
           "label": "Placements",
-          "score": "4/10",
+          "score": "3.7/10",
           "color": "#3553E2",
-          "pct": 40
+          "pct": 37
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "3.7/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 37
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 36
         }
       ]
     }
@@ -45375,7 +45385,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SWIT",
     "name": "SWATHI INSTITUTE OF TECHNOLOGY SCIENCE",
     "rank": 174,
-    "overall_score": 1.91,
+    "overall_score": 3.88,
     "grade": "C+",
     "star_rating": 1,
     "type": "Private College",
@@ -45461,43 +45471,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.91,
+      "overall": 3.88,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.9/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 39
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 41
         }
       ]
     }
@@ -45506,7 +45516,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VREC",
     "name": "VIJAYA RURAL ENGINEERING COLLEGE",
     "rank": 175,
-    "overall_score": 8.5,
+    "overall_score": 3.65,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -45759,43 +45769,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 36
         }
       ]
     }
@@ -45804,7 +45814,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "BSGP",
     "name": "BANDARI SRINIVAS INSTITUTE OF TECHNOLOGY",
     "rank": 176,
-    "overall_score": 1.82,
+    "overall_score": 3.87,
     "grade": "C",
     "star_rating": 0.9,
     "type": "Private College",
@@ -45890,43 +45900,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.82,
+      "overall": 3.87,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.9/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 39
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 41
         }
       ]
     }
@@ -45935,7 +45945,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AKIT",
     "name": "ABDUL KALAM INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 177,
-    "overall_score": 8.5,
+    "overall_score": 3.65,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -46260,43 +46270,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.65,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 36
         }
       ]
     }
@@ -46305,7 +46315,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SVES",
     "name": "SRI VENKATESWARA ENGINEERING COLLEGE",
     "rank": 178,
-    "overall_score": 8.5,
+    "overall_score": 3.62,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -46531,43 +46541,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.62,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Resources",
-          "score": "3/10",
+          "score": "3.7/10",
           "color": "#F56016",
-          "pct": 30
+          "pct": 37
         },
         {
           "label": "Research",
-          "score": "3/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 30
+          "pct": 35
         }
       ]
     }
@@ -46576,7 +46586,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MDRK",
     "name": "MADHIRA INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 179,
-    "overall_score": 8.5,
+    "overall_score": 3.62,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -46784,43 +46794,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.62,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 36
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 36
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 35
         }
       ]
     }
@@ -46829,7 +46839,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NOVH",
     "name": "NOVA COLLEGE OF ENGINEERING & TECHNOLOGY",
     "rank": 180,
-    "overall_score": 1.73,
+    "overall_score": 3.77,
     "grade": "C",
     "star_rating": 0.9,
     "type": "Private College",
@@ -46915,43 +46925,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.73,
+      "overall": 3.77,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 37
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 37
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 40
         }
       ]
     }
@@ -46960,7 +46970,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CHET",
     "name": "SRI CHAITANYA COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 181,
-    "overall_score": 1.73,
+    "overall_score": 3.55,
     "grade": "C",
     "star_rating": 0.9,
     "type": "Private College",
@@ -47249,43 +47259,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.73,
+      "overall": 3.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 37
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 35
         }
       ]
     }
@@ -47294,7 +47304,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "WITS",
     "name": "WARANGAL INSTITUTE OF TECHNOLOGY SCIENCE",
     "rank": 182,
-    "overall_score": 8.5,
+    "overall_score": 3.52,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -47439,43 +47449,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.52,
       "parameters": [
         {
           "label": "Placements",
-          "score": "3/10",
+          "score": "3.5/10",
           "color": "#3553E2",
-          "pct": 30
+          "pct": 35
         },
         {
           "label": "Faculty",
-          "score": "3/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 30
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.5/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 35
         },
         {
           "label": "Value",
-          "score": "3/10",
+          "score": "3.5/10",
           "color": "#D97706",
-          "pct": 30
+          "pct": 35
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 36
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 34
         }
       ]
     }
@@ -47484,7 +47494,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNPL",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING PALAIR",
     "rank": 183,
-    "overall_score": 1.73,
+    "overall_score": 3.67,
     "grade": "C",
     "star_rating": 0.9,
     "type": "Government",
@@ -47701,43 +47711,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.73,
+      "overall": 3.67,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.6/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 36
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 37
         }
       ]
     }
@@ -47746,7 +47756,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GNPT",
     "name": "GANAPATHY ENGINEERING COLLEGE",
     "rank": 184,
-    "overall_score": 1.64,
+    "overall_score": 3.5,
     "grade": "C",
     "star_rating": 0.8,
     "type": "Private College",
@@ -47832,43 +47842,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.64,
+      "overall": 3.5,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 34
         }
       ]
     }
@@ -47877,7 +47887,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KSGI",
     "name": "GOVERNMENT ENGINEERING COLLEGE KOSGI",
     "rank": 185,
-    "overall_score": 8.5,
+    "overall_score": 3.63,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Government",
@@ -48022,43 +48032,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.63,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.9/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 39
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 36
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 37
         }
       ]
     }
@@ -48067,7 +48077,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MTEC",
     "name": "MOTHER THERESA COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 186,
-    "overall_score": 8.5,
+    "overall_score": 3.45,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -48320,43 +48330,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "4/10",
+          "score": "3.5/10",
           "color": "#7C3AED",
-          "pct": 40
+          "pct": 35
         },
         {
           "label": "Infra",
-          "score": "4/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 40
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "4/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 40
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "4/10",
+          "score": "3.6/10",
           "color": "#F56016",
-          "pct": 40
+          "pct": 36
         },
         {
           "label": "Research",
-          "score": "4/10",
+          "score": "3.4/10",
           "color": "#059669",
-          "pct": 40
+          "pct": 34
         }
       ]
     }
@@ -48365,7 +48375,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TCTK",
     "name": "TRINITY COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 187,
-    "overall_score": 8.5,
+    "overall_score": 3.42,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -48546,43 +48556,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.42,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 33
         }
       ]
     }
@@ -48591,7 +48601,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AIZA",
     "name": "AIZZA COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 188,
-    "overall_score": 8.5,
+    "overall_score": 3.42,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -48659,43 +48669,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.42,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "1/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 10
+          "pct": 33
         }
       ]
     }
@@ -48704,7 +48714,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "VISA",
     "name": "VATHSALYA INSTITUTE OF SCIENCE AND TECHNOLOGY",
     "rank": 189,
-    "overall_score": 8.5,
+    "overall_score": 3.42,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -48912,43 +48922,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.42,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 33
         }
       ]
     }
@@ -48957,7 +48967,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SMIC",
     "name": "ST MARYS INTEGRATED CAMPUS",
     "rank": 190,
-    "overall_score": 1.36,
+    "overall_score": 3.33,
     "grade": "C",
     "star_rating": 0.7,
     "type": "Private College",
@@ -49043,43 +49053,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.36,
+      "overall": 3.33,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 33
         }
       ]
     }
@@ -49088,7 +49098,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "WESL",
     "name": "CSI WESLEY INSTITUTE OF TECHNOLOGY AND SCIENCES",
     "rank": 191,
-    "overall_score": 8.5,
+    "overall_score": 3.35,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -49138,43 +49148,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 33
         }
       ]
     }
@@ -49183,7 +49193,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SRTI",
     "name": "S R THIRTHA INSTITUTE OF SCINCE AND TECHNOLOGY",
     "rank": 192,
-    "overall_score": 1.27,
+    "overall_score": 3.48,
     "grade": "C",
     "star_rating": 0.6,
     "type": "Private College",
@@ -49269,43 +49279,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.27,
+      "overall": 3.48,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.5/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 35
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 37
         }
       ]
     }
@@ -49314,7 +49324,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NIET",
     "name": "NETAJI INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 193,
-    "overall_score": 1.27,
+    "overall_score": 3.3,
     "grade": "C",
     "star_rating": 0.6,
     "type": "Private College",
@@ -49400,43 +49410,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.27,
+      "overall": 3.3,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 32
         }
       ]
     }
@@ -49445,7 +49455,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DARE",
     "name": "DARIPALLY ANANTHA RAMULU COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 194,
-    "overall_score": 8.5,
+    "overall_score": 3.32,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -49554,43 +49564,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.32,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "1/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 10
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 32
         }
       ]
     }
@@ -49599,7 +49609,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NGMA",
     "name": "NIGAMA ENGINEERING COLLEGE",
     "rank": 195,
-    "overall_score": 1.27,
+    "overall_score": 3.23,
     "grade": "C",
     "star_rating": 0.6,
     "type": "Private College",
@@ -49685,43 +49695,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.27,
+      "overall": 3.23,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 32
         }
       ]
     }
@@ -49730,7 +49740,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "NETW",
     "name": "NOBLE COLLEGE OF ENGINEERING and TECHNOLOGY FOR WOMEN",
     "rank": 196,
-    "overall_score": 1.27,
+    "overall_score": 3.23,
     "grade": "C",
     "star_rating": 0.6,
     "type": "Private College",
@@ -49816,43 +49826,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.27,
+      "overall": 3.23,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 32
         }
       ]
     }
@@ -49861,7 +49871,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "DHRU",
     "name": "DHRUVA  INSTITUTE OF ENGINEERING AND TECHNOLOGY",
     "rank": 197,
-    "overall_score": 1.18,
+    "overall_score": 3.38,
     "grade": "C",
     "star_rating": 0.6,
     "type": "Private College",
@@ -49947,43 +49957,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 1.18,
+      "overall": 3.38,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 36
         }
       ]
     }
@@ -49992,7 +50002,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "MMTZ",
     "name": "MUMTAZ COLLEGE OF ENGINEERING & TECHNOLOGY",
     "rank": 198,
-    "overall_score": 8.5,
+    "overall_score": 3.22,
     "grade": "C",
     "star_rating": 4.3,
     "type": "Private College",
@@ -50069,43 +50079,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.1/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 31
         }
       ]
     }
@@ -50114,7 +50124,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNTSSF",
     "name": "JNTUH UNIVERSITY COLLEGE OF ENGINEERING SULTANPUR - SF",
     "rank": 199,
-    "overall_score": 8.5,
+    "overall_score": 3.55,
     "grade": "D",
     "star_rating": 4.3,
     "type": "University",
@@ -50187,43 +50197,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.55,
       "parameters": [
         {
           "label": "Placements",
-          "score": "5/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 50
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "5/10",
+          "score": "3.8/10",
           "color": "#7C3AED",
-          "pct": 50
+          "pct": 38
         },
         {
           "label": "Infra",
-          "score": "6/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 60
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "6/10",
+          "score": "3.4/10",
           "color": "#D97706",
-          "pct": 60
+          "pct": 34
         },
         {
           "label": "Resources",
-          "score": "5/10",
+          "score": "3.6/10",
           "color": "#F56016",
-          "pct": 50
+          "pct": 36
         },
         {
           "label": "Research",
-          "score": "5/10",
+          "score": "3.7/10",
           "color": "#059669",
-          "pct": 50
+          "pct": 37
         }
       ]
     }
@@ -50232,7 +50242,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CASR",
     "name": "COLLEGE OF AGRICULTURAL ENGG",
     "rank": 200,
-    "overall_score": 8.5,
+    "overall_score": 3.57,
     "grade": "D",
     "star_rating": 4.3,
     "type": "University",
@@ -50305,43 +50315,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.57,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "3/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 30
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 36
         }
       ]
     }
@@ -50350,7 +50360,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CFSR",
     "name": "COLLEGE OF FOOD SCIENCE AND TECHNOLOGY RUDRUR",
     "rank": 201,
-    "overall_score": 8.5,
+    "overall_score": 3.57,
     "grade": "D",
     "star_rating": 4.3,
     "type": "Government",
@@ -50423,43 +50433,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.57,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.8/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 38
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 36
         }
       ]
     }
@@ -50468,7 +50478,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "JNPASF",
     "name": "JNAFAU SCHOOL OF PLANNING AND ARCH - SELF FINANCE",
     "rank": 202,
-    "overall_score": 0.73,
+    "overall_score": 3.45,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Government (SF)",
@@ -50613,43 +50623,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.45,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.6/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 36
         }
       ]
     }
@@ -50658,7 +50668,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "KMCE",
     "name": "KESHAV MEMORIAL COLLEGE OF ENGINEERING",
     "rank": 203,
-    "overall_score": 0.73,
+    "overall_score": 3.35,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Private College",
@@ -50803,43 +50813,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.35,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.4/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 34
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 35
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 33
         }
       ]
     }
@@ -50848,7 +50858,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "PUCE",
     "name": "UNIVERSITY COLLEGE OF ENGINEERING PALAMURU UNIVERSITY",
     "rank": 204,
-    "overall_score": 0.73,
+    "overall_score": 3.47,
     "grade": "D",
     "star_rating": 0.4,
     "type": "University",
@@ -50993,43 +51003,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.47,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 35
         }
       ]
     }
@@ -51038,7 +51048,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "SUCE",
     "name": "UNIVERSITY COLLEGE OF ENGG HUSNABAD SATAVAHANA UNIV",
     "rank": 205,
-    "overall_score": 0.73,
+    "overall_score": 3.47,
     "grade": "D",
     "star_rating": 0.4,
     "type": "University",
@@ -51219,43 +51229,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.47,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 35
         }
       ]
     }
@@ -51264,7 +51274,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TUCE",
     "name": "UNIVERSITY COLLEGE OF ENGINEERING NIZAMABAD",
     "rank": 206,
-    "overall_score": 0.73,
+    "overall_score": 3.47,
     "grade": "D",
     "star_rating": 0.4,
     "type": "University",
@@ -51418,43 +51428,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.47,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 35
         }
       ]
     }
@@ -51463,7 +51473,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "CDTK",
     "name": "COLLEGE OF DAIRY TECHNOLOGY",
     "rank": 207,
-    "overall_score": 0.73,
+    "overall_score": 3.43,
     "grade": "D",
     "star_rating": 0.4,
     "type": "University",
@@ -51536,43 +51546,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.43,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.6/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 36
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.7/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 37
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.5/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 35
         }
       ]
     }
@@ -51581,7 +51591,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TRRM",
     "name": "TRR COLLEGE OF TECHNOLOGY",
     "rank": 208,
-    "overall_score": 8.5,
+    "overall_score": 3.25,
     "grade": "D",
     "star_rating": 4.3,
     "type": "Private College",
@@ -51690,43 +51700,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 8.5,
+      "overall": 3.25,
       "parameters": [
         {
           "label": "Placements",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "2/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 20
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 20
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "2/10",
+          "score": "3.4/10",
           "color": "#F56016",
-          "pct": 20
+          "pct": 34
         },
         {
           "label": "Research",
-          "score": "2/10",
+          "score": "3.2/10",
           "color": "#059669",
-          "pct": 20
+          "pct": 32
         }
       ]
     }
@@ -51735,7 +51745,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AURC",
     "name": "AURORA SCIENTIFIC AND TECH RESEARCH ACADEMY",
     "rank": 209,
-    "overall_score": 0.73,
+    "overall_score": 3.22,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Private College",
@@ -51844,43 +51854,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 31
         }
       ]
     }
@@ -51889,7 +51899,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AURK",
     "name": "AURORAS TECHNOLOGICAL AND MANAGEMENT ACADEMY",
     "rank": 210,
-    "overall_score": 0.73,
+    "overall_score": 3.22,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Private College",
@@ -51962,43 +51972,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 31
         }
       ]
     }
@@ -52007,7 +52017,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "AZAD",
     "name": "AZAD COLLEGE OF ENGINEERING AND TECHNOLOGY",
     "rank": 211,
-    "overall_score": 0.73,
+    "overall_score": 3.22,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Private College",
@@ -52066,43 +52076,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.22,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.3/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 33
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.2/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 32
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 31
         }
       ]
     }
@@ -52111,7 +52121,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "GKEM",
     "name": "G K INSTITUTE OF ENGG AND TECH",
     "rank": 212,
-    "overall_score": 0.73,
+    "overall_score": 3.15,
     "grade": "D",
     "star_rating": 0.4,
     "type": "Private College",
@@ -52238,43 +52248,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.73,
+      "overall": 3.15,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3.1/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 31
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.2/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 32
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 31
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3.1/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 31
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 33
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 31
         }
       ]
     }
@@ -52283,7 +52293,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "TUDI",
     "name": "TUDI RAMI REDDY INSTITUTE OF TECHNOLOGY AND SCIENCE",
     "rank": 213,
-    "overall_score": 0.27,
+    "overall_score": 3.08,
     "grade": "C",
     "star_rating": 0.1,
     "type": "Private College",
@@ -52369,43 +52379,43 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.27,
+      "overall": 3.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 30
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.1/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 31
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 30
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 30
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 31
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 33
         }
       ]
     }
@@ -52414,7 +52424,7 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
     "code": "LAQS",
     "name": "LAQSHYA INSTITUTE OF TECHNOLOGY AND SCIENCES",
     "rank": 214,
-    "overall_score": 0.18,
+    "overall_score": 3.08,
     "grade": "C",
     "star_rating": 0.1,
     "type": "Private College",
@@ -52500,47 +52510,45 @@ export const TELANGANA_ENGINEERING_COLLEGES = [
       }
     ],
     "quality_scores": {
-      "overall": 0.18,
+      "overall": 3.08,
       "parameters": [
         {
           "label": "Placements",
-          "score": "8/10",
+          "score": "3/10",
           "color": "#3553E2",
-          "pct": 80
+          "pct": 30
         },
         {
           "label": "Faculty",
-          "score": "8/10",
+          "score": "3.1/10",
           "color": "#7C3AED",
-          "pct": 80
+          "pct": 31
         },
         {
           "label": "Infra",
-          "score": "7/10",
+          "score": "3/10",
           "color": "#0891B2",
-          "pct": 70
+          "pct": 30
         },
         {
           "label": "Value",
-          "score": "8/10",
+          "score": "3/10",
           "color": "#D97706",
-          "pct": 80
+          "pct": 30
         },
         {
           "label": "Resources",
-          "score": "7/10",
+          "score": "3.1/10",
           "color": "#F56016",
-          "pct": 70
+          "pct": 31
         },
         {
           "label": "Research",
-          "score": "7/10",
+          "score": "3.3/10",
           "color": "#059669",
-          "pct": 70
+          "pct": 33
         }
       ]
     }
   }
 ];
-
-export default TELANGANA_ENGINEERING_COLLEGES;

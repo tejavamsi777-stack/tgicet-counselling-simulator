@@ -104,7 +104,7 @@ export default function WhyChooseUs() {
           </div>
 
           <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3">
-            <strong>Vuela Learn</strong> (vuelalearn.vercel.app) is India&apos;s leading <strong className="text-emerald-400">100% free</strong> state entrance counselling simulator and college admission predictor. Built specifically for candidates navigating <strong>TG EAPCET Counselling (TS EAMCET)</strong>, <strong>TG ICET Counselling</strong>, <strong>AP EAPCET Counselling</strong>, <strong>TG ECET</strong>, <strong>TG POLYCET</strong>, <strong>TG PGECET</strong>, and <strong>KCET</strong>, our mission is to make complex state admissions transparent, predictable, and stress-free.
+            <strong>Vuela Learn</strong> (vuelalearn.in) is India&apos;s leading <strong className="text-emerald-400">100% free</strong> state entrance counselling simulator and college admission predictor. Built specifically for candidates navigating <strong>TG EAPCET Counselling (TS EAMCET)</strong>, <strong>TG ICET Counselling</strong>, <strong>AP EAPCET Counselling</strong>, <strong>TG ECET</strong>, <strong>TG POLYCET</strong>, <strong>TG PGECET</strong>, and <strong>KCET</strong>, our mission is to make complex state admissions transparent, predictable, and stress-free.
           </p>
 
           <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">

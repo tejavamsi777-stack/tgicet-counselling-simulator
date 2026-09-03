@@ -83,7 +83,7 @@ export default function BreadcrumbNav() {
     }
   } else if (!stateName && segments[0] === 'colleges') {
     stateName = 'Engineering Colleges';
-    featureName = 'College Details';
+    featureName = segments[1] ? 'College Details' : 'College Directory';
   } else if (!featureName && segments[0] && FEATURE_NAME_MAPPINGS[segments[0]]) {
     featureName = FEATURE_NAME_MAPPINGS[segments[0]];
   }

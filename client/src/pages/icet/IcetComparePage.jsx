@@ -8,8 +8,9 @@ import AdSenseUnit from '../../components/ads/AdSenseUnit';
 
 export default function IcetComparePage() {
   const [searchParams] = useSearchParams();
-  const c1 = searchParams.get('c1') || 'OUCC';
-  const c2 = searchParams.get('c2') || 'CBIT';
+  const c1 = searchParams.get('c1') || '';
+  const c2 = searchParams.get('c2') || '';
+  const c3 = searchParams.get('c3') || '';
   const program = searchParams.get('program') || 'MBA';
 
   return (
@@ -46,7 +47,7 @@ export default function IcetComparePage() {
       </div>
 
       {/* Comparison Engine */}
-      <CollegeComparisonTool initialC1={c1} initialC2={c2} initialProgram={program} />
+      <CollegeComparisonTool initialC1={c1} initialC2={c2} initialC3={c3} initialProgram={program} />
 
       {/* Ad Banner */}
       <div className="my-10">

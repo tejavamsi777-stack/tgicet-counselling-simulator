@@ -86,7 +86,7 @@ export default function Seo({
           "@type": "Organization",
           "name": "Vuela Learn",
           "alternateName": "VuelaLearn",
-          "url": "https://vuelalearn.vercel.app",
+          "url": "https://vuelalearn.in",
           "sameAs": ["https://www.trustpilot.com/review/vuelalearn.vercel.app"]
         }
       }

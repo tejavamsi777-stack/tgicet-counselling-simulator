@@ -967,53 +967,6 @@ export default function CollegeProfilePage() {
             </Link>
           </div>
 
-          {/* 2-Column Highlights Summary Cards */}
-          {mostCompetitive.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
-              {/* Most Competitive */}
-              <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-2.5 sm:p-3 space-y-1.5">
-                <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-amber-400 truncate">
-                  <Flame size={13} className="shrink-0" />
-                  <span className="truncate">Most Competitive (OC)</span>
-                </div>
-                <div className="space-y-1">
-                  {mostCompetitive.map((item, idx) => (
-                    <div key={item.code} className="flex items-center justify-between text-[10px] sm:text-xs py-0.5 border-b border-white/5 last:border-0 gap-1">
-                      <div className="flex items-center gap-1 min-w-0">
-                        <span className="font-bold text-amber-300/70 font-mono text-[9px] sm:text-[10px] shrink-0">#{idx + 1}</span>
-                        <span className="font-bold text-white font-mono bg-white/10 px-1 py-0.5 rounded text-[8px] sm:text-[10px] shrink-0">{item.code}</span>
-                        <span className="text-gray-300 text-[9px] sm:text-[11px] truncate">{item.name}</span>
-                      </div>
-                      <span className="font-extrabold text-amber-300 font-mono text-[9px] sm:text-xs shrink-0">{item.ocBoysRank.toLocaleString()}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Easier to Get In */}
-              {easierToGetIn.length > 0 && (
-                <div className="rounded-xl border border-sky-500/30 bg-sky-950/20 p-2.5 sm:p-3 space-y-1.5">
-                  <div className="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-sky-400 truncate">
-                    <Target size={13} className="shrink-0" />
-                    <span className="truncate">Easier to Get In (OC)</span>
-                  </div>
-                  <div className="space-y-1">
-                    {easierToGetIn.map((item, idx) => (
-                      <div key={item.code} className="flex items-center justify-between text-[10px] sm:text-xs py-0.5 border-b border-white/5 last:border-0 gap-1">
-                        <div className="flex items-center gap-1 min-w-0">
-                          <span className="font-bold text-sky-300/70 font-mono text-[9px] sm:text-[10px] shrink-0">#{idx + 1}</span>
-                          <span className="font-bold text-white font-mono bg-white/10 px-1 py-0.5 rounded text-[8px] sm:text-[10px] shrink-0">{item.code}</span>
-                          <span className="text-gray-300 text-[9px] sm:text-[11px] truncate">{item.name}</span>
-                        </div>
-                        <span className="font-extrabold text-sky-300 font-mono text-[9px] sm:text-xs shrink-0">{item.ocBoysRank.toLocaleString()}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
           {/* Category Tabs & Search Bar — Glass Pill Capsule Tabs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/40 p-1 text-xs">

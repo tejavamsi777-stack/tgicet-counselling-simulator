@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, MapPin, Filter, ArrowUpRight, ArrowLeft, Building2 } from 'lucide-react';
+import { Search, MapPin, Filter, ArrowUpRight, ArrowLeft, Building2, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { EAPCET_INSTITUTIONS } from '../../data/eapcetInstitutions';
 import { strictMultiFieldMatch } from '../../utils/searchMatch';
@@ -133,12 +133,25 @@ export default function CollegesDirectoryPage() {
         path="/tg-eapcet/colleges"
       />
 
-      <div>
-        <Link to="/tg-eapcet" className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 mb-3">
-          <ArrowLeft size={13} /> Back to TG EAPCET Portal
-        </Link>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Telangana Engineering Colleges</h1>
-        <p className="text-sm text-gray-400 mt-1.5">{filteredColleges.length} colleges · Ranked by quality score · TSCHE 2026</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <Link to="/tg-eapcet" className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 mb-3">
+            <ArrowLeft size={13} /> Back to TG EAPCET Portal
+          </Link>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Telangana Engineering Colleges</h1>
+          <p className="text-sm text-gray-400 mt-1.5">{filteredColleges.length} colleges · Ranked by quality score · TSCHE 2026</p>
+        </div>
+
+        <a
+          href="/tg-eapcet/ranking-methodology"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 self-start sm:self-auto rounded-xl border border-purple-500/30 bg-purple-500/10 px-3.5 py-2 text-xs font-bold text-purple-300 hover:bg-purple-500/20 hover:border-purple-500/50 transition-all shadow-sm group"
+        >
+          <HelpCircle size={14} className="text-purple-400 group-hover:scale-110 transition-transform" />
+          <span>How we rate colleges</span>
+          <ArrowUpRight size={13} className="opacity-70 group-hover:opacity-100" />
+        </a>
       </div>
 
       <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 space-y-4">

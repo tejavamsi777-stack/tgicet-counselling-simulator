@@ -319,7 +319,7 @@ export function FloatingShareButton() {
         isOpen={open}
         onClose={() => setOpen(false)}
         shareData={{
-          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.in",
           title: typeof document !== "undefined" ? document.title : "Vuela Learn Portal",
           text: DEFAULT_SHARE_TEXT,
         }}
@@ -370,7 +370,7 @@ export function ShareButton({ className = "", variant = "icon", label = "Share",
         isOpen={open}
         onClose={() => setOpen(false)}
         shareData={shareData || {
-          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.vercel.app",
+          url: typeof window !== "undefined" ? window.location.href : "https://vuelalearn.in",
           title: typeof document !== "undefined" ? document.title : "Vuela Learn Portal",
           text: DEFAULT_SHARE_TEXT,
         }}

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/app.js",
+    "dev": "node src/app.js",
     "start": "node src/app.js",
     "migrate:multi-exam": "node scripts/runMultiExamMigration.js",
     "seed:exam-catalog": "node scripts/seedExamCatalog.js"

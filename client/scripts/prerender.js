@@ -11,23 +11,18 @@ const distDir = path.resolve(clientDir, 'dist');
 function getHeaderHtml() {
   return `
     <header class="sticky top-3 z-50 px-3 sm:px-6">
-      <div class="relative mx-auto flex h-14 max-w-7xl items-center justify-between rounded-full border border-white/25 bg-white/[0.03] px-4 sm:px-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-3xl text-white">
+      <div class="relative mx-auto flex h-14 max-w-7xl items-center justify-between rounded-full border border-white/25 bg-white/[0.03] px-4 sm:px-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.3)] backdrop-blur-3xl backdrop-saturate-200 text-white transition-all duration-300">
         <div class="flex items-center">
-          <a href="/" class="flex items-center group py-1" title="Vuela Learn">
-            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-purple-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">VUELA</span>
-            <span class="ml-2 text-xs font-semibold uppercase tracking-widest text-purple-300 border-l border-white/20 pl-2">LEARN</span>
+          <a href="/" class="flex items-center group py-1" title="VuelaLearn">
+            <img src="/vuela-logo-white.png" alt="VUELA" class="h-6 sm:h-7 w-auto object-contain" />
           </a>
         </div>
-        <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-gray-200">
-          <a href="/tg-eapcet" class="hover:text-white transition-colors">TG EAPCET</a>
-          <a href="/tg-icet" class="hover:text-white transition-colors">TG ICET</a>
-          <a href="/ap-eapcet" class="hover:text-white transition-colors">AP EAPCET</a>
-          <a href="/tg-ecet" class="hover:text-white transition-colors">TG ECET</a>
-          <a href="/tg-polycet" class="hover:text-white transition-colors">TG POLYCET</a>
-          <a href="/colleges" class="hover:text-white transition-colors">Colleges</a>
-          <a href="/about" class="hover:text-white transition-colors">About</a>
-          <a href="/privacy-policy" class="hover:text-white transition-colors">Privacy</a>
-          <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+        <nav class="hidden md:flex items-center gap-2 text-sm font-medium text-white/90">
+          <span class="px-3 py-1 text-xs text-gray-300">Exams</span>
+          <span class="px-3 py-1 text-xs text-gray-300">College Predictor</span>
+          <span class="px-3 py-1 text-xs text-gray-300">Seat Allotment</span>
+          <span class="px-3 py-1 text-xs text-gray-300">Mock Counselling</span>
+          <span class="px-3 py-1 text-xs text-gray-300">About &amp; Policies</span>
         </nav>
       </div>
     </header>
@@ -37,47 +32,63 @@ function getHeaderHtml() {
 // Shared Common Footer HTML
 function getFooterHtml() {
   return `
-    <footer class="mt-20 border-t border-white/10 bg-[#070a13]/95 text-gray-400 text-xs py-12 px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="space-y-3">
-          <div class="text-lg font-bold text-white">VUELA LEARN</div>
-          <p class="text-gray-400 text-xs leading-relaxed">
-            India's premier 100% free educational counselling simulation suite for TG EAPCET, TG ICET, AP EAPCET, TG ECET, TG POLYCET, TG PGECET, and KCET admissions.
-          </p>
+    <footer class="relative z-[90] mt-20 border-t border-white/10 bg-[#070a13]/95 backdrop-blur-2xl text-gray-400">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
+          <div class="lg:col-span-4 space-y-4">
+            <a href="/" class="inline-block group">
+              <img src="/vuela-logo-white.png" alt="VUELA" class="h-8 sm:h-9 w-auto object-contain" />
+            </a>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-sm">
+              Your trusted guide to engineering, management &amp; diploma admissions in Andhra Pradesh &amp; Telangana — powered by authentic counselling data.
+            </p>
+            <div>
+              <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300">
+                <span class="h-2 w-2 rounded-full bg-emerald-400" />
+                <span>Trusted by 100,000+ students</span>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-400">PREDICTORS &amp; TOOLS</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/ap-eapcet/predictor" class="hover:text-white">AP EAPCET Predictor</a></li>
+              <li><a href="/tg-eapcet/predictor" class="hover:text-white">TG EAPCET Predictor</a></li>
+              <li><a href="/tg-icet/predictor" class="hover:text-white">TG ICET Predictor</a></li>
+              <li><a href="/tg-ecet/predictor" class="hover:text-white">TG ECET Predictor</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-purple-400">DATA &amp; CUTOFFS</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/ap-eapcet/allotments" class="hover:text-white">AP EAPCET Allotments</a></li>
+              <li><a href="/tg-eapcet/allotments" class="hover:text-white">TG EAPCET Allotments</a></li>
+              <li><a href="/tg-ecet/allotments" class="hover:text-white">TG ECET Allotments</a></li>
+              <li><a href="/kcet/allotments" class="hover:text-white">KCET Allotments</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-400">COLLEGES &amp; DOCS</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/tg-eapcet" class="hover:text-white">TG Engg Colleges</a></li>
+              <li><a href="/tg-eapcet/colleges" class="hover:text-white">College Directory</a></li>
+              <li><a href="/compare" class="hover:text-white">College Comparison</a></li>
+              <li><a href="/tg-eapcet/documents" class="hover:text-white">Document Checklist</a></li>
+            </ul>
+          </div>
+          <div class="lg:col-span-2 space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-pink-400">COMPANY</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/about" class="hover:text-white">About Us</a></li>
+              <li><a href="/privacy-policy" class="hover:text-white">Privacy Policy</a></li>
+              <li><a href="/terms" class="hover:text-white">Terms of Service</a></li>
+              <li><a href="/contact" class="hover:text-white">Contact Us</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3">Entrance Portals</h4>
-          <ul class="space-y-1.5 text-gray-400">
-            <li><a href="/tg-eapcet" class="hover:text-white">TG EAPCET Engineering</a></li>
-            <li><a href="/tg-icet" class="hover:text-white">TG ICET MBA &amp; MCA</a></li>
-            <li><a href="/ap-eapcet" class="hover:text-white">AP EAPCET Andhra Pradesh</a></li>
-            <li><a href="/tg-ecet" class="hover:text-white">TG ECET Lateral Entry</a></li>
-            <li><a href="/tg-polycet" class="hover:text-white">TG POLYCET Polytechnic</a></li>
-            <li><a href="/tg-pgecet" class="hover:text-white">TG PGECET M.Tech</a></li>
-          </ul>
+        <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-gray-400">
+          © 2026 vuelalearn.in — All rights reserved. Data sourced directly from official counselling portals.
         </div>
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3">Popular Tools</h4>
-          <ul class="space-y-1.5 text-gray-400">
-            <li><a href="/exams/tg-icet/marks-vs-rank" class="hover:text-white">TG ICET Marks vs Rank</a></li>
-            <li><a href="/exams/tg-eapcet/marks-vs-rank" class="hover:text-white">TG EAPCET Marks vs Rank</a></li>
-            <li><a href="/exams/tg-eapcet/create-web-options" class="hover:text-white">Smart Web Options Generator</a></li>
-            <li><a href="/colleges" class="hover:text-white">500+ Colleges Directory</a></li>
-            <li><a href="/compare" class="hover:text-white">College Comparison Matrix</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3">Company &amp; Legal</h4>
-          <ul class="space-y-1.5 text-gray-400">
-            <li><a href="/about" class="hover:text-white">About Vuela Learn</a></li>
-            <li><a href="/privacy-policy" class="hover:text-white">Privacy &amp; Cookie Policy</a></li>
-            <li><a href="/terms" class="hover:text-white">Terms of Service &amp; Disclaimer</a></li>
-            <li><a href="/contact" class="hover:text-white">Contact &amp; Student Support</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mx-auto max-w-7xl mt-8 pt-6 border-t border-white/10 text-center text-gray-500">
-        © 2026 vuelalearn.in — All rights reserved. Data sourced directly from official TSCHE, APSCHE &amp; State Technical Boards.
       </div>
     </footer>
   `;
@@ -774,10 +785,10 @@ const ROUTES = [
 
                     <div class="relative flex items-center justify-between gap-3 mb-4 min-h-[75px]">
                       <p class="text-xs sm:text-sm leading-relaxed text-gray-300 flex-1 z-10">
-                        APSCHE Engineering, Agriculture &amp; Pharmacy Entrance (AP EAPCET). Access rank-based college cutoff predictors and official candidate seat allotment explorers across AP colleges.
+                        APSCHE Engineering, Agriculture &amp; Pharmacy predictors, cutoffs and seat allotment explorers.
                       </p>
                       <div class="shrink-0 flex items-center justify-center pl-2 self-center z-10">
-                        <img src="/maps/andhra-pradesh.png" alt="Andhra Pradesh Map Outline" class="h-28 sm:h-32 w-auto max-w-[125px] sm:max-w-[145px] drop-shadow-[0_0_10px_rgba(56,189,248,0.4)] opacity-90 object-contain" />
+                        <img src="/maps/andhra-pradesh.png" alt="Andhra Pradesh Map Outline" class="h-20 w-auto opacity-75 object-contain" />
                       </div>
                     </div>
 
@@ -788,6 +799,41 @@ const ROUTES = [
 
                   <div class="w-full inline-flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#1e3a8a] to-[#172554] border-blue-400/30 text-white shadow-lg">
                     <span>Explore Andhra Pradesh Admissions</span>
+                    <span>→</span>
+                  </div>
+                </a>
+
+                <!-- Karnataka Card -->
+                <a href="/karnataka" class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-b from-orange-600/20 via-amber-600/10 to-transparent border-orange-500/30 bg-[#10111a] p-5 sm:p-6 transition-all duration-300 shadow-lg">
+                  <div>
+                    <div class="flex items-start justify-between gap-2 mb-3">
+                      <div class="flex items-center gap-2">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 border border-white/15 text-white">
+                          📍
+                        </div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Karnataka</h2>
+                      </div>
+                      <span class="rounded-full border px-2.5 py-0.5 text-xs font-bold font-mono bg-orange-500/20 text-orange-300 border-orange-500/30">
+                        1 Exam
+                      </span>
+                    </div>
+
+                    <div class="relative flex items-center justify-between gap-3 mb-4 min-h-[75px]">
+                      <p class="text-xs sm:text-sm leading-relaxed text-gray-300 flex-1 z-10">
+                        KEA Engineering admissions candidate-wise seat allotments and closing cutoffs across 200+ colleges.
+                      </p>
+                      <div class="shrink-0 flex items-center justify-center pl-2 self-center z-10">
+                        <img src="/maps/karnataka.png" alt="Karnataka Map Outline" class="h-20 w-auto opacity-75 object-contain" />
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 mb-5 z-10 relative">
+                      <span class="rounded-md bg-white/5 border border-white/10 px-2 py-0.5 text-[11px] font-semibold text-gray-300">KCET</span>
+                    </div>
+                  </div>
+
+                  <div class="w-full inline-flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-[#7c2d12] to-[#9a3412] border-orange-400/30 text-white shadow-lg">
+                    <span>Explore Karnataka Admissions</span>
                     <span>→</span>
                   </div>
                 </a>

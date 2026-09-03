@@ -22,6 +22,106 @@ try {
 }
 
 // -----------------------------------------------------------------------
+// TG EAPCET 2025 Final Allotment Cache – used to derive last-rank cutoffs
+// -----------------------------------------------------------------------
+let _tg2025AllotmentCache = null;
+function getTg2025AllotmentData() {
+  if (_tg2025AllotmentCache) return _tg2025AllotmentCache;
+  try {
+    const jsonPath = path.resolve(__dirname, "../data/tg_eapcet_2025_final_allotments.json");
+    if (fs.existsSync(jsonPath)) {
+      const root = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+      _tg2025AllotmentCache = root.data || {};
+    } else {
+      _tg2025AllotmentCache = {};
+    }
+  } catch (e) {
+    console.warn("[EAPCET Controller] Could not load tg_eapcet_2025_final_allotments.json:", e.message);
+    _tg2025AllotmentCache = {};
+  }
+  return _tg2025AllotmentCache;
+}
+
+/**
+ * Extract 2025 last-rank (closing rank) cutoffs per standard category for a
+ * college + branch from the local allotment JSON.
+ * Returns an object like { OC, EWS, 'BC-A', 'BC-B', 'BC-C', 'BC-D', 'BC-E', SC, ST }
+ * where each value is the highest rank allotted under that category's seat pool
+ * (using OU-region general seats as the primary pool, falling back to UR).
+ */
+// Known code mismatches between EAPCET_INSTITUTIONS catalog and the allotment JSON
+const TG_COLLEGE_CODE_ALIAS = {
+  VNRV: "VJEC",  // VNR Vignana Jyothi – code in allotment is VJEC
+  // Add more aliases here if discovered
+};
+
+function getCutoffsFromAllotment2025(collegeCode, branchCode) {
+  const data = getTg2025AllotmentData();
+  const resolvedCode = TG_COLLEGE_CODE_ALIAS[collegeCode?.toUpperCase()] || collegeCode?.toUpperCase();
+  const colData = data[resolvedCode];
+  if (!colData) return null;
+
+  const branchData = (colData.branches || []).find(
+    (b) => b.branchCode?.toUpperCase() === branchCode?.toUpperCase()
+  );
+  if (!branchData || !branchData.candidates || branchData.candidates.length === 0) return null;
+
+  // Build max-rank per seat category
+  const maxRankBySeatCat = {};
+  for (const c of branchData.candidates) {
+    const sc = c.seatCategory || "";
+    if (!maxRankBySeatCat[sc] || c.rank > maxRankBySeatCat[sc]) {
+      maxRankBySeatCat[sc] = c.rank;
+    }
+  }
+
+  // Helper: pick last rank from seat categories matching a pattern, prefer OU over UR
+  const pick = (...patterns) => {
+    let ouBest = null;
+    let urBest = null;
+    for (const [sc, rank] of Object.entries(maxRankBySeatCat)) {
+      if (patterns.some((p) => sc.toUpperCase().includes(p.toUpperCase()))) {
+        if (sc.includes("_OU")) {
+          if (ouBest === null || rank > ouBest) ouBest = rank;
+        } else if (sc.includes("_UR")) {
+          if (urBest === null || rank > urBest) urBest = rank;
+        }
+      }
+    }
+    // Prefer OU last rank (wider pool). Fall back to UR if OU not present.
+    const val = ouBest ?? urBest;
+    return val ?? null;
+  };
+
+  const oc    = pick("OC_GEN");
+  const ews   = pick("EWS_GEN");
+  const bcA   = pick("BC_A_GEN");
+  const bcB   = pick("BC_B_GEN");
+  const bcC   = pick("BC_C_GEN");
+  const bcD   = pick("BC_D_GEN");
+  const bcE   = pick("BC_E_GEN");
+  // SC: best of SC_I, SC_II, SC_III (highest last rank = most accessible)
+  const scRanks = ["SC_I_GEN", "SC_II_GEN", "SC_III_GEN"]
+    .map((p) => pick(p))
+    .filter((v) => v !== null);
+  const sc    = scRanks.length ? Math.max(...scRanks) : null;
+  const st    = pick("ST_GEN");
+
+  const result = {};
+  if (oc  !== null) result["OC"]   = oc;
+  if (ews !== null) result["EWS"]  = ews;
+  if (bcA !== null) result["BC-A"] = bcA;
+  if (bcB !== null) result["BC-B"] = bcB;
+  if (bcC !== null) result["BC-C"] = bcC;
+  if (bcD !== null) result["BC-D"] = bcD;
+  if (bcE !== null) result["BC-E"] = bcE;
+  if (sc  !== null) result["SC"]   = sc;
+  if (st  !== null) result["ST"]   = st;
+
+  return Object.keys(result).length > 0 ? result : null;
+}
+
+// -----------------------------------------------------------------------
 // Static authoritative data (rules, eligibility, documents)
 // These are stable official facts that do not change day-to-day.
 // When TSCHE publishes updates, we update these constants here only.
@@ -857,31 +957,38 @@ export const eapcetController = {
     }
   },
 
-  // GET /api/eapcet/compare?c1=CBIT&c2=VNRV&branch=CSE
+  // GET /api/eapcet/compare?c1=CBIT&c2=VNRV&c3=JNTU&branch=CSE
   async compareInstitutions(req, res, next) {
     try {
       const isAp = req.path.includes("ap-eapcet");
-      const { c1, c2, branch = "CSE" } = req.query;
+      const { c1, c2, c3, branch = "CSE" } = req.query;
       if (!c1 || !c2) {
         return res.status(400).json({ error: "Parameters c1 and c2 are required (e.g. c1=CBIT&c2=VNRV)" });
-       }
+      }
 
       if (isAp) {
         const EXAM_ID = 11;
+        const requestedCodes = [c1.toUpperCase(), c2.toUpperCase()];
+        if (c3 && c3.trim()) requestedCodes.push(c3.toUpperCase().trim());
+
         const colRes = await pool.query(
           `SELECT c.id, c.code, c.name, c.place, c.university, c.ownership_type, d.name AS district_name 
            FROM colleges c 
            LEFT JOIN districts d ON d.id = c.district_id 
            WHERE c.exam_id = $1 AND c.code = ANY($2::text[])`,
-          [EXAM_ID, [c1.toUpperCase(), c2.toUpperCase()]]
+          [EXAM_ID, requestedCodes]
         );
         
         const collegeAObj = colRes.rows.find(r => r.code === c1.toUpperCase());
         const collegeBObj = colRes.rows.find(r => r.code === c2.toUpperCase());
+        const collegeCObj = c3 ? colRes.rows.find(r => r.code === c3.toUpperCase().trim()) : null;
         
-        if (!collegeAObj || !collegeBObj) {
-          return res.status(404).json({ error: "One or both college codes not found in catalog" });
+        if (!collegeAObj || !collegeBObj || (c3 && !collegeCObj)) {
+          return res.status(404).json({ error: "One or more college codes not found in catalog" });
         }
+
+        const collegeIds = [collegeAObj.id, collegeBObj.id];
+        if (collegeCObj) collegeIds.push(collegeCObj.id);
 
         const cutRes = await pool.query(
           `SELECT c.code AS college_code, co.code AS course_code, cat.code AS category_code, cu.gender, cu.cutoff_rank 
@@ -890,12 +997,13 @@ export const eapcetController = {
            JOIN courses co ON co.id = cu.course_id 
            JOIN categories cat ON cat.id = cu.category_id 
            WHERE cu.exam_id = $1 AND cu.college_id = ANY($2::int[])`,
-          [EXAM_ID, [collegeAObj.id, collegeBObj.id]]
+          [EXAM_ID, collegeIds]
         );
 
         const mapped = eapcetController.mapApColleges(colRes.rows, cutRes.rows);
         const collegeA = mapped.find(c => c.code === c1.toUpperCase());
         const collegeB = mapped.find(c => c.code === c2.toUpperCase());
+        const collegeC = collegeCObj ? mapped.find(c => c.code === c3.toUpperCase().trim()) : null;
 
         const cutA = collegeA.cutoffs?.[branch]?.oc2025 || 999999;
         const cutB = collegeB.cutoffs?.[branch]?.oc2025 || 999999;
@@ -904,6 +1012,10 @@ export const eapcetController = {
           branch,
           collegeA,
           collegeB,
+          collegeC: collegeC || undefined,
+          cutoffA: collegeA.cutoffs?.[branch] || {},
+          cutoffB: collegeB.cutoffs?.[branch] || {},
+          cutoffC: collegeC?.cutoffs?.[branch] || undefined,
           verdict: {
             higherPackage: (collegeA.placements?.highestPackageNum || 0) >= (collegeB.placements?.highestPackageNum || 0) ? collegeA.code : collegeB.code,
             betterAvgPackage: (collegeA.placements?.averagePackageNum || 0) >= (collegeB.placements?.averagePackageNum || 0) ? collegeA.code : collegeB.code,
@@ -914,32 +1026,79 @@ export const eapcetController = {
         return res.json({ success: true, data: comparison });
       }
 
-      // TG EAPCET static fallback
-      const collegeA = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c1.toUpperCase());
-      const collegeB = EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === c2.toUpperCase());
+      // TG EAPCET – merge static institution profiles with real 2025 last-rank cutoffs
+      const allotmentData = getTg2025AllotmentData();
 
-      if (!collegeA || !collegeB) {
-        return res.status(404).json({ error: "One or both college codes not found in catalog" });
+      // Helper: build a lean college object from the allotment JSON (for colleges not in EAPCET_INSTITUTIONS)
+      const buildFromAllotment = (code) => {
+        const resolvedCode = TG_COLLEGE_CODE_ALIAS[code] || code;
+        const cd = allotmentData[resolvedCode];
+        if (!cd) return null;
+        return {
+          code,  // keep the user-provided code for consistency
+          name: cd.name || code,
+          shortName: cd.name || code,
+          district: "",
+          type: "Private",
+          established: null,
+          annualFee: 120000,
+          naac: "A",
+          hostelAvailable: false,
+          placements: {
+            highestPackage: "N/A",
+            highestPackageNum: 0,
+            averagePackage: "N/A",
+            averagePackageNum: 0,
+            placementRate: "N/A",
+            topRecruiters: [],
+          },
+        };
+      };
+
+      const findCollegeProfile = (code) => {
+        if (!code) return null;
+        const normalized = code.toUpperCase().trim();
+        const aliased = TG_COLLEGE_CODE_ALIAS[normalized] || normalized;
+        return EAPCET_INSTITUTIONS.find((c) => c.code.toUpperCase() === normalized || c.code.toUpperCase() === aliased)
+          || buildFromAllotment(normalized);
+      };
+
+      const rawA = findCollegeProfile(c1);
+      const rawB = findCollegeProfile(c2);
+      const rawC = c3 && c3.trim() ? findCollegeProfile(c3) : null;
+
+      if (!rawA || !rawB || (c3 && !rawC)) {
+        return res.status(404).json({ error: "One or more college codes not found in catalog" });
       }
+
+      // Try to get real 2025 last-rank cutoffs from allotment JSON
+      const cutoffA = getCutoffsFromAllotment2025(c1, branch) || {};
+      const cutoffB = getCutoffsFromAllotment2025(c2, branch) || {};
+      const cutoffC = rawC ? (getCutoffsFromAllotment2025(c3, branch) || {}) : undefined;
+
+      // For verdict, use 2025 OC last rank if available, else fall back to static data
+      const ocA = cutoffA["OC"] || rawA.cutoffs?.[branch]?.oc2025 || rawA.cutoffs?.[branch]?.oc2024 || 999999;
+      const ocB = cutoffB["OC"] || rawB.cutoffs?.[branch]?.oc2025 || rawB.cutoffs?.[branch]?.oc2024 || 999999;
 
       const comparison = {
         branch,
-        collegeA,
-        collegeB,
+        collegeA: rawA,
+        collegeB: rawB,
+        collegeC: rawC || undefined,
+        cutoffA,
+        cutoffB,
+        cutoffC,
         verdict: {
           higherPackage:
-            (collegeA.placements?.highestPackageNum || 0) > (collegeB.placements?.highestPackageNum || 0)
-              ? collegeA.code
-               : collegeB.code,
+            (rawA.placements?.highestPackageNum || 0) > (rawB.placements?.highestPackageNum || 0)
+              ? rawA.code
+              : rawB.code,
           betterAvgPackage:
-            (collegeA.placements?.averagePackageNum || 0) > (collegeB.placements?.averagePackageNum || 0)
-              ? collegeA.code
-              : collegeB.code,
-          lowerFee: collegeA.annualFee < collegeB.annualFee ? collegeA.code : collegeB.code,
-          moreCompetitive:
-            (collegeA.cutoffs?.[branch]?.oc2024 || 999999) < (collegeB.cutoffs?.[branch]?.oc2024 || 999999)
-              ? collegeA.code
-              : collegeB.code,
+            (rawA.placements?.averagePackageNum || 0) > (rawB.placements?.averagePackageNum || 0)
+              ? rawA.code
+              : rawB.code,
+          lowerFee: (rawA.annualFee || 999999) < (rawB.annualFee || 999999) ? rawA.code : rawB.code,
+          moreCompetitive: ocA <= ocB ? rawA.code : rawB.code,
         },
       };
       return res.json({ success: true, data: comparison });

@@ -8,8 +8,9 @@ import AdSenseUnit from '../../components/ads/AdSenseUnit';
 
 export default function EapcetComparePage() {
   const [searchParams] = useSearchParams();
-  const c1 = searchParams.get('c1') || 'CBIT';
-  const c2 = searchParams.get('c2') || 'VNRV';
+  const c1 = searchParams.get('c1') || '';
+  const c2 = searchParams.get('c2') || '';
+  const c3 = searchParams.get('c3') || '';
   const branch = searchParams.get('branch') || 'CSE';
 
   return (
@@ -46,7 +47,7 @@ export default function EapcetComparePage() {
       </div>
 
       {/* Comparison Engine */}
-      <CollegeComparisonTool initialC1={c1} initialC2={c2} initialBranch={branch} />
+      <CollegeComparisonTool initialC1={c1} initialC2={c2} initialC3={c3} initialBranch={branch} />
 
       {/* Ad Banner */}
       <div className="my-10">

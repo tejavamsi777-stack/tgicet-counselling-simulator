@@ -6,6 +6,31 @@ import { apEapcetApi } from '../../lib/apEapcetApi';
 
 import SearchableSelect from '../shared/SearchableSelect';
 
+function parsePkgVal(str) {
+  if (!str) return 0;
+  const m = String(str).match(/[\d\.]+/);
+  return m ? parseFloat(m[0]) : 0;
+}
+
+function parseFeeVal(val) {
+  if (!val) return 0;
+  const num = Number(val);
+  return isNaN(num) ? 0 : num;
+}
+
+function parseRateVal(str) {
+  if (!str) return 0;
+  const m = String(str).match(/[\d\.]+/);
+  return m ? parseFloat(m[0]) : 0;
+}
+
+function WinnerBadge({ label = "Best" }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/15 border border-emerald-500/35 px-1.5 py-0.5 text-[9px] font-bold text-emerald-300 ml-1.5 align-middle shadow-sm">
+      🏆 {label}
+    </span>
+  );
+}
 
 const FALLBACK_AP_COLLEGES = Object.values(AP_COLLEGES_METADATA || {}).map((c) => ({
   code: c.code,
@@ -328,32 +353,89 @@ export default function CollegeComparisonTool({ initialC1 = 'VITAPU', initialC2 
                 ))}
 
                 {/* Highest CTC */}
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Highest Placement Package</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-bold text-emerald-400">{collegeA.placements.highestPackage}</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-bold text-emerald-400">{collegeB.placements.highestPackage}</td>
-                </tr>
+                {(() => {
+                  const valA = parsePkgVal(collegeA.placements?.highestPackage);
+                  const valB = parsePkgVal(collegeB.placements?.highestPackage);
+                  const maxVal = Math.max(valA, valB);
+                  const showBadge = maxVal > 0 && valA !== valB;
+                  return (
+                    <tr className="hover:bg-white/[0.02]">
+                      <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Highest Placement Package</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-emerald-400">
+                        {collegeA.placements?.highestPackage || 'N/A'}
+                        {showBadge && valA === maxVal && <WinnerBadge label="Highest" />}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-emerald-400">
+                        {collegeB.placements?.highestPackage || 'N/A'}
+                        {showBadge && valB === maxVal && <WinnerBadge label="Highest" />}
+                      </td>
+                    </tr>
+                  );
+                })()}
 
                 {/* Average CTC */}
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Average Package</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-bold text-white/90">{collegeA.placements.averagePackage}</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-bold text-white/90">{collegeB.placements.averagePackage}</td>
-                </tr>
+                {(() => {
+                  const valA = parsePkgVal(collegeA.placements?.averagePackage);
+                  const valB = parsePkgVal(collegeB.placements?.averagePackage);
+                  const maxVal = Math.max(valA, valB);
+                  const showBadge = maxVal > 0 && valA !== valB;
+                  return (
+                    <tr className="hover:bg-white/[0.02]">
+                      <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Average Package</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-white/90">
+                        {collegeA.placements?.averagePackage || 'N/A'}
+                        {showBadge && valA === maxVal && <WinnerBadge label="Best Avg" />}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 font-bold text-white/90">
+                        {collegeB.placements?.averagePackage || 'N/A'}
+                        {showBadge && valB === maxVal && <WinnerBadge label="Best Avg" />}
+                      </td>
+                    </tr>
+                  );
+                })()}
 
                 {/* Placement Rate */}
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Placement Rate</td>
-                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeA.placements.placementRate}</td>
-                  <td className="py-3.5 px-4 sm:px-6 text-white/80">{collegeB.placements.placementRate}</td>
-                </tr>
+                {(() => {
+                  const valA = parseRateVal(collegeA.placements?.placementRate);
+                  const valB = parseRateVal(collegeB.placements?.placementRate);
+                  const maxVal = Math.max(valA, valB);
+                  const showBadge = maxVal > 0 && valA !== valB;
+                  return (
+                    <tr className="hover:bg-white/[0.02]">
+                      <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Placement Rate</td>
+                      <td className="py-3.5 px-4 sm:px-6 text-white/80">
+                        {collegeA.placements?.placementRate || 'N/A'}
+                        {showBadge && valA === maxVal && <WinnerBadge label="Top %" />}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 text-white/80">
+                        {collegeB.placements?.placementRate || 'N/A'}
+                        {showBadge && valB === maxVal && <WinnerBadge label="Top %" />}
+                      </td>
+                    </tr>
+                  );
+                })()}
 
                 {/* Annual Tuition Fee */}
-                <tr className="hover:bg-white/[0.02]">
-                  <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Annual Tuition Fee</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{collegeA.annualFee ? collegeA.annualFee.toLocaleString() : 'N/A'} / yr</td>
-                  <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">₹{collegeB.annualFee ? collegeB.annualFee.toLocaleString() : 'N/A'} / yr</td>
-                </tr>
+                {(() => {
+                  const feeA = parseFeeVal(collegeA.annualFee);
+                  const feeB = parseFeeVal(collegeB.annualFee);
+                  const validFees = [feeA, feeB].filter(f => f > 0);
+                  const minFee = validFees.length > 0 ? Math.min(...validFees) : 0;
+                  const showBadge = minFee > 0 && feeA !== feeB;
+                  return (
+                    <tr className="hover:bg-white/[0.02]">
+                      <td className="py-3.5 px-4 sm:px-6 text-white/70 font-medium">Annual Tuition Fee</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">
+                        ₹{collegeA.annualFee ? Number(collegeA.annualFee).toLocaleString() : 'N/A'} / yr
+                        {showBadge && feeA === minFee && <WinnerBadge label="Lowest Fee" />}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 font-semibold text-white/90">
+                        ₹{collegeB.annualFee ? Number(collegeB.annualFee).toLocaleString() : 'N/A'} / yr
+                        {showBadge && feeB === minFee && <WinnerBadge label="Lowest Fee" />}
+                      </td>
+                    </tr>
+                  );
+                })()}
 
                 {/* NAAC & NIRF */}
                 <tr className="hover:bg-white/[0.02]">
