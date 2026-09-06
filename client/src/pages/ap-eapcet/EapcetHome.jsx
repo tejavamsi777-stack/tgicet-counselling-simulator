@@ -12,6 +12,7 @@ import EligibilityMatrix from '../../components/ap-eapcet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/ap-eapcet/TopCollegesLeaderboard';
 import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
 import OfficialCollegeProfileViewer from '../../components/ap-eapcet/OfficialCollegeProfileViewer';
+import ExamDocumentsOverview from '../../components/shared/ExamDocumentsOverview';
 import CommunityAlertsBanner from '../../components/ap-eapcet/CommunityAlertsBanner';
 import FaqSection from '../../components/shared/FaqSection';
 import { AP_EAPCET_FAQS } from '../../data/faqsData';
@@ -111,6 +112,13 @@ export default function EapcetHome() {
       {/* 6 Core Action Cards Grid with Search Tab */}
       <ExamToolsSection tools={AP_EAPCET_TOOLS} title="AP EAPCET Admissions Suite" />
 
+      <SectionDivider />
+
+      {/* AP Post Matric Scholarships (RTF) Fee & Scholarship Calculator */}
+      <div className="relative z-30">
+        <FeeReimbursementCalculator exam="ap-eapcet" />
+      </div>
+
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
         <AdSenseUnit slotName="examBanner" minHeight={90} />
@@ -126,19 +134,19 @@ export default function EapcetHome() {
       )}
 
       {/* Real-time Scraped Official Circulars */}
-      <div className="mt-8">
+      <div className="relative z-20">
         <LiveNotificationsStream />
       </div>
 
       <SectionDivider />
 
-      {/* AP Post Matric Scholarships (RTF) Fee & Scholarship Calculator */}
-      <div className="relative z-30 mb-6">
-        <FeeReimbursementCalculator exam="ap-eapcet" />
+      {/* Documents Needed & HLC Checklist */}
+      <div className="relative z-20">
+        <ExamDocumentsOverview examName="AP EAPCET" checklistPath="/ap-eapcet/documents" />
       </div>
 
       {/* Top 5 Engineering Colleges Leaderboard */}
-      <div className="relative z-20 mb-10">
+      <div className="relative z-20 mb-8">
         <TopCollegesLeaderboard />
       </div>
 

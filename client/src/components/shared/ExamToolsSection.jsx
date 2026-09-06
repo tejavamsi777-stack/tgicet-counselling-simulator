@@ -10,6 +10,7 @@ export default function ExamToolsSection({
   showExploreColleges = false,
   exploreUrl = "/tg-eapcet/colleges",
   exploreLabel = "Explore EAPCET Colleges",
+  mobileSingleBlock = true,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -66,11 +67,52 @@ export default function ExamToolsSection({
 
       {/* Spacious, Uniform Tools Grid */}
       {filteredTools.length > 0 ? (
-        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredTools.map((tool, idx) => (
-            <FeatureCard key={tool.to || idx} tool={tool} />
-          ))}
-        </div>
+        mobileSingleBlock ? (
+          <>
+            {/* Mobile View: Single Unified Block with all exam tools (compact, no summary) */}
+            <div className="sm:hidden rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-xl shadow-xl overflow-hidden divide-y divide-white/[0.08]">
+              {filteredTools.map((tool, idx) => {
+                const Icon = tool.icon;
+                return (
+                  <Link
+                    key={tool.to || idx}
+                    to={tool.to}
+                    className="group flex items-center justify-between px-4 py-3.5 hover:bg-white/[0.06] active:bg-white/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 pr-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-purple-300 group-hover:border-purple-400/40 group-hover:bg-purple-500/10 group-active:scale-95 transition-all">
+                        {Icon && <Icon size={18} />}
+                      </div>
+                      <span className="font-semibold text-sm text-white truncate group-hover:text-purple-200 transition-colors">
+                        {tool.title}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="inline-flex items-center gap-1 rounded-full border border-purple-500/25 bg-purple-500/10 px-2.5 py-1 text-[11px] font-medium text-purple-300 group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-all">
+                        <span>{tool.action || tool.tag || "Open"}</span>
+                        <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Desktop View: Full Grid Cards */}
+            <div className="hidden sm:grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredTools.map((tool, idx) => (
+                <FeatureCard key={tool.to || idx} tool={tool} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredTools.map((tool, idx) => (
+              <FeatureCard key={tool.to || idx} tool={tool} />
+            ))}
+          </div>
+        )
       ) : (
         /* Empty State */
         <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center backdrop-blur-xl">

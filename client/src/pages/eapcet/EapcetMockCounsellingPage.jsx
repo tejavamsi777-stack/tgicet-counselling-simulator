@@ -16,6 +16,7 @@ import { GlassButton } from "../../components/ui/glass-button";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import Seo from "../../components/shared/Seo";
 import { EXAM_COURSE_GROUPS } from "../../config/courseGroups";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 const stepVariants = {
   enter: { opacity: 0, y: 24 },
@@ -333,6 +334,9 @@ export default function EapcetMockCounsellingPage() {
       {step !== "list" && (
         <AdSenseUnit slotName="mockCounselling" minHeight={90} />
       )}
+
+      {/* Educational Guide & Choice Filling Methodology */}
+      <ToolGuideSection toolType="mock_counselling" examName="TG EAPCET" authorityName="TSCHE" />
     </main>
   );
 }

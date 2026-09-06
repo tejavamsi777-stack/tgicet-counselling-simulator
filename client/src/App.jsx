@@ -20,6 +20,9 @@ const IcetAllotmentsPage = lazy(() => import("./pages/icet/IcetAllotmentsPage"))
 const IcetComparePage = lazy(() => import("./pages/icet/IcetComparePage"));
 const IcetDocumentsPage = lazy(() => import("./pages/icet/IcetDocumentsPage"));
 const IcetMarksVsRankPage = lazy(() => import("./pages/icet/IcetMarksVsRankPage"));
+const IcetCollegesDirectoryPage = lazy(() => import("./pages/icet/IcetCollegesDirectoryPage"));
+const IcetCollegeProfilePage = lazy(() => import("./pages/icet/IcetCollegeProfilePage"));
+const IcetRankingMethodologyPage = lazy(() => import("./pages/icet/IcetRankingMethodologyPage"));
 const CreateWebOptionsPage = lazy(() => import("./pages/counselling/CreateWebOptionsPage"));
 
 const EapcetHome = lazy(() => import("./pages/eapcet/EapcetHome"));
@@ -201,6 +204,19 @@ function MainContent() {
                   <Route path="/icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
                   <Route path="/tg-icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
                   <Route path="/exams/tg-icet/create-web-options" element={<CreateWebOptionsPage examOverride="tg-icet" />} />
+
+                  <Route path="/icet/colleges" element={<IcetCollegesDirectoryPage />} />
+                  <Route path="/tg-icet/colleges" element={<IcetCollegesDirectoryPage />} />
+                  <Route path="/exams/tg-icet/colleges" element={<IcetCollegesDirectoryPage />} />
+                  <Route path="/icet/ranking-methodology" element={<IcetRankingMethodologyPage />} />
+                  <Route path="/tg-icet/ranking-methodology" element={<IcetRankingMethodologyPage />} />
+                  <Route path="/exams/tg-icet/ranking-methodology" element={<IcetRankingMethodologyPage />} />
+                  <Route path="/icet/colleges/:code" element={<IcetCollegeProfilePage />} />
+                  <Route path="/icet/colleges/:code/:program" element={<IcetCollegeProfilePage />} />
+                  <Route path="/tg-icet/colleges/:code" element={<IcetCollegeProfilePage />} />
+                  <Route path="/tg-icet/colleges/:code/:program" element={<IcetCollegeProfilePage />} />
+                  <Route path="/exams/tg-icet/colleges/:code" element={<IcetCollegeProfilePage />} />
+                  <Route path="/exams/tg-icet/colleges/:code/:program" element={<IcetCollegeProfilePage />} />
 
                   {/* EAPCET Dedicated Pages */}
                   <Route path="/eapcet/predictor" element={<EapcetPredictorPage />} />

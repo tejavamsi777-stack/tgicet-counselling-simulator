@@ -17,6 +17,7 @@ import {
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import { GlowCard } from '../../components/ui/spotlight-card';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 // TG ICET 2026/2027 Calibration Anchors (Out of 200 marks, ~75,000 candidates)
 // Anchored with Ground Truth: 114.95977 marks = 312 Rank
@@ -347,6 +348,9 @@ export default function IcetMarksVsRankPage() {
           </li>
         </ul>
       </div>
+
+      {/* Educational Guide & Marks vs Rank Dynamics */}
+      <ToolGuideSection toolType="marks_vs_rank" examName="TG ICET" authorityName="TSCHE" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

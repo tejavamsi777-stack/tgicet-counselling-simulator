@@ -20,6 +20,7 @@ import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import { smoothScrollTo } from "../../lib/utils";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 
 function predictTgCollegesLocally({ rankNum, category, gender, selectedCourses, selectedDistricts, selectedYears }) {
@@ -365,6 +366,9 @@ export default function EapcetPredictorPage() {
         results={results}
         examSlug="tg-eapcet"
       />
+
+      {/* Educational Guide & Counselling Methodology */}
+      <ToolGuideSection toolType="predictor" examName="TG EAPCET" authorityName="TSCHE" />
     </main>
   );
 }

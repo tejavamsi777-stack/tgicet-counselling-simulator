@@ -15,6 +15,7 @@ import { GlowCard } from "../../components/ui/spotlight-card";
 import { GlassButton } from "../../components/ui/glass-button";
 import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import Seo from "../../components/shared/Seo";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 const ICET_COURSE_GROUPS = [
   {
@@ -348,6 +349,9 @@ export default function IcetMockCounsellingPage() {
       {step !== "list" && (
         <AdSenseUnit slotName="mockCounselling" minHeight={90} />
       )}
+
+      {/* Educational Guide & Choice Filling Methodology */}
+      <ToolGuideSection toolType="mock_counselling" examName="TG ICET" authorityName="TSCHE" />
     </main>
   );
 }

@@ -13,6 +13,7 @@ import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { smoothScrollTo } from "../../lib/utils";
 import Seo from "../../components/shared/Seo";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 function mapResults(results, gender, year) {
   return results.map((r) => ({
@@ -221,6 +222,9 @@ export default function PolycetPredictorPage() {
                 <AdSenseUnit slotName="predictorResults" minHeight={90} />
               </div>
             )}
+
+            {/* Educational Guide & Counselling Methodology */}
+            <ToolGuideSection toolType="predictor" examName="TG POLYCET" authorityName="SBTET Telangana" />
           </div>
         </main>
       </div>

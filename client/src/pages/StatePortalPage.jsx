@@ -1,10 +1,29 @@
 import { useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { MapPin, Database } from "lucide-react";
+import { useParams, Link } from "react-router-dom";
+import { MapPin, Database, ArrowRight, CheckCircle2 } from "lucide-react";
 import Seo from "../components/shared/Seo";
 import ExamCard from "../components/exams/ExamCard";
 import { exams } from "../config/exams";
 import AdSenseUnit from "../components/ads/AdSenseUnit";
+
+function formatProgram(p) {
+  if (!p) return "";
+  const upper = p.toUpperCase().trim();
+  if (upper === "ENGINEERING") return "Engineering";
+  if (upper === "AGRICULTURE") return "Agriculture";
+  if (upper === "PHARMACY") return "Pharmacy";
+  if (upper.includes("DIPLOMA")) return "Polytechnic Diploma";
+  if (upper === "MBA") return "MBA";
+  if (upper === "MCA") return "MCA";
+  if (upper === "B.TECH" || upper === "BTECH") return "B.Tech";
+  if (upper === "B.E." || upper === "BE") return "B.E.";
+  if (upper === "B.PHARMACY" || upper === "B.PHARM") return "B.Pharmacy";
+  if (upper === "M.TECH" || upper === "MTECH") return "M.Tech";
+  if (upper === "M.E." || upper === "ME") return "M.E.";
+  if (upper === "M.ARCH") return "M.Arch";
+  if (upper === "M.PHARMACY" || upper === "M.PHARM") return "M.Pharmacy";
+  return p;
+}
 
 const STATE_CONFIGS = {
   "andhra-pradesh": {
@@ -130,7 +149,52 @@ export default function StatePortalPage({ stateSlugOverride }) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile View: Single Unified Mobile Block with all entrance exams */}
+        <div className="sm:hidden rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-xl shadow-xl overflow-hidden divide-y divide-white/[0.08]">
+          {stateExams.map((exam) => {
+            const available = exam.status === "available";
+            const coursesText = Array.isArray(exam.programs)
+              ? exam.programs.map(formatProgram).join(" · ")
+              : "";
+
+            return (
+              <Link
+                key={exam.id}
+                to={`/exams/${exam.slug}`}
+                className="group flex items-center justify-between px-4 py-3.5 hover:bg-white/[0.06] active:bg-white/10 transition-colors"
+              >
+                <div className="flex flex-col gap-1 min-w-0 pr-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm text-white truncate group-hover:text-emerald-300 transition-colors">
+                      {exam.shortName}
+                    </span>
+                    {available && (
+                      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                        <CheckCircle2 size={10} />
+                        <span>Available</span>
+                      </span>
+                    )}
+                  </div>
+                  {coursesText && (
+                    <span className="text-[11px] font-medium text-purple-300/90 truncate">
+                      {coursesText}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="inline-flex items-center gap-1 rounded-full border border-purple-500/25 bg-purple-500/10 px-2.5 py-1 text-[11px] font-semibold text-purple-300 group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-all">
+                    <span>{available ? "Explore tools" : "View page"}</span>
+                    <ArrowRight size={11} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Desktop View: Multi-column Grid Cards */}
+        <div className="hidden sm:grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stateExams.map((exam) => (
             <ExamCard key={exam.id} exam={exam} />
           ))}

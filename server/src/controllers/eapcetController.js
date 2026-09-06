@@ -42,6 +42,34 @@ function getTg2025AllotmentData() {
   return _tg2025AllotmentCache;
 }
 
+// -----------------------------------------------------------------------
+// Multi-Year (2022-2025) TG EAPCET Allotment Caches for Trajectory Analysis
+// -----------------------------------------------------------------------
+const TG_ALLOTMENT_PATHS = {
+  2022: path.resolve(__dirname, "../data/tg_eapcet_2022_allotments.json"),
+  2023: path.resolve(__dirname, "../data/tg_eapcet_2023_allotments.json"),
+  2024: path.resolve(__dirname, "../data/tg_eapcet_2024_allotments.json"),
+  2025: path.resolve(__dirname, "../data/tg_eapcet_2025_final_allotments.json"),
+};
+
+const _allotmentTrajectoryCache = {};
+function getAllotmentYearData(year) {
+  if (_allotmentTrajectoryCache[year]) return _allotmentTrajectoryCache[year];
+  const p = TG_ALLOTMENT_PATHS[year];
+  if (p && fs.existsSync(p)) {
+    try {
+      const root = JSON.parse(fs.readFileSync(p, "utf-8"));
+      _allotmentTrajectoryCache[year] = root.data || {};
+    } catch (err) {
+      console.warn(`[EAPCET Trajectory] Failed to load data for ${year}:`, err.message);
+      _allotmentTrajectoryCache[year] = {};
+    }
+  } else {
+    _allotmentTrajectoryCache[year] = {};
+  }
+  return _allotmentTrajectoryCache[year];
+}
+
 /**
  * Extract 2025 last-rank (closing rank) cutoffs per standard category for a
  * college + branch from the local allotment JSON.
@@ -1285,29 +1313,43 @@ export const eapcetController = {
         console.warn("[EAPCET Controller] DB Meta query failed:", dbErr.message);
       }
 
-      // 2. Merge local 2025 dataset JSON if present
-      try {
-        const jsonPath = path.resolve(__dirname, "../data/tg_eapcet_2025_final_allotments.json");
-        if (fs.existsSync(jsonPath)) {
-          const raw = fs.readFileSync(jsonPath, "utf-8");
-          const root = JSON.parse(raw);
-          if (root.colleges && Array.isArray(root.colleges)) {
-            root.colleges.forEach((c) => {
-              if (!colleges.some((local) => local.code === c.code)) {
-                colleges.push({ code: c.code, name: c.name });
-              }
-            });
+      // 2. Merge local 2025, 2024, 2023, 2022 dataset JSONs if present
+      const fallbackFiles = [
+        "../data/tg_eapcet_2025_final_allotments.json",
+        "../data/tg_eapcet_2024_allotments.json",
+        "../data/tg_eapcet_2023_allotments.json",
+        "../data/tg_eapcet_2022_allotments.json"
+      ];
+      for (const relPath of fallbackFiles) {
+        try {
+          const jsonPath = path.resolve(__dirname, relPath);
+          if (fs.existsSync(jsonPath)) {
+            const raw = fs.readFileSync(jsonPath, "utf-8");
+            const root = JSON.parse(raw);
+            if (root.colleges && Array.isArray(root.colleges)) {
+              root.colleges.forEach((c) => {
+                if (!colleges.some((local) => local.code === c.code)) {
+                  colleges.push({ code: c.code, name: c.name });
+                }
+              });
+            }
+            if (root.collegeBranchesMap) {
+              Object.keys(root.collegeBranchesMap).forEach((code) => {
+                if (!collegeBranches[code]) {
+                  collegeBranches[code] = root.collegeBranchesMap[code];
+                } else {
+                  root.collegeBranchesMap[code].forEach((b) => {
+                    if (!collegeBranches[code].includes(b)) {
+                      collegeBranches[code].push(b);
+                    }
+                  });
+                }
+              });
+            }
           }
-          if (root.collegeBranchesMap) {
-            Object.keys(root.collegeBranchesMap).forEach((code) => {
-              if (!collegeBranches[code]) {
-                collegeBranches[code] = root.collegeBranchesMap[code];
-              }
-            });
-          }
+        } catch (jsonErr) {
+          console.warn(`[EAPCET Controller] JSON Meta fallback warning for ${relPath}:`, jsonErr.message);
         }
-      } catch (jsonErr) {
-        console.warn("[EAPCET Controller] JSON Meta fallback warning:", jsonErr.message);
       }
 
       return res.json({
@@ -1393,6 +1435,136 @@ export const eapcetController = {
       res.json({
         success: true,
         data: dataset,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  // GET /api/eapcet/allotments/trajectory?college=CBIT&branch=CSE
+  async getAllotmentTrajectory(req, res, next) {
+    try {
+      const { college = "CBIT", branch = "CSE" } = req.query;
+      const cCode = (college || "CBIT").trim().toUpperCase();
+      const bCode = (branch || "CSE").trim().toUpperCase();
+      const resolvedCode = TG_COLLEGE_CODE_ALIAS[cCode] || cCode;
+
+      // College details
+      let collegeObj = ALL_TSCHE_COLLEGES.find((c) => c.code === cCode || c.code === resolvedCode);
+      if (!collegeObj) {
+        collegeObj = {
+          code: cCode,
+          name: `${cCode} Engineering College`,
+        };
+      }
+
+      // Branch details
+      let branchObj = ALLOTMENT_BRANCHES.find((b) => b.code === bCode);
+      if (!branchObj) {
+        branchObj = {
+          code: bCode,
+          name: bCode,
+        };
+      }
+
+      const CATEGORY_KEYS = ["OC", "EWS", "BC_A", "BC_B", "BC_C", "BC_D", "BC_E", "SC", "ST"];
+      const isSpecial = (seatCat) => /CAP|NCC|PH|SG|SPO/i.test(seatCat || "");
+
+      const years = [2022, 2023, 2024, 2025];
+      const trajectory = [];
+
+      for (const yr of years) {
+        const yearData = getAllotmentYearData(yr);
+        const colData = yearData[resolvedCode] || yearData[cCode];
+        if (!colData) {
+          trajectory.push({ year: yr, available: false, reason: "College not found in allotment record" });
+          continue;
+        }
+
+        let branchData = (colData.branches || []).find((b) => b.branchCode?.toUpperCase() === bCode);
+        if (!branchData && bCode === "ALL") {
+          const allCandidates = (colData.branches || []).flatMap((b) =>
+            (b.candidates || []).map((c) => ({ ...c, branchCode: b.branchCode }))
+          );
+          branchData = { branchCode: "ALL", branchName: "All Branches Combined", candidates: allCandidates };
+        }
+
+        if (!branchData || !branchData.candidates || branchData.candidates.length === 0) {
+          trajectory.push({ year: yr, available: false, reason: "Branch not offered or 0 allotments in this year" });
+          continue;
+        }
+
+        const candidates = branchData.candidates;
+        const nonSpecial = candidates.filter((c) => !isSpecial(c.seatCategory));
+        const allRanks = candidates.map((c) => c.rank).filter(Boolean);
+        const nonSpecRanks = nonSpecial.map((c) => c.rank).filter(Boolean);
+
+        const categories = {};
+        for (const catKey of CATEGORY_KEYS) {
+          const prefix = catKey + "_";
+          const catCandidates = candidates.filter((c) => {
+            const sc = (c.seatCategory || "").toUpperCase();
+            if (catKey === "SC") {
+              return (sc.startsWith("SC_") || sc.startsWith("SC1_") || sc.startsWith("SC2_") || sc.startsWith("SC3_")) && !isSpecial(sc);
+            }
+            return sc.startsWith(prefix) && !isSpecial(sc);
+          });
+
+          if (catCandidates.length > 0) {
+            const ranks = catCandidates.map((c) => c.rank).filter(Boolean);
+            const males = catCandidates
+              .filter((c) => (c.gender || "").toUpperCase().startsWith("M"))
+              .map((c) => c.rank)
+              .filter(Boolean);
+            const females = catCandidates
+              .filter((c) => (c.gender || "").toUpperCase().startsWith("F"))
+              .map((c) => c.rank)
+              .filter(Boolean);
+
+            categories[catKey] = {
+              seats: catCandidates.length,
+              openingRank: Math.min(...ranks),
+              closingRank: Math.max(...ranks),
+              maleClosing: males.length ? Math.max(...males) : null,
+              femaleClosing: females.length ? Math.max(...females) : null,
+            };
+          } else {
+            categories[catKey] = null;
+          }
+        }
+
+        trajectory.push({
+          year: yr,
+          available: true,
+          totalSeats: candidates.length,
+          openingRank: allRanks.length ? Math.min(...allRanks) : 0,
+          closingRankMerit: nonSpecRanks.length ? Math.max(...nonSpecRanks) : (allRanks.length ? Math.max(...allRanks) : 0),
+          closingRankAbsolute: allRanks.length ? Math.max(...allRanks) : 0,
+          categories,
+        });
+      }
+
+      // Calculate YoY shifts
+      for (let i = 1; i < trajectory.length; i++) {
+        const prev = trajectory[i - 1];
+        const curr = trajectory[i];
+        if (prev.available && curr.available) {
+          curr.yoySeats = curr.totalSeats - prev.totalSeats;
+          curr.yoyRankShift = curr.closingRankMerit - prev.closingRankMerit;
+          curr.yoyOcShift =
+            curr.categories?.OC?.closingRank && prev.categories?.OC?.closingRank
+              ? curr.categories.OC.closingRank - prev.categories.OC.closingRank
+              : null;
+        }
+      }
+
+      res.json({
+        success: true,
+        data: {
+          college: { code: cCode, name: collegeObj.name },
+          branch: { code: bCode, name: branchObj.name },
+          trajectory,
+        },
       });
     } catch (err) {
       next(err);

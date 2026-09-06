@@ -3,6 +3,7 @@ import { Database, ShieldCheck, Sparkles } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import PolycetAllotmentExplorer from '../../components/polycet/PolycetAllotmentExplorer';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function PolycetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
@@ -37,6 +38,9 @@ export default function PolycetAllotmentsPage() {
 
       {/* Main Explorer Component */}
       <PolycetAllotmentExplorer onDataLoaded={setHasLoadedData} />
+
+      {/* Educational Guide & Allotment Analytics */}
+      <ToolGuideSection toolType="allotments" examName="TG POLYCET" authorityName="SBTET Telangana" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

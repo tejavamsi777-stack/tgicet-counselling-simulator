@@ -3,8 +3,8 @@ import { ArrowLeft, ArrowLeftRight } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import CollegeComparisonTool from '../../components/ap-eapcet/CollegeComparisonTool';
 import TopCollegesLeaderboard from '../../components/ap-eapcet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/ap-eapcet/CutoffTrendAnalyzer';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function EapcetComparePage() {
   const [searchParams] = useSearchParams();
@@ -54,15 +54,13 @@ export default function EapcetComparePage() {
         <AdSenseUnit slotName="compareBanner" minHeight={90} />
       </div>
 
-      {/* 3-Year Cutoff Trajectory */}
-      <div className="my-10">
-        <CutoffTrendAnalyzer />
-      </div>
-
       {/* Top Leaderboard */}
       <div className="my-10">
         <TopCollegesLeaderboard />
       </div>
+
+      {/* Educational Guide & Comparison Methodology */}
+      <ToolGuideSection toolType="compare" examName="AP EAPCET" authorityName="APSCHE" />
     </main>
   );
 }

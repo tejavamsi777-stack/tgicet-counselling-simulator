@@ -16,6 +16,7 @@ import { AP_COLLEGES_METADATA } from "../../data/apCollegesMetadata";
 import OFFICIAL_AP_COLLEGE_BRANCHES from "../../data/officialApCollegeBranches.json";
 import Seo from "../../components/shared/Seo";
 import { strictMultiFieldMatch } from "../../utils/searchMatch";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 // Standard AP Districts list matching official APSCHE portal
 const AP_DISTRICTS = [
@@ -1053,6 +1054,9 @@ export default function ApEapcetMockCounsellingPage() {
         </div>
       </div>
     </div>
+
+    {/* Educational Guide & Choice Filling Methodology */}
+    <ToolGuideSection toolType="mock_counselling" examName="AP EAPCET" authorityName="APSCHE" />
   </div>
   );
 }

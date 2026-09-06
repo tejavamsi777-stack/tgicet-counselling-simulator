@@ -25,6 +25,10 @@ import {
   CheckCircle2,
   Info,
   ExternalLink,
+  Shield,
+  Activity,
+  Target,
+  Flame,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { eapcetApi } from '../../lib/eapcetApi';
@@ -34,9 +38,162 @@ import ThreeDotsLoader from '../ui/three-dots-loader';
 import { smoothScrollTo } from '../../lib/utils';
 import { strictMultiFieldMatch } from '../../utils/searchMatch';
 
+// Helper to identify Special Category reservation candidates (PH, NCC, CAP, Sports/Games)
+export function getSpecialCategoryType(candidate) {
+  if (!candidate) return null;
+  const seat = String(candidate.seatCategory || candidate.allotted_category || '').toUpperCase();
+  const sp = String(candidate.specialCategory || candidate.category || '').toUpperCase();
+  const combined = `${seat} ${sp}`;
+
+  // 1. Physically Handicapped (PHA, PHC, PHH, PHM, PHO, PHV, PWD, HANDICAP)
+  if (
+    combined.includes('PHA') ||
+    combined.includes('PHC') ||
+    combined.includes('PHH') ||
+    combined.includes('PHM') ||
+    combined.includes('PHO') ||
+    combined.includes('PHV') ||
+    combined.includes('PWD') ||
+    combined.includes('HANDICAP') ||
+    combined.includes('_PH_') ||
+    combined.startsWith('PH_')
+  ) {
+    return 'PH';
+  }
+
+  // 2. NCC (National Cadet Corps)
+  if (combined.includes('NCC')) {
+    return 'NCC';
+  }
+
+  // 3. CAP (Children of Armed Personnel / Defence)
+  if (combined.includes('CAP') || combined.includes('DEFENCE') || combined.includes('DEF_')) {
+    return 'CAP';
+  }
+
+  // 4. Sports & Games (SG / SPORTS)
+  if (
+    combined.includes('_SG_') ||
+    combined.startsWith('SG_') ||
+    combined.includes('_SG(') ||
+    combined.includes('SPORTS') ||
+    combined.includes('GAMES')
+  ) {
+    return 'SPORTS';
+  }
+
+  return null;
+}
+
+export function isSpecialCategory(candidate) {
+  return Boolean(getSpecialCategoryType(candidate));
+}
+
+export const SPECIAL_CATEGORY_CONFIG = {
+  PH: {
+    label: 'PH / PWD',
+    fullTitle: 'Physically Handicapped (PHA / PHC / PHH / PHM / PHO / PHV / PWD)',
+    color: '#a855f7',
+    badgeClass: 'bg-purple-500/20 border-purple-400/40 text-purple-300',
+    icon: Activity,
+    description: 'Candidates admitted under Differently Abled / PWD reservation quota',
+  },
+  NCC: {
+    label: 'NCC',
+    fullTitle: 'National Cadet Corps (NCC-A / NCC-B / NCC-C)',
+    color: '#06b6d4',
+    badgeClass: 'bg-cyan-500/20 border-cyan-400/40 text-cyan-300',
+    icon: Shield,
+    description: 'Candidates admitted under National Cadet Corps special quota',
+  },
+  CAP: {
+    label: 'CAP / Defence',
+    fullTitle: 'Children of Armed Personnel (Ex-Servicemen & Defence Quota)',
+    color: '#f59e0b',
+    badgeClass: 'bg-amber-500/20 border-amber-400/40 text-amber-300',
+    icon: Target,
+    description: 'Admitted under Children of Armed Personnel / Armed Forces quota',
+  },
+  SPORTS: {
+    label: 'Sports / SG',
+    fullTitle: 'Sports & Games Quota (SG / State / National Players)',
+    color: '#10b981',
+    badgeClass: 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300',
+    icon: Flame,
+    description: 'Candidates admitted under National / State level Sports & Games quota',
+  },
+};
+
+// ─── Smooth Counting Number Animation (starts from 0 when scrolled into view) ─
+function AnimatedCounter({ value, duration = 800, prefix = '', suffix = '', isVisible = true }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const rafRef = useRef(null);
+  const prevValueRef = useRef(0);
+
+  const isBlank = value === null || value === undefined || value === '—' || value === '-';
+
+  useEffect(() => {
+    if (isBlank) {
+      setDisplayValue(0);
+      prevValueRef.current = 0;
+      return;
+    }
+
+    if (!isVisible) {
+      setDisplayValue(0);
+      prevValueRef.current = 0;
+      return;
+    }
+
+    const numValue = typeof value === 'number' ? value : parseInt(String(value).replace(/[^0-9]/g, ''), 10) || 0;
+    const startVal = prevValueRef.current || 0;
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(startVal + (numValue - startVal) * eased);
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        prevValueRef.current = numValue;
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [value, isVisible, duration, isBlank]);
+
+  if (isBlank) {
+    return <span>—</span>;
+  }
+
+  if (!isVisible) {
+    return <span>{prefix}0{suffix}</span>;
+  }
+
+  return (
+    <span>
+      {prefix}
+      {displayValue.toLocaleString('en-IN')}
+      {suffix}
+    </span>
+  );
+}
+
 // ─── Seat category color pills ─────────────────────────────────────────────
 function getSeatCategoryStyle(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
+  if (c.includes('NCC')) return 'bg-cyan-500/20 border-cyan-400/40 text-cyan-300 shadow-sm shadow-cyan-500/20';
+  if (c.includes('CAP') || c.includes('DEFENCE')) return 'bg-amber-500/20 border-amber-400/40 text-amber-300 shadow-sm shadow-amber-500/20';
+  if (c.includes('-SG-') || c.startsWith('SG-') || c.includes('-SG(') || c.includes('SPORT')) return 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300 shadow-sm shadow-emerald-500/20';
+  if (c.includes('PHA') || c.includes('PHC') || c.includes('PHH') || c.includes('PHM') || c.includes('PHO') || c.includes('PHV') || c.includes('PWD') || c.includes('-PH-')) return 'bg-purple-500/20 border-purple-400/40 text-purple-300 shadow-sm shadow-purple-500/20';
+
   if (c.startsWith('OC-GIRL')) return 'bg-pink-500/20 border-pink-400/40 text-pink-300 shadow-sm shadow-pink-500/20';
   if (c.startsWith('GM') || c.startsWith('OC')) return 'bg-sky-500/20 border-sky-400/40 text-sky-300 shadow-sm shadow-sky-500/20';
   if (c.startsWith('1G') || c.startsWith('1K') || c.startsWith('1R')) return 'bg-emerald-500/20 border-emerald-400/40 text-emerald-300 shadow-sm shadow-emerald-500/20';
@@ -50,6 +207,11 @@ function getSeatCategoryStyle(cat = '') {
 
 function getCategoryColor(cat = '') {
   const c = String(cat).toUpperCase().replace(/_/g, '-').trim();
+  if (c.includes('NCC')) return { primary: '#06b6d4', secondary: '#0891b2', glow: 'rgba(6, 182, 212, 0.6)' };
+  if (c.includes('CAP') || c.includes('DEFENCE')) return { primary: '#f59e0b', secondary: '#d97706', glow: 'rgba(245, 158, 11, 0.6)' };
+  if (c.includes('-SG-') || c.startsWith('SG-') || c.includes('-SG(') || c.includes('SPORT')) return { primary: '#10b981', secondary: '#059669', glow: 'rgba(16, 185, 129, 0.6)' };
+  if (c.includes('PH') || c.includes('PWD')) return { primary: '#a855f7', secondary: '#7e22ce', glow: 'rgba(168, 85, 247, 0.6)' };
+
   if (c.startsWith('OC-GIRL')) return { primary: '#f472b6', secondary: '#db2777', glow: 'rgba(244, 114, 182, 0.6)' };
   if (c.startsWith('OC')) return { primary: '#38bdf8', secondary: '#0284c7', glow: 'rgba(56, 189, 248, 0.6)' };
   if (c.startsWith('EWS')) return { primary: '#2dd4bf', secondary: '#0f766e', glow: 'rgba(45, 212, 191, 0.6)' };
@@ -66,27 +228,30 @@ function getCategoryColor(cat = '') {
 }
 
 // ─── Stat card ──────────────────────────────────────────────────────────────
-function StatCard({ icon: Icon, label, value, sub, accent = false }) {
+function StatCard({ icon: Icon, label, mobileLabel, value, sub, accent = false }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border p-4 sm:p-5 transition-all duration-300 hover:border-white/20 ${
+      className={`relative overflow-hidden rounded-xl sm:rounded-2xl border p-2 sm:p-4 transition-all duration-200 hover:border-white/20 min-w-0 flex flex-col justify-between ${
         accent
-          ? 'border-purple-500/30 bg-gradient-to-br from-purple-950/40 via-black/60 to-black/80 shadow-lg shadow-purple-950/30'
+          ? 'border-purple-500/30 bg-gradient-to-br from-purple-950/40 via-black/60 to-black/80 shadow-md shadow-purple-950/30'
           : 'border-white/[0.08] bg-black/40'
       }`}
     >
-      <div className="flex items-center justify-between gap-2 mb-2">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-white/40">{label}</p>
-        {Icon && <Icon size={16} className={accent ? 'text-purple-400' : 'text-white/30'} />}
+      <div className="flex items-center justify-between gap-1 mb-1">
+        <p className="text-[9px] sm:text-[11px] font-bold uppercase tracking-wider text-white/50 truncate">
+          <span className="sm:hidden">{mobileLabel || label}</span>
+          <span className="hidden sm:inline">{label}</span>
+        </p>
+        {Icon && <Icon size={14} className={`hidden sm:block shrink-0 ${accent ? 'text-purple-400' : 'text-white/30'}`} />}
       </div>
       <p
-        className={`font-mono text-2xl sm:text-3xl font-bold tracking-tight ${
+        className={`font-mono text-xs sm:text-xl md:text-2xl font-bold tracking-tight truncate ${
           accent ? 'text-purple-300' : 'text-white'
         }`}
       >
         {value}
       </p>
-      {sub && <p className="text-[11px] text-white/40 mt-1">{sub}</p>}
+      {sub && <p className="hidden sm:block text-[11px] text-white/40 mt-1 truncate">{sub}</p>}
     </div>
   );
 }
@@ -394,14 +559,34 @@ function getCastePriority(caste = '') {
 
 // ─── Interactive Seats by Category Bar Graph (With Live Floating Tooltip) ────
 function InteractiveCategoryChart({ candidates = [] }) {
-  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'quota'
+  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'special' | 'quota'
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const chartRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Grouped by Candidate Actual Caste (OC, EWS, BC-A, BC-B, BC-C, BC-D, BC-E, ST, SC, SC-1, SC-2, SC-3, PHH)
+  useEffect(() => {
+    const el = chartRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // 1. General Caste Breakdown (Special Reservation isolated)
   const casteData = useMemo(() => {
     const map = {};
-    const total = candidates.length || 1;
-    candidates.forEach((c) => {
+    const generalCandidates = candidates.filter((c) => !isSpecialCategory(c));
+    const total = generalCandidates.length || 1;
+    generalCandidates.forEach((c) => {
       const rootCat = resolveCandidateCaste(c);
       if (!map[rootCat]) {
         map[rootCat] = {
@@ -428,7 +613,42 @@ function InteractiveCategoryChart({ candidates = [] }) {
       .sort((a, b) => getCastePriority(a.name) - getCastePriority(b.name));
   }, [candidates]);
 
-  // Sub-quota Allotment Categories (OC_GEN_OU, BC_A_GIRLS_OU, etc.)
+  // 2. Special Category Dataset
+  const specialData = useMemo(() => {
+    const map = {};
+    const specialCandidates = candidates.filter((c) => isSpecialCategory(c));
+    const total = specialCandidates.length || 1;
+    specialCandidates.forEach((c) => {
+      const type = getSpecialCategoryType(c) || 'OTHER';
+      const label = SPECIAL_CATEGORY_CONFIG[type]?.label || type;
+      if (!map[type]) {
+        map[type] = {
+          name: label,
+          type,
+          count: 0,
+          openingRank: c.rank,
+          closingRank: c.rank,
+          male: 0,
+          female: 0,
+        };
+      }
+      map[type].count++;
+      map[type].openingRank = Math.min(map[type].openingRank, c.rank);
+      map[type].closingRank = Math.max(map[type].closingRank, c.rank);
+      if ((c.gender || '').toUpperCase().startsWith('M')) map[type].male++;
+      else map[type].female++;
+    });
+
+    const order = ['PH', 'NCC', 'CAP', 'SPORTS'];
+    return Object.values(map)
+      .map((item) => ({
+        ...item,
+        percent: Math.round((item.count / total) * 100),
+      }))
+      .sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
+  }, [candidates]);
+
+  // 3. Sub-quota Allotment Categories (OC_GEN_OU, BC_A_GIRLS_OU, etc.)
   const quotaData = useMemo(() => {
     const map = {};
     const total = candidates.length || 1;
@@ -459,12 +679,12 @@ function InteractiveCategoryChart({ candidates = [] }) {
       .sort((a, b) => b.count - a.count);
   }, [candidates]);
 
-  const activeDataset = viewMode === 'caste' ? casteData : quotaData;
+  const activeDataset = viewMode === 'caste' ? casteData : viewMode === 'special' ? specialData : quotaData;
   const maxCount = Math.max(...activeDataset.map((d) => d.count), 1);
   const activeTooltipItem = hoveredCategory || activeDataset[0];
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
+    <div ref={chartRef} className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
       {/* Header & Tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
         <div className="flex items-center gap-2">
@@ -473,14 +693,14 @@ function InteractiveCategoryChart({ candidates = [] }) {
           </div>
           <div>
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-              Seats Allotted by {viewMode === 'caste' ? 'Candidate Caste' : 'Allotted Quota'}
+              Category Breakdown
             </h4>
-            <p className="text-[10px] text-white/40">Touch or hover any bar for rank range and demographic details</p>
+            <p className="text-[10px] text-white/40">Seat density &amp; rank intervals across groups</p>
           </div>
         </div>
 
         {/* View Switcher */}
-        <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto">
+        <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1 self-start sm:self-auto flex-wrap">
           <button
             type="button"
             onClick={() => setViewMode('caste')}
@@ -490,7 +710,19 @@ function InteractiveCategoryChart({ candidates = [] }) {
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            Candidate Caste ({casteData.length})
+            General ({casteData.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('special')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              viewMode === 'special'
+                ? 'bg-purple-500 text-white shadow-md shadow-purple-500/30'
+                : 'text-purple-300/70 hover:text-white'
+            }`}
+          >
+            <Shield size={12} />
+            <span>Special ({specialData.length})</span>
           </button>
           <button
             type="button"
@@ -501,7 +733,7 @@ function InteractiveCategoryChart({ candidates = [] }) {
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            Allotted Quotas ({quotaData.length})
+            All Quotas ({quotaData.length})
           </button>
         </div>
       </div>
@@ -519,21 +751,30 @@ function InteractiveCategoryChart({ candidates = [] }) {
                 {activeTooltipItem.name}
               </span>
               <span className="text-xs font-bold text-white font-mono">
-                {activeTooltipItem.count} Allotted Candidates ({activeTooltipItem.percent}%)
+                <AnimatedCounter value={activeTooltipItem.count} isVisible={isVisible} duration={600} /> Allotted Candidates (
+                <AnimatedCounter value={activeTooltipItem.percent} isVisible={isVisible} duration={600} />%)
               </span>
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
               <div className="flex items-center gap-1.5 text-white/70">
                 <span className="text-[10px] uppercase text-white/40">Rank Spread:</span>
-                <span className="text-cyan-300 font-bold">#{activeTooltipItem.openingRank?.toLocaleString()}</span>
+                <span className="text-cyan-300 font-bold">
+                  <AnimatedCounter value={activeTooltipItem.openingRank} prefix="#" isVisible={isVisible} duration={700} />
+                </span>
                 <span className="text-purple-400">→</span>
-                <span className="text-purple-300 font-bold">#{activeTooltipItem.closingRank?.toLocaleString()}</span>
+                <span className="text-purple-300 font-bold">
+                  <AnimatedCounter value={activeTooltipItem.closingRank} prefix="#" isVisible={isVisible} duration={700} />
+                </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] text-white/60">
-                <span className="text-cyan-300">♂ {activeTooltipItem.male}</span>
+                <span className="text-cyan-300">
+                  ♂ <AnimatedCounter value={activeTooltipItem.male} isVisible={isVisible} duration={600} />
+                </span>
                 <span>•</span>
-                <span className="text-pink-300">♀ {activeTooltipItem.female}</span>
+                <span className="text-pink-300">
+                  ♀ <AnimatedCounter value={activeTooltipItem.female} isVisible={isVisible} duration={600} />
+                </span>
               </div>
             </div>
           </div>
@@ -570,23 +811,28 @@ function InteractiveCategoryChart({ candidates = [] }) {
                     {row.name}
                   </span>
                   <span className="text-[11px] font-mono text-white/60">
-                    #{row.openingRank?.toLocaleString()} ➔ #{row.closingRank?.toLocaleString()}
+                    <AnimatedCounter value={row.openingRank} prefix="#" isVisible={isVisible} duration={750} /> ➔{' '}
+                    <AnimatedCounter value={row.closingRank} prefix="#" isVisible={isVisible} duration={750} />
                   </span>
                 </div>
                 <div className="flex items-center gap-2 font-mono text-xs">
-                  <span className="text-white/40 text-[10px]">({row.percent}%)</span>
-                  <span className="font-bold text-white">{row.count} {viewMode === 'caste' ? 'Candidates' : 'Seats'}</span>
+                  <span className="text-white/40 text-[10px]">
+                    (<AnimatedCounter value={row.percent} isVisible={isVisible} duration={650} />%)
+                  </span>
+                  <span className="font-bold text-white">
+                    <AnimatedCounter value={row.count} isVisible={isVisible} duration={700} /> {viewMode === 'caste' ? 'Candidates' : 'Seats'}
+                  </span>
                 </div>
               </div>
 
               {/* Progress Bar */}
               <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
                 <div
-                  className="h-full rounded-full transition-all duration-700 ease-out"
+                  className="h-full rounded-full transition-all duration-1000 ease-out"
                   style={{
-                    width: `${fillWidth}%`,
+                    width: isVisible ? `${fillWidth}%` : '0%',
                     background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                    boxShadow: `0 0 10px ${colors.glow}`,
+                    boxShadow: isVisible ? `0 0 10px ${colors.glow}` : 'none',
                   }}
                 />
               </div>
@@ -599,15 +845,35 @@ function InteractiveCategoryChart({ candidates = [] }) {
 }
 
 // ─── Interactive Category-Wise Closing Ranks Breakdown ──────────────────────
-// ─── Interactive Category-Wise Closing Ranks Breakdown ──────────────────────
 function CategoryClosingRanksBreakdown({ candidates = [] }) {
-  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'boys' | 'girls' | 'quota'
+  const [viewMode, setViewMode] = useState('caste'); // 'caste' | 'boys' | 'girls' | 'special'
   const [hoveredRow, setHoveredRow] = useState(null);
+  const tableRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Grouped by Caste with dedicated Boys (♂) and Girls (♀) rank intervals
+  useEffect(() => {
+    const el = tableRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // 1. Grouped by Caste with dedicated Boys (♂) and Girls (♀) rank intervals (Special Quotas isolated)
   const casteRanks = useMemo(() => {
     const map = {};
-    candidates.forEach((c) => {
+    const validCandidates = candidates.filter((c) => !isSpecialCategory(c));
+
+    validCandidates.forEach((c) => {
       const cat = resolveCandidateCaste(c);
       const isBoy = (c.gender || '').toUpperCase().startsWith('M');
       const isGirl = (c.gender || '').toUpperCase().startsWith('F');
@@ -639,25 +905,50 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
     return Object.values(map).sort((a, b) => getCastePriority(a.category) - getCastePriority(b.category));
   }, [candidates]);
 
-  // Quota Allotment Categories
-  const quotaRanks = useMemo(() => {
+  // 2. Special Categories Breakdown (Separated PH, NCC, CAP, Sports/Games)
+  const specialRanks = useMemo(() => {
     const map = {};
-    candidates.forEach((c) => {
-      const cat = c.seatCategory || 'OC_GEN_OU';
-      if (!map[cat]) {
-        map[cat] = { category: cat, openingRank: c.rank, closingRank: c.rank, count: 0 };
+    const specialCandidates = candidates.filter((c) => isSpecialCategory(c));
+
+    specialCandidates.forEach((c) => {
+      const type = getSpecialCategoryType(c);
+      if (!type) return;
+
+      if (!map[type]) {
+        map[type] = {
+          type,
+          config: SPECIAL_CATEGORY_CONFIG[type] || {
+            label: type,
+            color: '#a855f7',
+            badgeClass: 'bg-purple-500/20 border-purple-500/30 text-purple-300',
+          },
+          openingRank: c.rank,
+          closingRank: c.rank,
+          count: 0,
+          boys: 0,
+          girls: 0,
+          candidates: [],
+        };
       }
-      map[cat].openingRank = Math.min(map[cat].openingRank, c.rank);
-      map[cat].closingRank = Math.max(map[cat].closingRank, c.rank);
-      map[cat].count++;
+
+      map[type].openingRank = Math.min(map[type].openingRank, c.rank);
+      map[type].closingRank = Math.max(map[type].closingRank, c.rank);
+      map[type].count++;
+      map[type].candidates.push(c);
+
+      const isBoy = (c.gender || '').toUpperCase().startsWith('M');
+      if (isBoy) map[type].boys++;
+      else map[type].girls++;
     });
-    return Object.values(map).sort((a, b) => a.openingRank - b.openingRank);
+
+    const order = ['PH', 'NCC', 'CAP', 'SPORTS'];
+    return Object.values(map).sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
   }, [candidates]);
 
   const maxRank = useMemo(() => {
     let m = 1;
     candidates.forEach((c) => {
-      if (c.rank > m) m = c.rank;
+      if (!isSpecialCategory(c) && c.rank > m) m = c.rank;
     });
     return m;
   }, [candidates]);
@@ -665,7 +956,7 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
   if (!candidates.length) return null;
 
   return (
-    <div className="rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
+    <div ref={tableRef} className="rounded-3xl border border-white/[0.08] bg-black/40 p-5 sm:p-6 backdrop-blur-xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-300">
@@ -673,7 +964,7 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
           </div>
           <div>
             <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
-              {viewMode === 'quota' ? 'Quota Closing Trajectory' : 'Caste & Gender Closing Ranks'}
+              Cutoff Trajectory Matrix
             </h4>
             <p className="text-[10px] text-white/40">Opening rank ➔ Closing cutoff threshold per caste & gender</p>
           </div>
@@ -690,7 +981,7 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                 : 'text-white/50 hover:text-white'
             }`}
           >
-            All Castes
+            All Castes ({casteRanks.reduce((acc, r) => acc + r.all.count, 0)})
           </button>
           <button
             type="button"
@@ -716,71 +1007,97 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
           </button>
           <button
             type="button"
-            onClick={() => setViewMode('quota')}
-            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-              viewMode === 'quota'
-                ? 'bg-amber-500 text-black shadow-md shadow-amber-500/30'
-                : 'text-white/50 hover:text-white'
+            onClick={() => setViewMode('special')}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              viewMode === 'special'
+                ? 'bg-purple-600 text-white shadow-md'
+                : 'text-purple-300/70 hover:text-white'
             }`}
           >
-            Quota ({quotaRanks.length})
+            <Shield size={12} />
+            <span>Special ({specialRanks.reduce((acc, r) => acc + r.count, 0)})</span>
           </button>
         </div>
       </div>
 
-      <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin">
-        {viewMode === 'quota' ? (
-          quotaRanks.map((r) => {
-            const fillWidth = Math.min(100, Math.max(8, Math.round((r.closingRank / maxRank) * 100)));
-            const colors = getCategoryColor(r.category);
-            const isHovered = hoveredRow?.category === r.category;
-
-            return (
-              <div
-                key={r.category}
-                onMouseEnter={() => setHoveredRow(r)}
-                onMouseLeave={() => setHoveredRow(null)}
-                style={{
-                  borderColor: isHovered ? colors.primary : undefined,
-                  boxShadow: isHovered ? `0 0 16px ${colors.glow}` : undefined,
-                }}
-                className={`group rounded-2xl border p-3 transition-all duration-200 cursor-pointer ${
-                  isHovered
-                    ? 'bg-white/[0.06] scale-[1.01]'
-                    : 'border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
-                }`}
-              >
-                <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                  <span
-                    className={`inline-flex rounded-lg border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider font-mono ${getSeatCategoryStyle(
-                      r.category
-                    )}`}
-                  >
-                    {r.category}
-                  </span>
-                  <span className="font-mono text-xs text-white/80">
-                    <span className="text-white/40 text-[10px] uppercase mr-1.5 font-bold">Cutoff:</span>
-                    <span className="text-white/60 font-semibold">{r.openingRank?.toLocaleString()}</span>
-                    <span className="mx-1.5 text-white/40 font-bold">→</span>
-                    <span style={{ color: colors.primary }} className="font-bold text-sm">#{r.closingRank?.toLocaleString()}</span>
-                  </span>
-                </div>
-
-                <div className="h-2 rounded-full bg-white/5 overflow-hidden p-0.5 border border-white/[0.08]">
-                  <div
-                    className="h-full rounded-full transition-all duration-700"
-                    style={{
-                      width: `${fillWidth}%`,
-                      background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
-                      boxShadow: `0 0 10px ${colors.glow}`,
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })
+      {viewMode === 'special' ? (
+        specialRanks.length === 0 ? (
+          <div className="py-10 text-center text-xs text-white/40 bg-white/[0.02] rounded-2xl border border-white/5">
+            No special reservation seats (PH, NCC, CAP, SG) were allotted for this selection.
+          </div>
         ) : (
-          casteRanks.map((c) => {
+          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin">
+            {specialRanks.map((item) => {
+              const Icon = item.config.icon || Shield;
+              const isHovered = hoveredRow?.type === item.type;
+              return (
+                <div
+                  key={item.type}
+                  onMouseEnter={() => setHoveredRow(item)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  className={`group rounded-2xl border p-4 transition-all duration-200 ${
+                    isHovered
+                      ? 'border-purple-500/40 bg-purple-950/20 shadow-lg shadow-purple-950/30'
+                      : 'border-white/[0.06] bg-white/[0.02] hover:border-white/15'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1 text-xs font-mono font-bold uppercase ${item.config.badgeClass}`}
+                      >
+                        <Icon size={13} />
+                        <span>{item.config.label}</span>
+                      </span>
+                      <span className="text-xs font-semibold text-white">
+                        <AnimatedCounter value={item.count} isVisible={isVisible} duration={750} /> Admitted
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-xs font-mono">
+                      <span className="text-sky-300 font-medium">
+                        ♂ <AnimatedCounter value={item.boys} isVisible={isVisible} duration={750} />
+                      </span>
+                      <span className="text-white/20">|</span>
+                      <span className="text-pink-300 font-medium">
+                        ♀ <AnimatedCounter value={item.girls} isVisible={isVisible} duration={750} />
+                      </span>
+                      <span className="text-white/20">|</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] uppercase text-white/40">Ranks:</span>
+                        <span className="text-sky-400 font-bold">
+                          <AnimatedCounter value={item.openingRank} prefix="#" isVisible={isVisible} duration={850} />
+                        </span>
+                        <span className="text-white/30">→</span>
+                        <span className="text-amber-400 font-bold">
+                          <AnimatedCounter value={item.closingRank} prefix="#" isVisible={isVisible} duration={850} />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-white/50 mb-2.5">{item.config.description}</p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-white/[0.06]">
+                    {item.candidates.map((cand, ci) => (
+                      <span
+                        key={cand.hallTicket || ci}
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.03] border border-white/10 px-2.5 py-1 text-[11px] font-mono text-gray-300"
+                      >
+                        <span className="text-amber-400 font-semibold">#{cand.rank}</span>
+                        <span className="text-white/90">{cand.name}</span>
+                        <span className="text-[10px] text-purple-300/80 uppercase">({cand.seatCategory})</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )
+      ) : (
+        <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin">
+          {casteRanks.map((c) => {
             const hasBoys = c.boys.count > 0;
             const hasGirls = c.girls.count > 0;
 
@@ -810,7 +1127,7 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                     {c.category}
                   </span>
                   <span className="text-[11px] text-white/50 font-medium">
-                    {c.all.count} Total {c.all.count === 1 ? 'Seat' : 'Seats'}
+                    <AnimatedCounter value={c.all.count} isVisible={isVisible} duration={750} /> Total {c.all.count === 1 ? 'Seat' : 'Seats'}
                   </span>
                 </div>
 
@@ -822,19 +1139,23 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                       <div className="flex items-center justify-between text-xs font-mono">
                         <span className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-400">
                           <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400" />
-                          ♂ Boys ({c.boys.count}):
+                          ♂ Boys (<AnimatedCounter value={c.boys.count} isVisible={isVisible} duration={750} />):
                         </span>
                         <span className="text-white/80">
-                          <span className="text-white/60 font-semibold">{c.boys.openingRank?.toLocaleString()}</span>
+                          <span className="text-white/60 font-semibold">
+                            <AnimatedCounter value={c.boys.openingRank} prefix="#" isVisible={isVisible} duration={850} />
+                          </span>
                           <span className="mx-1 text-white/40 font-bold">→</span>
-                          <span className="font-bold text-sky-400 text-[13px]">#{c.boys.closingRank?.toLocaleString()}</span>
+                          <span className="font-bold text-sky-400 text-[13px]">
+                            <AnimatedCounter value={c.boys.closingRank} prefix="#" isVisible={isVisible} duration={850} />
+                          </span>
                         </span>
                       </div>
                       <div className="h-1.5 rounded-full bg-white/5 overflow-hidden border border-white/[0.06]">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-sky-600 to-sky-400 transition-all duration-700"
+                          className="h-full rounded-full bg-gradient-to-r from-sky-600 to-sky-400 transition-all duration-1000 ease-out"
                           style={{
-                            width: `${Math.min(100, Math.max(8, Math.round((c.boys.closingRank / maxRank) * 100)))}%`,
+                            width: isVisible ? `${Math.min(100, Math.max(8, Math.round((c.boys.closingRank / maxRank) * 100)))}%` : '0%',
                           }}
                         />
                       </div>
@@ -847,19 +1168,23 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                       <div className="flex items-center justify-between text-xs font-mono">
                         <span className="inline-flex items-center gap-1 text-[11px] font-bold text-pink-400">
                           <span className="inline-block h-1.5 w-1.5 rounded-full bg-pink-400" />
-                          ♀ Girls ({c.girls.count}):
+                          ♀ Girls (<AnimatedCounter value={c.girls.count} isVisible={isVisible} duration={750} />):
                         </span>
                         <span className="text-white/80">
-                          <span className="text-white/60 font-semibold">{c.girls.openingRank?.toLocaleString()}</span>
+                          <span className="text-white/60 font-semibold">
+                            <AnimatedCounter value={c.girls.openingRank} prefix="#" isVisible={isVisible} duration={850} />
+                          </span>
                           <span className="mx-1 text-white/40 font-bold">→</span>
-                          <span className="font-bold text-pink-400 text-[13px]">#{c.girls.closingRank?.toLocaleString()}</span>
+                          <span className="font-bold text-pink-400 text-[13px]">
+                            <AnimatedCounter value={c.girls.closingRank} prefix="#" isVisible={isVisible} duration={850} />
+                          </span>
                         </span>
                       </div>
                       <div className="h-1.5 rounded-full bg-white/5 overflow-hidden border border-white/[0.06]">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-pink-600 to-pink-400 transition-all duration-700"
+                          className="h-full rounded-full bg-gradient-to-r from-pink-600 to-pink-400 transition-all duration-1000 ease-out"
                           style={{
-                            width: `${Math.min(100, Math.max(8, Math.round((c.girls.closingRank / maxRank) * 100)))}%`,
+                            width: isVisible ? `${Math.min(100, Math.max(8, Math.round((c.girls.closingRank / maxRank) * 100)))}%` : '0%',
                           }}
                         />
                       </div>
@@ -868,9 +1193,9 @@ function CategoryClosingRanksBreakdown({ candidates = [] }) {
                 </div>
               </div>
             );
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -1000,6 +1325,82 @@ function InteractiveQuartileRegionChart({ candidates = [], openingRank = 0, clos
   );
 }
 
+// ─── Rank Range Histogram Component ─────────────────────────────────────────
+function RankDistributionHistogram({ candidates = [] }) {
+  const brackets = useMemo(() => {
+    const list = [
+      { label: 'Top 5,000', min: 1, max: 5000, count: 0, color: '#38bdf8' },
+      { label: '5,001 - 15,000', min: 5001, max: 15000, count: 0, color: '#818cf8' },
+      { label: '15,001 - 30,000', min: 15001, max: 30000, count: 0, color: '#c084fc' },
+      { label: '30,001 - 50,000', min: 30001, max: 50000, count: 0, color: '#f472b6' },
+      { label: '50,001 - 80,000', min: 50001, max: 80000, count: 0, color: '#fb923c' },
+      { label: '80,000+', min: 80001, max: 999999, count: 0, color: '#f87171' },
+    ];
+
+    candidates.forEach((c) => {
+      const r = c.rank || 0;
+      const b = list.find((item) => r >= item.min && r <= item.max);
+      if (b) b.count++;
+    });
+
+    const total = candidates.length || 1;
+    return list.map((b) => ({
+      ...b,
+      percent: Math.round((b.count / total) * 100),
+    }));
+  }, [candidates]);
+
+  const maxCount = Math.max(...brackets.map((b) => b.count), 1);
+
+  if (!candidates.length) return null;
+
+  return (
+    <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-black/40 p-6 backdrop-blur-xl">
+      <div className="flex items-center justify-between gap-2 mb-5">
+        <div>
+          <h4 className="text-sm font-semibold tracking-tight text-white">
+            Rank Bracket Spread
+          </h4>
+          <p className="text-xs text-white/40">Density of admitted candidates across score segments</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {brackets.map((b) => {
+          const heightPercent = Math.min(100, Math.max(10, Math.round((b.count / maxCount) * 100)));
+          return (
+            <div
+              key={b.label}
+              className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3.5 flex flex-col justify-between hover:border-white/15 hover:bg-white/[0.04] transition-all duration-200"
+            >
+              <div>
+                <span className="text-[11px] font-medium text-white/50 block">{b.label}</span>
+                <div className="flex items-baseline gap-1.5 mt-1">
+                  <span className="text-xl font-mono font-bold text-white">
+                    {b.count}
+                  </span>
+                  <span className="text-[11px] text-white/40 font-mono">({b.percent}%)</span>
+                </div>
+              </div>
+
+              <div className="mt-4 h-14 flex items-end bg-white/[0.03] rounded-xl p-1 border border-white/5">
+                <div
+                  className="w-full rounded-lg transition-all duration-700 ease-out"
+                  style={{
+                    height: `${heightPercent}%`,
+                    backgroundColor: b.color,
+                    boxShadow: `0 0 12px ${b.color}35`,
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Component ─────────────────────────────────────────────────────────
 // ─── Category Filter Pills ──────────────────────────────────────────────────
 const CATEGORY_FILTERS = [
@@ -1012,7 +1413,8 @@ const CATEGORY_FILTERS = [
   'BC-E',
   'SC',
   'ST',
-  'EWS'
+  'EWS',
+  'SPECIAL'
 ];
 
 
@@ -1025,29 +1427,80 @@ const FALLBACK_TS_COLLEGES_META = (TELANGANA_ENGINEERING_COLLEGES || []).map((c)
   branches: c.branches || ['CSE', 'CSM', 'CSD', 'ECE', 'EEE', 'CIV', 'MEC'],
 }));
 
+// Comprehensive dictionary of all known TG EAPCET branch codes to official full course names
+export const ALL_TG_EAPCET_BRANCH_NAMES = {
+  CSE: "Computer Science and Engineering",
+  CSM: "Computer Science and Engineering (Artificial Intelligence and Machine Learning)",
+  CSD: "Computer Science and Engineering (Data Science)",
+  CSC: "Computer Science and Engineering (Cyber Security)",
+  CSO: "Computer Science and Engineering (IoT)",
+  CSW: "Computer Engineering (Software Engineering)",
+  CSB: "Computer Science and Business System",
+  CSG: "Computer Science & Design",
+  CSI: "Computer Science and Information Technology",
+  CSN: "Computer Science & Engineering (Networks)",
+  CSA: "Computer Science and Engineering (Artificial Intelligence)",
+  CME: "Computer Engineering",
+  CS: "Computer Science and Engineering",
+  CIC: "CSE (IoT and Cyber Security)",
+  INF: "Information Technology",
+  AI: "Artificial Intelligence",
+  AIM: "Artificial Intelligence and Machine Learning",
+  AID: "Artificial Intelligence and Data Science",
+  ECE: "Electronics and Communication Engineering",
+  ECV: "Electronics and Communication Engineering (VLSI Design & Technology)",
+  EVL: "Electronics Engineering (VLSI Design and Technology)",
+  ECI: "Electronics Communication and Instrumentation Engineering",
+  EEE: "Electrical and Electronics Engineering",
+  EIE: "Electronics and Instrumentation Engineering",
+  ETE: "Electronics and Telecommunication Engineering",
+  ETM: "Electronics and Telematics",
+  ECM: "Electronics and Computer Engineering",
+  MEC: "Mechanical Engineering",
+  MCT: "Mechanical (Mechatronics) Engineering",
+  MMS: "Mechanical Engineering with Manufacturing Systems",
+  MTE: "Mechanical Engineering with Thermal Engineering",
+  AUT: "Automobile Engineering",
+  CIV: "Civil Engineering",
+  CHE: "Chemical Engineering",
+  MET: "Metallurgical Engineering",
+  MME: "Metallurgical and Materials Engineering",
+  MMT: "Metallurgy and Material Engineering",
+  MIN: "Mining Engineering",
+  BIO: "Bio-Technology",
+  BME: "Bio-Medical Engineering",
+  PHE: "Pharmaceutical Engineering",
+  PHM: "B.Pharmacy (MPC Stream)",
+  PHD: "Pharm.D (Doctor of Pharmacy)",
+  AGR: "Agricultural Engineering",
+  FDT: "Food Technology",
+  DRG: "Dairy Technology",
+  ANE: "Aeronautical Engineering",
+  PLG: "B.Planning",
+  BSE: "Building Services Engineering",
+  DTD: "Digital Techniques for Design and Planning",
+  GEO: "Geo-Informatics",
+  TEX: "Textile and Fashion Technology",
+  DS: "Data Science",
+  RAI: "Robotics and Artificial Intelligence",
+};
+
 const FALLBACK_TS_COLLEGE_BRANCHES = {};
 (TELANGANA_ENGINEERING_COLLEGES || []).forEach((c) => {
   FALLBACK_TS_COLLEGE_BRANCHES[c.code] = (c.branches || ['CSE', 'CSM', 'CSD', 'ECE', 'EEE', 'CIV', 'MEC']).map((b) => ({
     code: b,
-    name: b,
+    name: ALL_TG_EAPCET_BRANCH_NAMES[b] || b,
   }));
 });
 
 const FALLBACK_META_DEFAULT = {
   years: [2025, 2024, 2023],
   colleges: FALLBACK_TS_COLLEGES_META,
-  branches: [
-    { code: 'CSE', name: 'Computer Science & Engineering' },
-    { code: 'CSM', name: 'CSE (AI & ML)' },
-    { code: 'CSD', name: 'CSE (Data Science)' },
-    { code: 'ECE', name: 'Electronics & Communication' },
-    { code: 'EEE', name: 'Electrical & Electronics' },
-    { code: 'CIV', name: 'Civil Engineering' },
-    { code: 'MEC', name: 'Mechanical Engineering' },
-    { code: 'INF', name: 'Information Technology' },
-  ],
+  branches: Object.entries(ALL_TG_EAPCET_BRANCH_NAMES).map(([code, name]) => ({ code, name })),
   collegeBranches: FALLBACK_TS_COLLEGE_BRANCHES,
 };
+
+
 
 function generateLocalAllotmentData({ year, college, branch }) {
   const colObj = (TELANGANA_ENGINEERING_COLLEGES || []).find((c) => c.code === college) || {
@@ -1111,6 +1564,8 @@ function generateLocalAllotmentData({ year, college, branch }) {
   };
 }
 
+
+
 export default function AllotmentExplorer({
   onDataLoaded,
   apiObj = eapcetApi,
@@ -1139,10 +1594,44 @@ export default function AllotmentExplorer({
   const [search, setSearch] = useState('');
   const [genderFilter, setGenderFilter] = useState('ALL');
   const [categoryFilter, setCategoryFilter] = useState('ALL');
+  const [analyticsCategory, setAnalyticsCategory] = useState('ALL');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(25);
 
   const tableRef = useRef(null);
+  const studentTableRef = useRef(null);
+  const shouldScrollToTableRef = useRef(false);
+  const analyticsCardRef = useRef(null);
+  const [analyticsCardVisible, setAnalyticsCardVisible] = useState(false);
+
+  // Auto-scroll directly to student table when allotment data is fetched
+  useEffect(() => {
+    if (shouldScrollToTableRef.current && !fetching && results) {
+      shouldScrollToTableRef.current = false;
+      const timer = setTimeout(() => {
+        const offset = window.innerWidth < 640 ? 76 : 88;
+        smoothScrollTo(studentTableRef, offset);
+      }, 80);
+      return () => clearTimeout(timer);
+    }
+  }, [fetching, results]);
+
+  useEffect(() => {
+    const el = analyticsCardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnalyticsCardVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [results]);
 
   // ── Load meta once ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -1170,16 +1659,32 @@ export default function AllotmentExplorer({
     const collegeSpecific = meta.collegeBranches?.[selectedCollege];
     if (collegeSpecific && Array.isArray(collegeSpecific) && collegeSpecific.length > 0) {
       list = collegeSpecific.map((b) => {
-        const bCode = typeof b === 'string' ? b : (b.code || b);
-        const bName = typeof b === 'object' && b.name ? b.name : null;
-        const fullBranch = meta.branches.find((mb) => mb.code === bCode);
+        const bCode = (typeof b === 'string' ? b : (b.code || b) || '').trim().toUpperCase();
+        const bName = typeof b === 'object' && b.name && b.name.trim().toUpperCase() !== bCode ? b.name : null;
+        const fullBranch = meta.branches.find((mb) => (mb.code || '').trim().toUpperCase() === bCode);
+        const resolvedName =
+          bName ||
+          (fullBranch?.name && fullBranch.name.trim().toUpperCase() !== bCode ? fullBranch.name : null) ||
+          ALL_TG_EAPCET_BRANCH_NAMES[bCode] ||
+          bCode;
+
         return {
           code: bCode,
-          name: bName || fullBranch?.name || bCode,
+          name: resolvedName,
         };
       });
     } else {
-      list = meta.branches;
+      list = (meta.branches || []).map((mb) => {
+        const bCode = (mb.code || '').trim().toUpperCase();
+        const resolvedName =
+          (mb.name && mb.name.trim().toUpperCase() !== bCode ? mb.name : null) ||
+          ALL_TG_EAPCET_BRANCH_NAMES[bCode] ||
+          bCode;
+        return {
+          code: bCode,
+          name: resolvedName,
+        };
+      });
     }
 
     // Deduplicate and clean names so branch code is not repeated inside parentheses
@@ -1189,8 +1694,11 @@ export default function AllotmentExplorer({
       const code = (item.code || '').trim().toUpperCase();
       if (code && !seen.has(code)) {
         seen.add(code);
-        let cleanName = (item.name || code).trim();
+        let cleanName = (item.name || ALL_TG_EAPCET_BRANCH_NAMES[code] || code).trim();
         cleanName = cleanName.replace(new RegExp(`\\s*\\(${code}\\)\\s*$`, 'i'), '').trim();
+        if (!cleanName || cleanName.toUpperCase() === code) {
+          cleanName = ALL_TG_EAPCET_BRANCH_NAMES[code] || code;
+        }
         unique.push({
           code,
           name: cleanName
@@ -1216,6 +1724,7 @@ export default function AllotmentExplorer({
   // ── Fetch on button click ────────────────────────────────────────────────
   const handleFetch = useCallback(async () => {
     if (!selectedYear || !selectedCollege || !selectedBranch) return;
+    shouldScrollToTableRef.current = true;
     setFetching(true);
     setHasQueried(true);
     setError('');
@@ -1246,7 +1755,11 @@ export default function AllotmentExplorer({
       onDataLoaded?.(true);
     } finally {
       setFetching(false);
-      smoothScrollTo(tableRef, 80);
+      // Fallback scroll in case results did not change (same query re-run)
+      setTimeout(() => {
+        const offset = window.innerWidth < 640 ? 76 : 88;
+        smoothScrollTo(studentTableRef, offset);
+      }, 100);
     }
   }, [selectedYear, selectedCollege, selectedBranch]);
 
@@ -1274,14 +1787,27 @@ export default function AllotmentExplorer({
         if (genderFilter === 'Female' && !g.startsWith('F')) return false;
       }
       if (categoryFilter !== 'ALL') {
-        const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
-        const candCaste = (c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
-        const candSeat = (c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
-        // Strict exact match — candSeat may be "OC_GEN_OU" style, so also check startsWith
-        const casteMatch = candCaste === targetCat;
-        const seatMatch = candSeat === targetCat || candSeat.startsWith(targetCat + '_') || candSeat.startsWith(targetCat + 'G');
-        if (!casteMatch && !seatMatch) {
-          return false;
+        if (categoryFilter === 'SPECIAL') {
+          if (!isSpecialCategory(c)) return false;
+        } else {
+          const targetCat = categoryFilter.toUpperCase().replace(/[-_\s]/g, '');
+          const candCaste = (c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+          const candSeat = (c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+          if (targetCat === 'OC') {
+            if (!(candCaste === 'OC' && !candSeat.includes('EWS') && candCaste !== 'EWS')) return false;
+          } else if (targetCat === 'EWS') {
+            if (!(candCaste === 'EWS' || candSeat.includes('EWS'))) return false;
+          } else if (targetCat.startsWith('BC')) {
+            if (!candCaste.startsWith(targetCat)) return false;
+          } else if (targetCat === 'SC') {
+            if (!candCaste.startsWith('SC')) return false;
+          } else if (targetCat === 'ST') {
+            if (!candCaste.startsWith('ST')) return false;
+          } else {
+            const casteMatch = candCaste === targetCat;
+            const seatMatch = candSeat === targetCat || candSeat.startsWith(targetCat + '_') || candSeat.startsWith(targetCat + 'G');
+            if (!casteMatch && !seatMatch) return false;
+          }
         }
       }
       if (search.trim()) {
@@ -1308,7 +1834,8 @@ export default function AllotmentExplorer({
         femaleP: results?.genderSplit?.femalePercent || 0,
       };
     }
-    const ranks = normalizedCandidates.map((c) => c.rank).filter(Boolean);
+    const nonSpecial = normalizedCandidates.filter((c) => !isSpecialCategory(c));
+    const ranks = (nonSpecial.length ? nonSpecial : normalizedCandidates).map((c) => c.rank).filter(Boolean);
     const minRank = ranks.length > 0 ? Math.min(...ranks) : results?.openingRank || 0;
     const maxRank = ranks.length > 0 ? Math.max(...ranks) : results?.closingRank || 0;
 
@@ -1327,6 +1854,87 @@ export default function AllotmentExplorer({
 
     return { total, minRank, maxRank, male, female, maleP, femaleP };
   }, [normalizedCandidates, results]);
+
+  // ── Dynamic Category-Wise Analytics (Special Quotas Separated from Normal Demographics) ──
+  const categoryAnalyticsData = useMemo(() => {
+    if (!normalizedCandidates.length) return null;
+    const all = normalizedCandidates;
+    const isSpecialSelected = analyticsCategory === 'SPECIAL';
+
+    let matched = all;
+    if (analyticsCategory && analyticsCategory !== 'ALL') {
+      if (isSpecialSelected) {
+        matched = all.filter((c) => isSpecialCategory(c));
+      } else {
+        const targetCat = analyticsCategory.toUpperCase().replace(/[-_\s]/g, '');
+        matched = all.filter((c) => {
+          const casteNorm = String(c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+          const seatNorm = String(c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+          if (targetCat === 'OC') {
+            return casteNorm === 'OC' && !seatNorm.includes('EWS') && casteNorm !== 'EWS';
+          }
+          if (targetCat === 'EWS') {
+            return casteNorm === 'EWS' || seatNorm.includes('EWS');
+          }
+          if (targetCat.startsWith('BC')) {
+            return casteNorm.startsWith(targetCat);
+          }
+          if (targetCat === 'SC') {
+            return casteNorm.startsWith('SC');
+          }
+          if (targetCat === 'ST') {
+            return casteNorm.startsWith('ST');
+          }
+          return casteNorm === targetCat || seatNorm === targetCat || seatNorm.startsWith(targetCat + '_');
+        });
+      }
+    }
+
+    const effectiveCandidates = isSpecialSelected
+      ? matched
+      : matched.filter((c) => !isSpecialCategory(c));
+
+    const boys = matched.filter((c) => (c.gender || '').toUpperCase().startsWith('M'));
+    const girls = matched.filter((c) => (c.gender || '').toUpperCase().startsWith('F'));
+    const cutoffBoys = effectiveCandidates.filter((c) => (c.gender || '').toUpperCase().startsWith('M'));
+    const cutoffGirls = effectiveCandidates.filter((c) => (c.gender || '').toUpperCase().startsWith('F'));
+
+    const totalCount = matched.length;
+    const boyCount = boys.length;
+    const girlCount = girls.length;
+    const boyPercent = totalCount ? Math.round((boyCount / totalCount) * 100) : 0;
+    const girlPercent = totalCount ? 100 - boyPercent : 0;
+
+    const categoryRanks = effectiveCandidates.map((c) => c.rank).filter(Boolean);
+    const openingRank = categoryRanks.length ? Math.min(...categoryRanks) : null;
+    const closingRank = categoryRanks.length ? Math.max(...categoryRanks) : null;
+
+    const boyRanks = cutoffBoys.map((c) => c.rank).filter(Boolean);
+    const boyOpening = boyRanks.length ? Math.min(...boyRanks) : null;
+    const boyClosing = boyRanks.length ? Math.max(...boyRanks) : null;
+
+    const girlRanks = cutoffGirls.map((c) => c.rank).filter(Boolean);
+    const girlOpening = girlRanks.length ? Math.min(...girlRanks) : null;
+    const girlClosing = girlRanks.length ? Math.max(...girlRanks) : null;
+
+    return {
+      selectedCategory: analyticsCategory,
+      totalCandidates: totalCount,
+      candidates: matched,
+      nonSpecialCandidates: effectiveCandidates,
+      boyCount,
+      girlCount,
+      boyPercent,
+      girlPercent,
+      openingRank,
+      closingRank,
+      boyOpening,
+      boyClosing,
+      girlOpening,
+      girlClosing,
+      specialIgnoredCount: isSpecialSelected ? 0 : matched.length - effectiveCandidates.length,
+    };
+  }, [normalizedCandidates, analyticsCategory]);
 
   // Export CSV
   const handleExportCsv = () => {
@@ -1460,7 +2068,7 @@ export default function AllotmentExplorer({
                 {metaLoading ? (
                   <ThreeDotsLoader label="Engineering College" dotClassName="bg-cyan-400" />
                 ) : (
-                  `Engineering College (${meta.colleges.length})`
+                  "Engineering College"
                 )}
               </label>
               {selectedCollege && (
@@ -1535,7 +2143,7 @@ export default function AllotmentExplorer({
             {currentCol && currentBranchObj ? (
               <>
                 Selected: <b className="text-white">{currentCol.code}</b> ({currentCol.name}) •{' '}
-                <span className="text-cyan-300">{currentBranchObj.code}</span>
+                <span className="text-cyan-300 font-semibold">{currentBranchObj.code} — {currentBranchObj.name}</span>
               </>
             ) : (
               <span>Complete the selections above to unlock seat allotment data.</span>
@@ -1583,43 +2191,41 @@ export default function AllotmentExplorer({
       {/* ── Results Container (When Queried) ────────────────────────── */}
       {hasQueried && !fetching && results && (
         <div ref={tableRef} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          {/* College Info Summary Card */}
-          <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-r from-purple-950/40 via-purple-900/20 to-black/60 p-5 sm:p-6 backdrop-blur-xl">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="rounded-md border border-purple-400/40 bg-purple-500/20 px-2 py-0.5 text-xs font-mono font-bold text-purple-200">
+          {/* College Info Summary Card (Tightened) */}
+          <div className="rounded-2xl sm:rounded-3xl border border-purple-500/20 bg-gradient-to-r from-purple-950/40 via-purple-900/20 to-black/60 p-3 sm:p-5 backdrop-blur-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5 mb-1">
+                  <span className="rounded-md border border-purple-400/40 bg-purple-500/20 px-1.5 py-0.5 text-[11px] font-mono font-bold text-purple-200">
                     {results.college?.code || selectedCollege}
                   </span>
-                  <span className="text-xs text-white/50">• Engineering College</span>
-                  <span className="text-xs text-cyan-300">• Convener Allotment Data</span>
+                  <span className="text-[11px] text-white/50">• Engineering</span>
+                  <span className="text-[11px] text-cyan-300">• Verified Allotments</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                <h2 className="text-base sm:text-xl font-bold text-white tracking-tight truncate">
                   {results.college?.name || selectedCollege}
                 </h2>
-                <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-white/60">
-                  <span className="inline-flex items-center gap-1">
-                    <GraduationCap size={13} className="text-amber-400" />
-                    Branch: <b className="text-white">{results.branch?.name || selectedBranch} ({selectedBranch})</b>
-                  </span>
-                  <span>
-                    • Status: <b className="text-emerald-400">✓ Verified Allotment Records</b>
+                <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-white/60">
+                  <span className="inline-flex items-center gap-1 truncate">
+                    <GraduationCap size={13} className="text-amber-400 shrink-0" />
+                    Branch: <b className="text-white">{(results.branch?.name && results.branch.name !== selectedBranch ? results.branch.name : (currentBranchObj?.name || ALL_TG_EAPCET_BRANCH_NAMES[selectedBranch] || selectedBranch))} ({selectedBranch})</b>
                   </span>
                 </div>
               </div>
 
-              <div className="text-right">
+              <div className="text-left sm:text-right border-t sm:border-t-0 border-white/10 pt-2 sm:pt-0 flex sm:flex-col justify-between items-center sm:items-end">
                 <span className="text-[10px] uppercase font-bold tracking-wider text-white/40 block">Total Allotted</span>
-                <p className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-300">{stats.total}</p>
+                <p className="font-mono text-xl sm:text-3xl font-extrabold text-purple-300">{stats.total}</p>
               </div>
             </div>
           </div>
 
-          {/* ── KPI Stat Cards ──────────────────────────────────────────── */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* ── KPI Stat Cards (One Line on Mobile, Tight & Compact) ───────── */}
+          <div className="grid grid-cols-4 gap-1.5 sm:gap-3">
             <StatCard
               icon={Users}
               label="Allotted Candidates"
+              mobileLabel="Allotted"
               value={stats.total}
               sub={`${selectedCollege} - ${selectedBranch}`}
               accent
@@ -1627,38 +2233,43 @@ export default function AllotmentExplorer({
             <StatCard
               icon={TrendingUp}
               label="Top / Opening Rank"
+              mobileLabel="Opening"
               value={stats.minRank ? `#${stats.minRank.toLocaleString()}` : '—'}
               sub="Highest rank entering stream"
             />
             <StatCard
               icon={TrendingDown}
               label="Closing Cutoff Rank"
+              mobileLabel="Closing"
               value={stats.maxRank ? `#${stats.maxRank.toLocaleString()}` : '—'}
               sub="Last rank admitted"
             />
             <StatCard
               icon={Award}
               label="Rank Spread"
+              mobileLabel="Spread"
               value={stats.maxRank && stats.minRank ? (stats.maxRank - stats.minRank).toLocaleString() : '—'}
               sub="Competition delta"
             />
           </div>
 
           {/* ── Candidate Seat Allotment Table (Placed directly under KPI Data) ─── */}
-          <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 backdrop-blur-xl shadow-2xl">
+          <div ref={studentTableRef} className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/40 backdrop-blur-xl shadow-2xl">
             {/* Table Filter & Search Controls */}
-            <div className="p-4 sm:p-5 border-b border-white/10 bg-white/[0.02] space-y-4">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={18} className="text-emerald-400" />
-                  <h3 className="text-sm sm:text-base font-bold text-white">
-                    Candidate Seat Allotments ({filteredCandidates.length})
-                  </h3>
-                </div>
+            <div className="p-4 sm:p-5 border-b border-white/10 bg-white/[0.02] space-y-3 sm:space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
+                {/* Left Group on PC: Title + Search + Gender */}
+                <div className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4 flex-1">
+                  {/* Title */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <ShieldCheck size={18} className="text-emerald-400" />
+                    <h3 className="text-sm sm:text-base font-bold text-white">
+                      Candidate Seat Allotments ({filteredCandidates.length})
+                    </h3>
+                  </div>
 
-                <div className="flex flex-wrap items-center gap-3">
                   {/* Quick Search */}
-                  <div className="relative">
+                  <div className="relative w-full md:w-48 lg:w-56">
                     <input
                       type="text"
                       placeholder="Search candidate, rank, HT..."
@@ -1667,7 +2278,7 @@ export default function AllotmentExplorer({
                         setSearch(e.target.value);
                         setPage(1);
                       }}
-                      className="w-48 sm:w-56 rounded-xl border border-white/10 bg-white/5 pl-8 pr-7 py-1.5 text-xs text-white placeholder-white/30 focus:border-purple-500 focus:outline-none"
+                      className="w-full rounded-xl border border-white/10 bg-white/5 pl-8 pr-7 py-1.5 text-xs text-white placeholder-white/30 focus:border-purple-500 focus:outline-none"
                     />
                     <Search size={13} className="absolute left-2.5 top-2.5 text-white/30" />
                     {search && (
@@ -1681,30 +2292,50 @@ export default function AllotmentExplorer({
                     )}
                   </div>
 
-                  {/* Gender Filters */}
-                  <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
-                    {['ALL', 'Male', 'Female'].map((g) => (
+                  {/* Gender Filters (with Blue for Male and Pink for Female) */}
+                  <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 w-fit">
+                    {[
+                      {
+                        key: 'ALL',
+                        label: 'ALL',
+                        activeClass: 'bg-purple-600 text-white shadow',
+                        inactiveClass: 'text-white/60 hover:text-white',
+                      },
+                      {
+                        key: 'Male',
+                        label: 'Male',
+                        activeClass: 'bg-blue-600 text-white shadow-md shadow-blue-600/40',
+                        inactiveClass: 'text-blue-300/70 hover:text-blue-200',
+                      },
+                      {
+                        key: 'Female',
+                        label: 'Female',
+                        activeClass: 'bg-pink-600 text-white shadow-md shadow-pink-600/40',
+                        inactiveClass: 'text-pink-300/70 hover:text-pink-200',
+                      },
+                    ].map((g) => (
                       <button
-                        key={g}
+                        key={g.key}
                         type="button"
                         onClick={() => {
-                          setGenderFilter(g);
+                          setGenderFilter(g.key);
                           setPage(1);
                         }}
                         className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                          genderFilter === g
-                            ? 'bg-purple-600 text-white shadow'
-                            : 'text-white/60 hover:text-white'
+                          genderFilter === g.key ? g.activeClass : g.inactiveClass
                         }`}
                       >
-                        {g}
+                        {g.label}
                       </button>
                     ))}
                   </div>
+                </div>
 
+                {/* Right Group on PC (or Row 4 on Mobile): Per Page + Export CSV */}
+                <div className="flex flex-wrap items-center justify-between md:justify-end gap-3 shrink-0">
                   {/* Page Size Selector */}
                   <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
-                    <span className="text-[10px] font-bold uppercase text-white/40 px-1.5">Per Page:</span>
+                    <span className="text-[10px] font-bold uppercase text-white/40 px-1.5">PER PAGE:</span>
                     {[25, 50, 75, 100].map((size) => (
                       <button
                         key={size}
@@ -1875,45 +2506,216 @@ export default function AllotmentExplorer({
           </div>
 
           {/* ── Visual Analytics Suite Header ───────────────────────────── */}
-          <div className="pt-6 border-t border-white/[0.08]">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-0.5 text-xs font-semibold text-purple-300 mb-2">
-              <Sparkles size={13} />
-              <span>Admission Analytics</span>
+          <div className="pt-6 border-t border-white/[0.08] space-y-6">
+            <div>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-0.5 text-xs font-semibold text-purple-300 mb-2">
+                <Sparkles size={13} />
+                <span>Admission Analytics &amp; Demographics</span>
+              </div>
+              <h3 className="text-2xl font-bold tracking-tight text-white">
+                Category Demographics &amp; Rank Spread
+              </h3>
+              <p className="text-xs sm:text-sm text-white/50 mt-1">
+                Interactive distribution curves, gender splits, and opening/closing cutoff trajectories.
+              </p>
             </div>
-            <h3 className="text-2xl font-bold tracking-tight text-white">
-              Allotment Insights &amp; Visual Statistics
-            </h3>
-            <p className="text-xs sm:text-sm text-white/50 mt-1">
-              Visual statistical summary of {results.college?.name || selectedCollege} ({selectedBranch}) seat allocation.
-            </p>
-          </div>
 
-          {/* ── Interactive Visualizations Suite ────────────────────────── */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <InteractiveGenderChart
-              candidates={normalizedCandidates}
-              male={stats.male}
-              female={stats.female}
-              maleP={stats.maleP}
-              femaleP={stats.femaleP}
-            />
-            <InteractiveQuartileRegionChart
-              candidates={normalizedCandidates}
-              openingRank={stats.minRank}
-              closingRank={stats.maxRank}
-            />
-          </div>
+            {/* Category Filter Pills for Analytics */}
+            <div className="relative z-10 flex flex-wrap items-center gap-2 p-3.5 rounded-3xl border border-white/[0.08] bg-gradient-to-r from-white/[0.03] via-white/[0.015] to-transparent backdrop-blur-xl">
+              <span className="text-[11px] font-semibold text-white/40 uppercase tracking-wider mr-1.5 flex items-center gap-1.5">
+                <Filter size={12} className="text-purple-400" /> Filter:
+              </span>
+              {(categoryFilters || CATEGORY_FILTERS).map((cat) => {
+                const isSelected = analyticsCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setAnalyticsCategory(cat)}
+                    className={`rounded-xl px-3.5 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 scale-[1.02]'
+                        : 'bg-white/5 border border-white/[0.08] text-white/60 hover:text-white hover:bg-white/10 hover:border-white/15'
+                    }`}
+                  >
+                    {cat === 'ALL' ? 'All Categories' : cat}
+                  </button>
+                );
+              })}
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <InteractiveCategoryChart candidates={normalizedCandidates} />
-            <CategoryClosingRanksBreakdown candidates={normalizedCandidates} />
+            {/* Category-Specific Metrics Summary Card */}
+            {categoryAnalyticsData && (
+              <div ref={analyticsCardRef} className="rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.05] via-black/50 to-black/80 p-6 backdrop-blur-2xl shadow-xl transition-all">
+                {/* Card Top Title Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.06] pb-4 mb-5">
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight">
+                        {analyticsCategory === 'ALL'
+                          ? 'All Categories Overview'
+                          : analyticsCategory === 'SPECIAL'
+                          ? 'Special Reservation Quotas (PH / NCC / CAP / Sports)'
+                          : `${analyticsCategory} Category Highlights`}
+                      </h3>
+                      <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-2.5 py-0.5 text-xs font-mono font-medium text-purple-300">
+                        <AnimatedCounter value={categoryAnalyticsData.totalCandidates} isVisible={analyticsCardVisible} duration={750} /> Allotted
+                      </span>
+                    </div>
+                    <p className="text-xs text-white/40 mt-1">
+                      {analyticsCategory === 'SPECIAL'
+                        ? 'Opening & closing cutoffs across special reservation categories (PWD/PH, NCC, CAP Defence, Sports/SG)'
+                        : 'Opening & closing cutoffs with gender breakdown · Special quotas (PH/NCC/CAP/SG) isolated'}
+                    </p>
+                  </div>
+
+                  {categoryAnalyticsData.specialIgnoredCount > 0 && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 self-start sm:self-auto">
+                      <Shield size={12} className="text-purple-400" />
+                      <span>{categoryAnalyticsData.specialIgnoredCount} Special Quota seat(s) separated</span>
+                    </span>
+                  )}
+                </div>
+
+                {/* 4 Clean Aesthetic Stat Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {/* 1. Category Volume & Gender */}
+                  <div className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 flex flex-col justify-between hover:border-white/15 transition-all duration-200">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium text-white/50 uppercase tracking-wider">Candidate Volume</span>
+                      <Users size={14} className="text-white/30" />
+                    </div>
+                    <div className="my-2.5">
+                      <span className="text-3xl font-mono font-bold text-white tracking-tight">
+                        <AnimatedCounter value={categoryAnalyticsData.totalCandidates} isVisible={analyticsCardVisible} duration={750} />
+                      </span>
+                      <span className="text-xs text-white/40 ml-1.5">seats</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-2.5 border-t border-white/[0.05] text-xs font-mono">
+                      <span className="text-sky-400 font-medium">
+                        ♂ <AnimatedCounter value={categoryAnalyticsData.boyCount} isVisible={analyticsCardVisible} duration={750} /> (
+                        <AnimatedCounter value={categoryAnalyticsData.boyPercent} isVisible={analyticsCardVisible} duration={750} />%)
+                      </span>
+                      <span className="text-white/10">|</span>
+                      <span className="text-pink-400 font-medium">
+                        ♀ <AnimatedCounter value={categoryAnalyticsData.girlCount} isVisible={analyticsCardVisible} duration={750} /> (
+                        <AnimatedCounter value={categoryAnalyticsData.girlPercent} isVisible={analyticsCardVisible} duration={750} />%)
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 2. Overall Category Cutoff */}
+                  <div className="group rounded-2xl border border-purple-500/20 bg-purple-950/15 p-4 flex flex-col justify-between hover:border-purple-500/35 transition-all duration-200">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium text-purple-300/80 uppercase tracking-wider">
+                        {analyticsCategory === 'SPECIAL' ? 'Special Quota Cutoff' : 'Overall Cutoff Range'}
+                      </span>
+                      <Award size={14} className="text-purple-400/60" />
+                    </div>
+                    <div className="my-2 flex items-baseline gap-2">
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Opening</span>
+                        <span className="text-lg font-mono font-bold text-sky-400">
+                          <AnimatedCounter value={categoryAnalyticsData.openingRank} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                      <span className="text-purple-400/60 text-xs">➔</span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Closing</span>
+                        <span className="text-lg font-mono font-bold text-amber-400">
+                          <AnimatedCounter value={categoryAnalyticsData.closingRank} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-white/40 border-t border-white/[0.05] pt-2 font-sans">
+                      {analyticsCategory === 'SPECIAL' ? 'Special reservation rank interval' : 'Full group merit interval'}
+                    </p>
+                  </div>
+
+                  {/* 3. Boys Cutoff */}
+                  <div className="group rounded-2xl border border-sky-500/20 bg-sky-950/15 p-4 flex flex-col justify-between hover:border-sky-500/35 transition-all duration-200">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium text-sky-300/80 uppercase tracking-wider">♂ Boys Cutoff</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                    </div>
+                    <div className="my-2 flex items-baseline gap-2">
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Opening</span>
+                        <span className="text-lg font-mono font-bold text-sky-400">
+                          <AnimatedCounter value={categoryAnalyticsData.boyOpening} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                      <span className="text-sky-400/60 text-xs">➔</span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Closing</span>
+                        <span className="text-lg font-mono font-bold text-sky-300">
+                          <AnimatedCounter value={categoryAnalyticsData.boyClosing} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-sky-300/60 border-t border-white/[0.05] pt-2 font-mono">
+                      <AnimatedCounter value={categoryAnalyticsData.boyCount} isVisible={analyticsCardVisible} duration={750} /> male candidate(s)
+                    </p>
+                  </div>
+
+                  {/* 4. Girls Cutoff */}
+                  <div className="group rounded-2xl border border-pink-500/20 bg-pink-950/15 p-4 flex flex-col justify-between hover:border-pink-500/35 transition-all duration-200">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium text-pink-300/80 uppercase tracking-wider">♀ Girls Cutoff</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-pink-400" />
+                    </div>
+                    <div className="my-2 flex items-baseline gap-2">
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Opening</span>
+                        <span className="text-lg font-mono font-bold text-pink-400">
+                          <AnimatedCounter value={categoryAnalyticsData.girlOpening} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                      <span className="text-pink-400/60 text-xs">➔</span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] text-white/40 uppercase block">Closing</span>
+                        <span className="text-lg font-mono font-bold text-pink-300">
+                          <AnimatedCounter value={categoryAnalyticsData.girlClosing} prefix="#" isVisible={analyticsCardVisible} duration={850} />
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-pink-300/60 border-t border-white/[0.05] pt-2 font-mono">
+                      <AnimatedCounter value={categoryAnalyticsData.girlCount} isVisible={analyticsCardVisible} duration={750} /> female candidate(s)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ── Interactive Visualizations Suite ────────────────────────── */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <InteractiveGenderChart
+                candidates={categoryAnalyticsData?.candidates || normalizedCandidates}
+                male={categoryAnalyticsData ? categoryAnalyticsData.boyCount : stats.male}
+                female={categoryAnalyticsData ? categoryAnalyticsData.girlCount : stats.female}
+                maleP={categoryAnalyticsData ? categoryAnalyticsData.boyPercent : stats.maleP}
+                femaleP={categoryAnalyticsData ? categoryAnalyticsData.girlPercent : stats.femaleP}
+              />
+              <InteractiveQuartileRegionChart
+                candidates={categoryAnalyticsData?.candidates || normalizedCandidates}
+                openingRank={stats.minRank}
+                closingRank={stats.maxRank}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <InteractiveCategoryChart candidates={normalizedCandidates} />
+              <CategoryClosingRanksBreakdown candidates={normalizedCandidates} />
+            </div>
+
+            <RankDistributionHistogram candidates={categoryAnalyticsData?.candidates || normalizedCandidates} />
           </div>
         </div>
       )}
 
       {/* ── Empty State (no query yet) ────────────────────────────────────── */}
       {!hasQueried && !fetching && (
-        <div className="rounded-3xl border border-white/[0.06] bg-black/30 py-20 text-center backdrop-blur-xl">
+        <div className="rounded-3xl border border-white/[0.06] bg-black/30 py-16 text-center backdrop-blur-xl">
           <Database size={40} className="mx-auto mb-4 text-purple-500/40" />
           <p className="text-base font-semibold text-white/40">Select Year, College &amp; Branch above</p>
           <p className="text-sm text-white/20 mt-1">

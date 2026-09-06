@@ -3,6 +3,7 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import AllotmentExplorer from '../../components/ap-eapcet/AllotmentExplorer';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function EapcetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
@@ -37,6 +38,9 @@ export default function EapcetAllotmentsPage() {
 
       {/* Main Explorer */}
       <AllotmentExplorer onDataLoaded={setHasLoadedData} />
+
+      {/* Educational Guide & Allotment Analytics */}
+      <ToolGuideSection toolType="allotments" examName="AP EAPCET" authorityName="APSCHE" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

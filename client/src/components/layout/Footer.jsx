@@ -373,7 +373,7 @@ export default function Footer({ openPanel, setOpenPanel }) {
           <div className="hidden md:block w-48" /> {/* Balanced left spacer */}
           
           <div className="text-center text-gray-400">
-            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.in</strong> — All rights reserved. Data sourced from official counselling portals.
+            © {new Date().getFullYear()} <strong className="text-white">vuelalearn.in</strong> — All rights reserved.
           </div>
           
           <div className="flex items-center gap-3 w-auto md:w-48 justify-center md:justify-end">

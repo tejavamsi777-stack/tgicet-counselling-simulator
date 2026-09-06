@@ -13,6 +13,7 @@ import AdSenseUnit from "../../components/ads/AdSenseUnit";
 import { AnimatePresence } from "framer-motion";
 import { smoothScrollTo } from "../../lib/utils";
 import Seo from "../../components/shared/Seo";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 function mapResults(results = [], gender, year) {
   if (!Array.isArray(results)) return [];
@@ -223,6 +224,9 @@ export default function EcetPredictorPage() {
                 <AdSenseUnit slotName="predictorResults" minHeight={90} />
               </div>
             )}
+
+            {/* Educational Guide & Counselling Methodology */}
+            <ToolGuideSection toolType="predictor" examName="TG ECET" authorityName="TSCHE" />
           </div>
         </main>
       </div>

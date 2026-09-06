@@ -3,6 +3,7 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import IcetAllotmentExplorer from '../../components/icet/IcetAllotmentExplorer';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function IcetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
@@ -37,6 +38,9 @@ export default function IcetAllotmentsPage() {
 
       {/* Main Explorer */}
       <IcetAllotmentExplorer onDataLoaded={setHasLoadedData} />
+
+      {/* Educational Guide & Allotment Analytics */}
+      <ToolGuideSection toolType="allotments" examName="TG ICET" authorityName="TSCHE" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

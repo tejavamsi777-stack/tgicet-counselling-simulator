@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ICET_INSTITUTIONS } from '../src/data/icetInstitutions.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -661,6 +662,108 @@ function generateSmartRouteContent(routePath, defaultTitle, defaultDesc) {
         </main>
       `,
       schemas: [faqJson]
+    };
+  }
+
+  // 10. Individual TG-ICET College Profile Page (/tg-icet/colleges/:code or /tg-icet/colleges/:code/:program)
+  if (p.startsWith('/tg-icet/colleges/')) {
+    const rawPath = p.replace('/tg-icet/colleges/', '').trim();
+    const parts = rawPath.split('/');
+    const code = (parts[0] || 'OUCB').toUpperCase().trim();
+    const progParam = parts[1] ? parts[1].toUpperCase().trim() : null;
+
+    const college = (ICET_INSTITUTIONS || []).find((c) => (c.code || '').toUpperCase() === code);
+    const hasMba = (college?.coursesOffered || []).includes('MBA') || (college?.intake?.mba || 0) > 0;
+    const hasMca = (college?.coursesOffered || []).includes('MCA') || (college?.intake?.mca || 0) > 0;
+
+    const activeProg = progParam || (!hasMba && hasMca ? 'MCA' : 'MBA');
+    const colName = college ? (college.shortName || college.name) : `${code} College`;
+    const fullName = college ? college.name : colName;
+    const progFee = college?.feeByCourse?.[activeProg.toLowerCase()] || college?.annualFee || college?.fee || 35000;
+    const fee = `₹${Number(progFee).toLocaleString()}`;
+    const dist = college?.district || 'Telangana';
+    const univ = college?.university || 'State University';
+    const naac = college?.naac || 'A';
+    const progSeats = activeProg === 'MCA' ? (college?.intake?.mca || 0) : (college?.intake?.mba || 0);
+
+    const title = `${colName} (${code}) ${activeProg} — TG ICET Cutoffs, Fee Structure & Intake 2027`;
+    const desc = `Official TG ICET profile for ${fullName} (${code}) ${activeProg} programme affiliated with ${univ}. Check ${activeProg} closing ranks, annual fee (${fee}), seat intake (${progSeats} seats), and TS ePASS reimbursement.`;
+
+    const collegeFaqs = [
+      {
+        q: `What is the annual tuition fee and TS ePASS eligibility for ${code} ${activeProg}?`,
+        a: `The official convenor tuition fee for ${fullName} ${activeProg} is ${fee}/year. 100% full fee reimbursement is provided for SC/ST students and rank holders under 10,000 under TS ePASS G.O. Ms. No. 244. Standard ₹35,000/yr assistance is granted for BC/EWS/Minority students.`
+      },
+      {
+        q: `What is the sanctioned intake for ${activeProg} at ${code}?`,
+        a: `${fullName} offers ${activeProg} with a sanctioned convenor intake of ${progSeats} seats under convenor quota, affiliated with ${univ}.`
+      },
+      {
+        q: `Where is ${code} located and what is its accreditation?`,
+        a: `${fullName} is located in ${dist}, Telangana. It holds NAAC Grade ${naac} accreditation and is approved by AICTE.`
+      }
+    ];
+
+    const { html: faqHtml, jsonLd: faqJson } = renderFaqs(collegeFaqs);
+
+    const collegeSchema = {
+      "@type": "EducationalOrganization",
+      "name": `${fullName} — ${activeProg}`,
+      "alternateName": `${code} ${activeProg}`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": dist,
+        "addressRegion": "Telangana",
+        "addressCountry": "IN"
+      }
+    };
+
+    return {
+      title: `${title} | Vuela Learn`,
+      desc,
+      body: `
+        <main class="mx-auto max-w-5xl px-4 sm:px-6 py-10 sm:py-16 text-gray-300 space-y-10">
+          <div class="border-b border-white/10 pb-6 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2.5 py-0.5 text-xs font-mono font-bold">${code}</span>
+              <span class="rounded bg-indigo-500/25 text-indigo-200 border border-indigo-500/40 px-2.5 py-0.5 text-xs font-mono font-bold">${activeProg} Programme</span>
+              <span class="rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-0.5 text-xs font-semibold">NAAC ${naac}</span>
+              <span class="rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-2.5 py-0.5 text-xs font-semibold">${univ} Affiliated</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">${fullName} — ${activeProg}</h1>
+            <p class="text-sm text-gray-400">Official TG-ICET ${activeProg} institutional profile, cutoffs, tuition fee, and convenor seat intake.</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center">
+              <div class="text-[11px] text-gray-400 uppercase font-bold">Annual Fee</div>
+              <div class="text-lg font-black text-emerald-400 font-mono mt-1">${fee}</div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center">
+              <div class="text-[11px] text-gray-400 uppercase font-bold">${activeProg} Intake</div>
+              <div class="text-lg font-black text-white font-mono mt-1">${progSeats || 'NA'} Seats</div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center">
+              <div class="text-[11px] text-gray-400 uppercase font-bold">University</div>
+              <div class="text-lg font-black text-cyan-300 truncate mt-1">${univ}</div>
+            </div>
+            <div class="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-center">
+              <div class="text-[11px] text-gray-400 uppercase font-bold">Location</div>
+              <div class="text-lg font-black text-purple-300 truncate mt-1">${dist}</div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-[#0d111d] p-6 space-y-4">
+            <h2 class="text-lg font-bold text-white">TS ePASS Fee Reimbursement &amp; Scholarship Status</h2>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Candidates who secure rank &le; 10,000 in TG-ICET or belong to SC/ST categories are eligible for 100% full fee reimbursement at ${colName} for ${activeProg}. Eligible BC and EWS students receive standard scholarship assistance up to ₹35,000/year under official Government Orders (G.O. Ms. No. 66 &amp; 244).
+            </p>
+          </div>
+
+          ${faqHtml}
+        </main>
+      `,
+      schemas: [collegeSchema, faqJson]
     };
   }
 

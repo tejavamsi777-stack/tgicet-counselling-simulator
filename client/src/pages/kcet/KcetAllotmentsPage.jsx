@@ -4,6 +4,7 @@ import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import AllotmentExplorer from '../../components/eapcet/AllotmentExplorer';
 import { kcetApi } from '../../lib/kcetApi';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function KcetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
@@ -59,6 +60,9 @@ export default function KcetAllotmentsPage() {
           'EWS'
         ]}
       />
+
+      {/* Educational Guide & Allotment Analytics */}
+      <ToolGuideSection toolType="allotments" examName="KCET" authorityName="KEA (Karnataka Examinations Authority)" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

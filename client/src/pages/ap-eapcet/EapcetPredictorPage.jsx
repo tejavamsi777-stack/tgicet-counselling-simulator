@@ -17,6 +17,7 @@ import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsMo
 import { smoothScrollTo } from "../../lib/utils";
 import { useReferenceData } from "../../hooks/useReferenceData";
 import ThreeDotsLoader from "../../components/ui/three-dots-loader";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 // AP EAPCET clean category list (matches InstitutionalScore / APSCHE format)
 const AP_CATEGORIES = [
@@ -417,6 +418,9 @@ export default function EapcetPredictorPage() {
         results={results}
         examSlug="ap-eapcet"
       />
+
+      {/* Educational Guide & Counselling Methodology */}
+      <ToolGuideSection toolType="predictor" examName="AP EAPCET" authorityName="APSCHE" />
     </main>
   );
 }

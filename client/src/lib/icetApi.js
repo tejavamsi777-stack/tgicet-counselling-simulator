@@ -94,17 +94,46 @@ export const icetApi = {
 
         // Category filtering
         if (params.category && params.category.toUpperCase() !== 'ALL') {
-          const cat = params.category.toUpperCase().replace(/[-_\s]/g, '');
-          candidates = candidates.filter((c) => {
-            const casteNorm = String(c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
-            const seatNorm = String(c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
-            if (cat === 'OC') return casteNorm === 'OC';
-            if (cat.startsWith('BC')) return casteNorm.startsWith(cat);
-            if (cat === 'SC') return casteNorm.startsWith('SC');
-            if (cat === 'ST') return casteNorm.startsWith('ST');
-            if (cat === 'EWS') return casteNorm === 'EWS' || seatNorm.includes('EWS');
-            return casteNorm === cat || seatNorm.includes(cat);
-          });
+          if (params.category.toUpperCase() === 'SPECIAL') {
+            candidates = candidates.filter((c) => {
+              const seat = String(c.seatCategory || '').toUpperCase();
+              const sp = String(c.specialCategory || '').toUpperCase();
+              const combined = `${seat} ${sp}`;
+              return (
+                combined.includes('PHA') ||
+                combined.includes('PHC') ||
+                combined.includes('PHH') ||
+                combined.includes('PHM') ||
+                combined.includes('PHO') ||
+                combined.includes('PHV') ||
+                combined.includes('PWD') ||
+                combined.includes('HANDICAP') ||
+                combined.includes('_PH_') ||
+                combined.startsWith('PH_') ||
+                combined.includes('NCC') ||
+                combined.includes('CAP') ||
+                combined.includes('DEFENCE') ||
+                combined.includes('DEF_') ||
+                combined.includes('_SG_') ||
+                combined.startsWith('SG_') ||
+                combined.includes('_SG(') ||
+                combined.includes('SPORTS') ||
+                combined.includes('GAMES')
+              );
+            });
+          } else {
+            const cat = params.category.toUpperCase().replace(/[-_\s]/g, '');
+            candidates = candidates.filter((c) => {
+              const casteNorm = String(c.caste || '').toUpperCase().replace(/[-_\s]/g, '');
+              const seatNorm = String(c.seatCategory || '').toUpperCase().replace(/[-_\s]/g, '');
+              if (cat === 'OC') return casteNorm === 'OC' && !seatNorm.includes('EWS') && casteNorm !== 'EWS';
+              if (cat.startsWith('BC')) return casteNorm.startsWith(cat);
+              if (cat === 'SC') return casteNorm.startsWith('SC');
+              if (cat === 'ST') return casteNorm.startsWith('ST');
+              if (cat === 'EWS') return casteNorm === 'EWS' || seatNorm.includes('EWS');
+              return casteNorm === cat || seatNorm.includes(cat);
+            });
+          }
         }
 
         // Gender filtering

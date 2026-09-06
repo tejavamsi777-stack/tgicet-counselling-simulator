@@ -10,7 +10,9 @@ import PhaseScheduleTable from '../../components/icet/PhaseScheduleTable';
 import AdmissionConditions from '../../components/icet/AdmissionConditions';
 import EligibilityMatrix from '../../components/icet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/icet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/icet/CutoffTrendAnalyzer';
+import TopIcetCollegesExplorer from '../../components/icet/TopIcetCollegesExplorer';
+import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
+import ExamDocumentsOverview from '../../components/shared/ExamDocumentsOverview';
 import CommunityAlertsBanner from '../../components/icet/CommunityAlertsBanner';
 import FaqSection from '../../components/shared/FaqSection';
 import { TG_ICET_FAQS } from '../../data/faqsData';
@@ -117,11 +119,33 @@ export default function IcetHome() {
       </div>
 
       {/* 7 Core Action Cards Grid with Search Tab */}
-      <ExamToolsSection tools={ICET_TOOLS} title="TG ICET 2027 Admissions Suite" />
+      <ExamToolsSection
+        tools={ICET_TOOLS}
+        title="TG ICET 2027 Admissions Suite"
+        showExploreColleges={true}
+        exploreUrl="/tg-icet/colleges"
+        exploreLabel="Explore MBA & MCA Colleges"
+        mobileSingleBlock={true}
+      />
+
+      <SectionDivider />
+
+      {/* TS ePASS Fee Reimbursement & Scholarship Calculator for TG ICET (₹27k Cap & OUCB Regular Free) */}
+      <div className="relative z-30">
+        <FeeReimbursementCalculator exam="tg-icet" />
+      </div>
 
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
         <AdSenseUnit slotName="examBanner" minHeight={90} />
+      </div>
+
+      <SectionDivider />
+
+      {/* Real-time Scraped Official Circulars & Notifications */}
+      <div className="relative z-20">
+        <h2 className="text-xl font-bold text-white mb-4">Official Circulars &amp; Notifications</h2>
+        <LiveNotificationsStream />
       </div>
 
       <SectionDivider />
@@ -133,22 +157,22 @@ export default function IcetHome() {
         <AdmissionStatusBanner phases={data?.phases || []} year={data?.year || '2027'} />
       )}
 
-      {/* Real-time Scraped Official Circulars */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold text-white mb-4">Official Circulars &amp; Notifications</h2>
-        <LiveNotificationsStream />
+      <SectionDivider />
+
+      {/* Documents Needed & HLC Verification Checklist */}
+      <div className="relative z-20">
+        <ExamDocumentsOverview examName="TG ICET" checklistPath="/tg-icet/documents" />
       </div>
 
       <SectionDivider />
 
-      {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
-      <div className="relative z-30 mb-6">
-        <TopCollegesLeaderboard />
+      {/* Top MBA & MCA Colleges Directory & Profiles Explorer (Tight-Tight Banner) */}
+      <div className="relative z-20">
+        <TopIcetCollegesExplorer />
       </div>
 
-      {/* 3-Year Cutoff Trajectory */}
-      <div className="my-8">
-        <CutoffTrendAnalyzer />
+      <div className="mt-8 relative z-10">
+        <TopCollegesLeaderboard />
       </div>
 
       <SectionDivider />

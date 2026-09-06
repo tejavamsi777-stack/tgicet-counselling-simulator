@@ -5,16 +5,18 @@ import { eapcetApi } from '../../lib/eapcetApi';
 import { apEapcetApi } from '../../lib/apEapcetApi';
 import SearchableSelect from './SearchableSelect';
 import { TELANGANA_ENGINEERING_COLLEGES } from '../../data/telanganaCollegesData';
+import { ICET_INSTITUTIONS } from '../../data/icetInstitutions';
 
 /**
  * Official TS ePASS & AP Post Matric Scholarships (RTF) Fee Reimbursement Calculator
  */
-export function calculateReimbursement({ category, rank, annualFee = 0, incomeUnderThreshold = true, isAp = false }) {
+export function calculateReimbursement({ category, rank, annualFee = 0, incomeUnderThreshold = true, isAp = false, isIcet = false, collegeCode = '' }) {
   if (!annualFee) return null;
 
   const cat = String(category || 'OC').toUpperCase();
   const r = Number(rank) || 999999;
   const fee = Number(annualFee) || 0;
+  const upperCode = String(collegeCode || '').toUpperCase().trim();
 
   if (isAp) {
     // ── AP Post Matric Scholarships (RTF) Rules ──────────────────────────
@@ -63,7 +65,87 @@ export function calculateReimbursement({ category, rank, annualFee = 0, incomeUn
     };
   }
 
-  // ── TG ePASS Rules ──────────────────────────────────────────────────
+  // ── TG ICET ePASS Rules ─────────────────────────────────────────────
+  if (isIcet) {
+    if (!incomeUnderThreshold) {
+      return {
+        eligible: false,
+        amount: 0,
+        netFee: fee,
+        floorDeposit: 5000,
+        reason: 'Family annual income exceeds MeeSeva income certificate limit (₹1.5 Lakh rural / ₹2.0 Lakh urban). Candidate is not eligible for fee reimbursement.',
+        badge: 'NOT ELIGIBLE',
+      };
+    }
+
+    // SC / ST Candidates: 100% Full Tuition Fee Reimbursement for all TG ICET colleges
+    if (cat.includes('SC') || cat.includes('ST')) {
+      return {
+        eligible: true,
+        amount: fee,
+        netFee: 0,
+        floorDeposit: 5000,
+        reason: '100% Full Fee Reimbursement granted per G.O. Ms. No. 33 (SC/ST Quota) for TG ICET postgraduate courses.',
+        badge: '100% FULL REIMBURSEMENT',
+      };
+    }
+
+    // Check if university campus / constituent college (e.g. OUCB Regular vs OUCBSF Self-Finance)
+    const isOuRegular = upperCode === 'OUCB';
+    const isOuSelfFinance = upperCode === 'OUCBSF' || upperCode === 'OUCESF';
+    const isUnivCampusRegular = ['OUCB', 'JNTH', 'KUCS', 'KUCV', 'OUNP', 'OUSP', 'SVHU', 'TUNZ'].includes(upperCode);
+
+    // For BC / EWS / Minority with valid income certificate:
+    // In Osmania University regular campus (OUCB ₹35,000 fee), government university grant covers 100% tuition fee.
+    // In self-finance courses (OUCBSF ₹40,000 fee) or private colleges, standard reimbursement is capped at ₹27,000/yr per TSCHE TG ICET norms.
+    if (isOuRegular || (isUnivCampusRegular && fee <= 35000)) {
+      return {
+        eligible: true,
+        amount: fee,
+        netFee: 0,
+        floorDeposit: 5000,
+        reason: `100% Full Tuition Fee Reimbursed for regular University Campus seat (${upperCode}). In OUCB regular MBA, eligible BC/EWS/Minority/SC/ST candidates get complete tuition fee coverage (Net Fee: ₹0).`,
+        badge: '100% FULL REIMBURSEMENT (OU CAMPUS)',
+      };
+    }
+
+    if (isOuSelfFinance) {
+      const amount = Math.min(27000, fee);
+      return {
+        eligible: true,
+        amount,
+        netFee: Math.max(0, fee - amount),
+        floorDeposit: 5000,
+        reason: `TS ePASS reimburses standard ₹27,000/year for Self-Finance course (${upperCode} fee ₹${fee.toLocaleString()}). Student pays remaining ₹${(fee - amount).toLocaleString()} balance.`,
+        badge: '₹27,000 / YR REIMBURSEMENT (SELF-FINANCE)',
+      };
+    }
+
+    // General ICET private colleges / self-finance institutes for BC / EWS / Minority:
+    if (cat.includes('BC') || cat.includes('EWS') || cat.includes('MIN')) {
+      const amount = Math.min(27000, fee);
+      return {
+        eligible: true,
+        amount,
+        netFee: Math.max(0, fee - amount),
+        floorDeposit: 5000,
+        reason: 'Standard ₹27,000/year ePASS Reimbursement granted for TG ICET (MBA/MCA) per TSCHE regulations. Student pays remaining balance.',
+        badge: '₹27,000 / YR REIMBURSEMENT',
+      };
+    }
+
+    // OC Candidates without EWS:
+    return {
+      eligible: false,
+      amount: 0,
+      netFee: fee,
+      floorDeposit: 5000,
+      reason: 'OC candidates without EWS quota pay full tuition fee.',
+      badge: 'FULL FEE PAYABLE',
+    };
+  }
+
+  // ── TG EAPCET / Engineering ePASS Rules ─────────────────────────────
   if (!incomeUnderThreshold) {
     return {
       eligible: false,
@@ -148,21 +230,26 @@ const FALLBACK_TSCHE_COLLEGES = [
 
 export default function FeeReimbursementCalculator({
   collegeCodeProp,
+  collegeNameProp,
   annualFeeProp,
   branchDetailsProp,
+  initialBranchProp,
   exam,
   theme = 'dark',
 }) {
   const isAp = exam === 'ap-eapcet' || (typeof window !== 'undefined' && window.location.pathname.includes('ap-eapcet'));
-  const [collegesList, setCollegesList] = useState(isAp ? FALLBACK_APSCHE_COLLEGES : FALLBACK_TSCHE_COLLEGES);
+  const isIcet = exam === 'tg-icet' || exam === 'icet' || (typeof window !== 'undefined' && window.location.pathname.includes('icet'));
+  const [collegesList, setCollegesList] = useState(
+    isAp ? FALLBACK_APSCHE_COLLEGES : isIcet ? (ICET_INSTITUTIONS || []) : FALLBACK_TSCHE_COLLEGES
+  );
   const [collegeBranchesMap, setCollegeBranchesMap] = useState({});
-  const [metaLoading, setMetaLoading] = useState(true);
+  const [metaLoading, setMetaLoading] = useState(!isIcet);
 
   // Re-ordered Form State: 1. Rank -> 2. Category -> 3. College -> 4. Branch -> 5. Income Status
   const [rank, setRank] = useState('');
   const [category, setCategory] = useState('');
   const [selectedCollege, setSelectedCollege] = useState(collegeCodeProp || '');
-  const [selectedBranch, setSelectedBranch] = useState('');
+  const [selectedBranch, setSelectedBranch] = useState(initialBranchProp || '');
   
   // Income status: null = not selected yet, 'VALID' = valid MeeSeva income cert, 'INVALID' = exceeds income limit
   const [incomeStatus, setIncomeStatus] = useState(null);
@@ -174,8 +261,31 @@ export default function FeeReimbursementCalculator({
     }
   }, [collegeCodeProp]);
 
+  // Sync initialBranchProp if provided
+  useEffect(() => {
+    if (initialBranchProp) {
+      setSelectedBranch(initialBranchProp);
+    }
+  }, [initialBranchProp]);
+
+  // Auto-select initial branch if branchDetailsProp has 1 branch or first branch
+  useEffect(() => {
+    if (branchDetailsProp && branchDetailsProp.length > 0 && !selectedBranch) {
+      const firstBranch = branchDetailsProp[0];
+      const code = typeof firstBranch === 'string' ? firstBranch : firstBranch.code;
+      if (code) {
+        setSelectedBranch(code);
+      }
+    }
+  }, [branchDetailsProp, selectedBranch]);
+
   useEffect(() => {
     let isMounted = true;
+    if (isIcet) {
+      setCollegesList(ICET_INSTITUTIONS || []);
+      setMetaLoading(false);
+      return;
+    }
     // Set immediate authentic state from local dataset according to state exam
     const fallbackList = isAp ? FALLBACK_APSCHE_COLLEGES : FALLBACK_TSCHE_COLLEGES;
     setCollegesList(fallbackList);
@@ -200,13 +310,17 @@ export default function FeeReimbursementCalculator({
     return () => {
       isMounted = false;
     };
-  }, [isAp]);
+  }, [isAp, isIcet]);
 
   // Active college object
   const currentCollege = useMemo(() => {
     if (!selectedCollege) return null;
+    if (isIcet) {
+      const icetCol = (ICET_INSTITUTIONS || []).find((c) => (c.code || '').toUpperCase() === selectedCollege.toUpperCase());
+      if (icetCol) return icetCol;
+    }
     return collegesList.find((c) => c.code.toUpperCase() === selectedCollege.toUpperCase()) || null;
-  }, [collegesList, selectedCollege]);
+  }, [collegesList, selectedCollege, isIcet]);
 
   // Robust Available branches resolver
   const availableBranches = useMemo(() => {
@@ -229,7 +343,22 @@ export default function FeeReimbursementCalculator({
       }
     }
 
-    // 3. TG local master dataset matching college code
+    // 3. ICET local master dataset matching college code
+    if (isIcet) {
+      const icetCol = (ICET_INSTITUTIONS || []).find((c) => (c.code || '').toUpperCase() === selectedCollege.toUpperCase());
+      if (icetCol) {
+        const list = [];
+        if ((icetCol.coursesOffered || []).includes('MBA') || (icetCol.intake?.mba || 0) > 0) {
+          list.push({ code: 'MBA', name: 'Master of Business Administration (MBA)', fee: icetCol.feeByCourse?.mba || icetCol.annualFee || 35000 });
+        }
+        if ((icetCol.coursesOffered || []).includes('MCA') || (icetCol.intake?.mca || 0) > 0) {
+          list.push({ code: 'MCA', name: 'Master of Computer Applications (MCA)', fee: icetCol.feeByCourse?.mca || icetCol.annualFee || 35000 });
+        }
+        if (list.length > 0) return list;
+      }
+    }
+
+    // 4. TG local master dataset matching college code
     const localTgCol = TELANGANA_ENGINEERING_COLLEGES.find((c) => c.code.toUpperCase() === selectedCollege.toUpperCase());
     if (localTgCol) {
       if (localTgCol.branch_details && localTgCol.branch_details.length > 0) {
@@ -240,10 +369,10 @@ export default function FeeReimbursementCalculator({
       }
     }
 
-    // 3. API map fallback
+    // 5. API map fallback
     const apiBranches = collegeBranchesMap[selectedCollege.toUpperCase()] || [];
     return apiBranches;
-  }, [selectedCollege, collegeCodeProp, branchDetailsProp, collegeBranchesMap]);
+  }, [selectedCollege, collegeCodeProp, branchDetailsProp, collegeBranchesMap, isAp, isIcet]);
 
   // Annual fee calculation (Branch-wise or College-wise)
   const currentAnnualFee = useMemo(() => {
@@ -269,8 +398,10 @@ export default function FeeReimbursementCalculator({
       annualFee: currentAnnualFee,
       incomeUnderThreshold: incomeStatus === 'VALID',
       isAp,
+      isIcet,
+      collegeCode: selectedCollege,
     });
-  }, [selectedCollege, currentAnnualFee, category, rank, incomeStatus, isAp]);
+  }, [selectedCollege, currentAnnualFee, category, rank, incomeStatus, isAp, isIcet]);
 
   
   const isLight = theme === 'light';
@@ -306,7 +437,7 @@ export default function FeeReimbursementCalculator({
         <div>
           <label className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1 ${isLight ? 'text-amber-800' : 'text-amber-300'}`}>
             <span className={`flex h-3.5 w-3.5 items-center justify-center rounded-full text-[8px] font-black border font-mono ${isLight ? 'bg-amber-100 text-amber-800 border-amber-300' : 'bg-amber-500/20 text-amber-300 border-amber-500/40'}`}>1</span>
-            {isAp ? 'EAPCET Rank' : 'TG Rank'}
+            {isAp ? 'EAPCET Rank' : isIcet ? 'TG ICET Rank' : 'TG Rank'}
           </label>
           <input
             type="number"
@@ -353,7 +484,11 @@ export default function FeeReimbursementCalculator({
           </label>
           {collegeCodeProp ? (
             <div className={`w-full rounded-lg border px-2.5 py-1.5 text-xs font-bold truncate ${isLight ? 'border-cyan-200 bg-cyan-50 text-cyan-900' : 'border-cyan-500/30 bg-cyan-500/10 text-cyan-200'}`}>
-              {collegeCodeProp} — {currentCollege?.name || 'Selected College'}
+              {(() => {
+                const rawName = collegeNameProp || currentCollege?.shortName || currentCollege?.name || 'Selected College';
+                const cleanName = rawName.replace(new RegExp(`^${collegeCodeProp}\\s*[-–—:]\\s*`, 'i'), '').trim();
+                return `${collegeCodeProp} — ${cleanName}`;
+              })()}
             </div>
           ) : (
             <SearchableSelect
@@ -377,11 +512,11 @@ export default function FeeReimbursementCalculator({
           )}
         </div>
 
-        {/* Step 4: Branch Selection */}
+        {/* Step 4: Branch / Course Selection */}
         <div>
           <label className={`text-[10px] font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1 ${isLight ? 'text-emerald-800' : 'text-emerald-300'}`}>
             <span className={`flex h-3.5 w-3.5 items-center justify-center rounded-full text-[8px] font-black border font-mono ${isLight ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'}`}>4</span>
-            Branch
+            {isIcet ? 'Course / Programme' : 'Branch'}
           </label>
           <select
             value={selectedBranch}
@@ -395,8 +530,8 @@ export default function FeeReimbursementCalculator({
               {!selectedCollege
                 ? '-- Select College First --'
                 : availableBranches.length === 0
-                ? '-- All Branches --'
-                : '-- Select Branch --'}
+                ? (isIcet ? '-- All Programmes --' : '-- All Branches --')
+                : (isIcet ? '-- Select Course / Programme --' : '-- Select Branch --')}
             </option>
             {availableBranches.map((br) => {
               const code = typeof br === 'string' ? br : br.code;

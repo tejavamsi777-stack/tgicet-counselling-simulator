@@ -98,11 +98,14 @@ export default function SearchableSelect({
             : "border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/[0.08]"
         }`}
       >
-        <span className="truncate flex-1 font-medium block">
+        <span className="flex-1 font-medium block min-w-0">
           {loading ? (
             <ThreeDotsLoader label={loadingLabel} dotClassName="bg-purple-400" />
           ) : selectedOption ? (
-            <span className="text-white truncate block">
+            <span
+              className="text-white block whitespace-normal break-words leading-tight py-0.5 line-clamp-2"
+              title={selectedOption.label}
+            >
               {selectedOption.label}
             </span>
           ) : (
@@ -186,12 +189,12 @@ export default function SearchableSelect({
                           : "bg-white/[0.03] text-gray-200 hover:bg-purple-600/20 hover:text-white hover:border-purple-500/40 border border-transparent"
                       }`}
                     >
-                      <div className="flex flex-col gap-1 truncate pr-2">
-                        <span className="truncate font-semibold text-white text-xs">
+                      <div className="flex flex-col gap-0.5 min-w-0 flex-1 pr-2">
+                        <span className="font-semibold text-white text-xs whitespace-normal break-words leading-snug">
                           {opt.label}
                         </span>
                         {opt.sublabel && (
-                          <span className="text-[11px] text-gray-400 truncate">
+                          <span className="text-[11px] text-gray-400 whitespace-normal break-words leading-snug">
                             {opt.sublabel}
                           </span>
                         )}

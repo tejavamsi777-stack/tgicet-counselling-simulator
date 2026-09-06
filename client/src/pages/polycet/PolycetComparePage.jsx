@@ -2,6 +2,7 @@ import { ArrowLeftRight } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import PolycetCollegeComparisonTool from '../../components/polycet/PolycetCollegeComparisonTool';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function PolycetComparePage() {
   return (
@@ -32,6 +33,9 @@ export default function PolycetComparePage() {
       </div>
 
       <PolycetCollegeComparisonTool />
+
+      {/* Educational Guide & Comparison Methodology */}
+      <ToolGuideSection toolType="compare" examName="TG POLYCET" authorityName="SBTET Telangana" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

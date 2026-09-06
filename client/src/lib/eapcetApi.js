@@ -18,6 +18,10 @@ export const eapcetApi = {
     const q = new URLSearchParams(params).toString();
     return api.get(`/eapcet/allotments?${q}`);
   },
+  getAllotmentTrajectory: (params = {}) => {
+    const q = new URLSearchParams(params).toString();
+    return api.get(`/eapcet/allotments/trajectory?${q}`);
+  },
 };
 
 export const checklistApi = {

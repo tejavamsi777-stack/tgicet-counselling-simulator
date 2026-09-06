@@ -1,51 +1,58 @@
-import { ArrowRight, ClipboardList, Target, FileCheck, ArrowLeftRight, Database } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { GlowCard } from '../../components/ui/spotlight-card';
-import { GlassButton } from '../../components/ui/glass-button';
+import { Target, FileCheck, ArrowLeftRight, Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import AdmissionStatusBanner from '../../components/pgecet/AdmissionStatusBanner';
 import LiveNotificationsStream from '../../components/pgecet/LiveNotificationsStream';
 import PhaseScheduleTable from '../../components/pgecet/PhaseScheduleTable';
 import TopCollegesLeaderboard from '../../components/pgecet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/pgecet/CutoffTrendAnalyzer';
+import ExamDocumentsOverview from '../../components/shared/ExamDocumentsOverview';
 import AdmissionConditions from '../../components/pgecet/AdmissionConditions';
 import EligibilityMatrix from '../../components/pgecet/EligibilityMatrix';
 import CertificateChecklist from '../../components/pgecet/CertificateChecklist';
 import FaqSection from '../../components/shared/FaqSection';
-import { TG_PGECET_FAQS } from '../../data/faqsData';
+import ExamToolsSection from '../../components/shared/ExamToolsSection';
+
+const PGECET_TOOLS = [
+  {
+    icon: Target,
+    title: "College Predictor",
+    detail: "Find eligible M.Tech/M.E. colleges based on PGECET or GATE rank, category & specialization.",
+    to: "/tg-pgecet/predictor",
+    action: "Predict Now",
+    tag: "Predictors",
+    keywords: ["predictor", "mtech", "me", "gate", "pgecet", "colleges", "cutoff"],
+  },
+  {
+    icon: Database,
+    title: "Seat Allotments",
+    detail: "Official 2026 college-wise allotment lists — every candidate, percentile, and category quota.",
+    to: "/tg-pgecet/allotments",
+    action: "Explore Data",
+    tag: "Allotments",
+    keywords: ["allotments", "candidate wise", "closing ranks", "seat matrix"],
+  },
+  {
+    icon: ArrowLeftRight,
+    title: "Top PG Colleges",
+    detail: "Compare top Telangana institutions (OUCE, JNTUH, CBIT, VNR, Vasavi) across PG specializations.",
+    to: "/tg-pgecet/compare",
+    action: "View Ranking",
+    tag: "Comparison",
+    keywords: ["compare", "ranking", "ouce", "jntuh", "cbit", "vnr", "vasavi"],
+  },
+  {
+    icon: FileCheck,
+    title: "HLC Checklist",
+    detail: "Interactive document checklist for Online Certificate Verification with MeeSeva rules.",
+    to: "/tg-pgecet/documents",
+    action: "Check Docs",
+    tag: "Documents",
+    keywords: ["documents", "hlc", "verification", "certificates", "meeseva"],
+  },
+];
 
 function SectionDivider() {
   return <div className="my-12 border-t border-white/[0.06]" />;
-}
-
-function FeatureCard({ icon: Icon, title, detail, to, action }) {
-  return (
-    <Link to={to} className="group relative block h-full w-full outline-none">
-      <GlowCard customSize={true} tilt={false} glowColor="purple" className="flex h-full flex-col justify-between p-5">
-        <div>
-          <div className="glass-button-wrap relative mb-3.5 inline-flex">
-            <div className="glass-button flex h-10 w-10 items-center justify-center rounded-xl border border-white/30 bg-gradient-to-br from-white/20 via-white/10 to-white/5 text-purple-300 backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)]">
-              <Icon size={18} className="text-purple-300" />
-            </div>
-            <div className="glass-button-shadow rounded-xl"></div>
-          </div>
-          <h2 className="text-base font-bold tracking-tight text-white">{title}</h2>
-          <p className="mt-1.5 text-xs font-medium leading-relaxed text-gray-300/90">{detail}</p>
-        </div>
-        <div className="mt-5">
-          <GlassButton
-            size="sm"
-            variant="ghost"
-            className="w-full justify-between text-xs font-semibold text-purple-300 group-hover:text-white"
-          >
-            <span>{action}</span>
-            <ArrowRight size={13} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-          </GlassButton>
-        </div>
-      </GlowCard>
-    </Link>
-  );
 }
 
 export default function PgecetHome() {
@@ -73,37 +80,8 @@ export default function PgecetHome() {
         </p>
       </div>
 
-      {/* 5 Core Action Cards Grid */}
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <FeatureCard
-          icon={Target}
-          title="College Predictor"
-          detail="Find eligible M.Tech/M.E. colleges based on PGECET or GATE rank, category & specialization."
-          to="/tg-pgecet/predictor"
-          action="Predict Now"
-        />
-        <FeatureCard
-          icon={Database}
-          title="Seat Allotments"
-          detail="Official 2026 college-wise allotment lists — every candidate, percentile, and category quota."
-          to="/tg-pgecet/allotments"
-          action="Explore Data"
-        />
-        <FeatureCard
-          icon={ArrowLeftRight}
-          title="Top PG Colleges"
-          detail="Compare top Telangana institutions (OUCE, JNTUH, CBIT, VNR, Vasavi) across PG specializations."
-          to="/tg-pgecet/compare"
-          action="View Ranking"
-        />
-        <FeatureCard
-          icon={FileCheck}
-          title="HLC Checklist"
-          detail="Interactive document checklist for Online Certificate Verification with MeeSeva rules."
-          to="/tg-pgecet/documents"
-          action="Check Docs"
-        />
-      </div>
+      {/* 4 Core Action Tools with Unified Mobile Block */}
+      <ExamToolsSection tools={PGECET_TOOLS} title="TG PGECET Admissions Suite" />
 
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
@@ -116,22 +94,22 @@ export default function PgecetHome() {
       <AdmissionStatusBanner year="2026" />
 
       {/* Real-time Scraped Official Circulars */}
-      <div className="mt-8">
+      <div className="relative z-20">
         <LiveNotificationsStream />
       </div>
 
       <SectionDivider />
 
-      {/* Top Engineering Colleges Leaderboard */}
-      <div>
-        <TopCollegesLeaderboard />
+      {/* Documents Needed & HLC Checklist */}
+      <div className="relative z-20">
+        <ExamDocumentsOverview examName="TG PGECET" checklistPath="/tg-pgecet/documents" />
       </div>
 
       <SectionDivider />
 
-      {/* Specialization Cutoff Trajectory & Trends */}
-      <div>
-        <CutoffTrendAnalyzer />
+      {/* Top Engineering Colleges Leaderboard */}
+      <div className="relative z-20">
+        <TopCollegesLeaderboard />
       </div>
 
       <SectionDivider />

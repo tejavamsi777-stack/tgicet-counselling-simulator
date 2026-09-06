@@ -72,18 +72,18 @@ export default function TopCollegesLeaderboard() {
   }, [selectedProgram, sortBy]);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-4 sm:p-5">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-purple-300">
-              <Award size={16} />
+          <div className="flex items-center gap-2">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-purple-500/30 bg-purple-500/10 text-purple-300">
+              <Award size={15} />
             </div>
-            <h3 className="text-xl font-bold text-white">Top 5 MBA &amp; MCA Institutions</h3>
+            <h3 className="text-base sm:text-lg font-bold text-white">Top 5 MBA &amp; MCA Institutions</h3>
           </div>
-          <p className="text-xs text-white/50 mt-1">
-            Top 5 premier institutions ranked by cutoff competitiveness, verified placements, and accreditation
+          <p className="text-[11px] text-white/50 mt-0.5">
+            Top 5 premier institutions ranked by cutoff competitiveness, verified placements & accreditation
           </p>
         </div>
 
@@ -96,31 +96,32 @@ export default function TopCollegesLeaderboard() {
       </div>
 
       {/* Filter & Sort Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/[0.06] pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3.5 border-b border-white/[0.06] pb-3">
         {/* Program Selector Tabs */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none max-w-full">
+        <div className="flex gap-1.5">
           {PROGRAM_OPTIONS.map((p) => (
             <button
               key={p.code}
+              type="button"
               onClick={() => setSelectedProgram(p.code)}
-              className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer ${
+              className={`rounded-full px-3 py-1 text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 selectedProgram === p.code
-                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40'
-                  : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
+                  ? 'bg-purple-500/20 text-purple-200 border border-purple-500/40 shadow-sm'
+                  : 'text-white/50 hover:text-white hover:bg-white/5 border border-transparent'
               }`}
             >
-              {p.code}
+              {p.code} ({p.label.split('(')[1]?.replace(')', '') || p.code})
             </button>
           ))}
         </div>
 
         {/* Sort Dropdown */}
         <div className="flex items-center gap-2">
-          <span className="text-[11px] text-white/40 font-medium">Sort by:</span>
+          <span className="text-[10px] text-white/40 font-medium">Sort by:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="rounded-lg border border-white/10 bg-black/60 px-2.5 py-1 text-xs font-medium text-white/80 focus:border-purple-500 focus:outline-none"
+            className="rounded-lg border border-white/10 bg-black/60 px-2 py-1 text-xs font-medium text-white/80 focus:border-purple-500 focus:outline-none"
           >
             {SORT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value} className="bg-neutral-900 text-white">
@@ -131,15 +132,15 @@ export default function TopCollegesLeaderboard() {
         </div>
       </div>
 
-      {/* Colleges List - Top 5 */}
+      {/* Colleges List */}
       {loading ? (
-        <div className="space-y-3">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="h-24 rounded-xl bg-white/5 animate-pulse" />
+        <div className="space-y-2">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />
           ))}
         </div>
       ) : (
-        <div className="space-y-3.5">
+        <div className="space-y-2.5">
           {colleges.map((c, idx) => {
             const progLower = selectedProgram.toLowerCase();
             const cutoffInfo = c.cutoffHistory?.['2025']?.[progLower] || c.cutoffs?.[selectedProgram] || {};
@@ -150,24 +151,30 @@ export default function TopCollegesLeaderboard() {
             return (
               <div
                 key={c.code}
-                className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 sm:p-5 hover:border-purple-500/30 hover:bg-purple-950/15 transition-all duration-300"
+                className="group relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 sm:p-3.5 hover:border-purple-500/30 hover:bg-purple-950/15 transition-all duration-300"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                   {/* Left: Code, Name, Badges */}
-                  <div className="flex items-start gap-3.5 min-w-0">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 font-bold text-sm text-purple-300">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/10 font-bold text-xs text-purple-300">
                       #{idx + 1}
                     </div>
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-purple-300 bg-purple-950/40 px-2 py-0.5 rounded border border-purple-500/30">
+                        <span className="font-mono text-[11px] font-bold text-purple-300 bg-purple-950/40 px-1.5 py-0.2 rounded border border-purple-500/30">
                           {c.code}
                         </span>
-                        <h4 className="font-bold text-white text-sm sm:text-base truncate max-w-md" title={c.name}>
+                        <Link
+                          to={`/tg-icet/colleges/${c.code}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-bold text-white text-xs sm:text-sm truncate max-w-md hover:text-purple-300 transition-colors"
+                          title={c.name}
+                        >
                           {c.shortName || c.name}
-                        </h4>
+                        </Link>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2 mt-1.5 text-[11px] text-white/50">
+                      <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[10px] text-white/50">
                         <span>{c.district}</span>
                         <span>•</span>
                         <span className="text-purple-300/80">{c.university || c.affiliation || 'OU'}</span>
@@ -186,7 +193,7 @@ export default function TopCollegesLeaderboard() {
                   </div>
 
                   {/* Middle / Right: Metrics */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:gap-6 pt-3 lg:pt-0 border-t lg:border-t-0 border-white/[0.06]">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 lg:gap-5 pt-2.5 lg:pt-0 border-t lg:border-t-0 border-white/[0.06]">
                     {/* 2025 Cutoff */}
                     <div className="rounded-lg bg-white/[0.02] p-2 sm:p-0">
                       <p className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">2025 OC Cutoff</p>

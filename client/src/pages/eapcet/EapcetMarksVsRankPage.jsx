@@ -4,6 +4,7 @@ import { BarChart3, ArrowRight, GraduationCap, Leaf, Info, ChevronDown, ChevronU
 import { GlassButton } from '../../components/ui/glass-button';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 // ─── Calibrated data tables built from authentic 2026 TG EAPCET results ──────
 // Anchors:
@@ -426,6 +427,9 @@ export default function EapcetMarksVsRankPage() {
           </div>
         )}
       </div>
+
+      {/* Educational Guide & Marks vs Rank Dynamics */}
+      <ToolGuideSection toolType="marks_vs_rank" examName="TG EAPCET" authorityName="TSCHE" />
 
       {/* Bottom Ad */}
       <div className="mt-12 w-full">

@@ -3,8 +3,8 @@ import { ArrowLeft, ArrowLeftRight } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import CollegeComparisonTool from '../../components/icet/CollegeComparisonTool';
 import TopCollegesLeaderboard from '../../components/icet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/icet/CutoffTrendAnalyzer';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function IcetComparePage() {
   const [searchParams] = useSearchParams();
@@ -54,15 +54,13 @@ export default function IcetComparePage() {
         <AdSenseUnit slotName="compareBanner" minHeight={90} />
       </div>
 
-      {/* 4-Year Cutoff Trajectory */}
-      <div className="my-10">
-        <CutoffTrendAnalyzer />
-      </div>
-
       {/* Top Leaderboard */}
       <div className="my-10">
         <TopCollegesLeaderboard />
       </div>
+
+      {/* Educational Guide & Comparison Methodology */}
+      <ToolGuideSection toolType="compare" examName="TG ICET" authorityName="TSCHE" />
     </main>
   );
 }

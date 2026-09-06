@@ -2,6 +2,7 @@ import { ArrowLeftRight } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import PgecetCollegeComparisonTool from '../../components/pgecet/PgecetCollegeComparisonTool';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function PgecetComparePage() {
   return (
@@ -32,6 +33,9 @@ export default function PgecetComparePage() {
       </div>
 
       <PgecetCollegeComparisonTool />
+
+      {/* Educational Guide & Comparison Methodology */}
+      <ToolGuideSection toolType="compare" examName="TG PGECET" authorityName="TSCHE" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

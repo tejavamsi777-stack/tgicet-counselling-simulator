@@ -10,7 +10,7 @@ import PhaseScheduleTable from '../../components/ecet/PhaseScheduleTable';
 import AdmissionConditions from '../../components/ecet/AdmissionConditions';
 import EligibilityMatrix from '../../components/ecet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/ecet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/ecet/CutoffTrendAnalyzer';
+import ExamDocumentsOverview from '../../components/shared/ExamDocumentsOverview';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
 import FaqSection from '../../components/shared/FaqSection';
 import { TG_ECET_FAQS } from '../../data/faqsData';
@@ -127,22 +127,22 @@ export default function EcetHome() {
       )}
 
       {/* Real-time Scraped Official Circulars */}
-      <div className="mt-8">
+      <div className="relative z-20">
         <LiveNotificationsStream />
       </div>
 
       <SectionDivider />
 
-      {/* Top Engineering Colleges Leaderboard */}
-      <div>
-        <TopCollegesLeaderboard />
+      {/* Documents Needed & HLC Checklist */}
+      <div className="relative z-20">
+        <ExamDocumentsOverview examName="TG ECET" checklistPath="/tg-ecet/documents" />
       </div>
 
       <SectionDivider />
 
-      {/* Lateral Cutoff Trajectory & Shifts */}
-      <div>
-        <CutoffTrendAnalyzer />
+      {/* Top Engineering Colleges Leaderboard */}
+      <div className="relative z-20">
+        <TopCollegesLeaderboard />
       </div>
 
       <SectionDivider />

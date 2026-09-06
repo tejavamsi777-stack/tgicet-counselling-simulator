@@ -47,6 +47,7 @@ router.get("/eapcet/colleges/:code", eapcetController.getInstitutionByCode);
 router.get("/eapcet/colleges/:code/branches", eapcetController.getCollegeBranches);
 router.get("/eapcet/compare", eapcetController.compareInstitutions);
 router.get("/eapcet/allotments/meta", eapcetController.getAllotmentMeta);
+router.get("/eapcet/allotments/trajectory", eapcetController.getAllotmentTrajectory);
 router.get("/eapcet/allotments", eapcetController.getAllotmentData);
 
 // ---------- AP EAPCET Public Counselling Data ----------

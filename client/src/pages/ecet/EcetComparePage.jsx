@@ -3,8 +3,8 @@ import { ArrowLeft, ArrowLeftRight } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import CollegeComparisonTool from '../../components/ecet/CollegeComparisonTool';
 import TopCollegesLeaderboard from '../../components/ecet/TopCollegesLeaderboard';
-import CutoffTrendAnalyzer from '../../components/ecet/CutoffTrendAnalyzer';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function EcetComparePage() {
   const [searchParams] = useSearchParams();
@@ -53,15 +53,13 @@ export default function EcetComparePage() {
         <AdSenseUnit slotName="compareBanner" minHeight={90} />
       </div>
 
-      {/* Lateral Cutoff Trajectory */}
-      <div className="my-10">
-        <CutoffTrendAnalyzer />
-      </div>
-
       {/* Top Leaderboard */}
       <div className="my-10">
         <TopCollegesLeaderboard />
       </div>
+
+      {/* Educational Guide & Comparison Methodology */}
+      <ToolGuideSection toolType="compare" examName="TG ECET" authorityName="TSCHE" />
     </main>
   );
 }

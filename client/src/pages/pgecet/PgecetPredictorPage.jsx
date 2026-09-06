@@ -22,6 +22,7 @@ import { PGECET_BRANCHES } from "../../data/pgecetInstitutions";
 import SearchableSelect from "../../components/shared/SearchableSelect";
 import { smoothScrollTo } from "../../lib/utils";
 import { strictMultiFieldMatch } from "../../utils/searchMatch";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 const CATEGORIES = ["OC", "EWS", "BC-A", "BC-B", "BC-C", "BC-D", "BC-E", "SC", "ST"];
 const PAGE_SIZE = 20;
@@ -512,6 +513,9 @@ export default function PgecetPredictorPage() {
 
         </div>
       )}
+
+      {/* Educational Guide & Counselling Methodology */}
+      <ToolGuideSection toolType="predictor" examName="TG PGECET" authorityName="TSCHE" />
     </main>
   );
 }

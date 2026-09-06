@@ -19,6 +19,7 @@ import ThreeDotsLoader from "../../components/ui/three-dots-loader";
 
 import { useReferenceData, sortCourses } from "../../hooks/useReferenceData";
 import { smoothScrollTo } from "../../lib/utils";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 export default function IcetPredictorPage() {
   const { years, categories, courses, districts, loading } = useReferenceData("tg-icet");
@@ -283,6 +284,9 @@ export default function IcetPredictorPage() {
         results={results}
         examSlug="tg-icet"
       />
+
+      {/* Educational Guide & Counselling Methodology */}
+      <ToolGuideSection toolType="predictor" examName="TG ICET" authorityName="TSCHE" />
     </main>
   );
 }

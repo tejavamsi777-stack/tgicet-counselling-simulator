@@ -10,6 +10,7 @@ import BranchMultiSelect from "../../components/shared/BranchMultiSelect";
 import DistrictMultiSelect from "../../components/shared/DistrictMultiSelect";
 import SmartWebOptionsModal from "../../components/counselling/SmartWebOptionsModal";
 import { useReferenceData } from "../../hooks/useReferenceData";
+import ToolGuideSection from "../../components/shared/ToolGuideSection";
 
 const EXAM_META = {
   "tg-eapcet": {
@@ -230,6 +231,9 @@ export default function CreateWebOptionsPage({ examOverride }) {
           results={[]}
         />
       )}
+
+      {/* Educational Guide & Choice Filling Methodology */}
+      <ToolGuideSection toolType="mock_counselling" examName={meta?.name || "Entrance"} authorityName="State Admission Authority" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

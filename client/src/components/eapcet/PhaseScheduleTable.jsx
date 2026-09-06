@@ -99,9 +99,9 @@ export default function PhaseScheduleTable({ phases = [] }) {
   if (!phases.length) return null;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-6">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-xl p-4 sm:p-5">
       {/* Phase tab switcher */}
-      <div className="flex flex-wrap items-center gap-2 mb-6">
+      <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
         {phases.map((p) => {
           const isSelected = currentPhaseId === p.id;
           const isLive = isPhaseCurrentlyLive(p);
@@ -111,7 +111,7 @@ export default function PhaseScheduleTable({ phases = [] }) {
               key={p.id}
               type="button"
               onClick={() => setActivePhase(p.id)}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isSelected
                   ? 'bg-white/15 text-white border border-white/20 shadow-sm'
                   : 'text-white/50 hover:text-white hover:bg-white/5 border border-transparent'
@@ -119,7 +119,7 @@ export default function PhaseScheduleTable({ phases = [] }) {
             >
               <span>{p.label || p.name}</span>
               {isLive && (
-                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               )}
             </button>
           );
@@ -130,9 +130,9 @@ export default function PhaseScheduleTable({ phases = [] }) {
         <>
           {/* Constraint notice */}
           {(phase.constraint || phase.description) && (
-            <div className="rounded-xl border border-amber-500/20 bg-amber-950/20 px-3.5 py-2 mb-4 flex items-center gap-2.5">
-              <AlertCircle size={14} className="text-amber-400 shrink-0" />
-              <p className="text-xs text-amber-200/85 font-medium leading-normal">
+            <div className="rounded-xl border border-amber-500/20 bg-amber-950/20 px-3 py-1.5 mb-3 flex items-center gap-2">
+              <AlertCircle size={13} className="text-amber-400 shrink-0" />
+              <p className="text-[11px] text-amber-200/85 font-medium leading-normal">
                 {phase.constraint || phase.description}
               </p>
             </div>
@@ -140,12 +140,12 @@ export default function PhaseScheduleTable({ phases = [] }) {
 
           {/* Schedule table */}
           <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-white/[0.01]">
-            <table className="w-full text-sm">
+            <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-white/[0.08] text-white/40 bg-white/[0.02]">
-                  <th className="py-3.5 px-4 sm:px-6 text-left font-semibold">Action</th>
-                  <th className="py-3.5 px-4 sm:px-6 text-left font-semibold">Dates</th>
-                  <th className="py-3.5 px-4 sm:px-6 text-left font-semibold">Status</th>
+                  <th className="py-2.5 px-3.5 sm:px-4 text-left font-semibold">Action</th>
+                  <th className="py-2.5 px-3.5 sm:px-4 text-left font-semibold">Dates</th>
+                  <th className="py-2.5 px-3.5 sm:px-4 text-left font-semibold">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
@@ -155,9 +155,9 @@ export default function PhaseScheduleTable({ phases = [] }) {
 
                   return (
                     <tr key={i} className="hover:bg-white/[0.02] transition-colors">
-                      <td className="py-3.5 px-4 sm:px-6 text-white/90 font-medium">{row.action || row.label}</td>
-                      <td className="py-3.5 px-4 sm:px-6 text-white/60 whitespace-nowrap">{dateText}</td>
-                      <td className="py-3.5 px-4 sm:px-6">
+                      <td className="py-2.5 px-3.5 sm:px-4 text-white/90 font-medium">{row.action || row.label}</td>
+                      <td className="py-2.5 px-3.5 sm:px-4 text-white/60 whitespace-nowrap">{dateText}</td>
+                      <td className="py-2.5 px-3.5 sm:px-4">
                         <span className={STATUS_STYLES[rowStatus] || STATUS_STYLES.concluded}>
                           {rowStatus === 'Active' && (
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -174,17 +174,17 @@ export default function PhaseScheduleTable({ phases = [] }) {
 
           {/* Logistics cards */}
           {phase.logistics && (
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {phase.logistics.collegeUpgrade && (
-                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
-                  <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mb-2">College Upgrade</p>
-                  <p className="text-white/70 text-sm leading-relaxed">{phase.logistics.collegeUpgrade}</p>
+                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                  <p className="text-white/40 text-[10px] font-semibold uppercase tracking-wider mb-1">College Upgrade</p>
+                  <p className="text-white/70 text-xs leading-relaxed">{phase.logistics.collegeUpgrade}</p>
                 </div>
               )}
               {phase.logistics.branchUpgrade && (
-                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
-                  <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mb-2">Branch Upgrade</p>
-                  <p className="text-white/70 text-sm leading-relaxed">{phase.logistics.branchUpgrade}</p>
+                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                  <p className="text-white/40 text-[10px] font-semibold uppercase tracking-wider mb-1">Branch Upgrade</p>
+                  <p className="text-white/70 text-xs leading-relaxed">{phase.logistics.branchUpgrade}</p>
                 </div>
               )}
             </div>

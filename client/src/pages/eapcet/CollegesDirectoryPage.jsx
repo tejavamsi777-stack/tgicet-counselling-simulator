@@ -179,10 +179,10 @@ export default function CollegesDirectoryPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visibleColleges.map((col) => (
+          {visibleColleges.map((col, index) => (
             <a key={col.code} href={`/tg-eapcet/colleges/${col.code}`} target="_blank" rel="noopener noreferrer" className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 hover:border-purple-500/50 hover:bg-white/[0.07] transition-all flex flex-col gap-3">
               <div className="flex items-center justify-between">
-                <span className="rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 text-[11px] font-extrabold font-mono">#{col.rank}</span>
+                <span className="rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 text-[11px] font-extrabold font-mono">#{index + 1}</span>
                 <div className="flex items-center gap-0.5">
                   <span className={`text-base font-extrabold ${getScoreColor(getCollegeEduvaleRating(col))}`}>{getCollegeEduvaleRating(col).toFixed(1)}</span>
                   <span className="text-[10px] text-white/30">/10</span>

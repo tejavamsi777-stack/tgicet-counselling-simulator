@@ -11,7 +11,7 @@ import AdmissionConditions from '../../components/eapcet/AdmissionConditions';
 import EligibilityMatrix from '../../components/eapcet/EligibilityMatrix';
 import TopCollegesLeaderboard from '../../components/eapcet/TopCollegesLeaderboard';
 import FeeReimbursementCalculator from '../../components/shared/FeeReimbursementCalculator';
-import CutoffTrendAnalyzer from '../../components/eapcet/CutoffTrendAnalyzer';
+import ExamDocumentsOverview from '../../components/shared/ExamDocumentsOverview';
 import CommunityAlertsBanner from '../../components/eapcet/CommunityAlertsBanner';
 import FaqSection from '../../components/shared/FaqSection';
 import { TG_EAPCET_FAQS } from '../../data/faqsData';
@@ -124,7 +124,15 @@ export default function EapcetHome() {
         showExploreColleges={true}
         exploreUrl="/tg-eapcet/colleges"
         exploreLabel="Explore EAPCET Colleges"
+        mobileSingleBlock={true}
       />
+
+      <SectionDivider />
+
+      {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
+      <div className="relative z-30">
+        <FeeReimbursementCalculator />
+      </div>
 
       {/* Passive ad banner */}
       <div className="mt-10 w-full">
@@ -133,31 +141,27 @@ export default function EapcetHome() {
 
       <SectionDivider />
 
-      {/* Top Engineering Colleges Directory & Profiles Explorer */}
-      <div className="relative z-30">
-        <TopEngineeringCollegesExplorer />
-      </div>
-
-      {/* Real-time Scraped Official Circulars */}
-      <div className="mt-8">
+      {/* Real-time Scraped Official Circulars & Notifications */}
+      <div className="relative z-20">
         <LiveNotificationsStream />
       </div>
 
       <SectionDivider />
 
-      {/* TS ePASS Fee Reimbursement & Scholarship Calculator */}
-      <div className="relative z-30 mb-6">
-        <FeeReimbursementCalculator />
+      {/* Documents Needed & HLC Verification Checklist */}
+      <div className="relative z-20">
+        <ExamDocumentsOverview examName="TG EAPCET" checklistPath="/tg-eapcet/documents" />
       </div>
 
-      {/* Top 5 Engineering Colleges Leaderboard */}
-      <div className="relative z-10">
+      <SectionDivider />
+
+      {/* Top Engineering Colleges Directory & Profiles Explorer */}
+      <div className="relative z-20">
+        <TopEngineeringCollegesExplorer />
+      </div>
+
+      <div className="mt-8 relative z-10">
         <TopCollegesLeaderboard />
-      </div>
-
-      {/* 3-Year Cutoff Trajectory & Shifts */}
-      <div className="my-8">
-        <CutoffTrendAnalyzer />
       </div>
 
       <SectionDivider />

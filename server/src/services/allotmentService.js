@@ -8,33 +8,72 @@ import { scrapeOfficialTscheAllotment } from "./tscheAllotmentScraper.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOCAL_2025_PATH = path.resolve(__dirname, "../data/tg_eapcet_2025_final_allotments.json");
 const LOCAL_2024_PATH = path.resolve(__dirname, "../data/tg_eapcet_2024_allotments.json");
+const LOCAL_2023_PATH = path.resolve(__dirname, "../data/tg_eapcet_2023_allotments.json");
+const LOCAL_2022_PATH = path.resolve(__dirname, "../data/tg_eapcet_2022_allotments.json");
 
 export const ALLOTMENT_YEARS = [
   { id: "2026-final", label: "2026" },
   { id: "2025-final", label: "2025" },
   { id: "2024", label: "2024" },
+  { id: "2023", label: "2023" },
+  { id: "2022", label: "2022" },
 ];
 
 export const ALLOTMENT_BRANCHES = [
-  { code: "CIV", name: "CIVIL ENGINEERING" },
   { code: "CSE", name: "COMPUTER SCIENCE AND ENGINEERING" },
-  { code: "CSM", name: "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING" },
-  { code: "AID", name: "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE" },
-  { code: "AIM", name: "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING" },
-  { code: "CSD", name: "COMPUTER SCIENCE AND DATA SCIENCE" },
+  { code: "CSM", name: "COMPUTER SCIENCE AND ENGINEERING (ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING)" },
+  { code: "CSD", name: "COMPUTER SCIENCE AND ENGINEERING (DATA SCIENCE)" },
   { code: "CSC", name: "COMPUTER SCIENCE AND ENGINEERING (CYBER SECURITY)" },
-  { code: "CIC", name: "CSE (IoT AND CYBER SECURITY)" },
+  { code: "CSO", name: "COMPUTER SCIENCE AND ENGINEERING (IOT)" },
+  { code: "CSW", name: "COMPUTER ENGINEERING (SOFTWARE ENGINEERING)" },
+  { code: "CSB", name: "COMPUTER SCIENCE AND BUSINESS SYSTEM" },
+  { code: "CSG", name: "COMPUTER SCIENCE & DESIGN" },
+  { code: "CSI", name: "COMPUTER SCIENCE AND INFORMATION TECHNOLOGY" },
+  { code: "CSN", name: "COMPUTER SCIENCE & ENGINEERING (NETWORKS)" },
+  { code: "CSA", name: "COMPUTER SCIENCE AND ENGG (ARTIFICIAL INTELLIGENCE)" },
+  { code: "CME", name: "COMPUTER ENGINEERING" },
+  { code: "CS", name: "COMPUTER SCIENCE AND ENGINEERING" },
+  { code: "CIC", name: "CSE (IoT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY)" },
   { code: "INF", name: "INFORMATION TECHNOLOGY" },
+  { code: "AI", name: "ARTIFICIAL INTELLIGENCE" },
+  { code: "AIM", name: "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING" },
+  { code: "AID", name: "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE" },
   { code: "ECE", name: "ELECTRONICS AND COMMUNICATION ENGINEERING" },
+  { code: "ECV", name: "ELECTRONICS AND COMMUNICATION ENGINEERING (VLSI DESIGN & TECHNOLOGY)" },
+  { code: "EVL", name: "ELECTRONICS ENGINEERING (VLSI DESIGN AND TECHNOLOGY)" },
+  { code: "ECI", name: "ELECTRONICS COMMUNICATION AND INSTRUMENTATION ENGINEERING" },
   { code: "EEE", name: "ELECTRICAL AND ELECTRONICS ENGINEERING" },
-  { code: "EVL", name: "ELECTRONICS ENGINEERING (VLSI DESIGN)" },
+  { code: "EIE", name: "ELECTRONICS AND INSTRUMENTATION ENGINEERING" },
+  { code: "ETE", name: "ELECTRONICS AND TELECOMMUNICATION ENGG" },
+  { code: "ETM", name: "ELECTRONICS AND TELEMATICS" },
+  { code: "ECM", name: "ELECTRONICS AND COMPUTER ENGINEERING" },
   { code: "MEC", name: "MECHANICAL ENGINEERING" },
+  { code: "MCT", name: "MECHANICAL (MECHTRONICS) ENGINEERING" },
+  { code: "MMS", name: "BTECH MECHANICAL WITH MTECH MANUFACTURING SYSTEMS" },
+  { code: "MTE", name: "BTECH MECHANICAL WITH MTECH THERMAL ENGG" },
+  { code: "AUT", name: "AUTOMOBILE ENGINEERING" },
+  { code: "CIV", name: "CIVIL ENGINEERING" },
+  { code: "CHE", name: "CHEMICAL ENGINEERING" },
   { code: "MET", name: "METALLURGICAL ENGINEERING" },
+  { code: "MME", name: "METALLURGICAL AND MATERIALS ENGINEERING" },
+  { code: "MMT", name: "METALLURGY AND MATERIAL ENGINEERING" },
   { code: "MIN", name: "MINING ENGINEERING" },
   { code: "BIO", name: "BIO-TECHNOLOGY" },
   { code: "BME", name: "BIO-MEDICAL ENGINEERING" },
-  { code: "CHE", name: "CHEMICAL ENGINEERING" },
+  { code: "PHE", name: "PHARMACEUTICAL ENGINEERING" },
+  { code: "PHM", name: "B.PHARMACY (MPC STREAM)" },
+  { code: "PHD", name: "PHARM.D (DOCTOR OF PHARMACY)" },
+  { code: "AGR", name: "AGRICULTURAL ENGINEERING" },
+  { code: "FDT", name: "FOOD TECHNOLOGY" },
+  { code: "DRG", name: "DAIRYING" },
+  { code: "ANE", name: "AERONAUTICAL ENGINEERING" },
+  { code: "PLG", name: "B.PLANNING" },
+  { code: "BSE", name: "BUILDING SERVICES ENGG" },
+  { code: "DTD", name: "DIGITAL TECHNIQUES FOR DESIGN AND PLANNING" },
   { code: "GEO", name: "GEO INFORMATICS" },
+  { code: "TEX", name: "TEXTILE AND FASHION TECHNOLOGY" },
+  { code: "DS", name: "DATA SCIENCE" },
+  { code: "RAI", name: "ROBOTICS AND ARTIFICIAL INTELLIGENCE" },
 ];
 
 /**
@@ -116,8 +155,8 @@ export async function getAllotmentDataset({
     console.warn(`[Allotment Service] DB Query Error:`, dbErr.message);
   }
 
-  // 2. Fallback to local 2025/2024 JSON dataset if DB is empty/unavailable
-  const targetJsonPath = admissionYear === 2025 ? LOCAL_2025_PATH : (admissionYear === 2024 ? LOCAL_2024_PATH : null);
+  // 2. Fallback to local 2025/2024/2023/2022 JSON dataset if DB is empty/unavailable
+  const targetJsonPath = admissionYear === 2025 ? LOCAL_2025_PATH : (admissionYear === 2024 ? LOCAL_2024_PATH : (admissionYear === 2023 ? LOCAL_2023_PATH : (admissionYear === 2022 ? LOCAL_2022_PATH : null)));
   if (targetJsonPath && fs.existsSync(targetJsonPath)) {
     try {
       const rawData = fs.readFileSync(targetJsonPath, "utf-8");

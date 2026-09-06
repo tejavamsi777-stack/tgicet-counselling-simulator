@@ -168,7 +168,7 @@ export const TG_ICET_FAQS = [
   },
   {
     q: "Does TS ePASS reimburse the special fee along with the tuition fee for ICET?",
-    a: "No. The TS ePASS fee reimbursement scheme covers only the state-approved Tuition Fee (either fully or ₹27,000 / ₹35,000 depending on rank/category). Students must pay additional college special fees, library fees, and university affiliation fees from their own pockets."
+    a: "No. The TS ePASS fee reimbursement scheme covers only the state-approved Tuition Fee (100% full coverage for SC/ST across all colleges, 100% full coverage for eligible BC/EWS in regular university campuses like OUCB MBA where fee is ₹35,000, and standard ₹27,000/year reimbursement cap for private colleges and self-finance courses like OUCBSF). Students must pay additional college special fees, library fees, and university affiliation fees from their own pockets."
   }
 ];
 

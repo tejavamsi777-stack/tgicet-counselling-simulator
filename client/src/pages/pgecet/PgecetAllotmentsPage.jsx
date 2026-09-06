@@ -3,6 +3,7 @@ import { Database } from 'lucide-react';
 import Seo from '../../components/shared/Seo';
 import AdSenseUnit from '../../components/ads/AdSenseUnit';
 import PgecetAllotmentExplorer from '../../components/pgecet/PgecetAllotmentExplorer';
+import ToolGuideSection from '../../components/shared/ToolGuideSection';
 
 export default function PgecetAllotmentsPage() {
   const [hasLoadedData, setHasLoadedData] = useState(false);
@@ -37,6 +38,9 @@ export default function PgecetAllotmentsPage() {
 
       {/* Main Explorer Component */}
       <PgecetAllotmentExplorer onDataLoaded={setHasLoadedData} />
+
+      {/* Educational Guide & Allotment Analytics */}
+      <ToolGuideSection toolType="allotments" examName="TG PGECET" authorityName="TSCHE" />
 
       <div className="mt-12 w-full">
         <AdSenseUnit slotName="bottomBanner" minHeight={90} />

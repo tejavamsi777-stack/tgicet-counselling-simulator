@@ -382,7 +382,7 @@ export default function ResultsTable({
                   className="pointer-events-none absolute -top-2.5 -right-1 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white shadow-md shadow-black/60 border border-white/50 ring-1 ring-amber-300/60"
                 >
                   <Flame size={10} className="text-yellow-200 fill-yellow-200" />
-                  <span>Must Try</span>
+                  <span>TRENDING!</span>
                 </motion.span>
 
                 <GlassButton
